@@ -1,0 +1,99 @@
+{
+  "bold": {
+    "admin": {
+      "settings": {
+        "title": "Bold Kolombiya Ayarları",
+        "subtitle": "Ödeme sağlayıcılarını ve yöntemlerini yönetin.",
+        "refresh": "Yenile",
+        "enabled_providers": "Etkin Sağlayıcılar",
+        "enabled_providers_description": "Aktif ödeme sağlayıcı türleri",
+        "integration_methods": "Entegrasyon API Yöntemleri",
+        "integration_methods_description": "Datáfono ve POS terminal ödeme yöntemleri",
+        "payment_link_methods": "Ödeme Bağlantısı Yöntemleri",
+        "payment_link_methods_description": "Çevrimiçi ödeme yöntemleri (QR, Kartlar, PSE, Nequi)",
+        "no_providers_configured": "Yapılandırılmış sağlayıcı yok",
+        "no_methods_available": "Mevcut yöntem yok",
+        "method_status_available": "Mevcut",
+        "provider_link": "Ödeme Bağlantısı",
+        "provider_online": "Çevrimiçi Ödemeler",
+        "provider_terminal": "POS Datáfono",
+        "provider_button": "Ödeme Düğmesi",
+        "loading": "Yükleniyor...",
+        "unauthorized_short": "API Erişimi Bekliyor (403)",
+        "unauthorized_methods_desc": "Lütfen Bold Üye İşyeri Portalınızda Çevrimiçi Ödemeler (API de Pagos en Línea) özelliğinin etkinleştirildiğinden emin olun.",
+        "enable_payments_link": "Çevrimiçi Ödeme API'sini Etkinleştir →",
+        "unauthorized_terminals_title": "POS Terminal Entegrasyon Yetkisi Gerekli (403)",
+        "unauthorized_terminals_desc": "Datáfono POS işlemleri Bold portalınız üzerinden API entegrasyonları için açıkça yetkilendirilmelidir.",
+        "enable_terminals_link": "Terminalleri Yetkilendir →"
+      },
+      "widget": {
+        "title": "Bold Ödeme İşlemleri",
+        "description": "Müşteriye uzaktan ödeme bağlantısı veya POS ödemesi gönderin",
+        "link_btn": "Ödeme Bağlantısı",
+        "qr_btn": "QR Kod",
+        "terminal_btn": "Terminale Gönder",
+        "terminal_placeholder": "POS Seri No (ör. POS_SMART_01)",
+        "send_to_terminal": "POS Terminaline Gönder",
+        "approved": "Ödeme Onaylandı",
+        "partially_paid": "Kısmen Ödendi",
+        "remaining_balance": "Kalan Bakiye",
+        "processing": "Ödeme İşleniyor",
+        "copy_link": "Bağlantıyı Kopyala",
+        "copied": "Kopyalandı",
+        "copied_desc": "Ödeme bağlantısı panoya kopyalandı!",
+        "already_captured": "Bu sipariş Bold aracılığıyla başarıyla yetkilendirildi ve tahsil edildi.",
+        "paid_and_captured": "Ödendi ve Tahsil Edildi"
+      },
+      "terminal_status": {
+        "title": "Bold POS Terminal Filosu Durumu",
+        "refresh": "Filoyu Yenile",
+        "serial": "Seri Numarası",
+        "model": "Donanım Modeli",
+        "status": "Durum",
+        "battery": "Pil",
+        "connectivity": "Bağlantı",
+        "unknown": "BİLİNMİYOR",
+        "na": "N/A"
+      },
+      "audit": {
+        "title": "Bold Ödeme Denetim Kaydı",
+        "events_count": "{{count}} Olay Kaydedildi",
+        "session_init": "Oturum Başlatıldı",
+        "payment_auth": "Ödeme Yetkilendirildi",
+        "payment_captured": "Ödeme Tahsil Edildi ve Kapatıldı",
+        "mode_link": "Ödeme Bağlantısı",
+        "mode_terminal": "Terminale Gönder",
+        "ref": "Ref: {{ref}}",
+        "amount": "Tutar: ${{amount}} {{currency}}",
+        "headers": {
+          "event": "Olay",
+          "provider_mode": "Sağlayıcı / Mod",
+          "reference": "Referans",
+          "amount": "Tutar",
+          "status": "Durum",
+          "timestamp": "Zaman Damgası"
+        },
+        "statuses": {
+          "success": "BAŞARILI",
+          "pending": "BEKLİYOR",
+          "info": "BİLGİ"
+        }
+      },
+      "refund": {
+        "title": "Bold Ödeme İadesi",
+        "captured": "Tahsil Edildi",
+        "fully_refunded": "Tamamen İade Edildi",
+        "fully_refunded_desc": "Bu ödeme tamamen iade edilmiştir (${{amount}} COP).",
+        "captured_total": "Toplam Tahsil Edilen",
+        "remaining": "Kalan İade Edilebilir",
+        "placeholder": "İade Tutarı (COP)",
+        "action": "İade Yap",
+        "invalid_amount_title": "Geçersiz Tutar",
+        "invalid_amount_desc": "Lütfen 1 ile ${{max}} COP arasında bir tutar girin.",
+        "success_title": "İade İşlendi",
+        "success_desc": "${{amount}} COP tutarındaki iade başarılı oldu.",
+        "error_title": "İade Hatası"
+      }
+    }
+  }
+}

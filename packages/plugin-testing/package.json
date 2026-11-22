@@ -1,0 +1,11 @@
+{
+  "name": "@vicacha-devs/medusa-plugin-testing",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    "./register": "./register-ts-resolver.mjs",
+    "./shim": "./medusa-shim.mjs"
+  }
+}

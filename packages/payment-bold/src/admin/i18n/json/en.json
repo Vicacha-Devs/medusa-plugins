@@ -1,0 +1,99 @@
+{
+  "bold": {
+    "admin": {
+      "settings": {
+        "title": "Bold Colombia Settings",
+        "subtitle": "Manage payment providers and methods.",
+        "refresh": "Refresh",
+        "enabled_providers": "Enabled Providers",
+        "enabled_providers_description": "Active payment provider types",
+        "integration_methods": "Integration API Methods",
+        "integration_methods_description": "POS and terminal payment methods",
+        "payment_link_methods": "Payment Link Methods",
+        "payment_link_methods_description": "Online payment methods (QR, Cards, PSE, Nequi)",
+        "no_providers_configured": "No providers configured",
+        "no_methods_available": "No methods available",
+        "method_status_available": "Available",
+        "provider_link": "Payment Link",
+        "provider_online": "Online Payments",
+        "provider_terminal": "POS Terminal",
+        "provider_button": "Payment Button",
+        "loading": "Loading...",
+        "unauthorized_short": "API Access Pending (403)",
+        "unauthorized_methods_desc": "Please ensure Online Payments (API de Pagos en Línea) is activated in your Bold Merchant Portal.",
+        "enable_payments_link": "Enable Online Payments API →",
+        "unauthorized_terminals_title": "POS Terminal Integration Authorization Required (403)",
+        "unauthorized_terminals_desc": "Datáfono POS transactions must be explicitly authorized for API Integrations in your Bold merchant portal.",
+        "enable_terminals_link": "Authorize Terminals →"
+      },
+      "widget": {
+        "title": "Bold Payment Actions",
+        "description": "Dispatch remote or POS payment to customer",
+        "link_btn": "Payment Link",
+        "qr_btn": "QR Code",
+        "terminal_btn": "Terminal Push",
+        "terminal_placeholder": "Data-phone Serial (e.g. POS_SMART_01)",
+        "send_to_terminal": "Push to POS Terminal",
+        "approved": "Payment Approved",
+        "partially_paid": "Partially Paid",
+        "remaining_balance": "Remaining Balance",
+        "processing": "Processing Payment",
+        "copy_link": "Copy Link",
+        "copied": "Copied",
+        "copied_desc": "Payment link copied to clipboard!",
+        "already_captured": "This order has already been successfully authorized and captured via Bold.",
+        "paid_and_captured": "Paid & Captured"
+      },
+      "terminal_status": {
+        "title": "Bold POS Terminal Fleet Health",
+        "refresh": "Refresh Fleet",
+        "serial": "Serial Number",
+        "model": "Hardware Model",
+        "status": "Status",
+        "battery": "Battery",
+        "connectivity": "Connectivity",
+        "unknown": "UNKNOWN",
+        "na": "N/A"
+      },
+      "audit": {
+        "title": "Bold Payment Audit Trail",
+        "events_count": "{{count}} Events Recorded",
+        "session_init": "Session Initialized",
+        "payment_auth": "Payment Authorized",
+        "payment_captured": "Payment Captured & Settled",
+        "mode_link": "Payment Link",
+        "mode_terminal": "Terminal Push",
+        "ref": "Ref: {{ref}}",
+        "amount": "Amount: ${{amount}} {{currency}}",
+        "headers": {
+          "event": "Event",
+          "provider_mode": "Provider / Mode",
+          "reference": "Reference",
+          "amount": "Amount",
+          "status": "Status",
+          "timestamp": "Timestamp"
+        },
+        "statuses": {
+          "success": "SUCCESS",
+          "pending": "PENDING",
+          "info": "INFO"
+        }
+      },
+      "refund": {
+        "title": "Bold Payment Refund",
+        "captured": "Captured",
+        "fully_refunded": "Fully Refunded",
+        "fully_refunded_desc": "This payment has been fully refunded (${{amount}} COP).",
+        "captured_total": "Captured Total",
+        "remaining": "Remaining Refundable",
+        "placeholder": "Refund Amount (COP)",
+        "action": "Issue Refund",
+        "invalid_amount_title": "Invalid Amount",
+        "invalid_amount_desc": "Please enter an amount between 1 and ${{max}} COP.",
+        "success_title": "Refund Processed",
+        "success_desc": "Refund of ${{amount}} COP was successful.",
+        "error_title": "Refund Error"
+      }
+    }
+  }
+}

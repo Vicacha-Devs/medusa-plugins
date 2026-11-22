@@ -1,0 +1,16 @@
+{
+  "$schema": "https://unpkg.com/@changesets/config@4.0.1/schema.json",
+  "baseBranch": "main",
+  "access": "public",
+  "changelog": "@changesets/cli/changelog",
+  "commit": false,
+  "ignore": [
+    "@vicacha-devs/medusa-eslint-config",
+    "@vicacha-devs/medusa-plugin-testing",
+    "@vicacha-devs/medusa-sandbox",
+    "@vicacha-devs/medusa-typescript-config"
+  ],
+  "fixed": [],
+  "linked": [],
+  "updateInternalDependencies": "patch"
+}

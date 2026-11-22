@@ -1,31 +1,63 @@
 {
-  "name": "plugins",
-  "version": "0.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "build": "turbo build",
-    "dev": "turbo dev",
-    "test": "turbo test",
-    "lint": "turbo lint",
-    "typecheck": "turbo typecheck",
-    "clean": "turbo clean"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devEngines": {
-    "packageManager": {
-      "name": "pnpm",
-      "version": "11.20.0",
-      "onFail": "download"
-    }
-  },
+  "name": "@vicacha-devs/medusa-v2-extensions",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Enterprise Medusa v2 Extensions & Plugins Monorepo (11 publishable @vicacha-devs Medusa v2 plugins, shared configs, testing harness & sandbox host app)",
+  "license": "MIT",
+  "author": "Vicacha Devs",
   "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "bold:emulator": "node ./packages/payment-bold/scripts/bold-emulator.ts",
+    "build": "turbo run build --filter=./packages/*",
+    "changeset": "changeset",
+    "check": "turbo run typecheck --filter=./packages/*",
+    "clean": "turbo run clean",
+    "dev": "turbo run dev",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check",
+    "lint": "oxlint && eslint .",
+    "lint:fix": "oxlint --fix && eslint . --fix",
+    "plugin:new": "node ./scripts/create-plugin.ts",
+    "publint": "node ./scripts/publint-all.ts",
+    "qa:docker:down": "docker compose -f docker-compose.qa.yml down",
+    "qa:docker:up": "docker compose -f docker-compose.qa.yml --env-file .env.qa up -d",
+    "qa:doctor": "node ./scripts/qa/doctor.ts",
+    "qa:e2e": "pnpm --filter @vicacha-devs/medusa-sandbox test:e2e",
+    "qa:judges": "node ./scripts/qa/judges.ts",
+    "qa:report": "node ./scripts/qa/report.ts",
+    "qa:smoke": "node ./scripts/qa/smoke.ts",
+    "qa:verify": "node ./scripts/qa/verify.ts",
+    "release": "pnpm build && changeset publish",
+    "sandbox:build": "pnpm --filter @vicacha-devs/medusa-sandbox build",
+    "sandbox:dev": "pnpm --filter @vicacha-devs/medusa-sandbox dev",
+    "sandbox:test": "pnpm --filter @vicacha-devs/medusa-sandbox test",
+    "test": "turbo run test",
+    "test:offline": "node ./scripts/qa/verify.ts --offline-only",
+    "verify": "node ./scripts/qa/verify.ts --strict",
+    "version-packages": "changeset version && pnpm install --lockfile-only"
+  },
   "devDependencies": {
-    "@medusajs/eslint-plugin": "2.18.0",
-    "eslint": "9.39.4",
-    "jiti": "2.7.0",
-    "turbo": "^2.10.8"
-  }
+    "@changesets/cli": "3.0.3",
+    "@commitlint/cli": "21.2.0",
+    "@commitlint/config-conventional": "21.2.0",
+    "@commitlint/types": "21.2.0",
+    "@medusajs/eslint-plugin": "2.23.0",
+    "@types/node": "^22.10.2",
+    "eslint": "^10.9.1",
+    "jiti": "^2.7.0",
+    "oxfmt": "0.75.0",
+    "oxlint": "1.90.0",
+    "publint": "0.3.25",
+    "turbo": "^2.5.4",
+    "typescript": "5.6.2"
+  },
+  "engines": {
+    "node": ">=22.22.0",
+    "pnpm": ">=10.0.0"
+  },
+  "packageManager": "pnpm@11.20.0"
 }

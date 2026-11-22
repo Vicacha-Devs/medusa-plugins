@@ -1,0 +1,99 @@
+{
+  "bold": {
+    "admin": {
+      "settings": {
+        "title": "إعدادات Bold كولومبيا",
+        "subtitle": "إدارة مزودي الدفع وطرق الدفع.",
+        "refresh": "تحديث",
+        "enabled_providers": "المزودون المفعّلون",
+        "enabled_providers_description": "أنواع مزودي الدفع النشطين",
+        "integration_methods": "طرق واجهة برمجة التطبيقات للربط",
+        "integration_methods_description": "طرق الدفع لأجهزة POS والطرفيات",
+        "payment_link_methods": "طرق رابط الدفع",
+        "payment_link_methods_description": "طرق الدفع عبر الإنترنت (رمز QR، البطاقات، PSE، Nequi)",
+        "no_providers_configured": "لا يوجد مزودون مُعدّلون",
+        "no_methods_available": "لا توجد طرق متاحة",
+        "method_status_available": "متاح",
+        "provider_link": "رابط الدفع",
+        "provider_online": "المدفوعات عبر الإنترنت",
+        "provider_terminal": "طرفية POS",
+        "provider_button": "زر الدفع",
+        "loading": "جاري التحميل...",
+        "unauthorized_short": "وصول API معلق (403)",
+        "unauthorized_methods_desc": "يرجى التأكد من تفعيل واجهة برمجة تطبيقات المدفوعات عبر الإنترنت في بوابة التجار الخاصة بك في Bold.",
+        "enable_payments_link": "تفعيل API المدفوعات عبر الإنترنت ←",
+        "unauthorized_terminals_title": "تفويض الربط البرمجي لأجهزة POS مطلوب (403)",
+        "unauthorized_terminals_desc": "يجب تفويض معاملات أجهزة POS صراحةً للربط البرمجي عبر بوابة التجار في Bold.",
+        "enable_terminals_link": "تفويض أجهزة POS ←"
+      },
+      "widget": {
+        "title": "إجراءات دفع Bold",
+        "description": "إرسال رابط دفع عن بُعد أو دفع عبر جهاز POS للعميل",
+        "link_btn": "رابط الدفع",
+        "qr_btn": "رمز QR",
+        "terminal_btn": "إرسال للجهاز",
+        "terminal_placeholder": "الرقم التسلسلي للجهاز (مثال: POS_SMART_01)",
+        "send_to_terminal": "إرسال إلى جهاز POS",
+        "approved": "تمت الموافقة على الدفع",
+        "partially_paid": "مدفوع جزئياً",
+        "remaining_balance": "الرصيد المتبقي",
+        "processing": "جاري معالجة الدفع",
+        "copy_link": "نسخ الرابط",
+        "copied": "تم النسخ",
+        "copied_desc": "تم نسخ رابط الدفع إلى الحافظة!",
+        "already_captured": "تمت تفويض وتحصيل هذا الطلب بنجاح عبر Bold.",
+        "paid_and_captured": "مدفوع ومحصل"
+      },
+      "terminal_status": {
+        "title": "حالة أجهزة POS Bold",
+        "refresh": "تحديث الأجهزة",
+        "serial": "الرقم التسلسلي",
+        "model": "طراز الجهاز",
+        "status": "الحالة",
+        "battery": "البطارية",
+        "connectivity": "الاتصال",
+        "unknown": "غير معروف",
+        "na": "غير متاح"
+      },
+      "audit": {
+        "title": "سجل مراجعة مدفوعات Bold",
+        "events_count": "تم تسجيل {{count}} أحداث",
+        "session_init": "تم بدء الجلسة",
+        "payment_auth": "تم تفويض الدفع",
+        "payment_captured": "تم تحصيل الدفع وتسويته",
+        "mode_link": "رابط الدفع",
+        "mode_terminal": "إرسال للجهاز",
+        "ref": "المرجع: {{ref}}",
+        "amount": "المبلغ: ${{amount}} {{currency}}",
+        "headers": {
+          "event": "الحدث",
+          "provider_mode": "المزود / الوضع",
+          "reference": "المرجع",
+          "amount": "المبلغ",
+          "status": "الحالة",
+          "timestamp": "الطابع الزمني"
+        },
+        "statuses": {
+          "success": "ناجح",
+          "pending": "قيد الانتظار",
+          "info": "معلومات"
+        }
+      },
+      "refund": {
+        "title": "استرداد مدفوعات Bold",
+        "captured": "تم التحصيل",
+        "fully_refunded": "مسترد بالكامل",
+        "fully_refunded_desc": "تم استرداد هذا المبلغ بالكامل (${{amount}} COP).",
+        "captured_total": "إجمالي المحصل",
+        "remaining": "المتبقي للاسترداد",
+        "placeholder": "مبلغ الاسترداد (COP)",
+        "action": "إجراء الاسترداد",
+        "invalid_amount_title": "مبلغ غير صحيح",
+        "invalid_amount_desc": "يرجى إدخال مبلغ بين 1 و ${{max}} COP.",
+        "success_title": "تمت معالجة الاسترداد",
+        "success_desc": "تم استرداد ${{amount}} COP بنجاح.",
+        "error_title": "خطأ في الاسترداد"
+      }
+    }
+  }
+}

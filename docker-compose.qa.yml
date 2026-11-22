@@ -1,0 +1,75 @@
+# Port-isolated QA infrastructure for @vicacha-devs/medusa-v2-extensions
+# All ports strictly bound to 127.0.0.1 (loopback only) — zero collision with
+# central-mosque-bogota (5433), strapi-v5-extensions (5434), or vicacha-travels (5435).
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: medusa_plugins_qa_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${QA_POSTGRES_DB:-medusa_plugins_qa}
+      POSTGRES_USER: ${QA_POSTGRES_USER:-medusa_qa}
+      POSTGRES_PASSWORD: ${QA_POSTGRES_PASSWORD:?QA_POSTGRES_PASSWORD must be set in .env.qa}
+    ports:
+      - "127.0.0.1:5436:5432"
+    volumes:
+      - medusa_plugins_qa_pg:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  valkey:
+    image: valkey/valkey:9-alpine
+    container_name: medusa_plugins_qa_valkey
+    restart: unless-stopped
+    command: ["valkey-server", "--save", "", "--loglevel", "warning"]
+    ports:
+      - "127.0.0.1:6383:6379"
+    healthcheck:
+      test: ["CMD", "valkey-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  typesense:
+    image: typesense/typesense:29.0
+    container_name: medusa_plugins_qa_typesense
+    restart: unless-stopped
+    environment:
+      TYPESENSE_DATA_DIR: /data
+      TYPESENSE_API_KEY: ${QA_TYPESENSE_API_KEY:?QA_TYPESENSE_API_KEY must be set in .env.qa}
+      TYPESENSE_ENABLE_CORS: "true"
+    ports:
+      - "127.0.0.1:8112:8108"
+    volumes:
+      - medusa_plugins_qa_typesense:/data
+
+  minio:
+    image: minio/minio:latest
+    container_name: medusa_plugins_qa_minio
+    restart: unless-stopped
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: ${QA_MINIO_USER:?QA_MINIO_USER must be set in .env.qa}
+      MINIO_ROOT_PASSWORD: ${QA_MINIO_PASSWORD:?QA_MINIO_PASSWORD must be set in .env.qa}
+    ports:
+      - "127.0.0.1:9007:9000"
+      - "127.0.0.1:9012:9001"
+    volumes:
+      - medusa_plugins_qa_minio:/data
+
+  mailpit:
+    image: axllent/mailpit:latest
+    container_name: medusa_plugins_qa_mailpit
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:1029:1025"
+      - "127.0.0.1:8029:8025"
+
+volumes:
+  medusa_plugins_qa_pg:
+  medusa_plugins_qa_typesense:
+  medusa_plugins_qa_minio:
