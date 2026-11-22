@@ -1,11 +1,12 @@
 import { clx } from "@medusajs/ui";
-import { memo } from "react";
+import type { RowData } from "@tanstack/react-table";
+import { type JSX, memo } from "react";
 import { NoRecords, NoResultsProps } from "../";
 import { TableSkeleton } from "../../skeleton";
 import { DataTableQuery, DataTableQueryProps } from "./data-table-query";
 import { DataTableRoot, DataTableRootProps } from "./data-table-root";
 
-interface DataTableProps<TData>
+interface DataTableProps<TData extends RowData>
   extends Omit<DataTableRootProps<TData>, "noResults">,
     DataTableQueryProps {
   isLoading?: boolean;
@@ -24,7 +25,7 @@ const MemoizedDataTableQuery = memo(DataTableQuery);
  * @returns 
  * @deprecated new Medusa implementation is different. No new support since we will prefer to use ConfigurableDataTable instead.
  */
-export const DataTable = <TData,>({
+export const DataTable = <TData extends RowData,>({
   table,
   columns,
   pagination,

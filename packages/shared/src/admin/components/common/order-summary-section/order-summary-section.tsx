@@ -446,7 +446,7 @@ const Item = ({
                 </span>
               }
             >
-              <ReceiptPercent className="text-ui-fg-subtle flex-shrink self-center " />
+              <ReceiptPercent className="text-ui-fg-subtle shrink self-center " />
             </Tooltip>
           )}
         </div>

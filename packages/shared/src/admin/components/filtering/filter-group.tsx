@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 import { Button, DropdownMenu } from "@medusajs/ui";
 import { ReactNode } from "react";
 import { useSearchParams } from "react-router-dom";

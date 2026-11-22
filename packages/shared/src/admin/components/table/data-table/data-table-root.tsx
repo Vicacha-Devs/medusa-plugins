@@ -1,13 +1,14 @@
 import { CommandBar, Table, clx } from "@medusajs/ui";
+import { RowData, flexRender } from "@tanstack/react-table";
 import {
-  ColumnDef,
-  Table as ReactTable,
-  Row,
-  flexRender,
-} from "@tanstack/react-table";
+  LegacyColumnDef as ColumnDef,
+  LegacyReactTable as ReactTable,
+  LegacyRow as Row,
+} from "@tanstack/react-table/legacy";
 import {
   ComponentPropsWithoutRef,
   Fragment,
+  type JSX,
   UIEvent,
   useEffect,
   useRef,
@@ -23,7 +24,7 @@ type BulkCommand = {
   action: (selection: Record<string, boolean>) => Promise<void>;
 };
 
-export interface DataTableRootProps<TData> {
+export interface DataTableRootProps<TData extends RowData> {
   /**
    * The table instance to render
    */
@@ -76,7 +77,7 @@ export interface DataTableRootProps<TData> {
 /**
  * Table component for rendering a table with pagination, filtering and ordering.
  */
-export const DataTableRoot = <TData,>({
+export const DataTableRoot = <TData extends RowData,>({
   table,
   columns,
   pagination,
@@ -132,7 +133,7 @@ export const DataTableRoot = <TData,>({
         ref={scrollableRef}
         onScroll={handleHorizontalScroll}
         className={clx("w-full", {
-          "min-h-0 flex-grow overflow-auto": layout === "fill",
+          "min-h-0 grow overflow-auto": layout === "fill",
           "overflow-x-auto": layout === "fit",
         })}
       >
@@ -283,7 +284,7 @@ export const DataTableRoot = <TData,>({
                           {shouldRenderAsLink ? (
                             <Link
                               to={to}
-                              className="size-full outline-none"
+                              className="size-full outline-hidden"
                               data-row-link
                               tabIndex={isTabableLink ? 0 : -1}
                             >
@@ -375,7 +376,7 @@ const Pagination = (props: PaginationProps): JSX.Element => {
 
   return (
     <Table.Pagination
-      className="flex-shrink-0"
+      className="shrink-0"
       {...props}
       translations={translations}
     />

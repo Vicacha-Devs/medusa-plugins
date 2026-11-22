@@ -6,4 +6,5 @@ export * from "./file-upload";
 export * from "./media"
 export * from "./metadata-section"
 export * from "./order-summary-section"
+export * from "./rbac-guard"
 export * from "./required-permissions-section"

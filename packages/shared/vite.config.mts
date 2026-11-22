@@ -1,20 +1,22 @@
 import { defineConfig } from "vite"
-import { resolve } from "path"
+import { resolve } from "node:path"
 
 export default defineConfig({
-  esbuild: {
-    jsx: "automatic",
-    jsxImportSource: "react",
+  oxc: {
+    jsx: {
+      runtime: "automatic",
+      importSource: "react",
+    },
   },
   build: {
     lib: {
       entry: {
-        admin: resolve(__dirname, "src/admin/index.ts"),
+        admin: resolve(import.meta.dirname, "src/admin/index.ts"),
       },
       formats: ["es"],
       fileName: (_format, entryName) => `${entryName}.mjs`,
     },
-    rollupOptions: {
+    rolldownOptions: {
       external: [
         "react",
         "react-dom",

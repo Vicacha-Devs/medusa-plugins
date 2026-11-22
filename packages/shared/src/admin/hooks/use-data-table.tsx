@@ -1,18 +1,21 @@
 import {
-  ColumnDef,
   OnChangeFn,
   PaginationState,
-  Row,
+  RowData,
   RowSelectionState,
+} from "@tanstack/react-table";
+import {
+  LegacyColumnDef as ColumnDef,
+  LegacyRow as Row,
   getCoreRowModel,
   getExpandedRowModel,
   getPaginationRowModel,
-  useReactTable,
-} from "@tanstack/react-table";
+  useLegacyTable,
+} from "@tanstack/react-table/legacy";
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
-type UseDataTableProps<TData> = {
+type UseDataTableProps<TData extends RowData> = {
   data?: TData[];
   columns: ColumnDef<TData, any>[];
   count?: number;
@@ -36,7 +39,7 @@ type UseDataTableProps<TData> = {
  * @returns 
  * @deprecated new Medusa implementation is different. No new support since we will prefer to use ConfigurableDataTable instead.
  */
-export const useDataTable = <TData,>({
+export const useDataTable = <TData extends RowData,>({
   data = [],
   columns,
   count = 0,
@@ -108,7 +111,7 @@ export const useDataTable = <TData,>({
     return state;
   };
 
-  const table = useReactTable({
+  const table = useLegacyTable({
     data,
     columns,
     state: {
