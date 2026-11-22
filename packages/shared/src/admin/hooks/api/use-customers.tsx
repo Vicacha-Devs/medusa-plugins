@@ -19,9 +19,9 @@ export const useCreateCustomer = (
 ): UseMutationResult<{ customer: AdminCustomer }, FetchError, AdminCreateCustomer> => {
   return useMutation({
     mutationFn: (payload) => sdk.admin.customer.create(payload),
-    onSuccess: (data, variables, context) => {
+    onSuccess: (data, variables, onMutateResult, context) => {
       queryClient.invalidateQueries({ queryKey: customersQueryKeys.lists() })
-      options?.onSuccess?.(data, variables, context)
+      options?.onSuccess?.(data, variables, onMutateResult, context)
     },
     ...options,
   })

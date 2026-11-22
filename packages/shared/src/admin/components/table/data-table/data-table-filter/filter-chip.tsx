@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 import { XMarkMini } from "@medusajs/icons"
 import { Text, clx } from "@medusajs/ui"
 import { useTranslation } from "react-i18next"

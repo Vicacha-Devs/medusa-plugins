@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 import { clx } from "@medusajs/ui"
 import { PropsWithChildren } from "react"
 

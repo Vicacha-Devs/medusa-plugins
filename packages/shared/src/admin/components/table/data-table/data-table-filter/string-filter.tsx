@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 import { Input, Label, clx } from "@medusajs/ui";
 import * as Popover from "@radix-ui/react-popover";
 import { debounce } from "lodash";
@@ -87,7 +88,7 @@ export const StringFilter = ({
             sideOffset={8}
             collisionPadding={8}
             className={clx(
-              "bg-ui-bg-base text-ui-fg-base shadow-elevation-flyout z-[1] h-full max-h-[200px] w-[300px] overflow-hidden rounded-lg outline-none"
+              "bg-ui-bg-base text-ui-fg-base shadow-elevation-flyout z-[1] h-full max-h-[200px] w-[300px] overflow-hidden rounded-lg outline-hidden"
             )}
             onInteractOutside={(e) => {
               if (e.target instanceof HTMLElement) {

@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 import { Input } from "@medusajs/ui";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";

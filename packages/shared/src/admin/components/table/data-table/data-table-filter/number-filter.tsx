@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 import { EllipseMiniSolid } from "@medusajs/icons"
 import { Input, Label, clx } from "@medusajs/ui"
 import * as Popover from "@radix-ui/react-popover"
@@ -156,7 +157,7 @@ export const NumberFilter = ({
             sideOffset={8}
             collisionPadding={24}
             className={clx(
-              "bg-ui-bg-base text-ui-fg-base shadow-elevation-flyout max-h-[var(--radix-popper-available-height)] w-[300px] divide-y overflow-y-auto rounded-lg outline-none"
+              "bg-ui-bg-base text-ui-fg-base shadow-elevation-flyout max-h-[var(--radix-popper-available-height)] w-[300px] divide-y overflow-y-auto rounded-lg outline-hidden"
             )}
             onInteractOutside={(e) => {
               if (e.target instanceof HTMLElement) {
@@ -181,7 +182,7 @@ export const NumberFilter = ({
                   <RadioGroup.Item
                     key={o.operator}
                     value={o.operator}
-                    className="txt-compact-small hover:bg-ui-bg-base-hover focus-visible:bg-ui-bg-base-hover active:bg-ui-bg-base-pressed transition-fg grid w-full grid-cols-[20px_1fr] gap-2 rounded-[4px] px-2 py-1.5 text-left outline-none"
+                    className="txt-compact-small hover:bg-ui-bg-base-hover focus-visible:bg-ui-bg-base-hover active:bg-ui-bg-base-pressed transition-fg grid w-full grid-cols-[20px_1fr] gap-2 rounded-[4px] px-2 py-1.5 text-left outline-hidden"
                   >
                     <div className="size-5">
                       <RadioGroup.Indicator>
