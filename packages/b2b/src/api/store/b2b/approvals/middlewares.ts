@@ -19,6 +19,15 @@ const ensureApprovalType = async (
   next: MedusaNextFunction
 ) => {
   const { id } = req.params;
+  const customerId =
+    req.auth_context?.actor_id ||
+    (req.auth_context?.app_metadata as Record<string, unknown> | undefined)
+      ?.customer_id;
+
+  if (typeof customerId !== "string" || customerId.length === 0) {
+    res.status(401).json({ message: "Unauthorized" });
+    return;
+  }
 
   const query = req.scope.resolve(ContainerRegistrationKeys.QUERY);
 
@@ -26,7 +35,13 @@ const ensureApprovalType = async (
     data: [approval],
   } = await query.graph({
     entity: "approval",
-    fields: ["type"],
+    fields: [
+      "id",
+      "type",
+      "cart.company.id",
+      "cart.company.employees.is_admin",
+      "cart.company.employees.customer.id",
+    ],
     filters: { id },
   });
 
@@ -38,6 +53,18 @@ const ensureApprovalType = async (
   const approvalType = approval.type as unknown as ApprovalType;
 
   if (approvalType !== ApprovalType.ADMIN) {
+    res.status(403).json({ message: "Forbidden" });
+    return;
+  }
+
+  const employees = ((approval as any)?.cart?.company?.employees ?? []) as Array<{
+    is_admin?: boolean;
+    customer?: { id?: string } | null;
+  }>;
+  const isCompanyAdmin = employees.some(
+    (emp) => emp.customer?.id === customerId && emp.is_admin === true
+  );
+  if (!isCompanyAdmin) {
     res.status(403).json({ message: "Forbidden" });
     return;
   }

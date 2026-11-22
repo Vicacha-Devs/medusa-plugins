@@ -1,5 +1,5 @@
 import { Badge } from "@medusajs/ui";
-import { createColumnHelper } from "@tanstack/react-table";
+import { legacyCreateColumnHelper as createColumnHelper } from "@tanstack/react-table/legacy";
 import {  DateCell, TextCell, TextHeader } from "@vicacha-devs/medusa-shared-admin/admin";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
@@ -9,7 +9,7 @@ import ItemsPopover from "../approvals-items-popover.tsx";
 import ApprovalStatusBadge from "../approval-status-badge.tsx";
 
 
-const columnHelper = createColumnHelper<unknown>();
+const columnHelper = createColumnHelper<Record<string, any>>();
 
 export const useApprovalsTableColumns = () => {
   const { t } = useTranslation();

@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom"
 import { useTranslation } from "react-i18next"
 
 import { useCompany, useUpdateApprovalSettings } from "../../../../../hooks/api"
+import { RbacGuard } from "@vicacha-devs/medusa-shared-admin/admin";
 
 const ApprovalSettingsContent = ({ id }: { id: string }) => {
   const { t } = useTranslation()
@@ -87,4 +88,10 @@ const CompanyApprovalSettings = () => {
   )
 }
 
-export default CompanyApprovalSettings
+const GuardedCompanyApprovalSettings = () => (
+  <RbacGuard permission="b2b.write">
+    <CompanyApprovalSettings />
+  </RbacGuard>
+);
+
+export default GuardedCompanyApprovalSettings;

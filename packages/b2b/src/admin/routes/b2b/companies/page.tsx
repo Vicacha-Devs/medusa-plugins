@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom"
 import { useTranslation } from "react-i18next"
 
 import { CompaniesTable, useCompaniesTableAdapter } from "./components"
+import { RbacGuard } from "@vicacha-devs/medusa-shared-admin/admin";
 
 const Companies = () => {
   const { t } = useTranslation()
@@ -53,4 +54,10 @@ export const handle = {
   breadcrumb: () => <Breadcrumb />,
 }
 
-export default Companies
+const GuardedCompanies = () => (
+  <RbacGuard permission="b2b.read">
+    <Companies />
+  </RbacGuard>
+);
+
+export default GuardedCompanies;

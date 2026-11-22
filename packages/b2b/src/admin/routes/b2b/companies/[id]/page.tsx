@@ -9,6 +9,7 @@ import { CompanyGeneralSection } from "./components/company-general-section"
 import { CompanyEmployeesSection } from "./components/company-employees-section"
 import { CompanyApprovalSettingsSection } from "./components/company-approval-settings-section"
 import { CompanyCustomerGroupSection } from "./components/company-customer-group-section"
+import { RbacGuard } from "@vicacha-devs/medusa-shared-admin/admin";
 
 const CompanyDetail = () => {
   const { id } = useParams()
@@ -65,4 +66,10 @@ export const handle = {
   breadcrumb: (match: any) => <Breadcrumb id={match?.params?.id} />,
 }
 
-export default CompanyDetail
+const GuardedCompanyDetail = () => (
+  <RbacGuard permission="b2b.read">
+    <CompanyDetail />
+  </RbacGuard>
+);
+
+export default GuardedCompanyDetail;

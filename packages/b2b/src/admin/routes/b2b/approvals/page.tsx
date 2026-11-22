@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 
 import { ApprovalsTable } from "./components/approvals-table.tsx";
 import { useApprovalsTableAdapter } from "./components/approvals-table-adapter.tsx";
+import { RbacGuard } from "@vicacha-devs/medusa-shared-admin/admin";
 
 const Approvals = () => {
   const { t } = useTranslation();
@@ -53,4 +54,10 @@ export const handle = {
   breadcrumb: () => <Breadcrumb />,
 }
 
-export default Approvals;
+const GuardedApprovals = () => (
+  <RbacGuard permission="b2b.read">
+    <Approvals />
+  </RbacGuard>
+);
+
+export default GuardedApprovals;

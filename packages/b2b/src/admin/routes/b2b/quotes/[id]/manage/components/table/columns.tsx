@@ -1,10 +1,10 @@
 import { ProductHeader } from "@medusajs/dashboard/components";
-import { createColumnHelper } from "@tanstack/react-table";
+import { createDataTableColumnHelper } from "@medusajs/ui";
 import { ProductCell } from "@vicacha-devs/medusa-shared-admin/admin";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 
-const columnHelper = createColumnHelper<any>();
+const columnHelper = createDataTableColumnHelper<any>();
 
 export const useManageItemsTableColumns = () => {
   const { t } = useTranslation();
