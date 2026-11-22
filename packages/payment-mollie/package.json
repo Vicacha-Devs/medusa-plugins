@@ -1,0 +1,45 @@
+{
+  "name": "@vicacha-devs/medusa-payment-mollie",
+  "version": "0.0.1",
+  "description": "Mollie (iDEAL, Bancontact, SEPA, Cards) and B2B Net-14 Invoice payment provider plugin for Medusa v2.",
+  "author": "Vicacha Devs",
+  "license": "MIT",
+  "files": [
+    ".medusa/server",
+    "dist",
+    "src",
+    "tsconfig.json"
+  ],
+  "exports": {
+    "./package.json": "./package.json",
+    "./providers/*": {
+      "import": "./dist/providers/*/index.js",
+      "require": "./dist/providers/*/index.js",
+      "types": "./dist/providers/*/index.d.ts"
+    }
+  },
+  "keywords": [
+    "medusa",
+    "plugin",
+    "medusa-plugin",
+    "medusa-plugin-payment",
+    "medusa-v2",
+    "mollie",
+    "ideal",
+    "bancontact",
+    "sepa"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc --noEmit",
+    "test": "node --experimental-strip-types --test src/__tests__/*.spec.ts"
+  },
+  "peerDependencies": {
+    "@medusajs/framework": "^2.0.0"
+  },
+  "devDependencies": {
+    "@medusajs/framework": "2.23.0",
+    "@types/node": "^22.13.0",
+    "typescript": "^5.7.3"
+  }
+}
