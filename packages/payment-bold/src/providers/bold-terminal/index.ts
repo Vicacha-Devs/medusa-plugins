@@ -46,17 +46,42 @@ export class BoldTerminalPaymentProviderService extends AbstractPaymentProvider<
     const { amount, currency_code, data } = input
     const extra = (data || {}) as Record<string, unknown>
     const reference = (extra.reference as string) || `pos_ref_${Date.now()}`
+    const roundedAmount = Math.round(Number(amount))
+    const currency = (currency_code || this.options_.defaultCurrency || "COP").toUpperCase()
+    const terminalModel = (extra.terminalModel || extra.terminal_model) as string
+    const terminalSerial = (extra.terminalSerial || extra.terminal_serial) as string
+    const userEmail = (extra.userEmail || extra.user_email || "") as string
+
+    if (!terminalModel || !terminalSerial) {
+      throw new MedusaError(
+        MedusaError.Types.INVALID_DATA,
+        "terminalModel and terminalSerial are required to dispatch POS terminal checkout"
+      )
+    }
+
+    const dispatchRes = await this.client_.triggerTerminalCheckout({
+      terminalModel,
+      terminalSerial,
+      amount: roundedAmount,
+      currency,
+      reference,
+      vatAmount: extra.vatAmount != null ? Number(extra.vatAmount) : 0,
+      userEmail,
+      description: (extra.description as string) || `Medusa POS Order ${reference}`,
+      payer: extra.payer as any,
+    })
 
     return {
-      id: reference,
+      id: dispatchRes?.payload?.id || reference,
       data: {
         ...data,
+        terminal_checkout_id: dispatchRes?.payload?.id,
         reference,
-        terminal_model: extra.terminalModel || extra.terminal_model,
-        terminal_serial: extra.terminalSerial || extra.terminal_serial,
+        terminal_model: terminalModel,
+        terminal_serial: terminalSerial,
         status: "pending",
-        amount: Math.round(Number(amount)),
-        currency: (currency_code || this.options_.defaultCurrency || "COP").toUpperCase(),
+        amount: roundedAmount,
+        currency,
       },
     }
   }

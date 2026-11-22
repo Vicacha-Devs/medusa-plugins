@@ -31,10 +31,35 @@ const HTTP_ERROR_MAP: Record<number, string> = {
   422: MedusaError.Types.INVALID_DATA,
 }
 
+const DEFAULT_INTEGRATIONS_URL = "https://integrations.api.bold.co"
+const DEFAULT_ONLINE_URL = "https://api.online.payments.bold.co"
+const DEFAULT_PAYMENTS_URL = "https://payments.api.bold.co/v2/payment-voucher/"
+
+function resolveSafeBaseUrl(
+  override: string | undefined,
+  envKey: string,
+  fallback: string
+): string {
+  const candidate =
+    override ||
+    (process.env.NODE_ENV !== "production" ? process.env[envKey] : undefined) ||
+    fallback
+  const parsed = new URL(candidate)
+  const isLoopback =
+    parsed.hostname === "127.0.0.1" || parsed.hostname === "localhost"
+  if (parsed.protocol !== "https:" && !(parsed.protocol === "http:" && isLoopback)) {
+    throw new MedusaError(
+      MedusaError.Types.INVALID_DATA,
+      `Unsafe Bold base URL "${candidate}": only https:// or loopback http://127.0.0.1 is allowed`
+    )
+  }
+  return candidate.replace(/\/+$/, "")
+}
+
 export class BoldHttpClient {
-  private readonly integrationsUrl = "https://integrations.api.bold.co"
-  private readonly onlineUrl = "https://api.online.payments.bold.co"
-  private readonly paymentsUrl = "https://payments.api.bold.co/v2/payment-voucher/"
+  private readonly integrationsUrl: string
+  private readonly onlineUrl: string
+  private readonly paymentsUrl: string
 
   private readonly buttonApiKey: string
   private readonly integrationApiKey: string
@@ -43,6 +68,23 @@ export class BoldHttpClient {
   private readonly defaultCurrency: string
 
   constructor(options: BoldBaseOptions, logger: Logger) {
+    this.integrationsUrl = resolveSafeBaseUrl(
+      options.integrationsUrl,
+      "BOLD_INTEGRATIONS_URL",
+      DEFAULT_INTEGRATIONS_URL
+    )
+    this.onlineUrl = resolveSafeBaseUrl(
+      options.onlineUrl,
+      "BOLD_ONLINE_URL",
+      DEFAULT_ONLINE_URL
+    )
+    const rawPaymentsUrl = resolveSafeBaseUrl(
+      options.paymentsUrl,
+      "BOLD_PAYMENTS_URL",
+      DEFAULT_PAYMENTS_URL
+    )
+    this.paymentsUrl = `${rawPaymentsUrl}/`
+
     // Resolve integration key (with general apiKey fallback)
     this.integrationApiKey = options.integrationApiKey || ""
 

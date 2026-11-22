@@ -14,15 +14,11 @@ export const useCreateBoldButton = (
 
   return useMutation({
     mutationFn: (payload: BoldButtonPayload) => sdk.createPaymentButton(payload),
-    onSuccess: (
-      data: BoldButtonResponse,
-      variables: BoldButtonPayload,
-      context: unknown
-    ) => {
+    onSuccess: (data, variables, onMutateResult, context) => {
       if (targetKey && targetKey.length > 0) {
         queryClient.invalidateQueries({ queryKey: targetKey as any })
       }
-      options?.onSuccess?.(data, variables, context)
+      options?.onSuccess?.(data, variables, onMutateResult, context)
     },
     ...options,
   })

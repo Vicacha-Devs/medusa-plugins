@@ -14,15 +14,11 @@ export const useCreateBoldLink = (
 
   return useMutation({
     mutationFn: (payload: BoldLinkPayload) => sdk.createPaymentLink(payload),
-    onSuccess: (
-      data: BoldLinkResponse,
-      variables: BoldLinkPayload,
-      context: unknown
-    ) => {
+    onSuccess: (data, variables, onMutateResult, context) => {
       if (targetKey && targetKey.length > 0) {
         queryClient.invalidateQueries({ queryKey: targetKey as any })
       }
-      options?.onSuccess?.(data, variables, context)
+      options?.onSuccess?.(data, variables, onMutateResult, context)
     },
     ...options,
   })

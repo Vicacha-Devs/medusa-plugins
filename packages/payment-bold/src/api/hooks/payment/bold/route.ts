@@ -34,34 +34,40 @@ export async function POST(req: MedusaRequest, res: MedusaResponse): Promise<voi
       }
     }
 
-    if (!options.buttonSecretKey && !options.integrationSecretKey) {
-      logger.warn("[Bold Webhook] No Bold payment provider configuration found")
+    // 2. Collect all configured Bold webhook signing secrets (fail-closed if none)
+    const possibleSecrets = [
+      options?.buttonSecretKey,
+      options?.integrationSecretKey,
+    ].filter((secret): secret is string => typeof secret === "string" && secret.length > 0)
+
+    if (possibleSecrets.length === 0) {
+      logger.error("[Bold Webhook] No Bold payment provider signing key configured")
+      res.status(500).json({ message: "Webhook signing key is not configured" })
+      return
     }
 
-    // 2. Order candidate secret keys based on Bold's priority rule
-    const possibleSecrets: string[] = [
-      options.buttonSecretKey,
-      options.integrationSecretKey,
-    ].filter((key): key is string => typeof key === "string" && key.length > 0)
+    const rawBody = (req as any).rawBody || JSON.stringify(req.body ?? {})
 
-    const rawBody = (req as any).rawBody || JSON.stringify(req.body)
+    // 3. Verify webhook signature against configured secret keys (fail-closed)
+    if (!signatureHeader || !timestampHeader) {
+      logger.warn("[Bold Webhook] Missing signature or timestamp header.")
+      res.status(401).json({ message: "Missing webhook signature headers" })
+      return
+    }
 
-    // 3. Verify webhook signature against configured secret keys
-    if (signatureHeader && timestampHeader && possibleSecrets.length > 0) {
-      const isValid = possibleSecrets.some((secretKey) =>
-        BoldIntegrityService.verifyWebhookSignature(
-          rawBody,
-          signatureHeader,
-          timestampHeader,
-          secretKey
-        )
+    const isValid = possibleSecrets.some((secretKey) =>
+      BoldIntegrityService.verifyWebhookSignature(
+        rawBody,
+        signatureHeader,
+        timestampHeader,
+        secretKey
       )
+    )
 
-      if (!isValid) {
-        logger.warn("[Bold Webhook] Signature verification failed against configured secret keys.")
-        res.status(401).json({ message: "Invalid webhook signature" })
-        return
-      }
+    if (!isValid) {
+      logger.warn("[Bold Webhook] Signature verification failed against configured secret keys.")
+      res.status(401).json({ message: "Invalid webhook signature" })
+      return
     }
 
     const payload = req.body as Record<string, any>
@@ -76,8 +82,10 @@ export async function POST(req: MedusaRequest, res: MedusaResponse): Promise<voi
       const paymentModule: IPaymentModuleService = req.scope.resolve(Modules.PAYMENT)
 
       if (reference) {
-        const paymentSessions = await paymentModule.listPaymentSessions({})
-        
+        const paymentSessions = await paymentModule.listPaymentSessions({
+          status: "pending",
+        } as any)
+
         const matchingSession = paymentSessions.find((session) => {
           const sData = (session.data || {}) as Record<string, any>
           const isMatch =
@@ -86,7 +94,24 @@ export async function POST(req: MedusaRequest, res: MedusaResponse): Promise<voi
             sData.payment_link === reference ||
             session.id === reference
 
-          return isMatch && session.status === "pending"
+          if (!isMatch || session.status !== "pending") {
+            return false
+          }
+
+          // Verify amount/currency when provided by webhook payload
+          const webhookAmount = Number(data?.amount?.total ?? data?.amount)
+          if (Number.isFinite(webhookAmount) && session.amount !== undefined) {
+            if (Math.round(Number(session.amount)) !== Math.round(webhookAmount)) {
+              return false
+            }
+          }
+          if (typeof data?.currency === "string" && session.currency_code) {
+            if (session.currency_code.toUpperCase() !== data.currency.toUpperCase()) {
+              return false
+            }
+          }
+
+          return true
         })
 
         if (matchingSession) {
@@ -99,8 +124,9 @@ export async function POST(req: MedusaRequest, res: MedusaResponse): Promise<voi
     }
 
     res.status(200).json({ received: true })
-  } catch (error: any) {
-    logger.error(`[Bold Webhook Error] ${error.message}`)
-    res.status(500).json({ message: error.message || "Webhook processing failed" })
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error)
+    logger.error(`[Bold Webhook Error] ${message}`)
+    res.status(500).json({ message: "Webhook processing failed" })
   }
 }

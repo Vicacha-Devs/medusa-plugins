@@ -26,6 +26,7 @@ import {
 import { Logger } from "@medusajs/medusa"
 import { BoldBaseOptions, InjectedDependencies } from "@payment-bold/types"
 import { BoldHttpClient } from "../../services/bold-client"
+import { BoldIntegrityService } from "../../services/integrity"
 import { EBoldPaymentProvider } from "@payment-bold/types/enums"
 
 export class BoldButtonPaymentProviderService extends AbstractPaymentProvider<BoldBaseOptions> {
@@ -46,15 +47,30 @@ export class BoldButtonPaymentProviderService extends AbstractPaymentProvider<Bo
     const { amount, currency_code, data } = input
     const extra = (data || {}) as Record<string, unknown>
     const reference = (extra.reference as string) || `btn_ref_${Date.now()}`
+    const roundedAmount = Math.round(Number(amount))
+    const currency = (currency_code || this.options_.defaultCurrency || "COP").toUpperCase()
+    const secretKey = this.options_.buttonSecretKey || ""
+    const integritySignature = secretKey
+      ? BoldIntegrityService.generateButtonHash(
+          reference,
+          roundedAmount,
+          currency,
+          secretKey
+        )
+      : undefined
 
     return {
       id: reference,
       data: {
         ...data,
+        order_id: reference,
         reference,
+        hash: integritySignature,
+        integrity_signature: integritySignature,
+        api_key: this.options_.buttonApiKey,
         status: "pending",
-        amount: Math.round(Number(amount)),
-        currency: (currency_code || this.options_.defaultCurrency || "COP").toUpperCase(),
+        amount: roundedAmount,
+        currency,
       },
     }
   }

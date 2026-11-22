@@ -14,11 +14,11 @@ export const useBoldRefund = (
 
   return useMutation({
     mutationFn: (payload: BoldRefundPayload) => sdk.refundPayment(payload),
-    onSuccess: (data, variables, context) => {
+    onSuccess: (data, variables, onMutateResult, context) => {
       if (targetKey && targetKey.length > 0) {
         queryClient.invalidateQueries({ queryKey: targetKey as any })
       }
-      options?.onSuccess?.(data, variables, context)
+      options?.onSuccess?.(data, variables, onMutateResult, context)
     },
     ...options,
   })

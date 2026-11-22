@@ -14,15 +14,11 @@ export const usePushToBoldTerminal = (
 
   return useMutation({
     mutationFn: (payload: BoldTerminalPayload) => sdk.pushToTerminal(payload),
-    onSuccess: (
-      data: BoldTerminalResponse,
-      variables: BoldTerminalPayload,
-      context: unknown
-    ) => {
+    onSuccess: (data, variables, onMutateResult, context) => {
       if (targetKey && targetKey.length > 0) {
         queryClient.invalidateQueries({ queryKey: targetKey as any })
       }
-      options?.onSuccess?.(data, variables, context)
+      options?.onSuccess?.(data, variables, onMutateResult, context)
     },
     ...options,
   })
