@@ -1,4 +1,3 @@
-import { defineConfig } from "eslint/config"
-import medusa from "@medusajs/eslint-plugin"
+import { medusaMonorepoConfig } from "./packages/eslint-config/index.ts"
 
-export default defineConfig([...medusa.configs.recommended])
+export default medusaMonorepoConfig

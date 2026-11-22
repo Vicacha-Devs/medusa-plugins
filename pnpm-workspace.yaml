@@ -2,9 +2,10 @@ packages:
   - "packages/*"
   - "apps/*"
   - "examples/*"
+
 allowBuilds:
-  '@medusajs/telemetry': true
-  '@swc/core': true
+  "@medusajs/telemetry": true
+  "@swc/core": true
   esbuild: true
   msgpackr-extract: true
   protobufjs: true

@@ -1,0 +1,72 @@
+name: Sandbox Integration & Playwright E2E
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: e2e-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  sandbox-e2e:
+    name: Medusa Sandbox Smoke & Admin E2E
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_DB: medusa_plugins_qa
+          POSTGRES_USER: medusa_qa
+          POSTGRES_PASSWORD: ci_ephemeral_password_only
+        ports:
+          - 5436:5432
+        options: >-
+          --health-cmd "pg_isready -U medusa_qa -d medusa_plugins_qa"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 10
+      valkey:
+        image: valkey/valkey:9-alpine
+        ports:
+          - 6383:6379
+        options: >-
+          --health-cmd "valkey-cli ping"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.33.3
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: "pnpm"
+      - name: Install workspace dependencies
+        run: pnpm install --no-frozen-lockfile
+      - name: Run sandbox wiring contract tests
+        run: pnpm sandbox:test
+      - name: Install Playwright Chromium
+        working-directory: ./apps/sandbox
+        run: pnpm dlx --package=@playwright/test@1.53.0 playwright install --with-deps chromium
+      - name: Run Playwright Admin & Health E2E (when sandbox server URL configured)
+        if: env.MEDUSA_SANDBOX_URL != ''
+        working-directory: ./apps/sandbox
+        run: pnpm dlx --package=@playwright/test@1.53.0 playwright test --config playwright.config.ts
+      - name: Upload Playwright HTML Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: medusa-sandbox-playwright-report
+          path: apps/sandbox/playwright-report/
+          retention-days: 14
+          if-no-files-found: ignore

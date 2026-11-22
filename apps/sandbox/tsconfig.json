@@ -1,0 +1,5 @@
+{
+  "extends": "../../packages/typescript-config/base.json",
+  "include": ["medusa-config.ts", "tests/**/*.ts"],
+  "exclude": ["node_modules", ".medusa", "dist", "e2e", "playwright.config.ts"]
+}

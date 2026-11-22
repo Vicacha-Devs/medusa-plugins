@@ -1,0 +1,44 @@
+{
+  "name": "@vicacha-devs/medusa-sandbox",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Medusa v2 host sandbox app wiring all @vicacha-devs Medusa plugins for isolated integration and E2E QA",
+  "license": "MIT",
+  "author": "Vicacha Devs",
+  "scripts": {
+    "build": "medusa build",
+    "clean": "rm -rf .medusa dist",
+    "dev": "medusa develop --port 9001",
+    "start": "medusa start --port 9001",
+    "test": "node --test tests/*.spec.ts",
+    "test:e2e": "playwright test --config playwright.config.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@medusajs/admin-sdk": "2.23.0",
+    "@medusajs/cli": "2.23.0",
+    "@medusajs/dashboard": "2.23.0",
+    "@medusajs/framework": "2.23.0",
+    "@medusajs/medusa": "2.23.0",
+    "@vicacha-devs/medusa-payment-bold": "workspace:*",
+    "@vicacha-devs/medusa-plugin-b2b": "workspace:*",
+    "@vicacha-devs/medusa-plugin-barcode": "workspace:*",
+    "@vicacha-devs/medusa-plugin-dian": "workspace:*",
+    "@vicacha-devs/medusa-plugin-documents": "workspace:*",
+    "@vicacha-devs/medusa-plugin-notifications": "workspace:*",
+    "@vicacha-devs/medusa-plugin-odoo": "workspace:*",
+    "@vicacha-devs/medusa-plugin-product-extensions": "workspace:*",
+    "@vicacha-devs/medusa-plugin-rbac": "workspace:*",
+    "@vicacha-devs/medusa-plugin-social-commerce": "workspace:*",
+    "@vicacha-devs/medusa-plugin-stories": "workspace:*",
+    "@vicacha-devs/medusa-plugin-typesense": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@vicacha-devs/medusa-typescript-config": "workspace:*",
+    "typescript": "5.6.2"
+  },
+  "engines": {
+    "node": ">=22.22.0"
+  }
+}

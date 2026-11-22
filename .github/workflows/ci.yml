@@ -1,0 +1,68 @@
+name: CI & QA Gates (Medusa v2 Extensions)
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  commitlint:
+    name: Commitlint & Changeset Status
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.33.3
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: "pnpm"
+      - run: pnpm install --no-frozen-lockfile
+      - name: Validate PR title
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: printf '%s\n' "$PR_TITLE" | pnpm exec commitlint --config ./commitlint.config.ts
+      - name: Check Changeset status
+        if: "!startsWith(github.head_ref, 'changeset-release/')"
+        run: pnpm changeset status --since=origin/main
+
+  qa-verify:
+    name: Offline QA, Judges, Manifests, Build & Plugin Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.33.3
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: "pnpm"
+      - name: Run offline QA doctor, judges, manifests & 11-plugin suites
+        run: pnpm qa:verify
+      - name: Upload Interactive QA Control Center HTML
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: medusa-plugins-qa-dashboard
+          path: |
+            .qa/dashboard.html
+            .qa/report.json
+          retention-days: 14

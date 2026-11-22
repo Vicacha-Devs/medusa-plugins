@@ -1,9 +1,33 @@
-.idea
-.medusa
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
 
-node_modules
-**/node_modules
-**/dist
+# Build & Medusa outputs
+.medusa/
+dist/
+build/
+.turbo/
+.cache/
+.tmp/
+*.tsbuildinfo
+coverage/
+playwright-report/
+test-results/
 
+# QA outputs
+.qa/
+
+# Environment & Secrets
+.env
+.env.*
+!.env.example
+!.env.qa.example
+*.pem
+*.key
+
+# OS & Editor
+.DS_Store
+Thumbs.db
 *.log
-.turbo
+.codegraph/
