@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom"
 
 import { useQuote } from "../../../../../hooks/api"
 import { ManageQuoteForm } from "./components/manage-quote-form"
+import { RbacGuard } from "@vicacha-devs/medusa-shared-admin/admin";
 
 const QuoteManage = () => {
   const { id } = useParams()
@@ -49,4 +50,10 @@ const QuoteManage = () => {
   )
 }
 
-export default QuoteManage
+const GuardedQuoteManage = () => (
+  <RbacGuard permission="b2b.write">
+    <QuoteManage />
+  </RbacGuard>
+);
+
+export default GuardedQuoteManage;

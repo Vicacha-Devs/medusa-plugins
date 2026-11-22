@@ -4,7 +4,10 @@ import {
   validateAndTransformQuery,
 } from "@medusajs/framework";
 import { authenticate } from "@medusajs/medusa";
-import { ensureRole } from "@b2b/api/middlewares/ensure-role";
+import {
+  ensureCompanyMember,
+  ensureRole,
+} from "@b2b/api/middlewares/ensure-role";
 import {
   storeCompanyQueryConfig,
   storeEmployeeQueryConfig,
@@ -15,6 +18,7 @@ import {
   StoreGetCompanyParams,
   StoreGetEmployeeParams,
   StoreUpdateApprovalSettings,
+  StoreUpdateCompany,
   StoreUpdateEmployee,
 } from "./validators";
 
@@ -50,6 +54,7 @@ export const storeCompaniesMiddlewares: MiddlewareRoute[] = [
     method: ["GET"],
     matcher: "/store/b2b/companies/:id",
     middlewares: [
+      ensureCompanyMember(),
       validateAndTransformQuery(
         StoreGetCompanyParams,
         storeCompanyQueryConfig.retrieve
@@ -60,11 +65,18 @@ export const storeCompaniesMiddlewares: MiddlewareRoute[] = [
     method: ["POST"],
     matcher: "/store/b2b/companies/:id",
     middlewares: [
+      ensureCompanyMember({ requireAdmin: true }),
+      validateAndTransformBody(StoreUpdateCompany),
       validateAndTransformQuery(
         StoreGetCompanyParams,
         storeCompanyQueryConfig.retrieve
       ),
     ],
+  },
+  {
+    method: ["DELETE"],
+    matcher: "/store/b2b/companies/:id",
+    middlewares: [ensureCompanyMember({ requireAdmin: true })],
   },
 
   /* Employee middlewares */
@@ -72,6 +84,7 @@ export const storeCompaniesMiddlewares: MiddlewareRoute[] = [
     method: ["GET"],
     matcher: "/store/b2b/companies/:id/employees",
     middlewares: [
+      ensureCompanyMember(),
       validateAndTransformQuery(
         StoreGetEmployeeParams,
         storeEmployeeQueryConfig.list
@@ -94,6 +107,7 @@ export const storeCompaniesMiddlewares: MiddlewareRoute[] = [
     method: ["GET"],
     matcher: "/store/b2b/companies/:id/employees/:employee_id",
     middlewares: [
+      ensureCompanyMember(),
       validateAndTransformQuery(
         StoreGetEmployeeParams,
         storeEmployeeQueryConfig.retrieve

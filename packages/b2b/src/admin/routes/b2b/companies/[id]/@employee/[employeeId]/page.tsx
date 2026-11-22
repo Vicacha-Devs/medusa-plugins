@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom"
 import { AdminUpdateEmployee } from "../../../../../../../types"
 import { useCompany, useEmployee, useUpdateEmployee } from "../../../../../../hooks/api"
 import { EmployeesUpdateForm } from "../components/employees-update-form"
+import { RbacGuard } from "@vicacha-devs/medusa-shared-admin/admin";
 
 const UpdateContent = () => {
   const { t } = useTranslation()
@@ -60,4 +61,10 @@ const EmployeeUpdate = () => {
   )
 }
 
-export default EmployeeUpdate
+const GuardedEmployeeUpdate = () => (
+  <RbacGuard permission="b2b.read">
+    <EmployeeUpdate />
+  </RbacGuard>
+);
+
+export default GuardedEmployeeUpdate;

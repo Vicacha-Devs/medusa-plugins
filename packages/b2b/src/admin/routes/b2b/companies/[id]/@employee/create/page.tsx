@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom"
 
 import { useCompany, useCreateEmployee } from "../../../../../../hooks/api"
 import { EmployeesCreateForm } from "../components/employees-create-form"
+import { RbacGuard } from "@vicacha-devs/medusa-shared-admin/admin";
 
 const CreateContent = () => {
   const { t } = useTranslation()
@@ -75,4 +76,10 @@ const EmployeeCreate = () => {
   )
 }
 
-export default EmployeeCreate
+const GuardedEmployeeCreate = () => (
+  <RbacGuard permission="b2b.write">
+    <EmployeeCreate />
+  </RbacGuard>
+);
+
+export default GuardedEmployeeCreate;

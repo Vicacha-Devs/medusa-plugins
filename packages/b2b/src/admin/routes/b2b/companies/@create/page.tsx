@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next"
 import { useCreateCompany } from "../../../../hooks/api"
 import { CompanyCreateForm, CompanyCreateFormValues } from "../components/company-create-form"
 import { ESpendingLimitResetFrequency } from "../../../../../types"
+import { RbacGuard } from "@vicacha-devs/medusa-shared-admin/admin";
 
 const CreateContent = () => {
   const { t } = useTranslation()
@@ -57,4 +58,10 @@ const CompanyCreate = () => (
   </RouteFocusModal>
 )
 
-export default CompanyCreate
+const GuardedCompanyCreate = () => (
+  <RbacGuard permission="b2b.write">
+    <CompanyCreate />
+  </RbacGuard>
+);
+
+export default GuardedCompanyCreate;

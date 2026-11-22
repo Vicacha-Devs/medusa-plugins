@@ -1,4 +1,4 @@
-import { createColumnHelper } from "@tanstack/react-table"
+import { legacyCreateColumnHelper as createColumnHelper } from "@tanstack/react-table/legacy"
 import { useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom"

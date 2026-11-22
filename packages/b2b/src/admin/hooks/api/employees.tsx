@@ -84,11 +84,11 @@ export const useCreateEmployee = (
           body: employee,
         }
       ),
-    onSuccess: (data: any, variables: any, context: any) => {
+    onSuccess: (data: any, variables: any, onMutateResult: any, context: any) => {
       queryClient.invalidateQueries({
         queryKey: employeeQueryKey.lists(),
       });
-      options?.onSuccess?.(data, variables, context);
+      options?.onSuccess?.(data, variables, onMutateResult, context);
     },
     ...options,
   });
@@ -117,14 +117,14 @@ export const useUpdateEmployee = (
           body: employee,
         }
       ),
-    onSuccess: (data: any, variables: any, context: any) => {
+    onSuccess: (data: any, variables: any, onMutateResult: any, context: any) => {
       queryClient.invalidateQueries({
         queryKey: employeeQueryKey.detail(employeeId),
       });
       queryClient.invalidateQueries({
         queryKey: employeeQueryKey.lists(),
       });
-      options?.onSuccess?.(data, variables, context);
+      options?.onSuccess?.(data, variables, onMutateResult, context);
     },
     ...options,
   });
@@ -144,11 +144,11 @@ export const useDeleteEmployee = (
           method: "DELETE",
         }
       ),
-    onSuccess: (data: any, variables: any, context: any) => {
+    onSuccess: (data: any, variables: any, onMutateResult: any, context: any) => {
       queryClient.invalidateQueries({
         queryKey: employeeQueryKey.lists(),
       });
-      options?.onSuccess?.(data, variables, context);
+      options?.onSuccess?.(data, variables, onMutateResult, context);
     },
     ...options,
   });

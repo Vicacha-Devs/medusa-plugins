@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next"
 import { useCompany, useUpdateCompany } from "../../../../../hooks/api"
 import { AdminUpdateCompany } from "../../../../../../types"
 import { CompanyForm } from "../../components/company-form"
+import { RbacGuard } from "@vicacha-devs/medusa-shared-admin/admin";
 
 const EditContent = ({ id }: { id: string }) => {
   const { t } = useTranslation()
@@ -81,4 +82,10 @@ const CompanyEdit = () => {
   )
 }
 
-export default CompanyEdit
+const GuardedCompanyEdit = () => (
+  <RbacGuard permission="b2b.write">
+    <CompanyEdit />
+  </RbacGuard>
+);
+
+export default GuardedCompanyEdit;

@@ -10,6 +10,7 @@ import {
   useCompany,
   useRemoveCompanyFromCustomerGroup,
 } from "../../../../../hooks/api"
+import { RbacGuard } from "@vicacha-devs/medusa-shared-admin/admin";
 
 const CustomerGroupContent = ({ id }: { id: string }) => {
   const { t } = useTranslation()
@@ -144,4 +145,10 @@ const CompanyCustomerGroup = () => {
   )
 }
 
-export default CompanyCustomerGroup
+const GuardedCompanyCustomerGroup = () => (
+  <RbacGuard permission="b2b.write">
+    <CompanyCustomerGroup />
+  </RbacGuard>
+);
+
+export default GuardedCompanyCustomerGroup;
