@@ -1,0 +1,48 @@
+{
+  "name": "@vicacha-devs/medusa-fulfillment-eu",
+  "version": "0.0.1",
+  "description": "EU & Benelux fulfillment provider plugin for Medusa v2 (PostNL letterbox, Sendcloud EU parcel, and Rotterdam LCL pallet freight).",
+  "author": "Vicacha Devs",
+  "license": "MIT",
+  "files": [
+    "dist",
+    "src",
+    "tsconfig.json"
+  ],
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./providers/*": {
+      "import": "./dist/providers/*/index.js",
+      "require": "./dist/providers/*/index.js",
+      "types": "./dist/providers/*/index.d.ts"
+    }
+  },
+  "keywords": [
+    "medusa",
+    "plugin",
+    "medusa-plugin",
+    "medusa-plugin-fulfillment",
+    "medusa-v2",
+    "postnl",
+    "sendcloud",
+    "eu"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc --noEmit",
+    "test": "node --experimental-strip-types --test src/__tests__/*.spec.ts"
+  },
+  "peerDependencies": {
+    "@medusajs/framework": "^2.0.0"
+  },
+  "devDependencies": {
+    "@medusajs/framework": "2.23.0",
+    "@types/node": "^22.13.0",
+    "typescript": "^5.7.3"
+  }
+}

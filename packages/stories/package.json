@@ -1,0 +1,132 @@
+{
+  "name": "@vicacha-devs/medusa-plugin-stories",
+  "version": "0.0.1",
+  "description": "Shoppable Stories, Highlights Rings & Interactive 9:16 Video/Image Player plugin for Medusa v2 — Story Groups, Multi-Slide Timelines, X/Y Product Hotspots, Interactive Stickers (Polls, Countdowns, Coupons), Conversion Funnel Analytics, Storefront React UI Kit, Typed SDK & 9:16 Admin Studio.",
+  "author": "Vicacha Devs",
+  "license": "MIT",
+  "files": [
+    ".medusa/server",
+    "src",
+    "src/modules/story/migrations/*.js",
+    "src/modules/story/migrations/.snapshot-*.json",
+    "README.md",
+    "LICENSE",
+    "tsconfig.json"
+  ],
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "import": "./.medusa/server/src/index.js",
+      "require": "./.medusa/server/src/index.js",
+      "default": "./.medusa/server/src/index.js"
+    },
+    "./admin": {
+      "import": "./.medusa/server/src/admin/index.mjs",
+      "require": "./.medusa/server/src/admin/index.js",
+      "default": "./.medusa/server/src/admin/index.js"
+    },
+    "./ui": {
+      "import": "./src/ui/index.ts",
+      "default": "./.medusa/server/src/ui/index.js"
+    },
+    "./hooks": {
+      "import": "./src/hooks/index.ts",
+      "default": "./.medusa/server/src/hooks/index.js"
+    },
+    "./sdk": {
+      "import": "./src/sdk/index.ts",
+      "default": "./.medusa/server/src/sdk/index.js"
+    },
+    "./types": {
+      "import": "./src/types/index.ts",
+      "default": "./.medusa/server/src/types/index.js"
+    },
+    "./workflows": "./.medusa/server/src/workflows/index.js",
+    "./.medusa/server/src/modules/*": "./.medusa/server/src/modules/*/index.js",
+    "./.medusa/server/src/modules/story": "./.medusa/server/src/modules/story/index.js",
+    "./modules/*": "./.medusa/server/src/modules/*/index.js",
+    "./providers/*": "./.medusa/server/src/providers/*/index.js",
+    "./rbac": {
+      "import": "./src/rbac.ts",
+      "default": "./.medusa/server/src/rbac.js"
+    },
+    "./*": "./.medusa/server/src/*.js"
+  },
+  "keywords": [
+    "medusa",
+    "medusa-v2",
+    "medusa-plugin",
+    "medusa-plugin-stories",
+    "stories",
+    "shoppable-stories",
+    "highlights",
+    "shoppable-video",
+    "product-hotspots",
+    "social-stories"
+  ],
+  "scripts": {
+    "build": "medusa plugin:build && tsc-alias -p tsconfig.json",
+    "publish:local": "medusa plugin:publish",
+    "dev": "medusa plugin:develop",
+    "lint": "medusa lint",
+    "prepublishOnly": "medusa plugin:build",
+    "typecheck": "tsc --noEmit",
+    "test": "node --import ./src/__tests__/register-ts-resolver.mjs --test src/__tests__/*.spec.ts",
+    "clean": "rm -rf .medusa node_modules"
+  },
+  "devDependencies": {
+    "@hookform/resolvers": "5.7.1",
+    "@medusajs/admin-sdk": "2.23.0",
+    "@medusajs/admin-shared": "2.23.0",
+    "@medusajs/cli": "2.23.0",
+    "@medusajs/core-flows": "2.23.0",
+    "@medusajs/dashboard": "2.23.0",
+    "@medusajs/framework": "2.23.0",
+    "@medusajs/icons": "2.23.0",
+    "@medusajs/js-sdk": "2.23.0",
+    "@medusajs/medusa": "2.23.0",
+    "@medusajs/test-utils": "2.23.0",
+    "@medusajs/types": "2.23.0",
+    "@medusajs/ui": "4.3.0",
+    "@mikro-orm/migrations": "6.4.3",
+    "@swc/core": "1.7.28",
+    "@types/node": "20.0.0",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "jiti": "2.0.0",
+    "prop-types": "15.8.1",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-hook-form": "7.92.0",
+    "react-i18next": "18.0.1",
+    "react-router-dom": "7.18.5",
+    "ts-node": "10.9.2",
+    "tsc-alias": "^1.9.2",
+    "typescript": "5.6.2",
+    "vite": "^8.3.8"
+  },
+  "peerDependencies": {
+    "@hookform/resolvers": "5.7.1",
+    "@medusajs/admin-sdk": "2.23.0",
+    "@medusajs/admin-shared": "2.23.0",
+    "@medusajs/cli": "2.23.0",
+    "@medusajs/core-flows": "2.23.0",
+    "@medusajs/framework": "2.23.0",
+    "@medusajs/icons": "2.23.0",
+    "@medusajs/js-sdk": "2.23.0",
+    "@medusajs/medusa": "2.23.0",
+    "@medusajs/test-utils": "2.23.0",
+    "@medusajs/types": "2.23.0",
+    "@medusajs/ui": "4.3.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-hook-form": "7.92.0",
+    "react-i18next": "18.0.1",
+    "react-router-dom": "7.18.5",
+    "zod": "4.6.7"
+  },
+  "engines": {
+    "node": ">=22.22.0"
+  },
+  "packageManager": "pnpm@11.20.0"
+}
