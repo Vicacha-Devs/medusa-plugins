@@ -14,6 +14,7 @@ import { getActiveBoldProviders } from "../../../../lib"
 import { BoldTerminalStatusWidget } from "../../../components";
 import { BoldFavIcon } from "../../../components/icons/bold-fav";
 import { BoldMethodsSidebar, BoldProvidersSection } from "./components"
+import { RbacGuard } from "@vicacha-devs/medusa-shared-admin/admin";
 
 export const BoldSettingsPage = () => {
   const { t } = useTranslation();
@@ -99,4 +100,10 @@ export const BoldSettingsPage = () => {
 };
 
 export const config = defineRouteConfig({ label: "Bold", icon: BoldFavIcon });
-export default BoldSettingsPage;
+const GuardedBoldSettingsPage = () => (
+  <RbacGuard permission="bold.read">
+    <BoldSettingsPage />
+  </RbacGuard>
+);
+
+export default GuardedBoldSettingsPage;

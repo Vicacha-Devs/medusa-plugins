@@ -1,162 +1,103 @@
-# `@vicacha-devs/medusa-plugin-payment-bold`
+# `@vicacha-devs/medusa-payment-bold`
 
-Colombian **Bold Payment Provider Suite (`bold-online`, `bold-terminal`, `bold-link`) & Admin Payment Operations Widget** for **Medusa v2**.
+Comprehensive **Bold Colombia** 4-channel payment suite (`bold-link`, `bold-online`, `bold-button`, `bold-terminal`), Admin operations widget, real-time SSE status streaming, HMAC-SHA256 webhook verification, and built-in **QA Gateway Emulator** for **Medusa v2**.
 
-Supports online checkout buttons, physical Smart POS Dataphone payment pushes (API Integración), on-demand payment links & QR codes, authenticated HMAC-SHA256 webhooks, and **partial payment collection** (`partially_paid`, `partially_captured`, `partially_authorized`, and orders with remaining unpaid balance).
-
-> **Medusa compatibility:** `>= 2.13.x / 2.21.x`
+> **Medusa compatibility:** `>= 2.19.x / 2.21.x` · **Node.js:** `>= 20.19.0 || >= 22.12.0`
 
 ---
 
-## Contents
+## Payment Providers (4 Channels)
 
-- [Features](#features)
-- [Requirements](#requirements)
-- [Installation & Configuration](#installation--configuration)
-- [Payment Providers](#payment-providers)
-- [Partial Payment & Remaining Balance Support](#partial-payment--remaining-balance-support)
-- [REST API & Webhooks](#rest-api--webhooks)
-- [Admin UI Widget](#admin-ui-widget)
-- [Development & Testing](#development--testing)
-- [License](#license)
+| Provider ID | Medusa Registration ID | Bold API Endpoint | Use Case |
+| :--- | :--- | :--- | :--- |
+| `bold-link` | `pp_bold-link_bold` | `POST /online/link/v1` | Shareable payment links with VAT breakdown & nanosecond expiration |
+| `bold-online` | `pp_bold-online_bold` | `POST /v1/payment-intent` | Dynamic QR (`BOLD_BASE64`, `PLAIN_BASE64`, `TEXT`), Cards, PSE, Nequi, Bancolombia |
+| `bold-button` | `pp_bold-button_bold` | SHA-256 integrity hash + `/v2/payment-voucher/:ref` | Storefront Bold Boton de Pagos checkout with deterministic `hash` / `integrity_signature` |
+| `bold-terminal` | `pp_bold-terminal_bold` | `GET /payments/binded-terminals` + `POST /payments/app-checkout` | Physical Smart POS Dataphone payment dispatch |
 
 ---
 
-## Features
-
-- **3 Bold Payment Providers in 1 Module (`src/providers/payment-bold`)**:
-  - **`bold-online` (`pp_bold-online_bold`)**: Bold Botón de Pagos web checkout with `SHA-256` integrity hash generation (`{orderId}{amount}{currency}{secretKey}`).
-  - **`bold-terminal` (`pp_bold-terminal_bold`)**: Bold API Integración for physical Smart POS Dataphones (dispatching live payment prompts to terminal serial numbers).
-  - **`bold-link` (`pp_bold-link_bold`)**: Bold Link de Pagos API for generating shareable payment URLs and QR codes (`CREDIT_CARD`, `PSE`, `NEQUI`, `BOTON_BANCOLOMBIA`).
-- **Partial Payment & Remaining Balance Collection**:
-  - `BoldPaymentActionsWidget` stays enabled for both unpaid and **partially paid** orders (`partially_paid`, `partially_captured`, `partially_authorized`, or `summary.pending_difference > 0`).
-  - Automatically computes the remaining `payableAmount` (`order.total - paidTotal`, preferring `order.summary.pending_difference`) and displays a **Partial Payment Balance** banner in the Admin Order Details view.
-- **HMAC-SHA256 Webhook Verification**:
-  - Constant-time `crypto.timingSafeEqual` signature verification on incoming Bold webhook notifications (`SALE_APPROVED`, `SALE_REJECTED`, `VOID_APPROVED`, `VOID_REJECTED`).
-- **Decoupled Admin Architecture**:
-  - Modular React hooks (`use-bold-widget-state.tsx`, `use-bold-pos-push.ts`, `use-bold-payment-link.ts`), pure balance evaluator (`bold-order-balance.ts`), and single-responsibility section components (`BoldPosTerminalSection`, `BoldPaymentLinkSection`).
-
----
-
-## Requirements
-
-| Dependency | Version |
-| :--- | :--- |
-| `@medusajs/medusa` | `>= 2.13.0` |
-| Node.js | `>= 20` |
-| Bold Merchant Credentials | Identity Key (`apiKey`) + Secret Key (`secretKey`) |
-
----
-
-## Installation & Configuration
-
-```bash
-pnpm add @vicacha-devs/medusa-plugin-payment-bold
-```
-
-Register both the plugin (for Admin Widget & API routes) and the payment provider module in `medusa-config.ts`:
+## Configuration (`medusa-config.ts`)
 
 ```ts
-import { defineConfig } from "@medusajs/framework/utils"
-
-export default defineConfig({
-  plugins: [
-    {
-      resolve: "@vicacha-devs/medusa-plugin-payment-bold",
-      options: {},
-    },
-  ],
-  modules: [
-    {
-      resolve: "@medusajs/medusa/payment",
-      options: {
-        providers: [
-          {
-            resolve: "@vicacha-devs/medusa-plugin-payment-bold/providers/payment-bold",
-            id: "bold",
-            options: {
-              apiKey: process.env.BOLD_API_KEY,
-              secretKey: process.env.BOLD_SECRET_KEY,
-              webhookSecret: process.env.BOLD_WEBHOOK_SECRET, // optional override for local simulator
-              environment: process.env.BOLD_ENVIRONMENT || "sandbox", // "sandbox" | "production"
-              baseUrl: process.env.BOLD_BASE_URL, // optional custom API URL
-            },
-          },
-        ],
-      },
-    },
-  ],
-})
+{
+  resolve: "@vicacha-devs/medusa-payment-bold/providers/bold-link",
+  id: "bold",
+  options: {
+    buttonApiKey: process.env.BOLD_BUTTON_API_KEY,
+    buttonSecretKey: process.env.BOLD_BUTTON_SECRET_KEY,
+    integrationApiKey: process.env.BOLD_INTEGRATION_API_KEY,
+    integrationSecretKey: process.env.BOLD_INTEGRATION_SECRET_KEY,
+    defaultCurrency: "COP",
+    linkExpirationMinutes: 15,
+    // Optional QA / Emulator overrides (https:// or loopback http://127.0.0.1 only)
+    integrationsUrl: process.env.BOLD_INTEGRATIONS_URL,
+    onlineUrl: process.env.BOLD_ONLINE_URL,
+    paymentsUrl: process.env.BOLD_PAYMENTS_URL,
+  },
+}
 ```
 
----
-
-## Payment Providers
-
-| Provider ID | Medusa Registration ID | Use Case |
-| :--- | :--- | :--- |
-| `bold-online` | `pp_bold-online_bold` | Storefront Web Checkout (Bold Botón de Pagos with `integritySignature`) |
-| `bold-terminal` | `pp_bold-terminal_bold` | In-store / Admin physical Smart POS Dataphone push (`POST /v1/payments/app-checkout`) |
-| `bold-link` | `pp_bold-link_bold` | Remote payment links & QR codes (`POST /online/link/v1`) |
-
----
-
-## Partial Payment & Remaining Balance Support
-
-`src/admin/utils/bold-order-balance.ts` (`getBoldOrderBalanceState`) inspects the Medusa `AdminOrder` object and determines:
-
-- **`isFullyPaid`**: `true` only when `payment_status` is `"captured"` or `"paid"` and `payableAmount <= 0`.
-- **`isPartiallyPaid`**: `true` when `payment_status` is `"partially_paid"`, `"partially_captured"`, `"partially_authorized"`, or when `paidAmount > 0 && payableAmount > 0`.
-- **`payableAmount`**: Prefers `order.summary.pending_difference` when positive; otherwise computes `max(0, totalAmount - paidAmount)`.
-
-When an operator triggers **Push to Dataphone** or **Generate Payment Link** on a partially paid order, the widget sends `amount: payableAmount` to the backend route, which initializes a new payment session in the order's `PaymentCollection` for the exact remaining balance.
+> **SSRF Protection**: `BoldHttpClient` strictly enforces that base URL overrides use `https://` or loopback `http://127.0.0.1` / `http://localhost` (environment fallbacks are ignored when `NODE_ENV=production`).
 
 ---
 
 ## REST API & Webhooks
 
-| Method | Path | Description |
+| Method | Route | Description |
 | :--- | :--- | :--- |
-| `GET` | `/admin/bold/terminals` | Lists active Bold POS terminals (`GET /v1/payments/binded-terminals`) via the configured payment provider |
-| `POST` | `/admin/bold/pos-push` | Initializes a `pp_bold-terminal_bold` payment session on the order's `PaymentCollection` and dispatches the charge to `terminal_serial` |
-| `POST` | `/admin/bold/payment-link` | Initializes a `pp_bold-link_bold` payment session on the order's `PaymentCollection` and returns `payment_link_url` + `payment_link_id` |
-| `POST` | `/hooks/payment/bold-online_bold` | Native Medusa payment webhook for Bold online payments |
-| `POST` | `/hooks/payment/bold-terminal_bold` | Native Medusa payment webhook for Bold POS terminal payments |
-| `POST` | `/hooks/payment/bold-link_bold` | Native Medusa payment webhook for Bold payment links |
+| `POST` | `/admin/bold/payment-link` | Zod-validated Payment Link creation via `createBoldPaymentLinkWorkflow` (`pp_bold-link_bold`) |
+| `POST` | `/admin/bold/payment-qr` | Zod-validated QR session creation (`pp_bold-online_bold`), returns `{ qr_payload, paymentSession }` |
+| `POST` | `/admin/bold/payment-button` | Zod-validated Button session creation (`pp_bold-button_bold`) with SHA-256 `hash` / `integrity_signature` |
+| `GET` | `/admin/bold/terminals` | Lists bound POS dataphones (`GET /payments/binded-terminals`) |
+| `POST` | `/admin/bold/pos-push` | Zod-validated POS dataphone checkout dispatch (`pp_bold-terminal_bold`) |
+| `GET` | `/admin/bold/payment-status` | Queries Medusa payment session status by `paymentSessionId` |
+| `GET` | `/admin/bold/payment-stream` | Server-Sent Events (`text/event-stream`) polling Bold & auto-capturing on authorization |
+| `POST` | `/admin/bold/refund` | Full or partial refund via `refundBoldPaymentWorkflow` (`POST /v1/refunds`) |
+| `GET` | `/admin/bold/banks` | Active PSE financial institutions (`GET /v1/payment/pse/banks`) |
+| `GET` | `/admin/bold/payment-methods` | Merchant enabled Integration API methods |
+| `GET` | `/admin/bold/payment-link-methods` | Payment Link API method min/max limits |
+| `POST` | `/hooks/payment/bold` | Fail-closed HMAC-SHA256 (`x-bold-signature` + `x-bold-timestamp`) webhook verifier with amount & currency validation |
 
 ---
 
-## Admin UI Widget
+## Automated 4-Channel QA & Bold QA Emulator
 
-Injected into `order.details.after` (`src/admin/widgets/bold-payment-actions.tsx`):
+You do **not** need a physical Bold dataphone or live sandbox credentials to test Payment Links, QR Codes, Checkout Buttons, POS Terminals, Webhooks, SSE Streaming, or Refunds.
 
-```text
-src/admin/
-├── widgets/
-│   ├── bold-payment-actions.tsx          # Order details widget (renders partial balance banner + POS & Link sections)
-│   └── components/
-│       ├── bold-pos-terminal-section.tsx # Dataphone selector, manual S/N input, and Push button
-│       └── bold-payment-link-section.tsx # Payment link generator, copy-to-clipboard, and active URL badge
-├── hooks/
-│   ├── use-bold-widget-state.tsx         # Orchestrates terminals query, balance calculation, and child mutation hooks
-│   ├── use-bold-pos-push.ts              # Handles POS terminal push mutation
-│   └── use-bold-payment-link.ts          # Handles payment link generation & clipboard state
-├── utils/
-│   └── bold-order-balance.ts             # Pure getBoldOrderBalanceState() helper
-└── i18n/                                 # English (en) & Spanish (es) admin translations
-```
-
----
-
-## Development & Testing
+### 1. Run Offline 4-Channel Use-Case Suite (`< 4s`, Zero Docker)
 
 ```bash
-# Build plugin
-pnpm build
-
-# Run unit tests (provider, webhooks, and partial-payment order balance calculations)
-pnpm test:unit
+# From packages/payment-bold
+pnpm test
 ```
+
+Executes [`src/__tests__/bold-contract.spec.ts`](./src/__tests__/bold-contract.spec.ts) and [`src/__tests__/bold-use-cases.spec.ts`](./src/__tests__/bold-use-cases.spec.ts) over real `127.0.0.1` loopback HTTP against [`BoldQaEmulator`](./src/__tests__/bold-qa-emulator.ts):
+
+- **Payment Link**: Zod validation -> VAT calculation (`base` + `value`) -> signed HMAC webhook -> partial refund + over-refund `422` rejection.
+- **QR Code**: `BOLD_BASE64` & `TEXT` intents -> approval & `EXPIRED` status transitions.
+- **Checkout Button**: Deterministic SHA-256 hash verification -> voucher lookup authorization -> full refund.
+- **POS Terminal**: Bound terminal discovery -> dataphone push -> **Approved Tap** with live SSE auto-capture stream, **Declined Card** (`REJECTED`), and unbound terminal `404` handling.
+- **Security & Fault Injection**: Missing/forged HMAC (`401`), tampered webhook amount (rejected), SSRF non-loopback `http://` rejection, and Bold `401` error mapping.
+
+### 2. Run Standalone Bold QA Emulator (for Local Dev & Playwright E2E)
+
+```bash
+# Starts loopback-only emulator on http://127.0.0.1:4010
+pnpm emulator
+```
+
+QA Control Endpoints on the running emulator:
+- `GET /__qa/health` — Emulator health check
+- `GET /__qa/requests` — Inspect all captured Bold API requests & headers
+- `POST /__qa/simulate-payment` — Body `{ "reference": "ORD-1", "outcome": "APPROVED"|"REJECTED"|"EXPIRED", "webhookUrl": "http://127.0.0.1:9001/hooks/payment/bold" }` transitions payment status and delivers a real HMAC-SHA256 signed webhook
+- `POST /__qa/fault` — Inject deterministic `401` / `422` / `500` faults on the next matching request
+- `POST /__qa/reset` — Reset emulator ledger
+
+### 3. Full-Stack Playwright E2E & Weekly Live Sandbox Check
+
+- **Playwright E2E**: [`apps/sandbox/e2e/bold-payment-flows.spec.ts`](../../apps/sandbox/e2e/bold-payment-flows.spec.ts) runs Link, QR, and POS flows against Medusa Sandbox + Bold QA Emulator.
+- **Upstream Live Sandbox Contract**: [`.github/workflows/bold-live-sandbox.yml`](../../.github/workflows/bold-live-sandbox.yml) runs weekly (and via `workflow_dispatch`) against real Bold sandbox keys configured in GitHub Secrets.
 
 ---
 

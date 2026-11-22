@@ -23,6 +23,11 @@ export interface BoldBaseOptions {
 
   defaultCurrency?: string
   linkExpirationMinutes?: number
+
+  // Optional base URL overrides (for local QA emulator / sandbox environments)
+  integrationsUrl?: string
+  onlineUrl?: string
+  paymentsUrl?: string
 }
 
 export type InjectedDependencies = {

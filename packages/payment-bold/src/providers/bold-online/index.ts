@@ -46,15 +46,43 @@ export class BoldOnlinePaymentProviderService extends AbstractPaymentProvider<Bo
     const { amount, currency_code, data } = input
     const extra = (data || {}) as Record<string, unknown>
     const reference = (extra.reference as string) || `online_ref_${Date.now()}`
+    const roundedAmount = Math.round(Number(amount))
+    const currency = (currency_code || this.options_.defaultCurrency || "COP").toUpperCase()
+    const methodType = (extra.methodType as string) || "qr"
+
+    const intentRes = await this.client_.createPaymentIntent({
+      reference,
+      amount: roundedAmount,
+      currency,
+      methodType: methodType as any,
+      description: (extra.description as string) || `Order ${reference}`,
+      callbackUrl: extra.callbackUrl as string | undefined,
+      qrFormat: (extra.qrFormat as string) || "BOLD_BASE64",
+      bankCode: extra.bankCode as string | undefined,
+      bankName: extra.bankName as string | undefined,
+      payer: extra.email
+        ? { email: extra.email as string }
+        : (extra.payer as any),
+    })
+
+    const qrPayload =
+      (intentRes?.payment_method?.qr_payload as string | undefined) ||
+      (intentRes?.payment_method?.qr_code as string | undefined) ||
+      intentRes?.payment_url ||
+      ""
 
     return {
-      id: reference,
+      id: intentRes.id || reference,
       data: {
         ...data,
+        intent_id: intentRes.id,
         reference,
+        payment_url: intentRes.payment_url,
+        qr_payload: qrPayload,
+        payment_method: intentRes.payment_method,
         status: "pending",
-        amount: Math.round(Number(amount)),
-        currency: (currency_code || this.options_.defaultCurrency || "COP").toUpperCase(),
+        amount: roundedAmount,
+        currency,
       },
     }
   }
