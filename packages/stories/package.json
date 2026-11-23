@@ -1,6 +1,6 @@
 {
   "name": "@vicacha-devs/medusa-plugin-stories",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Shoppable Stories, Highlights Rings & Interactive 9:16 Video/Image Player plugin for Medusa v2 — Story Groups, Multi-Slide Timelines, X/Y Product Hotspots, Interactive Stickers (Polls, Countdowns, Coupons), Conversion Funnel Analytics, Storefront React UI Kit, Typed SDK & 9:16 Admin Studio.",
   "keywords": [
     "highlights",

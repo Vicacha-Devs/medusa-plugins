@@ -1,6 +1,6 @@
 {
   "name": "@vicacha-devs/medusa-plugin-automations",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Automations plugin for Medusa v2 by Vicacha Devs.",
   "keywords": [
     "automations",

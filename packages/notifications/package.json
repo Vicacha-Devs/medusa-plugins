@@ -1,6 +1,6 @@
 {
   "name": "@vicacha-devs/medusa-plugin-notifications",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Unified multi-channel notification studio for Medusa v2: visual and raw template builder, event mappings, consent ledger, abandoned cart recovery, broadcasts, and Email, WhatsApp, Telegram, SMS, Slack and sandbox providers.",
   "keywords": [
     "abandoned-cart",

@@ -1,6 +1,6 @@
 {
   "name": "@vicacha-devs/medusa-plugin-product-extensions",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Medusa v2 Product Extension Suite — Rich Video & 3D Media, Variant Galleries with Option Bulk-Assignment, Typed Custom Attributes with SI/Imperial Normalization, Hierarchical Content Sections (tree@1/diff@1), Feature Badges, Swatches, Multi-Storefront Overrides, Admin Studio & Storefront UI Kit (100% compatible with @bambiste/medusa-product-ext)",
   "keywords": [
     "3d-models",
