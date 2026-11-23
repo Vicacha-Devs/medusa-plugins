@@ -30,7 +30,8 @@
     "medusa-v2",
     "postnl",
     "sendcloud",
-    "eu"
+    "eu",
+    "medusa-plugin-integration"
   ],
   "scripts": {
     "build": "tsc -p tsconfig.json",

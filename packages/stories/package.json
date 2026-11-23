@@ -62,7 +62,8 @@
     "highlights",
     "shoppable-video",
     "product-hotspots",
-    "social-stories"
+    "social-stories",
+    "medusa-plugin-integration"
   ],
   "scripts": {
     "build": "medusa plugin:build && tsc-alias -p tsconfig.json",

@@ -48,7 +48,8 @@
     "product-features",
     "multi-storefront",
     "3d-models",
-    "image-alt"
+    "image-alt",
+    "medusa-plugin-integration"
   ],
   "scripts": {
     "build": "medusa plugin:build && tsc-alias -p tsconfig.json",

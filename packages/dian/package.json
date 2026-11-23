@@ -63,7 +63,8 @@
     "nota-credito",
     "nota-debito",
     "b2b",
-    "documents"
+    "documents",
+    "medusa-plugin-integration"
   ],
   "scripts": {
     "build": "medusa plugin:build && tsc-alias -p tsconfig.json",

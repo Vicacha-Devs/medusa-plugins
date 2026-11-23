@@ -64,7 +64,8 @@
     "label-printing",
     "inventory-count",
     "pos",
-    "open-food-facts"
+    "open-food-facts",
+    "medusa-plugin-integration"
   ],
   "scripts": {
     "build": "medusa plugin:build && tsc-alias -p tsconfig.json",

@@ -27,7 +27,8 @@
     "mollie",
     "ideal",
     "bancontact",
-    "sepa"
+    "sepa",
+    "medusa-plugin-integration"
   ],
   "scripts": {
     "build": "tsc -p tsconfig.json",

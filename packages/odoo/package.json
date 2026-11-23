@@ -57,7 +57,8 @@
     "inventory-reconciliation",
     "barcode",
     "pos",
-    "invoicing"
+    "invoicing",
+    "medusa-plugin-integration"
   ],
   "scripts": {
     "build": "medusa plugin:build && tsc-alias -p tsconfig.json",

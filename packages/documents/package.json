@@ -72,7 +72,8 @@
     "pdfmake",
     "handlebars",
     "docuseal",
-    "b2b"
+    "b2b",
+    "medusa-plugin-integration"
   ],
   "scripts": {
     "build": "medusa plugin:build && tsc-alias -p tsconfig.json",

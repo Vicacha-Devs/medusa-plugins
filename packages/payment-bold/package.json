@@ -58,7 +58,8 @@
     "pse",
     "nequi",
     "bre-b",
-    "dataphone"
+    "dataphone",
+    "medusa-plugin-integration"
   ],
   "scripts": {
     "build": "medusa plugin:build && tsc-alias -p tsconfig.json",
