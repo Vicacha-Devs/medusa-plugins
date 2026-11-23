@@ -12,7 +12,7 @@ import {
   usePushToBoldTerminal,
   useBoldPaymentStatusStream,
 } from "../../../../hooks"
-import { getBoldOrderBalanceInfo } from "../../../lib/bold-order-balance"
+import { getBoldOrderBalanceInfo } from "./bold-order-balance"
 
 export const useBoldWidgetState = (order: AdminOrder) => {
   const { t } = useTranslation()

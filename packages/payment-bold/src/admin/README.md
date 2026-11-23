@@ -11,10 +11,9 @@ admin/
 │       └── bold-payment-link-section.tsx # On-demand Payment Link generator & copy action
 ├── hooks/
 │   ├── use-bold-widget-state.tsx         # Aggregates balance state, terminal list, and action hooks
+│   ├── bold-order-balance.ts             # getBoldOrderBalanceInfo() for full & partial payment balances
 │   ├── use-bold-pos-push.ts              # Mutation hook for POST /admin/bold/pos-push
 │   └── use-bold-payment-link.ts          # Mutation hook for POST /admin/bold/payment-link
-├── utils/
-│   └── bold-order-balance.ts             # getBoldOrderBalanceState() for full & partial payment balances
 ├── i18n/                                 # English (en) & Spanish (es) translations
 └── lib/
     └── sdk.ts                            # Medusa Admin SDK client instance
