@@ -19,6 +19,11 @@
   ],
   "license": "MIT",
   "author": "Vicacha Devs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vicacha-Devs/medusa-plugins.git",
+    "directory": "packages/odoo"
+  },
   "files": [
     ".medusa/server",
     "src",
