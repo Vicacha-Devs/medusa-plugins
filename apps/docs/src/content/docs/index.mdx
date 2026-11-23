@@ -1,0 +1,68 @@
+---
+title: Vicacha Medusa v2 Plugins
+description: Enterprise Medusa v2 plugins for B2B commerce, DIAN electronic invoicing, PDF documents, Odoo ERP sync, Bold & Mollie payments, EU fulfillment, barcodes, RBAC, social commerce, stories, notifications, product extensions, and Typesense AI search.
+template: splash
+hero:
+  tagline: 13 modular, offline-verified, multi-locale Medusa v2 plugins with interactive OpenAPI specs, loopback QA emulators, and zero-config inter-plugin bridges.
+  actions:
+    - text: Getting Started
+      link: /guides/getting-started/
+      icon: right-arrow
+    - text: Explore Architecture
+      link: /guides/architecture/
+      variant: minimal
+      icon: external
+---
+
+import { Card, CardGrid } from "@astrojs/starlight/components";
+
+## Core Pillars
+
+<CardGrid stagger>
+  <Card title="13 Production Medusa v2 Plugins" icon="puzzle">
+    Built natively on the Medusa v2 Module SDK, Workflows SDK, Linkable
+    definitions, and Admin UI extensions.
+  </Card>
+  <Card title="Inter-Plugin Bridges" icon="random">
+    `dian` integrates with `b2b` for legal client fiscal profiles and
+    `documents` for PDF Representación Gráfica; `notifications` attaches
+    `documents` PDFs automatically.
+  </Card>
+  <Card title="Offline-First QA Emulators" icon="approve-check-circle">
+    Loopback `127.0.0.1` QA emulators (`payment-bold`, `dian`, `odoo`),
+    SSRF-guarded base URL overrides, and fast `node --test` suites via
+    `pnpm qa:verify`.
+  </Card>
+  <Card title="Multi-Locale Admin i18n & RTL" icon="translate">
+    Admin UI localization across `en`, `es`, `ar` (RTL), `tr`, `fr`, `de`,
+    `pt`, `it`, `nl`, and `pl` with shared `@vicacha-devs/medusa-shared-admin`
+    components.
+  </Card>
+</CardGrid>
+
+## Complete Plugin Matrix (13 Packages)
+
+| Package | Category | Key Capabilities |
+| :--- | :--- | :--- |
+| [B2B Companies & Quotes](/medusa-plugin-b2b/) | B2B & Enterprise | Companies, employee hierarchies, approval rules, spending limits, quote negotiation |
+| [Barcode, GS1 & Stock-Take](/medusa-plugin-barcode/) | Operations & Fulfillment | Barcode/GS1/QR generation, GTIN lookup, thermal ZPL II label printing, warehouse stock-take |
+| [DIAN Electronic Invoicing](/medusa-plugin-dian/) | Compliance & Invoicing | UBL 2.1 XML, CUFE/CUDE SHA-384, XAdES-EPES signatures, SOAP Web Services, pluggable providers |
+| [Commercial PDF Documents](/medusa-plugin-documents/) | Compliance & Invoicing | Invoices, packing slips, credit notes, POS receipts, dual PDF engine, 10-locale i18n, Docuseal |
+| [EU & Benelux Fulfillment](/medusa-fulfillment-eu/) | Operations & Fulfillment | PostNL letterbox, Sendcloud EU parcel, Rotterdam LCL pallet freight |
+| [Omnichannel Notifications](/medusa-plugin-notifications/) | Engagement & Growth | Visual template builder, event mappings, consent ledger, abandoned cart recovery, broadcasts |
+| [Odoo ERP Bidirectional Sync](/medusa-plugin-odoo/) | ERP & Integrations | Odoo 14–19+ JSON-RPC 2.0 & JSON-2 sync, multi-warehouse inventory, offline POS replay |
+| [Bold Colombia Payments](/medusa-payment-bold/) | Payments | Button, Payment Links, Online API (Cards, PSE, Nequi, QR), Smart POS Terminals + QA Emulator |
+| [Mollie & B2B Net-14](/medusa-payment-mollie/) | Payments | Mollie (iDEAL, Bancontact, SEPA, Cards) and B2B Net-14 invoice payment provider |
+| [Product Extensions Suite](/medusa-plugin-product-extensions/) | Catalog & Merchandising | Rich video & 3D media, variant galleries, typed attributes, hierarchical sections, swatches |
+| [Social Commerce & Live Selling](/medusa-plugin-social-commerce/) | Engagement & Growth | TikTok, Instagram & Meta Graph API catalog sync, live selling sessions, product tagging |
+| [Shoppable Stories & Reels](/medusa-plugin-stories/) | Engagement & Growth | 9:16 stories, highlight rings, X/Y product hotspots, interactive stickers, funnel analytics |
+| [Typesense Search & AI Hybrid](/medusa-plugin-typesense/) | Catalog & Merchandising | Vector/hybrid AI search, merchandising (synonyms, curations), InstantSearch storefront SDK |
+
+## Quick Installation
+
+```bash
+# Install any plugin into your Medusa v2 project
+pnpm add @vicacha-devs/medusa-plugin-b2b \
+  @vicacha-devs/medusa-plugin-documents \
+  @vicacha-devs/medusa-plugin-typesense
+```

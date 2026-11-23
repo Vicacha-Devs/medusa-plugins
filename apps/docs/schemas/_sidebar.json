@@ -1,0 +1,1518 @@
+{
+  "medusa-plugin-b2b": [
+    {
+      "label": "Admin: b2b",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "List b2b approvals",
+          "link": "/medusa-plugin-b2b/api/operations/getadminb2bapprovals/"
+        },
+        {
+          "label": "Create / Trigger b2b approvals by ID",
+          "link": "/medusa-plugin-b2b/api/operations/postadminb2bapprovalsbyid/"
+        },
+        {
+          "label": "List b2b companies",
+          "link": "/medusa-plugin-b2b/api/operations/getadminb2bcompanies/"
+        },
+        {
+          "label": "Create / Trigger b2b companies",
+          "link": "/medusa-plugin-b2b/api/operations/postadminb2bcompanies/"
+        },
+        {
+          "label": "Delete b2b companies by ID",
+          "link": "/medusa-plugin-b2b/api/operations/deleteadminb2bcompaniesbyid/"
+        },
+        {
+          "label": "Get b2b companies by ID",
+          "link": "/medusa-plugin-b2b/api/operations/getadminb2bcompaniesbyid/"
+        },
+        {
+          "label": "Create / Trigger b2b companies by ID",
+          "link": "/medusa-plugin-b2b/api/operations/postadminb2bcompaniesbyid/"
+        },
+        {
+          "label": "Get b2b companies by ID approval settings",
+          "link": "/medusa-plugin-b2b/api/operations/getadminb2bcompaniesbyidapprovalsettings/"
+        },
+        {
+          "label": "Create / Trigger b2b companies by ID approval settings",
+          "link": "/medusa-plugin-b2b/api/operations/postadminb2bcompaniesbyidapprovalsettings/"
+        },
+        {
+          "label": "Create / Trigger b2b companies by ID customer group",
+          "link": "/medusa-plugin-b2b/api/operations/postadminb2bcompaniesbyidcustomergroup/"
+        },
+        {
+          "label": "Delete b2b companies by ID customer group by ID",
+          "link": "/medusa-plugin-b2b/api/operations/deleteadminb2bcompaniesbyidcustomergroupbycustomergroupid/"
+        },
+        {
+          "label": "Get b2b companies by ID employees",
+          "link": "/medusa-plugin-b2b/api/operations/getadminb2bcompaniesbyidemployees/"
+        },
+        {
+          "label": "Create / Trigger b2b companies by ID employees",
+          "link": "/medusa-plugin-b2b/api/operations/postadminb2bcompaniesbyidemployees/"
+        },
+        {
+          "label": "Delete b2b companies by ID employees by ID",
+          "link": "/medusa-plugin-b2b/api/operations/deleteadminb2bcompaniesbyidemployeesbyemployeeid/"
+        },
+        {
+          "label": "Get b2b companies by ID employees by ID",
+          "link": "/medusa-plugin-b2b/api/operations/getadminb2bcompaniesbyidemployeesbyemployeeid/"
+        },
+        {
+          "label": "Create / Trigger b2b companies by ID employees by ID",
+          "link": "/medusa-plugin-b2b/api/operations/postadminb2bcompaniesbyidemployeesbyemployeeid/"
+        },
+        {
+          "label": "Get b2b customers by ID employee",
+          "link": "/medusa-plugin-b2b/api/operations/getadminb2bcustomersbyidemployee/"
+        },
+        {
+          "label": "List b2b quotes",
+          "link": "/medusa-plugin-b2b/api/operations/getadminb2bquotes/"
+        },
+        {
+          "label": "Get b2b quotes by ID",
+          "link": "/medusa-plugin-b2b/api/operations/getadminb2bquotesbyid/"
+        },
+        {
+          "label": "Create / Trigger b2b quotes by ID messages",
+          "link": "/medusa-plugin-b2b/api/operations/postadminb2bquotesbyidmessages/"
+        },
+        {
+          "label": "Create / Trigger b2b quotes by ID reject",
+          "link": "/medusa-plugin-b2b/api/operations/postadminb2bquotesbyidreject/"
+        },
+        {
+          "label": "Create / Trigger b2b quotes by ID send",
+          "link": "/medusa-plugin-b2b/api/operations/postadminb2bquotesbyidsend/"
+        }
+      ]
+    },
+    {
+      "label": "Admin: companies",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "List companies",
+          "link": "/medusa-plugin-b2b/api/operations/getadmincompanies/"
+        }
+      ]
+    },
+    {
+      "label": "Admin: views",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "List views b2b approvals columns",
+          "link": "/medusa-plugin-b2b/api/operations/getadminviewsb2bapprovalscolumns/"
+        },
+        {
+          "label": "List views b2b companies columns",
+          "link": "/medusa-plugin-b2b/api/operations/getadminviewsb2bcompaniescolumns/"
+        },
+        {
+          "label": "List views b2b company employees columns",
+          "link": "/medusa-plugin-b2b/api/operations/getadminviewsb2bcompanyemployeescolumns/"
+        },
+        {
+          "label": "List views b2b quotes columns",
+          "link": "/medusa-plugin-b2b/api/operations/getadminviewsb2bquotescolumns/"
+        }
+      ]
+    },
+    {
+      "label": "Storefront: b2b",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "List b2b approvals",
+          "link": "/medusa-plugin-b2b/api/operations/getstoreb2bapprovals/"
+        },
+        {
+          "label": "Create / Trigger b2b approvals by ID",
+          "link": "/medusa-plugin-b2b/api/operations/poststoreb2bapprovalsbyid/"
+        },
+        {
+          "label": "Create / Trigger b2b carts by ID approvals",
+          "link": "/medusa-plugin-b2b/api/operations/poststoreb2bcartsbyidapprovals/"
+        },
+        {
+          "label": "Create / Trigger b2b carts by ID line items bulk",
+          "link": "/medusa-plugin-b2b/api/operations/poststoreb2bcartsbyidlineitemsbulk/"
+        },
+        {
+          "label": "Create / Trigger b2b companies",
+          "link": "/medusa-plugin-b2b/api/operations/poststoreb2bcompanies/"
+        },
+        {
+          "label": "Delete b2b companies by ID",
+          "link": "/medusa-plugin-b2b/api/operations/deletestoreb2bcompaniesbyid/"
+        },
+        {
+          "label": "Get b2b companies by ID",
+          "link": "/medusa-plugin-b2b/api/operations/getstoreb2bcompaniesbyid/"
+        },
+        {
+          "label": "Create / Trigger b2b companies by ID",
+          "link": "/medusa-plugin-b2b/api/operations/poststoreb2bcompaniesbyid/"
+        },
+        {
+          "label": "Create / Trigger b2b companies by ID approval settings",
+          "link": "/medusa-plugin-b2b/api/operations/poststoreb2bcompaniesbyidapprovalsettings/"
+        },
+        {
+          "label": "Get b2b companies by ID employees",
+          "link": "/medusa-plugin-b2b/api/operations/getstoreb2bcompaniesbyidemployees/"
+        },
+        {
+          "label": "Create / Trigger b2b companies by ID employees",
+          "link": "/medusa-plugin-b2b/api/operations/poststoreb2bcompaniesbyidemployees/"
+        },
+        {
+          "label": "Delete b2b companies by ID employees by ID",
+          "link": "/medusa-plugin-b2b/api/operations/deletestoreb2bcompaniesbyidemployeesbyemployeeid/"
+        },
+        {
+          "label": "Get b2b companies by ID employees by ID",
+          "link": "/medusa-plugin-b2b/api/operations/getstoreb2bcompaniesbyidemployeesbyemployeeid/"
+        },
+        {
+          "label": "Create / Trigger b2b companies by ID employees by ID",
+          "link": "/medusa-plugin-b2b/api/operations/poststoreb2bcompaniesbyidemployeesbyemployeeid/"
+        },
+        {
+          "label": "List b2b free shipping prices",
+          "link": "/medusa-plugin-b2b/api/operations/getstoreb2bfreeshippingprices/"
+        },
+        {
+          "label": "List b2b quotes",
+          "link": "/medusa-plugin-b2b/api/operations/getstoreb2bquotes/"
+        },
+        {
+          "label": "Create / Trigger b2b quotes",
+          "link": "/medusa-plugin-b2b/api/operations/poststoreb2bquotes/"
+        },
+        {
+          "label": "Get b2b quotes by ID",
+          "link": "/medusa-plugin-b2b/api/operations/getstoreb2bquotesbyid/"
+        },
+        {
+          "label": "Create / Trigger b2b quotes by ID accept",
+          "link": "/medusa-plugin-b2b/api/operations/poststoreb2bquotesbyidaccept/"
+        },
+        {
+          "label": "Create / Trigger b2b quotes by ID messages",
+          "link": "/medusa-plugin-b2b/api/operations/poststoreb2bquotesbyidmessages/"
+        },
+        {
+          "label": "Get b2b quotes by ID preview",
+          "link": "/medusa-plugin-b2b/api/operations/getstoreb2bquotesbyidpreview/"
+        },
+        {
+          "label": "Create / Trigger b2b quotes by ID reject",
+          "link": "/medusa-plugin-b2b/api/operations/poststoreb2bquotesbyidreject/"
+        }
+      ]
+    }
+  ],
+  "medusa-plugin-barcode": [
+    {
+      "label": "Admin: barcodes",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "List barcodes",
+          "link": "/medusa-plugin-barcode/api/operations/getadminbarcodes/"
+        },
+        {
+          "label": "Delete barcodes by ID",
+          "link": "/medusa-plugin-barcode/api/operations/deleteadminbarcodesbybarcode/"
+        },
+        {
+          "label": "Get barcodes by ID",
+          "link": "/medusa-plugin-barcode/api/operations/getadminbarcodesbybarcode/"
+        },
+        {
+          "label": "Create / Trigger barcodes batch",
+          "link": "/medusa-plugin-barcode/api/operations/postadminbarcodesbatch/"
+        },
+        {
+          "label": "Create / Trigger barcodes bulk generate",
+          "link": "/medusa-plugin-barcode/api/operations/postadminbarcodesbulkgenerate/"
+        },
+        {
+          "label": "Delete barcodes cache",
+          "link": "/medusa-plugin-barcode/api/operations/deleteadminbarcodescache/"
+        },
+        {
+          "label": "List barcodes cache",
+          "link": "/medusa-plugin-barcode/api/operations/getadminbarcodescache/"
+        },
+        {
+          "label": "List barcodes count sessions",
+          "link": "/medusa-plugin-barcode/api/operations/getadminbarcodescountsessions/"
+        },
+        {
+          "label": "Create / Trigger barcodes count sessions",
+          "link": "/medusa-plugin-barcode/api/operations/postadminbarcodescountsessions/"
+        },
+        {
+          "label": "Create / Trigger barcodes count sessions by ID apply",
+          "link": "/medusa-plugin-barcode/api/operations/postadminbarcodescountsessionsbyidapply/"
+        },
+        {
+          "label": "Create / Trigger barcodes count sessions by ID scan",
+          "link": "/medusa-plugin-barcode/api/operations/postadminbarcodescountsessionsbyidscan/"
+        },
+        {
+          "label": "Create / Trigger barcodes create from barcode",
+          "link": "/medusa-plugin-barcode/api/operations/postadminbarcodescreatefrombarcode/"
+        },
+        {
+          "label": "Create / Trigger barcodes lookup",
+          "link": "/medusa-plugin-barcode/api/operations/postadminbarcodeslookup/"
+        },
+        {
+          "label": "Create / Trigger barcodes print",
+          "link": "/medusa-plugin-barcode/api/operations/postadminbarcodesprint/"
+        },
+        {
+          "label": "Create / Trigger barcodes scan",
+          "link": "/medusa-plugin-barcode/api/operations/postadminbarcodesscan/"
+        },
+        {
+          "label": "List barcodes tags",
+          "link": "/medusa-plugin-barcode/api/operations/getadminbarcodestags/"
+        },
+        {
+          "label": "Create / Trigger barcodes tags",
+          "link": "/medusa-plugin-barcode/api/operations/postadminbarcodestags/"
+        },
+        {
+          "label": "Delete barcodes tags by ID",
+          "link": "/medusa-plugin-barcode/api/operations/deleteadminbarcodestagsbyid/"
+        },
+        {
+          "label": "Get barcodes tags by ID",
+          "link": "/medusa-plugin-barcode/api/operations/getadminbarcodestagsbyid/"
+        },
+        {
+          "label": "Update barcodes tags by ID",
+          "link": "/medusa-plugin-barcode/api/operations/patchadminbarcodestagsbyid/"
+        },
+        {
+          "label": "List barcodes templates",
+          "link": "/medusa-plugin-barcode/api/operations/getadminbarcodestemplates/"
+        },
+        {
+          "label": "Create / Trigger barcodes templates",
+          "link": "/medusa-plugin-barcode/api/operations/postadminbarcodestemplates/"
+        }
+      ]
+    },
+    {
+      "label": "Admin: plugin",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "List plugin",
+          "link": "/medusa-plugin-barcode/api/operations/getadminplugin/"
+        }
+      ]
+    },
+    {
+      "label": "Admin: variants",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "Get variants barcode by ID",
+          "link": "/medusa-plugin-barcode/api/operations/getadminvariantsbarcodebycode/"
+        }
+      ]
+    },
+    {
+      "label": "Storefront: barcodes",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "Get barcodes by ID",
+          "link": "/medusa-plugin-barcode/api/operations/getstorebarcodesbycode/"
+        },
+        {
+          "label": "Get barcodes by ID verify",
+          "link": "/medusa-plugin-barcode/api/operations/getstorebarcodesbycodeverify/"
+        },
+        {
+          "label": "Create / Trigger barcodes by ID verify",
+          "link": "/medusa-plugin-barcode/api/operations/poststorebarcodesbycodeverify/"
+        }
+      ]
+    },
+    {
+      "label": "Storefront: plugin",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "List plugin",
+          "link": "/medusa-plugin-barcode/api/operations/getstoreplugin/"
+        }
+      ]
+    },
+    {
+      "label": "Storefront: variants",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "Get variants barcode by ID",
+          "link": "/medusa-plugin-barcode/api/operations/getstorevariantsbarcodebycode/"
+        }
+      ]
+    }
+  ],
+  "medusa-plugin-dian": [
+    {
+      "label": "Admin: dian",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "List dian config",
+          "link": "/medusa-plugin-dian/api/operations/getadmindianconfig/"
+        },
+        {
+          "label": "Create / Trigger dian config",
+          "link": "/medusa-plugin-dian/api/operations/postadmindianconfig/"
+        },
+        {
+          "label": "List dian documents",
+          "link": "/medusa-plugin-dian/api/operations/getadmindiandocuments/"
+        },
+        {
+          "label": "Create / Trigger dian documents",
+          "link": "/medusa-plugin-dian/api/operations/postadmindiandocuments/"
+        },
+        {
+          "label": "Get dian documents by ID download",
+          "link": "/medusa-plugin-dian/api/operations/getadmindiandocumentsbyiddownload/"
+        },
+        {
+          "label": "List dian fiscal profiles",
+          "link": "/medusa-plugin-dian/api/operations/getadmindianfiscalprofiles/"
+        },
+        {
+          "label": "Create / Trigger dian fiscal profiles",
+          "link": "/medusa-plugin-dian/api/operations/postadmindianfiscalprofiles/"
+        },
+        {
+          "label": "List dian resolutions",
+          "link": "/medusa-plugin-dian/api/operations/getadmindianresolutions/"
+        },
+        {
+          "label": "Create / Trigger dian resolutions",
+          "link": "/medusa-plugin-dian/api/operations/postadmindianresolutions/"
+        }
+      ]
+    },
+    {
+      "label": "Admin: plugin",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "List plugin",
+          "link": "/medusa-plugin-dian/api/operations/getadminplugin/"
+        }
+      ]
+    },
+    {
+      "label": "Storefront: dian",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "List dian fiscal profile",
+          "link": "/medusa-plugin-dian/api/operations/getstoredianfiscalprofile/"
+        },
+        {
+          "label": "Create / Trigger dian fiscal profile",
+          "link": "/medusa-plugin-dian/api/operations/poststoredianfiscalprofile/"
+        }
+      ]
+    },
+    {
+      "label": "Storefront: plugin",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "List plugin",
+          "link": "/medusa-plugin-dian/api/operations/getstoreplugin/"
+        }
+      ]
+    }
+  ],
+  "medusa-plugin-documents": [
+    {
+      "label": "Admin: documents",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "List documents",
+          "link": "/medusa-plugin-documents/api/operations/getadmindocuments/"
+        },
+        {
+          "label": "Create / Trigger documents",
+          "link": "/medusa-plugin-documents/api/operations/postadmindocuments/"
+        },
+        {
+          "label": "Delete documents by ID",
+          "link": "/medusa-plugin-documents/api/operations/deleteadmindocumentsbyid/"
+        },
+        {
+          "label": "Get documents by ID",
+          "link": "/medusa-plugin-documents/api/operations/getadmindocumentsbyid/"
+        },
+        {
+          "label": "Get documents by ID pdf",
+          "link": "/medusa-plugin-documents/api/operations/getadmindocumentsbyidpdf/"
+        },
+        {
+          "label": "Create / Trigger documents by ID regenerate",
+          "link": "/medusa-plugin-documents/api/operations/postadmindocumentsbyidregenerate/"
+        },
+        {
+          "label": "Create / Trigger documents by ID send email",
+          "link": "/medusa-plugin-documents/api/operations/postadmindocumentsbyidsendemail/"
+        },
+        {
+          "label": "Create / Trigger documents by ID send for signature",
+          "link": "/medusa-plugin-documents/api/operations/postadmindocumentsbyidsendforsignature/"
+        },
+        {
+          "label": "Create / Trigger documents bulk download",
+          "link": "/medusa-plugin-documents/api/operations/postadmindocumentsbulkdownload/"
+        },
+        {
+          "label": "Create / Trigger documents bulk generate",
+          "link": "/medusa-plugin-documents/api/operations/postadmindocumentsbulkgenerate/"
+        },
+        {
+          "label": "List documents export.csv",
+          "link": "/medusa-plugin-documents/api/operations/getadmindocumentsexport.csv/"
+        },
+        {
+          "label": "List documents preview",
+          "link": "/medusa-plugin-documents/api/operations/getadmindocumentspreview/"
+        },
+        {
+          "label": "Create / Trigger documents preview",
+          "link": "/medusa-plugin-documents/api/operations/postadmindocumentspreview/"
+        },
+        {
+          "label": "Delete documents settings",
+          "link": "/medusa-plugin-documents/api/operations/deleteadmindocumentssettings/"
+        },
+        {
+          "label": "List documents settings",
+          "link": "/medusa-plugin-documents/api/operations/getadmindocumentssettings/"
+        },
+        {
+          "label": "Update documents settings",
+          "link": "/medusa-plugin-documents/api/operations/putadmindocumentssettings/"
+        },
+        {
+          "label": "List documents templates",
+          "link": "/medusa-plugin-documents/api/operations/getadmindocumentstemplates/"
+        },
+        {
+          "label": "Create / Trigger documents templates",
+          "link": "/medusa-plugin-documents/api/operations/postadmindocumentstemplates/"
+        },
+        {
+          "label": "Delete documents templates by ID",
+          "link": "/medusa-plugin-documents/api/operations/deleteadmindocumentstemplatesbyid/"
+        },
+        {
+          "label": "Get documents templates by ID",
+          "link": "/medusa-plugin-documents/api/operations/getadmindocumentstemplatesbyid/"
+        },
+        {
+          "label": "Update documents templates by ID",
+          "link": "/medusa-plugin-documents/api/operations/putadmindocumentstemplatesbyid/"
+        },
+        {
+          "label": "Create / Trigger documents webhooks docuseal",
+          "link": "/medusa-plugin-documents/api/operations/postadmindocumentswebhooksdocuseal/"
+        }
+      ]
+    },
+    {
+      "label": "Admin: plugin",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "List plugin",
+          "link": "/medusa-plugin-documents/api/operations/getadminplugin/"
+        }
+      ]
+    },
+    {
+      "label": "Storefront: documents",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "Get documents by ID",
+          "link": "/medusa-plugin-documents/api/operations/getstoredocumentsbyorder_id/"
+        },
+        {
+          "label": "Get documents by ID credit note.pdf",
+          "link": "/medusa-plugin-documents/api/operations/getstoredocumentsbyorder_idcreditnote.pdf/"
+        },
+        {
+          "label": "Get documents by ID invoice.pdf",
+          "link": "/medusa-plugin-documents/api/operations/getstoredocumentsbyorder_idinvoice.pdf/"
+        },
+        {
+          "label": "Get documents by ID packing slip.pdf",
+          "link": "/medusa-plugin-documents/api/operations/getstoredocumentsbyorder_idpackingslip.pdf/"
+        },
+        {
+          "label": "Get documents by ID receipt.pdf",
+          "link": "/medusa-plugin-documents/api/operations/getstoredocumentsbyorder_idreceipt.pdf/"
+        },
+        {
+          "label": "Get documents by ID signed.pdf",
+          "link": "/medusa-plugin-documents/api/operations/getstoredocumentsbyorder_idsigned.pdf/"
+        },
+        {
+          "label": "Get documents by ID signing url",
+          "link": "/medusa-plugin-documents/api/operations/getstoredocumentsbyorder_idsigningurl/"
+        }
+      ]
+    },
+    {
+      "label": "Storefront: plugin",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "List plugin",
+          "link": "/medusa-plugin-documents/api/operations/getstoreplugin/"
+        }
+      ]
+    }
+  ],
+  "medusa-plugin-notifications": [
+    {
+      "label": "Admin: mpn",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "List mpn broadcasts",
+          "link": "/medusa-plugin-notifications/api/operations/getadminmpnbroadcasts/"
+        },
+        {
+          "label": "Create / Trigger mpn broadcasts",
+          "link": "/medusa-plugin-notifications/api/operations/postadminmpnbroadcasts/"
+        },
+        {
+          "label": "List mpn channels",
+          "link": "/medusa-plugin-notifications/api/operations/getadminmpnchannels/"
+        },
+        {
+          "label": "Create / Trigger mpn channels",
+          "link": "/medusa-plugin-notifications/api/operations/postadminmpnchannels/"
+        },
+        {
+          "label": "List mpn logs",
+          "link": "/medusa-plugin-notifications/api/operations/getadminmpnlogs/"
+        },
+        {
+          "label": "List mpn mappings",
+          "link": "/medusa-plugin-notifications/api/operations/getadminmpnmappings/"
+        },
+        {
+          "label": "Create / Trigger mpn mappings",
+          "link": "/medusa-plugin-notifications/api/operations/postadminmpnmappings/"
+        },
+        {
+          "label": "Delete mpn mappings by ID",
+          "link": "/medusa-plugin-notifications/api/operations/deleteadminmpnmappingsbyid/"
+        },
+        {
+          "label": "Create / Trigger mpn mappings by ID",
+          "link": "/medusa-plugin-notifications/api/operations/postadminmpnmappingsbyid/"
+        },
+        {
+          "label": "Create / Trigger mpn render template",
+          "link": "/medusa-plugin-notifications/api/operations/postadminmpnrendertemplate/"
+        },
+        {
+          "label": "Delete mpn sandbox",
+          "link": "/medusa-plugin-notifications/api/operations/deleteadminmpnsandbox/"
+        },
+        {
+          "label": "List mpn sandbox",
+          "link": "/medusa-plugin-notifications/api/operations/getadminmpnsandbox/"
+        },
+        {
+          "label": "Create / Trigger mpn send",
+          "link": "/medusa-plugin-notifications/api/operations/postadminmpnsend/"
+        },
+        {
+          "label": "List mpn templates",
+          "link": "/medusa-plugin-notifications/api/operations/getadminmpntemplates/"
+        },
+        {
+          "label": "Create / Trigger mpn templates",
+          "link": "/medusa-plugin-notifications/api/operations/postadminmpntemplates/"
+        },
+        {
+          "label": "Delete mpn templates by ID",
+          "link": "/medusa-plugin-notifications/api/operations/deleteadminmpntemplatesbyid/"
+        },
+        {
+          "label": "Get mpn templates by ID",
+          "link": "/medusa-plugin-notifications/api/operations/getadminmpntemplatesbyid/"
+        },
+        {
+          "label": "Create / Trigger mpn templates by ID",
+          "link": "/medusa-plugin-notifications/api/operations/postadminmpntemplatesbyid/"
+        }
+      ]
+    },
+    {
+      "label": "Admin: plugin",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "List plugin",
+          "link": "/medusa-plugin-notifications/api/operations/getadminplugin/"
+        }
+      ]
+    },
+    {
+      "label": "Storefront: mpn",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "Create / Trigger mpn consent",
+          "link": "/medusa-plugin-notifications/api/operations/poststorempnconsent/"
+        },
+        {
+          "label": "Create / Trigger mpn webhooks by ID",
+          "link": "/medusa-plugin-notifications/api/operations/poststorempnwebhooksbyprovider/"
+        }
+      ]
+    },
+    {
+      "label": "Storefront: plugin",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "List plugin",
+          "link": "/medusa-plugin-notifications/api/operations/getstoreplugin/"
+        }
+      ]
+    }
+  ],
+  "medusa-plugin-odoo": [
+    {
+      "label": "Admin: odoo",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "List odoo config",
+          "link": "/medusa-plugin-odoo/api/operations/getadminodooconfig/"
+        },
+        {
+          "label": "Create / Trigger odoo config",
+          "link": "/medusa-plugin-odoo/api/operations/postadminodooconfig/"
+        },
+        {
+          "label": "List odoo conflicts",
+          "link": "/medusa-plugin-odoo/api/operations/getadminodooconflicts/"
+        },
+        {
+          "label": "Create / Trigger odoo conflicts",
+          "link": "/medusa-plugin-odoo/api/operations/postadminodooconflicts/"
+        },
+        {
+          "label": "List odoo failures",
+          "link": "/medusa-plugin-odoo/api/operations/getadminodoofailures/"
+        },
+        {
+          "label": "Create / Trigger odoo failures",
+          "link": "/medusa-plugin-odoo/api/operations/postadminodoofailures/"
+        },
+        {
+          "label": "List odoo logs",
+          "link": "/medusa-plugin-odoo/api/operations/getadminodoologs/"
+        },
+        {
+          "label": "List odoo mappings",
+          "link": "/medusa-plugin-odoo/api/operations/getadminodoomappings/"
+        },
+        {
+          "label": "Create / Trigger odoo mappings",
+          "link": "/medusa-plugin-odoo/api/operations/postadminodoomappings/"
+        },
+        {
+          "label": "List odoo metrics",
+          "link": "/medusa-plugin-odoo/api/operations/getadminodoometrics/"
+        },
+        {
+          "label": "List odoo options",
+          "link": "/medusa-plugin-odoo/api/operations/getadminodoooptions/"
+        },
+        {
+          "label": "List odoo pos transactions",
+          "link": "/medusa-plugin-odoo/api/operations/getadminodoopostransactions/"
+        },
+        {
+          "label": "Create / Trigger odoo pos transactions",
+          "link": "/medusa-plugin-odoo/api/operations/postadminodoopostransactions/"
+        },
+        {
+          "label": "Get odoo sections by ID",
+          "link": "/medusa-plugin-odoo/api/operations/getadminodoosectionsbysection/"
+        },
+        {
+          "label": "Create / Trigger odoo sections by ID",
+          "link": "/medusa-plugin-odoo/api/operations/postadminodoosectionsbysection/"
+        },
+        {
+          "label": "List odoo status",
+          "link": "/medusa-plugin-odoo/api/operations/getadminodoostatus/"
+        },
+        {
+          "label": "Create / Trigger odoo sync order by ID",
+          "link": "/medusa-plugin-odoo/api/operations/postadminodoosyncorderbyid/"
+        },
+        {
+          "label": "Create / Trigger odoo sync by ID",
+          "link": "/medusa-plugin-odoo/api/operations/postadminodoosyncbyentity/"
+        },
+        {
+          "label": "Create / Trigger odoo verify connection",
+          "link": "/medusa-plugin-odoo/api/operations/postadminodooverifyconnection/"
+        }
+      ]
+    },
+    {
+      "label": "Admin: plugin",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "List plugin",
+          "link": "/medusa-plugin-odoo/api/operations/getadminplugin/"
+        }
+      ]
+    },
+    {
+      "label": "Webhooks & Hooks",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "Create / Trigger  hooks odoo",
+          "link": "/medusa-plugin-odoo/api/operations/posthooksodoo/"
+        }
+      ]
+    },
+    {
+      "label": "Storefront: odoo",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "Create / Trigger odoo barcode",
+          "link": "/medusa-plugin-odoo/api/operations/poststoreodoobarcode/"
+        }
+      ]
+    },
+    {
+      "label": "Storefront: plugin",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "List plugin",
+          "link": "/medusa-plugin-odoo/api/operations/getstoreplugin/"
+        }
+      ]
+    }
+  ],
+  "medusa-payment-bold": [
+    {
+      "label": "Admin: bold",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "List bold banks",
+          "link": "/medusa-payment-bold/api/operations/getadminboldbanks/"
+        },
+        {
+          "label": "Create / Trigger bold payment button",
+          "link": "/medusa-payment-bold/api/operations/postadminboldpaymentbutton/"
+        },
+        {
+          "label": "Create / Trigger bold payment link",
+          "link": "/medusa-payment-bold/api/operations/postadminboldpaymentlink/"
+        },
+        {
+          "label": "List bold payment link methods",
+          "link": "/medusa-payment-bold/api/operations/getadminboldpaymentlinkmethods/"
+        },
+        {
+          "label": "List bold payment methods",
+          "link": "/medusa-payment-bold/api/operations/getadminboldpaymentmethods/"
+        },
+        {
+          "label": "Create / Trigger bold payment qr",
+          "link": "/medusa-payment-bold/api/operations/postadminboldpaymentqr/"
+        },
+        {
+          "label": "List bold payment status",
+          "link": "/medusa-payment-bold/api/operations/getadminboldpaymentstatus/"
+        },
+        {
+          "label": "List bold payment stream",
+          "link": "/medusa-payment-bold/api/operations/getadminboldpaymentstream/"
+        },
+        {
+          "label": "Create / Trigger bold pos push",
+          "link": "/medusa-payment-bold/api/operations/postadminboldpospush/"
+        },
+        {
+          "label": "Create / Trigger bold refund",
+          "link": "/medusa-payment-bold/api/operations/postadminboldrefund/"
+        },
+        {
+          "label": "List bold terminals",
+          "link": "/medusa-payment-bold/api/operations/getadminboldterminals/"
+        }
+      ]
+    },
+    {
+      "label": "Admin: plugin",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "List plugin",
+          "link": "/medusa-payment-bold/api/operations/getadminplugin/"
+        }
+      ]
+    },
+    {
+      "label": "Webhooks & Hooks",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "Create / Trigger  hooks payment bold",
+          "link": "/medusa-payment-bold/api/operations/posthookspaymentbold/"
+        }
+      ]
+    },
+    {
+      "label": "Storefront: plugin",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "List plugin",
+          "link": "/medusa-payment-bold/api/operations/getstoreplugin/"
+        }
+      ]
+    }
+  ],
+  "medusa-plugin-product-extensions": [
+    {
+      "label": "Admin: plugin",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "List plugin",
+          "link": "/medusa-plugin-product-extensions/api/operations/getadminplugin/"
+        }
+      ]
+    },
+    {
+      "label": "Admin: product-ext",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "List product ext attributes",
+          "link": "/medusa-plugin-product-extensions/api/operations/getadminproductextattributes/"
+        },
+        {
+          "label": "Create / Trigger product ext attributes",
+          "link": "/medusa-plugin-product-extensions/api/operations/postadminproductextattributes/"
+        },
+        {
+          "label": "Delete product ext attributes by ID",
+          "link": "/medusa-plugin-product-extensions/api/operations/deleteadminproductextattributesbyid/"
+        },
+        {
+          "label": "Update product ext attributes by ID",
+          "link": "/medusa-plugin-product-extensions/api/operations/patchadminproductextattributesbyid/"
+        },
+        {
+          "label": "List product ext features",
+          "link": "/medusa-plugin-product-extensions/api/operations/getadminproductextfeatures/"
+        },
+        {
+          "label": "Create / Trigger product ext features",
+          "link": "/medusa-plugin-product-extensions/api/operations/postadminproductextfeatures/"
+        },
+        {
+          "label": "Delete product ext features by ID",
+          "link": "/medusa-plugin-product-extensions/api/operations/deleteadminproductextfeaturesbyid/"
+        },
+        {
+          "label": "Update product ext features by ID",
+          "link": "/medusa-plugin-product-extensions/api/operations/patchadminproductextfeaturesbyid/"
+        },
+        {
+          "label": "List product ext image alts",
+          "link": "/medusa-plugin-product-extensions/api/operations/getadminproductextimagealts/"
+        },
+        {
+          "label": "Create / Trigger product ext image alts",
+          "link": "/medusa-plugin-product-extensions/api/operations/postadminproductextimagealts/"
+        },
+        {
+          "label": "List product ext templates",
+          "link": "/medusa-plugin-product-extensions/api/operations/getadminproductexttemplates/"
+        },
+        {
+          "label": "Create / Trigger product ext templates",
+          "link": "/medusa-plugin-product-extensions/api/operations/postadminproductexttemplates/"
+        },
+        {
+          "label": "Delete product ext templates by ID",
+          "link": "/medusa-plugin-product-extensions/api/operations/deleteadminproductexttemplatesbyid/"
+        },
+        {
+          "label": "Update product ext templates by ID",
+          "link": "/medusa-plugin-product-extensions/api/operations/patchadminproductexttemplatesbyid/"
+        }
+      ]
+    },
+    {
+      "label": "Admin: products",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "Get products by ID attributes",
+          "link": "/medusa-plugin-product-extensions/api/operations/getadminproductsbyproduct_idattributes/"
+        },
+        {
+          "label": "Create / Trigger products by ID attributes",
+          "link": "/medusa-plugin-product-extensions/api/operations/postadminproductsbyproduct_idattributes/"
+        },
+        {
+          "label": "Get products by ID extension",
+          "link": "/medusa-plugin-product-extensions/api/operations/getadminproductsbyproduct_idextension/"
+        },
+        {
+          "label": "Create / Trigger products by ID extension",
+          "link": "/medusa-plugin-product-extensions/api/operations/postadminproductsbyproduct_idextension/"
+        },
+        {
+          "label": "Get products by ID variants by ID extension",
+          "link": "/medusa-plugin-product-extensions/api/operations/getadminproductsbyproduct_idvariantsbyvariant_idextension/"
+        },
+        {
+          "label": "Create / Trigger products by ID variants by ID extension",
+          "link": "/medusa-plugin-product-extensions/api/operations/postadminproductsbyproduct_idvariantsbyvariant_idextension/"
+        },
+        {
+          "label": "Create / Trigger products by ID variants bulk media",
+          "link": "/medusa-plugin-product-extensions/api/operations/postadminproductsbyproduct_idvariantsbulkmedia/"
+        }
+      ]
+    },
+    {
+      "label": "Storefront: plugin",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "List plugin",
+          "link": "/medusa-plugin-product-extensions/api/operations/getstoreplugin/"
+        }
+      ]
+    },
+    {
+      "label": "Storefront: product-ext",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "Create / Trigger product ext filter",
+          "link": "/medusa-plugin-product-extensions/api/operations/poststoreproductextfilter/"
+        }
+      ]
+    },
+    {
+      "label": "Storefront: products",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "Get products by ID extension",
+          "link": "/medusa-plugin-product-extensions/api/operations/getstoreproductsbyproduct_idextension/"
+        }
+      ]
+    }
+  ],
+  "medusa-plugin-social-commerce": [
+    {
+      "label": "Admin: plugin",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "List plugin",
+          "link": "/medusa-plugin-social-commerce/api/operations/getadminplugin/"
+        }
+      ]
+    },
+    {
+      "label": "Admin: social",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "List social accounts",
+          "link": "/medusa-plugin-social-commerce/api/operations/getadminsocialaccounts/"
+        },
+        {
+          "label": "Delete social accounts by ID",
+          "link": "/medusa-plugin-social-commerce/api/operations/deleteadminsocialaccountsbyid/"
+        },
+        {
+          "label": "Get social accounts by ID",
+          "link": "/medusa-plugin-social-commerce/api/operations/getadminsocialaccountsbyid/"
+        },
+        {
+          "label": "Create / Trigger social accounts by ID",
+          "link": "/medusa-plugin-social-commerce/api/operations/postadminsocialaccountsbyid/"
+        },
+        {
+          "label": "List social catalog",
+          "link": "/medusa-plugin-social-commerce/api/operations/getadminsocialcatalog/"
+        },
+        {
+          "label": "Create / Trigger social catalog",
+          "link": "/medusa-plugin-social-commerce/api/operations/postadminsocialcatalog/"
+        },
+        {
+          "label": "Create / Trigger social connect",
+          "link": "/medusa-plugin-social-commerce/api/operations/postadminsocialconnect/"
+        },
+        {
+          "label": "List social live",
+          "link": "/medusa-plugin-social-commerce/api/operations/getadminsociallive/"
+        },
+        {
+          "label": "Create / Trigger social live",
+          "link": "/medusa-plugin-social-commerce/api/operations/postadminsociallive/"
+        },
+        {
+          "label": "Create / Trigger social live by ID",
+          "link": "/medusa-plugin-social-commerce/api/operations/postadminsociallivebyid/"
+        },
+        {
+          "label": "Create / Trigger social live by ID products",
+          "link": "/medusa-plugin-social-commerce/api/operations/postadminsociallivebyidproducts/"
+        },
+        {
+          "label": "List social posts",
+          "link": "/medusa-plugin-social-commerce/api/operations/getadminsocialposts/"
+        },
+        {
+          "label": "Create / Trigger social posts",
+          "link": "/medusa-plugin-social-commerce/api/operations/postadminsocialposts/"
+        },
+        {
+          "label": "Delete social posts by ID",
+          "link": "/medusa-plugin-social-commerce/api/operations/deleteadminsocialpostsbyid/"
+        },
+        {
+          "label": "Get social posts by ID",
+          "link": "/medusa-plugin-social-commerce/api/operations/getadminsocialpostsbyid/"
+        },
+        {
+          "label": "Update social posts by ID",
+          "link": "/medusa-plugin-social-commerce/api/operations/patchadminsocialpostsbyid/"
+        },
+        {
+          "label": "Get social posts by ID products",
+          "link": "/medusa-plugin-social-commerce/api/operations/getadminsocialpostsbyidproducts/"
+        },
+        {
+          "label": "Create / Trigger social posts by ID products",
+          "link": "/medusa-plugin-social-commerce/api/operations/postadminsocialpostsbyidproducts/"
+        },
+        {
+          "label": "Create / Trigger social sync",
+          "link": "/medusa-plugin-social-commerce/api/operations/postadminsocialsync/"
+        }
+      ]
+    },
+    {
+      "label": "Public & Utility",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "List  social oauth callback",
+          "link": "/medusa-plugin-social-commerce/api/operations/getsocialoauthcallback/"
+        },
+        {
+          "label": "Create / Trigger  social oauth callback",
+          "link": "/medusa-plugin-social-commerce/api/operations/postsocialoauthcallback/"
+        }
+      ]
+    },
+    {
+      "label": "Storefront: plugin",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "List plugin",
+          "link": "/medusa-plugin-social-commerce/api/operations/getstoreplugin/"
+        }
+      ]
+    },
+    {
+      "label": "Storefront: social",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "List social catalog feed",
+          "link": "/medusa-plugin-social-commerce/api/operations/getstoresocialcatalogfeed/"
+        },
+        {
+          "label": "List social checkout handoff",
+          "link": "/medusa-plugin-social-commerce/api/operations/getstoresocialcheckouthandoff/"
+        },
+        {
+          "label": "Create / Trigger social checkout handoff",
+          "link": "/medusa-plugin-social-commerce/api/operations/poststoresocialcheckouthandoff/"
+        },
+        {
+          "label": "List social feed",
+          "link": "/medusa-plugin-social-commerce/api/operations/getstoresocialfeed/"
+        },
+        {
+          "label": "List social live",
+          "link": "/medusa-plugin-social-commerce/api/operations/getstoresociallive/"
+        },
+        {
+          "label": "Create / Trigger social live",
+          "link": "/medusa-plugin-social-commerce/api/operations/poststoresociallive/"
+        },
+        {
+          "label": "Get social posts by ID",
+          "link": "/medusa-plugin-social-commerce/api/operations/getstoresocialpostsbyid/"
+        },
+        {
+          "label": "List social stories",
+          "link": "/medusa-plugin-social-commerce/api/operations/getstoresocialstories/"
+        }
+      ]
+    },
+    {
+      "label": "Webhooks & Hooks",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "Get  webhooks social by ID",
+          "link": "/medusa-plugin-social-commerce/api/operations/getwebhookssocialbyplatform/"
+        },
+        {
+          "label": "Create / Trigger  webhooks social by ID",
+          "link": "/medusa-plugin-social-commerce/api/operations/postwebhookssocialbyplatform/"
+        },
+        {
+          "label": "List  webhooks tiktok",
+          "link": "/medusa-plugin-social-commerce/api/operations/getwebhookstiktok/"
+        },
+        {
+          "label": "Create / Trigger  webhooks tiktok",
+          "link": "/medusa-plugin-social-commerce/api/operations/postwebhookstiktok/"
+        }
+      ]
+    }
+  ],
+  "medusa-plugin-stories": [
+    {
+      "label": "Admin: plugin",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "List plugin",
+          "link": "/medusa-plugin-stories/api/operations/getadminplugin/"
+        }
+      ]
+    },
+    {
+      "label": "Admin: stories",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "List stories",
+          "link": "/medusa-plugin-stories/api/operations/getadminstories/"
+        },
+        {
+          "label": "Create / Trigger stories",
+          "link": "/medusa-plugin-stories/api/operations/postadminstories/"
+        },
+        {
+          "label": "Delete stories by ID",
+          "link": "/medusa-plugin-stories/api/operations/deleteadminstoriesbyid/"
+        },
+        {
+          "label": "Get stories by ID",
+          "link": "/medusa-plugin-stories/api/operations/getadminstoriesbyid/"
+        },
+        {
+          "label": "Update stories by ID",
+          "link": "/medusa-plugin-stories/api/operations/patchadminstoriesbyid/"
+        },
+        {
+          "label": "Update stories by ID",
+          "link": "/medusa-plugin-stories/api/operations/putadminstoriesbyid/"
+        },
+        {
+          "label": "Delete stories by ID hotspots",
+          "link": "/medusa-plugin-stories/api/operations/deleteadminstoriesbyidhotspots/"
+        },
+        {
+          "label": "Create / Trigger stories by ID hotspots",
+          "link": "/medusa-plugin-stories/api/operations/postadminstoriesbyidhotspots/"
+        },
+        {
+          "label": "Delete stories by ID stickers",
+          "link": "/medusa-plugin-stories/api/operations/deleteadminstoriesbyidstickers/"
+        },
+        {
+          "label": "Create / Trigger stories by ID stickers",
+          "link": "/medusa-plugin-stories/api/operations/postadminstoriesbyidstickers/"
+        },
+        {
+          "label": "List stories analytics",
+          "link": "/medusa-plugin-stories/api/operations/getadminstoriesanalytics/"
+        },
+        {
+          "label": "List stories groups",
+          "link": "/medusa-plugin-stories/api/operations/getadminstoriesgroups/"
+        },
+        {
+          "label": "Create / Trigger stories groups",
+          "link": "/medusa-plugin-stories/api/operations/postadminstoriesgroups/"
+        },
+        {
+          "label": "Delete stories groups by ID",
+          "link": "/medusa-plugin-stories/api/operations/deleteadminstoriesgroupsbyid/"
+        },
+        {
+          "label": "Get stories groups by ID",
+          "link": "/medusa-plugin-stories/api/operations/getadminstoriesgroupsbyid/"
+        },
+        {
+          "label": "Update stories groups by ID",
+          "link": "/medusa-plugin-stories/api/operations/patchadminstoriesgroupsbyid/"
+        }
+      ]
+    },
+    {
+      "label": "Storefront: plugin",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "List plugin",
+          "link": "/medusa-plugin-stories/api/operations/getstoreplugin/"
+        }
+      ]
+    },
+    {
+      "label": "Storefront: stories",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "List stories",
+          "link": "/medusa-plugin-stories/api/operations/getstorestories/"
+        },
+        {
+          "label": "Create / Trigger stories by ID events",
+          "link": "/medusa-plugin-stories/api/operations/poststorestoriesbyidevents/"
+        },
+        {
+          "label": "Create / Trigger stories by ID interact",
+          "link": "/medusa-plugin-stories/api/operations/poststorestoriesbyidinteract/"
+        }
+      ]
+    }
+  ],
+  "medusa-plugin-typesense": [
+    {
+      "label": "Admin: plugin",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "List plugin",
+          "link": "/medusa-plugin-typesense/api/operations/getadminplugin/"
+        }
+      ]
+    },
+    {
+      "label": "Admin: typesense",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "List typesense analytics",
+          "link": "/medusa-plugin-typesense/api/operations/getadmintypesenseanalytics/"
+        },
+        {
+          "label": "List typesense collections",
+          "link": "/medusa-plugin-typesense/api/operations/getadmintypesensecollections/"
+        },
+        {
+          "label": "Create / Trigger typesense collections",
+          "link": "/medusa-plugin-typesense/api/operations/postadmintypesensecollections/"
+        },
+        {
+          "label": "Create / Trigger typesense collections by ID sync",
+          "link": "/medusa-plugin-typesense/api/operations/postadmintypesensecollectionsbyentitysync/"
+        },
+        {
+          "label": "Get typesense curations by ID",
+          "link": "/medusa-plugin-typesense/api/operations/getadmintypesensecurationsbyentity/"
+        },
+        {
+          "label": "Create / Trigger typesense curations by ID",
+          "link": "/medusa-plugin-typesense/api/operations/postadmintypesensecurationsbyentity/"
+        },
+        {
+          "label": "Delete typesense curations by ID by ID",
+          "link": "/medusa-plugin-typesense/api/operations/deleteadmintypesensecurationsbyentitybyid/"
+        },
+        {
+          "label": "Delete typesense documents by ID by ID",
+          "link": "/medusa-plugin-typesense/api/operations/deleteadmintypesensedocumentsbyentitybyid/"
+        },
+        {
+          "label": "Get typesense documents by ID by ID",
+          "link": "/medusa-plugin-typesense/api/operations/getadmintypesensedocumentsbyentitybyid/"
+        },
+        {
+          "label": "Create / Trigger typesense documents by ID by ID",
+          "link": "/medusa-plugin-typesense/api/operations/postadmintypesensedocumentsbyentitybyid/"
+        },
+        {
+          "label": "List typesense entities",
+          "link": "/medusa-plugin-typesense/api/operations/getadmintypesenseentities/"
+        },
+        {
+          "label": "Create / Trigger typesense entities",
+          "link": "/medusa-plugin-typesense/api/operations/postadmintypesenseentities/"
+        },
+        {
+          "label": "Delete typesense entities by ID",
+          "link": "/medusa-plugin-typesense/api/operations/deleteadmintypesenseentitiesbyentity/"
+        },
+        {
+          "label": "Get typesense entities by ID",
+          "link": "/medusa-plugin-typesense/api/operations/getadmintypesenseentitiesbyentity/"
+        },
+        {
+          "label": "List typesense health",
+          "link": "/medusa-plugin-typesense/api/operations/getadmintypesensehealth/"
+        },
+        {
+          "label": "Create / Trigger typesense playground",
+          "link": "/medusa-plugin-typesense/api/operations/postadmintypesenseplayground/"
+        },
+        {
+          "label": "List typesense stopwords",
+          "link": "/medusa-plugin-typesense/api/operations/getadmintypesensestopwords/"
+        },
+        {
+          "label": "Create / Trigger typesense stopwords",
+          "link": "/medusa-plugin-typesense/api/operations/postadmintypesensestopwords/"
+        },
+        {
+          "label": "Delete typesense stopwords by ID",
+          "link": "/medusa-plugin-typesense/api/operations/deleteadmintypesensestopwordsbyid/"
+        },
+        {
+          "label": "Get typesense synonyms by ID",
+          "link": "/medusa-plugin-typesense/api/operations/getadmintypesensesynonymsbyentity/"
+        },
+        {
+          "label": "Create / Trigger typesense synonyms by ID",
+          "link": "/medusa-plugin-typesense/api/operations/postadmintypesensesynonymsbyentity/"
+        },
+        {
+          "label": "Delete typesense synonyms by ID by ID",
+          "link": "/medusa-plugin-typesense/api/operations/deleteadmintypesensesynonymsbyentitybyid/"
+        }
+      ]
+    },
+    {
+      "label": "Storefront: plugin",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "List plugin",
+          "link": "/medusa-plugin-typesense/api/operations/getstoreplugin/"
+        }
+      ]
+    },
+    {
+      "label": "Storefront: typesense",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "Create / Trigger typesense analytics",
+          "link": "/medusa-plugin-typesense/api/operations/poststoretypesenseanalytics/"
+        },
+        {
+          "label": "List typesense categories",
+          "link": "/medusa-plugin-typesense/api/operations/getstoretypesensecategories/"
+        },
+        {
+          "label": "Create / Trigger typesense categories",
+          "link": "/medusa-plugin-typesense/api/operations/poststoretypesensecategories/"
+        },
+        {
+          "label": "Create / Trigger typesense chat",
+          "link": "/medusa-plugin-typesense/api/operations/poststoretypesensechat/"
+        },
+        {
+          "label": "List typesense collections",
+          "link": "/medusa-plugin-typesense/api/operations/getstoretypesensecollections/"
+        },
+        {
+          "label": "Create / Trigger typesense collections",
+          "link": "/medusa-plugin-typesense/api/operations/poststoretypesensecollections/"
+        },
+        {
+          "label": "List typesense products",
+          "link": "/medusa-plugin-typesense/api/operations/getstoretypesenseproducts/"
+        },
+        {
+          "label": "Create / Trigger typesense products",
+          "link": "/medusa-plugin-typesense/api/operations/poststoretypesenseproducts/"
+        },
+        {
+          "label": "List typesense search",
+          "link": "/medusa-plugin-typesense/api/operations/getstoretypesensesearch/"
+        },
+        {
+          "label": "Create / Trigger typesense search",
+          "link": "/medusa-plugin-typesense/api/operations/poststoretypesensesearch/"
+        },
+        {
+          "label": "List typesense token",
+          "link": "/medusa-plugin-typesense/api/operations/getstoretypesensetoken/"
+        }
+      ]
+    }
+  ]
+}

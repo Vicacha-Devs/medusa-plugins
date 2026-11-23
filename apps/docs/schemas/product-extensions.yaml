@@ -1,0 +1,703 @@
+openapi: 3.1.0
+info:
+  title: "@vicacha-devs/medusa-plugin-product-extensions API"
+  version: 0.0.1
+  description: Medusa v2 Product Extension Suite — Rich Video & 3D Media, Variant
+    Galleries with Option Bulk-Assignment, Typed Custom Attributes with
+    SI/Imperial Normalization, Hierarchical Content Sections (tree@1/diff@1),
+    Feature Badges, Swatches, Multi-Storefront Overrides, Admin Studio &
+    Storefront UI Kit (100% compatible with @bambiste/medusa-product-ext)
+servers:
+  - url: http://127.0.0.1:9000
+    description: Local Medusa v2 Server
+components:
+  securitySchemes:
+    adminBearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Medusa Admin JWT or API token
+    publishableKey:
+      type: apiKey
+      in: header
+      name: x-publishable-api-key
+      description: Medusa Storefront Publishable API Key
+paths:
+  /admin/plugin:
+    get:
+      operationId: getAdminPlugin
+      summary: List plugin
+      description: GET /admin/plugin endpoint exposed by
+        @vicacha-devs/medusa-plugin-product-extensions.
+      tags:
+        - "Admin: plugin"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/product-ext/attributes:
+    get:
+      operationId: getAdminProductExtAttributes
+      summary: List product ext attributes
+      description: GET /admin/product-ext/attributes endpoint exposed by
+        @vicacha-devs/medusa-plugin-product-extensions.
+      tags:
+        - "Admin: product-ext"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    post:
+      operationId: postAdminProductExtAttributes
+      summary: Create / Trigger product ext attributes
+      description: POST /admin/product-ext/attributes endpoint exposed by
+        @vicacha-devs/medusa-plugin-product-extensions.
+      tags:
+        - "Admin: product-ext"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/product-ext/attributes/{id}:
+    delete:
+      operationId: deleteAdminProductExtAttributesById
+      summary: Delete product ext attributes by ID
+      description: DELETE /admin/product-ext/attributes/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-product-extensions.
+      tags:
+        - "Admin: product-ext"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    patch:
+      operationId: patchAdminProductExtAttributesById
+      summary: Update product ext attributes by ID
+      description: PATCH /admin/product-ext/attributes/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-product-extensions.
+      tags:
+        - "Admin: product-ext"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/product-ext/features:
+    get:
+      operationId: getAdminProductExtFeatures
+      summary: List product ext features
+      description: GET /admin/product-ext/features endpoint exposed by
+        @vicacha-devs/medusa-plugin-product-extensions.
+      tags:
+        - "Admin: product-ext"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    post:
+      operationId: postAdminProductExtFeatures
+      summary: Create / Trigger product ext features
+      description: POST /admin/product-ext/features endpoint exposed by
+        @vicacha-devs/medusa-plugin-product-extensions.
+      tags:
+        - "Admin: product-ext"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/product-ext/features/{id}:
+    delete:
+      operationId: deleteAdminProductExtFeaturesById
+      summary: Delete product ext features by ID
+      description: DELETE /admin/product-ext/features/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-product-extensions.
+      tags:
+        - "Admin: product-ext"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    patch:
+      operationId: patchAdminProductExtFeaturesById
+      summary: Update product ext features by ID
+      description: PATCH /admin/product-ext/features/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-product-extensions.
+      tags:
+        - "Admin: product-ext"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/product-ext/image-alts:
+    get:
+      operationId: getAdminProductExtImageAlts
+      summary: List product ext image alts
+      description: GET /admin/product-ext/image-alts endpoint exposed by
+        @vicacha-devs/medusa-plugin-product-extensions.
+      tags:
+        - "Admin: product-ext"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    post:
+      operationId: postAdminProductExtImageAlts
+      summary: Create / Trigger product ext image alts
+      description: POST /admin/product-ext/image-alts endpoint exposed by
+        @vicacha-devs/medusa-plugin-product-extensions.
+      tags:
+        - "Admin: product-ext"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/product-ext/templates:
+    get:
+      operationId: getAdminProductExtTemplates
+      summary: List product ext templates
+      description: GET /admin/product-ext/templates endpoint exposed by
+        @vicacha-devs/medusa-plugin-product-extensions.
+      tags:
+        - "Admin: product-ext"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    post:
+      operationId: postAdminProductExtTemplates
+      summary: Create / Trigger product ext templates
+      description: POST /admin/product-ext/templates endpoint exposed by
+        @vicacha-devs/medusa-plugin-product-extensions.
+      tags:
+        - "Admin: product-ext"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/product-ext/templates/{id}:
+    delete:
+      operationId: deleteAdminProductExtTemplatesById
+      summary: Delete product ext templates by ID
+      description: DELETE /admin/product-ext/templates/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-product-extensions.
+      tags:
+        - "Admin: product-ext"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    patch:
+      operationId: patchAdminProductExtTemplatesById
+      summary: Update product ext templates by ID
+      description: PATCH /admin/product-ext/templates/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-product-extensions.
+      tags:
+        - "Admin: product-ext"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/products/{product_id}/attributes:
+    get:
+      operationId: getAdminProductsByProduct_idAttributes
+      summary: Get products by ID attributes
+      description: GET /admin/products/{product_id}/attributes endpoint exposed by
+        @vicacha-devs/medusa-plugin-product-extensions.
+      tags:
+        - "Admin: products"
+      parameters:
+        - name: product_id
+          in: path
+          required: true
+          description: Resource identifier (product_id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    post:
+      operationId: postAdminProductsByProduct_idAttributes
+      summary: Create / Trigger products by ID attributes
+      description: POST /admin/products/{product_id}/attributes endpoint exposed by
+        @vicacha-devs/medusa-plugin-product-extensions.
+      tags:
+        - "Admin: products"
+      parameters:
+        - name: product_id
+          in: path
+          required: true
+          description: Resource identifier (product_id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/products/{product_id}/extension:
+    get:
+      operationId: getAdminProductsByProduct_idExtension
+      summary: Get products by ID extension
+      description: GET /admin/products/{product_id}/extension endpoint exposed by
+        @vicacha-devs/medusa-plugin-product-extensions.
+      tags:
+        - "Admin: products"
+      parameters:
+        - name: product_id
+          in: path
+          required: true
+          description: Resource identifier (product_id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    post:
+      operationId: postAdminProductsByProduct_idExtension
+      summary: Create / Trigger products by ID extension
+      description: POST /admin/products/{product_id}/extension endpoint exposed by
+        @vicacha-devs/medusa-plugin-product-extensions.
+      tags:
+        - "Admin: products"
+      parameters:
+        - name: product_id
+          in: path
+          required: true
+          description: Resource identifier (product_id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/products/{product_id}/variants/{variant_id}/extension:
+    get:
+      operationId: getAdminProductsByProduct_idVariantsByVariant_idExtension
+      summary: Get products by ID variants by ID extension
+      description: GET /admin/products/{product_id}/variants/{variant_id}/extension
+        endpoint exposed by @vicacha-devs/medusa-plugin-product-extensions.
+      tags:
+        - "Admin: products"
+      parameters:
+        - name: product_id
+          in: path
+          required: true
+          description: Resource identifier (product_id)
+          schema:
+            type: string
+        - name: variant_id
+          in: path
+          required: true
+          description: Resource identifier (variant_id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    post:
+      operationId: postAdminProductsByProduct_idVariantsByVariant_idExtension
+      summary: Create / Trigger products by ID variants by ID extension
+      description: POST /admin/products/{product_id}/variants/{variant_id}/extension
+        endpoint exposed by @vicacha-devs/medusa-plugin-product-extensions.
+      tags:
+        - "Admin: products"
+      parameters:
+        - name: product_id
+          in: path
+          required: true
+          description: Resource identifier (product_id)
+          schema:
+            type: string
+        - name: variant_id
+          in: path
+          required: true
+          description: Resource identifier (variant_id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/products/{product_id}/variants/bulk-media:
+    post:
+      operationId: postAdminProductsByProduct_idVariantsBulkMedia
+      summary: Create / Trigger products by ID variants bulk media
+      description: POST /admin/products/{product_id}/variants/bulk-media endpoint
+        exposed by @vicacha-devs/medusa-plugin-product-extensions.
+      tags:
+        - "Admin: products"
+      parameters:
+        - name: product_id
+          in: path
+          required: true
+          description: Resource identifier (product_id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /store/plugin:
+    get:
+      operationId: getStorePlugin
+      summary: List plugin
+      description: GET /store/plugin endpoint exposed by
+        @vicacha-devs/medusa-plugin-product-extensions.
+      tags:
+        - "Storefront: plugin"
+      security:
+        - publishableKey: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /store/product-ext/filter:
+    post:
+      operationId: postStoreProductExtFilter
+      summary: Create / Trigger product ext filter
+      description: POST /store/product-ext/filter endpoint exposed by
+        @vicacha-devs/medusa-plugin-product-extensions.
+      tags:
+        - "Storefront: product-ext"
+      security:
+        - publishableKey: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /store/products/{product_id}/extension:
+    get:
+      operationId: getStoreProductsByProduct_idExtension
+      summary: Get products by ID extension
+      description: GET /store/products/{product_id}/extension endpoint exposed by
+        @vicacha-devs/medusa-plugin-product-extensions.
+      tags:
+        - "Storefront: products"
+      parameters:
+        - name: product_id
+          in: path
+          required: true
+          description: Resource identifier (product_id)
+          schema:
+            type: string
+      security:
+        - publishableKey: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
