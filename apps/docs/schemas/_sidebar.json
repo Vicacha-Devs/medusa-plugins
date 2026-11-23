@@ -1,4 +1,44 @@
 {
+  "medusa-plugin-automations": [
+    {
+      "label": "Admin: automations",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "List automations",
+          "link": "/medusa-plugin-automations/api/operations/getadminautomations/"
+        },
+        {
+          "label": "Create / Trigger automations",
+          "link": "/medusa-plugin-automations/api/operations/postadminautomations/"
+        },
+        {
+          "label": "Delete automations by ID",
+          "link": "/medusa-plugin-automations/api/operations/deleteadminautomationsbyid/"
+        },
+        {
+          "label": "Get automations by ID",
+          "link": "/medusa-plugin-automations/api/operations/getadminautomationsbyid/"
+        },
+        {
+          "label": "Update automations by ID",
+          "link": "/medusa-plugin-automations/api/operations/patchadminautomationsbyid/"
+        },
+        {
+          "label": "Get automations by ID logs",
+          "link": "/medusa-plugin-automations/api/operations/getadminautomationsbyidlogs/"
+        },
+        {
+          "label": "Create / Trigger automations by ID trigger",
+          "link": "/medusa-plugin-automations/api/operations/postadminautomationsbyidtrigger/"
+        },
+        {
+          "label": "List automations actions",
+          "link": "/medusa-plugin-automations/api/operations/getadminautomationsactions/"
+        }
+      ]
+    }
+  ],
   "medusa-plugin-b2b": [
     {
       "label": "Admin: b2b",
@@ -599,6 +639,34 @@
         {
           "label": "List plugin",
           "link": "/medusa-plugin-documents/api/operations/getstoreplugin/"
+        }
+      ]
+    }
+  ],
+  "medusa-plugin-einvoicing": [
+    {
+      "label": "Admin: einvoicing",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "List einvoicing",
+          "link": "/medusa-plugin-einvoicing/api/operations/getadmineinvoicing/"
+        },
+        {
+          "label": "Create / Trigger einvoicing",
+          "link": "/medusa-plugin-einvoicing/api/operations/postadmineinvoicing/"
+        },
+        {
+          "label": "List einvoicing configs",
+          "link": "/medusa-plugin-einvoicing/api/operations/getadmineinvoicingconfigs/"
+        },
+        {
+          "label": "Create / Trigger einvoicing configs",
+          "link": "/medusa-plugin-einvoicing/api/operations/postadmineinvoicingconfigs/"
+        },
+        {
+          "label": "List einvoicing drivers",
+          "link": "/medusa-plugin-einvoicing/api/operations/getadmineinvoicingdrivers/"
         }
       ]
     }

@@ -1,0 +1,234 @@
+openapi: 3.1.0
+info:
+  title: "@vicacha-devs/medusa-plugin-automations API"
+  version: 0.1.0
+  description: Automations plugin for Medusa v2 by Vicacha Devs.
+servers:
+  - url: http://127.0.0.1:9000
+    description: Local Medusa v2 Server
+components:
+  securitySchemes:
+    adminBearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Medusa Admin JWT or API token
+    publishableKey:
+      type: apiKey
+      in: header
+      name: x-publishable-api-key
+      description: Medusa Storefront Publishable API Key
+paths:
+  /admin/automations:
+    get:
+      operationId: getAdminAutomations
+      summary: List automations
+      description: GET /admin/automations endpoint exposed by
+        @vicacha-devs/medusa-plugin-automations.
+      tags:
+        - "Admin: automations"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    post:
+      operationId: postAdminAutomations
+      summary: Create / Trigger automations
+      description: POST /admin/automations endpoint exposed by
+        @vicacha-devs/medusa-plugin-automations.
+      tags:
+        - "Admin: automations"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/automations/{id}:
+    delete:
+      operationId: deleteAdminAutomationsById
+      summary: Delete automations by ID
+      description: DELETE /admin/automations/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-automations.
+      tags:
+        - "Admin: automations"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    get:
+      operationId: getAdminAutomationsById
+      summary: Get automations by ID
+      description: GET /admin/automations/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-automations.
+      tags:
+        - "Admin: automations"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    patch:
+      operationId: patchAdminAutomationsById
+      summary: Update automations by ID
+      description: PATCH /admin/automations/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-automations.
+      tags:
+        - "Admin: automations"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/automations/{id}/logs:
+    get:
+      operationId: getAdminAutomationsByIdLogs
+      summary: Get automations by ID logs
+      description: GET /admin/automations/{id}/logs endpoint exposed by
+        @vicacha-devs/medusa-plugin-automations.
+      tags:
+        - "Admin: automations"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/automations/{id}/trigger:
+    post:
+      operationId: postAdminAutomationsByIdTrigger
+      summary: Create / Trigger automations by ID trigger
+      description: POST /admin/automations/{id}/trigger endpoint exposed by
+        @vicacha-devs/medusa-plugin-automations.
+      tags:
+        - "Admin: automations"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/automations/actions:
+    get:
+      operationId: getAdminAutomationsActions
+      summary: List automations actions
+      description: GET /admin/automations/actions endpoint exposed by
+        @vicacha-devs/medusa-plugin-automations.
+      tags:
+        - "Admin: automations"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
