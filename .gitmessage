@@ -24,7 +24,7 @@
 #
 # Allowed <scope> values (package/plugin name):
 #   b2b, barcode, dian, documents, fulfillment-eu, notifications, odoo,
-#   payment-bold, payment-mollie, product-extensions, rbac, social-commerce,
+#   payment-bold, payment-mollie, product-extensions, social-commerce,
 #   stories, typesense, shared, plugin-testing, sandbox, docs,
 #   eslint-config, typescript-config, repo, deps
 #
