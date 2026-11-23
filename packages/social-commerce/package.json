@@ -1,6 +1,6 @@
 {
   "name": "@vicacha-devs/medusa-plugin-social-commerce",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Multi-platform Social Commerce, Ephemeral Stories, Live Selling & Catalog Sync plugin for Medusa v2 (TikTok, Instagram, Facebook / Meta Graph API)",
   "keywords": [
     "facebook",

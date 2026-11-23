@@ -1,6 +1,6 @@
 {
   "name": "@vicacha-devs/medusa-plugin-dian",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Colombian DIAN Electronic Invoicing (Facturación Electrónica DIAN Anexo Técnico 1.9, Resolución 000165) plugin for Medusa v2: UBL 2.1 XML, CUFE/CUDE SHA-384, XAdES-EPES digital signature, DIAN SOAP Web Services & Pluggable Providers (Siigo, Alegra, Dataico, FacturaTech), Credit/Debit Notes, POS Equivalent (Tipo 20), B2B Legal Client validation via @vicacha-devs/medusa-plugin-b2b, and PDF Representación Gráfica via @vicacha-devs/medusa-plugin-documents.",
   "keywords": [
     "b2b",
@@ -122,9 +122,9 @@
     "@medusajs/test-utils": "2.23.0",
     "@medusajs/types": "2.23.0",
     "@medusajs/ui": "4.3.0",
-    "@vicacha-devs/medusa-plugin-b2b": ">=0.0.1",
-    "@vicacha-devs/medusa-plugin-documents": ">=0.0.1",
-    "@vicacha-devs/medusa-plugin-einvoicing": ">=0.1.0",
+    "@vicacha-devs/medusa-plugin-b2b": ">=0.1.0",
+    "@vicacha-devs/medusa-plugin-documents": ">=0.1.0",
+    "@vicacha-devs/medusa-plugin-einvoicing": ">=0.2.0",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "react-hook-form": "7.92.0",
