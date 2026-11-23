@@ -1,0 +1,17 @@
+{
+  "extends": "../../packages/typescript-config/plugin.json",
+  "compilerOptions": {
+    "rootDir": "./",
+    "outDir": "./.medusa/server",
+    "noEmit": false
+  },
+  "include": ["**/*", ".medusa/types/*"],
+  "exclude": [
+    "node_modules",
+    ".medusa/server",
+    ".medusa/admin",
+    "src/admin",
+    "src/__tests__",
+    "eslint.config.*"
+  ]
+}
