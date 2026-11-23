@@ -14,11 +14,11 @@
     "url": "git+https://github.com/Vicacha-Devs/vicacha-medusa-plugins.git",
     "directory": "."
   },
-  "type": "module",
   "workspaces": [
     "apps/*",
     "packages/*"
   ],
+  "type": "module",
   "scripts": {
     "bold:emulator": "node ./packages/payment-bold/scripts/bold-emulator.ts",
     "build": "turbo run build --filter=./packages/*",

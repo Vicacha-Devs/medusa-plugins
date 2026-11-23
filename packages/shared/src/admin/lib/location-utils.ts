@@ -4,6 +4,6 @@ export const COUNTRY_BY_ISO2: ReadonlyMap<string, string> = new Map(
   COUNTRIES.map((c) => [c.iso_2, c.display_name])
 )
 
-export const SORTED_COUNTRIES = [...COUNTRIES].sort((a, b) =>
+export const SORTED_COUNTRIES = [...COUNTRIES].toSorted((a, b) =>
   a.display_name.localeCompare(b.display_name)
 )

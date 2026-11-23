@@ -11,12 +11,12 @@ subscribers/
 
 ## `product-created.ts` (`productBarcodeSubscriber`)
 
-| Property | Value |
-| --- | --- |
-| **File** | `src/subscribers/product-created.ts` |
-| **Events** | `["product-variant.created", "product.created"]` |
-| **Option Guard** | `options.autoGenerateVariantBarcode !== false` (enabled by default) |
-| **Workflow Invoked** | `bulkGenerateVariantBarcodesWorkflow` |
+| Property             | Value                                                               |
+| -------------------- | ------------------------------------------------------------------- |
+| **File**             | `src/subscribers/product-created.ts`                                |
+| **Events**           | `["product-variant.created", "product.created"]`                    |
+| **Option Guard**     | `options.autoGenerateVariantBarcode !== false` (enabled by default) |
+| **Workflow Invoked** | `bulkGenerateVariantBarcodesWorkflow`                               |
 
 ### Behavior
 

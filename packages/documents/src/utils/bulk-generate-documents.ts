@@ -1,7 +1,4 @@
-import type {
-  BulkGenerateInput,
-  BulkGenerateSummary,
-} from "../types"
+import type { BulkGenerateInput, BulkGenerateSummary } from "../types"
 import { generateDocumentWorkflow } from "../workflows/generate-document"
 
 export type {

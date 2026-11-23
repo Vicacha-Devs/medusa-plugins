@@ -14,7 +14,12 @@ export const documentSettingsFormSchema = z
     invoice_prefix: z.string().min(1),
     invoice_number_format: z.string().min(1),
     next_invoice_number: z.number().int().positive(),
-    invoice_forced_next_number: z.number().int().positive().nullable().optional(),
+    invoice_forced_next_number: z
+      .number()
+      .int()
+      .positive()
+      .nullable()
+      .optional(),
     invoice_number_padding: z.number().int().min(1).max(12).optional(),
     packing_slip_prefix: z.string().min(1),
     packing_slip_number_format: z.string().min(1),

@@ -47,7 +47,10 @@ function resolveSafeBaseUrl(
   const parsed = new URL(candidate)
   const isLoopback =
     parsed.hostname === "127.0.0.1" || parsed.hostname === "localhost"
-  if (parsed.protocol !== "https:" && !(parsed.protocol === "http:" && isLoopback)) {
+  if (
+    parsed.protocol !== "https:" &&
+    !(parsed.protocol === "http:" && isLoopback)
+  ) {
     throw new MedusaError(
       MedusaError.Types.INVALID_DATA,
       `Unsafe Bold base URL "${candidate}": only https:// or loopback http://127.0.0.1 is allowed`
@@ -108,24 +111,28 @@ export class BoldHttpClient {
     const url = `${baseUrl}${endpoint}`
     const headers = {
       "Content-Type": "application/json",
-      "Authorization": `x-api-key ${apiKey}`,
+      Authorization: `x-api-key ${apiKey}`,
       ...options.headers,
     }
 
-    this.logger?.debug(`[BoldHttpClient] Requesting ${options.method || "GET"} ${url}`)
-    
+    this.logger?.debug(
+      `[BoldHttpClient] Requesting ${options.method || "GET"} ${url}`
+    )
+
     try {
       const response = await fetch(url, { ...options, headers })
       const data = await response.json().catch(() => ({}))
-      
+
       if (!response.ok) {
         this.logger?.error(`[BoldHttpClient] API Error on ${endpoint}`, data)
-        
-        const errorType = HTTP_ERROR_MAP[response.status] || MedusaError.Types.UNEXPECTED_STATE
-        
+
+        const errorType =
+          HTTP_ERROR_MAP[response.status] || MedusaError.Types.UNEXPECTED_STATE
+
         throw new MedusaError(
           errorType,
-          data?.message || `Bold API request failed with status ${response.status}`
+          data?.message ||
+            `Bold API request failed with status ${response.status}`
         )
       }
 
@@ -135,7 +142,9 @@ export class BoldHttpClient {
         throw error
       }
 
-      this.logger?.error(`[BoldHttpClient] Network error on ${endpoint}: ${error.message}`)
+      this.logger?.error(
+        `[BoldHttpClient] Network error on ${endpoint}: ${error.message}`
+      )
 
       throw new MedusaError(
         MedusaError.Types.UNEXPECTED_STATE,
@@ -147,7 +156,9 @@ export class BoldHttpClient {
   /**
    * Helper to construct the target Bold payment_method payload based on input type.
    */
-  private buildPaymentMethodPayload(payload: BoldPaymentIntentPayload): BoldPaymentMethod {
+  private buildPaymentMethodPayload(
+    payload: BoldPaymentIntentPayload
+  ): BoldPaymentMethod {
     switch (payload.methodType) {
       case "card":
         return {
@@ -181,7 +192,9 @@ export class BoldHttpClient {
       default:
         return {
           name: "QR",
-          qr_format: (payload.qrFormat) as unknown as TBoldPaymentMethodQrFormat || "TEXT",
+          qr_format:
+            (payload.qrFormat as unknown as TBoldPaymentMethodQrFormat) ||
+            "TEXT",
         }
     }
   }
@@ -193,21 +206,25 @@ export class BoldHttpClient {
    */
   async createPaymentLink(payload: CreatePaymentLinkPayload) {
     const nowMs = BigInt(Date.now())
-    const minutesInNs = BigInt(this.linkExpirationMinutes) * 60n * 1000n * 1000n * 1000n
-    const expirationNs = (nowMs * 1000000n) + minutesInNs
+    const minutesInNs =
+      BigInt(this.linkExpirationMinutes) * 60n * 1000n * 1000n * 1000n
+    const expirationNs = nowMs * 1000000n + minutesInNs
 
     const currency = (payload.currency || this.defaultCurrency).toUpperCase()
     const totalAmount = this.formatAmount(payload.amount)
-    const vatAmount = payload.vatAmount ? this.formatAmount(payload.vatAmount) : 0
+    const vatAmount = payload.vatAmount
+      ? this.formatAmount(payload.vatAmount)
+      : 0
 
     const body = {
       amount_type: "CLOSE",
       amount: {
         currency,
         total_amount: totalAmount,
-        taxes: vatAmount > 0
-          ? [{ type: "VAT", base: totalAmount - vatAmount, value: vatAmount }]
-          : [],
+        taxes:
+          vatAmount > 0
+            ? [{ type: "VAT", base: totalAmount - vatAmount, value: vatAmount }]
+            : [],
         tip_amount: 0,
       },
       reference: payload.reference,
@@ -215,7 +232,7 @@ export class BoldHttpClient {
       expiration_date: Number(expirationNs),
       callback_url: payload.callbackUrl,
       payer_email: payload.email,
-      image_url: payload.imageUrl
+      image_url: payload.imageUrl,
     }
 
     return this.request<BoldCreatePaymentLinkResponse>(
@@ -269,24 +286,26 @@ export class BoldHttpClient {
    * Target: integrationsUrl (/payments/app-checkout)
    */
   async triggerTerminalCheckout(payload: BoldTerminalPayload) {
-    const vatAmount = payload.vatAmount ? this.formatAmount(payload.vatAmount) : 0
+    const vatAmount = payload.vatAmount
+      ? this.formatAmount(payload.vatAmount)
+      : 0
 
-    const payer = payload.payer ? {
-      email: payload.payer.email,
-      phone_number: payload.payer.phoneNumber,
-      document: {
-        document_type: payload.payer.document.documentType,
-        document_number: payload.payer.document.documentNumber
-      }
-    } : null
+    const payer = payload.payer
+      ? {
+          email: payload.payer.email,
+          phone_number: payload.payer.phoneNumber,
+          document: {
+            document_type: payload.payer.document.documentType,
+            document_number: payload.payer.document.documentNumber,
+          },
+        }
+      : null
 
     const body = {
       amount: {
         currency: (payload.currency || this.defaultCurrency).toUpperCase(),
         total: this.formatAmount(payload.amount),
-        taxes: vatAmount > 0
-          ? [{ type: "VAT", value: vatAmount }]
-          : [],
+        taxes: vatAmount > 0 ? [{ type: "VAT", value: vatAmount }] : [],
         tip: 0,
       },
       payment_method: "POS",
@@ -295,7 +314,7 @@ export class BoldHttpClient {
       reference: payload.reference,
       user_email: payload.userEmail,
       description: payload.description || "Medusa POS Order",
-      payer
+      payer,
     }
 
     return this.request<{ payload: { id: string } }>(
@@ -314,15 +333,18 @@ export class BoldHttpClient {
    * Key: integrationApiKey
    * Target: integrationsUrl (/payments/payment-methods)
    */
-  async getAvailableIntegrationApiPaymentMethods(): Promise<Array<BoldIntegrationAPIPaymentMethod>> {
-    const response = await this.request<BoldIntegrationApiPaymentMethodsResponse>(
-      this.integrationsUrl,
-      "/payments/payment-methods",
-      this.integrationApiKey,
-      {
-        method: "GET",
-      }
-    )    
+  async getAvailableIntegrationApiPaymentMethods(): Promise<
+    Array<BoldIntegrationAPIPaymentMethod>
+  > {
+    const response =
+      await this.request<BoldIntegrationApiPaymentMethodsResponse>(
+        this.integrationsUrl,
+        "/payments/payment-methods",
+        this.integrationApiKey,
+        {
+          method: "GET",
+        }
+      )
 
     return response?.payment_methods || []
   }
@@ -342,8 +364,8 @@ export class BoldHttpClient {
         method: "GET",
       }
     )
-    
-    return response?.payload.payment_methods || { }
+
+    return response?.payload.payment_methods || {}
   }
 
   /**
@@ -351,7 +373,9 @@ export class BoldHttpClient {
    * Key: buttonApiKey
    * Target: onlineUrl (/v1/payment-intent)
    */
-  async createPaymentIntent(payload: BoldPaymentIntentPayload): Promise<BoldPaymentAttemptResponse> {
+  async createPaymentIntent(
+    payload: BoldPaymentIntentPayload
+  ): Promise<BoldPaymentAttemptResponse> {
     const body = {
       reference_id: payload.reference,
       ...(payload.metadata && { metadata: payload.metadata }),
@@ -388,7 +412,9 @@ export class BoldHttpClient {
    * Key: buttonApiKey
    * Target: onlineUrl (/v1/refunds)
    */
-  async refundPayment(payload: CreateRefundPayload): Promise<BoldRefundApiResponse> {
+  async refundPayment(
+    payload: CreateRefundPayload
+  ): Promise<BoldRefundApiResponse> {
     const body: BoldRefundApiRequest = {
       transaction_id: payload.transactionId,
       amount: this.formatAmount(payload.amount),

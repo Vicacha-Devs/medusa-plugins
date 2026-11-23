@@ -23,7 +23,7 @@ export function buildBlockTreeFromFlatBlocks(
   const nodeMap = new Map<string, TemplateBlockNode>()
   const roots: TemplateBlockNode[] = []
 
-  const sorted = [...flatBlocks].sort(
+  const sorted = [...flatBlocks].toSorted(
     (a, b) => Number(a.position ?? 0) - Number(b.position ?? 0)
   )
 

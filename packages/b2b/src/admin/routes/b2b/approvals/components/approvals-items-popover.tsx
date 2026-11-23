@@ -1,16 +1,16 @@
-import { formatCurrency } from "@medusajs/dashboard/lib";
-import { MagnifyingGlass } from "@medusajs/icons";
-import { Popover, Table, Text } from "@medusajs/ui";
-import { useTranslation } from "react-i18next";
+import { formatCurrency } from "@medusajs/dashboard/lib"
+import { MagnifyingGlass } from "@medusajs/icons"
+import { Popover, Table, Text } from "@medusajs/ui"
+import { useTranslation } from "react-i18next"
 
 const ItemsPopover = ({
   items,
   currencyCode,
 }: {
-  items: Record<string, any>[];
-  currencyCode: any;
+  items: Record<string, any>[]
+  currencyCode: any
 }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
   return (
     <Popover>
@@ -63,7 +63,7 @@ const ItemsPopover = ({
         </div>
       </Popover.Content>
     </Popover>
-  );
-};
+  )
+}
 
-export default ItemsPopover;
+export default ItemsPopover

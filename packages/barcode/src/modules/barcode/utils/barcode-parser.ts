@@ -19,7 +19,11 @@ export function computeGs1CheckDigit(dataDigits: string): number {
     return 0
   }
   let sum = 0
-  for (let i = clean.length - 1, posFromRight = 0; i >= 0; i--, posFromRight++) {
+  for (
+    let i = clean.length - 1, posFromRight = 0;
+    i >= 0;
+    i--, posFromRight++
+  ) {
     const digit = Number(clean[i])
     const weight = posFromRight % 2 === 0 ? 3 : 1
     sum += digit * weight
@@ -243,15 +247,21 @@ export function generateInternalEan13(
   prefix = "200",
   sequence?: number
 ): string {
-  const cleanPrefix = /^\d{3}$/.test(prefix) && prefix.startsWith("2")
-    ? prefix
-    : "200"
+  const cleanPrefix =
+    /^\d{3}$/.test(prefix) && prefix.startsWith("2") ? prefix : "200"
 
   let nineDigits: string
-  if (typeof sequence === "number" && Number.isFinite(sequence) && sequence >= 0) {
+  if (
+    typeof sequence === "number" &&
+    Number.isFinite(sequence) &&
+    sequence >= 0
+  ) {
     nineDigits = String(Math.floor(sequence) % 1_000_000_000).padStart(9, "0")
   } else if (typeof seedOrSequence === "number") {
-    nineDigits = String(Math.floor(seedOrSequence) % 1_000_000_000).padStart(9, "0")
+    nineDigits = String(Math.floor(seedOrSequence) % 1_000_000_000).padStart(
+      9,
+      "0"
+    )
   } else {
     const hash = crypto
       .createHash("sha256")
@@ -294,8 +304,8 @@ export function parseBarcode(rawInput: string): ParsedBarcode {
       gtin.length === 14 && gtin.startsWith("0")
         ? gtin.slice(1)
         : gtin.length === 13
-        ? gtin
-        : null
+          ? gtin
+          : null
     return {
       raw,
       normalized: ean13 || gtin || raw,
@@ -305,9 +315,7 @@ export function parseBarcode(rawInput: string): ParsedBarcode {
         ean13 && (ean13.startsWith("978") || ean13.startsWith("979"))
       ),
       checkDigit: gtin ? Number(gtin[gtin.length - 1]) : null,
-      expectedCheckDigit: gtin
-        ? computeGs1CheckDigit(gtin.slice(0, -1))
-        : null,
+      expectedCheckDigit: gtin ? computeGs1CheckDigit(gtin.slice(0, -1)) : null,
       ean13Equivalent: ean13,
       gs1,
     }
@@ -428,8 +436,8 @@ export function parseBarcode(rawInput: string): ParsedBarcode {
   const symbology: BarcodeSymbology = /^[A-Z0-9\-.\s$/+%]+$/.test(raw)
     ? "code39"
     : /^[\x20-\x7E]+$/.test(raw)
-    ? "code128"
-    : "unknown"
+      ? "code128"
+      : "unknown"
 
   return {
     raw,

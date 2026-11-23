@@ -2,7 +2,8 @@ openapi: 3.1.0
 info:
   title: "@vicacha-devs/medusa-plugin-product-extensions API"
   version: 0.0.1
-  description: Medusa v2 Product Extension Suite — Rich Video & 3D Media, Variant
+  description:
+    Medusa v2 Product Extension Suite — Rich Video & 3D Media, Variant
     Galleries with Option Bulk-Assignment, Typed Custom Attributes with
     SI/Imperial Normalization, Hierarchical Content Sections (tree@1/diff@1),
     Feature Badges, Swatches, Multi-Storefront Overrides, Admin Studio &
@@ -411,7 +412,8 @@ paths:
     get:
       operationId: getAdminProductsByProduct_idAttributes
       summary: Get products by ID attributes
-      description: GET /admin/products/{product_id}/attributes endpoint exposed by
+      description:
+        GET /admin/products/{product_id}/attributes endpoint exposed by
         @vicacha-devs/medusa-plugin-product-extensions.
       tags:
         - "Admin: products"
@@ -437,7 +439,8 @@ paths:
     post:
       operationId: postAdminProductsByProduct_idAttributes
       summary: Create / Trigger products by ID attributes
-      description: POST /admin/products/{product_id}/attributes endpoint exposed by
+      description:
+        POST /admin/products/{product_id}/attributes endpoint exposed by
         @vicacha-devs/medusa-plugin-product-extensions.
       tags:
         - "Admin: products"
@@ -471,7 +474,8 @@ paths:
     get:
       operationId: getAdminProductsByProduct_idExtension
       summary: Get products by ID extension
-      description: GET /admin/products/{product_id}/extension endpoint exposed by
+      description:
+        GET /admin/products/{product_id}/extension endpoint exposed by
         @vicacha-devs/medusa-plugin-product-extensions.
       tags:
         - "Admin: products"
@@ -497,7 +501,8 @@ paths:
     post:
       operationId: postAdminProductsByProduct_idExtension
       summary: Create / Trigger products by ID extension
-      description: POST /admin/products/{product_id}/extension endpoint exposed by
+      description:
+        POST /admin/products/{product_id}/extension endpoint exposed by
         @vicacha-devs/medusa-plugin-product-extensions.
       tags:
         - "Admin: products"
@@ -531,7 +536,8 @@ paths:
     get:
       operationId: getAdminProductsByProduct_idVariantsByVariant_idExtension
       summary: Get products by ID variants by ID extension
-      description: GET /admin/products/{product_id}/variants/{variant_id}/extension
+      description:
+        GET /admin/products/{product_id}/variants/{variant_id}/extension
         endpoint exposed by @vicacha-devs/medusa-plugin-product-extensions.
       tags:
         - "Admin: products"
@@ -563,7 +569,8 @@ paths:
     post:
       operationId: postAdminProductsByProduct_idVariantsByVariant_idExtension
       summary: Create / Trigger products by ID variants by ID extension
-      description: POST /admin/products/{product_id}/variants/{variant_id}/extension
+      description:
+        POST /admin/products/{product_id}/variants/{variant_id}/extension
         endpoint exposed by @vicacha-devs/medusa-plugin-product-extensions.
       tags:
         - "Admin: products"
@@ -603,7 +610,8 @@ paths:
     post:
       operationId: postAdminProductsByProduct_idVariantsBulkMedia
       summary: Create / Trigger products by ID variants bulk media
-      description: POST /admin/products/{product_id}/variants/bulk-media endpoint
+      description:
+        POST /admin/products/{product_id}/variants/bulk-media endpoint
         exposed by @vicacha-devs/medusa-plugin-product-extensions.
       tags:
         - "Admin: products"
@@ -680,7 +688,8 @@ paths:
     get:
       operationId: getStoreProductsByProduct_idExtension
       summary: Get products by ID extension
-      description: GET /store/products/{product_id}/extension endpoint exposed by
+      description:
+        GET /store/products/{product_id}/extension endpoint exposed by
         @vicacha-devs/medusa-plugin-product-extensions.
       tags:
         - "Storefront: products"

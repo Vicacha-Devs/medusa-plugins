@@ -192,9 +192,7 @@ export class NativeDianSoapProvider {
     }
 
     // Deterministic Habilitación / Local Software Propio Validation
-    const trackId = isTestSet
-      ? `zip-${randomUUID()}`
-      : context.cufe_cude
+    const trackId = isTestSet ? `zip-${randomUUID()}` : context.cufe_cude
     const statusMessage = isTestSet
       ? `Set de Pruebas (${test_set_id}) recibido y validado por DIAN Habilitación.`
       : "Procesado Correctamente."
@@ -220,7 +218,7 @@ export class NativeDianSoapProvider {
     }
   }
 
-  async getNumberingRanges(params: {
+  async getNumberingRanges(_params: {
     seller_nit: string
     software_id: string
     environment: DianEnvironment
@@ -234,8 +232,7 @@ export class NativeDianSoapProvider {
         to_number: 995000000,
         valid_from: "2019-01-19",
         valid_to: "2030-01-19",
-        technical_key:
-          "fc8eac422eba16e22ffd8c6f94b3f40a6e38162c",
+        technical_key: "fc8eac422eba16e22ffd8c6f94b3f40a6e38162c",
       },
     ]
   }

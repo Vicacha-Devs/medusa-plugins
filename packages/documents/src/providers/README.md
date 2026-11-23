@@ -28,12 +28,12 @@ During `allocateAndRenderDocumentStep` (`src/workflows/steps/allocate-and-render
 
 `sendDocumentEmailNotification()` in `src/subscribers/document-generated-email.ts` delivers generated PDFs via `Modules.NOTIFICATION` (`channel: "email"`), triggered either automatically on `document.generated` (when `auto_email_<type>` is enabled) or manually via `POST /admin/documents/:id/send-email`:
 
-| Document Type | Settings Flag | Notification Template | Attachment Filename |
-| --- | --- | --- | --- |
-| `invoice` | `auto_email_invoice` | `document-invoice` | `invoice-<document_number>.pdf` |
+| Document Type  | Settings Flag             | Notification Template   | Attachment Filename                  |
+| -------------- | ------------------------- | ----------------------- | ------------------------------------ |
+| `invoice`      | `auto_email_invoice`      | `document-invoice`      | `invoice-<document_number>.pdf`      |
 | `packing_slip` | `auto_email_packing_slip` | `document-packing-slip` | `packing_slip-<document_number>.pdf` |
-| `credit_note` | `auto_email_credit_note` | `document-credit-note` | `credit_note-<document_number>.pdf` |
-| `receipt` | `auto_email_receipt` | `document-receipt` | `receipt-<document_number>.pdf` |
+| `credit_note`  | `auto_email_credit_note`  | `document-credit-note`  | `credit_note-<document_number>.pdf`  |
+| `receipt`      | `auto_email_receipt`      | `document-receipt`      | `receipt-<document_number>.pdf`      |
 
 Each notification call receives `data` (`document_id`, `document_number`, `document_type`, `order_id`, `order_display_id`, `company_name`) and `attachments` (`[{ filename, content: base64Pdf, content_type: "application/pdf" }]`), updates `mpd_document.emailed_at`, and appends an `"emailed"` entry to `mpd_document.audit_log`.
 

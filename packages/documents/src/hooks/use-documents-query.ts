@@ -31,8 +31,7 @@ export function useOrderDocuments(
   options?: DocumentsQueryHookOptions<ListDocumentsResponse>
 ) {
   const client = options?.client ?? documentsAdminSdk
-  const queryKey =
-    options?.queryKey ?? documentsQueryKeys.order(orderId || "")
+  const queryKey = options?.queryKey ?? documentsQueryKeys.order(orderId || "")
 
   return useDocumentsQuery<ListDocumentsResponse>(
     queryKey,
@@ -66,8 +65,7 @@ export function useStoreOrderDocuments(
   options?: DocumentsQueryHookOptions<StoreOrderDocumentsResponse>
 ) {
   const client = options?.client ?? documentsStoreSdk
-  const queryKey =
-    options?.queryKey ?? documentsQueryKeys.order(orderId || "")
+  const queryKey = options?.queryKey ?? documentsQueryKeys.order(orderId || "")
 
   return useDocumentsQuery<StoreOrderDocumentsResponse>(
     queryKey,

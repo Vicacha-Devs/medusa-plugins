@@ -2,7 +2,14 @@ import type { NotificationChannel, NotificationsPluginOptions } from "../types"
 import { normalizeE164Phone } from "../utils/security"
 
 const OPT_IN_KEYWORDS = ["JOIN", "START", "OPTIN", "UNSTOP", "YES"]
-const OPT_OUT_KEYWORDS = ["STOP", "END", "QUIT", "CANCEL", "UNSUBSCRIBE", "OPTOUT"]
+const OPT_OUT_KEYWORDS = [
+  "STOP",
+  "END",
+  "QUIT",
+  "CANCEL",
+  "UNSUBSCRIBE",
+  "OPTOUT",
+]
 
 export function normalizeConsentIdentifier(
   channel: NotificationChannel,

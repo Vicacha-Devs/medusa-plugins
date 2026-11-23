@@ -1,5 +1,9 @@
 import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
-import { ContainerRegistrationKeys, MedusaError, Modules } from "@medusajs/framework/utils"
+import {
+  ContainerRegistrationKeys,
+  MedusaError,
+  Modules,
+} from "@medusajs/framework/utils"
 
 import DocumentsModuleService from "../../modules/documents/service"
 import {
@@ -171,30 +175,32 @@ export const fetchOrderContextStep = createStep(
         tracking_numbers: Array.from(new Set(trackingNumbers)),
         tracking_links: Array.from(new Set(trackingLinks)),
         carrier: matchedFulfillment.provider_id ?? null,
-        warehouse_address: matchedFulfillment.delivery_address?.address_1 ?? null,
-        items: Array.isArray(matchedFulfillment.items) &&
+        warehouse_address:
+          matchedFulfillment.delivery_address?.address_1 ?? null,
+        items:
+          Array.isArray(matchedFulfillment.items) &&
           matchedFulfillment.items.length > 0
-          ? matchedFulfillment.items.map((fi: any) => {
-              const orderItem = items.find(
-                (oi) => oi.id === fi.line_item_id || oi.sku === fi.sku
-              )
-              return {
-                line_item_id: fi.line_item_id,
-                title: fi.title || orderItem?.title || "Item",
-                sku: fi.sku || orderItem?.sku || null,
-                variant_title: orderItem?.variant_title ?? null,
-                quantity: Number(fi.quantity ?? orderItem?.quantity ?? 1),
-                weight: orderItem?.weight ?? null,
-              }
-            })
-          : items.map((oi) => ({
-              line_item_id: oi.id,
-              title: oi.title,
-              sku: oi.sku,
-              variant_title: oi.variant_title,
-              quantity: oi.quantity,
-              weight: oi.weight,
-            })),
+            ? matchedFulfillment.items.map((fi: any) => {
+                const orderItem = items.find(
+                  (oi) => oi.id === fi.line_item_id || oi.sku === fi.sku
+                )
+                return {
+                  line_item_id: fi.line_item_id,
+                  title: fi.title || orderItem?.title || "Item",
+                  sku: fi.sku || orderItem?.sku || null,
+                  variant_title: orderItem?.variant_title ?? null,
+                  quantity: Number(fi.quantity ?? orderItem?.quantity ?? 1),
+                  weight: orderItem?.weight ?? null,
+                }
+              })
+            : items.map((oi) => ({
+                line_item_id: oi.id,
+                title: oi.title,
+                sku: oi.sku,
+                variant_title: oi.variant_title,
+                quantity: oi.quantity,
+                weight: oi.weight,
+              })),
       }
     }
 

@@ -10,7 +10,7 @@ import {
   StickerBuilderSection,
 } from "../../../components/stickers-tab"
 import { useStoriesStudio } from "../../../hooks/use-stories-studio"
-import { RbacGuard } from "../../../components/rbac-guard";
+import { RbacGuard } from "../../../components/rbac-guard"
 
 const StoriesStickersPage = () => {
   const studio = useStoriesStudio()
@@ -69,6 +69,6 @@ const GuardedStoriesStickersPage = () => (
   <RbacGuard permission="stories.read">
     <StoriesStickersPage />
   </RbacGuard>
-);
+)
 
-export default GuardedStoriesStickersPage;
+export default GuardedStoriesStickersPage

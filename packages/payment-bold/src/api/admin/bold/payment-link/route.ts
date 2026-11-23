@@ -5,14 +5,20 @@ import { createBoldPaymentLinkWorkflow } from "@payment-bold/workflows/create-bo
 const CreateBoldPaymentLinkSchema = z.object({
   paymentCollectionId: z.string().min(1).optional(),
   amount: z.coerce.number().finite().positive(),
-  currency: z.string().min(3).max(3).transform((s) => s.toUpperCase()),
+  currency: z
+    .string()
+    .min(3)
+    .max(3)
+    .transform((s) => s.toUpperCase()),
   reference: z.string().min(1).max(255),
   description: z.string().min(1).max(500),
   email: z.string().email(),
-  callbackUrl: z.string().url().refine(
-    (u) => u.startsWith("https://") || u.startsWith("http://"),
-    { message: "callbackUrl must use http:// or https://" }
-  ),
+  callbackUrl: z
+    .string()
+    .url()
+    .refine((u) => u.startsWith("https://") || u.startsWith("http://"), {
+      message: "callbackUrl must use http:// or https://",
+    }),
   vatAmount: z.coerce.number().finite().min(0).optional().default(0),
   consumptionTaxAmount: z.coerce.number().finite().min(0).optional(),
   imageUrl: z
@@ -24,7 +30,10 @@ const CreateBoldPaymentLinkSchema = z.object({
     .optional(),
 })
 
-export async function POST(req: MedusaRequest, res: MedusaResponse): Promise<void> {
+export async function POST(
+  req: MedusaRequest,
+  res: MedusaResponse
+): Promise<void> {
   const parsed = CreateBoldPaymentLinkSchema.safeParse(req.body ?? {})
   if (!parsed.success) {
     res.status(400).json({
@@ -53,7 +62,7 @@ export async function POST(req: MedusaRequest, res: MedusaResponse): Promise<voi
     })
 
     res.status(200).json(result)
-  } catch (_error: unknown) {
+  } catch {
     res.status(500).json({ message: "Failed to execute payment workflow" })
   }
 }

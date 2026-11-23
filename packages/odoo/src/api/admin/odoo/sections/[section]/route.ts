@@ -18,7 +18,9 @@ const VALID_SECTIONS = new Set<OdooSectionName>([
 export async function GET(req: MedusaRequest, res: MedusaResponse) {
   const section = req.params.section as OdooSectionName
   if (!VALID_SECTIONS.has(section)) {
-    res.status(400).json({ error: `Invalid Odoo settings section "${section}".` })
+    res
+      .status(400)
+      .json({ error: `Invalid Odoo settings section "${section}".` })
     return
   }
 
@@ -30,7 +32,9 @@ export async function GET(req: MedusaRequest, res: MedusaResponse) {
 export async function POST(req: MedusaRequest, res: MedusaResponse) {
   const section = req.params.section as OdooSectionName
   if (!VALID_SECTIONS.has(section)) {
-    res.status(400).json({ error: `Invalid Odoo settings section "${section}".` })
+    res
+      .status(400)
+      .json({ error: `Invalid Odoo settings section "${section}".` })
     return
   }
 

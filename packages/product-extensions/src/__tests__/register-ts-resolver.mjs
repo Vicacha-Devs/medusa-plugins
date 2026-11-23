@@ -1,4 +1,4 @@
-import { createRequire, registerHooks, stripTypeScriptTypes } from "node:module"
+import { createRequire, registerHooks } from "node:module"
 import { existsSync, readFileSync } from "node:fs"
 import { fileURLToPath, pathToFileURL } from "node:url"
 import { dirname, resolve as resolvePath } from "node:path"
@@ -125,9 +125,7 @@ registerHooks({
         lines.push(`export const handle = { breadcrumb: () => null }`)
       }
       const namedExports = [
-        ...source.matchAll(
-          /export\s+(?:const|function)\s+([A-Za-z0-9_]+)\b/g
-        ),
+        ...source.matchAll(/export\s+(?:const|function)\s+([A-Za-z0-9_]+)\b/g),
       ]
       for (const match of namedExports) {
         const name = match[1]
@@ -140,11 +138,12 @@ registerHooks({
       }
       return {
         format: "module",
-        source: lines.join("\n") || "export default function Component() { return null }",
+        source:
+          lines.join("\n") ||
+          "export default function Component() { return null }",
         shortCircuit: true,
       }
     }
     return nextLoad(url, context)
   },
 })
-

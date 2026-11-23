@@ -4,8 +4,7 @@ export const it: NotificationTranslationDictionary = {
   general: {
     hello: "Ciao",
     thankYou: "Grazie per il tuo acquisto!",
-    questionsContact:
-      "Per qualsiasi domanda, rispondi a questo messaggio.",
+    questionsContact: "Per qualsiasi domanda, rispondi a questo messaggio.",
     viewInStore: "Visita il Negozio",
     poweredBy: "Inviato da",
     unsubscribeSms: "Rispondi STOP per annullare l'iscrizione.",
@@ -39,8 +38,7 @@ export const it: NotificationTranslationDictionary = {
     downloadInvoiceButton: "Scarica Fattura PDF",
   },
   shipment: {
-    shippedSubject:
-      "Il tuo ordine #{{data.order_display_id}} è stato spedito!",
+    shippedSubject: "Il tuo ordine #{{data.order_display_id}} è stato spedito!",
     shippedTitle: "Il tuo pacco è in viaggio",
     shippedIntro:
       "Il tuo ordine #{{data.order_display_id}} è stato affidato al corriere.",
@@ -71,8 +69,7 @@ export const it: NotificationTranslationDictionary = {
     recoverySubject:
       "Hai lasciato articoli nel carrello su {{data.store_name}}",
     recoveryTitle: "Hai dimenticato qualcosa?",
-    recoveryIntro:
-      "Il tuo carrello è salvato e pronto per il checkout.",
+    recoveryIntro: "Il tuo carrello è salvato e pronto per il checkout.",
     resumeCartButton: "Completa l'Ordine",
   },
   document: {

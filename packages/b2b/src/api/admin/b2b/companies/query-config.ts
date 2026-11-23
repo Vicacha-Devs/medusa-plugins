@@ -15,17 +15,15 @@ const adminCompanyBaseFields = [
   "spending_limit_reset_at",
   "created_at",
   "updated_at",
-];
+]
 
-export const adminCompanyListFields = [
-  ...adminCompanyBaseFields,
-];
+export const adminCompanyListFields = [...adminCompanyBaseFields]
 
 export const adminCompanyRemoteLinkFields = [
   "customer_group.id",
   "customer_group.name",
   "approval_settings.*",
-];
+]
 
 export const adminCompanyFields = [
   ...adminCompanyBaseFields,
@@ -34,14 +32,14 @@ export const adminCompanyFields = [
   "customer_group.id",
   "customer_group.name",
   "approval_settings.*",
-];
+]
 
 export const adminCompanyDetailRemoteLinkFields = [
   "customer_group.id",
   "customer_group.name",
   "approval_settings.*",
   "employees.customer.*",
-];
+]
 
 export const adminCompanyQueryConfig = {
   list: {
@@ -52,7 +50,7 @@ export const adminCompanyQueryConfig = {
     defaults: adminCompanyFields,
     isList: false,
   },
-};
+}
 
 /* Employee Query Config */
 export const adminEmployeeFields = [
@@ -67,7 +65,7 @@ export const adminEmployeeFields = [
   "customer.email",
   "customer.phone",
   "*company",
-];
+]
 
 export const adminEmployeeQueryConfig = {
   list: {
@@ -78,7 +76,7 @@ export const adminEmployeeQueryConfig = {
     defaults: adminEmployeeFields,
     isList: false,
   },
-};
+}
 
 /* Approval Settings Query Config */
 export const adminApprovalSettingsFields = [
@@ -87,7 +85,7 @@ export const adminApprovalSettingsFields = [
   "requires_admin_approval",
   "requires_sales_manager_approval",
   "*company",
-];
+]
 
 export const adminApprovalSettingsQueryConfig = {
   list: {
@@ -98,4 +96,4 @@ export const adminApprovalSettingsQueryConfig = {
     defaults: adminApprovalSettingsFields,
     isList: false,
   },
-};
+}

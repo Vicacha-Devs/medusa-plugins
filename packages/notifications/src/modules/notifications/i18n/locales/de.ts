@@ -4,8 +4,7 @@ export const de: NotificationTranslationDictionary = {
   general: {
     hello: "Hallo",
     thankYou: "Vielen Dank für Ihren Einkauf!",
-    questionsContact:
-      "Bei Fragen antworten Sie einfach auf diese Nachricht.",
+    questionsContact: "Bei Fragen antworten Sie einfach auf diese Nachricht.",
     viewInStore: "Zum Shop",
     poweredBy: "Gesendet von",
     unsubscribeSms: "Antworten Sie STOP zum Abmelden.",
@@ -69,8 +68,7 @@ export const de: NotificationTranslationDictionary = {
       "Ihr {{data.store_name}} Bestätigungscode lautet {{data.otp_code}}. Gültig für {{data.expires_in_minutes}} Minuten.",
   },
   cart: {
-    recoverySubject:
-      "Sie haben Artikel im Warenkorb bei {{data.store_name}}",
+    recoverySubject: "Sie haben Artikel im Warenkorb bei {{data.store_name}}",
     recoveryTitle: "Haben Sie etwas vergessen?",
     recoveryIntro: "Ihr Warenkorb ist gespeichert und wartet auf Sie.",
     resumeCartButton: "Bestellung abschließen",

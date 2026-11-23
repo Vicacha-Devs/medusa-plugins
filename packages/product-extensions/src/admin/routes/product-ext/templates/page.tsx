@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router-dom"
 import { TemplatesBuilderTab } from "../../../components"
 import { useProductExtStudio } from "../../../hooks/use-product-ext-studio"
-import { RbacGuard } from "../../../components/rbac-guard";
+import { RbacGuard } from "../../../components/rbac-guard"
 
 const TemplatesRoutePage = () => {
   const navigate = useNavigate()
@@ -57,6 +57,6 @@ const GuardedTemplatesRoutePage = () => (
   <RbacGuard permission="product_extensions.read">
     <TemplatesRoutePage />
   </RbacGuard>
-);
+)
 
-export default GuardedTemplatesRoutePage;
+export default GuardedTemplatesRoutePage

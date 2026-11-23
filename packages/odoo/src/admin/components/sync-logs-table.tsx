@@ -45,7 +45,9 @@ export const RecentSyncRunsSection = ({
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>{t("tabs.logs")}</Table.HeaderCell>
-            <Table.HeaderCell>{t("overviewTab.manualSyncTitle")}</Table.HeaderCell>
+            <Table.HeaderCell>
+              {t("overviewTab.manualSyncTitle")}
+            </Table.HeaderCell>
             <Table.HeaderCell className="text-right">Status</Table.HeaderCell>
           </Table.Row>
         </Table.Header>

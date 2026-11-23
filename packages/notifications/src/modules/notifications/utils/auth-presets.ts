@@ -42,7 +42,8 @@ export const AUTH_SYSTEM_TEMPLATE_PRESETS: SystemTemplatePreset[] = [
     id: "system_email_invite_resent",
     name: "invite-resent-email",
     label: "Resent Admin Invitation (Email)",
-    description: "Reminder email when an Admin invitation is resent (invite.resent).",
+    description:
+      "Reminder email when an Admin invitation is resent (invite.resent).",
     channel: "email",
     mode: "blocks",
     default_event: "invite.resent",

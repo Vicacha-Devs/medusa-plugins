@@ -86,7 +86,8 @@ export function sanitizeRingColor(color?: string | null): string | null {
 }
 
 export const RING_THEME_GRADIENTS: Record<StoryRingTheme, string> = {
-  instagram: "linear-gradient(135deg, #feda75 0%, #fa7e1e 25%, #d62976 50%, #962fbf 75%, #4f5bd5 100%)",
+  instagram:
+    "linear-gradient(135deg, #feda75 0%, #fa7e1e 25%, #d62976 50%, #962fbf 75%, #4f5bd5 100%)",
   tiktok: "linear-gradient(135deg, #00f2fe 0%, #000000 50%, #ff0050 100%)",
   sunset: "linear-gradient(135deg, #ff512f 0%, #dd2476 100%)",
   emerald: "linear-gradient(135deg, #10b981 0%, #047857 100%)",

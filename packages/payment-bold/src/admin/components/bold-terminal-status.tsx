@@ -63,7 +63,8 @@ const BoldTerminalStatusWidget = () => {
               <span className="font-semibold text-ui-fg-base block leading-tight">
                 {isUnauthorized
                   ? t("bold.admin.settings.unauthorized_terminals_title", {
-                      defaultValue: "POS Terminal Integration Authorization Required (403)",
+                      defaultValue:
+                        "POS Terminal Integration Authorization Required (403)",
                     })
                   : t("bold.admin.terminal_status.no_terminals_title", {
                       defaultValue: "No POS Terminals Configured (404)",
@@ -130,15 +131,17 @@ const BoldTerminalStatusWidget = () => {
                 <Table.Cell className="font-mono text-xs font-semibold">
                   {item.terminal_serial || item.id}
                 </Table.Cell>
-                <Table.Cell>{item.terminal_model || item.model || "Smart POS"}</Table.Cell>
+                <Table.Cell>
+                  {item.terminal_model || item.model || "Smart POS"}
+                </Table.Cell>
                 <Table.Cell>
                   <Badge
                     color={
                       item.status === "ONLINE"
                         ? "green"
                         : item.status === "BUSY"
-                        ? "orange"
-                        : "grey"
+                          ? "orange"
+                          : "grey"
                     }
                   >
                     {item.status ||

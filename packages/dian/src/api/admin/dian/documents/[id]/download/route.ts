@@ -5,9 +5,7 @@ import { sanitizeArchiveFilename } from "../../../../../../modules/dian/utils"
 import { DIAN_MODULE } from "../../../../../../types"
 
 const DownloadFormatQuerySchema = z.object({
-  format: z
-    .enum(["pdf", "xml", "zip", "attached"])
-    .default("pdf"),
+  format: z.enum(["pdf", "xml", "zip", "attached"]).default("pdf"),
 })
 
 export async function GET(req: MedusaRequest, res: MedusaResponse) {
@@ -34,10 +32,7 @@ export async function GET(req: MedusaRequest, res: MedusaResponse) {
       await dianService.getAttachedDocumentZipBuffer(documentId)
     const safeName = sanitizeArchiveFilename(filename)
     res.setHeader("Content-Type", "application/zip")
-    res.setHeader(
-      "Content-Disposition",
-      `attachment; filename="${safeName}"`
-    )
+    res.setHeader("Content-Disposition", `attachment; filename="${safeName}"`)
     return res.status(200).send(buffer)
   }
 
@@ -49,22 +44,17 @@ export async function GET(req: MedusaRequest, res: MedusaResponse) {
     if (!doc || !doc.xml_signed) {
       return res.status(404).json({ message: "Signed UBL XML not found" })
     }
-    const safeName = sanitizeArchiveFilename(
-      `fv_${doc.document_number}.xml`
-    )
+    const safeName = sanitizeArchiveFilename(`fv_${doc.document_number}.xml`)
     res.setHeader("Content-Type", "application/xml; charset=utf-8")
-    res.setHeader(
-      "Content-Disposition",
-      `attachment; filename="${safeName}"`
-    )
+    res.setHeader("Content-Disposition", `attachment; filename="${safeName}"`)
     return res.status(200).send(Buffer.from(String(doc.xml_signed), "utf8"))
   }
 
-  const { buffer, document } =
-    await dianService.getElectronicDocumentPdfBuffer(documentId, req.scope)
-  const safeName = sanitizeArchiveFilename(
-    `FE_${document.document_number}.pdf`
+  const { buffer, document } = await dianService.getElectronicDocumentPdfBuffer(
+    documentId,
+    req.scope
   )
+  const safeName = sanitizeArchiveFilename(`FE_${document.document_number}.pdf`)
   res.setHeader("Content-Type", "application/pdf")
   res.setHeader("Content-Disposition", `attachment; filename="${safeName}"`)
   return res.status(200).send(buffer)

@@ -13,11 +13,11 @@ scripts/
 
 Seeds the minimum data needed for a working B2B setup:
 
-| Resource | What it creates | Guard |
-| --- | --- | --- |
-| Customer groups | `B2B` and `B2C` groups | Skips if a group with that name already exists |
-| Sales channel | `B2B` sales channel | Skips if one already exists |
-| Region | Default region with a shipping option | Skips if any region exists |
+| Resource        | What it creates                       | Guard                                          |
+| --------------- | ------------------------------------- | ---------------------------------------------- |
+| Customer groups | `B2B` and `B2C` groups                | Skips if a group with that name already exists |
+| Sales channel   | `B2B` sales channel                   | Skips if one already exists                    |
+| Region          | Default region with a shipping option | Skips if any region exists                     |
 
 Run from the host application's root:
 

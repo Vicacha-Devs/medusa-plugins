@@ -3,6 +3,7 @@
 A full-featured **Typesense Search, Vector/Hybrid AI Discovery, Merchandising, and Custom Entity Indexing Plugin for Medusa v2 (`^2.21.0`)**.
 
 Built specifically for **Medusa `2.21+`** with a **Dual Architecture**:
+
 1. **Standalone Typesense Module, Workflows, Subscribers, REST APIs & Admin UI (`/app/typesense`)**: Zero-downtime collection alias rebuilds, Multi-way & One-way Synonyms, Curations/Overrides (pinning, hiding, promo banners, scheduled windows), Stopwords, Vector/Hybrid search, Conversational RAG, Search Analytics, Custom Entities indexing, and Hydrated Storefront APIs.
 2. **Native Medusa `2.21` Search Module Provider (`medusa-plugin-typesense/providers/typesense`) & Index Factories (`medusa-plugin-typesense/indexes`)**: Plugs directly into `@medusajs/medusa/search` with `defineProductSearchIndex`, `defineCategorySearchIndex`, `defineCollectionSearchIndex`, and `defineCustomSearchIndex`.
 
@@ -60,8 +61,8 @@ Built specifically for **Medusa `2.21+`** with a **Dual Architecture**:
 
 ## Compatibility
 
-| Package | Version | Medusa | Typesense Server | Node.js |
-| :--- | :--- | :--- | :--- | :--- |
+| Package                   | Version  | Medusa                      | Typesense Server                      | Node.js                      |
+| :------------------------ | :------- | :-------------------------- | :------------------------------------ | :--------------------------- |
 | `medusa-plugin-typesense` | `^1.0.0` | `^2.21.0` (`2.21.2` tested) | `>= 26.0` (`27.x – 29.x` recommended) | `>= 20.19.0 \|\| >= 22.12.0` |
 
 ---
@@ -174,7 +175,15 @@ export default defineConfig({
         customEntities: {
           brands: {
             graphEntity: "brand",
-            graphFields: ["id", "name", "slug", "description", "logo_url", "is_active", "created_at"],
+            graphFields: [
+              "id",
+              "name",
+              "slug",
+              "description",
+              "logo_url",
+              "is_active",
+              "created_at",
+            ],
             queryBy: ["name", "slug", "description"],
             queryByWeights: [5, 3, 2],
             facetBy: ["is_active"],
@@ -195,7 +204,8 @@ export default defineConfig({
             options: {
               host: process.env.TYPESENSE_HOST || "http://127.0.0.1:8108",
               apiKey: process.env.TYPESENSE_API_KEY!,
-              collectionPrefix: process.env.TYPESENSE_COLLECTION_PREFIX || "medusa",
+              collectionPrefix:
+                process.env.TYPESENSE_COLLECTION_PREFIX || "medusa",
               zeroDowntimeSwap: true,
             },
           },
@@ -214,29 +224,29 @@ npx medusa db:migrate
 
 ### Full Configuration Reference
 
-| Option | Type | Default | Description |
-| :--- | :--- | :--- | :--- |
-| `host` | `string` | `"http://127.0.0.1:8108"` | Primary Typesense URL (`http(s)://host:port`) or hostname |
-| `port` | `number` | `8108` / `443` | Typesense port if not specified in `host` |
-| `protocol` | `"http" \| "https"` | `"http"` | Protocol if not specified in `host` |
-| `nodes` | `TypesenseNodeConfig[]` | `undefined` | Multi-node High Availability cluster array (`[{ host, port, protocol }]`) |
-| `apiKey` | `string` | **Required** | Server-side Typesense Admin API Key (never exposed to clients) |
-| `searchOnlyApiKey` | `string` | `undefined` | Search-only parent key used to sign HMAC Scoped Keys in `/store/typesense/token` |
-| `connectionTimeoutSeconds` | `number` | `10` | Client request timeout in seconds |
-| `retryIntervalSeconds` | `number` | `1` | Delay between retries across cluster nodes |
-| `numRetries` | `number` | `3` | Number of automatic retries on transient errors |
-| `collectionPrefix` | `string` | `"medusa"` | Prefix for collection aliases (`{prefix}_{entity}`) |
-| `batchSize` | `number` | `250` | Number of documents per JSONL import chunk |
-| `autoIndex` | `boolean` | `true` | Automatically index changes on Medusa `product.*`, `product-category.*`, `product-collection.*` events |
-| `zeroDowntimeSwap` | `boolean` | `true` | Build `{alias}_v_{timestamp}` physical collection and atomically flip alias |
-| `defaultLocale` | `string` | `"en"` | Default locale code |
-| `locales` | `string[]` | `["en"]` | All active locales to index (creates `{prefix}_{entity}_{locale}` when `> 1` or non-default) |
-| `embedder` | `TypesenseEmbedderConfig` | `{ enabled: false }` | Global default vector embedder configuration |
-| `conversationModelId` | `string` | `undefined` | Default Typesense Conversation Model ID for `/store/typesense/chat` |
-| `scopedKeyDefaultTtlSeconds` | `number` | `3600` | Default TTL (in seconds) for scoped search tokens (capped at `86400`) |
-| `analytics` | `{ enabled?: boolean, retentionDays?: number }` | `{ enabled: true, retentionDays: 90 }` | Search analytics logging configuration |
-| `entities` | `Partial<Record<BuiltInEntityName, Partial<TypesenseEntityConfig>>>` | `{}` | Override schemas, `queryBy`, `facetBy`, or `transformer` for built-in `products`, `categories`, or `collections` |
-| `customEntities` | `Record<string, Partial<TypesenseEntityConfig>>` | `{}` | Register custom Medusa module entities (e.g., `brands`, `vendors`, `reviews`) |
+| Option                       | Type                                                                 | Default                                | Description                                                                                                      |
+| :--------------------------- | :------------------------------------------------------------------- | :------------------------------------- | :--------------------------------------------------------------------------------------------------------------- |
+| `host`                       | `string`                                                             | `"http://127.0.0.1:8108"`              | Primary Typesense URL (`http(s)://host:port`) or hostname                                                        |
+| `port`                       | `number`                                                             | `8108` / `443`                         | Typesense port if not specified in `host`                                                                        |
+| `protocol`                   | `"http" \| "https"`                                                  | `"http"`                               | Protocol if not specified in `host`                                                                              |
+| `nodes`                      | `TypesenseNodeConfig[]`                                              | `undefined`                            | Multi-node High Availability cluster array (`[{ host, port, protocol }]`)                                        |
+| `apiKey`                     | `string`                                                             | **Required**                           | Server-side Typesense Admin API Key (never exposed to clients)                                                   |
+| `searchOnlyApiKey`           | `string`                                                             | `undefined`                            | Search-only parent key used to sign HMAC Scoped Keys in `/store/typesense/token`                                 |
+| `connectionTimeoutSeconds`   | `number`                                                             | `10`                                   | Client request timeout in seconds                                                                                |
+| `retryIntervalSeconds`       | `number`                                                             | `1`                                    | Delay between retries across cluster nodes                                                                       |
+| `numRetries`                 | `number`                                                             | `3`                                    | Number of automatic retries on transient errors                                                                  |
+| `collectionPrefix`           | `string`                                                             | `"medusa"`                             | Prefix for collection aliases (`{prefix}_{entity}`)                                                              |
+| `batchSize`                  | `number`                                                             | `250`                                  | Number of documents per JSONL import chunk                                                                       |
+| `autoIndex`                  | `boolean`                                                            | `true`                                 | Automatically index changes on Medusa `product.*`, `product-category.*`, `product-collection.*` events           |
+| `zeroDowntimeSwap`           | `boolean`                                                            | `true`                                 | Build `{alias}_v_{timestamp}` physical collection and atomically flip alias                                      |
+| `defaultLocale`              | `string`                                                             | `"en"`                                 | Default locale code                                                                                              |
+| `locales`                    | `string[]`                                                           | `["en"]`                               | All active locales to index (creates `{prefix}_{entity}_{locale}` when `> 1` or non-default)                     |
+| `embedder`                   | `TypesenseEmbedderConfig`                                            | `{ enabled: false }`                   | Global default vector embedder configuration                                                                     |
+| `conversationModelId`        | `string`                                                             | `undefined`                            | Default Typesense Conversation Model ID for `/store/typesense/chat`                                              |
+| `scopedKeyDefaultTtlSeconds` | `number`                                                             | `3600`                                 | Default TTL (in seconds) for scoped search tokens (capped at `86400`)                                            |
+| `analytics`                  | `{ enabled?: boolean, retentionDays?: number }`                      | `{ enabled: true, retentionDays: 90 }` | Search analytics logging configuration                                                                           |
+| `entities`                   | `Partial<Record<BuiltInEntityName, Partial<TypesenseEntityConfig>>>` | `{}`                                   | Override schemas, `queryBy`, `facetBy`, or `transformer` for built-in `products`, `categories`, or `collections` |
+| `customEntities`             | `Record<string, Partial<TypesenseEntityConfig>>`                     | `{}`                                   | Register custom Medusa module entities (e.g., `brands`, `vendors`, `reviews`)                                    |
 
 ---
 
@@ -423,6 +433,7 @@ export const config: SubscriberConfig = {
    ```
 
 When querying `/store/typesense/products`, `/store/typesense/search`, or `/admin/typesense/playground`, specify:
+
 - `mode: "keyword"` — Pure lexical BM25/typo-tolerant search.
 - `mode: "semantic"` — Pure vector nearest-neighbor search (`k` neighbors, optional `distance_threshold`).
 - `mode: "hybrid"` — Combines lexical and vector search using rank fusion (`alpha: 0.3` weights 70% keyword + 30% vector similarity).
@@ -450,10 +461,12 @@ locales: ["en", "es", "de", "ja"],
 Manage merchandising rules from the **Merchandising Studio** tab at `/app/typesense` or via `/admin/typesense/*`:
 
 ### 1. Multi-Way & One-Way Synonyms
+
 - **Multi-Way Synonym** (omit `root`): Searching any term matches all others (`["sneakers", "trainers", "running shoes", "kicks"]`).
 - **One-Way Synonym** (specify `root`): Searching `" blazer "` also matches `"sport coat"` and `"suit jacket"`, but searching `"suit jacket"` does not expand back.
 
 ### 2. Curations / Overrides
+
 - **Pin Documents (`includes`)**: Pin specific product IDs to exact 1-based positions (`position: 1`, `position: 2`) when a query matches (`match: "exact" | "contains"`).
 - **Hide Documents (`excludes`)**: Exclude specific product IDs from appearing for a query.
 - **Dynamic Filter & Sort Injection**: Automatically apply `filter_by` (e.g., `in_stock:=true`) or `sort_by` (`popularity_score:desc`) when a shopper searches a curated keyword.
@@ -461,6 +474,7 @@ Manage merchandising rules from the **Merchandising Studio** tab at `/app/typese
 - **Scheduled Windows**: Set `effective_from_ts` and `effective_to_ts` Unix timestamps for time-boxed campaigns.
 
 ### 3. Stopwords Sets
+
 Define locale-specific stopword sets (e.g., `["the", "a", "an", "of", "for"]`) that can be applied to queries via `stopwords`.
 
 ---
@@ -504,6 +518,7 @@ curl -X POST "http://localhost:9000/store/typesense/products" \
 ```
 
 **Response:**
+
 ```json
 {
   "hits": [
@@ -524,7 +539,10 @@ curl -X POST "http://localhost:9000/store/typesense/products" \
       ],
       "_typesense": {
         "highlights": [
-          { "field": "title", "snippet": "<mark>Merino</mark> Wool <mark>Runner</mark>" }
+          {
+            "field": "title",
+            "snippet": "<mark>Merino</mark> Wool <mark>Runner</mark>"
+          }
         ],
         "text_match": 578730123365187700,
         "vector_distance": 0.142
@@ -547,6 +565,7 @@ curl -X POST "http://localhost:9000/store/typesense/products" \
 ```
 
 ### 2. Hydrated Category & Collection Search
+
 - `GET` / `POST /store/typesense/categories`
 - `GET` / `POST /store/typesense/collections`
 
@@ -577,10 +596,7 @@ All search endpoints accept a structured `filters` object that is validated agai
     "in_stock": true,
     "category_handles": { "$in": ["shoes", "boots"] },
     "min_price": { "$gte": 5000, "$lte": 25000 },
-    "$or": [
-      { "brand": "Allbirds" },
-      { "tags": ["sustainable", "merino"] }
-    ]
+    "$or": [{ "brand": "Allbirds" }, { "tags": ["sustainable", "merino"] }]
   }
 }
 ```
@@ -594,12 +610,23 @@ Generates a short-lived HMAC-signed Typesense Scoped Search-Only API Key with em
 ```tsx
 // Example: Next.js Storefront with react-instantsearch & typesense-instantsearch-adapter
 import TypesenseInstantSearchAdapter from "typesense-instantsearch-adapter"
-import { InstantSearch, SearchBox, Hits, RefinementList } from "react-instantsearch"
+import {
+  InstantSearch,
+  SearchBox,
+  Hits,
+  RefinementList,
+} from "react-instantsearch"
 
-export async function createStorefrontSearchClient(medusaUrl: string, publishableKey: string) {
-  const res = await fetch(`${medusaUrl}/store/typesense/token?entity=products&ttl_seconds=3600`, {
-    headers: { "x-publishable-api-key": publishableKey },
-  })
+export async function createStorefrontSearchClient(
+  medusaUrl: string,
+  publishableKey: string
+) {
+  const res = await fetch(
+    `${medusaUrl}/store/typesense/token?entity=products&ttl_seconds=3600`,
+    {
+      headers: { "x-publishable-api-key": publishableKey },
+    }
+  )
   const tokenData = await res.json()
 
   const adapter = new TypesenseInstantSearchAdapter({
@@ -608,7 +635,8 @@ export async function createStorefrontSearchClient(medusaUrl: string, publishabl
       nodes: tokenData.nodes,
     },
     additionalSearchParameters: {
-      query_by: "title,subtitle,variant_titles,variant_skus,brand,category_names,tags,description",
+      query_by:
+        "title,subtitle,variant_titles,variant_skus,brand,category_names,tags,description",
     },
   })
 
@@ -652,24 +680,24 @@ curl -X POST "http://localhost:9000/store/typesense/analytics" \
 
 All Admin endpoints require standard Medusa Admin authentication (session cookie, bearer JWT, or secret API key).
 
-| Method & Path | Description |
-| :--- | :--- |
-| `GET /admin/typesense/health` | Cluster health, collection/alias metrics, and recent sync jobs |
-| `GET /admin/typesense/collections` | List all entity collections, active aliases, and document counts |
-| `POST /admin/typesense/collections` | Trigger zero-downtime reindex across all enabled entities |
-| `POST /admin/typesense/collections/:entity/sync` | Trigger zero-downtime rebuild (`fullRebuild: true`) or incremental sync (`ids: [...]`) for `:entity` |
-| `GET /admin/typesense/entities` | List built-in and custom entity index configurations |
-| `POST /admin/typesense/entities` | Register a new custom entity or update an existing entity config |
-| `DELETE /admin/typesense/entities/:entity` | Remove a custom entity configuration (and optionally drop its collection) |
-| `GET / POST /admin/typesense/synonyms/:entity` | List or upsert multi-way / one-way synonyms |
-| `DELETE /admin/typesense/synonyms/:entity/:id` | Delete a synonym rule |
-| `GET / POST /admin/typesense/curations/:entity` | List or upsert curations/overrides (pinning, hiding, promo banners) |
-| `DELETE /admin/typesense/curations/:entity/:id` | Delete a curation rule |
-| `GET / POST /admin/typesense/stopwords` | List or upsert stopword sets |
-| `DELETE /admin/typesense/stopwords/:id` | Delete a stopword set |
-| `POST /admin/typesense/playground` | Execute Admin Search Playground queries with full telemetry & highlight inspection |
-| `GET /admin/typesense/analytics` | Retrieve popular queries, zero-result queries, CTR, conversion rate & latency |
-| `GET / POST / DELETE /admin/typesense/documents/:entity/:id` | Inspect raw indexed JSON document, trigger single-item re-sync, or delete from index |
+| Method & Path                                                | Description                                                                                          |
+| :----------------------------------------------------------- | :--------------------------------------------------------------------------------------------------- |
+| `GET /admin/typesense/health`                                | Cluster health, collection/alias metrics, and recent sync jobs                                       |
+| `GET /admin/typesense/collections`                           | List all entity collections, active aliases, and document counts                                     |
+| `POST /admin/typesense/collections`                          | Trigger zero-downtime reindex across all enabled entities                                            |
+| `POST /admin/typesense/collections/:entity/sync`             | Trigger zero-downtime rebuild (`fullRebuild: true`) or incremental sync (`ids: [...]`) for `:entity` |
+| `GET /admin/typesense/entities`                              | List built-in and custom entity index configurations                                                 |
+| `POST /admin/typesense/entities`                             | Register a new custom entity or update an existing entity config                                     |
+| `DELETE /admin/typesense/entities/:entity`                   | Remove a custom entity configuration (and optionally drop its collection)                            |
+| `GET / POST /admin/typesense/synonyms/:entity`               | List or upsert multi-way / one-way synonyms                                                          |
+| `DELETE /admin/typesense/synonyms/:entity/:id`               | Delete a synonym rule                                                                                |
+| `GET / POST /admin/typesense/curations/:entity`              | List or upsert curations/overrides (pinning, hiding, promo banners)                                  |
+| `DELETE /admin/typesense/curations/:entity/:id`              | Delete a curation rule                                                                               |
+| `GET / POST /admin/typesense/stopwords`                      | List or upsert stopword sets                                                                         |
+| `DELETE /admin/typesense/stopwords/:id`                      | Delete a stopword set                                                                                |
+| `POST /admin/typesense/playground`                           | Execute Admin Search Playground queries with full telemetry & highlight inspection                   |
+| `GET /admin/typesense/analytics`                             | Retrieve popular queries, zero-result queries, CTR, conversion rate & latency                        |
+| `GET / POST / DELETE /admin/typesense/documents/:entity/:id` | Inspect raw indexed JSON document, trigger single-item re-sync, or delete from index                 |
 
 ---
 
@@ -712,7 +740,12 @@ await upsertTypesenseDocumentsWorkflow(container).run({
   input: {
     entity: "brands",
     documents: [
-      { id: "brand_01", name: "Acme Outdoor", slug: "acme-outdoor", is_active: true },
+      {
+        id: "brand_01",
+        name: "Acme Outdoor",
+        slug: "acme-outdoor",
+        is_active: true,
+      },
     ],
   },
 })
@@ -729,9 +762,13 @@ await deleteTypesenseDocumentsWorkflow(container).run({
 ### Resolving `TypesenseModuleService` Directly
 
 ```ts
-import { TYPESENSE_MODULE, type TypesenseModuleService } from "medusa-plugin-typesense"
+import {
+  TYPESENSE_MODULE,
+  type TypesenseModuleService,
+} from "medusa-plugin-typesense"
 
-const typesenseService = container.resolve<TypesenseModuleService>(TYPESENSE_MODULE)
+const typesenseService =
+  container.resolve<TypesenseModuleService>(TYPESENSE_MODULE)
 const health = await typesenseService.checkHealth()
 ```
 

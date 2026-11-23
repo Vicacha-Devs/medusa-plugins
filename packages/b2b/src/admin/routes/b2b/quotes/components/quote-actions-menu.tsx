@@ -22,20 +22,24 @@ export const QuoteActionsMenu = ({ quote }: { quote: QueryQuote }) => {
   const navigate = useNavigate()
   const [sendDrawerOpen, setSendDrawerOpen] = useState(false)
 
-  const { mutateAsync: sendQuote, isPending: isSending } = useSendQuote(quote.id)
-  const { mutateAsync: rejectQuote, isPending: isRejecting } = useRejectQuote(quote.id)
+  const { mutateAsync: sendQuote, isPending: isSending } = useSendQuote(
+    quote.id
+  )
+  const { mutateAsync: rejectQuote, isPending: isRejecting } = useRejectQuote(
+    quote.id
+  )
 
   const canSend = [
-    EQuoteStatus.PendingMerchant, 
-    EQuoteStatus.CustomerRejected]
-  .includes(
-    quote.status as EQuoteStatus
-  )
+    EQuoteStatus.PendingMerchant,
+    EQuoteStatus.CustomerRejected,
+  ].includes(quote.status as EQuoteStatus)
   const canReject = [
     EQuoteStatus.PendingMerchant,
     EQuoteStatus.PendingCustomer,
   ].includes(quote.status as EQuoteStatus)
-  const canManage = MANAGEABLE_STATUSES.includes(quote.status as unknown as EQuoteStatus)
+  const canManage = MANAGEABLE_STATUSES.includes(
+    quote.status as unknown as EQuoteStatus
+  )
 
   const handleSendConfirm = async (expiresAt: string | null) => {
     try {

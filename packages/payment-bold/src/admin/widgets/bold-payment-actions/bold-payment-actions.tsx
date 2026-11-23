@@ -37,7 +37,10 @@ export const BoldPaymentActionsWidget = ({
       {/* Widget Header */}
       <div className="flex items-start justify-between gap-x-2 pb-3 border-b border-ui-border-base">
         <div className="space-y-0.5 min-w-0 flex-1">
-          <Heading level="h2" className="text-sm font-semibold text-ui-fg-base truncate">
+          <Heading
+            level="h2"
+            className="text-sm font-semibold text-ui-fg-base truncate"
+          >
             {t("bold.admin.widget.title")}
           </Heading>
           <Text className="text-xs text-ui-fg-subtle line-clamp-2">
@@ -53,10 +56,10 @@ export const BoldPaymentActionsWidget = ({
           {state.isApproved
             ? t("bold.admin.widget.approved")
             : state.isPartiallyPaid
-            ? t("bold.admin.widget.partially_paid", {
-                defaultValue: "Partially Paid",
-              })
-            : t("bold.admin.widget.processing")}
+              ? t("bold.admin.widget.partially_paid", {
+                  defaultValue: "Partially Paid",
+                })
+              : t("bold.admin.widget.processing")}
         </Badge>
       </div>
 

@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router-dom"
 import { LiveTab } from "../../../components/index.js"
 import { useSocialDashboard } from "../../../hooks/use-social-dashboard.js"
-import { RbacGuard } from "../../../components/rbac-guard";
+import { RbacGuard } from "../../../components/rbac-guard"
 
 const SocialLivePage = () => {
   const navigate = useNavigate()
@@ -63,6 +63,6 @@ const GuardedSocialLivePage = () => (
   <RbacGuard permission="social_commerce.read">
     <SocialLivePage />
   </RbacGuard>
-);
+)
 
-export default GuardedSocialLivePage;
+export default GuardedSocialLivePage

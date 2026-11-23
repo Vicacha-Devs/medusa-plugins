@@ -24,18 +24,18 @@ i18n/
 
 All 10 locale files in `json/` maintain strict 1:1 structural key parity (verified in `src/__tests__/documents.spec.ts`):
 
-| Code | Language | Direction | File |
-| --- | --- | --- | --- |
-| `ar` | Arabic (`العربية`) | `rtl` | `json/ar.json` |
-| `de` | German (`Deutsch`) | `ltr` | `json/de.json` |
-| `en` | English | `ltr` | `json/en.json` |
-| `es` | Spanish (`Español`) | `ltr` | `json/es.json` |
-| `fr` | French (`Français`) | `ltr` | `json/fr.json` |
-| `it` | Italian (`Italiano`) | `ltr` | `json/it.json` |
-| `nl` | Dutch (`Nederlands`) | `ltr` | `json/nl.json` |
-| `pl` | Polish (`Polski`) | `ltr` | `json/pl.json` |
-| `pt` | Portuguese (`Português`) | `ltr` | `json/pt.json` |
-| `tr` | Turkish (`Türkçe`) | `ltr` | `json/tr.json` |
+| Code | Language                 | Direction | File           |
+| ---- | ------------------------ | --------- | -------------- |
+| `ar` | Arabic (`العربية`)       | `rtl`     | `json/ar.json` |
+| `de` | German (`Deutsch`)       | `ltr`     | `json/de.json` |
+| `en` | English                  | `ltr`     | `json/en.json` |
+| `es` | Spanish (`Español`)      | `ltr`     | `json/es.json` |
+| `fr` | French (`Français`)      | `ltr`     | `json/fr.json` |
+| `it` | Italian (`Italiano`)     | `ltr`     | `json/it.json` |
+| `nl` | Dutch (`Nederlands`)     | `ltr`     | `json/nl.json` |
+| `pl` | Polish (`Polski`)        | `ltr`     | `json/pl.json` |
+| `pt` | Portuguese (`Português`) | `ltr`     | `json/pt.json` |
+| `tr` | Turkish (`Türkçe`)       | `ltr`     | `json/tr.json` |
 
 When the active language resolves to `ar` (`(i18n.resolvedLanguage || i18n.language || "").startsWith("ar")`), the Admin routes (`/documents`, `/documents/settings`) and `OrderDocumentsWidget` automatically set `dir="rtl"` on their root container.
 

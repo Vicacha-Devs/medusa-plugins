@@ -1,28 +1,31 @@
-import { Container, Heading, Text } from "@medusajs/ui";
-import { DataTable, useDataTable } from "@vicacha-devs/medusa-shared-admin/admin";
-import { useTranslation } from "react-i18next";
+import { Container, Heading, Text } from "@medusajs/ui"
+import {
+  DataTable,
+  useDataTable,
+} from "@vicacha-devs/medusa-shared-admin/admin"
+import { useTranslation } from "react-i18next"
 
-import { useApprovals } from "../../../../hooks/api";
-import { useApprovalsTableColumns } from "./table/columns.tsx";
-import { useApprovalsTableFilters } from "./table/filters.tsx";
-import { useApprovalsTableQuery } from "./table/query.tsx";
+import { useApprovals } from "../../../../hooks/api"
+import { useApprovalsTableColumns } from "./table/columns.tsx"
+import { useApprovalsTableFilters } from "./table/filters.tsx"
+import { useApprovalsTableQuery } from "./table/query.tsx"
 
-const PAGE_SIZE = 50;
+const PAGE_SIZE = 50
 
 export const ApprovalsTable = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
   const { searchParams, raw } = useApprovalsTableQuery({
     pageSize: PAGE_SIZE,
-  });
+  })
 
   const { data, isPending } = useApprovals({
     ...searchParams,
     order: "-updated_at",
-  });
+  })
 
-  const columns = useApprovalsTableColumns();
-  const filters = useApprovalsTableFilters();
+  const columns = useApprovalsTableColumns()
+  const filters = useApprovalsTableFilters()
 
   const { table } = useDataTable({
     data: data?.carts_with_approvals,
@@ -30,7 +33,7 @@ export const ApprovalsTable = () => {
     enablePagination: true,
     count: data?.count,
     pageSize: PAGE_SIZE,
-  });
+  })
 
   return (
     <Container className="divide-y p-0">
@@ -59,5 +62,5 @@ export const ApprovalsTable = () => {
         }}
       />
     </Container>
-  );
-};
+  )
+}

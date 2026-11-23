@@ -42,10 +42,7 @@ export function validateSafeExternalUrl(
   try {
     parsed = new URL(targetUrl)
   } catch {
-    throw new MedusaError(
-      MedusaError.Types.INVALID_DATA,
-      "Invalid URL format"
-    )
+    throw new MedusaError(MedusaError.Types.INVALID_DATA, "Invalid URL format")
   }
 
   if (parsed.protocol !== "https:" && parsed.protocol !== "http:") {
@@ -98,9 +95,7 @@ export class DocusealService {
 
   constructor(options?: DocumentsPluginOptions["docuseal"]) {
     this.apiKey =
-      options?.api_key?.trim() ||
-      process.env.DOCUSEAL_API_KEY?.trim() ||
-      null
+      options?.api_key?.trim() || process.env.DOCUSEAL_API_KEY?.trim() || null
     this.webhookSecret =
       options?.webhook_secret?.trim() ||
       process.env.DOCUSEAL_WEBHOOK_SECRET?.trim() ||
@@ -163,9 +158,7 @@ export class DocusealService {
       return false
     }
 
-    const cleanSignature = signatureHeader
-      .trim()
-      .replace(/^sha256=/i, "")
+    const cleanSignature = signatureHeader.trim().replace(/^sha256=/i, "")
 
     const expectedHex = crypto
       .createHmac("sha256", this.webhookSecret)
@@ -179,7 +172,10 @@ export class DocusealService {
       return false
     }
 
-    return crypto.timingSafeEqual(new Uint8Array(sigBuf), new Uint8Array(expBuf))
+    return crypto.timingSafeEqual(
+      new Uint8Array(sigBuf),
+      new Uint8Array(expBuf)
+    )
   }
 
   /**
@@ -318,10 +314,7 @@ export class DocusealService {
     )
 
     const headers: Record<string, string> = {}
-    if (
-      this.apiKey &&
-      validatedUrl.origin === new URL(this.baseUrl).origin
-    ) {
+    if (this.apiKey && validatedUrl.origin === new URL(this.baseUrl).origin) {
       headers["X-Auth-Token"] = this.apiKey
     }
 

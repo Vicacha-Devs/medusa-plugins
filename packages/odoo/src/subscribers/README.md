@@ -15,12 +15,12 @@ subscribers/
 
 ## Subscriber Reference
 
-| File | Subscriber ID | Events Listened To | Section Guard Checked | Triggered Action |
-| :--- | :--- | :--- | :--- | :--- |
-| `order-placed.ts` | `odoo-order-placed-subscriber` | `order.placed` | `orders.orderSync !== false` (checked inside `syncOrderToOdoo`) | Calls `executeOrderSyncToOdoo(container, { orderId, manual: false })` (`src/workflows/index.ts`) |
-| `product-updated.ts` | `odoo-product-updated-subscriber` | `product.created`, `product.updated` | `product.enableProductSync === true` and `product.direction` in `["medusa_to_odoo", "bidirectional"]` | Calls `odooService.exportProductsToOdoo(container, undefined, "event")` |
-| `inventory-updated.ts` | `odoo-inventory-updated-subscriber` | `inventory-level.updated` | `inventory.enableStock === true` and `inventory.direction` in `["medusa_to_odoo", "bidirectional"]` | Calls `odooService.exportInventoryToOdoo(container, undefined, "event")` |
-| `customer-updated.ts` | `odoo-customer-updated-subscriber` | `customer.created`, `customer.updated` | `customers.enableCustomerSync === true` and `customers.direction` in `["medusa_to_odoo", "bidirectional"]` | Calls `odooService.syncCustomers({ directionOverride: "medusa_to_odoo", trigger: "event" })` |
+| File                   | Subscriber ID                       | Events Listened To                     | Section Guard Checked                                                                                      | Triggered Action                                                                                 |
+| :--------------------- | :---------------------------------- | :------------------------------------- | :--------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------- |
+| `order-placed.ts`      | `odoo-order-placed-subscriber`      | `order.placed`                         | `orders.orderSync !== false` (checked inside `syncOrderToOdoo`)                                            | Calls `executeOrderSyncToOdoo(container, { orderId, manual: false })` (`src/workflows/index.ts`) |
+| `product-updated.ts`   | `odoo-product-updated-subscriber`   | `product.created`, `product.updated`   | `product.enableProductSync === true` and `product.direction` in `["medusa_to_odoo", "bidirectional"]`      | Calls `odooService.exportProductsToOdoo(container, undefined, "event")`                          |
+| `inventory-updated.ts` | `odoo-inventory-updated-subscriber` | `inventory-level.updated`              | `inventory.enableStock === true` and `inventory.direction` in `["medusa_to_odoo", "bidirectional"]`        | Calls `odooService.exportInventoryToOdoo(container, undefined, "event")`                         |
+| `customer-updated.ts`  | `odoo-customer-updated-subscriber`  | `customer.created`, `customer.updated` | `customers.enableCustomerSync === true` and `customers.direction` in `["medusa_to_odoo", "bidirectional"]` | Calls `odooService.syncCustomers({ directionOverride: "medusa_to_odoo", trigger: "event" })`     |
 
 ---
 
@@ -43,6 +43,7 @@ Bidirectional ERP synchronization (`direction: "bidirectional"`) can easily caus
 ## Error Handling & Dead-Letter Queue
 
 All four subscribers wrap their execution in a non-blocking `try / catch` block so that temporary Odoo downtime or network issues never block Medusa checkout (`order.placed`) or catalog mutations. Any failed sync operation is automatically logged to:
+
 - `mpo_sync_failure` (`ErpSyncFailure` dead-letter queue, visible in `/app/odoo/logs`)
 - `mpo_sync_log` (`ErpSyncLog` audit history)
 - `odooMetrics` (`odoo_open_failures_total` and `odoo_sync_runs_total{status="failed"}`)

@@ -1,30 +1,30 @@
-import { MedusaError } from "@medusajs/framework/utils";
+import { MedusaError } from "@medusajs/framework/utils"
 
-import type { BarcodeOpsContext } from "./context";
+import type { BarcodeOpsContext } from "./context"
 import type {
   BarcodeSymbology,
   LabelPresetId,
   LabelPrintItem,
   LabelPrintOutput,
   LabelTemplateSpec,
-} from "../types";
+} from "../types"
 import {
   BUILTIN_LABEL_TEMPLATES,
   renderPrintableLabels,
-} from "../utils/label-printer";
+} from "../utils/label-printer"
 
 /**
  * Lists all built-in + custom label templates.
  */
 export async function listAllLabelTemplates(
-  ctx: BarcodeOpsContext,
+  ctx: BarcodeOpsContext
 ): Promise<LabelTemplateSpec[]> {
-  const builtinList = Object.values(BUILTIN_LABEL_TEMPLATES);
+  const builtinList = Object.values(BUILTIN_LABEL_TEMPLATES)
   try {
     const customRows = await ctx.svc.listBarcodeLabelTemplates(
       {},
-      { take: 100 },
-    );
+      { take: 100 }
+    )
     const customMapped: LabelTemplateSpec[] = customRows.map((row) => ({
       id: row.id,
       name: row.name,
@@ -50,10 +50,10 @@ export async function listAllLabelTemplates(
       custom_footer: row.custom_footer ?? null,
       dpi: (Number(row.dpi) === 300 ? 300 : 203) as 203 | 300,
       is_default: Boolean(row.is_default),
-    }));
-    return [...builtinList, ...customMapped];
+    }))
+    return [...builtinList, ...customMapped]
   } catch {
-    return builtinList;
+    return builtinList
   }
 }
 
@@ -63,28 +63,28 @@ export async function listAllLabelTemplates(
 export async function renderLabels(
   ctx: BarcodeOpsContext,
   input: {
-    items: LabelPrintItem[];
-    template_id?: string;
-    template_override?: Partial<LabelTemplateSpec>;
-  },
+    items: LabelPrintItem[]
+    template_id?: string
+    template_override?: Partial<LabelTemplateSpec>
+  }
 ): Promise<LabelPrintOutput> {
   if (!Array.isArray(input.items) || input.items.length === 0) {
     throw new MedusaError(
       MedusaError.Types.INVALID_DATA,
-      "At least one label item is required for printing",
-    );
+      "At least one label item is required for printing"
+    )
   }
 
-  const templates = await listAllLabelTemplates(ctx);
+  const templates = await listAllLabelTemplates(ctx)
   const baseTemplate =
     templates.find(
-      (t) => t.id === input.template_id || t.preset_id === input.template_id,
-    ) || BUILTIN_LABEL_TEMPLATES.thermal_50x25;
+      (t) => t.id === input.template_id || t.preset_id === input.template_id
+    ) || BUILTIN_LABEL_TEMPLATES.thermal_50x25
 
   const mergedTemplate: LabelTemplateSpec = {
     ...baseTemplate,
-    ...(input.template_override || {}),
-  };
+    ...input.template_override,
+  }
 
-  return renderPrintableLabels(input.items, mergedTemplate);
+  return renderPrintableLabels(input.items, mergedTemplate)
 }

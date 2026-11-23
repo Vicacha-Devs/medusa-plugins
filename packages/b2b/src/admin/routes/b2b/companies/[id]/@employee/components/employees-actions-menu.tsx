@@ -6,11 +6,16 @@ import { useTranslation } from "react-i18next"
 import { QueryEmployee } from "../../../../../../../types"
 import { useDeleteEmployee } from "../../../../../../hooks/api"
 
-export const EmployeesActionsMenu = ({ employee }: { employee: QueryEmployee }) => {
+export const EmployeesActionsMenu = ({
+  employee,
+}: {
+  employee: QueryEmployee
+}) => {
   const { t } = useTranslation()
   const prompt = usePrompt()
 
-  const { mutateAsync: deleteEmployee, isPending: isDeleting } = useDeleteEmployee(employee.company_id)
+  const { mutateAsync: deleteEmployee, isPending: isDeleting } =
+    useDeleteEmployee(employee.company_id)
 
   const handleDelete = async () => {
     const confirmed = await prompt({

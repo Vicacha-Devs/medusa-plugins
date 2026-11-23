@@ -40,7 +40,6 @@ import middlewares from "../api/middlewares"
 import { adminI18n, SUPPORTED_UI_LOCALES } from "../index"
 import { createBarcodeSdk } from "../sdk"
 
-
 class MockProvider extends BaseBarcodeProvider {
   readonly name: string
   private readonly mockData: Partial<NormalizedBarcodeProduct> | null
@@ -239,7 +238,7 @@ describe("medusa-plugin-barcode — SVG Renderer, Thermal/Sheet Labels & ZPL II"
       [
         {
           barcode: "3017620422003",
-          title: 'Organic Roast <img src=x onerror=alert(1)>',
+          title: "Organic Roast <img src=x onerror=alert(1)>",
           variant_title: "250g Bag",
           sku: "ORG-250",
           brand: "Medusa Coffee",
@@ -313,7 +312,10 @@ describe("medusa-plugin-barcode — BarcodeModuleService, HMAC Security & Workfl
     assert.equal(validateExternalImageUrl("https://192.168.1.1/router"), null)
     assert.equal(validateExternalImageUrl("https://10.0.0.1/internal"), null)
     assert.equal(validateExternalImageUrl("javascript:alert(1)"), null)
-    assert.equal(escapeHtml('<svg onload="alert(1)">'), "&lt;svg onload=&quot;alert(1)&quot;&gt;")
+    assert.equal(
+      escapeHtml('<svg onload="alert(1)">'),
+      "&lt;svg onload=&quot;alert(1)&quot;&gt;"
+    )
   })
 
   it("executes product creation, batch import, bulk variant barcode generation, and stock-take workflows with compensation", async () => {
@@ -329,7 +331,12 @@ describe("medusa-plugin-barcode — BarcodeModuleService, HMAC Security & Workfl
 
     const createdMedusaProducts: Array<Record<string, unknown>> = []
     const mockVariants: Array<Record<string, unknown>> = [
-      { id: "var_101", product_id: "prod_101", title: "Default", barcode: null },
+      {
+        id: "var_101",
+        product_id: "prod_101",
+        title: "Default",
+        barcode: null,
+      },
       { id: "var_102", product_id: "prod_102", title: "Large", barcode: null },
     ]
 
@@ -338,7 +345,9 @@ describe("medusa-plugin-barcode — BarcodeModuleService, HMAC Security & Workfl
         const created = payloads.map((p, i) => ({
           id: `medusa_prod_${createdMedusaProducts.length + i + 1}`,
           ...p,
-          variants: [{ id: `medusa_var_${createdMedusaProducts.length + i + 1}` }],
+          variants: [
+            { id: `medusa_var_${createdMedusaProducts.length + i + 1}` },
+          ],
         }))
         createdMedusaProducts.push(...created)
         return created
@@ -459,9 +468,7 @@ describe("medusa-plugin-barcode — BarcodeModuleService, HMAC Security & Workfl
     )
 
     // Verify mapToMedusaCreateProduct, mergeNormalizedProducts, middlewares & SDK export
-    const merged = mergeNormalizedProducts([
-      singleRun.result.lookup.product!,
-    ])
+    const merged = mergeNormalizedProducts([singleRun.result.lookup.product!])
     const mapped = mapToMedusaCreateProduct(merged!)
     assert.equal(mapped.variants[0]?.barcode, "3017620422003")
     assert.equal(Array.isArray(middlewares.routes), true)
@@ -482,11 +489,7 @@ describe("medusa-plugin-barcode — Admin UI Localization (10 Locales Key Parity
 
     assert.equal(locales.length, 10)
 
-
-    const flattenKeys = (
-      obj: Record<string, unknown>,
-      prefix = ""
-    ): string[] =>
+    const flattenKeys = (obj: Record<string, unknown>, prefix = ""): string[] =>
       Object.entries(obj).flatMap(([k, v]) => {
         const nextKey = prefix ? `${prefix}.${k}` : k
         if (v && typeof v === "object" && !Array.isArray(v)) {
@@ -497,7 +500,7 @@ describe("medusa-plugin-barcode — Admin UI Localization (10 Locales Key Parity
 
     const enKeys = flattenKeys(
       bundles.en.translation as unknown as Record<string, unknown>
-    ).sort()
+    ).toSorted()
     assert.ok(enKeys.length >= 120)
 
     for (const localeCode of locales) {
@@ -506,7 +509,7 @@ describe("medusa-plugin-barcode — Admin UI Localization (10 Locales Key Parity
       assert.equal(entry.barcodes, entry.translation)
       const localeKeys = flattenKeys(
         entry.translation as unknown as Record<string, unknown>
-      ).sort()
+      ).toSorted()
       assert.deepEqual(
         localeKeys,
         enKeys,
@@ -519,16 +522,13 @@ describe("medusa-plugin-barcode — Admin UI Localization (10 Locales Key Parity
     const overviewRoute = await import("../admin/routes/barcodes/page")
     const lookupRoute = await import("../admin/routes/barcodes/lookup/page")
     const tagsRoute = await import("../admin/routes/barcodes/tags/page")
-    const tagsCreateRoute = await import(
-      "../admin/routes/barcodes/tags/@create/page"
-    )
+    const tagsCreateRoute =
+      await import("../admin/routes/barcodes/tags/@create/page")
     const printRoute = await import("../admin/routes/barcodes/print/page")
-    const stockTakeRoute = await import(
-      "../admin/routes/barcodes/stock-take/page"
-    )
-    const providersRoute = await import(
-      "../admin/routes/barcodes/providers/page"
-    )
+    const stockTakeRoute =
+      await import("../admin/routes/barcodes/stock-take/page")
+    const providersRoute =
+      await import("../admin/routes/barcodes/providers/page")
     const widget = await import("../admin/widgets/product-barcode-widget")
     const components = await import("../admin/components")
 
@@ -627,7 +627,10 @@ describe("medusa-plugin-barcode — Admin UI Localization (10 Locales Key Parity
     assert.equal(mapped.height, 120)
     assert.equal(mapped.collection_id, "pcol_featured")
     assert.deepEqual(mapped.categories, [{ id: "pcat_food" }])
-    assert.deepEqual(mapped.sales_channels, [{ id: "sc_web" }, { id: "sc_pos" }])
+    assert.deepEqual(mapped.sales_channels, [
+      { id: "sc_web" },
+      { id: "sc_pos" },
+    ])
     assert.deepEqual(mapped.variants[0]?.prices, [
       { amount: 499, currency_code: "eur" },
       { amount: 549, currency_code: "usd" },
@@ -664,8 +667,10 @@ describe("medusa-plugin-barcode — Admin UI Localization (10 Locales Key Parity
         upc: null,
       },
     ]
-    const emittedEvents: Array<{ name: string; data: Record<string, unknown> }> =
-      []
+    const emittedEvents: Array<{
+      name: string
+      data: Record<string, unknown>
+    }> = []
 
     const mockProductService = {
       async createProducts(payloads: Array<Record<string, unknown>>) {
@@ -673,9 +678,7 @@ describe("medusa-plugin-barcode — Admin UI Localization (10 Locales Key Parity
           const prod = {
             id: `medusa_prod_${medusaProducts.length + i + 1}`,
             ...p,
-            variants: [
-              { id: `medusa_var_${medusaProducts.length + i + 1}` },
-            ],
+            variants: [{ id: `medusa_var_${medusaProducts.length + i + 1}` }],
           }
           return prod
         })
@@ -684,9 +687,7 @@ describe("medusa-plugin-barcode — Admin UI Localization (10 Locales Key Parity
       },
       async listProducts(filter: { id?: string[] }) {
         if (filter?.id) {
-          return medusaProducts.filter((p) =>
-            filter.id!.includes(String(p.id))
-          )
+          return medusaProducts.filter((p) => filter.id!.includes(String(p.id)))
         }
         return medusaProducts
       },
@@ -778,12 +779,10 @@ describe("medusa-plugin-barcode — Admin UI Localization (10 Locales Key Parity
     assert.equal(existingTag.length, 1)
 
     // 5. POS/Storefront variant barcode lookup routes
-    const adminVariantRoute = await import(
-      "../api/admin/variants/barcode/[code]/route"
-    )
-    const storeVariantRoute = await import(
-      "../api/store/variants/barcode/[code]/route"
-    )
+    const adminVariantRoute =
+      await import("../api/admin/variants/barcode/[code]/route")
+    const storeVariantRoute =
+      await import("../api/store/variants/barcode/[code]/route")
 
     let statusCode = 200
     let jsonPayload: Record<string, unknown> | null = null
@@ -822,9 +821,8 @@ describe("medusa-plugin-barcode — Admin UI Localization (10 Locales Key Parity
     assert.equal(statusCode, 404)
 
     // 6. Verify Migration20260522000000
-    const { Migration20260522000000 } = await import(
-      "../modules/barcode/migrations/Migration20260522000000"
-    )
+    const { Migration20260522000000 } =
+      await import("../modules/barcode/migrations/Migration20260522000000")
     const migration = new Migration20260522000000() as unknown as {
       up: () => Promise<void>
       down: () => Promise<void>
@@ -836,6 +834,3 @@ describe("medusa-plugin-barcode — Admin UI Localization (10 Locales Key Parity
     assert.equal(migration.queries.length >= 24, true)
   })
 })
-
-
-

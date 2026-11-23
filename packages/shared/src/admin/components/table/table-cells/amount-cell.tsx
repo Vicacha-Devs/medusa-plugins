@@ -1,16 +1,16 @@
-import { formatCurrency } from "@medusajs/dashboard/lib";
-import { clx } from "@medusajs/ui";
-import type { JSX } from "react";
+import { formatCurrency } from "@medusajs/dashboard/lib"
+import { clx } from "@medusajs/ui"
+import type { JSX } from "react"
 
-import { PlaceholderCell } from "./placeholder-cell";
+import { PlaceholderCell } from "./placeholder-cell"
 
 type AmountCellProps = {
-  currencyCode: string;
-  amount?: number | null;
-  originalAmount?: number | null;
-  align?: "left" | "right";
-  className?: string;
-};
+  currencyCode: string
+  amount?: number | null
+  originalAmount?: number | null
+  align?: "left" | "right"
+  className?: string
+}
 
 export const AmountCell = ({
   currencyCode,
@@ -20,13 +20,13 @@ export const AmountCell = ({
   className,
 }: AmountCellProps): JSX.Element => {
   if (typeof amount === "undefined" || amount === null || !currencyCode) {
-    return <PlaceholderCell />;
+    return <PlaceholderCell />
   }
 
-  const formatted = formatCurrency(amount, currencyCode);
-  const originalAmountPresent = typeof originalAmount === "number";
-  const originalAmountDiffers = originalAmount !== amount;
-  const shouldShowAmountDiff = originalAmountPresent && originalAmountDiffers;
+  const formatted = formatCurrency(amount, currencyCode)
+  const originalAmountPresent = typeof originalAmount === "number"
+  const originalAmountDiffers = originalAmount !== amount
+  const shouldShowAmountDiff = originalAmountPresent && originalAmountDiffers
 
   return (
     <div
@@ -53,5 +53,5 @@ export const AmountCell = ({
         </>
       )}
     </div>
-  );
-};
+  )
+}

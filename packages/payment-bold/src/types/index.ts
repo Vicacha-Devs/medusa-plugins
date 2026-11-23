@@ -1,5 +1,9 @@
 import { Logger } from "@medusajs/medusa"
-import { BOLD_ENVIRONMENT, BOLD_PAYMENT_METHOD_QR_FORMAT, BOLD_PAYMENT_METHOD_TYPE } from "./constants"
+import {
+  BOLD_ENVIRONMENT,
+  BOLD_PAYMENT_METHOD_QR_FORMAT,
+  BOLD_PAYMENT_METHOD_TYPE,
+} from "./constants"
 import { BoldApiClient } from "@payment-bold/sdk/client"
 
 // export { BOLD_PLUGIN_PROVIDERS } from "./constants"
@@ -9,8 +13,9 @@ export { EBoldPaymentProvider } from "./enums"
 // 1. Core Plugin Configuration & Utils
 // ==========================================
 
-export type TBoldEnvironment = typeof BOLD_ENVIRONMENT[number]
-export type TBoldPaymentMethodQrFormat = typeof BOLD_PAYMENT_METHOD_QR_FORMAT[number]
+export type TBoldEnvironment = (typeof BOLD_ENVIRONMENT)[number]
+export type TBoldPaymentMethodQrFormat =
+  (typeof BOLD_PAYMENT_METHOD_QR_FORMAT)[number]
 
 export interface BoldBaseOptions {
   // Payment Button Keys (used for Payment Links & Checkout Webhooks)
@@ -203,12 +208,16 @@ export interface BoldTerminalItem {
 export interface BoldTerminalsResponse {
   payload: {
     available_terminals: BoldTerminalItem[]
-  },
+  }
   errors?: any[]
 }
 
 export interface BoldWebhookPayload {
-  event: "sale.successful" | "sale.failed" | "sale.rejected" | "refund.successful"
+  event:
+    | "sale.successful"
+    | "sale.failed"
+    | "sale.rejected"
+    | "refund.successful"
   data: {
     id: string
     reference: string
@@ -223,7 +232,7 @@ export interface BoldWebhookPayload {
 // 3. Plugin Internal Payloads (camelCase)
 // ==========================================
 
-export type PaymentMethodType = typeof BOLD_PAYMENT_METHOD_TYPE[number]
+export type PaymentMethodType = (typeof BOLD_PAYMENT_METHOD_TYPE)[number]
 
 export interface BoldTerminalPayload {
   paymentCollectionId?: string
@@ -246,7 +255,7 @@ export interface BoldTerminalPayload {
 }
 
 export interface BoldPaymentMethodsResponse {
-  payload:{
+  payload: {
     payment_methods: Array<BoldPaymentMethod>
   }
 }
@@ -280,7 +289,10 @@ export interface BoldPaymentLinkPaymentMethodsMap {
   [key: string]: BoldPaymentMethodLimits
 }
 
-export type BoldPaymentLinkPaymentMethodLimits = Record<BoldPaymentLinkPaymentMethodKey, BoldPaymentMethodLimits>
+export type BoldPaymentLinkPaymentMethodLimits = Record<
+  BoldPaymentLinkPaymentMethodKey,
+  BoldPaymentMethodLimits
+>
 
 export interface BoldPaymentLinkPaymentLimitsPayload {
   payment_methods: BoldPaymentLinkPaymentMethodLimits
@@ -298,7 +310,7 @@ export interface BoldPaymentIntentPayload {
   methodType: PaymentMethodType
   description?: string
   callbackUrl?: string
-  
+
   // Nested Payer details (Optional)
   payer?: {
     personType?: BoldPersonType
@@ -503,4 +515,3 @@ export type BoldCheckoutResult =
   | { type: "button"; hash?: string; sessionId?: string }
   | { type: "qr"; qrPayload: string; sessionId: string }
   | { type: "terminal"; sessionId: string }
-  

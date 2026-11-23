@@ -31,9 +31,7 @@ export class SlackNotificationProviderService extends AbstractNotificationProvid
     const data = (notification.data || {}) as Record<string, any>
     const content = (notification.content || {}) as Record<string, any>
     const text =
-      content.text ||
-      (data.text as string) ||
-      "Medusa Store Notification"
+      content.text || (data.text as string) || "Medusa Store Notification"
     const blocks = Array.isArray(data.blocks_json)
       ? data.blocks_json
       : Array.isArray(data.blocks)

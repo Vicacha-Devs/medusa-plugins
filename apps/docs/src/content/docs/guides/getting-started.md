@@ -14,7 +14,7 @@ pnpm add @vicacha-devs/medusa-plugin-b2b @vicacha-devs/medusa-plugin-documents
 Register them in your `medusa-config.ts`:
 
 ```ts
-import { defineConfig } from "@medusajs/framework/utils";
+import { defineConfig } from "@medusajs/framework/utils"
 
 export default defineConfig({
   plugins: [
@@ -27,7 +27,7 @@ export default defineConfig({
       options: {},
     },
   ],
-});
+})
 ```
 
 Run database migrations after adding plugins that define Medusa Modules:

@@ -1,7 +1,6 @@
 import { defineRouteConfig } from "@medusajs/admin-sdk"
 import { CORE_LAYOUT_IDS } from "@medusajs/admin-shared"
 import { LayoutComposer } from "@medusajs/dashboard/components"
-import { Toaster } from "@medusajs/ui"
 import { useTranslation } from "react-i18next"
 import {
   InventorySyncSettingsSection,
@@ -10,7 +9,7 @@ import {
   ReconciliationSettingsSection,
 } from "../../../components"
 import { useOdooDashboard } from "../../../hooks/use-odoo-dashboard"
-import { RbacGuard } from "../../../components/rbac-guard";
+import { RbacGuard } from "../../../components/rbac-guard"
 
 const OdooSettingsPage = () => {
   const { i18n } = useTranslation()
@@ -105,6 +104,6 @@ const GuardedOdooSettingsPage = () => (
   <RbacGuard permission="odoo.read">
     <OdooSettingsPage />
   </RbacGuard>
-);
+)
 
-export default GuardedOdooSettingsPage;
+export default GuardedOdooSettingsPage

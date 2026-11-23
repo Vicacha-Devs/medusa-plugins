@@ -16,11 +16,40 @@ import {
 } from "../hooks/use-product-ext-studio"
 
 export const ATTRIBUTE_TYPES: AttributeValueType[] = [
-  "text", "number", "boolean", "select", "multiselect", "unit", "color", "url",
+  "text",
+  "number",
+  "boolean",
+  "select",
+  "multiselect",
+  "unit",
+  "color",
+  "url",
 ]
-export const UNIT_FAMILIES: UnitFamily[] = ["length", "mass", "volume", "area", "power"]
+export const UNIT_FAMILIES: UnitFamily[] = [
+  "length",
+  "mass",
+  "volume",
+  "area",
+  "power",
+]
 export const UNIT_CODES: UnitCode[] = [
-  "mm", "cm", "m", "in", "ft", "g", "kg", "oz", "lb", "ml", "l", "fl_oz", "cm2", "m2", "in2", "w", "kw",
+  "mm",
+  "cm",
+  "m",
+  "in",
+  "ft",
+  "g",
+  "kg",
+  "oz",
+  "lb",
+  "ml",
+  "l",
+  "fl_oz",
+  "cm2",
+  "m2",
+  "in2",
+  "w",
+  "kw",
 ]
 
 export const attributeDefinitionFormSchema = z.object({
@@ -66,7 +95,10 @@ export const AttributeCreateForm: React.FC<AttributeCreateFormProps> = ({
               <Form.Item>
                 <Form.Label>{t("attributesTab.labelField")}</Form.Label>
                 <Form.Control>
-                  <Input placeholder={t("attributesTab.labelPlaceholder")} {...field} />
+                  <Input
+                    placeholder={t("attributesTab.labelPlaceholder")}
+                    {...field}
+                  />
                 </Form.Control>
                 <Form.ErrorMessage />
               </Form.Item>
@@ -79,7 +111,10 @@ export const AttributeCreateForm: React.FC<AttributeCreateFormProps> = ({
               <Form.Item>
                 <Form.Label optional>{t("attributesTab.keyField")}</Form.Label>
                 <Form.Control>
-                  <Input placeholder={t("attributesTab.keyPlaceholder")} {...field} />
+                  <Input
+                    placeholder={t("attributesTab.keyPlaceholder")}
+                    {...field}
+                  />
                 </Form.Control>
                 <Form.ErrorMessage />
               </Form.Item>
@@ -93,10 +128,14 @@ export const AttributeCreateForm: React.FC<AttributeCreateFormProps> = ({
                 <Form.Label>{t("attributesTab.typeField")}</Form.Label>
                 <Form.Control>
                   <Select value={field.value} onValueChange={field.onChange}>
-                    <Select.Trigger><Select.Value /></Select.Trigger>
+                    <Select.Trigger>
+                      <Select.Value />
+                    </Select.Trigger>
                     <Select.Content>
                       {ATTRIBUTE_TYPES.map((opt) => (
-                        <Select.Item key={opt} value={opt}>{opt}</Select.Item>
+                        <Select.Item key={opt} value={opt}>
+                          {opt}
+                        </Select.Item>
                       ))}
                     </Select.Content>
                   </Select>
@@ -111,14 +150,25 @@ export const AttributeCreateForm: React.FC<AttributeCreateFormProps> = ({
               name="unit_family"
               render={({ field }: any) => (
                 <Form.Item>
-                  <Form.Label optional>{t("attributesTab.unitFamilyField")}</Form.Label>
+                  <Form.Label optional>
+                    {t("attributesTab.unitFamilyField")}
+                  </Form.Label>
                   <Form.Control>
-                    <Select value={field.value || "none"} onValueChange={(v) => field.onChange(v === "none" ? "" : v)}>
-                      <Select.Trigger><Select.Value /></Select.Trigger>
+                    <Select
+                      value={field.value || "none"}
+                      onValueChange={(v) =>
+                        field.onChange(v === "none" ? "" : v)
+                      }
+                    >
+                      <Select.Trigger>
+                        <Select.Value />
+                      </Select.Trigger>
                       <Select.Content>
                         <Select.Item value="none">—</Select.Item>
                         {UNIT_FAMILIES.map((uf) => (
-                          <Select.Item key={uf} value={uf}>{uf}</Select.Item>
+                          <Select.Item key={uf} value={uf}>
+                            {uf}
+                          </Select.Item>
                         ))}
                       </Select.Content>
                     </Select>
@@ -131,14 +181,25 @@ export const AttributeCreateForm: React.FC<AttributeCreateFormProps> = ({
               name="default_unit"
               render={({ field }: any) => (
                 <Form.Item>
-                  <Form.Label optional>{t("attributesTab.defaultUnitField")}</Form.Label>
+                  <Form.Label optional>
+                    {t("attributesTab.defaultUnitField")}
+                  </Form.Label>
                   <Form.Control>
-                    <Select value={field.value || "none"} onValueChange={(v) => field.onChange(v === "none" ? "" : v)}>
-                      <Select.Trigger><Select.Value /></Select.Trigger>
+                    <Select
+                      value={field.value || "none"}
+                      onValueChange={(v) =>
+                        field.onChange(v === "none" ? "" : v)
+                      }
+                    >
+                      <Select.Trigger>
+                        <Select.Value />
+                      </Select.Trigger>
                       <Select.Content>
                         <Select.Item value="none">—</Select.Item>
                         {UNIT_CODES.map((uc) => (
-                          <Select.Item key={uc} value={uc}>{uc}</Select.Item>
+                          <Select.Item key={uc} value={uc}>
+                            {uc}
+                          </Select.Item>
                         ))}
                       </Select.Content>
                     </Select>
@@ -152,9 +213,14 @@ export const AttributeCreateForm: React.FC<AttributeCreateFormProps> = ({
             name="options_csv"
             render={({ field }: any) => (
               <Form.Item>
-                <Form.Label optional>{t("attributesTab.optionsCsvField")}</Form.Label>
+                <Form.Label optional>
+                  {t("attributesTab.optionsCsvField")}
+                </Form.Label>
                 <Form.Control>
-                  <Input placeholder={t("attributesTab.optionsCsvPlaceholder")} {...field} />
+                  <Input
+                    placeholder={t("attributesTab.optionsCsvPlaceholder")}
+                    {...field}
+                  />
                 </Form.Control>
               </Form.Item>
             )}
@@ -166,8 +232,15 @@ export const AttributeCreateForm: React.FC<AttributeCreateFormProps> = ({
               render={({ field }: any) => (
                 <Form.Item>
                   <div className="flex items-center gap-x-2">
-                    <Form.Control><Switch checked={field.value} onCheckedChange={field.onChange} /></Form.Control>
-                    <Form.Label>{t("attributesTab.filterableSwitch")}</Form.Label>
+                    <Form.Control>
+                      <Switch
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                      />
+                    </Form.Control>
+                    <Form.Label>
+                      {t("attributesTab.filterableSwitch")}
+                    </Form.Label>
                   </div>
                 </Form.Item>
               )}
@@ -178,7 +251,12 @@ export const AttributeCreateForm: React.FC<AttributeCreateFormProps> = ({
               render={({ field }: any) => (
                 <Form.Item>
                   <div className="flex items-center gap-x-2">
-                    <Form.Control><Switch checked={field.value} onCheckedChange={field.onChange} /></Form.Control>
+                    <Form.Control>
+                      <Switch
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                      />
+                    </Form.Control>
                     <Form.Label>{t("attributesTab.globalSwitch")}</Form.Label>
                   </div>
                 </Form.Item>
@@ -189,9 +267,13 @@ export const AttributeCreateForm: React.FC<AttributeCreateFormProps> = ({
         <RouteDrawer.Footer>
           <div className="flex items-center justify-end gap-x-2">
             <RouteDrawer.Close asChild>
-              <Button size="small" variant="secondary">{t("header.dismiss")}</Button>
+              <Button size="small" variant="secondary">
+                {t("header.dismiss")}
+              </Button>
             </RouteDrawer.Close>
-            <Button size="small" type="submit" isLoading={loading}>{t("attributesTab.createButton")}</Button>
+            <Button size="small" type="submit" isLoading={loading}>
+              {t("attributesTab.createButton")}
+            </Button>
           </div>
         </RouteDrawer.Footer>
       </KeyboundForm>

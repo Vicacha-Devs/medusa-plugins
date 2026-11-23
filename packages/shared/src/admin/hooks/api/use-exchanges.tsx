@@ -1,4 +1,7 @@
-import { AdminExchangeListParams, AdminExchangeListResponse } from "@medusajs/framework/types"
+import {
+  AdminExchangeListParams,
+  AdminExchangeListResponse,
+} from "@medusajs/framework/types"
 import { queryKeysFactory, sdk } from "../../lib"
 import { QueryKey, useQuery, UseQueryOptions } from "@tanstack/react-query"
 import { FetchError } from "@medusajs/js-sdk"

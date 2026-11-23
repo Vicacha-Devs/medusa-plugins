@@ -6,7 +6,7 @@ import React from "react"
 import { useTranslation } from "react-i18next"
 import { DummySandboxTab } from "../../../components/mpn/sandbox-tab"
 import { useNotificationStudio } from "../../../components/mpn/use-notification-studio"
-import { RbacGuard } from "../../../components/rbac-guard";
+import { RbacGuard } from "../../../components/rbac-guard"
 
 const MpnSandboxPage: React.FC = () => {
   const { sandboxMessages, loadAllStudioData } = useNotificationStudio()
@@ -48,6 +48,6 @@ const GuardedMpnSandboxPage = () => (
   <RbacGuard permission="notifications.read">
     <MpnSandboxPage />
   </RbacGuard>
-);
+)
 
-export default GuardedMpnSandboxPage;
+export default GuardedMpnSandboxPage

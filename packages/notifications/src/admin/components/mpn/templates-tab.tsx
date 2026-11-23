@@ -65,11 +65,7 @@ export const TemplatesBuilderTab: React.FC<TemplatesBuilderTabProps> = ({
       const data = await notificationsAdminSdk.getTemplate(templateId)
       setSelectedTemplate(data.template || null)
       setSelectedBlocks(data.flat_blocks || [])
-      await handlePreviewTemplate(
-        templateId,
-        previewContextType,
-        previewLocale
-      )
+      await handlePreviewTemplate(templateId, previewContextType, previewLocale)
     } catch {
       // Ignore selection error
     }

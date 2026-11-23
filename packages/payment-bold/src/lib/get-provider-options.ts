@@ -1,23 +1,31 @@
-import { ConfigModule, MedusaContainer } from "@medusajs/framework/types";
-import { ContainerRegistrationKeys, MedusaError } from "@medusajs/framework/utils";
+import { ConfigModule, MedusaContainer } from "@medusajs/framework/types"
+import {
+  ContainerRegistrationKeys,
+  MedusaError,
+} from "@medusajs/framework/utils"
 import { BoldBaseOptions } from "@payment-bold/types"
 
-interface ModulesOptionsConfigWithBoldProvider { 
-    options: { 
-        providers?: Array<{ 
-            id: string; 
-            resolve: string; 
-            options: BoldBaseOptions;
-        }> 
-    }
+interface ModulesOptionsConfigWithBoldProvider {
+  options: {
+    providers?: Array<{
+      id: string
+      resolve: string
+      options: BoldBaseOptions
+    }>
+  }
 }
 
-export function getProviderOptionsFromContainer(container: MedusaContainer): BoldBaseOptions {
+export function getProviderOptionsFromContainer(
+  container: MedusaContainer
+): BoldBaseOptions {
   // 1. Resolve configModule from container
-  const configModule = container.resolve<ConfigModule>(ContainerRegistrationKeys.CONFIG_MODULE)
+  const configModule = container.resolve<ConfigModule>(
+    ContainerRegistrationKeys.CONFIG_MODULE
+  )
 
   // 2. Safely extract payment module options
-  const paymentModuleConfig = configModule?.modules?.payment as unknown as ModulesOptionsConfigWithBoldProvider
+  const paymentModuleConfig = configModule?.modules?.payment as unknown as
+    | ModulesOptionsConfigWithBoldProvider
     | undefined
 
   const providers = paymentModuleConfig?.options?.providers

@@ -3,6 +3,7 @@
 ## Project Overview
 
 `@vicacha-devs/medusa-payment-bold` is a Medusa v2 4-channel payment provider and Admin order operations plugin for **Bold.co** (Colombia):
+
 - **4 Payment Providers**: `bold-link` (`pp_bold-link_bold`), `bold-online` (`pp_bold-online_bold`), `bold-button` (`pp_bold-button_bold`), and `bold-terminal` (`pp_bold-terminal_bold`).
 - **Core Services**: `BoldHttpClient` (`src/services/bold-client.ts`) with SSRF-guarded base URL overrides for QA, and `BoldIntegrityService` (`src/services/integrity.ts`) for constant-time HMAC-SHA256 webhook verification and SHA-256 button integrity hashing.
 - **Admin UI & SDK**: `BoldApiClient` (`src/sdk/client.ts`), React Query hooks (`src/hooks/`), SSE status streaming (`payment-stream`), and the Order Details widget (`src/admin/widgets/bold-payment-actions/`).

@@ -36,7 +36,7 @@ export const POST = async (req: MedusaRequest, res: MedusaResponse) => {
       event_data: {
         id: input.order_id || input.entity_id,
         order_id: input.order_id,
-        ...(input.custom_data || {}),
+        ...input.custom_data,
       },
       force_send: true,
     })
@@ -78,7 +78,7 @@ export const POST = async (req: MedusaRequest, res: MedusaResponse) => {
     template_id: input.template_id,
     data: {
       ...hydrated.transformedData,
-      ...(input.custom_data || {}),
+      ...input.custom_data,
     },
     locale: input.locale,
     telegram_thread_id: input.telegram_thread_id,

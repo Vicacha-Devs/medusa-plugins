@@ -108,8 +108,7 @@ export async function GET(req: HttpRequest, res: HttpResponse): Promise<void> {
               if (regionId && String(r.id) === regionId) return true
               if (countryCode && Array.isArray(r.countries)) {
                 return (r.countries as Array<Record<string, unknown>>).some(
-                  (c) =>
-                    String(c.iso_2 || "").toUpperCase() === countryCode
+                  (c) => String(c.iso_2 || "").toUpperCase() === countryCode
                 )
               }
               return false
@@ -143,15 +142,20 @@ export async function GET(req: HttpRequest, res: HttpResponse): Promise<void> {
     if (Array.isArray(customItems)) {
       feedItems = customItems
     } else if (Array.isArray(customProducts)) {
-      feedItems = await socialService.mapMedusaProductsToFeedItems(customProducts, {
-        currencyCode,
-        countryCode,
-        regionId: resolvedRegionId,
-        salesChannelId,
-      })
+      feedItems = await socialService.mapMedusaProductsToFeedItems(
+        customProducts,
+        {
+          currencyCode,
+          countryCode,
+          regionId: resolvedRegionId,
+          salesChannelId,
+        }
+      )
     } else {
       try {
-        const productModule = req.scope?.resolve?.(Modules.PRODUCT) as unknown as
+        const productModule = req.scope?.resolve?.(
+          Modules.PRODUCT
+        ) as unknown as
           | {
               listProducts?: (
                 filters?: Record<string, unknown>,
@@ -162,15 +166,26 @@ export async function GET(req: HttpRequest, res: HttpResponse): Promise<void> {
         if (productModule && typeof productModule.listProducts === "function") {
           const products = await productModule.listProducts(
             { status: "published" },
-            { relations: ["variants", "images", "options", "categories", "type"] }
+            {
+              relations: [
+                "variants",
+                "images",
+                "options",
+                "categories",
+                "type",
+              ],
+            }
           )
           if (Array.isArray(products) && products.length > 0) {
-            feedItems = await socialService.mapMedusaProductsToFeedItems(products, {
-              currencyCode,
-              countryCode,
-              regionId: resolvedRegionId,
-              salesChannelId,
-            })
+            feedItems = await socialService.mapMedusaProductsToFeedItems(
+              products,
+              {
+                currencyCode,
+                countryCode,
+                regionId: resolvedRegionId,
+                salesChannelId,
+              }
+            )
           }
         }
       } catch {

@@ -25,10 +25,7 @@ import type {
 } from "../types"
 import { typesenseAdminSdk } from "../sdk/client"
 import { typesenseQueryKeys } from "../sdk/query-keys"
-import {
-  useTypesenseMutation,
-  useTypesenseQuery,
-} from "./use-sdk-primitives"
+import { useTypesenseMutation, useTypesenseQuery } from "./use-sdk-primitives"
 
 export function useTypesenseHealth(
   options?: TypesenseQueryHookOptions<TypesenseHealthResponse>

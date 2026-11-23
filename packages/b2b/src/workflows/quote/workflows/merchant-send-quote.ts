@@ -1,6 +1,6 @@
-import { useRemoteQueryStep } from "@medusajs/core-flows";
-import { createWorkflow } from "@medusajs/framework/workflows-sdk";
-import { updateQuotesWorkflow } from "./update-quote";
+import { useRemoteQueryStep } from "@medusajs/core-flows"
+import { createWorkflow } from "@medusajs/framework/workflows-sdk"
+import { updateQuotesWorkflow } from "./update-quote"
 
 /*
   A workflow that sends a quote to the customer. 
@@ -18,7 +18,7 @@ export const merchantSendQuoteWorkflow = createWorkflow(
       variables: { id: input.quote_id },
       list: false,
       throw_if_key_not_found: true,
-    });
+    })
 
     updateQuotesWorkflow.runAsStep({
       input: [
@@ -28,6 +28,6 @@ export const merchantSendQuoteWorkflow = createWorkflow(
           expires_at: input.expires_at,
         },
       ],
-    });
+    })
   }
-);
+)

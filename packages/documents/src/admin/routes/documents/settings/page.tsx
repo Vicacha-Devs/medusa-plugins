@@ -28,7 +28,7 @@ import {
   SettingsPreviewSection,
   SettingsRegionScopeSection,
 } from "../../../components/documents"
-import { RbacGuard } from "../../../components/rbac-guard";
+import { RbacGuard } from "../../../components/rbac-guard"
 
 const DocumentsSettingsPage: React.FC = () => {
   const { t, i18n } = useTranslation()
@@ -56,7 +56,7 @@ const DocumentsSettingsPage: React.FC = () => {
     if (settingsData) {
       form.reset({
         ...DEFAULT_SETTINGS_VALUES,
-        ...(settingsData.settings || {}),
+        ...settingsData.settings,
       })
       setIsRegionalOverride(Boolean(settingsData.is_regional_override))
     }
@@ -75,7 +75,7 @@ const DocumentsSettingsPage: React.FC = () => {
       const json = await updateSettingsMutation.mutateAsync(payload)
       form.reset({
         ...DEFAULT_SETTINGS_VALUES,
-        ...(json.settings || {}),
+        ...json.settings,
       })
       setIsRegionalOverride(Boolean(json.is_regional_override))
       toast.success(
@@ -101,10 +101,7 @@ const DocumentsSettingsPage: React.FC = () => {
   return (
     <div dir={isRtl ? "rtl" : "ltr"}>
       <Form {...form}>
-        <KeyboundForm
-          onSubmit={handleSave}
-          className="flex flex-col gap-y-4"
-        >
+        <KeyboundForm onSubmit={handleSave} className="flex flex-col gap-y-4">
           <LayoutComposer
             widgetsZonePrefix="documents.settings"
             preferredLayoutId={CORE_LAYOUT_IDS.TWO_COLUMN}
@@ -171,6 +168,6 @@ const GuardedDocumentsSettingsPage = () => (
   <RbacGuard permission="documents.read">
     <DocumentsSettingsPage />
   </RbacGuard>
-);
+)
 
-export default GuardedDocumentsSettingsPage;
+export default GuardedDocumentsSettingsPage

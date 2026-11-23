@@ -33,9 +33,7 @@ export function MedusaService(models = {}) {
       this.__stores = {}
       let counter = 1
       for (const key of Object.keys(models)) {
-        const plural = key.endsWith("y")
-          ? `${key.slice(0, -1)}ies`
-          : `${key}s`
+        const plural = key.endsWith("y") ? `${key.slice(0, -1)}ies` : `${key}s`
         this.__stores[plural] = []
 
         if (typeof this[`list${plural}`] !== "function") {
@@ -249,7 +247,7 @@ const createZodChain = (constraints = {}) => {
       createZodChain({ ...constraints, optional: true, defaultValue: defVal }),
     partial: () => createZodChain({ ...constraints, partial: true }),
     omit: (keys = {}) => {
-      const nextShape = { ...(constraints.shape ?? {}) }
+      const nextShape = { ...constraints.shape }
       for (const k of Object.keys(keys)) {
         if (keys[k]) delete nextShape[k]
       }
@@ -420,32 +418,25 @@ export const CORE_LAYOUT_IDS = {
   TWO_COLUMN: "two_column",
 }
 
-export const LayoutComposer = Object.assign(
-  (props) => props,
-  { Entry: (props) => props }
-)
+export const LayoutComposer = Object.assign((props) => props, {
+  Entry: (props) => props,
+})
 
 export const SectionRow = (props) => props
-export const RouteDrawer = Object.assign(
-  (props) => props,
-  {
-    Header: (props) => props,
-    Body: (props) => props,
-    Footer: (props) => props,
-    Close: (props) => props,
-    Form: (props) => props,
-  }
-)
-export const RouteFocusModal = Object.assign(
-  (props) => props,
-  {
-    Header: (props) => props,
-    Body: (props) => props,
-    Footer: (props) => props,
-    Close: (props) => props,
-    Form: (props) => props,
-  }
-)
+export const RouteDrawer = Object.assign((props) => props, {
+  Header: (props) => props,
+  Body: (props) => props,
+  Footer: (props) => props,
+  Close: (props) => props,
+  Form: (props) => props,
+})
+export const RouteFocusModal = Object.assign((props) => props, {
+  Header: (props) => props,
+  Body: (props) => props,
+  Footer: (props) => props,
+  Close: (props) => props,
+  Form: (props) => props,
+})
 export const Form = {
   Field: (props) => props,
   Item: (props) => props,

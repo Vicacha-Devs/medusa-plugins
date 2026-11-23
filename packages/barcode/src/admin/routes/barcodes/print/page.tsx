@@ -10,7 +10,7 @@ import {
   LabelPrintOutputSection,
 } from "../../../components"
 import { useBarcodeStudio } from "../../../hooks/use-barcode-studio"
-import { RbacGuard } from "../../../components/rbac-guard";
+import { RbacGuard } from "../../../components/rbac-guard"
 
 const BarcodePrintCenterPage = () => {
   const studio = useBarcodeStudio()
@@ -62,6 +62,6 @@ const GuardedBarcodePrintCenterPage = () => (
   <RbacGuard permission="barcodes.read">
     <BarcodePrintCenterPage />
   </RbacGuard>
-);
+)
 
-export default GuardedBarcodePrintCenterPage;
+export default GuardedBarcodePrintCenterPage

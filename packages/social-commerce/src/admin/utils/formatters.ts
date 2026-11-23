@@ -80,4 +80,3 @@ export const statusBadgeUiColor = (
   }
   return "grey"
 }
-

@@ -95,7 +95,8 @@ export class SocialCommerceSDKClient {
       method: options?.method ?? "GET",
       headers,
       credentials: "include",
-      body: options?.body !== undefined ? JSON.stringify(options.body) : undefined,
+      body:
+        options?.body !== undefined ? JSON.stringify(options.body) : undefined,
     })
 
     if (!response.ok) {
@@ -126,7 +127,9 @@ export class SocialCommerceSDKClient {
     limit?: number
     offset?: number
   }): Promise<{
-    feed: Array<SocialMediaPostRecord & { tagged_products: SocialProductTagRecord[] }>
+    feed: Array<
+      SocialMediaPostRecord & { tagged_products: SocialProductTagRecord[] }
+    >
     count: number
     limit: number
     offset: number
@@ -141,7 +144,9 @@ export class SocialCommerceSDKClient {
     featured_only?: boolean
     limit?: number
   }): Promise<{
-    stories: Array<SocialMediaPostRecord & { tagged_products: SocialProductTagRecord[] }>
+    stories: Array<
+      SocialMediaPostRecord & { tagged_products: SocialProductTagRecord[] }
+    >
     count: number
   }> {
     return this.request("/store/social/stories", {
@@ -162,7 +167,11 @@ export class SocialCommerceSDKClient {
       LiveSessionRecord & {
         products: Array<
           LiveProductRecord & {
-            stock_availability: { total: number; reserved: number; available: number }
+            stock_availability: {
+              total: number
+              reserved: number
+              available: number
+            }
           }
         >
       }
@@ -227,7 +236,10 @@ export class SocialCommerceSDKClient {
         url.searchParams.set("region_id", formatOrOptions.region_id)
       }
       if (formatOrOptions.sales_channel_id) {
-        url.searchParams.set("sales_channel_id", formatOrOptions.sales_channel_id)
+        url.searchParams.set(
+          "sales_channel_id",
+          formatOrOptions.sales_channel_id
+        )
       }
       if (formatOrOptions.token) {
         url.searchParams.set("token", formatOrOptions.token)
@@ -268,21 +280,27 @@ export class SocialCommerceSDKClient {
   async refreshAccountToken(
     accountId: string
   ): Promise<{ account: SocialAccountPublicDTO }> {
-    return this.request(`/admin/social/accounts/${encodeURIComponent(accountId)}`, {
-      method: "POST",
-      isAdmin: true,
-    })
+    return this.request(
+      `/admin/social/accounts/${encodeURIComponent(accountId)}`,
+      {
+        method: "POST",
+        isAdmin: true,
+      }
+    )
   }
 
   async disconnectAccount(
     accountId: string,
     hardDelete: boolean = false
   ): Promise<{ id: string; status: "disconnected" | "deleted" }> {
-    return this.request(`/admin/social/accounts/${encodeURIComponent(accountId)}`, {
-      method: "DELETE",
-      query: { hard: hardDelete },
-      isAdmin: true,
-    })
+    return this.request(
+      `/admin/social/accounts/${encodeURIComponent(accountId)}`,
+      {
+        method: "DELETE",
+        query: { hard: hardDelete },
+        isAdmin: true,
+      }
+    )
   }
 
   async syncMedia(input?: {
@@ -311,7 +329,9 @@ export class SocialCommerceSDKClient {
     limit?: number
     offset?: number
   }): Promise<{
-    posts: Array<SocialMediaPostRecord & { tagged_products: SocialProductTagRecord[] }>
+    posts: Array<
+      SocialMediaPostRecord & { tagged_products: SocialProductTagRecord[] }
+    >
     count: number
   }> {
     return this.request("/admin/social/posts", {
@@ -320,9 +340,9 @@ export class SocialCommerceSDKClient {
     })
   }
 
-  async createLocalStory(
-    input: CreateLocalStoryInput
-  ): Promise<{ post: SocialMediaPostRecord & { tagged_products: SocialProductTagRecord[] } }> {
+  async createLocalStory(input: CreateLocalStoryInput): Promise<{
+    post: SocialMediaPostRecord & { tagged_products: SocialProductTagRecord[] }
+  }> {
     return this.request("/admin/social/posts", {
       method: "POST",
       body: input,
@@ -341,7 +361,9 @@ export class SocialCommerceSDKClient {
     })
   }
 
-  async deleteAdminPost(postId: string): Promise<{ id: string; deleted: boolean }> {
+  async deleteAdminPost(
+    postId: string
+  ): Promise<{ id: string; deleted: boolean }> {
     return this.request(`/admin/social/posts/${encodeURIComponent(postId)}`, {
       method: "DELETE",
       isAdmin: true,
@@ -371,7 +393,11 @@ export class SocialCommerceSDKClient {
       LiveSessionRecord & {
         products: Array<
           LiveProductRecord & {
-            stock_availability: { total: number; reserved: number; available: number }
+            stock_availability: {
+              total: number
+              reserved: number
+              available: number
+            }
           }
         >
       }
@@ -453,4 +479,3 @@ export function createSocialCommerceSDK(
 ): SocialCommerceSDKClient {
   return new SocialCommerceSDKClient(config)
 }
-

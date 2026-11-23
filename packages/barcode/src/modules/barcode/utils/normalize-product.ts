@@ -51,7 +51,10 @@ export function normalizeCategory(raw: string): string {
   if (!trimmed) {
     return ""
   }
-  const cleanPrefix = trimmed.replace(/^[a-z]{2}:/i, "").replace(/-/g, " ").trim()
+  const cleanPrefix = trimmed
+    .replace(/^[a-z]{2}:/i, "")
+    .replace(/-/g, " ")
+    .trim()
   const lower = cleanPrefix.toLowerCase()
   for (const [key, canonical] of Object.entries(CATEGORY_ALIASES)) {
     if (lower.includes(key)) {
@@ -87,10 +90,20 @@ export function parseWeightGrams(raw: unknown): number | null {
       return null
     }
     const unit = (unitMatch[2] || "g").toLowerCase()
-    if (unit === "kg" || unit.startsWith("kilogram") || unit === "l" || unit.startsWith("liter")) {
+    if (
+      unit === "kg" ||
+      unit.startsWith("kilogram") ||
+      unit === "l" ||
+      unit.startsWith("liter")
+    ) {
       return Math.round(val * 1000)
     }
-    if (unit === "g" || unit.startsWith("gram") || unit === "ml" || unit.startsWith("milliliter")) {
+    if (
+      unit === "g" ||
+      unit.startsWith("gram") ||
+      unit === "ml" ||
+      unit.startsWith("milliliter")
+    ) {
       return Math.round(val)
     }
     if (unit === "cl" || unit.startsWith("centiliter")) {
@@ -271,7 +284,10 @@ export function mergeNormalizedProducts(
     for (const author of next.authors) mergedAuthors.add(author)
     for (const lbl of next.labels || []) mergedLabels.add(lbl)
 
-    if (!description || (next.description && next.description.length > description.length)) {
+    if (
+      !description ||
+      (next.description && next.description.length > description.length)
+    ) {
       description = next.description
     }
     if (!brand && next.brand) brand = next.brand
@@ -284,7 +300,8 @@ export function mergeNormalizedProducts(
     if (length === null && next.length != null) length = next.length
     if (width === null && next.width != null) width = next.width
     if (height === null && next.height != null) height = next.height
-    if (!quantityLabel && next.quantity_label) quantityLabel = next.quantity_label
+    if (!quantityLabel && next.quantity_label)
+      quantityLabel = next.quantity_label
     if (!ingredients && next.ingredients) ingredients = next.ingredients
     if (!nutrition && next.nutrition) nutrition = next.nutrition
     if (!countryOfOrigin && next.country_of_origin) {
@@ -296,8 +313,10 @@ export function mergeNormalizedProducts(
     }
     if (!isbn && next.isbn) isbn = next.isbn
     if (!publisher && next.publisher) publisher = next.publisher
-    if (!publishedDate && next.published_date) publishedDate = next.published_date
-    if (pageCount === null && next.page_count !== null) pageCount = next.page_count
+    if (!publishedDate && next.published_date)
+      publishedDate = next.published_date
+    if (pageCount === null && next.page_count !== null)
+      pageCount = next.page_count
   }
 
   return {
@@ -351,7 +370,11 @@ export function mapToMedusaCreateProduct(
     collectionId?: string
   } = {}
 ): CreateProductPayload {
-  const title = (options.overrideTitle || normalized.name || `Product ${normalized.barcode}`).trim()
+  const title = (
+    options.overrideTitle ||
+    normalized.name ||
+    `Product ${normalized.barcode}`
+  ).trim()
   const description =
     options.overrideDescription ??
     normalized.description ??
@@ -367,15 +390,16 @@ export function mapToMedusaCreateProduct(
     cleanDigits.length === 12
       ? cleanDigits
       : cleanDigits.length === 13 && cleanDigits.startsWith("0")
-      ? cleanDigits.slice(1)
-      : null
+        ? cleanDigits.slice(1)
+        : null
 
   const priceAmount =
     typeof options.overridePrice === "number"
       ? options.overridePrice
-      : typeof normalized.suggested_price === "number" && normalized.suggested_price > 0
-      ? normalized.suggested_price
-      : 0
+      : typeof normalized.suggested_price === "number" &&
+          normalized.suggested_price > 0
+        ? normalized.suggested_price
+        : 0
 
   const currencyCode = (
     options.currencyCode ||
@@ -387,7 +411,12 @@ export function mapToMedusaCreateProduct(
   const variantPrices: Array<{ amount: number; currency_code: string }> = []
   if (Array.isArray(options.prices) && options.prices.length > 0) {
     for (const p of options.prices) {
-      if (p && typeof p.amount === "number" && p.amount >= 0 && p.currency_code) {
+      if (
+        p &&
+        typeof p.amount === "number" &&
+        p.amount >= 0 &&
+        p.currency_code
+      ) {
         variantPrices.push({
           amount: p.amount,
           currency_code: p.currency_code.toLowerCase(),
@@ -493,4 +522,3 @@ export function mapToMedusaCreateProduct(
 
   return payload
 }
-

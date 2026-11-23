@@ -12,7 +12,9 @@ export async function GET(req: MedusaRequest, res: MedusaResponse) {
   const ext = await service.getByProductId(product_id)
 
   return res.status(200).json({
-    ...(ext ? { id: ext.id, created_at: ext.created_at, updated_at: ext.updated_at } : {}),
+    ...(ext
+      ? { id: ext.id, created_at: ext.created_at, updated_at: ext.updated_at }
+      : {}),
     product_id,
     videos: ext?.videos ?? [],
     tagline: ext?.tagline ?? null,

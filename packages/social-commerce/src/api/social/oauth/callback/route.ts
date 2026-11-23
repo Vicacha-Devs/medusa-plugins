@@ -108,5 +108,3 @@ export async function GET(req: HttpRequest, res: HttpResponse): Promise<void> {
 export async function POST(req: HttpRequest, res: HttpResponse): Promise<void> {
   await handleOAuthCallback(req, res, getRequestPayload(req))
 }
-
-

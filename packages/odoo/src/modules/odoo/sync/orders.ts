@@ -1,10 +1,5 @@
-import {
-  MedusaError,
-} from "@medusajs/framework/utils"
-import type {
-  OdooOrderSyncResult,
-  OdooOrderSyncSettings,
-} from "../types"
+import { MedusaError } from "@medusajs/framework/utils"
+import type { OdooOrderSyncResult, OdooOrderSyncSettings } from "../types"
 import type { OdooModuleService } from "../service"
 
 const PAID_STATUSES = new Set([
@@ -21,30 +16,33 @@ const FULFILLED_STATUSES = new Set([
   "partially_delivered",
 ])
 
-export async function syncOrderToOdoo(this: OdooModuleService, params: {
-  order: {
-    id: string
-    email: string
-    currency_code?: string
-    payment_status?: string
-    fulfillment_status?: string
-    metadata?: Record<string, unknown> | null
-    customer?: {
-      id?: string
-      first_name?: string | null
-      last_name?: string | null
-      email?: string | null
-      phone?: string | null
-    } | null
-    items: Array<{
-      title: string
-      quantity: number
-      unit_price: number
-      variant_sku?: string | null
-    }>
+export async function syncOrderToOdoo(
+  this: OdooModuleService,
+  params: {
+    order: {
+      id: string
+      email: string
+      currency_code?: string
+      payment_status?: string
+      fulfillment_status?: string
+      metadata?: Record<string, unknown> | null
+      customer?: {
+        id?: string
+        first_name?: string | null
+        last_name?: string | null
+        email?: string | null
+        phone?: string | null
+      } | null
+      items: Array<{
+        title: string
+        quantity: number
+        unit_price: number
+        variant_sku?: string | null
+      }>
+    }
+    manual?: boolean
   }
-  manual?: boolean
-}): Promise<OdooOrderSyncResult> {
+): Promise<OdooOrderSyncResult> {
   const started = Date.now()
   const settings =
     await this.getSectionSettings<OdooOrderSyncSettings>("orders")

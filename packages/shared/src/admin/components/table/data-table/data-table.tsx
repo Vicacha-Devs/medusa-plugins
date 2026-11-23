@@ -1,31 +1,30 @@
-import { clx } from "@medusajs/ui";
-import type { RowData } from "@tanstack/react-table";
-import { type JSX, memo } from "react";
-import { NoRecords, NoResultsProps } from "../";
-import { TableSkeleton } from "../../skeleton";
-import { DataTableQuery, DataTableQueryProps } from "./data-table-query";
-import { DataTableRoot, DataTableRootProps } from "./data-table-root";
+import { clx } from "@medusajs/ui"
+import type { RowData } from "@tanstack/react-table"
+import { type JSX, memo } from "react"
+import { NoRecords, NoResultsProps } from "../"
+import { TableSkeleton } from "../../skeleton"
+import { DataTableQuery, DataTableQueryProps } from "./data-table-query"
+import { DataTableRoot, DataTableRootProps } from "./data-table-root"
 
 interface DataTableProps<TData extends RowData>
-  extends Omit<DataTableRootProps<TData>, "noResults">,
-    DataTableQueryProps {
-  isLoading?: boolean;
-  pageSize: number;
-  queryObject?: Record<string, any>;
-  noRecords?: Pick<NoResultsProps, "title" | "message">;
+  extends Omit<DataTableRootProps<TData>, "noResults">, DataTableQueryProps {
+  isLoading?: boolean
+  pageSize: number
+  queryObject?: Record<string, any>
+  noRecords?: Pick<NoResultsProps, "title" | "message">
 }
 
 // Maybe we should use the memoized version of DataTableRoot
 // const MemoizedDataTableRoot = memo(DataTableRoot) as typeof DataTableRoot
-const MemoizedDataTableQuery = memo(DataTableQuery);
+const MemoizedDataTableQuery = memo(DataTableQuery)
 
 /**
- * 
+ *
  * @param
- * @returns 
+ * @returns
  * @deprecated new Medusa implementation is different. No new support since we will prefer to use ConfigurableDataTable instead.
  */
-export const DataTable = <TData extends RowData,>({
+export const DataTable = <TData extends RowData>({
   table,
   columns,
   pagination,
@@ -53,13 +52,13 @@ export const DataTable = <TData extends RowData,>({
         orderBy={!!orderBy?.length}
         pagination={!!pagination}
       />
-    );
+    )
   }
 
   const noQuery =
-    Object.values(queryObject).filter((v) => Boolean(v)).length === 0;
-  const noResults = !isLoading && count === 0 && !noQuery;
-  const noRecords = !isLoading && count === 0 && noQuery;
+    Object.values(queryObject).filter((v) => Boolean(v)).length === 0
+  const noResults = !isLoading && count === 0 && !noQuery
+  const noRecords = !isLoading && count === 0 && noQuery
 
   if (noRecords) {
     return (
@@ -69,7 +68,7 @@ export const DataTable = <TData extends RowData,>({
         })}
         {...noRecordsProps}
       />
-    );
+    )
   }
 
   return (
@@ -96,5 +95,5 @@ export const DataTable = <TData extends RowData,>({
         layout={layout}
       />
     </div>
-  );
-};
+  )
+}

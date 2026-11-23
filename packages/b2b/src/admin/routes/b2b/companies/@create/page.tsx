@@ -3,9 +3,12 @@ import { RouteFocusModal, useRouteModal } from "@medusajs/dashboard/components"
 import { useTranslation } from "react-i18next"
 
 import { useCreateCompany } from "../../../../hooks/api"
-import { CompanyCreateForm, CompanyCreateFormValues } from "../components/company-create-form"
+import {
+  CompanyCreateForm,
+  CompanyCreateFormValues,
+} from "../components/company-create-form"
 import { ESpendingLimitResetFrequency } from "../../../../../types"
-import { RbacGuard } from "@vicacha-devs/medusa-shared-admin/admin";
+import { RbacGuard } from "@vicacha-devs/medusa-shared-admin/admin"
 
 const CreateContent = () => {
   const { t } = useTranslation()
@@ -62,6 +65,6 @@ const GuardedCompanyCreate = () => (
   <RbacGuard permission="b2b.write">
     <CompanyCreate />
   </RbacGuard>
-);
+)
 
-export default GuardedCompanyCreate;
+export default GuardedCompanyCreate

@@ -1,26 +1,26 @@
 /* Entity: Approval Settings */
 
 export type ModuleApprovalSettings = {
-  id: string;
-  company_id: string;
-  requires_admin_approval: boolean;
-  requires_sales_manager_approval: boolean;
-  created_at: string;
-  updated_at: string;
-  deleted_at: string | null;
-};
+  id: string
+  company_id: string
+  requires_admin_approval: boolean
+  requires_sales_manager_approval: boolean
+  created_at: string
+  updated_at: string
+  deleted_at: string | null
+}
 
 export type ModuleCreateApprovalSettings = {
-  company_id: string;
-  requires_admin_approval: boolean;
-  requires_sales_manager_approval: boolean;
-};
+  company_id: string
+  requires_admin_approval: boolean
+  requires_sales_manager_approval: boolean
+}
 
 export type ModuleUpdateApprovalSettings = {
-  id: string;
-  requires_admin_approval?: boolean;
-  requires_sales_manager_approval?: boolean;
-};
+  id: string
+  requires_admin_approval?: boolean
+  requires_sales_manager_approval?: boolean
+}
 
 /* Entity: Approval */
 export enum ApprovalType {
@@ -35,43 +35,43 @@ export enum ApprovalStatusType {
 }
 
 export type ModuleApproval = {
-  id: string;
-  cart_id: string;
-  type: ApprovalType;
-  status: ApprovalStatusType;
-  created_by: string;
-  handled_by: string | null;
-  handled_at: string | null;
-  reason: string | null;
-};
+  id: string
+  cart_id: string
+  type: ApprovalType
+  status: ApprovalStatusType
+  created_by: string
+  handled_by: string | null
+  handled_at: string | null
+  reason: string | null
+}
 
 export type ModuleCreateApproval = {
-  cart_id: string;
-  type: ApprovalType;
-  created_by: string;
-};
+  cart_id: string
+  type: ApprovalType
+  created_by: string
+}
 
 export type ModuleUpdateApproval = {
-  id: string;
-  status: ApprovalStatusType;
-  handled_by: string;
-  handled_at?: string;
-  reason?: string | null;
-};
+  id: string
+  status: ApprovalStatusType
+  handled_by: string
+  handled_at?: string
+  reason?: string | null
+}
 
 /* Entity: Approval Status */
 export type ModuleApprovalStatus = {
-  id: string;
-  cart_id: string;
-  status: ApprovalStatusType;
-};
+  id: string
+  cart_id: string
+  status: ApprovalStatusType
+}
 
 export type ModuleCreateApprovalStatus = {
-  cart_id: string;
-  status: ApprovalStatusType;
-};
+  cart_id: string
+  status: ApprovalStatusType
+}
 
 export type ModuleUpdateApprovalStatus = {
-  id: string;
-  status: ApprovalStatusType;
-};
+  id: string
+  status: ApprovalStatusType
+}

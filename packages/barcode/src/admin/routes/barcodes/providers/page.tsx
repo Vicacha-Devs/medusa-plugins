@@ -10,7 +10,7 @@ import {
   ProvidersRegistrySection,
 } from "../../../components"
 import { useBarcodeStudio } from "../../../hooks/use-barcode-studio"
-import { RbacGuard } from "../../../components/rbac-guard";
+import { RbacGuard } from "../../../components/rbac-guard"
 
 const BarcodeProvidersPage = () => {
   const studio = useBarcodeStudio()
@@ -61,6 +61,6 @@ const GuardedBarcodeProvidersPage = () => (
   <RbacGuard permission="barcodes.read">
     <BarcodeProvidersPage />
   </RbacGuard>
-);
+)
 
-export default GuardedBarcodeProvidersPage;
+export default GuardedBarcodeProvidersPage

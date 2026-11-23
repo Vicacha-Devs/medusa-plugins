@@ -20,7 +20,9 @@ export const StatCard = ({
     <Container
       className={clx(
         "p-0",
-        onClick ? "cursor-pointer hover:bg-ui-bg-subtle-hover transition-colors" : ""
+        onClick
+          ? "cursor-pointer hover:bg-ui-bg-subtle-hover transition-colors"
+          : ""
       )}
       onClick={onClick}
     >

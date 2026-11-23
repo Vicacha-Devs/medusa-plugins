@@ -7,7 +7,6 @@ import {
   Heading,
   StatusBadge,
   toast,
-  Toaster,
 } from "@medusajs/ui"
 import { useTranslation } from "react-i18next"
 import { useOdooMappings, useTriggerOdooSync } from "../../hooks"

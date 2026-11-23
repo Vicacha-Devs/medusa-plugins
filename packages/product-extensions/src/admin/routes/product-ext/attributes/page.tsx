@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router-dom"
 import { AttributeDefinitionsTab } from "../../../components"
 import { useProductExtStudio } from "../../../hooks/use-product-ext-studio"
-import { RbacGuard } from "../../../components/rbac-guard";
+import { RbacGuard } from "../../../components/rbac-guard"
 
 const AttributesRoutePage = () => {
   const navigate = useNavigate()
@@ -57,6 +57,6 @@ const GuardedAttributesRoutePage = () => (
   <RbacGuard permission="product_extensions.read">
     <AttributesRoutePage />
   </RbacGuard>
-);
+)
 
-export default GuardedAttributesRoutePage;
+export default GuardedAttributesRoutePage

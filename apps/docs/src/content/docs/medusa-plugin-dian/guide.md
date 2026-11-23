@@ -12,7 +12,7 @@ pnpm add @vicacha-devs/medusa-plugin-dian
 ## `medusa-config.ts` Registration
 
 ```ts
-import { defineConfig } from "@medusajs/framework/utils";
+import { defineConfig } from "@medusajs/framework/utils"
 
 export default defineConfig({
   plugins: [
@@ -21,21 +21,24 @@ export default defineConfig({
       options: {},
     },
   ],
-});
+})
 ```
 
 ## Admin UI Extensions
 
 ### Admin Routes
+
 - `/app/dian/fiscal-profiles`
 - `/app/dian`
 - `/app/dian/resolutions`
 - `/app/settings/dian`
 
 ### Admin Widgets
+
 - `order-dian-widget`
 
 ### Supported Admin Locales
+
 `ar`, `de`, `en`, `es`, `fr`, `it`, `nl`, `pl`, `pt`, `tr`
 
 ## API Reference

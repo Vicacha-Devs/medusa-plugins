@@ -25,7 +25,12 @@ describe("@vicacha-devs/medusa-payment-bold — Offline Contract Suite", () => {
   })
 
   it("contains payment provider, api, workflows, sdk, and admin modules", () => {
-    for (const rel of ["src/providers", "src/api", "src/workflows", "src/admin"]) {
+    for (const rel of [
+      "src/providers",
+      "src/api",
+      "src/workflows",
+      "src/admin",
+    ]) {
       assert.ok(
         existsSync(resolve(pkgRoot, rel)),
         `Expected directory ${rel} to exist`

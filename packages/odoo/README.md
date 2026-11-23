@@ -25,20 +25,20 @@
 
 ## 1. Overview & Ecosystem Comparison
 
-| Feature / Capability | `@bambiste/medusa-odoo` | `@techmarbles/medusa-odoo-connector` | `@vicacha-devs/medusa-plugin-odoo` |
-| :--- | :---: | :---: | :---: |
-| **Medusa Version** | v2 (`^2.x`) | v2 (`^2.x`) | **v2 (`^2.21.0`)** |
-| **External SaaS Proxy Required** | No | Yes (Requires external connector proxy) | **No (100% self-hosted inside Medusa)** |
-| **Odoo Protocol Support** | JSON-RPC 2.0 only | Proxy-dependent | **Dual Protocol: JSON-RPC 2.0 (Odoo 14–18) & JSON-2 API (Odoo 19+)** |
-| **Resilience & Rate Limiting** | Basic `fetch` | Proxy-dependent | **Token-Bucket Rate Limiter, Circuit Breaker (`closed`/`open`/`half-open`) & Exponential Backoff** |
-| **Product & Variant Sync** | One-way import | Basic catalog sync | **Bidirectional (`odoo_to_medusa`, `medusa_to_odoo`, `bidirectional`) + non-destructive variant reconciliation** |
-| **Multi-Warehouse Inventory** | Single stock location | Basic stock sync | **Multi-Warehouse `stock_location` ↔ `stock.warehouse` (`lot_stock_id`), `on_hand` & `forecasted` modes** |
-| **Inventory Drift Reconciliation** | None | None | **Automated & manual drift detection (`odoo_wins`, `medusa_wins`, `manual_conflict`) + point-in-time snapshots** |
-| **Orders, Invoices & Payments** | Basic `sale.order` | Basic `sale.order` | **Idempotent `sale.order` + `account.move` invoice creation/posting (`all`, `paid`, `fulfilled`) + `account.payment.register`** |
-| **Two-Way Customer Sync** | Order partner only | Order partner only | **Two-way `res.partner` ↔ Medusa Customer sync with B2B Company/VAT & addresses** |
-| **POS Barcode Resolver & Offline Replay** | None | None | **Sub-10ms `/store/odoo/barcode` resolver (`pos`, `warehouse`, `receiving`, `stocktake`) + Offline POS transaction queue** |
-| **Inbound Webhooks & Observability** | None | Basic webhook | **Timing-safe HMAC-SHA256 `/hooks/odoo` with event deduplication + OpenMetrics/Prometheus `/admin/odoo/metrics`** |
-| **Admin UI & i18n** | Minimal page | Settings form | **5-Route Admin Control Center (`/app/odoo/*`), Order & Product Widgets, 18 modular components (`< 170` lines), 10 locales** |
+| Feature / Capability                      | `@bambiste/medusa-odoo` |  `@techmarbles/medusa-odoo-connector`   |                                               `@vicacha-devs/medusa-plugin-odoo`                                                |
+| :---------------------------------------- | :---------------------: | :-------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------: |
+| **Medusa Version**                        |       v2 (`^2.x`)       |               v2 (`^2.x`)               |                                                       **v2 (`^2.21.0`)**                                                        |
+| **External SaaS Proxy Required**          |           No            | Yes (Requires external connector proxy) |                                             **No (100% self-hosted inside Medusa)**                                             |
+| **Odoo Protocol Support**                 |    JSON-RPC 2.0 only    |             Proxy-dependent             |                              **Dual Protocol: JSON-RPC 2.0 (Odoo 14–18) & JSON-2 API (Odoo 19+)**                               |
+| **Resilience & Rate Limiting**            |      Basic `fetch`      |             Proxy-dependent             |               **Token-Bucket Rate Limiter, Circuit Breaker (`closed`/`open`/`half-open`) & Exponential Backoff**                |
+| **Product & Variant Sync**                |     One-way import      |           Basic catalog sync            |        **Bidirectional (`odoo_to_medusa`, `medusa_to_odoo`, `bidirectional`) + non-destructive variant reconciliation**         |
+| **Multi-Warehouse Inventory**             |  Single stock location  |            Basic stock sync             |            **Multi-Warehouse `stock_location` ↔ `stock.warehouse` (`lot_stock_id`), `on_hand` & `forecasted` modes**            |
+| **Inventory Drift Reconciliation**        |          None           |                  None                   |        **Automated & manual drift detection (`odoo_wins`, `medusa_wins`, `manual_conflict`) + point-in-time snapshots**         |
+| **Orders, Invoices & Payments**           |   Basic `sale.order`    |           Basic `sale.order`            | **Idempotent `sale.order` + `account.move` invoice creation/posting (`all`, `paid`, `fulfilled`) + `account.payment.register`** |
+| **Two-Way Customer Sync**                 |   Order partner only    |           Order partner only            |                        **Two-way `res.partner` ↔ Medusa Customer sync with B2B Company/VAT & addresses**                        |
+| **POS Barcode Resolver & Offline Replay** |          None           |                  None                   |   **Sub-10ms `/store/odoo/barcode` resolver (`pos`, `warehouse`, `receiving`, `stocktake`) + Offline POS transaction queue**    |
+| **Inbound Webhooks & Observability**      |          None           |              Basic webhook              |        **Timing-safe HMAC-SHA256 `/hooks/odoo` with event deduplication + OpenMetrics/Prometheus `/admin/odoo/metrics`**        |
+| **Admin UI & i18n**                       |      Minimal page       |              Settings form              |  **5-Route Admin Control Center (`/app/odoo/*`), Order & Product Widgets, 18 modular components (`< 170` lines), 10 locales**   |
 
 ---
 
@@ -203,10 +203,12 @@ npx medusa db:migrate
 ## 4. Bidirectional Sync Capabilities
 
 ### 4.1 Products & Variants (`product.template` ↔ `product` & `product.product` ↔ `variant`)
+
 - **Odoo → Medusa Import**: Fetches `product.template` and `product.product` records, maps attributes to Medusa options/variants, converts `image_1920` base64 images into data URLs or file attachments, deduplicates product handles via `slugifyHandle`, and performs **non-destructive variant reconciliation** (matching existing variants by `ErpMapping`, `sku`, or `barcode` without destroying historical IDs).
 - **Medusa → Odoo Export**: Pushes Medusa products and variants to Odoo `product.template` / `product.product`, computes SHA-256 payload checksums (`computeExternalChecksum`), and updates `mpo_erp_mapping` to prevent circular subscriber loops.
 
 ### 4.2 Multi-Warehouse Inventory & Drift Reconciliation (`stock.quant` / `stock.warehouse`)
+
 - **Location Mapping**: Maps Medusa `stock_location` IDs to Odoo `stock.warehouse` (`lot_stock_id`) records.
 - **Quantity Modes**: Supports both **On-Hand (`quantity` / `qty_available`)** and **Forecasted (`virtual_available`)** inventory quantities.
 - **Automated Drift Reconciliation**: Compares Medusa inventory levels against Odoo stock quants across all mapped variants and warehouses, recording point-in-time `mpo_inventory_snapshot` rows and resolving discrepancies using:
@@ -215,17 +217,21 @@ npx medusa db:migrate
   - `manual_conflict`: Opens an `mpo_conflict_resolution` record for human review in `/app/odoo/logs`.
 
 ### 4.3 Orders, Invoices & Payments (`sale.order`, `account.move`, `account.payment.register`)
+
 - **Order Sync**: Triggered automatically on `order.placed` or manually from the Order widget / API. Resolves or creates the customer `res.partner`, maps line items by SKU/ERP mapping, creates `sale.order` + `sale.order.line`, and optionally confirms the quotation (`action_confirm`).
 - **Invoicing & Payment Registration**: When `exportInvoice` is enabled and the order satisfies `invoiceMode` (`all`, `paid`, or `fulfilled`), creates and posts the Odoo invoice (`account.move` / `action_post`) and optionally registers payment via `account.payment.register` against the configured `paymentJournalId`.
 
 ### 4.4 Customers (`res.partner`)
+
 - **Two-Way Partner Sync**: Matches Medusa customers and Odoo `res.partner` records via `mpo_erp_mapping` and normalized email addresses, syncing names, phone numbers, street/city/zip/country addresses, and B2B company/VAT fields.
 
 ### 4.5 POS & Warehouse Barcode Resolver + Offline POS Replay
+
 - **Sub-10ms Barcode Lookup (`POST /store/odoo/barcode`)**: Resolves `barcode`, `EAN-13`, `UPC`, or `SKU` across four operational contexts (`pos`, `warehouse`, `receiving`, `stocktake`) using an in-memory TTL cache → `mpo_erp_mapping` → Medusa database → live Odoo RPC fallback, logging every scan to `mpo_barcode_scan_log`.
 - **Offline POS Transaction Queue (`mpo_offline_pos_transaction`)**: Enqueues offline POS checkouts with idempotent `external_transaction_id` deduplication and replays them into Medusa orders and Odoo `sale.order` records once connectivity is restored.
 
 ### 4.6 Inbound Webhooks (`/hooks/odoo`) & Prometheus Metrics (`/admin/odoo/metrics`)
+
 - **Inbound Webhooks**: Verifies `x-odoo-signature` / `x-webhook-signature` against the raw request body using `crypto.timingSafeEqual`, deduplicates events by `event_id` in `mpo_webhook_event`, and dispatches real-time product, stock, customer, or order updates.
 - **Prometheus Metrics**: Exposes counters and gauges (`odoo_sync_runs_total`, `odoo_sync_records_processed_total`, `odoo_sync_duration_ms_sum`, `odoo_rpc_requests_total`, `odoo_barcode_lookups_total`, `odoo_circuit_breaker_state`, `odoo_open_failures_total`, `odoo_open_conflicts_total`) in both JSON and OpenMetrics text format (`GET /admin/odoo/metrics?format=prometheus`).
 
@@ -235,18 +241,18 @@ npx medusa db:migrate
 
 All 10 DML models are defined in `src/modules/odoo/models/index.ts` and created by `src/modules/odoo/migrations/Migration20260412000000.ts`:
 
-| Model Export | Table Name | Primary Purpose & Key Columns |
-| :--- | :--- | :--- |
-| `OdooSetting` | `mpo_setting` | Key-value JSON configuration store (`key` unique index, `value` JSONB) for connection credentials and per-section settings (`product`, `inventory`, `orders`, `customers`, `reconciliation`, `webhooks`, `pos`). |
-| `ErpMapping` | `mpo_erp_mapping` | Cross-system entity link table (`entity_type`, `medusa_id`, `odoo_id`, `odoo_model`, `sync_direction`, `external_checksum`, `status`, `last_synced_at`, `metadata`). |
-| `ErpSyncLog` | `mpo_sync_log` | Execution audit log for sync runs (`entity_type`, `direction`, `trigger`, `status`, `created_count`, `updated_count`, `skipped_count`, `failed_count`, `duration_ms`, `message`, `error_details`). |
-| `ErpSyncFailure` | `mpo_sync_failure` | Dead-letter queue for failed entity sync operations (`entity_type`, `medusa_id`, `odoo_id`, `direction`, `trigger`, `payload`, `error_message`, `attempt_count`, `resolved`, `resolved_at`, `resolved_by`). |
-| `ErpInventorySnapshot` | `mpo_inventory_snapshot` | Point-in-time stock comparison records (`product_id`, `variant_id`, `sku`, `location_id`, `odoo_product_id`, `odoo_location_id`, `quantity_medusa`, `quantity_odoo`, `delta`, `reconciled`, `resolution_action`, `snapshot_at`). |
-| `ErpReconciliationLog` | `mpo_reconciliation_log` | Summary log for inventory drift reconciliation runs (`reconciliation_type`, `strategy`, `drift_threshold`, `triggered_by`, `status`, `checked_count`, `matched_count`, `drifted_count`, `fixed_count`, `conflict_count`, `error_count`, `details`). |
-| `ErpConflictResolution` | `mpo_conflict_resolution` | Manual review queue for stock or field conflicts (`entity_type`, `medusa_id`, `odoo_id`, `field_name`, `medusa_value`, `odoo_value`, `strategy`, `status`, `resolved_value`, `resolved_by`, `resolved_at`). |
-| `BarcodeScanLog` | `mpo_barcode_scan_log` | Telemetry log for POS & warehouse barcode scans (`barcode`, `context`, `variant_id`, `odoo_product_id`, `source`, `resolution_status`, `latency_ms`, `scan_timestamp`). |
+| Model Export            | Table Name                    | Primary Purpose & Key Columns                                                                                                                                                                                                                               |
+| :---------------------- | :---------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `OdooSetting`           | `mpo_setting`                 | Key-value JSON configuration store (`key` unique index, `value` JSONB) for connection credentials and per-section settings (`product`, `inventory`, `orders`, `customers`, `reconciliation`, `webhooks`, `pos`).                                            |
+| `ErpMapping`            | `mpo_erp_mapping`             | Cross-system entity link table (`entity_type`, `medusa_id`, `odoo_id`, `odoo_model`, `sync_direction`, `external_checksum`, `status`, `last_synced_at`, `metadata`).                                                                                        |
+| `ErpSyncLog`            | `mpo_sync_log`                | Execution audit log for sync runs (`entity_type`, `direction`, `trigger`, `status`, `created_count`, `updated_count`, `skipped_count`, `failed_count`, `duration_ms`, `message`, `error_details`).                                                          |
+| `ErpSyncFailure`        | `mpo_sync_failure`            | Dead-letter queue for failed entity sync operations (`entity_type`, `medusa_id`, `odoo_id`, `direction`, `trigger`, `payload`, `error_message`, `attempt_count`, `resolved`, `resolved_at`, `resolved_by`).                                                 |
+| `ErpInventorySnapshot`  | `mpo_inventory_snapshot`      | Point-in-time stock comparison records (`product_id`, `variant_id`, `sku`, `location_id`, `odoo_product_id`, `odoo_location_id`, `quantity_medusa`, `quantity_odoo`, `delta`, `reconciled`, `resolution_action`, `snapshot_at`).                            |
+| `ErpReconciliationLog`  | `mpo_reconciliation_log`      | Summary log for inventory drift reconciliation runs (`reconciliation_type`, `strategy`, `drift_threshold`, `triggered_by`, `status`, `checked_count`, `matched_count`, `drifted_count`, `fixed_count`, `conflict_count`, `error_count`, `details`).         |
+| `ErpConflictResolution` | `mpo_conflict_resolution`     | Manual review queue for stock or field conflicts (`entity_type`, `medusa_id`, `odoo_id`, `field_name`, `medusa_value`, `odoo_value`, `strategy`, `status`, `resolved_value`, `resolved_by`, `resolved_at`).                                                 |
+| `BarcodeScanLog`        | `mpo_barcode_scan_log`        | Telemetry log for POS & warehouse barcode scans (`barcode`, `context`, `variant_id`, `odoo_product_id`, `source`, `resolution_status`, `latency_ms`, `scan_timestamp`).                                                                                     |
 | `OfflinePosTransaction` | `mpo_offline_pos_transaction` | Durable queue for offline POS orders (`external_transaction_id` unique index, `customer_id`, `customer_email`, `currency`, `total_cents`, `discount_cents`, `items`, `status`, `medusa_order_id`, `odoo_order_id`, `replay_attempt_count`, `replay_error`). |
-| `OdooWebhookEvent` | `mpo_webhook_event` | Idempotency ledger for inbound Odoo webhooks (`event_id` unique index, `event_type`, `odoo_model`, `odoo_record_id`, `status`, `payload`, `error_message`, `processed_at`). |
+| `OdooWebhookEvent`      | `mpo_webhook_event`           | Idempotency ledger for inbound Odoo webhooks (`event_id` unique index, `event_type`, `odoo_model`, `odoo_record_id`, `status`, `payload`, `error_message`, `processed_at`).                                                                                 |
 
 ---
 
@@ -254,16 +260,16 @@ All 10 DML models are defined in `src/modules/odoo/models/index.ts` and created 
 
 Defined in `src/workflows/index.ts` and orchestrated with `OdooModuleService`:
 
-| Workflow / Operation | Workflow ID / Service Method | Step(s) | Trigger & Compensation Behavior |
-| :--- | :--- | :--- | :--- |
-| **`syncProductsWithOdooWorkflow`** | `sync-products-with-odoo` | `sync-products` (`syncProductsStep`) | Triggered via `POST /admin/odoo/sync/products`, `product-updated` subscriber, or scheduled cron. Records `logId` in `StepResponse` and logs per-item failures to `mpo_sync_failure`. |
-| **`syncInventoryWithOdooWorkflow`** | `sync-inventory-with-odoo` | `sync-inventory` (`syncInventoryStep`) | Triggered via `POST /admin/odoo/sync/inventory`, `inventory-updated` subscriber, or scheduled cron. Syncs multi-warehouse stock and returns `StepResponse(res, { logId })`. |
-| **`syncOrderToOdooWorkflow`** | `sync-order-to-odoo` | `sync-order` (`syncOrderStep` → `executeOrderSyncToOdoo`) | Triggered via `order.placed` subscriber or `POST /admin/odoo/sync-order/:id`. Queries order graph, creates/updates Odoo `sale.order` + optional `account.move` invoice & payment, and writes `odoo_order_id` / `odoo_invoice_id` back to order metadata. |
-| **`syncCustomersWithOdooWorkflow`** (`syncCustomerWithOdooWorkflow`) | `sync-customers-with-odoo` | `sync-customers` (`syncCustomersStep`) | Triggered via `POST /admin/odoo/sync/customers`, `customer-updated` subscriber, or scheduled cron. Syncs Medusa customers ↔ Odoo `res.partner`. |
-| **`reconcileOdooInventoryWorkflow`** (`reconcileInventoryDriftWorkflow`) | `reconcile-odoo-inventory` | `reconcile-inventory` (`reconcileInventoryStep`) | Triggered via `POST /admin/odoo/sync/reconciliation` or `odoo-reconciliation` cron job. Captures `mpo_inventory_snapshot` rows and applies `odoo_wins`, `medusa_wins`, or `manual_conflict`. |
-| **`replayOfflinePosTransactionWorkflow`** (`replayOfflinePosTransactionsWorkflow`) | `replay-offline-pos-transaction` | `replay-pos-transaction` (`replayPosTransactionStep`) | Triggered via `POST /admin/odoo/pos-transactions` (`action: "replay"`). Replays queued offline POS transactions into Medusa and Odoo idempotently. |
-| **Barcode Scan Resolution (`resolveBarcodeScanWorkflow` / `odooService.resolveBarcode`)** | `odooService.resolveBarcode` | Cache → `ErpMapping` → Medusa DB → Odoo RPC | Triggered via `POST /store/odoo/barcode`. Resolves barcode in `pos`, `warehouse`, `receiving`, or `stocktake` context and records `mpo_barcode_scan_log`. |
-| **Inbound Webhook Processing (`processOdooWebhookWorkflow` / `odooService.processWebhookEvent`)** | `odooService.processWebhookEvent` | HMAC Verify → Deduplicate `event_id` → Dispatch Sync | Triggered via `POST /hooks/odoo`. Validates HMAC-SHA256 signature, records `mpo_webhook_event`, and updates mapped entities. |
+| Workflow / Operation                                                                              | Workflow ID / Service Method      | Step(s)                                                   | Trigger & Compensation Behavior                                                                                                                                                                                                                          |
+| :------------------------------------------------------------------------------------------------ | :-------------------------------- | :-------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **`syncProductsWithOdooWorkflow`**                                                                | `sync-products-with-odoo`         | `sync-products` (`syncProductsStep`)                      | Triggered via `POST /admin/odoo/sync/products`, `product-updated` subscriber, or scheduled cron. Records `logId` in `StepResponse` and logs per-item failures to `mpo_sync_failure`.                                                                     |
+| **`syncInventoryWithOdooWorkflow`**                                                               | `sync-inventory-with-odoo`        | `sync-inventory` (`syncInventoryStep`)                    | Triggered via `POST /admin/odoo/sync/inventory`, `inventory-updated` subscriber, or scheduled cron. Syncs multi-warehouse stock and returns `StepResponse(res, { logId })`.                                                                              |
+| **`syncOrderToOdooWorkflow`**                                                                     | `sync-order-to-odoo`              | `sync-order` (`syncOrderStep` → `executeOrderSyncToOdoo`) | Triggered via `order.placed` subscriber or `POST /admin/odoo/sync-order/:id`. Queries order graph, creates/updates Odoo `sale.order` + optional `account.move` invoice & payment, and writes `odoo_order_id` / `odoo_invoice_id` back to order metadata. |
+| **`syncCustomersWithOdooWorkflow`** (`syncCustomerWithOdooWorkflow`)                              | `sync-customers-with-odoo`        | `sync-customers` (`syncCustomersStep`)                    | Triggered via `POST /admin/odoo/sync/customers`, `customer-updated` subscriber, or scheduled cron. Syncs Medusa customers ↔ Odoo `res.partner`.                                                                                                          |
+| **`reconcileOdooInventoryWorkflow`** (`reconcileInventoryDriftWorkflow`)                          | `reconcile-odoo-inventory`        | `reconcile-inventory` (`reconcileInventoryStep`)          | Triggered via `POST /admin/odoo/sync/reconciliation` or `odoo-reconciliation` cron job. Captures `mpo_inventory_snapshot` rows and applies `odoo_wins`, `medusa_wins`, or `manual_conflict`.                                                             |
+| **`replayOfflinePosTransactionWorkflow`** (`replayOfflinePosTransactionsWorkflow`)                | `replay-offline-pos-transaction`  | `replay-pos-transaction` (`replayPosTransactionStep`)     | Triggered via `POST /admin/odoo/pos-transactions` (`action: "replay"`). Replays queued offline POS transactions into Medusa and Odoo idempotently.                                                                                                       |
+| **Barcode Scan Resolution (`resolveBarcodeScanWorkflow` / `odooService.resolveBarcode`)**         | `odooService.resolveBarcode`      | Cache → `ErpMapping` → Medusa DB → Odoo RPC               | Triggered via `POST /store/odoo/barcode`. Resolves barcode in `pos`, `warehouse`, `receiving`, or `stocktake` context and records `mpo_barcode_scan_log`.                                                                                                |
+| **Inbound Webhook Processing (`processOdooWebhookWorkflow` / `odooService.processWebhookEvent`)** | `odooService.processWebhookEvent` | HMAC Verify → Deduplicate `event_id` → Dispatch Sync      | Triggered via `POST /hooks/odoo`. Validates HMAC-SHA256 signature, records `mpo_webhook_event`, and updates mapped entities.                                                                                                                             |
 
 ---
 
@@ -271,19 +277,19 @@ Defined in `src/workflows/index.ts` and orchestrated with `OdooModuleService`:
 
 ### Event Subscribers (`src/subscribers/`)
 
-| File | Subscriber ID | Events Listened To | Behavior & Loop Prevention |
-| :--- | :--- | :--- | :--- |
-| `order-placed.ts` | `odoo-order-placed-subscriber` | `order.placed` | Invokes `executeOrderSyncToOdoo(container, { orderId, manual: false })` to create the Odoo `sale.order`, invoice, and payment when `orderSync` is enabled. |
-| `product-updated.ts` | `odoo-product-updated-subscriber` | `product.created`, `product.updated` | Checks `product` section settings (`enableProductSync` and `direction` in `medusa_to_odoo` / `bidirectional`) and exports updated products using SHA-256 checksum comparison (`external_checksum`) to prevent infinite sync loops. |
-| `inventory-updated.ts` | `odoo-inventory-updated-subscriber` | `inventory-level.updated` | Checks `inventory` section settings (`enableStock` and `direction` in `medusa_to_odoo` / `bidirectional`) and exports stock deltas to Odoo warehouses. |
-| `customer-updated.ts` | `odoo-customer-updated-subscriber` | `customer.created`, `customer.updated` | Checks `customers` section settings (`enableCustomerSync` and `direction` in `medusa_to_odoo` / `bidirectional`) and syncs customer changes to `res.partner`. |
+| File                   | Subscriber ID                       | Events Listened To                     | Behavior & Loop Prevention                                                                                                                                                                                                         |
+| :--------------------- | :---------------------------------- | :------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `order-placed.ts`      | `odoo-order-placed-subscriber`      | `order.placed`                         | Invokes `executeOrderSyncToOdoo(container, { orderId, manual: false })` to create the Odoo `sale.order`, invoice, and payment when `orderSync` is enabled.                                                                         |
+| `product-updated.ts`   | `odoo-product-updated-subscriber`   | `product.created`, `product.updated`   | Checks `product` section settings (`enableProductSync` and `direction` in `medusa_to_odoo` / `bidirectional`) and exports updated products using SHA-256 checksum comparison (`external_checksum`) to prevent infinite sync loops. |
+| `inventory-updated.ts` | `odoo-inventory-updated-subscriber` | `inventory-level.updated`              | Checks `inventory` section settings (`enableStock` and `direction` in `medusa_to_odoo` / `bidirectional`) and exports stock deltas to Odoo warehouses.                                                                             |
+| `customer-updated.ts`  | `odoo-customer-updated-subscriber`  | `customer.created`, `customer.updated` | Checks `customers` section settings (`enableCustomerSync` and `direction` in `medusa_to_odoo` / `bidirectional`) and syncs customer changes to `res.partner`.                                                                      |
 
 ### Scheduled Jobs (`src/jobs/`)
 
-| File | Job Name | Cron Schedule | Description |
-| :--- | :--- | :--- | :--- |
-| `odoo-scheduled-sync.ts` | `odoo-scheduled-sync-job` | `*/15 * * * *` (configurable; e.g. `0 */6 * * *`) | Verifies connection credentials are configured, then sequentially runs `syncProducts`, `syncInventory`, and `syncCustomers` with `trigger: "scheduled"`. |
-| `odoo-reconciliation.ts` | `odoo-inventory-reconciliation-job` | `0 */6 * * *` (configurable; e.g. `0 2 * * *`) | Verifies connection credentials and `reconciliation.enableScheduledReconciliation !== false`, then executes `reconcileInventory({ triggeredBy: "scheduled" })`. |
+| File                     | Job Name                            | Cron Schedule                                     | Description                                                                                                                                                     |
+| :----------------------- | :---------------------------------- | :------------------------------------------------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `odoo-scheduled-sync.ts` | `odoo-scheduled-sync-job`           | `*/15 * * * *` (configurable; e.g. `0 */6 * * *`) | Verifies connection credentials are configured, then sequentially runs `syncProducts`, `syncInventory`, and `syncCustomers` with `trigger: "scheduled"`.        |
+| `odoo-reconciliation.ts` | `odoo-inventory-reconciliation-job` | `0 */6 * * *` (configurable; e.g. `0 2 * * *`)    | Verifies connection credentials and `reconciliation.enableScheduledReconciliation !== false`, then executes `reconcileInventory({ triggeredBy: "scheduled" })`. |
 
 ---
 
@@ -291,34 +297,34 @@ Defined in `src/workflows/index.ts` and orchestrated with `OdooModuleService`:
 
 ### Admin Endpoints (`/admin/odoo/*`)
 
-| Method | Path | Validator Schema | Description |
-| :--- | :--- | :--- | :--- |
-| `GET` | `/admin/odoo/status` | — | Returns connection status (`connected`, `disconnected`, `unconfigured`), active protocol, circuit breaker state, Odoo server version, and entity counters. |
-| `GET` | `/admin/odoo/config` | — | Returns the current connection configuration with secrets (`password`, `apiKey`, `webhookSecret`) masked via `redactOdooConfig`. |
-| `POST` | `/admin/odoo/config` | `OdooConfigSchema` | Validates URL safety (`validateSafeOdooUrl`), preserves existing secrets when omitted, and saves connection settings to `mpo_setting`. |
-| `POST` | `/admin/odoo/verify-connection` | `OdooVerifyConnectionSchema` | Tests live connectivity against Odoo and returns `uid`, `serverVersion`, `companies`, `warehouses`, `journals`, and `categories`. |
-| `GET` | `/admin/odoo/sections/:section` | — | Reads section settings for `product`, `inventory`, `orders`, `customers`, `reconciliation`, `webhooks`, or `pos`. |
-| `POST` | `/admin/odoo/sections/:section` | — | Merges and persists partial settings for the specified `:section`. |
-| `GET` | `/admin/odoo/options` | — | Fetches Medusa `stockLocations`, `collections`, and `salesChannels` alongside Odoo `companies`, `warehouses`, `journals`, and `categories`. |
-| `POST` | `/admin/odoo/sync/:entity` | `OdooTriggerSyncSchema` | Triggers manual sync for `products`, `inventory`, `customers`, `reconciliation`, or `all`. |
-| `POST` | `/admin/odoo/sync-order/:id` | — | Manually syncs a specific Medusa order ID to Odoo `sale.order` (with optional invoice and payment). |
-| `GET` | `/admin/odoo/mappings` | — | Lists `mpo_erp_mapping` rows filtered by optional `entity_type` and `medusa_id`. |
-| `POST` | `/admin/odoo/mappings` | `OdooUpsertMappingSchema` | Creates or updates an explicit `ErpMapping` link between a Medusa ID and an Odoo ID. |
-| `GET` | `/admin/odoo/logs` | — | Returns recent `mpo_sync_log` runs, `mpo_reconciliation_log` runs, and `mpo_inventory_snapshot` records. |
-| `GET` | `/admin/odoo/failures` | — | Lists dead-letter `mpo_sync_failure` records filtered by `resolved`. |
-| `POST` | `/admin/odoo/failures` | `OdooResolveFailureSchema` | Marks a dead-letter `mpo_sync_failure` record as resolved. |
-| `GET` | `/admin/odoo/conflicts` | — | Lists `mpo_conflict_resolution` records filtered by `status` (`open` / `resolved`). |
-| `POST` | `/admin/odoo/conflicts` | `OdooResolveConflictSchema` | Resolves an inventory drift conflict using `odoo_wins`, `medusa_wins`, or `custom`. |
-| `GET` | `/admin/odoo/pos-transactions` | — | Lists offline POS transactions (`mpo_offline_pos_transaction`). |
-| `POST` | `/admin/odoo/pos-transactions` | `OdooPosTransactionActionSchema` | Enqueues (`action: "enqueue"`) or replays (`action: "replay"`) an offline POS transaction. |
-| `GET` | `/admin/odoo/metrics` | — | Returns Prometheus text exposition when `?format=prometheus` is passed, or JSON metrics plus Prometheus string otherwise. |
+| Method | Path                            | Validator Schema                 | Description                                                                                                                                                |
+| :----- | :------------------------------ | :------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `GET`  | `/admin/odoo/status`            | —                                | Returns connection status (`connected`, `disconnected`, `unconfigured`), active protocol, circuit breaker state, Odoo server version, and entity counters. |
+| `GET`  | `/admin/odoo/config`            | —                                | Returns the current connection configuration with secrets (`password`, `apiKey`, `webhookSecret`) masked via `redactOdooConfig`.                           |
+| `POST` | `/admin/odoo/config`            | `OdooConfigSchema`               | Validates URL safety (`validateSafeOdooUrl`), preserves existing secrets when omitted, and saves connection settings to `mpo_setting`.                     |
+| `POST` | `/admin/odoo/verify-connection` | `OdooVerifyConnectionSchema`     | Tests live connectivity against Odoo and returns `uid`, `serverVersion`, `companies`, `warehouses`, `journals`, and `categories`.                          |
+| `GET`  | `/admin/odoo/sections/:section` | —                                | Reads section settings for `product`, `inventory`, `orders`, `customers`, `reconciliation`, `webhooks`, or `pos`.                                          |
+| `POST` | `/admin/odoo/sections/:section` | —                                | Merges and persists partial settings for the specified `:section`.                                                                                         |
+| `GET`  | `/admin/odoo/options`           | —                                | Fetches Medusa `stockLocations`, `collections`, and `salesChannels` alongside Odoo `companies`, `warehouses`, `journals`, and `categories`.                |
+| `POST` | `/admin/odoo/sync/:entity`      | `OdooTriggerSyncSchema`          | Triggers manual sync for `products`, `inventory`, `customers`, `reconciliation`, or `all`.                                                                 |
+| `POST` | `/admin/odoo/sync-order/:id`    | —                                | Manually syncs a specific Medusa order ID to Odoo `sale.order` (with optional invoice and payment).                                                        |
+| `GET`  | `/admin/odoo/mappings`          | —                                | Lists `mpo_erp_mapping` rows filtered by optional `entity_type` and `medusa_id`.                                                                           |
+| `POST` | `/admin/odoo/mappings`          | `OdooUpsertMappingSchema`        | Creates or updates an explicit `ErpMapping` link between a Medusa ID and an Odoo ID.                                                                       |
+| `GET`  | `/admin/odoo/logs`              | —                                | Returns recent `mpo_sync_log` runs, `mpo_reconciliation_log` runs, and `mpo_inventory_snapshot` records.                                                   |
+| `GET`  | `/admin/odoo/failures`          | —                                | Lists dead-letter `mpo_sync_failure` records filtered by `resolved`.                                                                                       |
+| `POST` | `/admin/odoo/failures`          | `OdooResolveFailureSchema`       | Marks a dead-letter `mpo_sync_failure` record as resolved.                                                                                                 |
+| `GET`  | `/admin/odoo/conflicts`         | —                                | Lists `mpo_conflict_resolution` records filtered by `status` (`open` / `resolved`).                                                                        |
+| `POST` | `/admin/odoo/conflicts`         | `OdooResolveConflictSchema`      | Resolves an inventory drift conflict using `odoo_wins`, `medusa_wins`, or `custom`.                                                                        |
+| `GET`  | `/admin/odoo/pos-transactions`  | —                                | Lists offline POS transactions (`mpo_offline_pos_transaction`).                                                                                            |
+| `POST` | `/admin/odoo/pos-transactions`  | `OdooPosTransactionActionSchema` | Enqueues (`action: "enqueue"`) or replays (`action: "replay"`) an offline POS transaction.                                                                 |
+| `GET`  | `/admin/odoo/metrics`           | —                                | Returns Prometheus text exposition when `?format=prometheus` is passed, or JSON metrics plus Prometheus string otherwise.                                  |
 
 ### Store & Webhook Endpoints
 
-| Method | Path | Validator Schema | Description |
-| :--- | :--- | :--- | :--- |
-| `POST` | `/store/odoo/barcode` | `OdooBarcodeLookupSchema` | Resolves a scanned barcode/EAN-13/SKU for `pos`, `warehouse`, `receiving`, or `stocktake` context. Returns `200` when found or `404` when unmatched. |
-| `POST` | `/hooks/odoo` | `OdooWebhookBodySchema` (`preserveRawBody: true`) | Verifies `x-odoo-signature` / `x-webhook-signature` via HMAC-SHA256, deduplicates `event_id`, and processes inbound Odoo events. |
+| Method | Path                  | Validator Schema                                  | Description                                                                                                                                          |
+| :----- | :-------------------- | :------------------------------------------------ | :--------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `POST` | `/store/odoo/barcode` | `OdooBarcodeLookupSchema`                         | Resolves a scanned barcode/EAN-13/SKU for `pos`, `warehouse`, `receiving`, or `stocktake` context. Returns `200` when found or `404` when unmatched. |
+| `POST` | `/hooks/odoo`         | `OdooWebhookBodySchema` (`preserveRawBody: true`) | Verifies `x-odoo-signature` / `x-webhook-signature` via HMAC-SHA256, deduplicates `event_id`, and processes inbound Odoo events.                     |
 
 ---
 
@@ -327,7 +333,11 @@ Defined in `src/workflows/index.ts` and orchestrated with `OdooModuleService`:
 ### Typed SDK Usage
 
 ```ts
-import { createOdooSdk, defaultOdooSdk, odooQueryKeys } from "@vicacha-devs/medusa-plugin-odoo/sdk"
+import {
+  createOdooSdk,
+  defaultOdooSdk,
+  odooQueryKeys,
+} from "@vicacha-devs/medusa-plugin-odoo/sdk"
 
 const odooSdk = createOdooSdk({
   baseUrl: process.env.MEDUSA_BACKEND_URL,
@@ -358,6 +368,7 @@ All hooks are exported from `@vicacha-devs/medusa-plugin-odoo/hooks` and built o
 ## 10. Decoupled Admin UI, Widgets & 10-Locale i18n
 
 ### 5 Admin Routes (`src/admin/routes/odoo/`)
+
 - **`/app/odoo` (`src/admin/routes/odoo/page.tsx`)**: Main overview dashboard featuring `OdooHeader`, 4 KPI `StatCard`s, a 2×2 `NavigationCard` grid linking to sub-routes, and `OverviewTab` manual bidirectional sync controls.
 - **`/app/odoo/connection` (`src/admin/routes/odoo/connection/page.tsx`)**: Two-column layout with `ConnectionTab` (`KeyboundForm` credentials, protocol selector, private-network toggle) in `main` and `ConnectionSecuritySideSection` in `side`.
 - **`/app/odoo/settings` (`src/admin/routes/odoo/settings/page.tsx`)**: Two-column layout with `ProductSyncSettingsSection` & `OrderSyncSettingsSection` in `main`, and `InventorySyncSettingsSection` & `ReconciliationSettingsSection` in `side`.
@@ -365,10 +376,12 @@ All hooks are exported from `@vicacha-devs/medusa-plugin-odoo/hooks` and built o
 - **`/app/odoo/barcode` (`src/admin/routes/odoo/barcode/page.tsx`)**: Two-column POS & warehouse tool pairing `BarcodeLookupSection` with `PosTransactionsSection`.
 
 ### 2 Admin Detail Widgets (`src/admin/widgets/`)
+
 - **`order-odoo-widget.tsx` (`order.details.after`)**: Displays `OrderOdooSummary` with Odoo `sale.order` and `account.move` invoice badges plus one-click manual order sync / re-verification.
 - **`product-odoo-widget.tsx` (`product.details.after`)**: Displays the linked Odoo `product.template` ID badge and one-click catalog sync button.
 
 ### 18 Modular Components (`< 170` lines each) & 10-Locale i18n
+
 - Every component under `src/admin/components/` is strictly under 170 lines and uses `@medusajs/ui` primitives (`Container`, `Heading`, `Text`, `StatusBadge`, `Badge`, `Button`, `Table`, `Input`, `Select`, `Switch`, `Skeleton`, `Toaster`).
 - Full 10-locale Admin internationalization (`en`, `es`, `fr`, `de`, `it`, `pt`, `nl`, `pl`, `tr`, and `ar` with RTL support) under `src/admin/i18n/`.
 

@@ -52,7 +52,8 @@ export async function assertCustomerOwnsOrder(
       return {
         allowed: false,
         status: 403,
-        message: "You do not have permission to access documents for this order",
+        message:
+          "You do not have permission to access documents for this order",
       }
     }
 
@@ -72,7 +73,11 @@ export default defineMiddlewares({
       matcher: "/admin/documents/webhooks/docuseal",
       bodyParser: { preserveRawBody: true },
       middlewares: [
-        (req: MedusaRequest, _res: MedusaResponse, next: MedusaNextFunction) => {
+        (
+          req: MedusaRequest,
+          _res: MedusaResponse,
+          next: MedusaNextFunction
+        ) => {
           next()
         },
       ],

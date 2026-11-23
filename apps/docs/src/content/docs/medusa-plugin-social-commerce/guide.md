@@ -12,7 +12,7 @@ pnpm add @vicacha-devs/medusa-plugin-social-commerce
 ## `medusa-config.ts` Registration
 
 ```ts
-import { defineConfig } from "@medusajs/framework/utils";
+import { defineConfig } from "@medusajs/framework/utils"
 
 export default defineConfig({
   plugins: [
@@ -21,12 +21,13 @@ export default defineConfig({
       options: {},
     },
   ],
-});
+})
 ```
 
 ## Admin UI Extensions
 
 ### Admin Routes
+
 - `/app/social-commerce/accounts`
 - `/app/social-commerce/catalog`
 - `/app/social-commerce/feed`
@@ -37,9 +38,11 @@ export default defineConfig({
 - `/app/social-commerce/stories`
 
 ### Admin Widgets
+
 - `product-social-widget`
 
 ### Supported Admin Locales
+
 `ar`, `de`, `en`, `es`, `fr`, `it`, `nl`, `pl`, `pt`, `tr`
 
 ## API Reference

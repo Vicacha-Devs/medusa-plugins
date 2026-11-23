@@ -1,10 +1,13 @@
-import { createWorkflow, WorkflowResponse } from "@medusajs/framework/workflows-sdk";
-import { ModuleUpdateCompany } from "@b2b/types";
-import { updateCompaniesStep } from "../steps";
+import {
+  createWorkflow,
+  WorkflowResponse,
+} from "@medusajs/framework/workflows-sdk"
+import { ModuleUpdateCompany } from "@b2b/types"
+import { updateCompaniesStep } from "../steps"
 
 export const updateCompaniesWorkflow = createWorkflow(
   "update-companies",
   function (input: ModuleUpdateCompany) {
-    return new WorkflowResponse(updateCompaniesStep(input));
+    return new WorkflowResponse(updateCompaniesStep(input))
   }
-);
+)

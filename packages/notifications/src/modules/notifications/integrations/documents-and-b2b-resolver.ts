@@ -47,15 +47,20 @@ export async function resolveB2BNotificationContacts(
     null
 
   let telegramChatId: string | null =
-    meta.telegram_chat_id ||
-    customerMeta.telegram_chat_id ||
-    null
+    meta.telegram_chat_id || customerMeta.telegram_chat_id || null
 
   if (container && typeof container.resolve === "function") {
-    for (const candidateKey of ["b2bModuleService", "companyModuleService", "b2b"]) {
+    for (const candidateKey of [
+      "b2bModuleService",
+      "companyModuleService",
+      "b2b",
+    ]) {
       try {
         const b2bService = container.resolve(candidateKey)
-        if (b2bService && typeof b2bService.resolveBuyerContext === "function") {
+        if (
+          b2bService &&
+          typeof b2bService.resolveBuyerContext === "function"
+        ) {
           const resolved = await b2bService.resolveBuyerContext(order.id)
           if (resolved) {
             companyName = resolved.company_name || companyName
@@ -138,7 +143,9 @@ export async function resolveOrderDocumentAttachments(
           await documentsService.getDocumentPdfBuffer(targetDoc.id)
         if (buffer && Buffer.isBuffer(buffer)) {
           const docNum =
-            document?.document_number || targetDoc.document_number || targetDoc.id
+            document?.document_number ||
+            targetDoc.document_number ||
+            targetDoc.id
           const cleanName = `${docType}-${docNum}.pdf`.replace(
             /[^a-zA-Z0-9._-]/g,
             "-"

@@ -111,7 +111,8 @@ paths:
     post:
       operationId: postAdminTypesenseCollectionsByEntitySync
       summary: Create / Trigger typesense collections by ID sync
-      description: POST /admin/typesense/collections/{entity}/sync endpoint exposed by
+      description:
+        POST /admin/typesense/collections/{entity}/sync endpoint exposed by
         @vicacha-devs/medusa-plugin-typesense.
       tags:
         - "Admin: typesense"
@@ -205,7 +206,8 @@ paths:
     delete:
       operationId: deleteAdminTypesenseCurationsByEntityById
       summary: Delete typesense curations by ID by ID
-      description: DELETE /admin/typesense/curations/{entity}/{id} endpoint exposed by
+      description:
+        DELETE /admin/typesense/curations/{entity}/{id} endpoint exposed by
         @vicacha-devs/medusa-plugin-typesense.
       tags:
         - "Admin: typesense"
@@ -238,7 +240,8 @@ paths:
     delete:
       operationId: deleteAdminTypesenseDocumentsByEntityById
       summary: Delete typesense documents by ID by ID
-      description: DELETE /admin/typesense/documents/{entity}/{id} endpoint exposed by
+      description:
+        DELETE /admin/typesense/documents/{entity}/{id} endpoint exposed by
         @vicacha-devs/medusa-plugin-typesense.
       tags:
         - "Admin: typesense"
@@ -270,7 +273,8 @@ paths:
     get:
       operationId: getAdminTypesenseDocumentsByEntityById
       summary: Get typesense documents by ID by ID
-      description: GET /admin/typesense/documents/{entity}/{id} endpoint exposed by
+      description:
+        GET /admin/typesense/documents/{entity}/{id} endpoint exposed by
         @vicacha-devs/medusa-plugin-typesense.
       tags:
         - "Admin: typesense"
@@ -302,7 +306,8 @@ paths:
     post:
       operationId: postAdminTypesenseDocumentsByEntityById
       summary: Create / Trigger typesense documents by ID by ID
-      description: POST /admin/typesense/documents/{entity}/{id} endpoint exposed by
+      description:
+        POST /admin/typesense/documents/{entity}/{id} endpoint exposed by
         @vicacha-devs/medusa-plugin-typesense.
       tags:
         - "Admin: typesense"
@@ -621,7 +626,8 @@ paths:
     delete:
       operationId: deleteAdminTypesenseSynonymsByEntityById
       summary: Delete typesense synonyms by ID by ID
-      description: DELETE /admin/typesense/synonyms/{entity}/{id} endpoint exposed by
+      description:
+        DELETE /admin/typesense/synonyms/{entity}/{id} endpoint exposed by
         @vicacha-devs/medusa-plugin-typesense.
       tags:
         - "Admin: typesense"

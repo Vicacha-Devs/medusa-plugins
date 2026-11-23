@@ -20,7 +20,7 @@ export default defineConfig({
       options: {},
     },
   ],
-});
+})
 ```
 
 ## Tam Dokümantasyon
@@ -28,4 +28,3 @@ export default defineConfig({
 - [Overview (EN)](/medusa-fulfillment-eu/)
 - [Data Models & Use Cases](/medusa-fulfillment-eu/use-cases/)
 - [Developer Guide & Admin UI](/medusa-fulfillment-eu/guide/)
-

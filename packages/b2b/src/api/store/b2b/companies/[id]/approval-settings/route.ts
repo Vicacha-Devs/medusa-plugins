@@ -1,16 +1,16 @@
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework";
-import { ContainerRegistrationKeys } from "@medusajs/framework/utils";
-import { updateApprovalSettingsWorkflow } from "@b2b/workflows/approval/workflows/update-approval-settings";
-import { storeApprovalSettingsFields } from "@b2b/api/store/b2b/companies/query-config";
-import { StoreUpdateApprovalSettingsType } from "@b2b/api/store/b2b/companies/validators";
+import { MedusaRequest, MedusaResponse } from "@medusajs/framework"
+import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
+import { updateApprovalSettingsWorkflow } from "@b2b/workflows/approval/workflows/update-approval-settings"
+import { storeApprovalSettingsFields } from "@b2b/api/store/b2b/companies/query-config"
+import { StoreUpdateApprovalSettingsType } from "@b2b/api/store/b2b/companies/validators"
 
 export const POST = async (
   req: MedusaRequest<StoreUpdateApprovalSettingsType>,
   res: MedusaResponse
 ) => {
-  const query = req.scope.resolve(ContainerRegistrationKeys.QUERY);
+  const query = req.scope.resolve(ContainerRegistrationKeys.QUERY)
 
-  const { id } = req.params;
+  const { id } = req.params
 
   const {
     data: [approval_settings],
@@ -18,16 +18,16 @@ export const POST = async (
     entity: "approval_settings",
     fields: storeApprovalSettingsFields,
     filters: { company_id: id },
-  });
+  })
 
-  const { requires_admin_approval } = req.validatedBody;
+  const { requires_admin_approval } = req.validatedBody
 
   await updateApprovalSettingsWorkflow.run({
     input: {
       id: approval_settings.id,
       requires_admin_approval,
     },
-  });
+  })
 
-  res.status(201).send();
-};
+  res.status(201).send()
+}

@@ -89,7 +89,6 @@ export class Migration20260514000000 extends Migration {
         ADD COLUMN IF NOT EXISTS "metadata" jsonb NULL;
     `)
 
-
     this.addSql(`
       CREATE UNIQUE INDEX IF NOT EXISTS "IDX_variant_extension_variant_id"
       ON "variant_extension" ("variant_id") WHERE deleted_at IS NULL;

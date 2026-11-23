@@ -317,4 +317,4 @@ footer.foot { color: var(--muted); font-size: 0.8rem; padding-block: 0.75rem 1.5
   table.matrix-table td:nth-child(7)::before { content: var(--label-7) ": "; font-weight: 600; }
   table.matrix-table td:nth-child(8)::before { content: var(--label-8) ": "; font-weight: 600; }
 }
-`;
+`

@@ -29,8 +29,7 @@ export default defineConfig({
       storeCors:
         process.env.STORE_CORS || "http://127.0.0.1:8000,http://localhost:8000",
       adminCors:
-        process.env.ADMIN_CORS ||
-        "http://127.0.0.1:9001,http://localhost:9001",
+        process.env.ADMIN_CORS || "http://127.0.0.1:9001,http://localhost:9001",
       authCors:
         process.env.AUTH_CORS || "http://127.0.0.1:9001,http://localhost:9001",
       jwtSecret: resolveSandboxSecret("JWT_SECRET"),

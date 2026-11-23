@@ -100,8 +100,7 @@ export class WhatsAppNotificationProviderService extends AbstractNotificationPro
       ).replace(/\/$/, "")
       const check = validateSafeExternalUrl(baseUrl, {
         allowLocalhost:
-          this.options_.allowLocalhost ??
-          process.env.NODE_ENV !== "production",
+          this.options_.allowLocalhost ?? process.env.NODE_ENV !== "production",
       })
       if (!check.valid) {
         throw new Error(`Unsafe OpenWA Gateway URL: ${check.reason}`)
@@ -147,7 +146,9 @@ export class WhatsAppNotificationProviderService extends AbstractNotificationPro
           ? `${params.text}\n\n${waOpts.buttons
               .slice(0, 3)
               .map((b, idx) =>
-                b.url ? `${idx + 1}. ${b.title}: ${b.url}` : `${idx + 1}. ${b.title}`
+                b.url
+                  ? `${idx + 1}. ${b.title}: ${b.url}`
+                  : `${idx + 1}. ${b.title}`
               )
               .join("\n")}`
           : params.text
@@ -174,8 +175,7 @@ export class WhatsAppNotificationProviderService extends AbstractNotificationPro
       ).replace(/\/$/, "")
       const check = validateSafeExternalUrl(baseUrl, {
         allowLocalhost:
-          this.options_.allowLocalhost ??
-          process.env.NODE_ENV !== "production",
+          this.options_.allowLocalhost ?? process.env.NODE_ENV !== "production",
       })
       if (!check.valid) {
         throw new Error(`Unsafe WAHA Gateway URL: ${check.reason}`)
@@ -232,8 +232,7 @@ export class WhatsAppNotificationProviderService extends AbstractNotificationPro
       ).replace(/\/$/, "")
       const check = validateSafeExternalUrl(baseUrl, {
         allowLocalhost:
-          this.options_.allowLocalhost ??
-          process.env.NODE_ENV !== "production",
+          this.options_.allowLocalhost ?? process.env.NODE_ENV !== "production",
       })
       if (!check.valid) {
         throw new Error(`Unsafe Evolution API URL: ${check.reason}`)
@@ -379,12 +378,14 @@ export class WhatsAppNotificationProviderService extends AbstractNotificationPro
     if (driver === "meta-cloud") {
       const configured = Boolean(
         (this.options_.accessToken || process.env.WHATSAPP_ACCESS_TOKEN) &&
-          (this.options_.phoneNumberId || process.env.WHATSAPP_PHONE_NUMBER_ID)
+        (this.options_.phoneNumberId || process.env.WHATSAPP_PHONE_NUMBER_ID)
       )
       return {
         driver: "meta-cloud",
         connected: configured,
-        session_state: configured ? "WABA_CONFIGURED" : "MISSING_ENV_CREDENTIALS",
+        session_state: configured
+          ? "WABA_CONFIGURED"
+          : "MISSING_ENV_CREDENTIALS",
         details: {
           phone_number_id:
             this.options_.phoneNumberId ||
@@ -402,9 +403,9 @@ export class WhatsAppNotificationProviderService extends AbstractNotificationPro
       driver,
       connected: Boolean(
         this.options_.gatewayUrl ||
-          process.env.OPENWA_BASE_URL ||
-          process.env.WAHA_BASE_URL ||
-          process.env.EVOLUTION_BASE_URL
+        process.env.OPENWA_BASE_URL ||
+        process.env.WAHA_BASE_URL ||
+        process.env.EVOLUTION_BASE_URL
       ),
       session_state: "GATEWAY_READY",
       qr_code: null,

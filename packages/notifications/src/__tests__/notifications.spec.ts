@@ -12,14 +12,12 @@ import {
 import { renderNotificationTemplate } from "../modules/notifications/renderer"
 import {
   applyVariableMap,
-  multiInterpolateObject,
   multiInterpolateString,
 } from "../modules/notifications/utils/interpolation"
 import {
   buildIdempotencyKey,
   calculateSmsSegments,
   ChannelRateLimiter,
-  escapeHtml,
   extractOtpCode,
   isValidE164Phone,
   isValidTelegramRecipient,
@@ -37,11 +35,7 @@ import {
   getSystemPresetById,
   SYSTEM_TEMPLATE_PRESETS,
 } from "../modules/notifications/utils/system-presets"
-import {
-  getMockContextByType,
-  transformOrderData,
-  transformShipmentData,
-} from "../modules/notifications/utils/transformers"
+import { getMockContextByType } from "../modules/notifications/utils/transformers"
 import {
   clearInMemorySandboxMessages,
   DummySandboxNotificationProviderService,
@@ -69,7 +63,10 @@ describe("medusa-plugin-notifications — Security & Phone/Channel Normalization
   })
 
   it("3. masks recipient PII and redacts secrets/tokens/base64 buffers in delivery logs", () => {
-    assert.equal(maskRecipientPii("alex.rivera@example.com"), "a***a@example.com")
+    assert.equal(
+      maskRecipientPii("alex.rivera@example.com"),
+      "a***a@example.com"
+    )
     assert.equal(maskRecipientPii("+14155552671"), "***-***-2671")
     assert.equal(maskRecipientPii("@public_channel"), "@public_channel")
 
@@ -106,7 +103,9 @@ describe("medusa-plugin-notifications — Security & Phone/Channel Normalization
     assert.equal(cleanTg.includes("<b>Order #1042</b>"), true)
     assert.equal(cleanTg.includes("&lt;script&gt;x&lt;/script&gt;"), true)
     assert.equal(
-      cleanTg.includes('<a href="https://store.example.com/orders/1">Track</a>'),
+      cleanTg.includes(
+        '<a href="https://store.example.com/orders/1">Track</a>'
+      ),
       true
     )
   })
@@ -162,7 +161,11 @@ describe("medusa-plugin-notifications — Security & Phone/Channel Normalization
 describe("medusa-plugin-notifications — Interpolation, i18n, and Multi-Channel Rendering", () => {
   it("7. resolves two-prefix ({{data.*}}, {{translations.*}}) and Go-style ({{ .var }}) placeholders recursively", () => {
     const translations = getNotificationTranslations("es")
-    const orderData = getMockContextByType("order", { storeName: "Nordic Lab" }, "es")
+    const orderData = getMockContextByType(
+      "order",
+      { storeName: "Nordic Lab" },
+      "es"
+    )
     const mapped = applyVariableMap(orderData, {
       first_name: "customer.first_name",
       first_item: "items.0.title",
@@ -182,7 +185,11 @@ describe("medusa-plugin-notifications — Interpolation, i18n, and Multi-Channel
     const preset = getSystemPresetById("system_email_order_placed")!
     assert.ok(preset)
     const blocks = buildBlockTreeFromFlatBlocks(preset.blocks)
-    const data = getMockContextByType("order", { storeName: "Keycraft Store" }, "en")
+    const data = getMockContextByType(
+      "order",
+      { storeName: "Keycraft Store" },
+      "en"
+    )
 
     const rendered = renderNotificationTemplate({
       template_id: preset.id,
@@ -205,7 +212,11 @@ describe("medusa-plugin-notifications — Interpolation, i18n, and Multi-Channel
   it("9. renders WhatsApp preset with interactive buttons and Meta WABA template parameters", () => {
     const preset = getSystemPresetById("system_whatsapp_order_placed")!
     const blocks = buildBlockTreeFromFlatBlocks(preset.blocks)
-    const data = getMockContextByType("order", { storeName: "Keycraft Store" }, "de")
+    const data = getMockContextByType(
+      "order",
+      { storeName: "Keycraft Store" },
+      "de"
+    )
 
     const rendered = renderNotificationTemplate({
       template_id: preset.id,
@@ -220,7 +231,10 @@ describe("medusa-plugin-notifications — Interpolation, i18n, and Multi-Channel
     })
 
     assert.equal(rendered.channel, "whatsapp")
-    assert.equal(rendered.whatsapp_options?.meta_template_name, "order_confirmation")
+    assert.equal(
+      rendered.whatsapp_options?.meta_template_name,
+      "order_confirmation"
+    )
     assert.equal(
       rendered.whatsapp_options?.meta_components?.[0]?.parameters?.length,
       3
@@ -248,10 +262,7 @@ describe("medusa-plugin-notifications — Interpolation, i18n, and Multi-Channel
     assert.equal(rendered.channel, "telegram")
     assert.equal(rendered.telegram_options?.parse_mode, "HTML")
     assert.equal(rendered.telegram_options?.message_thread_id, 42)
-    assert.equal(
-      rendered.telegram_options?.inline_keyboard?.[0]?.length,
-      2
-    )
+    assert.equal(rendered.telegram_options?.inline_keyboard?.[0]?.length, 2)
     assert.ok(
       rendered.text.includes("<b>🛒 Thank you for your order! (#1042)</b>")
     )
@@ -311,7 +322,8 @@ describe("medusa-plugin-notifications — Interpolation, i18n, and Multi-Channel
       locale: "en",
       translations: {
         general: {
-          richNotice: "<strong>Trusted Translation</strong> for {{data.customer}}",
+          richNotice:
+            "<strong>Trusted Translation</strong> for {{data.customer}}",
         },
       },
       data: {
@@ -351,7 +363,9 @@ describe("medusa-plugin-notifications — Interpolation, i18n, and Multi-Channel
       )
     )
     // Replacement patterns ($&, $1) and nested placeholders ({{data.secret}}) in data remain literal
-    assert.ok(rendered.text.includes("Pattern: $& $1 | Injection: {{data.secret}}"))
+    assert.ok(
+      rendered.text.includes("Pattern: $& $1 | Injection: {{data.secret}}")
+    )
     assert.equal(rendered.text.includes("LEAKED_SECRET"), false)
     assert.equal(rendered.html?.includes("LEAKED_SECRET"), false)
   })
@@ -451,9 +465,8 @@ describe("medusa-plugin-notifications — Interpolation, i18n, and Multi-Channel
   })
 
   it("12d. (v1.1.0) loads external templates from module or path, logs errors on broken paths, and supports unescaped subject override", async () => {
-    const { NotificationsModuleService } = await import(
-      "../modules/notifications/service"
-    )
+    const { NotificationsModuleService } =
+      await import("../modules/notifications/service")
     const loggedErrors: string[] = []
     const loggedInfos: string[] = []
     const mockLogger = {
@@ -533,12 +546,15 @@ describe("medusa-plugin-notifications — Interpolation, i18n, and Multi-Channel
 
 describe("medusa-plugin-notifications — Multi-Driver Providers & Sibling Integration", () => {
   it("13. builds requests for all 4 WhatsApp drivers (meta-cloud, openwa, waha, evolution) including PDF invoice attachments", () => {
-    const waProvider = new WhatsAppNotificationProviderService({}, {
-      phoneNumberId: "10987654321",
-      accessToken: "meta_tok_test",
-      gatewayUrl: "http://127.0.0.1:8082",
-      allowLocalhost: true,
-    })
+    const waProvider = new WhatsAppNotificationProviderService(
+      {},
+      {
+        phoneNumberId: "10987654321",
+        accessToken: "meta_tok_test",
+        gatewayUrl: "http://127.0.0.1:8082",
+        allowLocalhost: true,
+      }
+    )
 
     // Meta Cloud API template request
     const metaReq = waProvider.buildDriverRequest({
@@ -619,11 +635,14 @@ describe("medusa-plugin-notifications — Multi-Driver Providers & Sibling Integ
   })
 
   it("14. builds SMS requests across Twilio (SMS/MMS + 20xxx error classification), Signal House, MSG91, and SMSAPI", () => {
-    const smsProvider = new SmsNotificationProviderService({}, {
-      account_sid: "AC12345",
-      auth_token: "tw_tok",
-      messaging_service_sid: "MG998877",
-    })
+    const smsProvider = new SmsNotificationProviderService(
+      {},
+      {
+        account_sid: "AC12345",
+        auth_token: "tw_tok",
+        messaging_service_sid: "MG998877",
+      }
+    )
 
     const twilioReq = smsProvider.buildDriverRequest({
       driver: "twilio",
@@ -839,19 +858,29 @@ describe("NotificationsApiClient SDK & Query Keys", async () => {
       return new Response(
         JSON.stringify({
           success: true,
-          templates: [{ id: "system_email_order_placed", label: "Order Placed" }],
+          templates: [
+            { id: "system_email_order_placed", label: "Order Placed" },
+          ],
         }),
         { status: 200 }
       )
     }) as typeof fetch
 
-    const adminSdk = new NotificationsApiClient("/admin", "http://localhost:9000", {
-      fetchImpl: mockFetch,
-    })
-    const storeSdk = new NotificationsApiClient("/store", "http://localhost:9000", {
-      fetchImpl: mockFetch,
-      publishableApiKey: "pk_live_abc",
-    })
+    const adminSdk = new NotificationsApiClient(
+      "/admin",
+      "http://localhost:9000",
+      {
+        fetchImpl: mockFetch,
+      }
+    )
+    const storeSdk = new NotificationsApiClient(
+      "/store",
+      "http://localhost:9000",
+      {
+        fetchImpl: mockFetch,
+        publishableApiKey: "pk_live_abc",
+      }
+    )
 
     const tplRes = await adminSdk.listTemplates({ channel: "email" })
     assert.equal(tplRes.templates.length, 1)
@@ -869,4 +898,3 @@ describe("NotificationsApiClient SDK & Query Keys", async () => {
     assert.equal(requests[1].headers["x-publishable-api-key"], "pk_live_abc")
   })
 })
-

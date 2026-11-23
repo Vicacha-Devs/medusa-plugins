@@ -25,7 +25,9 @@ export function useMpnTemplates(
   const client = options?.client ?? notificationsAdminSdk
   const queryKey =
     options?.queryKey ??
-    notificationsQueryKeys.templates(params as Record<string, unknown> | undefined)
+    notificationsQueryKeys.templates(
+      params as Record<string, unknown> | undefined
+    )
 
   return useNotificationsQuery<ListMpnTemplatesResponse>(
     queryKey,

@@ -1,5 +1,5 @@
-import { HttpTypes } from "@medusajs/framework/types";
-import { ClientHeaders, FetchError } from "@medusajs/js-sdk";
+import { HttpTypes } from "@medusajs/framework/types"
+import { ClientHeaders, FetchError } from "@medusajs/js-sdk"
 import {
   QueryKey,
   useMutation,
@@ -7,19 +7,19 @@ import {
   useQuery,
   useQueryClient,
   UseQueryOptions,
-} from "@tanstack/react-query";
-import { ordersQueryKeys } from "@medusajs/dashboard/hooks";
-import { queryKeysFactory, sdk } from "@vicacha-devs/medusa-shared-admin/admin";
+} from "@tanstack/react-query"
+import { ordersQueryKeys } from "@medusajs/dashboard/hooks"
+import { queryKeysFactory, sdk } from "@vicacha-devs/medusa-shared-admin/admin"
 import {
   AdminCreateQuoteMessage,
   AdminQuoteResponse,
   QuoteFilterParams,
   StoreQuoteResponse,
   StoreQuotesResponse,
-} from "../../../types";
+} from "../../../types"
 
-export const orderPreviewQueryKey = queryKeysFactory("custom_orders");
-export const quoteQueryKey = queryKeysFactory("quote");
+export const orderPreviewQueryKey = queryKeysFactory("custom_orders")
+export const quoteQueryKey = queryKeysFactory("quote")
 
 export const useQuotes = (
   query: QuoteFilterParams,
@@ -34,16 +34,16 @@ export const useQuotes = (
     sdk.client.fetch<StoreQuotesResponse>(`/admin/b2b/quotes`, {
       query,
       headers,
-    });
+    })
 
   const { data, ...rest } = useQuery({
     ...options,
     queryFn: () => fetchQuotes(query)!,
     queryKey: quoteQueryKey.list(query),
-  });
+  })
 
-  return { ...data, ...rest };
-};
+  return { ...data, ...rest }
+}
 
 export const useQuote = (
   id: string,
@@ -63,16 +63,16 @@ export const useQuote = (
     sdk.client.fetch<StoreQuoteResponse>(`/admin/b2b/quotes/${id}`, {
       query,
       headers,
-    });
+    })
 
   const { data, ...rest } = useQuery({
     queryFn: () => fetchQuote(id, query),
     queryKey: quoteQueryKey.detail(id),
     ...options,
-  });
+  })
 
-  return { ...data, ...rest };
-};
+  return { ...data, ...rest }
+}
 
 export const useAddItemsToQuote = (
   id: string,
@@ -82,19 +82,26 @@ export const useAddItemsToQuote = (
     HttpTypes.AdminAddOrderEditItems
   >
 ) => {
-  const queryClient = useQueryClient();
+  const queryClient = useQueryClient()
 
   return useMutation({
     ...options,
     mutationFn: (payload: HttpTypes.AdminAddOrderEditItems) =>
       sdk.admin.orderEdit.addItems(id, payload),
-    onSuccess: (data: any, variables: any, onMutateResult: any, context: any) => {
-      queryClient.invalidateQueries({ queryKey: orderPreviewQueryKey.detail(id) });
-      queryClient.invalidateQueries({ queryKey: ordersQueryKeys.preview(id) });
-      options?.onSuccess?.(data, variables, onMutateResult, context);
+    onSuccess: (
+      data: any,
+      variables: any,
+      onMutateResult: any,
+      context: any
+    ) => {
+      queryClient.invalidateQueries({
+        queryKey: orderPreviewQueryKey.detail(id),
+      })
+      queryClient.invalidateQueries({ queryKey: ordersQueryKeys.preview(id) })
+      options?.onSuccess?.(data, variables, onMutateResult, context)
     },
-  });
-};
+  })
+}
 
 export const useUpdateQuoteItem = (
   id: string,
@@ -104,7 +111,7 @@ export const useUpdateQuoteItem = (
     HttpTypes.AdminUpdateOrderEditItem & { itemId: string }
   >
 ) => {
-  const queryClient = useQueryClient();
+  const queryClient = useQueryClient()
 
   return useMutation({
     ...options,
@@ -112,15 +119,22 @@ export const useUpdateQuoteItem = (
       itemId,
       ...payload
     }: HttpTypes.AdminUpdateOrderEditItem & { itemId: string }) => {
-      return sdk.admin.orderEdit.updateOriginalItem(id, itemId, payload);
+      return sdk.admin.orderEdit.updateOriginalItem(id, itemId, payload)
     },
-    onSuccess: (data: any, variables: any, onMutateResult: any, context: any) => {
-      queryClient.invalidateQueries({ queryKey: orderPreviewQueryKey.detail(id) });
-      queryClient.invalidateQueries({ queryKey: ordersQueryKeys.preview(id) });
-      options?.onSuccess?.(data, variables, onMutateResult, context);
+    onSuccess: (
+      data: any,
+      variables: any,
+      onMutateResult: any,
+      context: any
+    ) => {
+      queryClient.invalidateQueries({
+        queryKey: orderPreviewQueryKey.detail(id),
+      })
+      queryClient.invalidateQueries({ queryKey: ordersQueryKeys.preview(id) })
+      options?.onSuccess?.(data, variables, onMutateResult, context)
     },
-  });
-};
+  })
+}
 
 export const useRemoveQuoteItem = (
   id: string,
@@ -130,19 +144,26 @@ export const useRemoveQuoteItem = (
     string
   >
 ) => {
-  const queryClient = useQueryClient();
+  const queryClient = useQueryClient()
 
   return useMutation({
     ...options,
     mutationFn: (actionId: string) =>
       sdk.admin.orderEdit.removeAddedItem(id, actionId),
-    onSuccess: (data: any, variables: any, onMutateResult: any, context: any) => {
-      queryClient.invalidateQueries({ queryKey: orderPreviewQueryKey.detail(id) });
-      queryClient.invalidateQueries({ queryKey: ordersQueryKeys.preview(id) });
-      options?.onSuccess?.(data, variables, onMutateResult, context);
+    onSuccess: (
+      data: any,
+      variables: any,
+      onMutateResult: any,
+      context: any
+    ) => {
+      queryClient.invalidateQueries({
+        queryKey: orderPreviewQueryKey.detail(id),
+      })
+      queryClient.invalidateQueries({ queryKey: ordersQueryKeys.preview(id) })
+      options?.onSuccess?.(data, variables, onMutateResult, context)
     },
-  });
-};
+  })
+}
 
 export const useUpdateAddedQuoteItem = (
   id: string,
@@ -152,7 +173,7 @@ export const useUpdateAddedQuoteItem = (
     HttpTypes.AdminUpdateOrderEditItem & { actionId: string }
   >
 ) => {
-  const queryClient = useQueryClient();
+  const queryClient = useQueryClient()
 
   return useMutation({
     ...options,
@@ -160,15 +181,22 @@ export const useUpdateAddedQuoteItem = (
       actionId,
       ...payload
     }: HttpTypes.AdminUpdateOrderEditItem & { actionId: string }) => {
-      return sdk.admin.orderEdit.updateAddedItem(id, actionId, payload);
+      return sdk.admin.orderEdit.updateAddedItem(id, actionId, payload)
     },
-    onSuccess: (data: any, variables: any, onMutateResult: any, context: any) => {
-      queryClient.invalidateQueries({ queryKey: orderPreviewQueryKey.detail(id) });
-      queryClient.invalidateQueries({ queryKey: ordersQueryKeys.preview(id) });
-      options?.onSuccess?.(data, variables, onMutateResult, context);
+    onSuccess: (
+      data: any,
+      variables: any,
+      onMutateResult: any,
+      context: any
+    ) => {
+      queryClient.invalidateQueries({
+        queryKey: orderPreviewQueryKey.detail(id),
+      })
+      queryClient.invalidateQueries({ queryKey: ordersQueryKeys.preview(id) })
+      options?.onSuccess?.(data, variables, onMutateResult, context)
     },
-  });
-};
+  })
+}
 
 export const useConfirmQuote = (
   id: string,
@@ -178,26 +206,37 @@ export const useConfirmQuote = (
     void
   >
 ) => {
-  const queryClient = useQueryClient();
+  const queryClient = useQueryClient()
 
   return useMutation({
     ...options,
     mutationFn: () => sdk.admin.orderEdit.request(id),
-    onSuccess: (data: any, variables: any, onMutateResult: any, context: any) => {
-      queryClient.invalidateQueries({ queryKey: orderPreviewQueryKey.details() });
-      queryClient.invalidateQueries({ queryKey: ordersQueryKeys.details() });
-      queryClient.invalidateQueries({ queryKey: quoteQueryKey.details() });
-      queryClient.invalidateQueries({ queryKey: quoteQueryKey.lists() });
-      options?.onSuccess?.(data, variables, onMutateResult, context);
+    onSuccess: (
+      data: any,
+      variables: any,
+      onMutateResult: any,
+      context: any
+    ) => {
+      queryClient.invalidateQueries({
+        queryKey: orderPreviewQueryKey.details(),
+      })
+      queryClient.invalidateQueries({ queryKey: ordersQueryKeys.details() })
+      queryClient.invalidateQueries({ queryKey: quoteQueryKey.details() })
+      queryClient.invalidateQueries({ queryKey: quoteQueryKey.lists() })
+      options?.onSuccess?.(data, variables, onMutateResult, context)
     },
-  });
-};
+  })
+}
 
 export const useSendQuote = (
   id: string,
-  options?: UseMutationOptions<AdminQuoteResponse, FetchError, { expires_at?: string | null }>
+  options?: UseMutationOptions<
+    AdminQuoteResponse,
+    FetchError,
+    { expires_at?: string | null }
+  >
 ) => {
-  const queryClient = useQueryClient();
+  const queryClient = useQueryClient()
 
   return useMutation({
     ...options,
@@ -206,26 +245,31 @@ export const useSendQuote = (
         method: "POST",
         body,
       }),
-    onSuccess: (data: any, variables: any, onMutateResult: any, context: any) => {
+    onSuccess: (
+      data: any,
+      variables: any,
+      onMutateResult: any,
+      context: any
+    ) => {
       queryClient.invalidateQueries({
         queryKey: orderPreviewQueryKey.details(),
-      });
+      })
       queryClient.invalidateQueries({
         queryKey: quoteQueryKey.detail(id),
-      });
+      })
       queryClient.invalidateQueries({
         queryKey: quoteQueryKey.lists(),
-      });
-      options?.onSuccess?.(data, variables, onMutateResult, context);
+      })
+      options?.onSuccess?.(data, variables, onMutateResult, context)
     },
-  });
-};
+  })
+}
 
 export const useRejectQuote = (
   id: string,
   options?: UseMutationOptions<AdminQuoteResponse, FetchError, void>
 ) => {
-  const queryClient = useQueryClient();
+  const queryClient = useQueryClient()
 
   return useMutation({
     ...options,
@@ -233,20 +277,25 @@ export const useRejectQuote = (
       sdk.client.fetch<AdminQuoteResponse>(`/admin/b2b/quotes/${id}/reject`, {
         method: "POST",
       }),
-    onSuccess: (data: AdminQuoteResponse, variables: any, onMutateResult: any, context: any) => {
+    onSuccess: (
+      data: AdminQuoteResponse,
+      variables: any,
+      onMutateResult: any,
+      context: any
+    ) => {
       queryClient.invalidateQueries({
         queryKey: orderPreviewQueryKey.details(),
-      });
+      })
       queryClient.invalidateQueries({
         queryKey: quoteQueryKey.detail(id),
-      });
+      })
       queryClient.invalidateQueries({
         queryKey: quoteQueryKey.lists(),
-      });
-      options?.onSuccess?.(data, variables, onMutateResult, context);
+      })
+      options?.onSuccess?.(data, variables, onMutateResult, context)
     },
-  });
-};
+  })
+}
 
 export const useCreateQuoteMessage = (
   id: string,
@@ -256,7 +305,7 @@ export const useCreateQuoteMessage = (
     AdminCreateQuoteMessage
   >
 ) => {
-  const queryClient = useQueryClient();
+  const queryClient = useQueryClient()
 
   return useMutation({
     ...options,
@@ -265,11 +314,16 @@ export const useCreateQuoteMessage = (
         body,
         method: "POST",
       }),
-    onSuccess: (data: AdminQuoteResponse, variables: any, onMutateResult: any, context: any) => {
+    onSuccess: (
+      data: AdminQuoteResponse,
+      variables: any,
+      onMutateResult: any,
+      context: any
+    ) => {
       queryClient.invalidateQueries({
         queryKey: quoteQueryKey.details(),
-      });
-      options?.onSuccess?.(data, variables, onMutateResult, context);
+      })
+      options?.onSuccess?.(data, variables, onMutateResult, context)
     },
-  });
-};
+  })
+}

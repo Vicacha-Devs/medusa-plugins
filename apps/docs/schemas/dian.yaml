@@ -2,7 +2,8 @@ openapi: 3.1.0
 info:
   title: "@vicacha-devs/medusa-plugin-dian API"
   version: 0.0.1
-  description: "Colombian DIAN Electronic Invoicing (Facturación Electrónica DIAN
+  description:
+    "Colombian DIAN Electronic Invoicing (Facturación Electrónica DIAN
     Anexo Técnico 1.9, Resolución 000165) plugin for Medusa v2: UBL 2.1 XML,
     CUFE/CUDE SHA-384, XAdES-EPES digital signature, DIAN SOAP Web Services &
     Pluggable Providers (Siigo, Alegra, Dataico, FacturaTech), Credit/Debit

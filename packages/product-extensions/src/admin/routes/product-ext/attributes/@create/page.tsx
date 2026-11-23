@@ -7,7 +7,7 @@ import {
   type AttributeFormState,
   useProductExtStudio,
 } from "../../../../hooks/use-product-ext-studio"
-import { RbacGuard } from "../../../../components/rbac-guard";
+import { RbacGuard } from "../../../../components/rbac-guard"
 
 const CreateAttributeContent = () => {
   const { handleSuccess } = useRouteModal()
@@ -41,6 +41,6 @@ const GuardedAttributeCreateModalPage = () => (
   <RbacGuard permission="product_extensions.write">
     <AttributeCreateModalPage />
   </RbacGuard>
-);
+)
 
-export default GuardedAttributeCreateModalPage;
+export default GuardedAttributeCreateModalPage

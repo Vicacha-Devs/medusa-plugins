@@ -69,11 +69,18 @@ export function buildRenderInput(args: {
   translations: Record<string, any>
   contextData: Record<string, any>
 }): RenderTemplateInput {
-  const { template, blocks, params, options, locale, translations, contextData } =
-    args
+  const {
+    template,
+    blocks,
+    params,
+    options,
+    locale,
+    translations,
+    contextData,
+  } = args
   const mergedVariableMap = {
-    ...(template.variable_map || {}),
-    ...(params.variable_map_override || {}),
+    ...template.variable_map,
+    ...params.variable_map_override,
   }
 
   const effectiveSubject =

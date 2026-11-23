@@ -23,10 +23,13 @@ export const useBoldWidgetState = (order: AdminOrder) => {
   const [activeSessionId, setActiveSessionId] = useState<string | null>(null)
 
   // 1. Providers
-  const { providers = [], isLoading: isLoadingProviders } = usePaymentProviders()
+  const { providers = [], isLoading: isLoadingProviders } =
+    usePaymentProviders()
   const activeBoldProviders = getActiveBoldProviders(providers)
 
-  const isTerminalEnabled = activeBoldProviders.includes(EBoldPaymentProvider.TERMINAL)
+  const isTerminalEnabled = activeBoldProviders.includes(
+    EBoldPaymentProvider.TERMINAL
+  )
   const isLinkEnabled = activeBoldProviders.includes(EBoldPaymentProvider.LINK)
   const isQrEnabled = activeBoldProviders.includes(EBoldPaymentProvider.ONLINE)
 
@@ -58,11 +61,16 @@ export const useBoldWidgetState = (order: AdminOrder) => {
   })
 
   // 4. Mutations
-  const { mutateAsync: createLink, isPending: isCreatingLink } = useCreateBoldLink()
+  const { mutateAsync: createLink, isPending: isCreatingLink } =
+    useCreateBoldLink()
   const { mutateAsync: createQr, isPending: isCreatingQr } = useCreateBoldQr()
-  const { mutateAsync: pushToTerminal, isPending: isPushingToPos } = usePushToBoldTerminal()
+  const { mutateAsync: pushToTerminal, isPending: isPushingToPos } =
+    usePushToBoldTerminal()
 
-  const reference = `ORD_${order.display_id || order.id}_${Date.now()}`.slice(0, 60)
+  const reference = `ORD_${order.display_id || order.id}_${Date.now()}`.slice(
+    0,
+    60
+  )
 
   // 5. Handlers
   const handlePushToPos = async () => {
@@ -90,7 +98,9 @@ export const useBoldWidgetState = (order: AdminOrder) => {
         description: t("bold.admin.widget.status.waiting_terminal"),
       })
     } catch (err: any) {
-      toast(t("bold.admin.widget.toast.payment_rejected"), { description: err.message })
+      toast(t("bold.admin.widget.toast.payment_rejected"), {
+        description: err.message,
+      })
     }
   }
 
@@ -119,7 +129,8 @@ export const useBoldWidgetState = (order: AdminOrder) => {
           null
 
         setPaymentLink(generatedUrl)
-        if (result.paymentSession?.id) setActiveSessionId(result.paymentSession.id)
+        if (result.paymentSession?.id)
+          setActiveSessionId(result.paymentSession.id)
         toast(t("bold.admin.widget.toast.link_generated"), {
           description: t("bold.admin.widget.status.waiting_link"),
         })
@@ -130,13 +141,16 @@ export const useBoldWidgetState = (order: AdminOrder) => {
           paymentCollectionId,
         })
         setPaymentLink(result.qr_payload)
-        if (result?.paymentSession?.id) setActiveSessionId(result.paymentSession.id)
+        if (result?.paymentSession?.id)
+          setActiveSessionId(result.paymentSession.id)
         toast(t("bold.admin.widget.toast.qr_generated"), {
           description: t("bold.admin.widget.status.waiting_qr"),
         })
       }
     } catch (err: any) {
-      toast(t("bold.admin.widget.toast.payment_rejected"), { description: err.message })
+      toast(t("bold.admin.widget.toast.payment_rejected"), {
+        description: err.message,
+      })
     }
   }
 

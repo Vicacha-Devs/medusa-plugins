@@ -17,12 +17,12 @@ flowchart LR
 
 ## Medusa Modules & Data Models
 
-| Module | Data Model |
-| :--- | :--- |
-| `dian` | `dian-config` |
+| Module | Data Model                     |
+| :----- | :----------------------------- |
+| `dian` | `dian-config`                  |
 | `dian` | `dian-customer-fiscal-profile` |
-| `dian` | `dian-electronic-document` |
-| `dian` | `dian-resolution` |
+| `dian` | `dian-electronic-document`     |
+| `dian` | `dian-resolution`              |
 
 ## Key Capabilities & Integration Points
 

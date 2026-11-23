@@ -24,7 +24,7 @@ src/modules/social-commerce/providers/
 
 ## Provider Capabilities
 
-| Provider | Class | Supported Features |
-| --- | --- | --- |
-| **TikTok & TikTok Shop** | `TikTokProvider` | Authorization URL builder (`code_challenge_method=S256`), token exchange & refresh (`open.tiktokapis.com/v2/oauth/token/`), user profile (`/v2/user/info/`), video list (`/v2/video/list/`), TikTok Shop catalog batch sync, and `x-tts-signature` / `x-tiktok-signature` webhook verification |
-| **Instagram & Facebook (Meta)** | `MetaGraphProvider` | Facebook & Instagram OAuth v21.0, short-to-long-lived token exchange (`fb_exchange_token`), Instagram media/reels (`/me/media`), 24h stories (`/me/stories`), live videos (`/live_videos`), Meta Commerce Manager `items_batch` catalog sync, and `x-hub-signature-256` webhook verification |
+| Provider                        | Class               | Supported Features                                                                                                                                                                                                                                                                             |
+| ------------------------------- | ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **TikTok & TikTok Shop**        | `TikTokProvider`    | Authorization URL builder (`code_challenge_method=S256`), token exchange & refresh (`open.tiktokapis.com/v2/oauth/token/`), user profile (`/v2/user/info/`), video list (`/v2/video/list/`), TikTok Shop catalog batch sync, and `x-tts-signature` / `x-tiktok-signature` webhook verification |
+| **Instagram & Facebook (Meta)** | `MetaGraphProvider` | Facebook & Instagram OAuth v21.0, short-to-long-lived token exchange (`fb_exchange_token`), Instagram media/reels (`/me/media`), 24h stories (`/me/stories`), live videos (`/live_videos`), Meta Commerce Manager `items_batch` catalog sync, and `x-hub-signature-256` webhook verification   |

@@ -1,11 +1,8 @@
-import {
-  AuthenticatedMedusaRequest,
-  MedusaResponse,
-} from "@medusajs/framework";
-import { RemoteQueryFunction } from "@medusajs/framework/types";
-import { ContainerRegistrationKeys } from "@medusajs/framework/utils";
-import { createRequestForQuoteWorkflow } from "@b2b/workflows/quote/workflows/create-request-for-quote";
-import { CreateQuoteType, GetQuoteParamsType } from "./validators";
+import { AuthenticatedMedusaRequest, MedusaResponse } from "@medusajs/framework"
+import { RemoteQueryFunction } from "@medusajs/framework/types"
+import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
+import { createRequestForQuoteWorkflow } from "@b2b/workflows/quote/workflows/create-request-for-quote"
+import { CreateQuoteType, GetQuoteParamsType } from "./validators"
 
 export const GET = async (
   req: AuthenticatedMedusaRequest<GetQuoteParamsType>,
@@ -13,9 +10,9 @@ export const GET = async (
 ) => {
   const query = req.scope.resolve<RemoteQueryFunction>(
     ContainerRegistrationKeys.QUERY
-  );
+  )
 
-  const { fields, pagination } = req.queryConfig;
+  const { fields, pagination } = req.queryConfig
   const { data: quotes, metadata } = await query.graph({
     entity: "quote",
     fields,
@@ -26,15 +23,15 @@ export const GET = async (
       ...pagination,
       skip: pagination.skip!,
     },
-  });
+  })
 
   res.json({
     quotes,
     count: metadata!.count,
     offset: metadata!.skip,
     limit: metadata!.take,
-  });
-};
+  })
+}
 
 export const POST = async (
   req: AuthenticatedMedusaRequest<CreateQuoteType>,
@@ -42,7 +39,7 @@ export const POST = async (
 ) => {
   const query = req.scope.resolve<RemoteQueryFunction>(
     ContainerRegistrationKeys.QUERY
-  );
+  )
 
   const {
     result: { quote: createdQuote },
@@ -51,7 +48,7 @@ export const POST = async (
       ...req.validatedBody,
       customer_id: req.auth_context.actor_id,
     },
-  });
+  })
 
   const {
     data: [quote],
@@ -62,7 +59,7 @@ export const POST = async (
       filters: { id: createdQuote.id },
     },
     { throwIfKeyNotFound: true }
-  );
+  )
 
-  return res.json({ quote });
-};
+  return res.json({ quote })
+}

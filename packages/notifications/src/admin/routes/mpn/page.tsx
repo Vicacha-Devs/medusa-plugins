@@ -11,14 +11,7 @@ import {
   Megaphone,
   Tag,
 } from "@medusajs/icons"
-import {
-  Button,
-  Container,
-  Heading,
-  Text,
-  Toaster,
-  toast,
-} from "@medusajs/ui"
+import { Button, Container, Heading, Text, Toaster, toast } from "@medusajs/ui"
 import React from "react"
 import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router-dom"
@@ -27,7 +20,7 @@ import {
   StatCard,
   useNotificationStudio,
 } from "../../components/mpn"
-import { RbacGuard } from "../../components/rbac-guard";
+import { RbacGuard } from "../../components/rbac-guard"
 
 const NotificationStudioOverviewPage: React.FC = () => {
   const { t, i18n } = useTranslation()
@@ -202,6 +195,6 @@ const GuardedNotificationStudioOverviewPage = () => (
   <RbacGuard permission="notifications.read">
     <NotificationStudioOverviewPage />
   </RbacGuard>
-);
+)
 
-export default GuardedNotificationStudioOverviewPage;
+export default GuardedNotificationStudioOverviewPage

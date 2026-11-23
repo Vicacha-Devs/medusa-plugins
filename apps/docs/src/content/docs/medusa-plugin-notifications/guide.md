@@ -12,7 +12,7 @@ pnpm add @vicacha-devs/medusa-plugin-notifications
 ## `medusa-config.ts` Registration
 
 ```ts
-import { defineConfig } from "@medusajs/framework/utils";
+import { defineConfig } from "@medusajs/framework/utils"
 
 export default defineConfig({
   plugins: [
@@ -21,12 +21,13 @@ export default defineConfig({
       options: {},
     },
   ],
-});
+})
 ```
 
 ## Admin UI Extensions
 
 ### Admin Routes
+
 - `/app/mpn/broadcasts`
 - `/app/mpn/channels`
 - `/app/mpn/logs`
@@ -36,9 +37,11 @@ export default defineConfig({
 - `/app/mpn/templates`
 
 ### Admin Widgets
+
 - `order-notifications-widget`
 
 ### Supported Admin Locales
+
 `ar`, `de`, `en`, `es`, `fr`, `it`, `nl`, `pl`, `pt`, `tr`
 
 ## API Reference

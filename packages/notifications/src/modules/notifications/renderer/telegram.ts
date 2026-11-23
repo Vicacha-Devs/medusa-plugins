@@ -1,11 +1,5 @@
-import type {
-  TelegramInlineButton,
-  TemplateBlockNode,
-} from "../../../types"
-import {
-  getNestedValue,
-  multiInterpolateString,
-} from "../utils/interpolation"
+import type { TelegramInlineButton, TemplateBlockNode } from "../../../types"
+import { getNestedValue, multiInterpolateString } from "../utils/interpolation"
 import { escapeHtml, sanitizeTelegramHtml } from "../utils/security"
 import {
   buildRepeaterItemContext,
@@ -88,7 +82,9 @@ export function renderTelegramNodes(
         break
       }
       case "repeater": {
-        const arrayKey = String(meta.arrayKey || meta.arrayPath || "items").trim()
+        const arrayKey = String(
+          meta.arrayKey || meta.arrayPath || "items"
+        ).trim()
         const list = getNestedValue(data, arrayKey)
         if (Array.isArray(list) && list.length > 0 && children.length > 0) {
           for (const item of list) {
@@ -101,7 +97,10 @@ export function renderTelegramNodes(
             )
             lines.push(...child.lines)
           }
-        } else if (Array.isArray(meta.emptyBlocks) && meta.emptyBlocks.length > 0) {
+        } else if (
+          Array.isArray(meta.emptyBlocks) &&
+          meta.emptyBlocks.length > 0
+        ) {
           const empty = renderTelegramNodes(
             meta.emptyBlocks,
             data,
@@ -160,4 +159,3 @@ export function renderTelegramNodes(
 
   return { lines, inlineKeyboard }
 }
-

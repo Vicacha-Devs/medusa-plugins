@@ -2,7 +2,10 @@ import {
   resolveSocialCommerceService,
   type CatalogFeedProductItem,
 } from "../modules/social-commerce/index.js"
-import type { SubscriberArgs, SubscriberConfig } from "./social-events.subscriber.js"
+import type {
+  SubscriberArgs,
+  SubscriberConfig,
+} from "./social-events.subscriber.js"
 
 export interface ProductEventData {
   id: string
@@ -26,7 +29,12 @@ export default async function handleProductCatalogSync({
   const accounts = await socialService.listAccounts({ status: "active" })
   for (const account of accounts) {
     if (account.platform === "local") continue
-    if (!account.external_catalog_id && !account.external_shop_id && !account.catalog_id) continue
+    if (
+      !account.external_catalog_id &&
+      !account.external_shop_id &&
+      !account.catalog_id
+    )
+      continue
 
     try {
       await socialService.syncProductsToSocialCatalog(account.id, items)

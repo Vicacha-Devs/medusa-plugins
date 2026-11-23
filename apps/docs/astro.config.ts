@@ -1,43 +1,43 @@
-import starlight from "@astrojs/starlight";
-import tailwindcss from "@tailwindcss/vite";
-import { defineConfig, passthroughImageService } from "astro/config";
-import { existsSync, readFileSync } from "node:fs";
-import starlightLlmsTxt from "starlight-llms-txt";
-import starlightOpenAPI from "starlight-openapi";
+import starlight from "@astrojs/starlight"
+import tailwindcss from "@tailwindcss/vite"
+import { defineConfig, passthroughImageService } from "astro/config"
+import { existsSync, readFileSync } from "node:fs"
+import starlightLlmsTxt from "starlight-llms-txt"
+import starlightOpenAPI from "starlight-openapi"
 
-import { guides, type PluginPackageMeta, plugins } from "./docs-packages.ts";
+import { guides, type PluginPackageMeta, plugins } from "./docs-packages.ts"
 import {
   normalizeBase,
   rehypeBaseLinks,
-} from "./src/plugins/rehype-base-links.ts";
-import { remarkPele } from "./src/plugins/remark-pele.ts";
+} from "./src/plugins/rehype-base-links.ts"
+import { remarkPele } from "./src/plugins/remark-pele.ts"
 
 interface SidebarLinkItem {
-  label: string;
-  link: string;
+  label: string
+  link: string
 }
 
 interface SidebarTagGroup {
-  label: string;
-  collapsed?: boolean;
-  items: SidebarLinkItem[];
+  label: string
+  collapsed?: boolean
+  items: SidebarLinkItem[]
 }
 
 interface SidebarSlugItem {
-  label: string;
-  translations: Record<string, string>;
-  slug: string;
+  label: string
+  translations: Record<string, string>
+  slug: string
 }
 
-type SidebarItem = SidebarSlugItem | SidebarTagGroup;
+type SidebarItem = SidebarSlugItem | SidebarTagGroup
 
-const sidebarJsonUrl = new URL("./schemas/_sidebar.json", import.meta.url);
+const sidebarJsonUrl = new URL("./schemas/_sidebar.json", import.meta.url)
 const apiSidebar: Record<string, SidebarTagGroup[]> = existsSync(sidebarJsonUrl)
   ? (JSON.parse(readFileSync(sidebarJsonUrl, "utf-8")) as Record<
       string,
       SidebarTagGroup[]
     >)
-  : {};
+  : {}
 
 const apiPluginConfigs = plugins
   .filter((p) => Boolean(p.schemaFile))
@@ -45,7 +45,7 @@ const apiPluginConfigs = plugins
     base: `${p.slug}/api`,
     schema: `./schemas/${p.schemaFile}.yaml`,
     label: p.label,
-  }));
+  }))
 
 function buildPluginSidebar(p: PluginPackageMeta) {
   const items: SidebarItem[] = [
@@ -76,20 +76,20 @@ function buildPluginSidebar(p: PluginPackageMeta) {
       },
       slug: `${p.slug}/guide`,
     },
-  ];
+  ]
   if (p.schemaFile && apiSidebar[p.slug]) {
-    items.push(...apiSidebar[p.slug]);
+    items.push(...apiSidebar[p.slug])
   }
   return {
     label: p.label,
     translations: p.translations,
     items,
-  };
+  }
 }
 
 // Defaults serve the custom domain from "/". For a GitHub Pages project URL set
 // DOCS_SITE=https://vicacha-devs.github.io and DOCS_BASE=/vicacha-medusa-plugins.
-const docsBase = normalizeBase(process.env.DOCS_BASE);
+const docsBase = normalizeBase(process.env.DOCS_BASE)
 
 export default defineConfig({
   site: process.env.DOCS_SITE || "https://medusa-plugins.vicacha.dev",
@@ -172,4 +172,4 @@ export default defineConfig({
       favicon: "/favicon.svg",
     }),
   ],
-});
+})

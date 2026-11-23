@@ -1,22 +1,19 @@
-import {
-  AuthenticatedMedusaRequest,
-  MedusaResponse,
-} from "@medusajs/framework";
-import { ContainerRegistrationKeys } from "@medusajs/framework/utils";
-import { AdminGetApprovalsType } from "./validators";
+import { AuthenticatedMedusaRequest, MedusaResponse } from "@medusajs/framework"
+import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
+import { AdminGetApprovalsType } from "./validators"
 
 export const GET = async (
   req: AuthenticatedMedusaRequest<AdminGetApprovalsType>,
   res: MedusaResponse
 ) => {
-  const query = req.scope.resolve(ContainerRegistrationKeys.QUERY);
+  const query = req.scope.resolve(ContainerRegistrationKeys.QUERY)
 
-  const { status, q } = req.validatedQuery || {};
+  const { status, q } = req.validatedQuery || {}
 
-  let filters: any = {};
+  let filters: any = {}
 
   if (status) {
-    filters.status = status;
+    filters.status = status
   }
 
   if (q) {
@@ -24,7 +21,7 @@ export const GET = async (
       company: {
         name: { $ilike: `%${q}%` },
       },
-    };
+    }
   }
 
   const { data: approvalStatuses, metadata } = await query.graph({
@@ -42,18 +39,18 @@ export const GET = async (
     filters: {
       ...filters,
     },
-  });
+  })
 
   let carts = approvalStatuses
     .map((approvalStatus) => {
-      const { cart, ...approvalStatusData } = approvalStatus;
-      if (!cart) return null;
-      return { ...cart, approval_status: approvalStatusData };
+      const { cart, ...approvalStatusData } = approvalStatus
+      if (!cart) return null
+      return { ...cart, approval_status: approvalStatusData }
     })
-    .filter(Boolean);
+    .filter(Boolean)
 
   res.json({
     carts_with_approvals: carts,
     ...metadata,
-  });
-};
+  })
+}

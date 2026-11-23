@@ -20,7 +20,10 @@ export type {
 
 const inMemorySandboxStore: CapturedSandboxEntry[] = []
 
-export function getInMemorySandboxMessages(limit = 50, offset = 0): {
+export function getInMemorySandboxMessages(
+  limit = 50,
+  offset = 0
+): {
   messages: CapturedSandboxEntry[]
   count: number
 } {

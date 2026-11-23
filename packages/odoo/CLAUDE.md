@@ -5,6 +5,7 @@
 `@vicacha-devs/medusa-plugin-odoo` is a self-contained, bidirectional **Odoo ERP (Odoo 14–19+ JSON-RPC 2.0 & JSON-2 API) integration plugin for Medusa v2 (`^2.21.0`)**.
 
 It unifies and supersedes `@bambiste/medusa-odoo` and `@techmarbles/medusa-odoo-connector` without requiring any external SaaS proxy or mandatory Redis dependency:
+
 1. **Multi-Protocol Odoo RPC Client (`src/modules/odoo/client/odoo-client.ts`)**: Native JSON-RPC 2.0 (`/jsonrpc` `common` & `object.execute_kw` for Odoo 14–18) and Odoo 19+ JSON-2 API (`/json/2/{model}/{method}`) with SSRF validation (`validateSafeOdooUrl`), token-bucket rate limiting, circuit breaker (`closed` / `open` / `half-open`), and exponential backoff retries.
 2. **DML Persistence (`src/modules/odoo/models/index.ts`)**: 10 database models (`mpo_setting`, `mpo_erp_mapping`, `mpo_sync_log`, `mpo_sync_failure`, `mpo_inventory_snapshot`, `mpo_reconciliation_log`, `mpo_conflict_resolution`, `mpo_barcode_scan_log`, `mpo_offline_pos_transaction`, `mpo_webhook_event`).
 3. **Bidirectional ERP Sync & Workflows (`src/modules/odoo/service.ts` & `src/workflows/index.ts`)**:
@@ -19,15 +20,15 @@ It unifies and supersedes `@bambiste/medusa-odoo` and `@techmarbles/medusa-odoo-
 
 ## Package Exports (`package.json`)
 
-| Import Path | Target Source | Purpose |
-| :--- | :--- | :--- |
-| `medusa-plugin-odoo` | `src/index.ts` | Root export (`ODOO_MODULE`, `OdooModuleService`, `OdooClient`, workflows, validators, SDK, hooks, types, `adminI18n`) |
-| `medusa-plugin-odoo/modules/odoo` | `src/modules/odoo/index.ts` | Primary Medusa module (`Module("odoo", { service: OdooModuleService })`) |
-| `medusa-plugin-odoo/modules/odoo-sync` | `src/modules/odoo-sync/index.ts` | Compatibility alias for `@bambiste/medusa-odoo` (`Module("odoo", { service: OdooModuleService })`) |
-| `medusa-plugin-odoo/workflows` | `src/workflows/index.ts` | Medusa v2 workflows (`syncProductsWithOdooWorkflow`, `syncInventoryWithOdooWorkflow`, `syncOrderToOdooWorkflow`, etc.) |
-| `medusa-plugin-odoo/sdk` | `src/sdk/index.ts` | Typed client SDK (`createOdooSdk`, `defaultOdooSdk`, `odooQueryKeys`, `OdooSdkError`) |
-| `medusa-plugin-odoo/hooks` | `src/hooks/index.ts` | React query & mutation hooks for Admin UI & storefront |
-| `medusa-plugin-odoo/types` | `src/types/index.ts` | Barrel re-export of all TypeScript interfaces and type aliases |
+| Import Path                            | Target Source                    | Purpose                                                                                                                |
+| :------------------------------------- | :------------------------------- | :--------------------------------------------------------------------------------------------------------------------- |
+| `medusa-plugin-odoo`                   | `src/index.ts`                   | Root export (`ODOO_MODULE`, `OdooModuleService`, `OdooClient`, workflows, validators, SDK, hooks, types, `adminI18n`)  |
+| `medusa-plugin-odoo/modules/odoo`      | `src/modules/odoo/index.ts`      | Primary Medusa module (`Module("odoo", { service: OdooModuleService })`)                                               |
+| `medusa-plugin-odoo/modules/odoo-sync` | `src/modules/odoo-sync/index.ts` | Compatibility alias for `@bambiste/medusa-odoo` (`Module("odoo", { service: OdooModuleService })`)                     |
+| `medusa-plugin-odoo/workflows`         | `src/workflows/index.ts`         | Medusa v2 workflows (`syncProductsWithOdooWorkflow`, `syncInventoryWithOdooWorkflow`, `syncOrderToOdooWorkflow`, etc.) |
+| `medusa-plugin-odoo/sdk`               | `src/sdk/index.ts`               | Typed client SDK (`createOdooSdk`, `defaultOdooSdk`, `odooQueryKeys`, `OdooSdkError`)                                  |
+| `medusa-plugin-odoo/hooks`             | `src/hooks/index.ts`             | React query & mutation hooks for Admin UI & storefront                                                                 |
+| `medusa-plugin-odoo/types`             | `src/types/index.ts`             | Barrel re-export of all TypeScript interfaces and type aliases                                                         |
 
 ---
 

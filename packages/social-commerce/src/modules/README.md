@@ -43,6 +43,7 @@ modules/
 ## Sub-services
 
 ### 1. `SocialCommerceService` (`services/social-commerce.service.ts`)
+
 - **OAuth & Accounts:** `initiateOAuthConnect`, `completeOAuthCallback`, `listAccounts`, `getAccount`, `updateAccountSettings`, `disconnectAccount`, `refreshAccountToken`, `refreshExpiringAccounts`
 - **Media & 24h Stories:** `syncAccountMedia`, `syncAllAccountsMedia`, `publishLocalStory`, `listFeedPosts`, `listActiveStories`, `getPostWithTags`, `modifyMediaPost`, `purgeMediaPost`, `cleanupExpiredStories`
 - **Product Hotspot Tagging:** `tagProductsOnPost`, `untagProductFromPost`, `listPostProductTags`
@@ -50,8 +51,10 @@ modules/
 - **Catalog Sync & Checkout Handoff:** `syncProductsToSocialCatalog`, `listCatalogSyncItems`, `renderCatalogFeed`, `createCheckoutHandoff`, `verifyAndParseWebhook`
 
 ### 2. `InventoryReservationService` (`services/inventory-reservation.service.ts`)
+
 - Supports **Redis Lua atomic mode** (`EVAL` script checking `allocated - reserved - sold >= quantity`) and **in-memory mutex/TTL fallback mode**.
 - Methods: `allocateVariantStock`, `reserveStock`, `confirmReservation`, `releaseReservation`, `cleanupExpiredReservations`, `getStockSnapshot`, `listReservations`.
 
 ### 3. `CatalogFeedService` (`services/catalog-feed.service.ts`)
+
 - Generates Meta / Google Merchant RSS 2.0 XML (`g:id`, `g:price`, `g:availability`, `g:image_link`), RFC-4180 CSV (with formula-injection escaping), and JSON product feeds, plus deterministic SHA-256 item checksums (`computeItemChecksum`) for incremental catalog sync.

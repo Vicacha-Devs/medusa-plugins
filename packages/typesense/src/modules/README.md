@@ -32,11 +32,11 @@ modules/
 
 ## Data Models (`models/`)
 
-| Model | Table Name | ID Prefix | Purpose |
-| --- | --- | --- | --- |
-| `SyncJob` | `mpt_sync_job` | `tsjob_` | Tracks full zero-downtime alias rebuilds and incremental sync batches (`entity`, `locale`, `operation`, `status`, `triggered_by`, `total_records`, `synced_records`, `deleted_records`, `failed_records`, `target_collection`, `alias_name`, `duration_ms`, `error_message`). |
-| `EntityConfig` | `mpt_entity_config` | `tsent_` | Persists runtime custom entity index configurations (`entity_name`, `graph_entity`, `graph_fields`, `schema_fields`, `query_by`, `query_by_weights`, `facet_by`, `default_sorting_field`, `embedder_config`, `storefront_filter_constraint`, `is_custom`, `enabled`). |
-| `SearchAnalyticsEvent` | `mpt_search_analytics` | `tsana_` | Records search telemetry (`query`, `normalized_query`, `entity`, `locale`, `mode`, `event_type` (`search \| click \| conversion`), `hits_count`, `processing_time_ms`, `clicked_document_id`, `sales_channel_id`, `customer_id`). |
+| Model                  | Table Name             | ID Prefix | Purpose                                                                                                                                                                                                                                                                       |
+| ---------------------- | ---------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `SyncJob`              | `mpt_sync_job`         | `tsjob_`  | Tracks full zero-downtime alias rebuilds and incremental sync batches (`entity`, `locale`, `operation`, `status`, `triggered_by`, `total_records`, `synced_records`, `deleted_records`, `failed_records`, `target_collection`, `alias_name`, `duration_ms`, `error_message`). |
+| `EntityConfig`         | `mpt_entity_config`    | `tsent_`  | Persists runtime custom entity index configurations (`entity_name`, `graph_entity`, `graph_fields`, `schema_fields`, `query_by`, `query_by_weights`, `facet_by`, `default_sorting_field`, `embedder_config`, `storefront_filter_constraint`, `is_custom`, `enabled`).         |
+| `SearchAnalyticsEvent` | `mpt_search_analytics` | `tsana_`  | Records search telemetry (`query`, `normalized_query`, `entity`, `locale`, `mode`, `event_type` (`search \| click \| conversion`), `hits_count`, `processing_time_ms`, `clicked_document_id`, `sales_channel_id`, `customer_id`).                                             |
 
 ---
 

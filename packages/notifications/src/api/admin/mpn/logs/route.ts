@@ -21,14 +21,11 @@ export const GET = async (req: MedusaRequest, res: MedusaResponse) => {
     filters.event_name = req.query.event_name
   }
 
-  const limit = Math.min(
-    100,
-    Math.max(1, Number(req.query.limit || 50))
-  )
+  const limit = Math.min(100, Math.max(1, Number(req.query.limit || 50)))
   const offset = Math.max(0, Number(req.query.offset || 0))
 
   const allLogs = await mpnService.listMpnDeliveryLogs(filters)
-  const sorted = [...allLogs].sort((a: any, b: any) => {
+  const sorted = [...allLogs].toSorted((a: any, b: any) => {
     const tA = a.created_at ? new Date(a.created_at).getTime() : 0
     const tB = b.created_at ? new Date(b.created_at).getTime() : 0
     return tB - tA

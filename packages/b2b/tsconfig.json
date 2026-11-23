@@ -21,18 +21,13 @@
     "baseUrl": ".",
     "ignoreDeprecations": "5.0",
     "paths": {
-      "@b2b/*": [
-        "./src/*"
-      ]
+      "@b2b/*": ["./src/*"]
     }
   },
   "ts-node": {
     "swc": true
   },
-  "include": [
-    "**/*",
-    ".medusa/types/*"
-  ],
+  "include": ["**/*", ".medusa/types/*"],
   "exclude": [
     "node_modules",
     ".medusa/server",

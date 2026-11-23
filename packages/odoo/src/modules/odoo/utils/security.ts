@@ -87,10 +87,7 @@ export function validateSafeOdooUrl(
     )
   }
 
-  if (
-    BLOCKED_METADATA_HOSTS.has(hostname) ||
-    hostname.startsWith("169.254.")
-  ) {
+  if (BLOCKED_METADATA_HOSTS.has(hostname) || hostname.startsWith("169.254.")) {
     throw new MedusaError(
       MedusaError.Types.INVALID_DATA,
       "Odoo URL points to a blocked cloud metadata endpoint"

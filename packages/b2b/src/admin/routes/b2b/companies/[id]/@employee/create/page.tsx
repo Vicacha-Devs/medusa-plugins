@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom"
 
 import { useCompany, useCreateEmployee } from "../../../../../../hooks/api"
 import { EmployeesCreateForm } from "../components/employees-create-form"
-import { RbacGuard } from "@vicacha-devs/medusa-shared-admin/admin";
+import { RbacGuard } from "@vicacha-devs/medusa-shared-admin/admin"
 
 const CreateContent = () => {
   const { t } = useTranslation()
@@ -16,10 +16,16 @@ const CreateContent = () => {
   const { data, isLoading } = useCompany(id!)
   const company = data?.company
 
-  const { mutateAsync: createCustomer, isPending: creatingCustomer, error: customerError } =
-    useCreateCustomer()
-  const { mutateAsync: createEmployee, isPending: creatingEmployee, error: employeeError } =
-    useCreateEmployee(id!)
+  const {
+    mutateAsync: createCustomer,
+    isPending: creatingCustomer,
+    error: customerError,
+  } = useCreateCustomer()
+  const {
+    mutateAsync: createEmployee,
+    isPending: creatingEmployee,
+    error: employeeError,
+  } = useCreateEmployee(id!)
 
   if (isLoading || !company) return null
 
@@ -80,6 +86,6 @@ const GuardedEmployeeCreate = () => (
   <RbacGuard permission="b2b.write">
     <EmployeeCreate />
   </RbacGuard>
-);
+)
 
-export default GuardedEmployeeCreate;
+export default GuardedEmployeeCreate

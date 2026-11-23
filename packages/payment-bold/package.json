@@ -2,8 +2,22 @@
   "name": "@vicacha-devs/medusa-payment-bold",
   "version": "0.0.1",
   "description": "Comprehensive Bold Colombia payment integration for Medusa v2 supporting Button, Links, Online API (Cards, PSE, Nequi, QR), and Smart POS Terminals.",
-  "author": "Vicacha Devs",
+  "keywords": [
+    "bold",
+    "bre-b",
+    "dataphone",
+    "medusa",
+    "medusa-plugin",
+    "medusa-plugin-bold",
+    "medusa-plugin-integration",
+    "medusa-plugin-payment",
+    "medusa-v2",
+    "nequi",
+    "plugin",
+    "pse"
+  ],
   "license": "MIT",
+  "author": "Vicacha Devs",
   "files": [
     ".medusa/server",
     "src",
@@ -47,20 +61,6 @@
       "default": "./.medusa/server/src/rbac.js"
     }
   },
-  "keywords": [
-    "medusa",
-    "plugin",
-    "medusa-plugin",
-    "medusa-plugin-payment",
-    "medusa-plugin-bold",
-    "medusa-v2",
-    "bold",
-    "pse",
-    "nequi",
-    "bre-b",
-    "dataphone",
-    "medusa-plugin-integration"
-  ],
   "scripts": {
     "build": "medusa plugin:build && tsc-alias -p tsconfig.json",
     "publish:local": "medusa plugin:publish",
@@ -74,6 +74,10 @@
     "clean": "rm -rf .medusa node_modules",
     "typecheck": "tsc --noEmit",
     "emulator": "node ./scripts/bold-emulator.ts"
+  },
+  "dependencies": {
+    "@medusajs/dashboard": "2.23.0",
+    "qrcode": "^1.5.4"
   },
   "devDependencies": {
     "@medusajs/admin-sdk": "2.23.0",
@@ -113,9 +117,5 @@
   "engines": {
     "node": ">=22.22.0"
   },
-  "packageManager": "pnpm@11.20.0",
-  "dependencies": {
-    "@medusajs/dashboard": "2.23.0",
-    "qrcode": "^1.5.4"
-  }
+  "packageManager": "pnpm@11.20.0"
 }

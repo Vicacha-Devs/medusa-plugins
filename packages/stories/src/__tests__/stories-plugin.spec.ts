@@ -104,10 +104,7 @@ describe("StoriesModuleService — groups, slides, hotspots, stickers, funnel & 
   })
 
   it("pins X/Y product hotspots, enforces max_hotspots_per_slide, and removes them cleanly", async () => {
-    const service = new StoriesModuleService(
-      {},
-      { max_hotspots_per_slide: 2 }
-    )
+    const service = new StoriesModuleService({}, { max_hotspots_per_slide: 2 })
 
     const slide = await service.createSlide({
       title: "Runway Look #1",
@@ -304,10 +301,7 @@ describe("Admin UI Localization (10 Locales Key Parity)", () => {
 
     assert.equal(locales.length, 10)
 
-    const flattenKeys = (
-      obj: Record<string, unknown>,
-      prefix = ""
-    ): string[] =>
+    const flattenKeys = (obj: Record<string, unknown>, prefix = ""): string[] =>
       Object.entries(obj).flatMap(([k, v]) => {
         const nextKey = prefix ? `${prefix}.${k}` : k
         if (v && typeof v === "object" && !Array.isArray(v)) {
@@ -318,7 +312,7 @@ describe("Admin UI Localization (10 Locales Key Parity)", () => {
 
     const enKeys = flattenKeys(
       bundles.en.translation as unknown as Record<string, unknown>
-    ).sort()
+    ).toSorted()
     assert.ok(enKeys.length >= 130)
 
     for (const localeCode of locales) {
@@ -327,7 +321,7 @@ describe("Admin UI Localization (10 Locales Key Parity)", () => {
       assert.ok(entry.stories, `Missing "stories" namespace for ${localeCode}`)
       const localeKeys = flattenKeys(
         entry.translation as unknown as Record<string, unknown>
-      ).sort()
+      ).toSorted()
       assert.deepEqual(
         localeKeys,
         enKeys,
@@ -386,9 +380,8 @@ describe("Admin UI Localization (10 Locales Key Parity)", () => {
 
 describe("@bambiste/medusa-stories Compatibility — Migrations, PUT Route, Exports & Fallback", () => {
   it("runs Migration20260514000000 up() and down() for all 5 tables and @bambiste column upgrades", async () => {
-    const { Migration20260514000000 } = await import(
-      "../modules/story/migrations/Migration20260514000000.js"
-    )
+    const { Migration20260514000000 } =
+      await import("../modules/story/migrations/Migration20260514000000.js")
     const migration = new Migration20260514000000() as unknown as {
       up: () => Promise<void>
       down: () => Promise<void>
@@ -398,7 +391,9 @@ describe("@bambiste/medusa-stories Compatibility — Migrations, PUT Route, Expo
     await migration.up()
     const combinedUpSql = migration.queries.join("\n")
 
-    assert.ok(combinedUpSql.includes('CREATE TABLE IF NOT EXISTS "mps_story_group"'))
+    assert.ok(
+      combinedUpSql.includes('CREATE TABLE IF NOT EXISTS "mps_story_group"')
+    )
     assert.ok(combinedUpSql.includes('CREATE TABLE IF NOT EXISTS "story"'))
     assert.ok(combinedUpSql.includes('ALTER TABLE "story"'))
     assert.ok(combinedUpSql.includes('ADD COLUMN IF NOT EXISTS "group_id"'))
@@ -406,22 +401,40 @@ describe("@bambiste/medusa-stories Compatibility — Migrations, PUT Route, Expo
     assert.ok(combinedUpSql.includes('ADD COLUMN IF NOT EXISTS "duration_ms"'))
     assert.ok(combinedUpSql.includes('ADD COLUMN IF NOT EXISTS "starts_at"'))
     assert.ok(combinedUpSql.includes('ADD COLUMN IF NOT EXISTS "views_count"'))
-    assert.ok(combinedUpSql.includes('ADD COLUMN IF NOT EXISTS "completions_count"'))
+    assert.ok(
+      combinedUpSql.includes('ADD COLUMN IF NOT EXISTS "completions_count"')
+    )
     assert.ok(combinedUpSql.includes('ADD COLUMN IF NOT EXISTS "taps_count"'))
-    assert.ok(combinedUpSql.includes('ADD COLUMN IF NOT EXISTS "conversions_count"'))
+    assert.ok(
+      combinedUpSql.includes('ADD COLUMN IF NOT EXISTS "conversions_count"')
+    )
     assert.ok(combinedUpSql.includes('ADD COLUMN IF NOT EXISTS "metadata"'))
-    assert.ok(combinedUpSql.includes('CREATE TABLE IF NOT EXISTS "mps_story_hotspot"'))
-    assert.ok(combinedUpSql.includes('CREATE TABLE IF NOT EXISTS "mps_story_sticker"'))
-    assert.ok(combinedUpSql.includes('CREATE TABLE IF NOT EXISTS "mps_story_event"'))
+    assert.ok(
+      combinedUpSql.includes('CREATE TABLE IF NOT EXISTS "mps_story_hotspot"')
+    )
+    assert.ok(
+      combinedUpSql.includes('CREATE TABLE IF NOT EXISTS "mps_story_sticker"')
+    )
+    assert.ok(
+      combinedUpSql.includes('CREATE TABLE IF NOT EXISTS "mps_story_event"')
+    )
 
     migration.queries.length = 0
     await migration.down()
     const combinedDownSql = migration.queries.join("\n")
-    assert.ok(combinedDownSql.includes('DROP TABLE IF EXISTS "mps_story_event"'))
-    assert.ok(combinedDownSql.includes('DROP TABLE IF EXISTS "mps_story_sticker"'))
-    assert.ok(combinedDownSql.includes('DROP TABLE IF EXISTS "mps_story_hotspot"'))
+    assert.ok(
+      combinedDownSql.includes('DROP TABLE IF EXISTS "mps_story_event"')
+    )
+    assert.ok(
+      combinedDownSql.includes('DROP TABLE IF EXISTS "mps_story_sticker"')
+    )
+    assert.ok(
+      combinedDownSql.includes('DROP TABLE IF EXISTS "mps_story_hotspot"')
+    )
     assert.ok(combinedDownSql.includes('DROP TABLE IF EXISTS "story"'))
-    assert.ok(combinedDownSql.includes('DROP TABLE IF EXISTS "mps_story_group"'))
+    assert.ok(
+      combinedDownSql.includes('DROP TABLE IF EXISTS "mps_story_group"')
+    )
   })
 
   it("coerces string display_order to integer in CreateStorySlideSchema and UpdateStorySlideSchema", async () => {
@@ -444,9 +457,8 @@ describe("@bambiste/medusa-stories Compatibility — Migrations, PUT Route, Expo
     const rootIndex = await import("../index.js")
     const modulesBarrel = await import("../modules/index.js")
     const storyModule = await import("../modules/story/index.js")
-    const adminStoryByIdRoute = await import(
-      "../api/admin/stories/[id]/route.js"
-    )
+    const adminStoryByIdRoute =
+      await import("../api/admin/stories/[id]/route.js")
     const storeStoriesRoute = await import("../api/store/stories/route.js")
 
     assert.equal(rootIndex.StoriesService, StoriesModuleService)
@@ -512,4 +524,3 @@ describe("@bambiste/medusa-stories Compatibility — Migrations, PUT Route, Expo
     assert.equal(jsonPayload?.stories?.[0]?.title, "Updated via PUT")
   })
 })
-

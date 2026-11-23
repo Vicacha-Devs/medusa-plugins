@@ -17,9 +17,9 @@ flowchart LR
 
 ## Medusa Modules & Data Models
 
-| Module | Data Model |
-| :--- | :--- |
-| `documents` | `document` |
+| Module      | Data Model          |
+| :---------- | :------------------ |
+| `documents` | `document`          |
 | `documents` | `document-settings` |
 | `documents` | `document-template` |
 | `documents` | `signature-request` |

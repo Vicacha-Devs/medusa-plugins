@@ -7,15 +7,15 @@ description: "EU & Benelux fulfillment provider plugin for Medusa v2 (PostNL let
 
 ## Package Snapshot
 
-| Capability | Details |
-| :--- | :--- |
-| Medusa Modules / Models | 0 modules / 0 data models |
-| Workflows | 0 |
-| Subscribers / Jobs | 0 subscribers / 0 scheduled jobs |
-| Providers | eu-fulfillment |
-| Admin UI Routes / Widgets | 0 routes / 0 widgets |
-| Admin i18n Locales | en |
-| HTTP Endpoints | Provider / Middleware-only (no custom HTTP routes) |
+| Capability                | Details                                            |
+| :------------------------ | :------------------------------------------------- |
+| Medusa Modules / Models   | 0 modules / 0 data models                          |
+| Workflows                 | 0                                                  |
+| Subscribers / Jobs        | 0 subscribers / 0 scheduled jobs                   |
+| Providers                 | eu-fulfillment                                     |
+| Admin UI Routes / Widgets | 0 routes / 0 widgets                               |
+| Admin i18n Locales        | en                                                 |
+| HTTP Endpoints            | Provider / Middleware-only (no custom HTTP routes) |
 
 EU & Benelux fulfillment provider plugin for Medusa v2 (PostNL letterbox, Sendcloud EU parcel, and Rotterdam LCL pallet freight).
 
@@ -35,5 +35,5 @@ export default defineConfig({
       options: {},
     },
   ],
-});
+})
 ```

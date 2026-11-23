@@ -5,7 +5,7 @@ import { LayoutComposer } from "@medusajs/dashboard/components"
 import { useTranslation } from "react-i18next"
 import { dianClient } from "../../../../sdk"
 import { DianFiscalProfilesSection } from "../../../components"
-import { RbacGuard } from "../../../components/rbac-guard";
+import { RbacGuard } from "../../../components/rbac-guard"
 
 const DianFiscalProfilesPage: React.FC = () => {
   const [profiles, setProfiles] = useState<Array<Record<string, any>>>([])
@@ -59,6 +59,6 @@ const GuardedDianFiscalProfilesPage = () => (
   <RbacGuard permission="dian.read">
     <DianFiscalProfilesPage />
   </RbacGuard>
-);
+)
 
-export default GuardedDianFiscalProfilesPage;
+export default GuardedDianFiscalProfilesPage

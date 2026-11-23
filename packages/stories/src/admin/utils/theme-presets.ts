@@ -14,8 +14,7 @@ export const ADMIN_RING_THEME_PRESETS: Array<{
   {
     id: "tiktok",
     label: "TikTok Pulse",
-    gradient:
-      "linear-gradient(135deg, #00f2fe 0%, #000000 50%, #ff0050 100%)",
+    gradient: "linear-gradient(135deg, #00f2fe 0%, #000000 50%, #ff0050 100%)",
   },
   {
     id: "sunset",
@@ -63,7 +62,11 @@ export const resolveRingGradient = (
   theme: StoryRingTheme,
   customColor?: string | null
 ): string => {
-  if (theme === "custom" && customColor && /^#[0-9a-fA-F]{3,8}$/.test(customColor)) {
+  if (
+    theme === "custom" &&
+    customColor &&
+    /^#[0-9a-fA-F]{3,8}$/.test(customColor)
+  ) {
     return customColor
   }
   return (

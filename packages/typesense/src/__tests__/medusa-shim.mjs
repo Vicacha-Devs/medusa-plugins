@@ -90,9 +90,7 @@ export function MedusaService(models = {}) {
   }
 }
 
-export class AbstractSearchProviderService {
-  constructor() {}
-}
+export class AbstractSearchProviderService {}
 
 export class MedusaError extends Error {
   static Types = {
@@ -282,7 +280,9 @@ function makeZodSchema(baseOpts = {}) {
             if (!sub.success) {
               return {
                 success: false,
-                error: { flatten: () => ({ fieldErrors: { [k]: ["Invalid"] } }) },
+                error: {
+                  flatten: () => ({ fieldErrors: { [k]: ["Invalid"] } }),
+                },
               }
             }
             if (sub.data !== undefined) {
@@ -321,9 +321,7 @@ export const z = {
   },
 }
 
-export class Client {
-  constructor() {}
-}
+export class Client {}
 
 export default {
   Client,

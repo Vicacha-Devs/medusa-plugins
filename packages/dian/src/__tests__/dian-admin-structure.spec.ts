@@ -27,7 +27,7 @@ function flattenKeys(obj: Record<string, any>, prefix = ""): string[] {
       keys.push(next)
     }
   }
-  return keys.sort()
+  return keys.toSorted()
 }
 
 describe("medusa-plugin-dian Admin UI Architecture & Decoupling", () => {
@@ -94,7 +94,18 @@ describe("medusa-plugin-dian Admin UI Architecture & Decoupling", () => {
   })
 
   it("ships all 10 UI locales (ar, de, en, es, fr, it, nl, pl, pt, tr) with 100% key parity", () => {
-    const expectedCodes = ["en", "es", "fr", "de", "it", "pt", "nl", "pl", "tr", "ar"]
+    const expectedCodes = [
+      "en",
+      "es",
+      "fr",
+      "de",
+      "it",
+      "pt",
+      "nl",
+      "pl",
+      "tr",
+      "ar",
+    ]
     assert.deepEqual(
       SUPPORTED_UI_LOCALES.map((l) => l.code),
       expectedCodes
@@ -140,4 +151,3 @@ describe("medusa-plugin-dian Admin UI Architecture & Decoupling", () => {
     }
   })
 })
-

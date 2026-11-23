@@ -9,7 +9,7 @@ import { useSearchParams } from "react-router-dom"
 
 import { MerchandisingTab } from "../../../components/typesense/merchandising-tab"
 import { useTypesenseStudio } from "../../../components/typesense/use-typesense-studio"
-import { RbacGuard } from "../../../components/rbac-guard";
+import { RbacGuard } from "../../../components/rbac-guard"
 
 const TypesenseMerchandisingPage: React.FC = () => {
   const { t } = useTranslation()
@@ -155,6 +155,6 @@ const GuardedTypesenseMerchandisingPage = () => (
   <RbacGuard permission="typesense.read">
     <TypesenseMerchandisingPage />
   </RbacGuard>
-);
+)
 
-export default GuardedTypesenseMerchandisingPage;
+export default GuardedTypesenseMerchandisingPage

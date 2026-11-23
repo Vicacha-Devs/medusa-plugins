@@ -1,9 +1,4 @@
-import {
-  Badge,
-  Heading,
-  Select,
-  Text,
-} from "@medusajs/ui"
+import { Badge, Heading, Select, Text } from "@medusajs/ui"
 import React from "react"
 import { useTranslation } from "react-i18next"
 import { CONTEXT_TYPES, SUPPORTED_LOCALES } from "./constants"

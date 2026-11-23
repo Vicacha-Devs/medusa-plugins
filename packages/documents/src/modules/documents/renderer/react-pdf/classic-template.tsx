@@ -225,7 +225,11 @@ export const ClassicTemplate: React.FC<ReactPdfTemplateProps> = ({
         </View>
 
         {order.items.map((item, idx) => (
-          <View key={item.id || `row-${idx}`} style={styles.tableRow} wrap={false}>
+          <View
+            key={item.id || `row-${idx}`}
+            style={styles.tableRow}
+            wrap={false}
+          >
             <View style={styles.colDesc}>
               <Text>{item.title}</Text>
             </View>
@@ -237,12 +241,20 @@ export const ClassicTemplate: React.FC<ReactPdfTemplateProps> = ({
             </View>
             <View style={styles.colPrice}>
               <Text>
-                {formatCurrency(item.unit_price, order.currency_code, context.locale)}
+                {formatCurrency(
+                  item.unit_price,
+                  order.currency_code,
+                  context.locale
+                )}
               </Text>
             </View>
             <View style={styles.colTotal}>
               <Text>
-                {formatCurrency(item.total, order.currency_code, context.locale)}
+                {formatCurrency(
+                  item.total,
+                  order.currency_code,
+                  context.locale
+                )}
               </Text>
             </View>
           </View>
@@ -253,25 +265,41 @@ export const ClassicTemplate: React.FC<ReactPdfTemplateProps> = ({
             <View style={styles.totalsRow}>
               <Text style={styles.smallText}>{t.subtotal}</Text>
               <Text>
-                {formatCurrency(order.subtotal, order.currency_code, context.locale)}
+                {formatCurrency(
+                  order.subtotal,
+                  order.currency_code,
+                  context.locale
+                )}
               </Text>
             </View>
             <View style={styles.totalsRow}>
               <Text style={styles.smallText}>{t.shipping_total}</Text>
               <Text>
-                {formatCurrency(order.shipping_total, order.currency_code, context.locale)}
+                {formatCurrency(
+                  order.shipping_total,
+                  order.currency_code,
+                  context.locale
+                )}
               </Text>
             </View>
             <View style={styles.totalsRow}>
               <Text style={styles.smallText}>{t.tax_total}</Text>
               <Text>
-                {formatCurrency(order.tax_total, order.currency_code, context.locale)}
+                {formatCurrency(
+                  order.tax_total,
+                  order.currency_code,
+                  context.locale
+                )}
               </Text>
             </View>
             <View style={styles.grandRow}>
               <Text style={styles.grandText}>{t.grand_total}</Text>
               <Text style={styles.grandText}>
-                {formatCurrency(order.total, order.currency_code, context.locale)}
+                {formatCurrency(
+                  order.total,
+                  order.currency_code,
+                  context.locale
+                )}
               </Text>
             </View>
           </View>

@@ -1,51 +1,49 @@
-import { defineRouteConfig } from "@medusajs/admin-sdk";
-import { CORE_LAYOUT_IDS } from "@medusajs/admin-shared";
-import { LayoutComposer } from "@medusajs/dashboard/components";
+import { defineRouteConfig } from "@medusajs/admin-sdk"
+import { CORE_LAYOUT_IDS } from "@medusajs/admin-shared"
+import { LayoutComposer } from "@medusajs/dashboard/components"
 import {
   BuildingStorefront,
   CheckCircle,
   DocumentText,
   Tag,
   Users,
-} from "@medusajs/icons";
-import { Container, Heading, Text } from "@medusajs/ui";
-import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
+} from "@medusajs/icons"
+import { Container, Heading, Text } from "@medusajs/ui"
+import { useTranslation } from "react-i18next"
+import { useNavigate } from "react-router-dom"
 
-import {
-  useCompanies,
-  useQuotes,
-  useApprovals,
-} from "../../hooks/api";
-import { ApprovalStatusType, EQuoteStatus } from "../../../types";
-import { NavigationCard, StatCard } from "./components";
-import { RbacGuard } from "@vicacha-devs/medusa-shared-admin/admin";
+import { useCompanies, useQuotes, useApprovals } from "../../hooks/api"
+import { ApprovalStatusType, EQuoteStatus } from "../../../types"
+import { NavigationCard, StatCard } from "./components"
+import { RbacGuard } from "@vicacha-devs/medusa-shared-admin/admin"
 
 const B2BOverview = () => {
-  const { t, i18n } = useTranslation();
-  const navigate = useNavigate();
+  const { t, i18n } = useTranslation()
+  const navigate = useNavigate()
 
-  const isRtl = (i18n.resolvedLanguage || i18n.language || "").startsWith("ar");
+  const isRtl = (i18n.resolvedLanguage || i18n.language || "").startsWith("ar")
 
-  const { data: companiesData, isPending: companiesPending } = useCompanies();
+  const { data: companiesData, isPending: companiesPending } = useCompanies()
 
-  const { count: pendingQuotesCount = 0, isPending: quotesPending } = useQuotes({
-    status: [EQuoteStatus.PendingMerchant, EQuoteStatus.PendingCustomer],
-  });
+  const { count: pendingQuotesCount = 0, isPending: quotesPending } = useQuotes(
+    {
+      status: [EQuoteStatus.PendingMerchant, EQuoteStatus.PendingCustomer],
+    }
+  )
 
   const { data: approvalsData, isPending: approvalsPending } = useApprovals({
     status: ApprovalStatusType.PENDING,
-  });
+  })
 
-  const companies = companiesData?.companies ?? [];
-  const isLoading = companiesPending || quotesPending || approvalsPending;
+  const companies = companiesData?.companies ?? []
+  const isLoading = companiesPending || quotesPending || approvalsPending
 
   const employeesCount = companies.reduce(
     (total: number, company: any) => total + (company.employees_count ?? 0),
     0
-  );
+  )
 
-  const pendingApprovalsCount = approvalsData?.count ?? 0;
+  const pendingApprovalsCount = approvalsData?.count ?? 0
 
   return (
     <div className="flex flex-col gap-y-4" dir={isRtl ? "rtl" : "ltr"}>
@@ -54,9 +52,7 @@ const B2BOverview = () => {
           {t("overview.title")}
         </Heading>
 
-        <Text className="text-ui-fg-subtle mt-1">
-          {t("overview.subtitle")}
-        </Text>
+        <Text className="text-ui-fg-subtle mt-1">{t("overview.subtitle")}</Text>
       </div>
 
       <LayoutComposer
@@ -150,28 +146,28 @@ const B2BOverview = () => {
         }}
       />
     </div>
-  );
-};
+  )
+}
 
 const Breadcrumb = () => {
-  const { t } = useTranslation();
-  return t("overview.title");
-};
+  const { t } = useTranslation()
+  return t("overview.title")
+}
 
 export const config = defineRouteConfig({
   label: "overview.title",
   translationNs: "b2b",
   icon: BuildingStorefront,
-});
+})
 
 export const handle = {
   breadcrumb: () => <Breadcrumb />,
-};
+}
 
 const GuardedB2BOverview = () => (
   <RbacGuard permission="b2b.read">
     <B2BOverview />
   </RbacGuard>
-);
+)
 
-export default GuardedB2BOverview;
+export default GuardedB2BOverview

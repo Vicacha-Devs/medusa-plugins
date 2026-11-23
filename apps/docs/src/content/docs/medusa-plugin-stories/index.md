@@ -7,15 +7,15 @@ description: "Shoppable Stories, Highlights Rings & Interactive 9:16 Video/Image
 
 ## Package Snapshot
 
-| Capability | Details |
-| :--- | :--- |
-| Medusa Modules / Models | 2 modules / 0 data models |
-| Workflows | 0 |
-| Subscribers / Jobs | 1 subscribers / 1 scheduled jobs |
-| Providers | — |
-| Admin UI Routes / Widgets | 6 routes / 1 widgets |
-| Admin i18n Locales | ar, de, en, es, fr, it, nl, pl, pt, tr |
-| HTTP Endpoints | 21 ([OpenAPI Reference](/medusa-plugin-stories/api/)) |
+| Capability                | Details                                               |
+| :------------------------ | :---------------------------------------------------- |
+| Medusa Modules / Models   | 2 modules / 0 data models                             |
+| Workflows                 | 0                                                     |
+| Subscribers / Jobs        | 1 subscribers / 1 scheduled jobs                      |
+| Providers                 | —                                                     |
+| Admin UI Routes / Widgets | 6 routes / 1 widgets                                  |
+| Admin i18n Locales        | ar, de, en, es, fr, it, nl, pl, pt, tr                |
+| HTTP Endpoints            | 21 ([OpenAPI Reference](/medusa-plugin-stories/api/)) |
 
 Full-featured **9:16 Shoppable Stories, Highlight Rings, Interactive Stickers, Conversion Funnel Analytics, and Storefront React UI Kit** for **Medusa v2 (`2.21.x`)**.
 
@@ -61,11 +61,11 @@ Full-featured **9:16 Shoppable Stories, Highlight Rings, Interactive Stickers, C
 
 ## Requirements
 
-| Dependency | Version |
-|---|---|
-| `@medusajs/medusa` | `2.21.x` |
-| Node.js | `^20.19.0 \|\| >=22.12.0` |
-| Package Manager | `pnpm 11.x` / `npm` / `yarn` |
+| Dependency         | Version                      |
+| ------------------ | ---------------------------- |
+| `@medusajs/medusa` | `2.21.x`                     |
+| Node.js            | `^20.19.0 \|\| >=22.12.0`    |
+| Package Manager    | `pnpm 11.x` / `npm` / `yarn` |
 
 ---
 
@@ -125,33 +125,33 @@ Medusa v2 Host Application
 **Module Service Token:** `STORIES_MODULE = "stories"` (100% compatible with `@bambiste/medusa-stories`, also re-exported at `src/modules/stories/index.ts`)  
 **Service Class:** `StoriesModuleService` (`src/modules/story/service.ts`)
 
-| Model | Table Name | Prefix | Key Columns |
-|---|---|---|---|
-| `StoryGroup` | `mps_story_group` | `sgrp_` | `id`, `title`, `handle`, `subtitle`, `avatar_url`, `ring_theme`, `custom_ring_color`, `placement`, `target_entity_id`, `is_pinned`, `is_ephemeral`, `is_active`, `display_order`, `metadata` |
-| `Story` | `story` | `stry_` | `id`, `group_id`, `title`, `caption`, `media_type` (`image \| video`), `media_url`, `thumbnail_url`, `duration_ms`, `link_url`, `link_text`, `is_active`, `display_order`, `starts_at`, `expires_at`, `views_count`, `completions_count`, `clicks_count`, `cart_conversions_count`, `metadata` |
-| `StoryHotspot` | `mps_story_hotspot` | `shsp_` | `id`, `story_id`, `product_id`, `variant_id`, `product_title`, `product_handle`, `product_thumbnail`, `price_formatted`, `price_amount`, `currency_code`, `x_percent`, `y_percent`, `label`, `badge_style` (`pill \| card \| dot`) |
-| `StorySticker` | `mps_story_sticker` | `sstk_` | `id`, `story_id`, `type` (`poll \| countdown \| coupon \| question_badge`), `prompt`, `x_percent`, `y_percent`, `options`, `coupon_code`, `countdown_until`, `total_interactions`, `metadata` |
-| `StoryEvent` | `mps_story_event` | `sevt_` | `id`, `story_id`, `group_id`, `event_type` (`impression \| complete \| tap_forward \| tap_back \| exit \| hotspot_click \| link_click \| add_to_cart \| sticker_interact`), `hotspot_id`, `sticker_id`, `product_id`, `session_id`, `metadata` |
+| Model          | Table Name          | Prefix  | Key Columns                                                                                                                                                                                                                                                                                    |
+| -------------- | ------------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `StoryGroup`   | `mps_story_group`   | `sgrp_` | `id`, `title`, `handle`, `subtitle`, `avatar_url`, `ring_theme`, `custom_ring_color`, `placement`, `target_entity_id`, `is_pinned`, `is_ephemeral`, `is_active`, `display_order`, `metadata`                                                                                                   |
+| `Story`        | `story`             | `stry_` | `id`, `group_id`, `title`, `caption`, `media_type` (`image \| video`), `media_url`, `thumbnail_url`, `duration_ms`, `link_url`, `link_text`, `is_active`, `display_order`, `starts_at`, `expires_at`, `views_count`, `completions_count`, `clicks_count`, `cart_conversions_count`, `metadata` |
+| `StoryHotspot` | `mps_story_hotspot` | `shsp_` | `id`, `story_id`, `product_id`, `variant_id`, `product_title`, `product_handle`, `product_thumbnail`, `price_formatted`, `price_amount`, `currency_code`, `x_percent`, `y_percent`, `label`, `badge_style` (`pill \| card \| dot`)                                                             |
+| `StorySticker` | `mps_story_sticker` | `sstk_` | `id`, `story_id`, `type` (`poll \| countdown \| coupon \| question_badge`), `prompt`, `x_percent`, `y_percent`, `options`, `coupon_code`, `countdown_until`, `total_interactions`, `metadata`                                                                                                  |
+| `StoryEvent`   | `mps_story_event`   | `sevt_` | `id`, `story_id`, `group_id`, `event_type` (`impression \| complete \| tap_forward \| tap_back \| exit \| hotspot_click \| link_click \| add_to_cart \| sticker_interact`), `hotspot_id`, `sticker_id`, `product_id`, `session_id`, `metadata`                                                 |
 
 ---
 
 ## Workflows
 
-| Workflow ID | Export | Compensation | Trigger |
-|---|---|---|---|
-| `create-story-group` | `createStoryGroupWorkflow` | Deletes created `StoryGroup` | `POST /admin/stories/groups` |
-| `create-story-slide` | `createStorySlideWorkflow` | Deletes created `Story` slide (and its hotspots/stickers) | `POST /admin/stories` |
-| `record-story-engagement` | `recordStoryEngagementWorkflow` | — | `POST /store/stories/:id/events` |
-| `expire-ephemeral-stories` | `expireEphemeralStoriesWorkflow` (alias `expireStoriesWorkflow`) | — | Scheduled job `expire-ephemeral-stories` |
+| Workflow ID                | Export                                                           | Compensation                                              | Trigger                                  |
+| -------------------------- | ---------------------------------------------------------------- | --------------------------------------------------------- | ---------------------------------------- |
+| `create-story-group`       | `createStoryGroupWorkflow`                                       | Deletes created `StoryGroup`                              | `POST /admin/stories/groups`             |
+| `create-story-slide`       | `createStorySlideWorkflow`                                       | Deletes created `Story` slide (and its hotspots/stickers) | `POST /admin/stories`                    |
+| `record-story-engagement`  | `recordStoryEngagementWorkflow`                                  | —                                                         | `POST /store/stories/:id/events`         |
+| `expire-ephemeral-stories` | `expireEphemeralStoriesWorkflow` (alias `expireStoriesWorkflow`) | —                                                         | Scheduled job `expire-ephemeral-stories` |
 
 ---
 
 ## Scheduled Jobs & Subscribers
 
-| Type | File | Trigger / Schedule | Behavior |
-|---|---|---|---|
-| **Job** | `src/jobs/expire-ephemeral-stories.ts` | `*/15 * * * *` (Every 15 minutes) | Calls `storiesService.expireOutdatedStories()` to deactivate slides whose `expires_at` is in the past |
-| **Subscriber** | `src/subscribers/product-deleted.ts` | `product.deleted` | Calls `storiesService.removeHotspotsByProductId(data.id)` so deleted products are removed from story slides |
+| Type           | File                                   | Trigger / Schedule                | Behavior                                                                                                    |
+| -------------- | -------------------------------------- | --------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| **Job**        | `src/jobs/expire-ephemeral-stories.ts` | `*/15 * * * *` (Every 15 minutes) | Calls `storiesService.expireOutdatedStories()` to deactivate slides whose `expires_at` is in the past       |
+| **Subscriber** | `src/subscribers/product-deleted.ts`   | `product.deleted`                 | Calls `storiesService.removeHotspotsByProductId(data.id)` so deleted products are removed from story slides |
 
 ---
 
@@ -159,23 +159,23 @@ Medusa v2 Host Application
 
 ### Storefront Endpoints (`/store/stories/*`)
 
-| Method | Path | Description |
-|---|---|---|
-| `GET` | `/store/stories` | Lists active, non-expired Story Highlight Rings (`groups`) and slides (`stories`). Query params: `placement`, `target_entity_id`, `collection_id`, `group_id`, `product_id`. |
-| `POST` | `/store/stories/:id/events` | Records `impression`, `complete`, `tap_forward`, `tap_back`, `exit`, `hotspot_click`, `link_click`, `add_to_cart`, or `sticker_interact` and increments funnel counters. |
-| `POST` | `/store/stories/:id/interact` | Votes on a `poll` sticker (`option_id`), submits a `question_badge` answer (`answer_text`), or claims a `coupon` sticker. |
+| Method | Path                          | Description                                                                                                                                                                  |
+| ------ | ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `GET`  | `/store/stories`              | Lists active, non-expired Story Highlight Rings (`groups`) and slides (`stories`). Query params: `placement`, `target_entity_id`, `collection_id`, `group_id`, `product_id`. |
+| `POST` | `/store/stories/:id/events`   | Records `impression`, `complete`, `tap_forward`, `tap_back`, `exit`, `hotspot_click`, `link_click`, `add_to_cart`, or `sticker_interact` and increments funnel counters.     |
+| `POST` | `/store/stories/:id/interact` | Votes on a `poll` sticker (`option_id`), submits a `question_badge` answer (`answer_text`), or claims a `coupon` sticker.                                                    |
 
 ### Admin Endpoints (`/admin/stories/*`)
 
-| Method | Path | Description |
-|---|---|---|
-| `GET` / `POST` | `/admin/stories` | List full studio state (`stories` + `groups`, optional `?product_id=...`) or create a 9:16 story slide (`createStorySlideWorkflow`). |
-| `GET` / `PATCH` / `DELETE` | `/admin/stories/:id` | Retrieve, update, or delete a story slide. |
-| `GET` / `POST` | `/admin/stories/groups` | List or create Story Highlight Rings (`createStoryGroupWorkflow`). |
-| `GET` / `PATCH` / `DELETE` | `/admin/stories/groups/:id` | Retrieve, update, or delete a Story Highlight Ring. |
-| `POST` / `DELETE` | `/admin/stories/:id/hotspots` | Pin a new X/Y product hotspot (`POST`) or remove a hotspot (`DELETE`). |
-| `POST` / `DELETE` | `/admin/stories/:id/stickers` | Attach an interactive sticker (`POST`) or remove a sticker (`DELETE`). |
-| `GET` | `/admin/stories/analytics` | Retrieve conversion funnel analytics (`total_impressions`, `total_completions`, `total_hotspot_clicks`, `total_add_to_cart`, `overall_completion_rate_pct`, `overall_ctr_pct`, `overall_conversion_rate_pct`, and per-slide breakdown). |
+| Method                     | Path                          | Description                                                                                                                                                                                                                             |
+| -------------------------- | ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `GET` / `POST`             | `/admin/stories`              | List full studio state (`stories` + `groups`, optional `?product_id=...`) or create a 9:16 story slide (`createStorySlideWorkflow`).                                                                                                    |
+| `GET` / `PATCH` / `DELETE` | `/admin/stories/:id`          | Retrieve, update, or delete a story slide.                                                                                                                                                                                              |
+| `GET` / `POST`             | `/admin/stories/groups`       | List or create Story Highlight Rings (`createStoryGroupWorkflow`).                                                                                                                                                                      |
+| `GET` / `PATCH` / `DELETE` | `/admin/stories/groups/:id`   | Retrieve, update, or delete a Story Highlight Ring.                                                                                                                                                                                     |
+| `POST` / `DELETE`          | `/admin/stories/:id/hotspots` | Pin a new X/Y product hotspot (`POST`) or remove a hotspot (`DELETE`).                                                                                                                                                                  |
+| `POST` / `DELETE`          | `/admin/stories/:id/stickers` | Attach an interactive sticker (`POST`) or remove a sticker (`DELETE`).                                                                                                                                                                  |
+| `GET`                      | `/admin/stories/analytics`    | Retrieve conversion funnel analytics (`total_impressions`, `total_completions`, `total_hotspot_clicks`, `total_add_to_cart`, `overall_completion_rate_pct`, `overall_ctr_pct`, `overall_conversion_rate_pct`, and per-slide breakdown). |
 
 ---
 
@@ -183,15 +183,15 @@ Medusa v2 Host Application
 
 All Admin routes, components, and hooks in `src/admin/` are decoupled into focused files (`< 170` lines per file):
 
-| Route / Zone | File | Description |
-|---|---|---|
-| `/stories` | `src/admin/routes/stories/page.tsx` | Overview dashboard with KPI `StatCard`s and `NavigationCard`s |
-| `/stories/canvas` | `src/admin/routes/stories/canvas/page.tsx` | Interactive 9:16 Visual Canvas & X/Y Product Hotspot Tagger |
-| `/stories/rings` | `src/admin/routes/stories/rings/page.tsx` | Story Highlight Rings (`StoryGroup`) preview & table |
-| `/stories/rings/create` | `src/admin/routes/stories/rings/@create/page.tsx` | Focus modal to create a new Story Highlight Ring |
-| `/stories/stickers` | `src/admin/routes/stories/stickers/page.tsx` | Interactive Stickers Builder (Polls, Countdowns, Coupons, Q&A) |
-| `/stories/analytics` | `src/admin/routes/stories/analytics/page.tsx` | Conversion Funnel Analytics & per-slide performance table |
-| `product.details.after` | `src/admin/widgets/product-stories-widget.tsx` | Product detail widget showing tagged slides and 1-click story creation |
+| Route / Zone            | File                                              | Description                                                            |
+| ----------------------- | ------------------------------------------------- | ---------------------------------------------------------------------- |
+| `/stories`              | `src/admin/routes/stories/page.tsx`               | Overview dashboard with KPI `StatCard`s and `NavigationCard`s          |
+| `/stories/canvas`       | `src/admin/routes/stories/canvas/page.tsx`        | Interactive 9:16 Visual Canvas & X/Y Product Hotspot Tagger            |
+| `/stories/rings`        | `src/admin/routes/stories/rings/page.tsx`         | Story Highlight Rings (`StoryGroup`) preview & table                   |
+| `/stories/rings/create` | `src/admin/routes/stories/rings/@create/page.tsx` | Focus modal to create a new Story Highlight Ring                       |
+| `/stories/stickers`     | `src/admin/routes/stories/stickers/page.tsx`      | Interactive Stickers Builder (Polls, Countdowns, Coupons, Q&A)         |
+| `/stories/analytics`    | `src/admin/routes/stories/analytics/page.tsx`     | Conversion Funnel Analytics & per-slide performance table              |
+| `product.details.after` | `src/admin/widgets/product-stories-widget.tsx`    | Product detail widget showing tagged slides and 1-click story creation |
 
 ---
 
@@ -227,7 +227,11 @@ export function StorefrontHeroStories() {
         isOpen={activeGroupIndex !== null}
         onClose={() => setActiveGroupIndex(null)}
         onAddToCart={(hotspot) => {
-          console.log("Add to Medusa cart:", hotspot.product_id, hotspot.variant_id)
+          console.log(
+            "Add to Medusa cart:",
+            hotspot.product_id,
+            hotspot.variant_id
+          )
         }}
       />
     </>

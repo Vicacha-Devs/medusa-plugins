@@ -1,11 +1,11 @@
 import {
   createFindParams,
   createOperatorMap,
-} from "@medusajs/medusa/api/utils/validators";
-import { z } from "@medusajs/framework/zod";
-import { ApprovalType } from "@b2b/types/approval";
+} from "@medusajs/medusa/api/utils/validators"
+import { z } from "@medusajs/framework/zod"
+import { ApprovalType } from "@b2b/types/approval"
 
-export type StoreGetApprovalsType = z.infer<typeof StoreGetApprovals>;
+export type StoreGetApprovalsType = z.infer<typeof StoreGetApprovals>
 export const StoreGetApprovals = createFindParams()
   .merge(
     z.object({
@@ -21,10 +21,10 @@ export const StoreGetApprovals = createFindParams()
         .optional(),
     })
   )
-  .strict();
+  .strict()
 
-export type StoreUpdateApprovalType = z.infer<typeof StoreUpdateApproval>;
+export type StoreUpdateApprovalType = z.infer<typeof StoreUpdateApproval>
 export const StoreUpdateApproval = z.object({
   status: z.string(),
   reason: z.string().nullable().optional(),
-});
+})

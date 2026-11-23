@@ -179,7 +179,10 @@ export const PackingSlipTemplate: React.FC<ReactPdfTemplateProps> = ({
           <View style={styles.addressCol}>
             <Text style={styles.sectionHeading}>{t.ship_to}</Text>
             {shippingLines.map((line, idx) => (
-              <Text key={`ship-${idx}`} style={{ fontSize: 9, lineHeight: 1.35 }}>
+              <Text
+                key={`ship-${idx}`}
+                style={{ fontSize: 9, lineHeight: 1.35 }}
+              >
                 {line}
               </Text>
             ))}

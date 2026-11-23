@@ -1,15 +1,15 @@
-import { Container, Heading, Text } from "@medusajs/ui";
-import type { JSX, ReactNode } from "react";
+import { Container, Heading, Text } from "@medusajs/ui"
+import type { JSX, ReactNode } from "react"
 
-import { useRbacAccess } from "../../hooks/use-rbac-access";
+import { useRbacAccess } from "../../hooks/use-rbac-access"
 
 export interface RbacGuardProps {
-  permission: string;
-  children: ReactNode;
-  fallback?: ReactNode;
-  hideOnDenied?: boolean;
-  title?: string;
-  description?: string;
+  permission: string
+  children: ReactNode
+  fallback?: ReactNode
+  hideOnDenied?: boolean
+  title?: string
+  description?: string
 }
 
 /**
@@ -24,18 +24,18 @@ export const RbacGuard = ({
   title = "Access denied",
   description = "You do not have permission to view this section.",
 }: RbacGuardProps): JSX.Element | null => {
-  const { isLoading, hasPermission } = useRbacAccess();
+  const { isLoading, hasPermission } = useRbacAccess()
 
   if (isLoading) {
-    return null;
+    return null
   }
 
   if (!hasPermission(permission)) {
     if (hideOnDenied) {
-      return null;
+      return null
     }
     if (fallback !== undefined) {
-      return <>{fallback}</>;
+      return <>{fallback}</>
     }
     return (
       <Container className="flex flex-col gap-y-2 p-6">
@@ -44,8 +44,8 @@ export const RbacGuard = ({
           {description} ({permission})
         </Text>
       </Container>
-    );
+    )
   }
 
-  return <>{children}</>;
-};
+  return <>{children}</>
+}

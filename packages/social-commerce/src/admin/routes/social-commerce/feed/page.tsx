@@ -6,7 +6,7 @@ import { Toaster } from "@medusajs/ui"
 import { useTranslation } from "react-i18next"
 import { FeedTab } from "../../../components/index.js"
 import { useSocialDashboard } from "../../../hooks/use-social-dashboard.js"
-import { RbacGuard } from "../../../components/rbac-guard";
+import { RbacGuard } from "../../../components/rbac-guard"
 
 const SocialFeedPage = () => {
   const { posts } = useSocialDashboard()
@@ -46,6 +46,6 @@ const GuardedSocialFeedPage = () => (
   <RbacGuard permission="social_commerce.read">
     <SocialFeedPage />
   </RbacGuard>
-);
+)
 
-export default GuardedSocialFeedPage;
+export default GuardedSocialFeedPage

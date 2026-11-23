@@ -12,7 +12,7 @@ pnpm add @vicacha-devs/medusa-plugin-odoo
 ## `medusa-config.ts` Registration
 
 ```ts
-import { defineConfig } from "@medusajs/framework/utils";
+import { defineConfig } from "@medusajs/framework/utils"
 
 export default defineConfig({
   plugins: [
@@ -21,12 +21,13 @@ export default defineConfig({
       options: {},
     },
   ],
-});
+})
 ```
 
 ## Admin UI Extensions
 
 ### Admin Routes
+
 - `/app/odoo/barcode`
 - `/app/odoo/connection`
 - `/app/odoo/logs`
@@ -34,10 +35,12 @@ export default defineConfig({
 - `/app/odoo/settings`
 
 ### Admin Widgets
+
 - `order-odoo-widget`
 - `product-odoo-widget`
 
 ### Supported Admin Locales
+
 `ar`, `de`, `en`, `es`, `fr`, `it`, `nl`, `pl`, `pt`, `tr`
 
 ## API Reference

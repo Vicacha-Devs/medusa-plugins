@@ -62,12 +62,24 @@ export const DianResolutionsTableSection: React.FC<
           <Table>
             <Table.Header>
               <Table.Row>
-                <Table.HeaderCell>{t("dian.resolutions.colPrefix")}</Table.HeaderCell>
-                <Table.HeaderCell>{t("dian.resolutions.colResolution")}</Table.HeaderCell>
-                <Table.HeaderCell>{t("dian.resolutions.colType")}</Table.HeaderCell>
-                <Table.HeaderCell>{t("dian.resolutions.colRange")}</Table.HeaderCell>
-                <Table.HeaderCell>{t("dian.resolutions.colValidity")}</Table.HeaderCell>
-                <Table.HeaderCell>{t("dian.resolutions.colStatus")}</Table.HeaderCell>
+                <Table.HeaderCell>
+                  {t("dian.resolutions.colPrefix")}
+                </Table.HeaderCell>
+                <Table.HeaderCell>
+                  {t("dian.resolutions.colResolution")}
+                </Table.HeaderCell>
+                <Table.HeaderCell>
+                  {t("dian.resolutions.colType")}
+                </Table.HeaderCell>
+                <Table.HeaderCell>
+                  {t("dian.resolutions.colRange")}
+                </Table.HeaderCell>
+                <Table.HeaderCell>
+                  {t("dian.resolutions.colValidity")}
+                </Table.HeaderCell>
+                <Table.HeaderCell>
+                  {t("dian.resolutions.colStatus")}
+                </Table.HeaderCell>
               </Table.Row>
             </Table.Header>
             <Table.Body>
@@ -77,11 +89,13 @@ export const DianResolutionsTableSection: React.FC<
                   <Table.Cell>{r.resolution_number}</Table.Cell>
                   <Table.Cell>{r.document_type}</Table.Cell>
                   <Table.Cell>
-                    {r.from_number} - {r.to_number} ({t("dian.resolutions.currentLabel")}{" "}
+                    {r.from_number} - {r.to_number} (
+                    {t("dian.resolutions.currentLabel")}{" "}
                     <strong>{r.current_number}</strong>)
                   </Table.Cell>
                   <Table.Cell>
-                    {r.valid_from} {t("dian.resolutions.toConnector")} {r.valid_to}
+                    {r.valid_from} {t("dian.resolutions.toConnector")}{" "}
+                    {r.valid_to}
                   </Table.Cell>
                   <Table.Cell>
                     <Badge color={r.is_active ? "green" : "grey"}>

@@ -295,4 +295,3 @@ export interface CreateProductPayload {
   }>
   metadata: Record<string, unknown>
 }
-

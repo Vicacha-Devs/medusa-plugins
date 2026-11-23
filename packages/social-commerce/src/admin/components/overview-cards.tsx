@@ -1,12 +1,5 @@
 import type React from "react"
-import {
-  Button,
-  clx,
-  Container,
-  Heading,
-  Skeleton,
-  Text,
-} from "@medusajs/ui"
+import { Button, clx, Container, Heading, Skeleton, Text } from "@medusajs/ui"
 
 export type StatCardProps = {
   title: string

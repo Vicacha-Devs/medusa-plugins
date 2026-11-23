@@ -15,15 +15,17 @@ defineCellRenderer("b2b-quote-total", {
   render: (value, row: any) => {
     const amount = value as number | null
     if (amount == null) return "-"
-    const currencyCode = (row?.draft_order?.currency_code ?? "USD").toUpperCase()
+    const currencyCode = (
+      row?.draft_order?.currency_code ?? "USD"
+    ).toUpperCase()
     return formatCurrency(amount / 100, currencyCode)
   },
 })
 
 defineCellRenderer("b2b-quote-customer-link", {
-  render: (value: { id?: string, full_name?: string}) => {
+  render: (value: { id?: string; full_name?: string }) => {
     if (!value.id) return "-"
-    
+
     return (
       <Link
         to={`/customers/${value.id}`}
@@ -73,11 +75,7 @@ defineCellRenderer("b2b-quote-cart-link", {
   render: (value: string) => {
     if (!value) return "-"
 
-    return (
-      <span className="txt-compact-small text-ui-fg-subtle">
-        {value}
-      </span>
-    )
+    return <span className="txt-compact-small text-ui-fg-subtle">{value}</span>
   },
 })
 

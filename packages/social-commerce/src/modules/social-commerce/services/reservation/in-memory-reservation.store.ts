@@ -31,7 +31,10 @@ export class InMemoryReservationStore implements ReservationStoreBackend {
   /**
    * Serializes concurrent operations on the same in-memory bucket key.
    */
-  private async withKeyLock<T>(key: string, fn: () => Promise<T> | T): Promise<T> {
+  private async withKeyLock<T>(
+    key: string,
+    fn: () => Promise<T> | T
+  ): Promise<T> {
     const previous = this.keyLocks.get(key) ?? Promise.resolve()
     let release!: () => void
     const next = new Promise<void>((resolve) => {
@@ -162,9 +165,11 @@ export class InMemoryReservationStore implements ReservationStoreBackend {
     })
   }
 
-  async confirmReservation(
-    reservationId: string
-  ): Promise<{ confirmed: boolean; quantity: number; reservation: ReservationRecord | null }> {
+  async confirmReservation(reservationId: string): Promise<{
+    confirmed: boolean
+    quantity: number
+    reservation: ReservationRecord | null
+  }> {
     const existing = this.reservations.get(reservationId)
     if (!existing) {
       return { confirmed: false, quantity: 0, reservation: null }
@@ -225,7 +230,8 @@ export class InMemoryReservationStore implements ReservationStoreBackend {
     this.sweepExpiredMemoryReservations(nowMs, filter?.session_id)
     const results: ReservationRecord[] = []
     for (const record of this.reservations.values()) {
-      if (filter?.session_id && record.session_id !== filter.session_id) continue
+      if (filter?.session_id && record.session_id !== filter.session_id)
+        continue
       if (filter?.cart_id && record.cart_id !== filter.cart_id) continue
       if (filter?.status && record.status !== filter.status) continue
       results.push({ ...record })

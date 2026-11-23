@@ -1,6 +1,9 @@
-import { createWorkflow, WorkflowResponse } from "@medusajs/framework/workflows-sdk";
-import { ModuleQuote, ModuleUpdateQuote } from "@b2b/types";
-import { updateQuotesStep } from "../steps/update-quotes";
+import {
+  createWorkflow,
+  WorkflowResponse,
+} from "@medusajs/framework/workflows-sdk"
+import { ModuleQuote, ModuleUpdateQuote } from "@b2b/types"
+import { updateQuotesStep } from "../steps/update-quotes"
 
 /*
   A workflow that updates a quote. 
@@ -8,6 +11,6 @@ import { updateQuotesStep } from "../steps/update-quotes";
 export const updateQuotesWorkflow = createWorkflow(
   "update-quotes",
   function (input: ModuleUpdateQuote[]): WorkflowResponse<ModuleQuote[]> {
-    return new WorkflowResponse(updateQuotesStep(input));
+    return new WorkflowResponse(updateQuotesStep(input))
   }
-);
+)

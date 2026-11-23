@@ -237,7 +237,8 @@ paths:
     post:
       operationId: postAdminBarcodesCountSessionsByIdApply
       summary: Create / Trigger barcodes count sessions by ID apply
-      description: POST /admin/barcodes/count-sessions/{id}/apply endpoint exposed by
+      description:
+        POST /admin/barcodes/count-sessions/{id}/apply endpoint exposed by
         @vicacha-devs/medusa-plugin-barcode.
       tags:
         - "Admin: barcodes"
@@ -271,7 +272,8 @@ paths:
     post:
       operationId: postAdminBarcodesCountSessionsByIdScan
       summary: Create / Trigger barcodes count sessions by ID scan
-      description: POST /admin/barcodes/count-sessions/{id}/scan endpoint exposed by
+      description:
+        POST /admin/barcodes/count-sessions/{id}/scan endpoint exposed by
         @vicacha-devs/medusa-plugin-barcode.
       tags:
         - "Admin: barcodes"

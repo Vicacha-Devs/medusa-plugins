@@ -1,4 +1,8 @@
-import type { NotificationChannel, NotificationsPluginOptions, TemplateBlockNode } from "../types"
+import type {
+  NotificationChannel,
+  NotificationsPluginOptions,
+  TemplateBlockNode,
+} from "../types"
 import {
   buildBlockTreeFromFlatBlocks,
   SYSTEM_TEMPLATE_PRESETS,
@@ -159,8 +163,8 @@ export function mergeTemplateTranslations(
     ...baseTranslations,
     ...tplLocaleDict,
     general: {
-      ...(baseTranslations.general || {}),
-      ...(tplLocaleDict.general || {}),
+      ...baseTranslations.general,
+      ...tplLocaleDict.general,
     },
   }
 }

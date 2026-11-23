@@ -13,7 +13,7 @@ import {
   DianDocumentsTableSection,
   DianOverviewSection,
 } from "../../components"
-import { RbacGuard } from "../../components/rbac-guard";
+import { RbacGuard } from "../../components/rbac-guard"
 
 const DianMainPage: React.FC = () => {
   const [typeFilter, setTypeFilter] = useState<string>("all")
@@ -77,6 +77,6 @@ const GuardedDianMainPage = () => (
   <RbacGuard permission="dian.read">
     <DianMainPage />
   </RbacGuard>
-);
+)
 
-export default GuardedDianMainPage;
+export default GuardedDianMainPage

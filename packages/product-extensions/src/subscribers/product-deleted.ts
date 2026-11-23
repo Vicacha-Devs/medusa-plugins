@@ -9,9 +9,8 @@ export default async function productDeletedSubscriber({
   container,
 }: SubscriberArgs<{ id?: string; product_id?: string; variant_id?: string }>) {
   try {
-    const service = container.resolve<ProductExtModuleService>(
-      PRODUCT_EXT_MODULE
-    )
+    const service =
+      container.resolve<ProductExtModuleService>(PRODUCT_EXT_MODULE)
 
     if (event.name === "product-variant.deleted") {
       const variantId = event.data?.variant_id || event.data?.id

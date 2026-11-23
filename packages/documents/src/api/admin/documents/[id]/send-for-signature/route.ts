@@ -31,8 +31,7 @@ export async function POST(req: MedusaRequest, res: MedusaResponse) {
   }
 
   try {
-    const { buffer, document } =
-      await documentsService.getDocumentPdfBuffer(id)
+    const { buffer, document } = await documentsService.getDocumentPdfBuffer(id)
     const settings = await documentsService.resolveSettings(
       document.settings_snapshot?.region_id
     )
@@ -56,10 +55,7 @@ export async function POST(req: MedusaRequest, res: MedusaResponse) {
     const signerName =
       parsed.data.signer_name ||
       b2bSnapshot.buyer_contact_name ||
-      [
-        orderSnapshot.customer?.first_name,
-        orderSnapshot.customer?.last_name,
-      ]
+      [orderSnapshot.customer?.first_name, orderSnapshot.customer?.last_name]
         .filter(Boolean)
         .join(" ") ||
       b2bSnapshot.company_name ||
@@ -67,8 +63,7 @@ export async function POST(req: MedusaRequest, res: MedusaResponse) {
 
     const templateId =
       parsed.data.template_id ?? settings.docuseal_template_id ?? null
-    const role =
-      parsed.data.role || settings.signature_role || "Customer"
+    const role = parsed.data.role || settings.signature_role || "Customer"
 
     const emailDeliveryMode =
       parsed.data.email_delivery ??

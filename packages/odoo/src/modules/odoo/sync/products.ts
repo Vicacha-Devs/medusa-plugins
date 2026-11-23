@@ -9,10 +9,7 @@ import type {
   OdooSyncResult,
 } from "../types"
 import type { OdooModuleService } from "../service"
-import {
-  computeExternalChecksum,
-  slugifyHandle,
-} from "../utils/security"
+import { computeExternalChecksum, slugifyHandle } from "../utils/security"
 
 export async function importProductsFromOdoo(
   this: OdooModuleService,
@@ -85,7 +82,8 @@ export async function importProductsFromOdoo(
       }
     }
 
-    const activeScope = scope ?? (this.container_ as { resolve?: (k: string) => unknown })
+    const activeScope =
+      scope ?? (this.container_ as { resolve?: (k: string) => unknown })
     const query =
       typeof activeScope?.resolve === "function"
         ? (activeScope.resolve(ContainerRegistrationKeys.QUERY) as
@@ -373,7 +371,8 @@ export async function exportProductsToOdoo(
 
   try {
     const client = await this.getOdooClient()
-    const activeScope = scope ?? (this.container_ as { resolve?: (k: string) => unknown })
+    const activeScope =
+      scope ?? (this.container_ as { resolve?: (k: string) => unknown })
 
     let products = productsInput ?? []
     if (!products.length && typeof activeScope?.resolve === "function") {

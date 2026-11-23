@@ -13,7 +13,10 @@ import { ar } from "./ar"
 
 export { en, es, pl, de, fr, pt, it, nl, tr, ar }
 
-export const LOCALE_DICTIONARIES: Record<SupportedLocale, DocumentTranslations> = {
+export const LOCALE_DICTIONARIES: Record<
+  SupportedLocale,
+  DocumentTranslations
+> = {
   en,
   es,
   pl,

@@ -15,18 +15,18 @@ modules/barcode/providers/
 
 All 10 built-in providers extend `BaseBarcodeProvider` and normalize external API responses into a unified `NormalizedBarcodeProduct` schema:
 
-| # | Provider Key | Class Name | Default Priority | API Key Required? | Specialty / Catalog |
-| :---: | --- | --- | :---: | :---: | --- |
-| 1 | `openfoodfacts` | `OpenFoodFactsProvider` | `10` | No (Free) | Global food, beverages, groceries, nutrition & ingredients |
-| 2 | `googlebooks` | `GoogleBooksProvider` | `15` (Promoted `#1` on ISBN) | Optional (`apiKey`) | Books, magazines & media (`978`/`979` ISBN-13) |
-| 3 | `openlibrary` | `OpenLibraryProvider` | `18` (Promoted `#2` on ISBN) | No (Free) | Internet Archive OpenLibrary ISBN metadata & book covers |
-| 4 | `openbeautyfacts` | `OpenBeautyFactsProvider` | `20` | No (Free) | Cosmetics, skincare, fragrances & personal care |
-| 5 | `openpetfoodfacts` | `OpenPetFoodFactsProvider` | `25` | No (Free) | Pet food, treats & animal supplies |
-| 6 | `openproductsfacts` | `OpenProductsFactsProvider` | `30` | No (Free) | Consumer electronics, household & general retail |
-| 7 | `brocade` | `BrocadeProvider` | `35` | No (Free) | Open GTIN catalog (`brocade.io`) for general retail items |
-| 8 | `upcitemdb` | `UpcItemDbProvider` | `40` | Optional (Free trial / Paid key) | General retail UPC/EAN catalog + lowest recorded price |
-| 9 | `eansearch` | `EanSearchProvider` | `60` | Yes (`apiKey`) | Commercial global EAN/UPC/ISBN lookup (`ean-search.org`) |
-| 10 | `barcodeLookup` | `BarcodeLookupProvider` | `70` | Yes (`apiKey`) | Commercial 700M+ product catalog (`barcodelookup.com`) |
+|  #  | Provider Key        | Class Name                  |       Default Priority       |        API Key Required?         | Specialty / Catalog                                        |
+| :-: | ------------------- | --------------------------- | :--------------------------: | :------------------------------: | ---------------------------------------------------------- |
+|  1  | `openfoodfacts`     | `OpenFoodFactsProvider`     |             `10`             |            No (Free)             | Global food, beverages, groceries, nutrition & ingredients |
+|  2  | `googlebooks`       | `GoogleBooksProvider`       | `15` (Promoted `#1` on ISBN) |       Optional (`apiKey`)        | Books, magazines & media (`978`/`979` ISBN-13)             |
+|  3  | `openlibrary`       | `OpenLibraryProvider`       | `18` (Promoted `#2` on ISBN) |            No (Free)             | Internet Archive OpenLibrary ISBN metadata & book covers   |
+|  4  | `openbeautyfacts`   | `OpenBeautyFactsProvider`   |             `20`             |            No (Free)             | Cosmetics, skincare, fragrances & personal care            |
+|  5  | `openpetfoodfacts`  | `OpenPetFoodFactsProvider`  |             `25`             |            No (Free)             | Pet food, treats & animal supplies                         |
+|  6  | `openproductsfacts` | `OpenProductsFactsProvider` |             `30`             |            No (Free)             | Consumer electronics, household & general retail           |
+|  7  | `brocade`           | `BrocadeProvider`           |             `35`             |            No (Free)             | Open GTIN catalog (`brocade.io`) for general retail items  |
+|  8  | `upcitemdb`         | `UpcItemDbProvider`         |             `40`             | Optional (Free trial / Paid key) | General retail UPC/EAN catalog + lowest recorded price     |
+|  9  | `eansearch`         | `EanSearchProvider`         |             `60`             |          Yes (`apiKey`)          | Commercial global EAN/UPC/ISBN lookup (`ean-search.org`)   |
+| 10  | `barcodeLookup`     | `BarcodeLookupProvider`     |             `70`             |          Yes (`apiKey`)          | Commercial 700M+ product catalog (`barcodelookup.com`)     |
 
 ---
 
@@ -62,9 +62,11 @@ export class MyErpBarcodeProvider extends BaseBarcodeProvider {
     barcode: string,
     format: BarcodeSymbology
   ): Promise<NormalizedBarcodeProduct | null> {
-    const data = await this.fetchJson<{ title?: string; brand?: string; price?: number }>(
-      `https://erp.example.com/api/gtin/${encodeURIComponent(barcode)}`
-    )
+    const data = await this.fetchJson<{
+      title?: string
+      brand?: string
+      price?: number
+    }>(`https://erp.example.com/api/gtin/${encodeURIComponent(barcode)}`)
     if (!data?.title) return null
 
     return {

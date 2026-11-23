@@ -9,10 +9,7 @@ import type {
 } from "../types"
 import { documentsAdminSdk } from "../sdk/client"
 import { documentsQueryKeys } from "../sdk/query-keys"
-import {
-  useDocumentsMutation,
-  useDocumentsQuery,
-} from "./use-sdk-primitives"
+import { useDocumentsMutation, useDocumentsQuery } from "./use-sdk-primitives"
 
 export function useDocumentSettings(
   regionId?: string | null,

@@ -5,14 +5,7 @@ import {
   ExclamationCircle,
   Plus,
 } from "@medusajs/icons"
-import {
-  Button,
-  clx,
-  Container,
-  Heading,
-  Skeleton,
-  Text,
-} from "@medusajs/ui"
+import { Button, clx, Container, Heading, Skeleton, Text } from "@medusajs/ui"
 import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router-dom"
 
@@ -30,7 +23,9 @@ export const DocumentsOverviewSection: React.FC<
   const { t } = useTranslation()
   const navigate = useNavigate()
 
-  const generatedCount = documents.filter((d) => d.status === "generated").length
+  const generatedCount = documents.filter(
+    (d) => d.status === "generated"
+  ).length
   const staleCount = documents.filter((d) => d.is_stale).length
   const failedCount = documents.filter((d) => d.status === "failed").length
 

@@ -3,8 +3,8 @@ import {
   transform,
   WorkflowData,
   WorkflowResponse,
-} from "@medusajs/framework/workflows-sdk";
-import { clearCustomerCompanyNameStep, deleteEmployeesStep } from "../steps";
+} from "@medusajs/framework/workflows-sdk"
+import { clearCustomerCompanyNameStep, deleteEmployeesStep } from "../steps"
 
 type DeleteInput = { id: string; company_id?: string } | string | string[]
 
@@ -19,8 +19,8 @@ export const deleteEmployeesWorkflow = createWorkflow(
 
     clearCustomerCompanyNameStep({ employeeId })
 
-    deleteEmployeesStep(employeeId);
+    deleteEmployeesStep(employeeId)
 
-    return new WorkflowResponse("Company customers deleted");
+    return new WorkflowResponse("Company customers deleted")
   }
-);
+)

@@ -11,7 +11,9 @@ import type {
 export const useProductSocialStatus = (productId: string | undefined) => {
   const { t } = useTranslation()
   const [taggedPosts, setTaggedPosts] = useState<SocialMediaPostRecord[]>([])
-  const [catalogStatus, setCatalogStatus] = useState<CatalogSyncItemRecord[]>([])
+  const [catalogStatus, setCatalogStatus] = useState<CatalogSyncItemRecord[]>(
+    []
+  )
   const [loading, setLoading] = useState<boolean>(false)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
@@ -70,4 +72,3 @@ export const useProductSocialStatus = (productId: string | undefined) => {
     errorMessage,
   }
 }
-

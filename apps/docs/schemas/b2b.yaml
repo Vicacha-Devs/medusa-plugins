@@ -210,7 +210,8 @@ paths:
     get:
       operationId: getAdminB2bCompaniesByIdApprovalSettings
       summary: Get b2b companies by ID approval settings
-      description: GET /admin/b2b/companies/{id}/approval-settings endpoint exposed by
+      description:
+        GET /admin/b2b/companies/{id}/approval-settings endpoint exposed by
         @vicacha-devs/medusa-plugin-b2b.
       tags:
         - "Admin: b2b"
@@ -236,7 +237,8 @@ paths:
     post:
       operationId: postAdminB2bCompaniesByIdApprovalSettings
       summary: Create / Trigger b2b companies by ID approval settings
-      description: POST /admin/b2b/companies/{id}/approval-settings endpoint exposed
+      description:
+        POST /admin/b2b/companies/{id}/approval-settings endpoint exposed
         by @vicacha-devs/medusa-plugin-b2b.
       tags:
         - "Admin: b2b"
@@ -270,7 +272,8 @@ paths:
     post:
       operationId: postAdminB2bCompaniesByIdCustomerGroup
       summary: Create / Trigger b2b companies by ID customer group
-      description: POST /admin/b2b/companies/{id}/customer-group endpoint exposed by
+      description:
+        POST /admin/b2b/companies/{id}/customer-group endpoint exposed by
         @vicacha-devs/medusa-plugin-b2b.
       tags:
         - "Admin: b2b"
@@ -304,7 +307,8 @@ paths:
     delete:
       operationId: deleteAdminB2bCompaniesByIdCustomerGroupByCustomerGroupId
       summary: Delete b2b companies by ID customer group by ID
-      description: DELETE /admin/b2b/companies/{id}/customer-group/{customerGroupId}
+      description:
+        DELETE /admin/b2b/companies/{id}/customer-group/{customerGroupId}
         endpoint exposed by @vicacha-devs/medusa-plugin-b2b.
       tags:
         - "Admin: b2b"
@@ -397,7 +401,8 @@ paths:
     delete:
       operationId: deleteAdminB2bCompaniesByIdEmployeesByEmployeeId
       summary: Delete b2b companies by ID employees by ID
-      description: DELETE /admin/b2b/companies/{id}/employees/{employeeId} endpoint
+      description:
+        DELETE /admin/b2b/companies/{id}/employees/{employeeId} endpoint
         exposed by @vicacha-devs/medusa-plugin-b2b.
       tags:
         - "Admin: b2b"
@@ -461,7 +466,8 @@ paths:
     post:
       operationId: postAdminB2bCompaniesByIdEmployeesByEmployeeId
       summary: Create / Trigger b2b companies by ID employees by ID
-      description: POST /admin/b2b/companies/{id}/employees/{employeeId} endpoint
+      description:
+        POST /admin/b2b/companies/{id}/employees/{employeeId} endpoint
         exposed by @vicacha-devs/medusa-plugin-b2b.
       tags:
         - "Admin: b2b"
@@ -736,7 +742,8 @@ paths:
     get:
       operationId: getAdminViewsB2bCompanyEmployeesColumns
       summary: List views b2b company employees columns
-      description: GET /admin/views/b2b-company-employees/columns endpoint exposed by
+      description:
+        GET /admin/views/b2b-company-employees/columns endpoint exposed by
         @vicacha-devs/medusa-plugin-b2b.
       tags:
         - "Admin: views"
@@ -858,7 +865,8 @@ paths:
     post:
       operationId: postStoreB2bCartsByIdLineItemsBulk
       summary: Create / Trigger b2b carts by ID line items bulk
-      description: POST /store/b2b/carts/{id}/line-items/bulk endpoint exposed by
+      description:
+        POST /store/b2b/carts/{id}/line-items/bulk endpoint exposed by
         @vicacha-devs/medusa-plugin-b2b.
       tags:
         - "Storefront: b2b"
@@ -995,7 +1003,8 @@ paths:
     post:
       operationId: postStoreB2bCompaniesByIdApprovalSettings
       summary: Create / Trigger b2b companies by ID approval settings
-      description: POST /store/b2b/companies/{id}/approval-settings endpoint exposed
+      description:
+        POST /store/b2b/companies/{id}/approval-settings endpoint exposed
         by @vicacha-devs/medusa-plugin-b2b.
       tags:
         - "Storefront: b2b"
@@ -1083,7 +1092,8 @@ paths:
     delete:
       operationId: deleteStoreB2bCompaniesByIdEmployeesByEmployeeId
       summary: Delete b2b companies by ID employees by ID
-      description: DELETE /store/b2b/companies/{id}/employees/{employeeId} endpoint
+      description:
+        DELETE /store/b2b/companies/{id}/employees/{employeeId} endpoint
         exposed by @vicacha-devs/medusa-plugin-b2b.
       tags:
         - "Storefront: b2b"
@@ -1143,7 +1153,8 @@ paths:
     post:
       operationId: postStoreB2bCompaniesByIdEmployeesByEmployeeId
       summary: Create / Trigger b2b companies by ID employees by ID
-      description: POST /store/b2b/companies/{id}/employees/{employeeId} endpoint
+      description:
+        POST /store/b2b/companies/{id}/employees/{employeeId} endpoint
         exposed by @vicacha-devs/medusa-plugin-b2b.
       tags:
         - "Storefront: b2b"

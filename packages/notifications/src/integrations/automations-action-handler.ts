@@ -110,9 +110,8 @@ export class MpnAutomationActionHandler {
     ).trim()
 
     if (!templateId) {
-      const { executeEventNotificationsDispatch } = await import(
-        "../workflows/index.js"
-      )
+      const { executeEventNotificationsDispatch } =
+        await import("../workflows/index.js")
       const dispatchResult = await executeEventNotificationsDispatch(
         container,
         {

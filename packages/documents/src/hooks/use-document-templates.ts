@@ -9,10 +9,7 @@ import type {
 } from "../types"
 import { documentsAdminSdk } from "../sdk/client"
 import { documentsQueryKeys } from "../sdk/query-keys"
-import {
-  useDocumentsMutation,
-  useDocumentsQuery,
-} from "./use-sdk-primitives"
+import { useDocumentsMutation, useDocumentsQuery } from "./use-sdk-primitives"
 
 export function useDocumentTemplates(
   params?: ListDocumentTemplatesParams,
@@ -42,9 +39,7 @@ export function useSaveDocumentTemplate(
     { id?: string; payload: UpsertDocumentTemplatePayload }
   >(
     ({ id, payload }) =>
-      id
-        ? client.updateTemplate(id, payload)
-        : client.createTemplate(payload),
+      id ? client.updateTemplate(id, payload) : client.createTemplate(payload),
     options,
     documentsQueryKeys.templatesAll()
   )

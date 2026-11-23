@@ -37,7 +37,7 @@ export const GET = async (req: MedusaRequest, res: MedusaResponse) => {
     } else if (ch === "whatsapp") {
       envStatus.meta_cloud_configured = Boolean(
         process.env.WHATSAPP_ACCESS_TOKEN &&
-          process.env.WHATSAPP_PHONE_NUMBER_ID
+        process.env.WHATSAPP_PHONE_NUMBER_ID
       )
       envStatus.openwa_configured = Boolean(process.env.OPENWA_BASE_URL)
       envStatus.waha_configured = Boolean(process.env.WAHA_BASE_URL)

@@ -1,10 +1,10 @@
-import { CommandBar, Table, clx } from "@medusajs/ui";
-import { RowData, flexRender } from "@tanstack/react-table";
+import { CommandBar, Table, clx } from "@medusajs/ui"
+import { RowData, flexRender } from "@tanstack/react-table"
 import {
   LegacyColumnDef as ColumnDef,
   LegacyReactTable as ReactTable,
   LegacyRow as Row,
-} from "@tanstack/react-table/legacy";
+} from "@tanstack/react-table/legacy"
 import {
   ComponentPropsWithoutRef,
   Fragment,
@@ -13,54 +13,54 @@ import {
   useEffect,
   useRef,
   useState,
-} from "react";
-import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
-import { NoResults } from "../empty-state";
+} from "react"
+import { useTranslation } from "react-i18next"
+import { Link } from "react-router-dom"
+import { NoResults } from "../empty-state"
 
 type BulkCommand = {
-  label: string;
-  shortcut: string;
-  action: (selection: Record<string, boolean>) => Promise<void>;
-};
+  label: string
+  shortcut: string
+  action: (selection: Record<string, boolean>) => Promise<void>
+}
 
 export interface DataTableRootProps<TData extends RowData> {
   /**
    * The table instance to render
    */
-  table: ReactTable<TData>;
+  table: ReactTable<TData>
   /**
    * The columns to render
    */
-  columns: ColumnDef<TData, any>[];
+  columns: ColumnDef<TData, any>[]
   /**
    * Function to generate a link to navigate to when clicking on a row
    */
-  navigateTo?: (row: Row<TData>) => string;
+  navigateTo?: (row: Row<TData>) => string
   /**
    * Bulk actions to render
    */
-  commands?: BulkCommand[];
+  commands?: BulkCommand[]
   /**
    * The total number of items in the table
    */
-  count?: number;
+  count?: number
   /**
    * Whether to display pagination controls
    */
-  pagination?: boolean;
+  pagination?: boolean
   /**
    * Whether the table is empty due to no results from the active query
    */
-  noResults?: boolean;
+  noResults?: boolean
   /**
    * Whether to display the tables header
    */
-  noHeader?: boolean;
+  noHeader?: boolean
   /**
    * The layout of the table
    */
-  layout?: "fill" | "fit";
+  layout?: "fill" | "fit"
 }
 
 /**
@@ -77,7 +77,7 @@ export interface DataTableRootProps<TData extends RowData> {
 /**
  * Table component for rendering a table with pagination, filtering and ordering.
  */
-export const DataTableRoot = <TData extends RowData,>({
+export const DataTableRoot = <TData extends RowData>({
   table,
   columns,
   pagination,
@@ -88,40 +88,40 @@ export const DataTableRoot = <TData extends RowData,>({
   noHeader = false,
   layout = "fit",
 }: DataTableRootProps<TData>): JSX.Element => {
-  const { t } = useTranslation();
-  const [showStickyBorder, setShowStickyBorder] = useState(false);
+  const { t } = useTranslation()
+  const [showStickyBorder, setShowStickyBorder] = useState(false)
 
-  const scrollableRef = useRef<HTMLDivElement>(null);
+  const scrollableRef = useRef<HTMLDivElement>(null)
 
-  const hasSelect = columns.find((c) => c.id === "select");
-  const hasActions = columns.find((c) => c.id === "actions");
-  const hasCommandBar = commands && commands.length > 0;
+  const hasSelect = columns.find((c) => c.id === "select")
+  const hasActions = columns.find((c) => c.id === "actions")
+  const hasCommandBar = commands && commands.length > 0
 
-  const rowSelection = table.getState().rowSelection;
-  const { pageIndex, pageSize } = table.getState().pagination;
+  const rowSelection = table.getState().rowSelection
+  const { pageIndex, pageSize } = table.getState().pagination
 
-  const colCount = columns.length - (hasSelect ? 1 : 0) - (hasActions ? 1 : 0);
-  const colWidth = 100 / colCount;
+  const colCount = columns.length - (hasSelect ? 1 : 0) - (hasActions ? 1 : 0)
+  const colWidth = 100 / colCount
 
   const handleHorizontalScroll = (e: UIEvent<HTMLDivElement>) => {
-    const scrollLeft = e.currentTarget.scrollLeft;
+    const scrollLeft = e.currentTarget.scrollLeft
 
     if (scrollLeft > 0) {
-      setShowStickyBorder(true);
+      setShowStickyBorder(true)
     } else {
-      setShowStickyBorder(false);
+      setShowStickyBorder(false)
     }
-  };
+  }
 
   const handleAction = async (action: BulkCommand["action"]) => {
     await action(rowSelection).then(() => {
-      table.resetRowSelection();
-    });
-  };
+      table.resetRowSelection()
+    })
+  }
 
   useEffect(() => {
-    scrollableRef.current?.scroll({ top: 0, left: 0 });
-  }, [pageIndex]);
+    scrollableRef.current?.scroll({ top: 0, left: 0 })
+  }, [pageIndex])
 
   return (
     <div
@@ -153,20 +153,19 @@ export const DataTableRoot = <TData extends RowData,>({
                       })}
                     >
                       {headerGroup.headers.map((header, index) => {
-                        const isActionHeader = header.id === "actions";
-                        const isSelectHeader = header.id === "select";
-                        const isSpecialHeader =
-                          isActionHeader || isSelectHeader;
+                        const isActionHeader = header.id === "actions"
+                        const isSelectHeader = header.id === "select"
+                        const isSpecialHeader = isActionHeader || isSelectHeader
 
                         const firstHeader = headerGroup.headers.findIndex(
                           (h) => h.id !== "select"
-                        );
+                        )
                         const isFirstHeader =
                           firstHeader !== -1
                             ? header.id === headerGroup.headers[firstHeader].id
-                            : index === 0;
+                            : index === 0
 
-                        const isStickyHeader = isSelectHeader || isFirstHeader;
+                        const isStickyHeader = isSelectHeader || isFirstHeader
 
                         return (
                           <Table.HeaderCell
@@ -193,21 +192,21 @@ export const DataTableRoot = <TData extends RowData,>({
                               header.getContext()
                             )}
                           </Table.HeaderCell>
-                        );
+                        )
                       })}
                     </Table.Row>
-                  );
+                  )
                 })}
               </Table.Header>
             )}
             <Table.Body className="border-b-0">
               {table.getRowModel().rows.map((row) => {
-                const to = navigateTo ? navigateTo(row) : undefined;
-                const isRowDisabled = hasSelect && !row.getCanSelect();
+                const to = navigateTo ? navigateTo(row) : undefined
+                const isRowDisabled = hasSelect && !row.getCanSelect()
 
-                const isOdd = row.depth % 2 !== 0;
+                const isOdd = row.depth % 2 !== 0
 
-                const cells = row.getVisibleCells();
+                const cells = row.getVisibleCells()
 
                 return (
                   <Table.Row
@@ -227,18 +226,18 @@ export const DataTableRoot = <TData extends RowData,>({
                     )}
                   >
                     {cells.map((cell, index) => {
-                      const visibleCells = row.getVisibleCells();
-                      const isSelectCell = cell.column.id === "select";
+                      const visibleCells = row.getVisibleCells()
+                      const isSelectCell = cell.column.id === "select"
 
                       const firstCell = visibleCells.findIndex(
                         (h) => h.column.id !== "select"
-                      );
+                      )
                       const isFirstCell =
                         firstCell !== -1
                           ? cell.column.id === visibleCells[firstCell].column.id
-                          : index === 0;
+                          : index === 0
 
-                      const isStickyCell = isSelectCell || isFirstCell;
+                      const isStickyCell = isSelectCell || isFirstCell
 
                       /**
                        * If the table has nested rows, we need to offset the cell padding
@@ -247,18 +246,18 @@ export const DataTableRoot = <TData extends RowData,>({
                       const depthOffset =
                         row.depth > 0 && isFirstCell
                           ? row.depth * 14 + 24
-                          : undefined;
+                          : undefined
 
                       const hasLeftOffset =
-                        isStickyCell && hasSelect && !isSelectCell;
+                        isStickyCell && hasSelect && !isSelectCell
 
                       const Inner = flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext()
-                      );
+                      )
 
-                      const isTabableLink = isFirstCell && !!to;
-                      const shouldRenderAsLink = !!to && !isSelectCell;
+                      const isTabableLink = isFirstCell && !!to
+                      const shouldRenderAsLink = !!to && !isSelectCell
 
                       return (
                         <Table.Cell
@@ -303,10 +302,10 @@ export const DataTableRoot = <TData extends RowData,>({
                             Inner
                           )}
                         </Table.Cell>
-                      );
+                      )
                     })}
                   </Table.Row>
-                );
+                )
               })}
             </Table.Body>
           </Table>
@@ -349,22 +348,22 @@ export const DataTableRoot = <TData extends RowData,>({
                   />
                   {index < commands.length - 1 && <CommandBar.Seperator />}
                 </Fragment>
-              );
+              )
             })}
           </CommandBar.Bar>
         </CommandBar>
       )}
     </div>
-  );
-};
+  )
+}
 
 type PaginationProps = Omit<
   ComponentPropsWithoutRef<typeof Table.Pagination>,
   "translations"
->;
+>
 
 const Pagination = (props: PaginationProps): JSX.Element => {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
   const translations = {
     of: t("general.of"),
@@ -372,7 +371,7 @@ const Pagination = (props: PaginationProps): JSX.Element => {
     pages: t("general.pages"),
     prev: t("general.prev"),
     next: t("general.next"),
-  };
+  }
 
   return (
     <Table.Pagination
@@ -380,5 +379,5 @@ const Pagination = (props: PaginationProps): JSX.Element => {
       {...props}
       translations={translations}
     />
-  );
-};
+  )
+}

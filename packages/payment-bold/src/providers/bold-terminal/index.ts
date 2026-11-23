@@ -30,7 +30,7 @@ import { EBoldPaymentProvider } from "@payment-bold/types/enums"
 
 export class BoldTerminalPaymentProviderService extends AbstractPaymentProvider<BoldBaseOptions> {
   static identifier = EBoldPaymentProvider.TERMINAL
-  
+
   protected logger_: Logger
   protected options_: BoldBaseOptions
   protected client_: BoldHttpClient
@@ -42,14 +42,22 @@ export class BoldTerminalPaymentProviderService extends AbstractPaymentProvider<
     this.client_ = new BoldHttpClient(options, this.logger_)
   }
 
-  async initiatePayment(input: InitiatePaymentInput): Promise<InitiatePaymentOutput> {
+  async initiatePayment(
+    input: InitiatePaymentInput
+  ): Promise<InitiatePaymentOutput> {
     const { amount, currency_code, data } = input
     const extra = (data || {}) as Record<string, unknown>
     const reference = (extra.reference as string) || `pos_ref_${Date.now()}`
     const roundedAmount = Math.round(Number(amount))
-    const currency = (currency_code || this.options_.defaultCurrency || "COP").toUpperCase()
-    const terminalModel = (extra.terminalModel || extra.terminal_model) as string
-    const terminalSerial = (extra.terminalSerial || extra.terminal_serial) as string
+    const currency = (
+      currency_code ||
+      this.options_.defaultCurrency ||
+      "COP"
+    ).toUpperCase()
+    const terminalModel = (extra.terminalModel ||
+      extra.terminal_model) as string
+    const terminalSerial = (extra.terminalSerial ||
+      extra.terminal_serial) as string
     const userEmail = (extra.userEmail || extra.user_email || "") as string
 
     if (!terminalModel || !terminalSerial) {
@@ -67,7 +75,8 @@ export class BoldTerminalPaymentProviderService extends AbstractPaymentProvider<
       reference,
       vatAmount: extra.vatAmount != null ? Number(extra.vatAmount) : 0,
       userEmail,
-      description: (extra.description as string) || `Medusa POS Order ${reference}`,
+      description:
+        (extra.description as string) || `Medusa POS Order ${reference}`,
       payer: extra.payer as any,
     })
 
@@ -86,20 +95,33 @@ export class BoldTerminalPaymentProviderService extends AbstractPaymentProvider<
     }
   }
 
-  async authorizePayment(input: AuthorizePaymentInput): Promise<AuthorizePaymentOutput> {
+  async authorizePayment(
+    input: AuthorizePaymentInput
+  ): Promise<AuthorizePaymentOutput> {
     const sessionData = (input.data || {}) as Record<string, unknown>
-    let status = (sessionData.status as string) || (sessionData.payment_status as string)
-    const reference = (sessionData.reference || sessionData.reference_id) as string
+    let status =
+      (sessionData.status as string) || (sessionData.payment_status as string)
+    const reference = (sessionData.reference ||
+      sessionData.reference_id) as string
 
     if (["pending", "PROCESSING", "ACTIVE"].includes(status) && reference) {
       try {
-        const voucherRes = (await this.client_.getPaymentVoucher(reference)) as any
-        const remoteStatus = voucherRes?.payload?.status || voucherRes?.status || voucherRes?.payment_status
+        const voucherRes = (await this.client_.getPaymentVoucher(
+          reference
+        )) as any
+        const remoteStatus =
+          voucherRes?.payload?.status ||
+          voucherRes?.status ||
+          voucherRes?.payment_status
         if (remoteStatus) {
           status = remoteStatus
           sessionData.status = remoteStatus
-          sessionData.transaction_id = voucherRes?.payload?.transaction_id || voucherRes?.transaction_id
-          sessionData.payment_method = voucherRes?.payload?.payment_method || voucherRes?.payment_method || "POS"
+          sessionData.transaction_id =
+            voucherRes?.payload?.transaction_id || voucherRes?.transaction_id
+          sessionData.payment_method =
+            voucherRes?.payload?.payment_method ||
+            voucherRes?.payment_method ||
+            "POS"
         }
       } catch {
         // Network fallback
@@ -116,7 +138,9 @@ export class BoldTerminalPaymentProviderService extends AbstractPaymentProvider<
       }
     }
 
-    if (["REJECTED", "FAILED", "CANCELLED", "EXPIRED", "error"].includes(status)) {
+    if (
+      ["REJECTED", "FAILED", "CANCELLED", "EXPIRED", "error"].includes(status)
+    ) {
       return {
         status: PaymentSessionStatus.CANCELED,
         data: sessionData,
@@ -129,7 +153,9 @@ export class BoldTerminalPaymentProviderService extends AbstractPaymentProvider<
     }
   }
 
-  async capturePayment(input: CapturePaymentInput): Promise<CapturePaymentOutput> {
+  async capturePayment(
+    input: CapturePaymentInput
+  ): Promise<CapturePaymentOutput> {
     return { data: { ...input.data, status: "captured" } }
   }
 
@@ -172,26 +198,39 @@ export class BoldTerminalPaymentProviderService extends AbstractPaymentProvider<
     return this.initiatePayment(input)
   }
 
-  async getPaymentStatus(input: GetPaymentStatusInput): Promise<GetPaymentStatusOutput> {
+  async getPaymentStatus(
+    input: GetPaymentStatusInput
+  ): Promise<GetPaymentStatusOutput> {
     const sessionData = (input.data || {}) as Record<string, unknown>
-    const reference = (sessionData.reference || sessionData.reference_id) as string
+    const reference = (sessionData.reference ||
+      sessionData.reference_id) as string
 
     try {
       if (reference) {
-        const voucherRes = (await this.client_.getPaymentVoucher(reference)) as any
-        const status = voucherRes?.payload?.status || voucherRes?.status || voucherRes?.payment_status
-        const transactionId = voucherRes?.payload?.transaction_id || voucherRes?.transaction_id
+        const voucherRes = (await this.client_.getPaymentVoucher(
+          reference
+        )) as any
+        const status =
+          voucherRes?.payload?.status ||
+          voucherRes?.status ||
+          voucherRes?.payment_status
+        const transactionId =
+          voucherRes?.payload?.transaction_id || voucherRes?.transaction_id
 
         if (transactionId) {
           sessionData.transaction_id = transactionId
         }
 
-        if (["PAID", "APPROVED", "SUCCESSFUL", "captured"].includes(status || "")) {
+        if (
+          ["PAID", "APPROVED", "SUCCESSFUL", "captured"].includes(status || "")
+        ) {
           sessionData.status = "captured"
           return { status: PaymentSessionStatus.AUTHORIZED }
         }
 
-        if (["REJECTED", "FAILED", "CANCELLED", "EXPIRED"].includes(status || "")) {
+        if (
+          ["REJECTED", "FAILED", "CANCELLED", "EXPIRED"].includes(status || "")
+        ) {
           sessionData.status = "canceled"
           return { status: PaymentSessionStatus.CANCELED }
         }
@@ -203,7 +242,7 @@ export class BoldTerminalPaymentProviderService extends AbstractPaymentProvider<
     }
   }
 
-  async getWebhookActionAndData(data: {
+  async getWebhookActionAndData(_data: {
     data: Record<string, unknown>
     rawData: string | Buffer
     headers: Record<string, unknown>
@@ -211,7 +250,9 @@ export class BoldTerminalPaymentProviderService extends AbstractPaymentProvider<
     return { action: PaymentActions.NOT_SUPPORTED }
   }
 
-  async retrievePayment(paymentSessionData: Record<string, unknown>): Promise<Record<string, unknown>> {
+  async retrievePayment(
+    paymentSessionData: Record<string, unknown>
+  ): Promise<Record<string, unknown>> {
     return paymentSessionData
   }
 }

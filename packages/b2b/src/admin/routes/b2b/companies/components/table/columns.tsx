@@ -47,7 +47,9 @@ export const useCompaniesTableColumns = () => {
       columnHelper.accessor("country" as any, {
         header: t("fields.country"),
         cell: ({ getValue }) => (
-          <span className="txt-compact-small">{(getValue() as string) || "—"}</span>
+          <span className="txt-compact-small">
+            {(getValue() as string) || "—"}
+          </span>
         ),
       }),
       columnHelper.accessor("currency_code" as any, {
@@ -64,7 +66,9 @@ export const useCompaniesTableColumns = () => {
       columnHelper.accessor("employees_count" as any, {
         header: t("companies.table.employees"),
         cell: ({ getValue }) => (
-          <span className="txt-compact-small">{(getValue() as number) ?? 0}</span>
+          <span className="txt-compact-small">
+            {(getValue() as number) ?? 0}
+          </span>
         ),
       }),
       columnHelper.accessor("created_at", {

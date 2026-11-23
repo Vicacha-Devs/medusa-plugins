@@ -12,7 +12,7 @@ pnpm add @vicacha-devs/medusa-plugin-b2b
 ## `medusa-config.ts` Registration
 
 ```ts
-import { defineConfig } from "@medusajs/framework/utils";
+import { defineConfig } from "@medusajs/framework/utils"
 
 export default defineConfig({
   plugins: [
@@ -21,12 +21,13 @@ export default defineConfig({
       options: {},
     },
   ],
-});
+})
 ```
 
 ## Admin UI Extensions
 
 ### Admin Routes
+
 - `/app/b2b/approvals`
 - `/app/b2b/companies/@create`
 - `/app/b2b/companies/[id]/@approval-settings`
@@ -42,11 +43,13 @@ export default defineConfig({
 - `/app/b2b/quotes`
 
 ### Admin Widgets
+
 - `customer-company-widget`
 - `customer-employee-widget`
 - `customer-group-companies-widget`
 
 ### Supported Admin Locales
+
 `ar`, `de`, `en`, `es`, `fr`, `it`, `nl`, `pl`, `pt`, `tr`
 
 ## API Reference

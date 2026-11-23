@@ -128,8 +128,7 @@ export async function generateDianPdfViaDocumentsPlugin(
       total: context.payable_amount,
       customer: {
         id: context.buyer.customer_id ?? null,
-        first_name:
-          context.buyer.first_name || context.buyer.registration_name,
+        first_name: context.buyer.first_name || context.buyer.registration_name,
         last_name: context.buyer.last_name || "",
         email: context.buyer.email,
         phone: context.buyer.phone,
@@ -168,7 +167,7 @@ export async function generateDianPdfViaDocumentsPlugin(
           item.taxes.reduce((acc, t) => acc + t.tax_amount, 0),
       })),
       metadata: {
-        ...(order?.metadata ?? {}),
+        ...order?.metadata,
         dian: {
           document_type: context.document_type,
           cufe_cude: context.cufe_cude,
@@ -195,7 +194,8 @@ export async function generateDianPdfViaDocumentsPlugin(
       company_phone: context.seller.phone,
       company_logo: baseSettings.company_logo ?? null,
       bank_details: baseSettings.bank_details ?? null,
-      template_key: baseSettings[`${mappedDocType}_template`] || defaultTemplateKey,
+      template_key:
+        baseSettings[`${mappedDocType}_template`] || defaultTemplateKey,
       primary_color: baseSettings.primary_color || "#18181b",
       secondary_color: baseSettings.secondary_color || "#71717a",
       font_family: baseSettings.font_family || "Helvetica",
@@ -272,9 +272,7 @@ export async function generateDianPdfViaDocumentsPlugin(
   }
 
   return {
-    pdf_buffer: Buffer.isBuffer(pdfBuffer)
-      ? pdfBuffer
-      : Buffer.from(pdfBuffer),
+    pdf_buffer: Buffer.isBuffer(pdfBuffer) ? pdfBuffer : Buffer.from(pdfBuffer),
     pdf_document_id: pdfDocumentId,
     template_key: renderContext.settings.template_key,
   }

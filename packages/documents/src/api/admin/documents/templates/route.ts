@@ -120,15 +120,12 @@ export async function POST(req: MedusaRequest, res: MedusaResponse) {
     document_type: docType,
     engine: parsed.data.engine || "handlebars",
     preset_key: parsed.data.preset_key ?? null,
-    page_size:
-      parsed.data.page_size || (docType === "receipt" ? "80MM" : "A4"),
+    page_size: parsed.data.page_size || (docType === "receipt" ? "80MM" : "A4"),
     orientation: parsed.data.orientation || "portrait",
     html_content:
       parsed.data.html_content || DEFAULT_HANDLEBARS_TEMPLATES[docType],
-    styles: (parsed.data.styles || DEFAULT_TEMPLATE_STYLES) as unknown as Record<
-      string,
-      unknown
-    >,
+    styles: (parsed.data.styles ||
+      DEFAULT_TEMPLATE_STYLES) as unknown as Record<string, unknown>,
     sections: (parsed.data.sections ||
       DEFAULT_TEMPLATE_SECTIONS) as unknown as Record<string, unknown>,
     is_default: Boolean(parsed.data.is_default),

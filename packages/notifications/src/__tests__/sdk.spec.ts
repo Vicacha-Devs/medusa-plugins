@@ -63,19 +63,29 @@ describe("NotificationsApiClient SDK & Query Keys", () => {
       return new Response(
         JSON.stringify({
           success: true,
-          templates: [{ id: "system_email_order_placed", label: "Order Placed" }],
+          templates: [
+            { id: "system_email_order_placed", label: "Order Placed" },
+          ],
         }),
         { status: 200 }
       )
     }) as typeof fetch
 
-    const adminSdk = new NotificationsApiClient("/admin", "http://localhost:9000", {
-      fetchImpl: mockFetch,
-    })
-    const storeSdk = new NotificationsApiClient("/store", "http://localhost:9000", {
-      fetchImpl: mockFetch,
-      publishableApiKey: "pk_live_abc",
-    })
+    const adminSdk = new NotificationsApiClient(
+      "/admin",
+      "http://localhost:9000",
+      {
+        fetchImpl: mockFetch,
+      }
+    )
+    const storeSdk = new NotificationsApiClient(
+      "/store",
+      "http://localhost:9000",
+      {
+        fetchImpl: mockFetch,
+        publishableApiKey: "pk_live_abc",
+      }
+    )
 
     const tplRes = await adminSdk.listTemplates({ channel: "email" })
     assert.equal(tplRes.templates.length, 1)
@@ -116,4 +126,3 @@ describe("NotificationsApiClient SDK & Query Keys", () => {
     )
   })
 })
-

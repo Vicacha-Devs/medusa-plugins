@@ -1,16 +1,16 @@
 import { zodResolver } from "@hookform/resolvers/zod"
-import {
-  Form,
-  KeyboundForm,
-  RouteDrawer,
-} from "@medusajs/dashboard/components"
+import { Form, KeyboundForm, RouteDrawer } from "@medusajs/dashboard/components"
 import { Button, Container, CurrencyInput, Table, Text } from "@medusajs/ui"
 import { getCurrencySymbol } from "@medusajs/dashboard/lib"
 import { CoolSwitch } from "@vicacha-devs/medusa-shared-admin/admin"
 import { useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 
-import { AdminUpdateEmployee, QueryCompany, QueryEmployee } from "../../../../../../../types"
+import {
+  AdminUpdateEmployee,
+  QueryCompany,
+  QueryEmployee,
+} from "../../../../../../../types"
 import {
   makeEmployeeUpdateFormSchema,
   UpdateEmployeeFormValues,
@@ -46,7 +46,9 @@ export function EmployeesUpdateForm({
       <KeyboundForm
         onSubmit={form.handleSubmit((data) =>
           handleSubmit({
-            spending_limit: data.spending_limit ? Number(data.spending_limit) : undefined,
+            spending_limit: data.spending_limit
+              ? Number(data.spending_limit)
+              : undefined,
             is_admin: data.is_admin,
           })
         )}
@@ -71,7 +73,8 @@ export function EmployeesUpdateForm({
                       {t("employees.form.name")}
                     </Table.Cell>
                     <Table.Cell>
-                      {employee?.customer?.first_name} {employee?.customer?.last_name}
+                      {employee?.customer?.first_name}{" "}
+                      {employee?.customer?.last_name}
                     </Table.Cell>
                   </Table.Row>
                   <Table.Row>
@@ -110,7 +113,9 @@ export function EmployeesUpdateForm({
                       code={company.currency_code || "USD"}
                       placeholder="1000"
                       value={field.value ?? ""}
-                      onChange={(e) => field.onChange(e.target.value.replace(/[^0-9]/g, ""))}
+                      onChange={(e) =>
+                        field.onChange(e.target.value.replace(/[^0-9]/g, ""))
+                      }
                     />
                   </Form.Control>
                   <Form.ErrorMessage />
@@ -122,7 +127,9 @@ export function EmployeesUpdateForm({
               name="is_admin"
               render={({ field }: any) => (
                 <Form.Item>
-                  <Form.Label optional>{t("employees.form.adminAccess")}</Form.Label>
+                  <Form.Label optional>
+                    {t("employees.form.adminAccess")}
+                  </Form.Label>
                   <Form.Control>
                     <CoolSwitch
                       fieldName="is_admin"

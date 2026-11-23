@@ -39,7 +39,10 @@ export const DANE_DEPARTMENTS: readonly DaneDepartment[] = [
   { code: "81", name: "Arauca" },
   { code: "85", name: "Casanare" },
   { code: "86", name: "Putumayo" },
-  { code: "88", name: "Archipiélago de San Andrés, Providencia y Santa Catalina" },
+  {
+    code: "88",
+    name: "Archipiélago de San Andrés, Providencia y Santa Catalina",
+  },
   { code: "91", name: "Amazonas" },
   { code: "94", name: "Guainía" },
   { code: "95", name: "Guaviare" },

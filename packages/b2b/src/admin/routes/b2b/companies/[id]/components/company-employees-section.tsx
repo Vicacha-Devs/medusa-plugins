@@ -8,7 +8,9 @@ import { useEmployees } from "../../../../../hooks/api"
 import { EmployeesActionsMenu } from "../@employee/components"
 import "./company-employees-table-renderers"
 
-function useCompanyEmployeesAdapter(companyId: string): TableAdapter<QueryEmployee> {
+function useCompanyEmployeesAdapter(
+  companyId: string
+): TableAdapter<QueryEmployee> {
   const { t } = useTranslation()
 
   return useMemo(
@@ -18,7 +20,10 @@ function useCompanyEmployeesAdapter(companyId: string): TableAdapter<QueryEmploy
         queryPrefix: "cemp",
         pageSize: 20,
         useData: (_fields, params) => {
-          const { data, isPending, isError, error } = useEmployees(companyId, params)
+          const { data, isPending, isError, error } = useEmployees(
+            companyId,
+            params
+          )
           return {
             data: data?.employees,
             count: data?.count,
@@ -29,12 +34,10 @@ function useCompanyEmployeesAdapter(companyId: string): TableAdapter<QueryEmploy
         },
         getRowHref: (row) => {
           const customerId = (row as any).original?.customer?.id
-          
+
           return customerId ? `/customers/${customerId}` : undefined
         },
-        renderRowActions: (row) => (
-          <EmployeesActionsMenu employee={row} />
-        ),
+        renderRowActions: (row) => <EmployeesActionsMenu employee={row} />,
         emptyState: {
           empty: { heading: t("employees.noRecords"), description: "" },
           filtered: { heading: t("employees.noRecords"), description: "" },
@@ -44,7 +47,11 @@ function useCompanyEmployeesAdapter(companyId: string): TableAdapter<QueryEmploy
   )
 }
 
-export const CompanyEmployeesSection = ({ companyId }: { companyId: string }) => {
+export const CompanyEmployeesSection = ({
+  companyId,
+}: {
+  companyId: string
+}) => {
   const { t } = useTranslation()
   const adapter = useCompanyEmployeesAdapter(companyId)
 
@@ -52,7 +59,12 @@ export const CompanyEmployeesSection = ({ companyId }: { companyId: string }) =>
     <ConfigurableDataTable
       adapter={adapter}
       heading={t("employees.title")}
-      actions={[{ label: t("actions.add"), to: `/b2b/companies/${companyId}/employee/create` }]}
+      actions={[
+        {
+          label: t("actions.add"),
+          to: `/b2b/companies/${companyId}/employee/create`,
+        },
+      ]}
     />
   )
 }

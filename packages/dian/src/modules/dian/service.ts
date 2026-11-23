@@ -38,10 +38,7 @@ import {
   sanitizeNitDigits,
   signDianUblXmlXadesEpes,
 } from "./utils"
-import {
-  ExternalErpDianProvider,
-  NativeDianSoapProvider,
-} from "./providers"
+import { ExternalErpDianProvider, NativeDianSoapProvider } from "./providers"
 
 type InjectedDependencies = Record<string, unknown>
 
@@ -372,8 +369,7 @@ class DianModuleService extends MedusaService({
     }
 
     const res = candidates[0]
-    const refDate =
-      params.reference_date || getColombiaDateTime().issue_date
+    const refDate = params.reference_date || getColombiaDateTime().issue_date
 
     if (res.valid_to && refDate > String(res.valid_to)) {
       throw new MedusaError(
@@ -434,7 +430,8 @@ class DianModuleService extends MedusaService({
     containerOverride?: { resolve: (key: string) => unknown } | null
   ): Promise<Record<string, any>> {
     const activeContainer =
-      containerOverride || (this.container_ as unknown as { resolve: (key: string) => unknown })
+      containerOverride ||
+      (this.container_ as unknown as { resolve: (key: string) => unknown })
 
     const validatedBuyer = await resolveAndValidateDianBuyer({
       order: {
@@ -517,7 +514,8 @@ class DianModuleService extends MedusaService({
     containerOverride?: { resolve: (key: string) => unknown } | null
   ): Promise<Record<string, any>> {
     const activeContainer =
-      containerOverride || (this.container_ as unknown as { resolve: (key: string) => unknown })
+      containerOverride ||
+      (this.container_ as unknown as { resolve: (key: string) => unknown })
 
     const cfg = await this.getGlobalConfig()
     const docType: DianDocumentType = input.document_type || "01"
@@ -730,7 +728,9 @@ class DianModuleService extends MedusaService({
               terminal_id: String(input.pos_terminal_id || "POS-01"),
               cashier_name: String(input.cashier_name || "Cajero Principal"),
               store_name: seller.trade_name,
-              sales_code: String(input.order?.display_id || allocated.consecutive),
+              sales_code: String(
+                input.order?.display_id || allocated.consecutive
+              ),
               software_maker_name: "Vicacha Medusa DIAN Engine",
             }
           : null,
@@ -774,8 +774,7 @@ class DianModuleService extends MedusaService({
           process.env.DIAN_PROVIDER_API_KEY ||
           this.options_.provider_credentials?.api_key,
         username:
-          cfg.provider_username ||
-          this.options_.provider_credentials?.username,
+          cfg.provider_username || this.options_.provider_credentials?.username,
         partner_id:
           cfg.provider_partner_id ||
           this.options_.provider_credentials?.partner_id,
@@ -959,7 +958,8 @@ class DianModuleService extends MedusaService({
     const doc = docs[0]
 
     const activeContainer =
-      containerOverride || (this.container_ as unknown as { resolve: (key: string) => unknown })
+      containerOverride ||
+      (this.container_ as unknown as { resolve: (key: string) => unknown })
     const moduleKey = this.options_.documents_module_key || "documents"
 
     let documentsService: Record<string, any> | null = null

@@ -63,6 +63,7 @@ export const config = defineRouteConfig({
 ```
 
 Each widget exports a `config` object created with `defineWidgetConfig`:
+
 - `product-ext-widget.tsx` → `zone: "product.details.after"`
 - `category-attributes-widget.tsx` → `zone: "product_category.details.after"`
 
@@ -72,11 +73,11 @@ All route and widget files are kept concise (`< 170` lines per file) and compose
 
 ## Data fetching & state hooks
 
-| Hook | File | Purpose |
-| --- | --- | --- |
-| `useProductExtStudio` | `hooks/use-product-ext-studio.ts` | Fetches attributes, templates, and feature badges; exposes create/delete handlers, bulk variant media assignment, and CSV image alt-text export/import |
-| `useProductExtWidget` | `hooks/use-product-ext-widget.ts` | Fetches and saves `/admin/products/:id/extension` and `/admin/products/:id/attributes` for a product detail page |
-| `useCategoryAttributesWidget` | `hooks/use-product-ext-widget.ts` | Fetches `/admin/product-ext/attributes?category_id=...` for a product category detail page |
+| Hook                          | File                              | Purpose                                                                                                                                                |
+| ----------------------------- | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `useProductExtStudio`         | `hooks/use-product-ext-studio.ts` | Fetches attributes, templates, and feature badges; exposes create/delete handlers, bulk variant media assignment, and CSV image alt-text export/import |
+| `useProductExtWidget`         | `hooks/use-product-ext-widget.ts` | Fetches and saves `/admin/products/:id/extension` and `/admin/products/:id/attributes` for a product detail page                                       |
+| `useCategoryAttributesWidget` | `hooks/use-product-ext-widget.ts` | Fetches `/admin/product-ext/attributes?category_id=...` for a product category detail page                                                             |
 
 ---
 
@@ -84,20 +85,20 @@ All route and widget files are kept concise (`< 170` lines per file) and compose
 
 All Admin UI components live in `components/` and are internal to the Admin extension:
 
-| Component | File | Purpose |
-| --- | --- | --- |
-| `StatCard`, `NavigationCard` | `overview-cards.tsx` | KPI stat cards and 2-column navigation grid cards on `/product-ext` |
-| `ProductExtStudioHeader` | `product-ext-studio-header.tsx` | Header bar with title, subtitle, and refresh button |
-| `AttributeCreateForm` | `attribute-create-form.tsx` | Form for creating a typed attribute definition (`text`, `number`, `unit`, `select`, etc.) |
-| `AttributeDefinitionsTable` | `attribute-definitions-table.tsx` | Table of attribute definitions with type, unit family, filterable/global badges, and delete action |
-| `TemplateCreateForm` | `template-create-form.tsx` | Form for creating an attribute & `tree@1` content template |
-| `TemplatesTable` | `templates-table.tsx` | Table of templates with code, linked attribute keys, category IDs, and delete action |
-| `FeatureCreateForm` | `feature-create-form.tsx` | Form for creating a reusable product feature badge |
-| `FeatureBadgesTable` | `feature-badges-table.tsx` | Table of feature badges with code, subtitle, color swatch, and delete action |
-| `VariantBulkMediaSection` | `variant-bulk-media-section.tsx` | Form to bulk-assign media & swatches to variants matching `option_title = option_value` |
-| `ImageAltsCsvSection` | `image-alts-csv-section.tsx` | Panel to export and import RFC-4180 CSV image alt-text metadata |
-| `ProductExtDetailCard` | `product-ext-detail-card.tsx` | Product detail widget UI for tagline, videos, 3D `.glb` model, and resolved attributes |
-| `CategoryAttributesCard` | `category-attributes-card.tsx` | Category detail widget UI listing inherited & category-scoped attributes |
+| Component                    | File                              | Purpose                                                                                            |
+| ---------------------------- | --------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `StatCard`, `NavigationCard` | `overview-cards.tsx`              | KPI stat cards and 2-column navigation grid cards on `/product-ext`                                |
+| `ProductExtStudioHeader`     | `product-ext-studio-header.tsx`   | Header bar with title, subtitle, and refresh button                                                |
+| `AttributeCreateForm`        | `attribute-create-form.tsx`       | Form for creating a typed attribute definition (`text`, `number`, `unit`, `select`, etc.)          |
+| `AttributeDefinitionsTable`  | `attribute-definitions-table.tsx` | Table of attribute definitions with type, unit family, filterable/global badges, and delete action |
+| `TemplateCreateForm`         | `template-create-form.tsx`        | Form for creating an attribute & `tree@1` content template                                         |
+| `TemplatesTable`             | `templates-table.tsx`             | Table of templates with code, linked attribute keys, category IDs, and delete action               |
+| `FeatureCreateForm`          | `feature-create-form.tsx`         | Form for creating a reusable product feature badge                                                 |
+| `FeatureBadgesTable`         | `feature-badges-table.tsx`        | Table of feature badges with code, subtitle, color swatch, and delete action                       |
+| `VariantBulkMediaSection`    | `variant-bulk-media-section.tsx`  | Form to bulk-assign media & swatches to variants matching `option_title = option_value`            |
+| `ImageAltsCsvSection`        | `image-alts-csv-section.tsx`      | Panel to export and import RFC-4180 CSV image alt-text metadata                                    |
+| `ProductExtDetailCard`       | `product-ext-detail-card.tsx`     | Product detail widget UI for tagline, videos, 3D `.glb` model, and resolved attributes             |
+| `CategoryAttributesCard`     | `category-attributes-card.tsx`    | Category detail widget UI listing inherited & category-scoped attributes                           |
 
 ---
 

@@ -20,7 +20,11 @@ import {
 } from "@dnd-kit/sortable"
 import { CSS } from "@dnd-kit/utilities"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { KeyboundForm, RouteFocusModal, useRouteModal } from "@medusajs/dashboard/components"
+import {
+  KeyboundForm,
+  RouteFocusModal,
+  useRouteModal,
+} from "@medusajs/dashboard/components"
 import { ThumbnailBadge } from "@medusajs/icons"
 import { Button, Checkbox, clx, CommandBar, toast, Tooltip } from "@medusajs/ui"
 import { Fragment, useCallback, useState } from "react"
@@ -50,7 +54,12 @@ type EditMediaFormProps = {
 
 type Media = z.infer<typeof MediaSchema>
 
-export const EditMediaForm = ({ images, thumbnail, onSave, isPending = false }: EditMediaFormProps) => {
+export const EditMediaForm = ({
+  images,
+  thumbnail,
+  onSave,
+  isPending = false,
+}: EditMediaFormProps) => {
   const [selection, setSelection] = useState<Record<string, true>>({})
   const { t } = useTranslation()
   const { handleSuccess } = useRouteModal()
@@ -128,7 +137,8 @@ export const EditMediaForm = ({ images, thumbnail, onSave, isPending = false }: 
       return entry
     })
 
-    const resolvedThumbnail = withUpdatedUrls.find((m: Media) => m.isThumbnail)?.url ?? null
+    const resolvedThumbnail =
+      withUpdatedUrls.find((m: Media) => m.isThumbnail)?.url ?? null
 
     try {
       await onSave({
@@ -389,9 +399,12 @@ const MediaGridItem = ({
         </div>
       )}
       <div
-        className={clx("absolute inset-0 cursor-grab touch-none outline-hidden", {
-          "cursor-grabbing": isDragging,
-        })}
+        className={clx(
+          "absolute inset-0 cursor-grab touch-none outline-hidden",
+          {
+            "cursor-grabbing": isDragging,
+          }
+        )}
         ref={setActivatorNodeRef}
         {...attributes}
         {...listeners}

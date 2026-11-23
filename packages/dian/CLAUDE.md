@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-`@vicacha-devs/medusa-plugin-dian` is a Colombian **DIAN Electronic Invoicing (*Facturación Electrónica DIAN — Anexo Técnico 1.9 & Resolución 000165*)** plugin for **Medusa v2**, supporting both Native "Software Propio" (UBL 2.1 XML, SHA-384 CUFE/CUDE, XAdES-EPES signature, DIAN SOAP WcfDianCustomerServices, RADIAN events) and pluggable Colombian Proveedores Tecnológicos (`siigo`, `alegra`, `dataico`, `facturatech`).
+`@vicacha-devs/medusa-plugin-dian` is a Colombian **DIAN Electronic Invoicing (_Facturación Electrónica DIAN — Anexo Técnico 1.9 & Resolución 000165_)** plugin for **Medusa v2**, supporting both Native "Software Propio" (UBL 2.1 XML, SHA-384 CUFE/CUDE, XAdES-EPES signature, DIAN SOAP WcfDianCustomerServices, RADIAN events) and pluggable Colombian Proveedores Tecnológicos (`siigo`, `alegra`, `dataico`, `facturatech`).
 
 ---
 
@@ -11,9 +11,9 @@
 1. **Named Electronic Invoice Requires a Registered Client**:
    - Buyers requesting a named Electronic Invoice must be registered Medusa Customers (`customer_id`) with both email (`ElectronicMail`) and phone (`Telephone`). Anonymous buyers default to Consumidor Final (`222222222222`).
 2. **Legal Client (`Persona Jurídica = "1"`) Requires `@vicacha-devs/medusa-plugin-b2b`**:
-   - Registering or invoicing a Legal Client (*Persona Jurídica*, NIT `31` + Modulo-11 DV) strictly requires `@vicacha-devs/medusa-plugin-b2b` (`company` module) and a valid `b2b_company_id`.
+   - Registering or invoicing a Legal Client (_Persona Jurídica_, NIT `31` + Modulo-11 DV) strictly requires `@vicacha-devs/medusa-plugin-b2b` (`company` module) and a valid `b2b_company_id`.
 3. **PDF Generation Requires `@vicacha-devs/medusa-plugin-documents`**:
-   - Generating the *Representación Gráfica* PDF (A4 Invoice, Credit/Debit Note, or 80mm/58mm POS thermal ticket) strictly requires `@vicacha-devs/medusa-plugin-documents` (`documents` module).
+   - Generating the _Representación Gráfica_ PDF (A4 Invoice, Credit/Debit Note, or 80mm/58mm POS thermal ticket) strictly requires `@vicacha-devs/medusa-plugin-documents` (`documents` module).
 
 ---
 

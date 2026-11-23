@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router-dom"
 import { StoriesTab } from "../../../components/index.js"
 import { useSocialDashboard } from "../../../hooks/use-social-dashboard.js"
-import { RbacGuard } from "../../../components/rbac-guard";
+import { RbacGuard } from "../../../components/rbac-guard"
 
 const SocialStoriesPage = () => {
   const navigate = useNavigate()
@@ -55,6 +55,6 @@ const GuardedSocialStoriesPage = () => (
   <RbacGuard permission="social_commerce.read">
     <SocialStoriesPage />
   </RbacGuard>
-);
+)
 
-export default GuardedSocialStoriesPage;
+export default GuardedSocialStoriesPage

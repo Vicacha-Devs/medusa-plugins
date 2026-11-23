@@ -12,7 +12,7 @@ import {
   CanvasTimelineSection,
 } from "../../../components/canvas-editor-tab"
 import { useStoriesStudio } from "../../../hooks/use-stories-studio"
-import { RbacGuard } from "../../../components/rbac-guard";
+import { RbacGuard } from "../../../components/rbac-guard"
 
 const StoriesCanvasPage = () => {
   const studio = useStoriesStudio()
@@ -96,6 +96,6 @@ const GuardedStoriesCanvasPage = () => (
   <RbacGuard permission="stories.read">
     <StoriesCanvasPage />
   </RbacGuard>
-);
+)
 
-export default GuardedStoriesCanvasPage;
+export default GuardedStoriesCanvasPage

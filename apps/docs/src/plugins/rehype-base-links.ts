@@ -5,30 +5,28 @@
  * (base "/vicacha-medusa-plugins"). It is a no-op when the base is "/".
  */
 interface HastNode {
-  type?: string;
-  tagName?: string;
-  properties?: Record<string, unknown>;
-  children?: HastNode[];
+  type?: string
+  tagName?: string
+  properties?: Record<string, unknown>
+  children?: HastNode[]
 }
 
-const LINK_ATTRIBUTES: Record<string, string> = { a: "href", img: "src" };
+const LINK_ATTRIBUTES: Record<string, string> = { a: "href", img: "src" }
 
 export function normalizeBase(base: string | undefined): string {
-  let trimmed = (base ?? "").trim();
-  while (trimmed.startsWith("/")) trimmed = trimmed.slice(1);
-  while (trimmed.endsWith("/")) trimmed = trimmed.slice(0, -1);
-  return trimmed ? `/${trimmed}` : "";
+  let trimmed = (base ?? "").trim()
+  while (trimmed.startsWith("/")) trimmed = trimmed.slice(1)
+  while (trimmed.endsWith("/")) trimmed = trimmed.slice(0, -1)
+  return trimmed ? `/${trimmed}` : ""
 }
 
 export function rehypeBaseLinks(options: { base?: string } = {}) {
-  const base = normalizeBase(options.base);
+  const base = normalizeBase(options.base)
   return (tree: HastNode) => {
-    if (!base) return;
+    if (!base) return
     const walk = (node: HastNode): void => {
-      const attribute = node.tagName
-        ? LINK_ATTRIBUTES[node.tagName]
-        : undefined;
-      const value = attribute ? node.properties?.[attribute] : undefined;
+      const attribute = node.tagName ? LINK_ATTRIBUTES[node.tagName] : undefined
+      const value = attribute ? node.properties?.[attribute] : undefined
       if (
         attribute &&
         node.properties &&
@@ -38,10 +36,10 @@ export function rehypeBaseLinks(options: { base?: string } = {}) {
         value !== base &&
         !value.startsWith(`${base}/`)
       ) {
-        node.properties[attribute] = `${base}${value}`;
+        node.properties[attribute] = `${base}${value}`
       }
-      for (const child of node.children ?? []) walk(child);
-    };
-    walk(tree);
-  };
+      for (const child of node.children ?? []) walk(child)
+    }
+    walk(tree)
+  }
 }

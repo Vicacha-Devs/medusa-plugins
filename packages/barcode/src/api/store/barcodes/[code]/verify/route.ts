@@ -13,8 +13,8 @@ export async function GET(req: MedusaRequest, res: MedusaResponse) {
     typeof req.query.sig === "string"
       ? req.query.sig
       : typeof req.query.signature === "string"
-      ? req.query.signature
-      : ""
+        ? req.query.signature
+        : ""
 
   const result = await barcodeService.verifyAuthenticityToken(code, sig)
   res.status(result.valid ? 200 : 400).json(result)

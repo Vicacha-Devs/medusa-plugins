@@ -1,10 +1,10 @@
-import type {
-  OfflinePosEnqueueInput,
-  OfflinePosReplayResult,
-} from "../types"
+import type { OfflinePosEnqueueInput, OfflinePosReplayResult } from "../types"
 import type { OdooModuleService } from "../service"
 
-export async function enqueueOfflinePosTransaction(this: OdooModuleService, input: OfflinePosEnqueueInput) {
+export async function enqueueOfflinePosTransaction(
+  this: OdooModuleService,
+  input: OfflinePosEnqueueInput
+) {
   const existing = await this.listOfflinePosTransactions(
     { external_transaction_id: input.externalTransactionId },
     { take: 1 }
@@ -32,11 +32,14 @@ export async function enqueueOfflinePosTransaction(this: OdooModuleService, inpu
   })
 }
 
-export async function replayOfflinePosTransaction(this: OdooModuleService, params: {
-  id: string
-  syncToOdoo?: boolean
-  onCreateMedusaOrder?: (txn: Record<string, unknown>) => Promise<string>
-}): Promise<OfflinePosReplayResult> {
+export async function replayOfflinePosTransaction(
+  this: OdooModuleService,
+  params: {
+    id: string
+    syncToOdoo?: boolean
+    onCreateMedusaOrder?: (txn: Record<string, unknown>) => Promise<string>
+  }
+): Promise<OfflinePosReplayResult> {
   const rows = await this.listOfflinePosTransactions(
     { id: params.id },
     { take: 1 }

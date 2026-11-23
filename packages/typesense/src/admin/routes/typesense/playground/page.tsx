@@ -2,13 +2,13 @@ import { defineRouteConfig } from "@medusajs/admin-sdk"
 import { CORE_LAYOUT_IDS } from "@medusajs/admin-shared"
 import { LayoutComposer, SectionRow } from "@medusajs/dashboard/components"
 import { CommandLine } from "@medusajs/icons"
-import { Badge, Container, Heading, StatusBadge, Toaster } from "@medusajs/ui"
+import { Badge, Container, Heading, StatusBadge } from "@medusajs/ui"
 import React from "react"
 import { useTranslation } from "react-i18next"
 
 import { PlaygroundTab } from "../../../components/typesense/playground-tab"
 import { useTypesenseStudio } from "../../../components/typesense/use-typesense-studio"
-import { RbacGuard } from "../../../components/rbac-guard";
+import { RbacGuard } from "../../../components/rbac-guard"
 
 const TypesensePlaygroundPage: React.FC = () => {
   const { t } = useTranslation()
@@ -108,6 +108,6 @@ const GuardedTypesensePlaygroundPage = () => (
   <RbacGuard permission="typesense.read">
     <TypesensePlaygroundPage />
   </RbacGuard>
-);
+)
 
-export default GuardedTypesensePlaygroundPage;
+export default GuardedTypesensePlaygroundPage

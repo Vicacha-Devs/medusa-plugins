@@ -320,9 +320,7 @@ export const allocateAndRenderDocumentStep = createStep(
     } catch (renderError: any) {
       // Persist status="failed" so admins can inspect error_message and click Retry (Phase 8.3)
       const errorMessage =
-        renderError instanceof Error
-          ? renderError.message
-          : String(renderError)
+        renderError instanceof Error ? renderError.message : String(renderError)
 
       const failedEntry: AuditLogEntry = {
         timestamp: nowIso,

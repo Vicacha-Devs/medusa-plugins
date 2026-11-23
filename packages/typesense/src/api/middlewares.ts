@@ -4,7 +4,10 @@ import {
   type MedusaRequest,
   type MedusaResponse,
 } from "@medusajs/framework/http"
-import { ContainerRegistrationKeys, QueryContext } from "@medusajs/framework/utils"
+import {
+  ContainerRegistrationKeys,
+  QueryContext,
+} from "@medusajs/framework/utils"
 
 export * from "./validators"
 
@@ -48,7 +51,11 @@ export async function hydrateHitDocumentsWithMedusaGraph(
   req: MedusaRequest,
   params: {
     graphEntity: string
-    hits: Array<{ document: Record<string, any>; highlights?: any[]; text_match?: number }>
+    hits: Array<{
+      document: Record<string, any>
+      highlights?: any[]
+      text_match?: number
+    }>
     fields?: string[]
     regionId?: string
     currencyCode?: string
@@ -105,10 +112,7 @@ export async function hydrateHitDocumentsWithMedusaGraph(
         : ["*"]
 
     const contextObj: Record<string, any> = {}
-    if (
-      graphEntity === "product" &&
-      (params.regionId || params.currencyCode)
-    ) {
+    if (graphEntity === "product" && (params.regionId || params.currencyCode)) {
       const pricingCtx: Record<string, any> = {}
       if (params.regionId) pricingCtx.region_id = params.regionId
       if (params.currencyCode) pricingCtx.currency_code = params.currencyCode

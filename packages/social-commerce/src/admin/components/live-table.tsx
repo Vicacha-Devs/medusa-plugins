@@ -22,15 +22,11 @@ export const LiveTable = ({
     <Table>
       <Table.Header>
         <Table.Row>
-          <Table.HeaderCell>
-            {t("liveTab.titlePlaceholder")}
-          </Table.HeaderCell>
+          <Table.HeaderCell>{t("liveTab.titlePlaceholder")}</Table.HeaderCell>
           <Table.HeaderCell>
             {t("accountsTab.columns.platform")}
           </Table.HeaderCell>
-          <Table.HeaderCell>
-            {t("accountsTab.columns.status")}
-          </Table.HeaderCell>
+          <Table.HeaderCell>{t("accountsTab.columns.status")}</Table.HeaderCell>
           <Table.HeaderCell />
           <Table.HeaderCell />
         </Table.Row>
@@ -38,92 +34,95 @@ export const LiveTable = ({
       <Table.Body>
         {liveSessions.length === 0 ? (
           <Table.Row>
-            <Table.Cell colSpan={5} className="text-center py-6 text-ui-fg-subtle">
+            <Table.Cell
+              colSpan={5}
+              className="text-center py-6 text-ui-fg-subtle"
+            >
               {t("liveTab.emptyState", "No live shopping sessions scheduled")}
             </Table.Cell>
           </Table.Row>
         ) : (
           liveSessions.map((session) => (
-          <Table.Row key={session.id}>
-            <Table.Cell>
-              <Text size="small" weight="plus">
-                {session.title}
-              </Text>
-            </Table.Cell>
-            <Table.Cell>
-              <Badge
-                size="2xsmall"
-                color={platformBadgeUiColor(session.platform)}
-              >
-                {session.platform}
-              </Badge>
-            </Table.Cell>
-            <Table.Cell>
-              <StatusBadge color={statusBadgeUiColor(session.status)}>
-                {t("liveTab.statusLabel", {
-                  status: session.status.toUpperCase(),
-                })}
-              </StatusBadge>
-            </Table.Cell>
-            <Table.Cell>
-              <Text size="small" className="text-ui-fg-subtle">
-                {t("liveTab.statsLine", {
-                  peakViewers: session.peak_viewer_count,
-                  pinnedCount: (session.products ?? []).length,
-                })}
-              </Text>
-            </Table.Cell>
-            <Table.Cell>
-              <div className="flex items-center justify-end gap-x-2">
-                {session.status === "scheduled" ? (
-                  <Button
-                    type="button"
-                    variant="secondary"
-                    size="small"
-                    onClick={() => onLiveTransition(session.id, "start")}
-                  >
-                    {t("liveTab.goLiveButton")}
-                  </Button>
-                ) : null}
-                {session.status === "live" ? (
-                  <Button
-                    type="button"
-                    variant="danger"
-                    size="small"
-                    onClick={() => onLiveTransition(session.id, "end")}
-                  >
-                    {t("liveTab.endStreamButton")}
-                  </Button>
-                ) : null}
-                <ActionMenu
-                  groups={[
-                    {
-                      actions: [
-                        ...(session.status === "scheduled"
-                          ? [
-                              {
-                                label: t("liveTab.goLiveButton"),
-                                onClick: () =>
-                                  onLiveTransition(session.id, "start"),
-                              },
-                            ]
-                          : []),
-                        ...(session.status === "live"
-                          ? [
-                              {
-                                label: t("liveTab.endStreamButton"),
-                                onClick: () =>
-                                  onLiveTransition(session.id, "end"),
-                              },
-                            ]
-                          : []),
-                      ],
-                    },
-                  ]}
-                />
-              </div>
-            </Table.Cell>
-          </Table.Row>
+            <Table.Row key={session.id}>
+              <Table.Cell>
+                <Text size="small" weight="plus">
+                  {session.title}
+                </Text>
+              </Table.Cell>
+              <Table.Cell>
+                <Badge
+                  size="2xsmall"
+                  color={platformBadgeUiColor(session.platform)}
+                >
+                  {session.platform}
+                </Badge>
+              </Table.Cell>
+              <Table.Cell>
+                <StatusBadge color={statusBadgeUiColor(session.status)}>
+                  {t("liveTab.statusLabel", {
+                    status: session.status.toUpperCase(),
+                  })}
+                </StatusBadge>
+              </Table.Cell>
+              <Table.Cell>
+                <Text size="small" className="text-ui-fg-subtle">
+                  {t("liveTab.statsLine", {
+                    peakViewers: session.peak_viewer_count,
+                    pinnedCount: (session.products ?? []).length,
+                  })}
+                </Text>
+              </Table.Cell>
+              <Table.Cell>
+                <div className="flex items-center justify-end gap-x-2">
+                  {session.status === "scheduled" ? (
+                    <Button
+                      type="button"
+                      variant="secondary"
+                      size="small"
+                      onClick={() => onLiveTransition(session.id, "start")}
+                    >
+                      {t("liveTab.goLiveButton")}
+                    </Button>
+                  ) : null}
+                  {session.status === "live" ? (
+                    <Button
+                      type="button"
+                      variant="danger"
+                      size="small"
+                      onClick={() => onLiveTransition(session.id, "end")}
+                    >
+                      {t("liveTab.endStreamButton")}
+                    </Button>
+                  ) : null}
+                  <ActionMenu
+                    groups={[
+                      {
+                        actions: [
+                          ...(session.status === "scheduled"
+                            ? [
+                                {
+                                  label: t("liveTab.goLiveButton"),
+                                  onClick: () =>
+                                    onLiveTransition(session.id, "start"),
+                                },
+                              ]
+                            : []),
+                          ...(session.status === "live"
+                            ? [
+                                {
+                                  label: t("liveTab.endStreamButton"),
+                                  onClick: () =>
+                                    onLiveTransition(session.id, "end"),
+                                },
+                              ]
+                            : []),
+                        ],
+                      },
+                    ]}
+                  />
+                </div>
+              </Table.Cell>
+            </Table.Row>
           ))
         )}
       </Table.Body>

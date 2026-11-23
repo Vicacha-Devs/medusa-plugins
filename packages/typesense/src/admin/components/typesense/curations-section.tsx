@@ -78,12 +78,32 @@ export const CurationsSection: React.FC<CurationsSectionProps> = (props) => {
       curExcludesStr,
       curBannerTitle,
     })
-  }, [curId, curQuery, curMatch, curIncludesStr, curExcludesStr, curBannerTitle, curationForm])
+  }, [
+    curId,
+    curQuery,
+    curMatch,
+    curIncludesStr,
+    curExcludesStr,
+    curBannerTitle,
+    curationForm,
+  ])
 
   const extraFields = [
-    { name: "curIncludesStr" as const, ph: "merchandising.curationIncludesPlaceholder", set: setCurIncludesStr },
-    { name: "curExcludesStr" as const, ph: "merchandising.curationExcludesPlaceholder", set: setCurExcludesStr },
-    { name: "curBannerTitle" as const, ph: "merchandising.curationBannerPlaceholder", set: setCurBannerTitle },
+    {
+      name: "curIncludesStr" as const,
+      ph: "merchandising.curationIncludesPlaceholder",
+      set: setCurIncludesStr,
+    },
+    {
+      name: "curExcludesStr" as const,
+      ph: "merchandising.curationExcludesPlaceholder",
+      set: setCurExcludesStr,
+    },
+    {
+      name: "curBannerTitle" as const,
+      ph: "merchandising.curationBannerPlaceholder",
+      set: setCurBannerTitle,
+    },
   ]
 
   return (
@@ -153,8 +173,12 @@ export const CurationsSection: React.FC<CurationsSectionProps> = (props) => {
                         <Select.Value />
                       </Select.Trigger>
                       <Select.Content>
-                        <Select.Item value="exact">{t("merchandising.matchExact")}</Select.Item>
-                        <Select.Item value="contains">{t("merchandising.matchContains")}</Select.Item>
+                        <Select.Item value="exact">
+                          {t("merchandising.matchExact")}
+                        </Select.Item>
+                        <Select.Item value="contains">
+                          {t("merchandising.matchContains")}
+                        </Select.Item>
                       </Select.Content>
                     </Select>
                   </Form.Control>
@@ -186,7 +210,12 @@ export const CurationsSection: React.FC<CurationsSectionProps> = (props) => {
           ))}
 
           <div className="flex justify-end">
-            <Button type="submit" variant="secondary" size="small" isLoading={savingCuration}>
+            <Button
+              type="submit"
+              variant="secondary"
+              size="small"
+              isLoading={savingCuration}
+            >
               {t("merchandising.saveCurationButton")}
             </Button>
           </div>
@@ -200,10 +229,15 @@ export const CurationsSection: React.FC<CurationsSectionProps> = (props) => {
               <Table.Row key={c.id}>
                 <Table.Cell className="font-medium">{c.id}</Table.Cell>
                 <Table.Cell className="text-xs">
-                  {t("merchandising.queryLabel")} <code>{c.rule?.query}</code> [{c.rule?.match}]
+                  {t("merchandising.queryLabel")} <code>{c.rule?.query}</code> [
+                  {c.rule?.match}]
                 </Table.Cell>
                 <Table.Cell className="text-right">
-                  <Button variant="transparent" size="small" onClick={() => onDeleteCuration(c.id)}>
+                  <Button
+                    variant="transparent"
+                    size="small"
+                    onClick={() => onDeleteCuration(c.id)}
+                  >
                     {t("merchandising.deleteButton")}
                   </Button>
                 </Table.Cell>

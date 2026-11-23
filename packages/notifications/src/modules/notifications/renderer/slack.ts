@@ -1,8 +1,5 @@
 import type { TemplateBlockNode } from "../../../types"
-import {
-  getNestedValue,
-  multiInterpolateString,
-} from "../utils/interpolation"
+import { getNestedValue, multiInterpolateString } from "../utils/interpolation"
 import {
   buildRepeaterItemContext,
   getBlockChildren,
@@ -95,7 +92,9 @@ export function renderSlackBlocks(
         break
       }
       case "repeater": {
-        const arrayKey = String(meta.arrayKey || meta.arrayPath || "items").trim()
+        const arrayKey = String(
+          meta.arrayKey || meta.arrayPath || "items"
+        ).trim()
         const list = getNestedValue(data, arrayKey)
         if (Array.isArray(list) && list.length > 0 && children.length > 0) {
           for (const item of list) {
@@ -109,7 +108,10 @@ export function renderSlackBlocks(
             blocks.push(...child.blocks)
             if (child.fallbackText) textLines.push(child.fallbackText)
           }
-        } else if (Array.isArray(meta.emptyBlocks) && meta.emptyBlocks.length > 0) {
+        } else if (
+          Array.isArray(meta.emptyBlocks) &&
+          meta.emptyBlocks.length > 0
+        ) {
           const empty = renderSlackBlocks(
             meta.emptyBlocks,
             data,

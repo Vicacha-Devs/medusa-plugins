@@ -12,7 +12,7 @@ pnpm add @vicacha-devs/medusa-payment-bold
 ## `medusa-config.ts` Registration
 
 ```ts
-import { defineConfig } from "@medusajs/framework/utils";
+import { defineConfig } from "@medusajs/framework/utils"
 
 export default defineConfig({
   plugins: [
@@ -21,15 +21,17 @@ export default defineConfig({
       options: {},
     },
   ],
-});
+})
 ```
 
 ## Admin UI Extensions
 
 ### Admin Routes
+
 - `/app/settings/bold`
 
 ### Admin Widgets
+
 - `bold-audit-timeline`
 - `bold-payment-actions`
 - `bold-payment-tabs`
@@ -41,6 +43,7 @@ export default defineConfig({
 - `index.ts`
 
 ### Supported Admin Locales
+
 `ar`, `en`, `es`, `tr`
 
 ## API Reference

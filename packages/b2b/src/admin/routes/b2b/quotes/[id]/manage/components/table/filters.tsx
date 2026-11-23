@@ -4,10 +4,5 @@ import { useMemo } from "react"
 export const useManageItemsTableFilters = () => {
   const dateFilters = useDataTableDateFilters()
 
-  return useMemo(
-    () => [
-      ...dateFilters,
-    ],
-    [dateFilters]
-  )
+  return useMemo(() => [...dateFilters], [dateFilters])
 }

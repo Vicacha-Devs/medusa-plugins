@@ -1,7 +1,4 @@
-import {
-  MedusaError,
-  MedusaService,
-} from "@medusajs/framework/utils"
+import { MedusaError, MedusaService } from "@medusajs/framework/utils"
 import { OdooClient, type FetchLike } from "./client/odoo-client"
 import { OdooModels } from "./models"
 import * as barcode from "./pos/barcode"
@@ -162,7 +159,7 @@ export class OdooModuleService extends MedusaService(OdooModels) {
 
     return {
       ...(defaults[section] as Record<string, unknown>),
-      ...((stored as Record<string, unknown>) ?? {}),
+      ...(stored as Record<string, unknown>),
     } as T
   }
 
@@ -182,7 +179,7 @@ export class OdooModuleService extends MedusaService(OdooModels) {
     const base = await this.getConnectionConfig()
     const merged: OdooConnectionConfig = {
       ...base,
-      ...(overrideConfig ?? {}),
+      ...overrideConfig,
     }
 
     if (!merged.url || !merged.db || !merged.username) {
@@ -193,7 +190,11 @@ export class OdooModuleService extends MedusaService(OdooModels) {
     }
 
     const key = computeExternalChecksum(merged)
-    if (!overrideConfig && this.cachedClient_ && this.cachedClientKey_ === key) {
+    if (
+      !overrideConfig &&
+      this.cachedClient_ &&
+      this.cachedClientKey_ === key
+    ) {
       return this.cachedClient_
     }
 
@@ -211,7 +212,7 @@ export class OdooModuleService extends MedusaService(OdooModels) {
     const base = await this.getConnectionConfig()
     const merged: OdooConnectionConfig = {
       ...base,
-      ...(overrideConfig ?? {}),
+      ...overrideConfig,
     }
 
     try {

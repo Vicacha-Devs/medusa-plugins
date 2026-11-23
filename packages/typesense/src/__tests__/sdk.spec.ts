@@ -125,4 +125,3 @@ describe("TypesenseApiClient SDK & Query Keys", () => {
     )
   })
 })
-

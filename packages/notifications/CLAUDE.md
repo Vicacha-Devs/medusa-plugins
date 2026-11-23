@@ -15,20 +15,20 @@
 
 ## 2. Package Exports (`package.json`)
 
-| Import Path | Target Source | Purpose |
-| :--- | :--- | :--- |
-| `@vicacha-devs/medusa-plugin-notifications` | `src/index.ts` | Root export (`NOTIFICATIONS_MODULE`, `NotificationsModuleService`, all 6 providers, workflows, transformers, security utilities, SDK, hooks, types) |
-| `@vicacha-devs/medusa-plugin-notifications/sdk` | `src/sdk/index.ts` | Typed REST client (`NotificationsApiClient`, `notificationsAdminSdk`, `notificationsStoreSdk`) & query key factory (`notificationsQueryKeys`) |
-| `@vicacha-devs/medusa-plugin-notifications/hooks` | `src/hooks/index.ts` | React data-fetching & mutation hooks for templates, mappings, channels, logs, broadcasts, sandbox, consent, and order widget state |
-| `@vicacha-devs/medusa-plugin-notifications/types` | `src/types/index.ts` | Shared TypeScript interfaces, enums, constants, and error classes |
-| `@vicacha-devs/medusa-plugin-notifications/workflows` | `src/workflows/index.ts` | `renderNotificationTemplateWorkflow`, `dispatchEventNotificationsWorkflow`, `executeEventNotificationsDispatch`, `hydrateEntityContextData` |
-| `@vicacha-devs/medusa-plugin-notifications/modules/notifications` | `src/modules/notifications/index.ts` | Standalone Notification Studio module (`Module("notificationsModuleService", ...)`) |
-| `@vicacha-devs/medusa-plugin-notifications/providers/email-smtp` | `src/providers/email-smtp/index.ts` | Medusa Notification provider (`mpn-email`) |
-| `@vicacha-devs/medusa-plugin-notifications/providers/whatsapp` | `src/providers/whatsapp/index.ts` | Multi-driver WhatsApp/OpenWA provider (`mpn-whatsapp`) |
-| `@vicacha-devs/medusa-plugin-notifications/providers/telegram` | `src/providers/telegram/index.ts` | Telegram Bot API provider (`mpn-telegram`) |
-| `@vicacha-devs/medusa-plugin-notifications/providers/sms` | `src/providers/sms/index.ts` | Multi-driver SMS provider (`mpn-sms`) |
-| `@vicacha-devs/medusa-plugin-notifications/providers/slack` | `src/providers/slack/index.ts` | Slack Block Kit provider (`mpn-slack`) |
-| `@vicacha-devs/medusa-plugin-notifications/providers/dummy-sandbox` | `src/providers/dummy-sandbox/index.ts` | Local/Staging Dummy OTP & Message Sandbox provider (`mpn-dummy-sandbox`) |
+| Import Path                                                         | Target Source                          | Purpose                                                                                                                                             |
+| :------------------------------------------------------------------ | :------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `@vicacha-devs/medusa-plugin-notifications`                         | `src/index.ts`                         | Root export (`NOTIFICATIONS_MODULE`, `NotificationsModuleService`, all 6 providers, workflows, transformers, security utilities, SDK, hooks, types) |
+| `@vicacha-devs/medusa-plugin-notifications/sdk`                     | `src/sdk/index.ts`                     | Typed REST client (`NotificationsApiClient`, `notificationsAdminSdk`, `notificationsStoreSdk`) & query key factory (`notificationsQueryKeys`)       |
+| `@vicacha-devs/medusa-plugin-notifications/hooks`                   | `src/hooks/index.ts`                   | React data-fetching & mutation hooks for templates, mappings, channels, logs, broadcasts, sandbox, consent, and order widget state                  |
+| `@vicacha-devs/medusa-plugin-notifications/types`                   | `src/types/index.ts`                   | Shared TypeScript interfaces, enums, constants, and error classes                                                                                   |
+| `@vicacha-devs/medusa-plugin-notifications/workflows`               | `src/workflows/index.ts`               | `renderNotificationTemplateWorkflow`, `dispatchEventNotificationsWorkflow`, `executeEventNotificationsDispatch`, `hydrateEntityContextData`         |
+| `@vicacha-devs/medusa-plugin-notifications/modules/notifications`   | `src/modules/notifications/index.ts`   | Standalone Notification Studio module (`Module("notificationsModuleService", ...)`)                                                                 |
+| `@vicacha-devs/medusa-plugin-notifications/providers/email-smtp`    | `src/providers/email-smtp/index.ts`    | Medusa Notification provider (`mpn-email`)                                                                                                          |
+| `@vicacha-devs/medusa-plugin-notifications/providers/whatsapp`      | `src/providers/whatsapp/index.ts`      | Multi-driver WhatsApp/OpenWA provider (`mpn-whatsapp`)                                                                                              |
+| `@vicacha-devs/medusa-plugin-notifications/providers/telegram`      | `src/providers/telegram/index.ts`      | Telegram Bot API provider (`mpn-telegram`)                                                                                                          |
+| `@vicacha-devs/medusa-plugin-notifications/providers/sms`           | `src/providers/sms/index.ts`           | Multi-driver SMS provider (`mpn-sms`)                                                                                                               |
+| `@vicacha-devs/medusa-plugin-notifications/providers/slack`         | `src/providers/slack/index.ts`         | Slack Block Kit provider (`mpn-slack`)                                                                                                              |
+| `@vicacha-devs/medusa-plugin-notifications/providers/dummy-sandbox` | `src/providers/dummy-sandbox/index.ts` | Local/Staging Dummy OTP & Message Sandbox provider (`mpn-dummy-sandbox`)                                                                            |
 
 ---
 

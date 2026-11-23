@@ -7,7 +7,7 @@ import {
   type TagFormState,
   useBarcodeStudio,
 } from "../../../../hooks/use-barcode-studio"
-import { RbacGuard } from "../../../../components/rbac-guard";
+import { RbacGuard } from "../../../../components/rbac-guard"
 
 const CreateTagDrawerContent = () => {
   const { t } = useTranslation()
@@ -51,6 +51,6 @@ const GuardedBarcodeTagCreateModal = () => (
   <RbacGuard permission="barcodes.write">
     <BarcodeTagCreateModal />
   </RbacGuard>
-);
+)
 
-export default GuardedBarcodeTagCreateModal;
+export default GuardedBarcodeTagCreateModal

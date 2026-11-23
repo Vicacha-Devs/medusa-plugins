@@ -50,8 +50,12 @@ export const SyncFailuresSection = ({
         <Table>
           <Table.Header>
             <Table.Row>
-              <Table.HeaderCell>{t("overviewTab.failuresLabel")}</Table.HeaderCell>
-              <Table.HeaderCell>{t("overviewTab.mappingsLabel")}</Table.HeaderCell>
+              <Table.HeaderCell>
+                {t("overviewTab.failuresLabel")}
+              </Table.HeaderCell>
+              <Table.HeaderCell>
+                {t("overviewTab.mappingsLabel")}
+              </Table.HeaderCell>
               <Table.HeaderCell className="text-right">
                 {t("logsTab.markResolved")}
               </Table.HeaderCell>

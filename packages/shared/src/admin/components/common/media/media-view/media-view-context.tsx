@@ -5,5 +5,6 @@ type MediaViewContextValue = {
   goToEdit: () => void
 }
 
-export const MediaViewContext =
-  createContext<MediaViewContextValue | null>(null)
+export const MediaViewContext = createContext<MediaViewContextValue | null>(
+  null
+)

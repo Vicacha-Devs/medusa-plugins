@@ -1,22 +1,26 @@
-import { ContainerRegistrationKeys } from "@medusajs/framework/utils";
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk";
-import { COMPANY_MODULE } from "@b2b/modules/company";
+import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
+import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { COMPANY_MODULE } from "@b2b/modules/company"
 import {
   ICompanyModuleService,
   ModuleUpdateEmployee,
   QueryEmployee,
-} from "@b2b/types";
+} from "@b2b/types"
 
-export const updateEmployeesStep = createStep<ModuleUpdateEmployee, QueryEmployee, QueryEmployee>(
+export const updateEmployeesStep = createStep<
+  ModuleUpdateEmployee,
+  QueryEmployee,
+  QueryEmployee
+>(
   "update-employees",
   async (
     input: ModuleUpdateEmployee,
     { container }
   ): Promise<StepResponse<QueryEmployee, QueryEmployee>> => {
     const companyModuleService =
-      container.resolve<ICompanyModuleService>(COMPANY_MODULE);
+      container.resolve<ICompanyModuleService>(COMPANY_MODULE)
 
-    const query = container.resolve(ContainerRegistrationKeys.QUERY);
+    const query = container.resolve(ContainerRegistrationKeys.QUERY)
 
     const {
       data: [currentData],
@@ -26,9 +30,9 @@ export const updateEmployeesStep = createStep<ModuleUpdateEmployee, QueryEmploye
       filters: {
         id: input.id,
       },
-    });
+    })
 
-    const updatedEmployee = await companyModuleService.updateEmployees(input);
+    const updatedEmployee = await companyModuleService.updateEmployees(input)
 
     const {
       data: [employee],
@@ -38,18 +42,20 @@ export const updateEmployeesStep = createStep<ModuleUpdateEmployee, QueryEmploye
       filters: {
         id: updatedEmployee.id,
       },
-    });
+    })
 
     return new StepResponse(
       employee as unknown as QueryEmployee,
       currentData as unknown as QueryEmployee
-    );
+    )
   },
   async (currentData: QueryEmployee | undefined, { container }) => {
     if (!currentData) return
     const companyModuleService =
-      container.resolve<ICompanyModuleService>(COMPANY_MODULE);
+      container.resolve<ICompanyModuleService>(COMPANY_MODULE)
 
-    await companyModuleService.updateEmployees(currentData as unknown as ModuleUpdateEmployee);
+    await companyModuleService.updateEmployees(
+      currentData as unknown as ModuleUpdateEmployee
+    )
   }
-);
+)

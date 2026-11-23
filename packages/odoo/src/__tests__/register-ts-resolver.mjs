@@ -103,9 +103,7 @@ registerHooks({
         lines.push(`export const handle = { breadcrumb: () => null }`)
       }
       const namedExports = [
-        ...source.matchAll(
-          /export\s+(?:const|function)\s+([A-Za-z0-9_]+)\b/g
-        ),
+        ...source.matchAll(/export\s+(?:const|function)\s+([A-Za-z0-9_]+)\b/g),
       ]
       for (const match of namedExports) {
         const name = match[1]

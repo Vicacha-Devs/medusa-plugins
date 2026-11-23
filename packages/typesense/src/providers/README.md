@@ -23,12 +23,14 @@ export default defineConfig({
       options: {
         providers: [
           {
-            resolve: "@vicacha-devs/medusa-plugin-typesense/providers/typesense",
+            resolve:
+              "@vicacha-devs/medusa-plugin-typesense/providers/typesense",
             id: "typesense",
             options: {
               host: process.env.TYPESENSE_HOST || "http://127.0.0.1:8108",
               apiKey: process.env.TYPESENSE_API_KEY!,
-              collectionPrefix: process.env.TYPESENSE_COLLECTION_PREFIX || "medusa",
+              collectionPrefix:
+                process.env.TYPESENSE_COLLECTION_PREFIX || "medusa",
               zeroDowntimeSwap: true,
             },
           },

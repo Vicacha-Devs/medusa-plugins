@@ -11,14 +11,14 @@ workflows/
 
 ## Exported Workflows & Steps
 
-| Symbol | Type | ID | Trigger / Caller |
-| --- | --- | --- | --- |
-| `renderNotificationTemplateWorkflow` | Workflow | `"render-notification-template"` | `POST /admin/mpn/render-template`, custom routes |
-| `renderTemplateStep` (`resolveAndRenderTemplateStep`) | Step | `"render-template"` | Internal step of `renderNotificationTemplateWorkflow` |
-| `dispatchEventNotificationsWorkflow` | Workflow | `"dispatch-event-notifications"` | Subscribers, scheduled jobs, `POST /admin/mpn/send` |
-| `dispatchEventStep` (`dispatchEventNotificationsStep`) | Step | `"dispatch-event"` | Internal step of `dispatchEventNotificationsWorkflow` |
-| `hydrateEntityContextData` | Helper | — | Hydrates live entity graph (`order`, `shipment`, `inventory-level`, `product`, `cart`, `document`, `otp`) via `query.graph` with safe mock fallback |
-| `executeEventNotificationsDispatch` | Helper | — | Evaluates active `mpn_event_mapping` rules, consent, idempotency, optional `medusa-plugin-documents` PDF attachments, and dispatches via `Modules.NOTIFICATION` or Sandbox |
+| Symbol                                                 | Type     | ID                               | Trigger / Caller                                                                                                                                                           |
+| ------------------------------------------------------ | -------- | -------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `renderNotificationTemplateWorkflow`                   | Workflow | `"render-notification-template"` | `POST /admin/mpn/render-template`, custom routes                                                                                                                           |
+| `renderTemplateStep` (`resolveAndRenderTemplateStep`)  | Step     | `"render-template"`              | Internal step of `renderNotificationTemplateWorkflow`                                                                                                                      |
+| `dispatchEventNotificationsWorkflow`                   | Workflow | `"dispatch-event-notifications"` | Subscribers, scheduled jobs, `POST /admin/mpn/send`                                                                                                                        |
+| `dispatchEventStep` (`dispatchEventNotificationsStep`) | Step     | `"dispatch-event"`               | Internal step of `dispatchEventNotificationsWorkflow`                                                                                                                      |
+| `hydrateEntityContextData`                             | Helper   | —                                | Hydrates live entity graph (`order`, `shipment`, `inventory-level`, `product`, `cart`, `document`, `otp`) via `query.graph` with safe mock fallback                        |
+| `executeEventNotificationsDispatch`                    | Helper   | —                                | Evaluates active `mpn_event_mapping` rules, consent, idempotency, optional `medusa-plugin-documents` PDF attachments, and dispatches via `Modules.NOTIFICATION` or Sandbox |
 
 ---
 

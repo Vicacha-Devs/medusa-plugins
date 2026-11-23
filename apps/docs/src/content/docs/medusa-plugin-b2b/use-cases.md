@@ -17,15 +17,15 @@ flowchart LR
 
 ## Medusa Modules & Data Models
 
-| Module | Data Model |
-| :--- | :--- |
-| `approval` | `approval` |
+| Module     | Data Model          |
+| :--------- | :------------------ |
+| `approval` | `approval`          |
 | `approval` | `approval-settings` |
-| `approval` | `approval-status` |
-| `company` | `company` |
-| `company` | `employee` |
-| `quote` | `message` |
-| `quote` | `quote` |
+| `approval` | `approval-status`   |
+| `company`  | `company`           |
+| `company`  | `employee`          |
+| `quote`    | `message`           |
+| `quote`    | `quote`             |
 
 ## Key Capabilities & Integration Points
 

@@ -20,7 +20,7 @@ export default defineConfig({
       options: {},
     },
   ],
-});
+})
 ```
 
 ## الوثائق الكاملة

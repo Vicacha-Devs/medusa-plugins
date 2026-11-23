@@ -65,8 +65,8 @@ export function createOdooSdk(config: OdooSdkClientConfig = {}) {
       credentials,
       headers: {
         "Content-Type": "application/json",
-        ...(config.headers ?? {}),
-        ...(init?.headers ?? {}),
+        ...config.headers,
+        ...init?.headers,
       },
     })
 
@@ -146,7 +146,11 @@ export function createOdooSdk(config: OdooSdkClientConfig = {}) {
           companies: Array<{ id: number; name: string }>
           warehouses: Array<{ id: number; name: string; code: string }>
           journals: Array<{ id: number; name: string; type: string }>
-          categories: Array<{ id: number; name: string; complete_name?: string }>
+          categories: Array<{
+            id: number
+            name: string
+            complete_name?: string
+          }>
         }
       }> {
         return request("/admin/odoo/options")
@@ -170,10 +174,13 @@ export function createOdooSdk(config: OdooSdkClientConfig = {}) {
         })
       },
       syncOrder(orderId: string): Promise<OdooOrderSyncResult> {
-        return request(`/admin/odoo/sync-order/${encodeURIComponent(orderId)}`, {
-          method: "POST",
-          body: JSON.stringify({}),
-        })
+        return request(
+          `/admin/odoo/sync-order/${encodeURIComponent(orderId)}`,
+          {
+            method: "POST",
+            body: JSON.stringify({}),
+          }
+        )
       },
       listMappings(filters?: {
         entity_type?: OdooEntityType

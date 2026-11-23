@@ -44,10 +44,8 @@ export function ModuleProvider(moduleName, config) {
   return { moduleName, ...config }
 }
 
-export function MedusaService(models = {}) {
-  return class BaseMedusaService {
-    constructor() {}
-  }
+export function MedusaService(_models = {}) {
+  return class BaseMedusaService {}
 }
 
 export class MedusaError extends Error {

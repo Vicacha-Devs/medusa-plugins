@@ -22,7 +22,9 @@ export class SocialWebhookService {
   private readonly accountService: SocialAccountService
   private readonly mediaService: SocialMediaService
   private readonly liveShoppingService: LiveShoppingService
-  private readonly resolveProvider: (platform: SocialPlatform) => SocialPlatformProvider
+  private readonly resolveProvider: (
+    platform: SocialPlatform
+  ) => SocialPlatformProvider
 
   constructor(
     repo: SocialCommerceRepository,
@@ -104,7 +106,13 @@ export class SocialWebhookService {
       platform === "tiktok" &&
       (rawEvent === "user.video.publish" || rawEvent === "video.publish")
     ) {
-      return this.handleTikTokVideoPublish(platform, rawEvent, payload, dataObj, openId)
+      return this.handleTikTokVideoPublish(
+        platform,
+        rawEvent,
+        payload,
+        dataObj,
+        openId
+      )
     }
 
     if (
@@ -112,7 +120,13 @@ export class SocialWebhookService {
       rawEvent === "live.started" ||
       rawEvent === "live.ended"
     ) {
-      return this.handleLiveRoomStatusUpdate(platform, rawEvent, payload, dataObj, openId)
+      return this.handleLiveRoomStatusUpdate(
+        platform,
+        rawEvent,
+        payload,
+        dataObj,
+        openId
+      )
     }
 
     if (
@@ -130,7 +144,9 @@ export class SocialWebhookService {
     }
   }
 
-  private extractDataObject(payload: Record<string, unknown>): Record<string, unknown> {
+  private extractDataObject(
+    payload: Record<string, unknown>
+  ): Record<string, unknown> {
     if (typeof payload.data === "string") {
       try {
         return JSON.parse(payload.data) as Record<string, unknown>
@@ -199,9 +215,8 @@ export class SocialWebhookService {
       }
     }
 
-    const { accessToken } = await this.accountService.getDecryptedAccountWithToken(
-      account.id
-    )
+    const { accessToken } =
+      await this.accountService.getDecryptedAccountWithToken(account.id)
     const provider = this.resolveProvider("tiktok")
     const videoItem =
       typeof provider.getVideo === "function"
@@ -345,8 +360,8 @@ export class SocialWebhookService {
           viewer_count: incomingViewerCount,
           peak_viewer_count: peakViewerCount,
           metadata: {
-            ...(started.metadata ?? {}),
-            ...(liveInfo?.metadata ?? {}),
+            ...started.metadata,
+            ...liveInfo?.metadata,
           },
         })
         return {
@@ -384,10 +399,13 @@ export class SocialWebhookService {
         playback_url: liveInfo?.playback_url ?? null,
         metadata: liveInfo?.metadata ?? null,
       })
-      const started = await this.liveShoppingService.startLiveSession(created.id, {
-        platform_live_id: roomId || undefined,
-        stream_url: liveInfo?.stream_url ?? undefined,
-      })
+      const started = await this.liveShoppingService.startLiveSession(
+        created.id,
+        {
+          platform_live_id: roomId || undefined,
+          stream_url: liveInfo?.stream_url ?? undefined,
+        }
+      )
       const updated = await this.repo.updateLiveSession(started.id, {
         viewer_count: incomingViewerCount,
         peak_viewer_count: peakViewerCount,
@@ -403,7 +421,9 @@ export class SocialWebhookService {
     }
 
     if (isEnded && existingSession) {
-      const ended = await this.liveShoppingService.endLiveSession(existingSession.id)
+      const ended = await this.liveShoppingService.endLiveSession(
+        existingSession.id
+      )
       return {
         handled: true,
         platform,

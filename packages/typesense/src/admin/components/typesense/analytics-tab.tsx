@@ -1,12 +1,5 @@
 import { SectionRow } from "@medusajs/dashboard/components"
-import {
-  Badge,
-  Button,
-  Container,
-  Heading,
-  Table,
-  Text,
-} from "@medusajs/ui"
+import { Badge, Button, Container, Heading, Table, Text } from "@medusajs/ui"
 import React from "react"
 import { useTranslation } from "react-i18next"
 
@@ -102,7 +95,9 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
             <Table.Header>
               <Table.Row>
                 <Table.HeaderCell>{t("analytics.colQuery")}</Table.HeaderCell>
-                <Table.HeaderCell>{t("analytics.colSearches")}</Table.HeaderCell>
+                <Table.HeaderCell>
+                  {t("analytics.colSearches")}
+                </Table.HeaderCell>
                 <Table.HeaderCell>{t("analytics.colAvgHits")}</Table.HeaderCell>
                 <Table.HeaderCell>{t("analytics.colClicks")}</Table.HeaderCell>
               </Table.Row>

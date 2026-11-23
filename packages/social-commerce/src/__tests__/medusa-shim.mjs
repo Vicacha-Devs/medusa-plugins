@@ -33,9 +33,7 @@ export function MedusaService(models = {}) {
       this.__stores = {}
       let counter = 1
       for (const key of Object.keys(models)) {
-        const plural = key.endsWith("y")
-          ? `${key.slice(0, -1)}ies`
-          : `${key}s`
+        const plural = key.endsWith("y") ? `${key.slice(0, -1)}ies` : `${key}s`
         this.__stores[plural] = []
 
         if (typeof this[`list${plural}`] !== "function") {
@@ -264,9 +262,7 @@ const createZodChain = (constraints = {}) => {
     parse: (val) => {
       const res = schema.safeParse(val)
       if (!res.success) {
-        throw new Error(
-          res.error.issues.map((i) => i.message).join("; ")
-        )
+        throw new Error(res.error.issues.map((i) => i.message).join("; "))
       }
       return res.data
     },
@@ -569,4 +565,3 @@ export const useForm = (opts = {}) => ({
   watch: () => opts.defaultValues ?? {},
   formState: { errors: {}, isDirty: false, isSubmitting: false },
 })
-

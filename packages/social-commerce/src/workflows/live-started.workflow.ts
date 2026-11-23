@@ -29,7 +29,10 @@ export const startLiveSessionStep = createStep(
 
     return new StepResponse({ session }, { session_id: session.id })
   },
-  async (compensateInput: { session_id: string } | undefined, { container }) => {
+  async (
+    compensateInput: { session_id: string } | undefined,
+    { container }
+  ) => {
     if (!compensateInput?.session_id) return
     const socialService = container.resolve<SocialCommerceService>(
       SOCIAL_COMMERCE_MODULE

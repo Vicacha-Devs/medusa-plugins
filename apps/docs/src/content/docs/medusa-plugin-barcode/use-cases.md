@@ -17,8 +17,8 @@ flowchart LR
 
 ## Medusa Modules & Data Models
 
-| Module | Data Model |
-| :--- | :--- |
+| Module    | Data Model              |
+| :-------- | :---------------------- |
 | `barcode` | _(service-only module)_ |
 
 ## Key Capabilities & Integration Points

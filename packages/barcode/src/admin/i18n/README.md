@@ -24,18 +24,18 @@ i18n/
 
 All 10 locales are exported in `SUPPORTED_UI_LOCALES` and registered under both the default `translation` namespace and the plugin's `barcodes` namespace (`translationNs: "barcodes"`):
 
-| Code | Language | Native Label | Direction | File |
-| --- | --- | --- | --- | --- |
-| `en` | English | English | `ltr` | `json/en.json` |
-| `es` | Spanish | Español | `ltr` | `json/es.json` |
-| `fr` | French | Français | `ltr` | `json/fr.json` |
-| `de` | German | Deutsch | `ltr` | `json/de.json` |
-| `it` | Italian | Italiano | `ltr` | `json/it.json` |
-| `pt` | Portuguese | Português | `ltr` | `json/pt.json` |
-| `nl` | Dutch | Nederlands | `ltr` | `json/nl.json` |
-| `pl` | Polish | Polski | `ltr` | `json/pl.json` |
-| `tr` | Turkish | Türkçe | `ltr` | `json/tr.json` |
-| `ar` | Arabic | العربية | `rtl` | `json/ar.json` |
+| Code | Language   | Native Label | Direction | File           |
+| ---- | ---------- | ------------ | --------- | -------------- |
+| `en` | English    | English      | `ltr`     | `json/en.json` |
+| `es` | Spanish    | Español      | `ltr`     | `json/es.json` |
+| `fr` | French     | Français     | `ltr`     | `json/fr.json` |
+| `de` | German     | Deutsch      | `ltr`     | `json/de.json` |
+| `it` | Italian    | Italiano     | `ltr`     | `json/it.json` |
+| `pt` | Portuguese | Português    | `ltr`     | `json/pt.json` |
+| `nl` | Dutch      | Nederlands   | `ltr`     | `json/nl.json` |
+| `pl` | Polish     | Polski       | `ltr`     | `json/pl.json` |
+| `tr` | Turkish    | Türkçe       | `ltr`     | `json/tr.json` |
+| `ar` | Arabic     | العربية      | `rtl`     | `json/ar.json` |
 
 ---
 

@@ -1,21 +1,21 @@
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk";
-import { APPROVAL_MODULE } from "@b2b/modules/approval";
-import { IApprovalModuleService } from "@b2b/types";
+import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { APPROVAL_MODULE } from "@b2b/modules/approval"
+import { IApprovalModuleService } from "@b2b/types"
 
 export const deleteApprovalsStep = createStep(
   "delete-approvals",
   async (input: string[], { container }) => {
     const approvalModule =
-      container.resolve<IApprovalModuleService>(APPROVAL_MODULE);
+      container.resolve<IApprovalModuleService>(APPROVAL_MODULE)
 
-    await approvalModule.softDeleteApprovals(input);
+    await approvalModule.softDeleteApprovals(input)
 
-    return new StepResponse(undefined, input);
+    return new StepResponse(undefined, input)
   },
   async (approvalIds: string[], { container }) => {
     const approvalModule =
-      container.resolve<IApprovalModuleService>(APPROVAL_MODULE);
+      container.resolve<IApprovalModuleService>(APPROVAL_MODULE)
 
-    await approvalModule.restoreApprovals(approvalIds);
+    await approvalModule.restoreApprovals(approvalIds)
   }
-);
+)

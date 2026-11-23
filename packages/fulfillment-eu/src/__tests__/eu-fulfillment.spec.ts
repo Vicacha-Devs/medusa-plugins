@@ -61,7 +61,10 @@ describe("calculateEuShippingQuote", () => {
   })
 
   it("supports EuFulfillmentProviderService methods", async () => {
-    const svc = new EuFulfillmentProviderService({}, { dispatchedFrom: "Rotterdam Port" })
+    const svc = new EuFulfillmentProviderService(
+      {},
+      { dispatchedFrom: "Rotterdam Port" }
+    )
     const opts = await svc.getFulfillmentOptions()
     assert.equal(opts.length, 3)
 

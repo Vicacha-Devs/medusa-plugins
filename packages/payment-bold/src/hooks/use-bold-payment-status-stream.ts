@@ -21,10 +21,8 @@ export interface UseBoldStatusStreamOptions {
   onError?: (error: any) => void
 }
 
-
 interface UseBoldPaymentStatusStreamProps
-  extends BoldStatusStreamCallbacks,
-    BoldMutationHookOptions {
+  extends BoldStatusStreamCallbacks, BoldMutationHookOptions {
   sessionId: string | null
   enabled?: boolean
 }

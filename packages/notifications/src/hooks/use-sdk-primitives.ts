@@ -65,7 +65,9 @@ export function useNotificationsQuery<TData>(
   useEffect(() => {
     if (!enabled) return
     return subscribeNotificationsQueryInvalidation((invalidatedPrefix) => {
-      if (matchesNotificationsQueryKeyPrefix(keyRef.current, invalidatedPrefix)) {
+      if (
+        matchesNotificationsQueryKeyPrefix(keyRef.current, invalidatedPrefix)
+      ) {
         void execute()
       }
     })

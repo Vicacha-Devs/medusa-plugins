@@ -7,7 +7,7 @@ import { Toaster } from "@medusajs/ui"
 import { useTranslation } from "react-i18next"
 import { VariantBulkMediaSection } from "../../../components"
 import { useProductExtStudio } from "../../../hooks/use-product-ext-studio"
-import { RbacGuard } from "../../../components/rbac-guard";
+import { RbacGuard } from "../../../components/rbac-guard"
 
 const VariantMediaRoutePage = () => {
   const studio = useProductExtStudio()
@@ -52,6 +52,6 @@ const GuardedVariantMediaRoutePage = () => (
   <RbacGuard permission="product_extensions.read">
     <VariantMediaRoutePage />
   </RbacGuard>
-);
+)
 
-export default GuardedVariantMediaRoutePage;
+export default GuardedVariantMediaRoutePage

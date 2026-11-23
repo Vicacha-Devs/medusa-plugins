@@ -6,40 +6,40 @@ Shared admin UI components, hooks, and utilities used across Vicacha Devs Medusa
 
 ### Components (`/admin`)
 
-| Export | Description |
-|---|---|
-| `ActionMenu` | Ellipsis-triggered dropdown for row/item actions |
-| `ConditionalTooltip` | Wraps children in a tooltip only when a condition is met |
-| `CoolSwitch` | Styled boolean toggle built on `@medusajs/ui` |
-| `DeletePrompt` | Confirmation dialog for destructive actions |
-| `FilterGroup` | Compound filter UI for list pages |
-| `Form` | Wrapper around `react-hook-form` for consistent form layout |
-| `JsonViewSection` | Collapsible JSON viewer section using `@uiw/react-json-view` |
-| `RouteFocusModal` | Full-screen modal driven by the current route |
-| `RouteDrawer` | Side-drawer driven by the current route |
-| `StackedDrawer` | Drawer that layers on top of another drawer |
-| `StackedFocusModal` | Focus modal that stacks on top of another modal |
-| `RouteModalProvider` | Context provider for route-based modals |
-| `StackedModalProvider` | Context provider for stacked modals |
-| `RouteModalForm` | Form component scoped to a route modal |
-| `Skeleton` | Loading skeleton placeholder |
-| `DataTable` | Full-featured data table (search, filter, pagination) |
-| `DataTableFilter` | Filter bar for `DataTable` (string, number, select variants) |
-| `EmptyState` | Empty/no-results state for tables |
-| `DateCell` | Table cell that formats a date value |
-| `AmountCell` | Table cell that formats a monetary amount |
-| `TextCell` | Plain text table cell |
-| `PlaceholderCell` | Dash placeholder for missing values |
-| `ProductCell` | Table cell with product thumbnail and title |
-| `Thumbnail` | Image thumbnail with fallback |
+| Export                 | Description                                                  |
+| ---------------------- | ------------------------------------------------------------ |
+| `ActionMenu`           | Ellipsis-triggered dropdown for row/item actions             |
+| `ConditionalTooltip`   | Wraps children in a tooltip only when a condition is met     |
+| `CoolSwitch`           | Styled boolean toggle built on `@medusajs/ui`                |
+| `DeletePrompt`         | Confirmation dialog for destructive actions                  |
+| `FilterGroup`          | Compound filter UI for list pages                            |
+| `Form`                 | Wrapper around `react-hook-form` for consistent form layout  |
+| `JsonViewSection`      | Collapsible JSON viewer section using `@uiw/react-json-view` |
+| `RouteFocusModal`      | Full-screen modal driven by the current route                |
+| `RouteDrawer`          | Side-drawer driven by the current route                      |
+| `StackedDrawer`        | Drawer that layers on top of another drawer                  |
+| `StackedFocusModal`    | Focus modal that stacks on top of another modal              |
+| `RouteModalProvider`   | Context provider for route-based modals                      |
+| `StackedModalProvider` | Context provider for stacked modals                          |
+| `RouteModalForm`       | Form component scoped to a route modal                       |
+| `Skeleton`             | Loading skeleton placeholder                                 |
+| `DataTable`            | Full-featured data table (search, filter, pagination)        |
+| `DataTableFilter`      | Filter bar for `DataTable` (string, number, select variants) |
+| `EmptyState`           | Empty/no-results state for tables                            |
+| `DateCell`             | Table cell that formats a date value                         |
+| `AmountCell`           | Table cell that formats a monetary amount                    |
+| `TextCell`             | Plain text table cell                                        |
+| `PlaceholderCell`      | Dash placeholder for missing values                          |
+| `ProductCell`          | Table cell with product thumbnail and title                  |
+| `Thumbnail`            | Image thumbnail with fallback                                |
 
 ### Hooks (`/admin`)
 
-| Export | Description |
-|---|---|
-| `useDataTable` | Wires up `@tanstack/react-table` state (sorting, pagination) for `DataTable` |
-| `useDocumentDirection` | Reads the document's `dir` attribute (`ltr`/`rtl`) |
-| `useQueryParams` | Reads and writes URL search params as typed values |
+| Export                 | Description                                                                  |
+| ---------------------- | ---------------------------------------------------------------------------- |
+| `useDataTable`         | Wires up `@tanstack/react-table` state (sorting, pagination) for `DataTable` |
+| `useDocumentDirection` | Reads the document's `dir` attribute (`ltr`/`rtl`)                           |
+| `useQueryParams`       | Reads and writes URL search params as typed values                           |
 
 ## Installation
 

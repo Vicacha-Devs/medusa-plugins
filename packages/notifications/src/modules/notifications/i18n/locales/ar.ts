@@ -13,8 +13,7 @@ export const ar: NotificationTranslationDictionary = {
   order: {
     placedSubject: "تم تأكيد الطلب #{{data.display_id}}",
     placedTitle: "شكراً لطلبك!",
-    placedIntro:
-      "لقد استلمنا طلبك رقم #{{data.display_id}} وجارٍ تجهيزه للشحن.",
+    placedIntro: "لقد استلمنا طلبك رقم #{{data.display_id}} وجارٍ تجهيزه للشحن.",
     completedSubject: "اكتمل الطلب #{{data.display_id}}",
     completedTitle: "تم إكمال طلبك بنجاح",
     canceledSubject: "تم إلغاء الطلب #{{data.display_id}}",

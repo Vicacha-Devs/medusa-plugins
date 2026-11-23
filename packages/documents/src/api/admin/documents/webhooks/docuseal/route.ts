@@ -22,9 +22,7 @@ export async function POST(req: MedusaRequest, res: MedusaResponse) {
 
   const rawBody =
     (req as any).rawBody ||
-    (typeof req.body === "string"
-      ? req.body
-      : JSON.stringify(req.body || {}))
+    (typeof req.body === "string" ? req.body : JSON.stringify(req.body || {}))
 
   if (!documentsService.docuseal.hasWebhookSecret()) {
     return res.status(401).json({

@@ -1,11 +1,4 @@
-import {
-  Button,
-  Container,
-  Heading,
-  Input,
-  Select,
-  Text,
-} from "@medusajs/ui"
+import { Button, Container, Heading, Input, Select, Text } from "@medusajs/ui"
 import { useTranslation } from "react-i18next"
 
 import type { DocumentType } from "../../../modules/documents/types"

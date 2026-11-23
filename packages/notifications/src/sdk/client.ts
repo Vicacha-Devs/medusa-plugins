@@ -78,7 +78,7 @@ export class NotificationsApiClient {
   ): Record<string, string> {
     const headers: Record<string, string> = {
       ...(hasJsonBody ? { "Content-Type": "application/json" } : {}),
-      ...(this.options.headers || {}),
+      ...this.options.headers,
     }
 
     if (this.options.publishableApiKey) {

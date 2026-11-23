@@ -1,35 +1,35 @@
 import {
   StackedFocusModal,
   useStackedModal,
-} from "@medusajs/dashboard/components";
-import {
-  AdminOrder,
-  AdminOrderPreview,
-} from "@medusajs/framework/types";
-import { Button, Container, Heading, Input, toast } from "@medusajs/ui";
-import { useMemo, useRef, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useAddItemsToQuote } from "../../../../../../hooks/api";
-import { ManageItem } from "./manage-item.tsx";
-import { ManageItemsTable } from "./manage-items-table.tsx";
+} from "@medusajs/dashboard/components"
+import { AdminOrder, AdminOrderPreview } from "@medusajs/framework/types"
+import { Button, Container, Heading, Input, toast } from "@medusajs/ui"
+import { useMemo, useRef, useState } from "react"
+import { useTranslation } from "react-i18next"
+import { useAddItemsToQuote } from "../../../../../../hooks/api"
+import { ManageItem } from "./manage-item.tsx"
+import { ManageItemsTable } from "./manage-items-table.tsx"
 
 type ManageItemsSectionProps = {
-  order: AdminOrder;
-  preview: AdminOrderPreview;
-  onItemChange: (itemId: string, changes: { quantity?: number; unit_price?: number }) => void;
-};
+  order: AdminOrder
+  preview: AdminOrderPreview
+  onItemChange: (
+    itemId: string,
+    changes: { quantity?: number; unit_price?: number }
+  ) => void
+}
 
 export const ManageItemsSection = ({
   order,
   preview,
   onItemChange,
 }: ManageItemsSectionProps) => {
-  const { t } = useTranslation();
-  const { setIsOpen } = useStackedModal();
-  const [filterTerm, setFilterTerm] = useState("");
-  const addedVariantsRef = useRef<string[]>([]);
+  const { t } = useTranslation()
+  const { setIsOpen } = useStackedModal()
+  const [filterTerm, setFilterTerm] = useState("")
+  const addedVariantsRef = useRef<string[]>([])
 
-  const { mutateAsync: addItems, isPending } = useAddItemsToQuote(preview.id);
+  const { mutateAsync: addItems, isPending } = useAddItemsToQuote(preview.id)
 
   const onItemsSelected = async () => {
     try {
@@ -38,28 +38,26 @@ export const ManageItemsSection = ({
           variant_id: i,
           quantity: 1,
         })),
-      });
+      })
     } catch (e: any) {
-      toast.error(e.message);
+      toast.error(e.message)
     }
-    setIsOpen("inbound-items", false);
-  };
+    setIsOpen("inbound-items", false)
+  }
 
   const filteredItems = useMemo(() => {
-    return preview.items.filter(
-      (i) => {
-        const term = filterTerm.toLowerCase()
-        return (
-          i.title.toLowerCase().includes(term) ||
-          (i as any).product_title?.toLowerCase().includes(term)
-        )
-      }
-    ) as any[];
-  }, [preview, filterTerm]);
+    return preview.items.filter((i) => {
+      const term = filterTerm.toLowerCase()
+      return (
+        i.title.toLowerCase().includes(term) ||
+        (i as any).product_title?.toLowerCase().includes(term)
+      )
+    }) as any[]
+  }, [preview, filterTerm])
 
   const originalItemsMap = useMemo(() => {
-    return new Map(order.items.map((item) => [item.id, item]));
-  }, [order]);
+    return new Map(order.items.map((item) => [item.id, item]))
+  }, [order])
 
   return (
     <Container className="divide-y p-0">
@@ -88,7 +86,7 @@ export const ManageItemsSection = ({
 
               <ManageItemsTable
                 onSelectionChange={(finalSelection) => {
-                  addedVariantsRef.current = finalSelection;
+                  addedVariantsRef.current = finalSelection
                 }}
               />
 
@@ -143,5 +141,5 @@ export const ManageItemsSection = ({
         )}
       </div>
     </Container>
-  );
-};
+  )
+}

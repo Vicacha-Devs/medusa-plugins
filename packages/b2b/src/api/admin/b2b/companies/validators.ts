@@ -2,12 +2,12 @@ import {
   createFindParams,
   createOperatorMap,
   createSelectParams,
-} from "@medusajs/medusa/api/utils/validators";
-import { z } from "@medusajs/framework/zod";
-import { ESpendingLimitResetFrequency } from "@b2b/types";
+} from "@medusajs/medusa/api/utils/validators"
+import { z } from "@medusajs/framework/zod"
+import { ESpendingLimitResetFrequency } from "@b2b/types"
 
 /* Company Validators */
-export type AdminGetCompanyParamsType = z.infer<typeof AdminGetCompanyParams>;
+export type AdminGetCompanyParamsType = z.infer<typeof AdminGetCompanyParams>
 export const AdminGetCompanyParams = createFindParams({
   limit: 50,
   offset: 0,
@@ -21,15 +21,15 @@ export const AdminGetCompanyParams = createFindParams({
     created_at: createOperatorMap().optional(),
     updated_at: createOperatorMap().optional(),
   })
-  .strict();
+  .strict()
 
 /* Company Retrieve Validators (single record, select-only) */
 export type AdminGetCompanyRetrieveParamsType = z.infer<
   typeof AdminGetCompanyRetrieveParams
->;
-export const AdminGetCompanyRetrieveParams = createSelectParams();
+>
+export const AdminGetCompanyRetrieveParams = createSelectParams()
 
-export type AdminCreateCompanyType = z.infer<typeof AdminCreateCompany>;
+export type AdminCreateCompanyType = z.infer<typeof AdminCreateCompany>
 export const AdminCreateCompany = z
   .object({
     name: z.string(),
@@ -42,11 +42,13 @@ export const AdminCreateCompany = z
     zip: z.string().optional(),
     country: z.string().optional(),
     logo_url: z.string().optional(),
-    spending_limit_reset_frequency: z.enum(ESpendingLimitResetFrequency).optional(),
+    spending_limit_reset_frequency: z
+      .enum(ESpendingLimitResetFrequency)
+      .optional(),
   })
-  .strict();
+  .strict()
 
-export type AdminUpdateCompanyType = z.infer<typeof AdminUpdateCompany>;
+export type AdminUpdateCompanyType = z.infer<typeof AdminUpdateCompany>
 export const AdminUpdateCompany = z
   .object({
     name: z.string().optional(),
@@ -59,40 +61,45 @@ export const AdminUpdateCompany = z
     zip: z.string().optional().nullable(),
     country: z.string().optional().nullable(),
     logo_url: z.string().optional().nullable(),
-    spending_limit_reset_frequency: z.nativeEnum(ESpendingLimitResetFrequency).optional(),
+    spending_limit_reset_frequency: z
+      .nativeEnum(ESpendingLimitResetFrequency)
+      .optional(),
     spending_limit_reset_at: z.string().datetime().optional().nullable(),
   })
-  .strict();
+  .strict()
 
 export type AdminGetCustomerGroupParamsType = z.infer<
   typeof AdminGetCustomerGroupParams
->;
-export const AdminGetCustomerGroupParams = createSelectParams();
+>
+export const AdminGetCustomerGroupParams = createSelectParams()
 
 export type AdminAddCompanyToCustomerGroupType = z.infer<
   typeof AdminAddCompanyToCustomerGroup
->;
+>
 export const AdminAddCompanyToCustomerGroup = z.object({
   group_id: z.string(),
-});
+})
 
 export type AdminRemoveCompanyFromCustomerGroupType = z.infer<
   typeof AdminRemoveCompanyFromCustomerGroup
->;
+>
 export const AdminRemoveCompanyFromCustomerGroup = z.object({
   group_id: z.string(),
-});
+})
 
 /* Employee Validators */
 
-export type AdminGetEmployeeParamsType = z.infer<typeof AdminGetEmployeeParams>;
-export const AdminGetEmployeeParams = createFindParams({ limit: 20, offset: 0 }).extend({
+export type AdminGetEmployeeParamsType = z.infer<typeof AdminGetEmployeeParams>
+export const AdminGetEmployeeParams = createFindParams({
+  limit: 20,
+  offset: 0,
+}).extend({
   q: z.string().optional(),
   is_admin: z.string().optional(),
   is_active: z.string().optional(),
-});
+})
 
-export type AdminCreateEmployeeType = z.infer<typeof AdminCreateEmployee>;
+export type AdminCreateEmployeeType = z.infer<typeof AdminCreateEmployee>
 export const AdminCreateEmployee = z
   .object({
     spending_limit: z.number().optional(),
@@ -105,9 +112,9 @@ export const AdminCreateEmployee = z
     is_admin: z.boolean().optional(),
     customer_id: z.string(),
   })
-  .strict();
+  .strict()
 
-export type AdminUpdateEmployeeType = z.infer<typeof AdminUpdateEmployee>;
+export type AdminUpdateEmployeeType = z.infer<typeof AdminUpdateEmployee>
 export const AdminUpdateEmployee = z
   .object({
     id: z.string(),
@@ -120,39 +127,39 @@ export const AdminUpdateEmployee = z
       .optional(),
     is_admin: z.boolean().optional(),
   })
-  .strict();
+  .strict()
 
 /* Approval Settings Validators */
 export type AdminGetApprovalSettingsParamsType = z.infer<
   typeof AdminGetApprovalSettingsParams
->;
-export const AdminGetApprovalSettingsParams = createSelectParams();
+>
+export const AdminGetApprovalSettingsParams = createSelectParams()
 
 export type AdminCreateApprovalSettingsType = z.infer<
   typeof AdminCreateApprovalSettings
->;
+>
 export const AdminCreateApprovalSettings = z
   .object({
     company_id: z.string(),
     requires_admin_approval: z.boolean(),
     requires_sales_manager_approval: z.boolean(),
   })
-  .strict();
+  .strict()
 
 export type AdminUpdateApprovalSettingsType = z.infer<
   typeof AdminUpdateApprovalSettings
->;
+>
 export const AdminUpdateApprovalSettings = z
   .object({
     id: z.string(),
     requires_admin_approval: z.boolean(),
     requires_sales_manager_approval: z.boolean(),
   })
-  .strict();
+  .strict()
 
 export type AdminDeleteApprovalSettingsType = z.infer<
   typeof AdminDeleteApprovalSettings
->;
+>
 export const AdminDeleteApprovalSettings = z.object({
   ids: z.array(z.string()),
-});
+})

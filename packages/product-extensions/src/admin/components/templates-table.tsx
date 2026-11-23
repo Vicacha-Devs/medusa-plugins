@@ -51,7 +51,9 @@ export const TemplatesTable: React.FC<TemplatesTableProps> = ({
           <Table.Row>
             <Table.HeaderCell>{t("templatesTab.nameField")}</Table.HeaderCell>
             <Table.HeaderCell>Code</Table.HeaderCell>
-            <Table.HeaderCell>{t("templatesTab.attributeKeysField")}</Table.HeaderCell>
+            <Table.HeaderCell>
+              {t("templatesTab.attributeKeysField")}
+            </Table.HeaderCell>
             <Table.HeaderCell className="text-right" />
           </Table.Row>
         </Table.Header>
@@ -60,7 +62,9 @@ export const TemplatesTable: React.FC<TemplatesTableProps> = ({
             <Table.Row key={tpl.id}>
               <Table.Cell className="font-medium">{tpl.name}</Table.Cell>
               <Table.Cell>
-                <Badge size="small" color="purple">{tpl.code}</Badge>
+                <Badge size="small" color="purple">
+                  {tpl.code}
+                </Badge>
               </Table.Cell>
               <Table.Cell className="text-ui-fg-subtle">
                 {t("templatesTab.summaryStats", {
@@ -112,7 +116,12 @@ export const TemplatesBuilderTab: React.FC<TemplatesBuilderTabProps> = ({
       <Container className="divide-y p-0">
         <div className="flex items-center justify-between px-6 py-4">
           <Heading level="h2">{t("templatesTab.createTitle")}</Heading>
-          <Button variant="primary" size="small" isLoading={isBusy} onClick={onCreate}>
+          <Button
+            variant="primary"
+            size="small"
+            isLoading={isBusy}
+            onClick={onCreate}
+          >
             {t("templatesTab.createButton")}
           </Button>
         </div>
@@ -122,7 +131,9 @@ export const TemplatesBuilderTab: React.FC<TemplatesBuilderTabProps> = ({
             <Input
               placeholder={t("templatesTab.namePlaceholder")}
               value={form.name}
-              onChange={(e) => onFormChange((p) => ({ ...p, name: e.target.value }))}
+              onChange={(e) =>
+                onFormChange((p) => ({ ...p, name: e.target.value }))
+              }
             />
           </div>
           <div>
@@ -130,7 +141,12 @@ export const TemplatesBuilderTab: React.FC<TemplatesBuilderTabProps> = ({
             <Input
               placeholder={t("templatesTab.categoryIdsPlaceholder")}
               value={form.category_ids_csv}
-              onChange={(e) => onFormChange((p) => ({ ...p, category_ids_csv: e.target.value }))}
+              onChange={(e) =>
+                onFormChange((p) => ({
+                  ...p,
+                  category_ids_csv: e.target.value,
+                }))
+              }
             />
           </div>
           <div>
@@ -138,21 +154,30 @@ export const TemplatesBuilderTab: React.FC<TemplatesBuilderTabProps> = ({
             <Input
               placeholder={t("templatesTab.attributeKeysPlaceholder")}
               value={form.attribute_keys_csv}
-              onChange={(e) => onFormChange((p) => ({ ...p, attribute_keys_csv: e.target.value }))}
+              onChange={(e) =>
+                onFormChange((p) => ({
+                  ...p,
+                  attribute_keys_csv: e.target.value,
+                }))
+              }
             />
           </div>
           <div>
             <Label size="small">{t("templatesTab.sectionTitleField")}</Label>
             <Input
               value={form.section_title}
-              onChange={(e) => onFormChange((p) => ({ ...p, section_title: e.target.value }))}
+              onChange={(e) =>
+                onFormChange((p) => ({ ...p, section_title: e.target.value }))
+              }
             />
           </div>
           <div>
             <Label size="small">{t("templatesTab.itemTitleField")}</Label>
             <Input
               value={form.item_title}
-              onChange={(e) => onFormChange((p) => ({ ...p, item_title: e.target.value }))}
+              onChange={(e) =>
+                onFormChange((p) => ({ ...p, item_title: e.target.value }))
+              }
             />
           </div>
           <div>
@@ -160,7 +185,9 @@ export const TemplatesBuilderTab: React.FC<TemplatesBuilderTabProps> = ({
             <Textarea
               rows={2}
               value={form.item_markdown}
-              onChange={(e) => onFormChange((p) => ({ ...p, item_markdown: e.target.value }))}
+              onChange={(e) =>
+                onFormChange((p) => ({ ...p, item_markdown: e.target.value }))
+              }
             />
           </div>
         </div>

@@ -1,13 +1,6 @@
 import { defineWidgetConfig } from "@medusajs/admin-sdk"
 import type { DetailWidgetProps, AdminOrder } from "@medusajs/framework/types"
-import {
-  Badge,
-  Button,
-  Container,
-  Drawer,
-  Heading,
-  Text,
-} from "@medusajs/ui"
+import { Badge, Button, Container, Drawer, Heading, Text } from "@medusajs/ui"
 import { useEffect, useState } from "react"
 
 interface PaymentSessionInfo {

@@ -1,14 +1,14 @@
-import { ICustomerModuleService } from "@medusajs/framework/types";
-import { ContainerRegistrationKeys, Modules } from "@medusajs/framework/utils";
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk";
+import { ICustomerModuleService } from "@medusajs/framework/types"
+import { ContainerRegistrationKeys, Modules } from "@medusajs/framework/utils"
+import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
 
 export const addCompanyEmployeesToCustomerGroupStep = createStep(
   "add-company-employees-to-customer-group",
   async (input: { company_id: string }, { container }) => {
-    const query = container.resolve(ContainerRegistrationKeys.QUERY);
+    const query = container.resolve(ContainerRegistrationKeys.QUERY)
 
     const {
-      data: [{ id, customer_group, employees }],
+      data: [{ customer_group, employees }],
     } = await query.graph(
       {
         entity: "companies",
@@ -21,17 +21,17 @@ export const addCompanyEmployeesToCustomerGroupStep = createStep(
         ],
       },
       { throwIfKeyNotFound: true }
-    );
+    )
 
     const customerModuleService = container.resolve<ICustomerModuleService>(
       Modules.CUSTOMER
-    );
+    )
     const customerGroupCustomers = employees
       .filter(
         (
           employee
         ): employee is typeof employee & {
-          customer: { id: string };
+          customer: { id: string }
         } =>
           Boolean(employee) &&
           Boolean(employee?.customer) &&
@@ -41,10 +41,10 @@ export const addCompanyEmployeesToCustomerGroupStep = createStep(
       .map((employee) => ({
         customer_id: employee.customer.id,
         customer_group_id: customer_group!.id,
-      }));
+      }))
 
     if (customerGroupCustomers.length > 0) {
-      await customerModuleService.addCustomerToGroup(customerGroupCustomers);
+      await customerModuleService.addCustomerToGroup(customerGroupCustomers)
     }
 
     return new StepResponse(customer_group, {
@@ -52,23 +52,23 @@ export const addCompanyEmployeesToCustomerGroupStep = createStep(
         ({ customer_id }) => customer_id
       ),
       group_id: customer_group?.id ?? null,
-    });
+    })
   },
   async (
     input: { customer_ids: string[]; group_id: string | null } | null,
     { container }
   ) => {
-    if (!input?.group_id || !input.customer_ids?.length) return;
+    if (!input?.group_id || !input.customer_ids?.length) return
 
     const customerModuleService = container.resolve<ICustomerModuleService>(
       Modules.CUSTOMER
-    );
+    )
 
     await customerModuleService.removeCustomerFromGroup(
       input.customer_ids.map((id) => ({
         customer_id: id,
         customer_group_id: input.group_id as string,
       }))
-    );
+    )
   }
-);
+)

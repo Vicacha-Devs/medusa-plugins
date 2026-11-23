@@ -44,7 +44,9 @@ export async function createPresetBlocks(
   const oldToNewId = new Map<string, string>()
   const created: Array<Record<string, any>> = []
 
-  const sortedBlocks = [...presetBlocks].sort((a, b) => a.position - b.position)
+  const sortedBlocks = [...presetBlocks].toSorted(
+    (a, b) => a.position - b.position
+  )
 
   for (const pass of [
     sortedBlocks.filter((b) => !b.parent_id),

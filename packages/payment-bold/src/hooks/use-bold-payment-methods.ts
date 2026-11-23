@@ -2,7 +2,10 @@ import { useQuery, UseQueryOptions } from "@tanstack/react-query"
 
 import { boldAdminSdk } from "../sdk/client"
 import { boldQueryKeys } from "../sdk/query-keys"
-import { BoldIntegrationAPIPaymentMethod, BoldPaymentLinkPaymentMethodLimits } from "@payment-bold/types"
+import {
+  BoldIntegrationAPIPaymentMethod,
+  BoldPaymentLinkPaymentMethodLimits,
+} from "@payment-bold/types"
 
 export const useBoldIntegrationApiPaymentMethods = (
   options?: Omit<

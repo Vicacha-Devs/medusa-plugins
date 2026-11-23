@@ -1,19 +1,26 @@
-import type { JSX } from "react";
+import type { JSX } from "react"
 import { clx } from "@medusajs/ui"
 import { PropsWithChildren } from "react"
 
-const STATUS_COLOR = ["green", "red", "blue", "orange", "grey", "purple"] as const;
+const STATUS_COLOR = [
+  "green",
+  "red",
+  "blue",
+  "orange",
+  "grey",
+  "purple",
+] as const
 
-type StatusColor = typeof STATUS_COLOR[number];
+type StatusColor = (typeof STATUS_COLOR)[number]
 
 type DataTableStatusIndicatorProps = PropsWithChildren<{
-  color?: StatusColor;
+  color?: StatusColor
   /**
    * Extra classes for the root. `DataTableStatusCell` passes `w-full` so it
    * fills the cell (default left-aligned layout); omit it to let the indicator
    * shrink to its content so a surrounding `align` wrapper can center/right it.
    */
-  className?: string;
+  className?: string
 }>
 
 /**

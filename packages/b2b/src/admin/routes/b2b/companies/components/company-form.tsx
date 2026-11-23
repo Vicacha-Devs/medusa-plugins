@@ -13,7 +13,7 @@ import { CompanyFormAdminTab } from "./company-form-admin-tab"
 import { CompanyFormDetailsTab } from "./company-form-details-tab"
 import { CompanyFormValues, makeCompanyFormSchema } from "./validators"
 
-const ALL_CURRENCIES = Object.values(currencies).sort((a, b) =>
+const ALL_CURRENCIES = Object.values(currencies).toSorted((a, b) =>
   a.name.localeCompare(b.name)
 )
 
@@ -57,7 +57,10 @@ export function CompanyForm({ company, onSubmit, loading }: CompanyFormProps) {
     [regions]
   )
   const availableCurrencies = useMemo(
-    () => ALL_CURRENCIES.filter((c) => !currencyCodes.size || currencyCodes.has(c.code)),
+    () =>
+      ALL_CURRENCIES.filter(
+        (c) => !currencyCodes.size || currencyCodes.has(c.code)
+      ),
     [currencyCodes]
   )
 
@@ -69,7 +72,9 @@ export function CompanyForm({ company, onSubmit, loading }: CompanyFormProps) {
         seen.add(c.iso_2)
         return true
       })
-      .sort((a: any, b: any) => a.display_name.localeCompare(b.display_name))
+      .toSorted((a: any, b: any) =>
+        a.display_name.localeCompare(b.display_name)
+      )
   }, [regions])
 
   const form = useForm<CompanyFormValues>({
@@ -86,9 +91,12 @@ export function CompanyForm({ company, onSubmit, loading }: CompanyFormProps) {
       country: company?.country ?? "",
       logo_url: company?.logo_url ?? "",
       spending_limit_reset_frequency:
-        company?.spending_limit_reset_frequency ?? ESpendingLimitResetFrequency.MONTHLY,
+        company?.spending_limit_reset_frequency ??
+        ESpendingLimitResetFrequency.MONTHLY,
       spending_limit_reset_at: company?.spending_limit_reset_at
-        ? new Date(company.spending_limit_reset_at as any).toISOString().split("T")[0]
+        ? new Date(company.spending_limit_reset_at as any)
+            .toISOString()
+            .split("T")[0]
         : "",
     },
   })
@@ -99,11 +107,18 @@ export function CompanyForm({ company, onSubmit, loading }: CompanyFormProps) {
         onSubmit={form.handleSubmit((data) => onSubmit(data as any))}
         className="flex flex-1 flex-col overflow-hidden"
       >
-        <Tabs defaultValue="details" className="flex flex-1 flex-col overflow-hidden">
+        <Tabs
+          defaultValue="details"
+          className="flex flex-1 flex-col overflow-hidden"
+        >
           <div className="border-b px-4 pt-2">
             <Tabs.List>
-              <Tabs.Trigger value="details">{t("companies.form.tabs.details")}</Tabs.Trigger>
-              <Tabs.Trigger value="admin">{t("companies.form.tabs.admin")}</Tabs.Trigger>
+              <Tabs.Trigger value="details">
+                {t("companies.form.tabs.details")}
+              </Tabs.Trigger>
+              <Tabs.Trigger value="admin">
+                {t("companies.form.tabs.admin")}
+              </Tabs.Trigger>
             </Tabs.List>
           </div>
 

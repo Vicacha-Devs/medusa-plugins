@@ -6,7 +6,7 @@ import React from "react"
 import { useTranslation } from "react-i18next"
 import { DeliveryLogsTab } from "../../../components/mpn/delivery-logs-tab"
 import { useNotificationStudio } from "../../../components/mpn/use-notification-studio"
-import { RbacGuard } from "../../../components/rbac-guard";
+import { RbacGuard } from "../../../components/rbac-guard"
 
 const MpnLogsPage: React.FC = () => {
   const { logs } = useNotificationStudio()
@@ -45,6 +45,6 @@ const GuardedMpnLogsPage = () => (
   <RbacGuard permission="notifications.read">
     <MpnLogsPage />
   </RbacGuard>
-);
+)
 
-export default GuardedMpnLogsPage;
+export default GuardedMpnLogsPage

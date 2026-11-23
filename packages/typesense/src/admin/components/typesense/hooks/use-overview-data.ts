@@ -48,13 +48,13 @@ export function useOverviewData() {
     healthData?.healthy ?? (collectionsData as any)?.healthy
   )
   const nodeInfo = ((healthData as any)?.node as TypesenseNodeInfo) ?? null
-  const collections = ((collectionsData?.collections ??
+  const collections = (collectionsData?.collections ??
     (healthData as any)?.collections ??
-    []) as CollectionOverviewItem[])
-  const syncJobs = (((healthData as any)?.recentSyncJobs ??
+    []) as CollectionOverviewItem[]
+  const syncJobs = ((healthData as any)?.recentSyncJobs ??
     (collectionsData as any)?.recentSyncJobs ??
     collectionsData?.recent_logs ??
-    []) as SyncJobItem[])
+    []) as SyncJobItem[]
   const entities = entitiesData?.entities || []
   const analytics = analyticsData ?? null
   const loading = healthLoading || collectionsLoading || entitiesLoading

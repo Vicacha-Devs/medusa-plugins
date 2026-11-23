@@ -65,9 +65,7 @@ export function getColombiaDateTime(referenceDate: Date = new Date()): {
  * or CUDE (`91` Nota Crédito, `92` Nota Débito, `20` POS Electrónico).
  */
 export function isCudeDocumentType(documentType: DianDocumentType): boolean {
-  return (
-    documentType === "91" || documentType === "92" || documentType === "20"
-  )
+  return documentType === "91" || documentType === "92" || documentType === "20"
 }
 
 /**

@@ -27,12 +27,12 @@ types/
 
 ## File conventions
 
-| File | Contains |
-| --- | --- |
-| `http.ts` | Types consumed by API route handlers and the admin hooks — prefixed `Admin*` or `Store*` |
-| `module.ts` | Data-model types mirroring entity fields, enums, and service interfaces — prefixed `Module*` or `I*` |
-| `query.ts` | Expanded types returned by `remoteQuery` — prefixed `Query*` |
-| `service.ts` | Input types for workflow steps when they differ from the HTTP types |
+| File         | Contains                                                                                             |
+| ------------ | ---------------------------------------------------------------------------------------------------- |
+| `http.ts`    | Types consumed by API route handlers and the admin hooks — prefixed `Admin*` or `Store*`             |
+| `module.ts`  | Data-model types mirroring entity fields, enums, and service interfaces — prefixed `Module*` or `I*` |
+| `query.ts`   | Expanded types returned by `remoteQuery` — prefixed `Query*`                                         |
+| `service.ts` | Input types for workflow steps when they differ from the HTTP types                                  |
 
 ## Usage
 

@@ -104,10 +104,7 @@ export class SmtpEmailNotificationProviderService extends AbstractNotificationPr
       content.html ||
       (data.html as string) ||
       `<p>${escapeHtml(content.text || data.text || "")}</p>`
-    const text =
-      content.text ||
-      (data.text as string) ||
-      htmlToPlainText(html)
+    const text = content.text || (data.text as string) || htmlToPlainText(html)
 
     // 0. Dev-only local HTML file preview (never enabled in production)
     const useLocalPreview =
@@ -116,7 +113,8 @@ export class SmtpEmailNotificationProviderService extends AbstractNotificationPr
         process.env.MAILER_LOCAL_PREVIEW === "true")
     if (useLocalPreview) {
       const previewDir = resolve(
-        this.options_.local_preview_dir || join(tmpdir(), "medusa-email-previews")
+        this.options_.local_preview_dir ||
+          join(tmpdir(), "medusa-email-previews")
       )
       mkdirSync(previewDir, { recursive: true })
       const previewId = `email_preview_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`
@@ -134,7 +132,9 @@ export class SmtpEmailNotificationProviderService extends AbstractNotificationPr
 </body>
 </html>`
       writeFileSync(filePath, previewDoc, "utf8")
-      this.logger_?.info(`[mpn-email] Local preview written to file://${filePath}`)
+      this.logger_?.info(
+        `[mpn-email] Local preview written to file://${filePath}`
+      )
       return { id: previewId }
     }
 
@@ -179,7 +179,9 @@ export class SmtpEmailNotificationProviderService extends AbstractNotificationPr
       })
 
       if (!response.ok) {
-        throw new Error(`Email HTTP relay failed with status ${response.status}`)
+        throw new Error(
+          `Email HTTP relay failed with status ${response.status}`
+        )
       }
       const body = (await response.json().catch(() => ({}))) as Record<
         string,
@@ -203,7 +205,10 @@ export class SmtpEmailNotificationProviderService extends AbstractNotificationPr
 
     if (smtpHost && smtpUser && smtpPass) {
       try {
-        const dynamicImport = new Function("specifier", "return import(specifier)")
+        const dynamicImport = new Function(
+          "specifier",
+          "return import(specifier)"
+        )
         const nodemailerMod: any = await dynamicImport("nodemailer")
         const nodemailer = nodemailerMod.default || nodemailerMod
         const transporter = nodemailer.createTransport({

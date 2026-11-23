@@ -8,7 +8,9 @@ export const dismissCompanyCustomerGroupLinkStep = createStep(
     const query = container.resolve(ContainerRegistrationKeys.QUERY)
     const remoteLink = container.resolve(ContainerRegistrationKeys.REMOTE_LINK)
 
-    const { data: [company] } = await query.graph({
+    const {
+      data: [company],
+    } = await query.graph({
       entity: "companies",
       fields: ["id", "customer_group.*"],
       filters: { id: input.company_id },
@@ -30,9 +32,15 @@ export const dismissCompanyCustomerGroupLinkStep = createStep(
       },
     ])
 
-    return new StepResponse(existingGroupId, { company_id: input.company_id, group_id: existingGroupId })
+    return new StepResponse(existingGroupId, {
+      company_id: input.company_id,
+      group_id: existingGroupId,
+    })
   },
-  async (previous: { company_id: string; group_id: string } | null | undefined, { container }) => {
+  async (
+    previous: { company_id: string; group_id: string } | null | undefined,
+    { container }
+  ) => {
     if (!previous?.group_id) return
     const remoteLink = container.resolve(ContainerRegistrationKeys.REMOTE_LINK)
     await remoteLink.create([

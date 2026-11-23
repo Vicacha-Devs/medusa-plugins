@@ -1,9 +1,9 @@
-import { createFindParams } from "@medusajs/medusa/api/utils/validators";
-import { z } from "@medusajs/framework/zod";
+import { createFindParams } from "@medusajs/medusa/api/utils/validators"
+import { z } from "@medusajs/framework/zod"
 
 export type StoreGetFreeShippingPricesParamsType = z.infer<
   typeof StoreGetFreeShippingPricesParams
->;
+>
 export const StoreGetFreeShippingPricesParams = createFindParams({
   limit: 20,
   offset: 0,
@@ -13,4 +13,4 @@ export const StoreGetFreeShippingPricesParams = createFindParams({
       cart_id: z.string(),
     })
     .strict()
-);
+)

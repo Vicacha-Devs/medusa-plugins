@@ -9,46 +9,46 @@ import {
   useBoldIntegrationApiPaymentMethods,
   useBoldPaymentLinkPaymentMethods,
   useBoldTerminals,
-} from "../../../../hooks";
+} from "../../../../hooks"
 import { getActiveBoldProviders } from "../../../../lib"
-import { BoldTerminalStatusWidget } from "../../../components";
-import { BoldFavIcon } from "../../../components/icons/bold-fav";
+import { BoldTerminalStatusWidget } from "../../../components"
+import { BoldFavIcon } from "../../../components/icons/bold-fav"
 import { BoldMethodsSidebar, BoldProvidersSection } from "./components"
-import { RbacGuard } from "@vicacha-devs/medusa-shared-admin/admin";
+import { RbacGuard } from "@vicacha-devs/medusa-shared-admin/admin"
 
 export const BoldSettingsPage = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
   // 1. Payment Providers
   const { providers = [], isLoading: isLoadingProviders } =
-    usePaymentProviders();
-  const activeBoldProviders = getActiveBoldProviders(providers);
+    usePaymentProviders()
+  const activeBoldProviders = getActiveBoldProviders(providers)
 
   // 2. Integration API Payment Methods
   const {
     data: integrationMethodsData,
     isLoading: isLoadingIntegration,
     refetch: refetchIntegration,
-  } = useBoldIntegrationApiPaymentMethods();
+  } = useBoldIntegrationApiPaymentMethods()
   const integrationMethods = Array.isArray(integrationMethodsData)
     ? integrationMethodsData
-    : integrationMethodsData || [];
+    : integrationMethodsData || []
 
   // 3. Payment Link Methods
   const {
     data: linkMethods,
     isLoading: isLoadingLink,
-    refetch: refetchLink
+    refetch: refetchLink,
   } = useBoldPaymentLinkPaymentMethods()
 
   // 4. Terminals
-  const { refetch: refetchTerminals } = useBoldTerminals();
+  const { refetch: refetchTerminals } = useBoldTerminals()
 
   const handleRefresh = () => {
-    refetchTerminals();
-    refetchIntegration();
-    refetchLink();
-  };
+    refetchTerminals()
+    refetchIntegration()
+    refetchLink()
+  }
 
   return (
     <div className="flex flex-col gap-y-4 h-full">
@@ -96,14 +96,14 @@ export const BoldSettingsPage = () => {
         }}
       />
     </div>
-  );
-};
+  )
+}
 
-export const config = defineRouteConfig({ label: "Bold", icon: BoldFavIcon });
+export const config = defineRouteConfig({ label: "Bold", icon: BoldFavIcon })
 const GuardedBoldSettingsPage = () => (
   <RbacGuard permission="bold.read">
     <BoldSettingsPage />
   </RbacGuard>
-);
+)
 
-export default GuardedBoldSettingsPage;
+export default GuardedBoldSettingsPage

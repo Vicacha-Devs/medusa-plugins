@@ -16,10 +16,10 @@ flowchart LR
 
 ## Medusa Modules & Data Models
 
-| Module | Data Model |
-| :--- | :--- |
+| Module    | Data Model              |
+| :-------- | :---------------------- |
 | `stories` | _(service-only module)_ |
-| `story` | _(service-only module)_ |
+| `story`   | _(service-only module)_ |
 
 ## Key Capabilities & Integration Points
 

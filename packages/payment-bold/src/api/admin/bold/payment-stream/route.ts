@@ -3,18 +3,23 @@ import { Modules, PaymentSessionStatus } from "@medusajs/framework/utils"
 import { IPaymentModuleService, Logger } from "@medusajs/framework/types"
 import { capturePaymentWorkflow } from "@medusajs/medusa/core-flows"
 
-export async function GET(req: MedusaRequest, res: MedusaResponse): Promise<void> {
+export async function GET(
+  req: MedusaRequest,
+  res: MedusaResponse
+): Promise<void> {
   const logger: Logger = req.scope.resolve("logger")
-  const paymentModule: IPaymentModuleService = req.scope.resolve(Modules.PAYMENT)
+  const paymentModule: IPaymentModuleService = req.scope.resolve(
+    Modules.PAYMENT
+  )
   const remoteQuery = req.scope.resolve("remoteQuery")
 
-  const paymentSessionId = (
-    req.query.paymentSessionId ||
-    req.query.payment_session_id
-  ) as string
+  const paymentSessionId = (req.query.paymentSessionId ||
+    req.query.payment_session_id) as string
 
   if (!paymentSessionId) {
-    logger.warn("[Bold Stream] Connection attempt missing paymentSessionId query parameter.")
+    logger.warn(
+      "[Bold Stream] Connection attempt missing paymentSessionId query parameter."
+    )
     res.status(400).json({ message: "Missing paymentSessionId parameter" })
     return
   }
@@ -23,7 +28,9 @@ export async function GET(req: MedusaRequest, res: MedusaResponse): Promise<void
   res.setHeader("Cache-Control", "no-cache")
   res.setHeader("Connection", "keep-alive")
 
-  logger.info(`[Bold Stream] SSE connection established for session '${paymentSessionId}'`)
+  logger.info(
+    `[Bold Stream] SSE connection established for session '${paymentSessionId}'`
+  )
 
   const intervalId = setInterval(async () => {
     try {
@@ -33,13 +40,17 @@ export async function GET(req: MedusaRequest, res: MedusaResponse): Promise<void
       if (session.status === "pending" && session.provider_id) {
         const providerInstance =
           (paymentModule as any).getPaymentProvider?.(session.provider_id) ||
-          (paymentModule as any).paymentProviderService_?.retrieveProvider?.(session.provider_id)
+          (paymentModule as any).paymentProviderService_?.retrieveProvider?.(
+            session.provider_id
+          )
 
         if (providerInstance) {
           let isAuthorized = false
 
           if (typeof providerInstance.getPaymentStatus === "function") {
-            const statusRes = await providerInstance.getPaymentStatus({ data: session.data })
+            const statusRes = await providerInstance.getPaymentStatus({
+              data: session.data,
+            })
 
             if (
               statusRes?.status === PaymentSessionStatus.AUTHORIZED ||
@@ -56,13 +67,15 @@ export async function GET(req: MedusaRequest, res: MedusaResponse): Promise<void
           }
 
           if (isAuthorized) {
-            logger.info(`[Bold Stream] Confirming payment for session '${session.id}'...`)
+            logger.info(
+              `[Bold Stream] Confirming payment for session '${session.id}'...`
+            )
 
             const collectionId = session.payment_collection_id
 
             if (collectionId) {
               // Medusa v2 remoteQuery syntax
-              const colData = await remoteQuery({
+              await remoteQuery({
                 entryPoint: "payment_collection",
                 fields: [
                   "id",
@@ -76,7 +89,8 @@ export async function GET(req: MedusaRequest, res: MedusaResponse): Promise<void
             }
 
             // Step A: Authorize the session in Medusa Payment Module
-            const authorizedPayment = await paymentModule.authorizePaymentSession(session.id, {})
+            const authorizedPayment =
+              await paymentModule.authorizePaymentSession(session.id, {})
 
             const paymentId =
               (authorizedPayment as any)?.id ||
@@ -84,33 +98,50 @@ export async function GET(req: MedusaRequest, res: MedusaResponse): Promise<void
 
             // Step B: Execute capture workflow
             if (paymentId) {
-              const captureResult = await capturePaymentWorkflow(req.scope).run({
+              await capturePaymentWorkflow(req.scope).run({
                 input: {
                   payment_id: paymentId,
                 },
               })
-              logger.info(`[Bold Stream] Successfully captured payment '${paymentId}' with provider '${session.provider_id}'`)
+              logger.info(
+                `[Bold Stream] Successfully captured payment '${paymentId}' with provider '${session.provider_id}'`
+              )
             } else {
-              logger.warn(`[Bold Stream] No payment ID returned from authorizePaymentSession for session '${session.id}'`)
+              logger.warn(
+                `[Bold Stream] No payment ID returned from authorizePaymentSession for session '${session.id}'`
+              )
             }
 
-            session = await paymentModule.retrievePaymentSession(paymentSessionId)
+            session =
+              await paymentModule.retrievePaymentSession(paymentSessionId)
           }
         } else {
-          logger.warn(`[Bold Stream] Provider instance for '${session.provider_id}' not found on Payment Module.`)
+          logger.warn(
+            `[Bold Stream] Provider instance for '${session.provider_id}' not found on Payment Module.`
+          )
         }
       }
 
       // Write event stream payload to client
-      res.write(`data: ${JSON.stringify({ status: session.status, session })}\n\n`)
+      res.write(
+        `data: ${JSON.stringify({ status: session.status, session })}\n\n`
+      )
 
-      if (["authorized", "captured", "completed", "canceled", "error"].includes(session.status)) {
-        logger.info(`[Bold Stream] Stream completed for session '${session.id}' with status '${session.status}'. Closing connection.`)
+      if (
+        ["authorized", "captured", "completed", "canceled", "error"].includes(
+          session.status
+        )
+      ) {
+        logger.info(
+          `[Bold Stream] Stream completed for session '${session.id}' with status '${session.status}'. Closing connection.`
+        )
         clearInterval(intervalId)
         res.end()
       }
     } catch (error: any) {
-      logger.error(`[Bold Stream] Error during SSE polling interval: ${error.message}`)
+      logger.error(
+        `[Bold Stream] Error during SSE polling interval: ${error.message}`
+      )
       res.write(`data: ${JSON.stringify({ error: error.message })}\n\n`)
       clearInterval(intervalId)
       res.end()
@@ -118,7 +149,9 @@ export async function GET(req: MedusaRequest, res: MedusaResponse): Promise<void
   }, 3000)
 
   req.on("close", () => {
-    logger.info(`[Bold Stream] Client disconnected SSE stream for session '${paymentSessionId}'`)
+    logger.info(
+      `[Bold Stream] Client disconnected SSE stream for session '${paymentSessionId}'`
+    )
     clearInterval(intervalId)
   })
 }

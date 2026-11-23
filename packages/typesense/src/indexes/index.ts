@@ -1,6 +1,10 @@
 import "@medusajs/framework/modules-sdk"
 import type { Event, SearchTypes } from "@medusajs/framework/types"
-import { defineSearchIndex, search, type SearchFieldsSchema } from "@medusajs/framework/utils"
+import {
+  defineSearchIndex,
+  search,
+  type SearchFieldsSchema,
+} from "@medusajs/framework/utils"
 
 if (typeof (globalThis as any).MedusaModule === "undefined") {
   ;(globalThis as any).MedusaModule = {
@@ -43,7 +47,7 @@ function createGraphSeedGenerator(params: {
     const take = params.batchSize
 
     while (true) {
-      const filters: Record<string, any> = { ...(context.filters || {}) }
+      const filters: Record<string, any> = { ...context.filters }
       if (context.catchup?.since) {
         filters.updated_at = { $gte: context.catchup.since.toISOString() }
       }
@@ -115,11 +119,7 @@ function createGraphEventConsumer(params: {
   ): Promise<SearchTypes.SearchMutation[]> {
     const eventName = String(event?.name || "")
     const data = (event?.data || {}) as { id?: string; ids?: string[] }
-    const ids = Array.isArray(data.ids)
-      ? data.ids
-      : data.id
-        ? [data.id]
-        : []
+    const ids = Array.isArray(data.ids) ? data.ids : data.id ? [data.id] : []
 
     if (ids.length === 0) {
       return []
@@ -166,36 +166,73 @@ function createGraphEventConsumer(params: {
   }
 }
 
-export const defaultProductSearchFields: SearchFieldsSchema<SearchTypes.SearchSchema> = search.define({
-  title: search.text().searchable({ weight: 10 }).sortable(),
-  subtitle: search.text().searchable({ weight: 7 }),
-  description: search.text().searchable({ weight: 3 }),
-  handle: search.keyword().searchable({ weight: 6 }).filterable().sortable(),
-  status: search.keyword().filterable().facetable(),
-  thumbnail: search.keyword(),
-  is_giftcard: search.boolean().filterable().facetable(),
-  discountable: search.boolean().filterable().facetable(),
-  type_id: search.keyword().filterable().facetable(),
-  type_value: search.keyword().searchable({ weight: 4 }).filterable().facetable(),
-  collection_id: search.keyword().filterable().facetable(),
-  collection_title: search.text().searchable({ weight: 5 }).filterable().facetable(),
-  collection_handle: search.keyword().filterable().facetable(),
-  category_ids: search.keyword().array().filterable().facetable(),
-  category_names: search.text().array().searchable({ weight: 6 }).filterable().facetable(),
-  category_handles: search.keyword().array().filterable().facetable(),
-  tags: search.keyword().array().searchable({ weight: 5 }).filterable().facetable(),
-  sales_channel_ids: search.keyword().array().filterable().facetable(),
-  variant_skus: search.keyword().array().searchable({ weight: 9 }).filterable().facetable(),
-  variant_titles: search.text().array().searchable({ weight: 4 }),
-  option_values: search.keyword().array().searchable({ weight: 4 }).filterable().facetable(),
-  options_kv: search.keyword().array().filterable().facetable(),
-  min_price: search.float().filterable().sortable().facetable({ types: ["range", "stats"] }),
-  max_price: search.float().filterable().sortable().facetable({ types: ["range", "stats"] }),
-  in_stock: search.boolean().filterable().sortable().facetable(),
-  inventory_quantity: search.integer().filterable().sortable(),
-  created_at_ts: search.integer().filterable().sortable(),
-  updated_at_ts: search.integer().filterable().sortable(),
-})
+export const defaultProductSearchFields: SearchFieldsSchema<SearchTypes.SearchSchema> =
+  search.define({
+    title: search.text().searchable({ weight: 10 }).sortable(),
+    subtitle: search.text().searchable({ weight: 7 }),
+    description: search.text().searchable({ weight: 3 }),
+    handle: search.keyword().searchable({ weight: 6 }).filterable().sortable(),
+    status: search.keyword().filterable().facetable(),
+    thumbnail: search.keyword(),
+    is_giftcard: search.boolean().filterable().facetable(),
+    discountable: search.boolean().filterable().facetable(),
+    type_id: search.keyword().filterable().facetable(),
+    type_value: search
+      .keyword()
+      .searchable({ weight: 4 })
+      .filterable()
+      .facetable(),
+    collection_id: search.keyword().filterable().facetable(),
+    collection_title: search
+      .text()
+      .searchable({ weight: 5 })
+      .filterable()
+      .facetable(),
+    collection_handle: search.keyword().filterable().facetable(),
+    category_ids: search.keyword().array().filterable().facetable(),
+    category_names: search
+      .text()
+      .array()
+      .searchable({ weight: 6 })
+      .filterable()
+      .facetable(),
+    category_handles: search.keyword().array().filterable().facetable(),
+    tags: search
+      .keyword()
+      .array()
+      .searchable({ weight: 5 })
+      .filterable()
+      .facetable(),
+    sales_channel_ids: search.keyword().array().filterable().facetable(),
+    variant_skus: search
+      .keyword()
+      .array()
+      .searchable({ weight: 9 })
+      .filterable()
+      .facetable(),
+    variant_titles: search.text().array().searchable({ weight: 4 }),
+    option_values: search
+      .keyword()
+      .array()
+      .searchable({ weight: 4 })
+      .filterable()
+      .facetable(),
+    options_kv: search.keyword().array().filterable().facetable(),
+    min_price: search
+      .float()
+      .filterable()
+      .sortable()
+      .facetable({ types: ["range", "stats"] }),
+    max_price: search
+      .float()
+      .filterable()
+      .sortable()
+      .facetable({ types: ["range", "stats"] }),
+    in_stock: search.boolean().filterable().sortable().facetable(),
+    inventory_quantity: search.integer().filterable().sortable(),
+    created_at_ts: search.integer().filterable().sortable(),
+    updated_at_ts: search.integer().filterable().sortable(),
+  })
 
 export function defineProductSearchIndex(
   options: SearchIndexFactoryOptions = {}
@@ -233,20 +270,30 @@ export function defineProductSearchIndex(
   })
 }
 
-export const defaultCategorySearchFields: SearchFieldsSchema<SearchTypes.SearchSchema> = search.define({
-  name: search.text().searchable({ weight: 10 }).sortable(),
-  description: search.text().searchable({ weight: 4 }),
-  handle: search.keyword().searchable({ weight: 7 }).filterable().sortable(),
-  is_active: search.boolean().filterable().facetable(),
-  is_internal: search.boolean().filterable().facetable(),
-  rank: search.integer().filterable().sortable(),
-  parent_category_id: search.keyword().filterable().facetable(),
-  parent_category_name: search.text().searchable({ weight: 5 }).filterable().facetable(),
-  breadcrumb_names: search.text().array().searchable({ weight: 5 }).filterable().facetable(),
-  product_count: search.integer().filterable().sortable().facetable(),
-  created_at_ts: search.integer().filterable().sortable(),
-  updated_at_ts: search.integer().filterable().sortable(),
-})
+export const defaultCategorySearchFields: SearchFieldsSchema<SearchTypes.SearchSchema> =
+  search.define({
+    name: search.text().searchable({ weight: 10 }).sortable(),
+    description: search.text().searchable({ weight: 4 }),
+    handle: search.keyword().searchable({ weight: 7 }).filterable().sortable(),
+    is_active: search.boolean().filterable().facetable(),
+    is_internal: search.boolean().filterable().facetable(),
+    rank: search.integer().filterable().sortable(),
+    parent_category_id: search.keyword().filterable().facetable(),
+    parent_category_name: search
+      .text()
+      .searchable({ weight: 5 })
+      .filterable()
+      .facetable(),
+    breadcrumb_names: search
+      .text()
+      .array()
+      .searchable({ weight: 5 })
+      .filterable()
+      .facetable(),
+    product_count: search.integer().filterable().sortable().facetable(),
+    created_at_ts: search.integer().filterable().sortable(),
+    updated_at_ts: search.integer().filterable().sortable(),
+  })
 
 export function defineCategorySearchIndex(
   options: SearchIndexFactoryOptions = {}
@@ -281,13 +328,14 @@ export function defineCategorySearchIndex(
   })
 }
 
-export const defaultCollectionSearchFields: SearchFieldsSchema<SearchTypes.SearchSchema> = search.define({
-  title: search.text().searchable({ weight: 10 }).sortable(),
-  handle: search.keyword().searchable({ weight: 7 }).filterable().sortable(),
-  product_count: search.integer().filterable().sortable().facetable(),
-  created_at_ts: search.integer().filterable().sortable(),
-  updated_at_ts: search.integer().filterable().sortable(),
-})
+export const defaultCollectionSearchFields: SearchFieldsSchema<SearchTypes.SearchSchema> =
+  search.define({
+    title: search.text().searchable({ weight: 10 }).sortable(),
+    handle: search.keyword().searchable({ weight: 7 }).filterable().sortable(),
+    product_count: search.integer().filterable().sortable().facetable(),
+    created_at_ts: search.integer().filterable().sortable(),
+    updated_at_ts: search.integer().filterable().sortable(),
+  })
 
 export function defineCollectionSearchIndex(
   options: SearchIndexFactoryOptions = {}
@@ -322,17 +370,18 @@ export function defineCollectionSearchIndex(
   })
 }
 
-export const defaultCustomEntitySearchFields: SearchFieldsSchema<SearchTypes.SearchSchema> = search.define({
-  title: search.text().searchable({ weight: 10 }).sortable(),
-  name: search.text().searchable({ weight: 10 }).sortable(),
-  description: search.text().searchable({ weight: 4 }),
-  handle: search.keyword().searchable({ weight: 7 }).filterable().sortable(),
-  slug: search.keyword().searchable({ weight: 7 }).filterable().sortable(),
-  status: search.keyword().filterable().facetable(),
-  is_active: search.boolean().filterable().facetable(),
-  created_at_ts: search.integer().filterable().sortable(),
-  updated_at_ts: search.integer().filterable().sortable(),
-})
+export const defaultCustomEntitySearchFields: SearchFieldsSchema<SearchTypes.SearchSchema> =
+  search.define({
+    title: search.text().searchable({ weight: 10 }).sortable(),
+    name: search.text().searchable({ weight: 10 }).sortable(),
+    description: search.text().searchable({ weight: 4 }),
+    handle: search.keyword().searchable({ weight: 7 }).filterable().sortable(),
+    slug: search.keyword().searchable({ weight: 7 }).filterable().sortable(),
+    status: search.keyword().filterable().facetable(),
+    is_active: search.boolean().filterable().facetable(),
+    created_at_ts: search.integer().filterable().sortable(),
+    updated_at_ts: search.integer().filterable().sortable(),
+  })
 
 export function defineCustomSearchIndex(
   options: SearchIndexFactoryOptions & { name: string; entity: string }

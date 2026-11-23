@@ -1,13 +1,16 @@
 import { defineRouteConfig } from "@medusajs/admin-sdk"
 import { CORE_LAYOUT_IDS } from "@medusajs/admin-shared"
-import { ConfigurableDataTable, LayoutComposer } from "@medusajs/dashboard/components"
+import {
+  ConfigurableDataTable,
+  LayoutComposer,
+} from "@medusajs/dashboard/components"
 import { Buildings } from "@medusajs/icons"
 import { useFeatureFlag } from "@vicacha-devs/medusa-shared-admin/admin"
 import { useNavigate } from "react-router-dom"
 import { useTranslation } from "react-i18next"
 
 import { CompaniesTable, useCompaniesTableAdapter } from "./components"
-import { RbacGuard } from "@vicacha-devs/medusa-shared-admin/admin";
+import { RbacGuard } from "@vicacha-devs/medusa-shared-admin/admin"
 
 const Companies = () => {
   const { t } = useTranslation()
@@ -58,6 +61,6 @@ const GuardedCompanies = () => (
   <RbacGuard permission="b2b.read">
     <Companies />
   </RbacGuard>
-);
+)
 
-export default GuardedCompanies;
+export default GuardedCompanies

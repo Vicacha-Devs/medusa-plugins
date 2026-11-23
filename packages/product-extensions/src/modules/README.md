@@ -28,14 +28,14 @@ modules/
 
 ## Data Models (`models/index.ts`)
 
-| Model | Table Name | Purpose |
-| --- | --- | --- |
-| `ProductExtension` | `product_extension` | Per-product extension storing `videos`, `tagline`, `media_items`, `models_3d`, `attachments`, `image_alts`, `content_tree` (`tree@1`), `content_diff` (`diff@1`), `template_id`, `feature_ids`, `option_metadata`, `storefront_overrides`, and `seo_metadata`. |
-| `VariantExtension` | `variant_extension` | Per-variant extension storing `thumbnail`, ordered `images`, `videos`, `media_items`, `option_signature`, `swatch_color`, and `swatch_image_url`. |
-| `AttributeDefinition` | `product_ext_attribute` | Typed custom attribute schema (`text`, `number`, `boolean`, `select`, `multiselect`, `color`, `unit`, `file`, `sortable_list`), `unit_family`, `default_unit`, `allowed_units`, `options`, `validation_rules`, `is_filterable`, `is_global`, and `category_ids`. |
-| `AttributeTemplate` | `product_ext_attribute_template` | Category-linked template bundling `attribute_keys` and a base `content_tree` (`tree@1`). |
-| `ProductAttributeValue` | `product_ext_attribute_value` | Typed attribute value assigned to a product, including `value_normalized_si` for fast cross-unit numeric filtering and optional `locale`. |
-| `ProductFeature` | `product_ext_feature` | Reusable product feature badge (`code`, `title`, `subtitle`, `description`, `icon_url`, `icon_name`, `badge_color`, `sort_order`, `is_active`). |
+| Model                   | Table Name                       | Purpose                                                                                                                                                                                                                                                          |
+| ----------------------- | -------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ProductExtension`      | `product_extension`              | Per-product extension storing `videos`, `tagline`, `media_items`, `models_3d`, `attachments`, `image_alts`, `content_tree` (`tree@1`), `content_diff` (`diff@1`), `template_id`, `feature_ids`, `option_metadata`, `storefront_overrides`, and `seo_metadata`.   |
+| `VariantExtension`      | `variant_extension`              | Per-variant extension storing `thumbnail`, ordered `images`, `videos`, `media_items`, `option_signature`, `swatch_color`, and `swatch_image_url`.                                                                                                                |
+| `AttributeDefinition`   | `product_ext_attribute`          | Typed custom attribute schema (`text`, `number`, `boolean`, `select`, `multiselect`, `color`, `unit`, `file`, `sortable_list`), `unit_family`, `default_unit`, `allowed_units`, `options`, `validation_rules`, `is_filterable`, `is_global`, and `category_ids`. |
+| `AttributeTemplate`     | `product_ext_attribute_template` | Category-linked template bundling `attribute_keys` and a base `content_tree` (`tree@1`).                                                                                                                                                                         |
+| `ProductAttributeValue` | `product_ext_attribute_value`    | Typed attribute value assigned to a product, including `value_normalized_si` for fast cross-unit numeric filtering and optional `locale`.                                                                                                                        |
+| `ProductFeature`        | `product_ext_feature`            | Reusable product feature badge (`code`, `title`, `subtitle`, `description`, `icon_url`, `icon_name`, `badge_color`, `sort_order`, `is_active`).                                                                                                                  |
 
 ---
 

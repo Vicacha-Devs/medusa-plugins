@@ -3,8 +3,7 @@ import type { MappedTypesenseError } from "./index"
 export const TYPESENSE_ERROR_MAP: Record<string, MappedTypesenseError> = {
   CLUSTER_UNREACHABLE: {
     code: "cluster_unreachable",
-    message:
-      "Typesense cluster is unreachable or the circuit breaker is open.",
+    message: "Typesense cluster is unreachable or the circuit breaker is open.",
     retryable: true,
   },
   COLLECTION_NOT_FOUND: {

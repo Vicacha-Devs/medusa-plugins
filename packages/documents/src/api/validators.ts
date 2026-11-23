@@ -84,7 +84,10 @@ export const UpdateSettingsSchema = z
     sections_override: z.record(z.string(), z.unknown()).nullable().optional(),
 
     default_locale: z.string().max(16).optional(),
-    custom_translations: z.record(z.string(), z.record(z.string(), z.string())).nullable().optional(),
+    custom_translations: z
+      .record(z.string(), z.record(z.string(), z.string()))
+      .nullable()
+      .optional(),
     notes: z.string().max(10000).nullable().optional(),
     footer_text: z.string().max(1000).nullable().optional(),
 

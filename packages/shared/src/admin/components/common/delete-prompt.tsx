@@ -1,13 +1,13 @@
-import { Trash } from "@medusajs/icons";
-import { Button, Prompt } from "@medusajs/ui";
-import type { JSX } from "react";
-import { useTranslation } from "react-i18next";
+import { Trash } from "@medusajs/icons"
+import { Button, Prompt } from "@medusajs/ui"
+import type { JSX } from "react"
+import { useTranslation } from "react-i18next"
 
 interface DeletePromptProps {
-  handleDelete: () => void;
-  loading: boolean;
-  open: boolean;
-  setOpen: (open: boolean) => void;
+  handleDelete: () => void
+  loading: boolean
+  open: boolean
+  setOpen: (open: boolean) => void
 }
 
 export const DeletePrompt = ({
@@ -16,20 +16,18 @@ export const DeletePrompt = ({
   open,
   setOpen,
 }: DeletePromptProps): JSX.Element => {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
   const handleConfirmDelete = async () => {
-    handleDelete();
-    setOpen(false);
-  };
+    handleDelete()
+    setOpen(false)
+  }
 
   return (
     <Prompt open={open} onOpenChange={setOpen}>
       <Prompt.Content className="p-4 pb-0 border-b shadow-ui-fg-shadow">
         <Prompt.Title>{t("deletePrompt.title")}</Prompt.Title>
-        <Prompt.Description>
-          {t("deletePrompt.description")}
-        </Prompt.Description>
+        <Prompt.Description>{t("deletePrompt.description")}</Prompt.Description>
         <Prompt.Footer>
           <Button
             variant="danger"
@@ -45,5 +43,5 @@ export const DeletePrompt = ({
         </Prompt.Footer>
       </Prompt.Content>
     </Prompt>
-  );
-};
+  )
+}

@@ -1,9 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod"
-import {
-  Form,
-  KeyboundForm,
-  RouteDrawer,
-} from "@medusajs/dashboard/components"
+import { Form, KeyboundForm, RouteDrawer } from "@medusajs/dashboard/components"
 import { Button, Input, Select } from "@medusajs/ui"
 import { useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
@@ -18,20 +14,8 @@ import type { TagFormState } from "../hooks/use-barcode-studio"
 export const tagFormSchema = z.object({
   target_id: z.string().min(1),
   label: z.string().optional(),
-  symbology: z.enum([
-    "qr",
-    "datamatrix",
-    "ean13",
-    "upca",
-    "code128",
-    "code39",
-  ]),
-  scan_action: z.enum([
-    "view",
-    "add_to_cart",
-    "verify",
-    "gs1_digital_link",
-  ]),
+  symbology: z.enum(["qr", "datamatrix", "ean13", "upca", "code128", "code39"]),
+  scan_action: z.enum(["view", "add_to_cart", "verify", "gs1_digital_link"]),
   gs1_gtin: z.string().optional(),
   batch_lot: z.string().optional(),
   serial_number: z.string().optional(),
@@ -103,7 +87,9 @@ export const DynamicQrTagDrawerForm = ({
             name="label"
             render={({ field }: any) => (
               <Form.Item>
-                <Form.Label optional>{t("tagsTab.labelPlaceholder")}</Form.Label>
+                <Form.Label optional>
+                  {t("tagsTab.labelPlaceholder")}
+                </Form.Label>
                 <Form.Control>
                   <Input {...field} />
                 </Form.Control>

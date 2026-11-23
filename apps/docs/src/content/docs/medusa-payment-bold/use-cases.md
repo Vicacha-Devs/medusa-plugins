@@ -18,8 +18,8 @@ flowchart LR
 
 ## Medusa Modules & Data Models
 
-| Module | Data Model |
-| :--- | :--- |
+| Module | Data Model                     |
+| :----- | :----------------------------- |
 | _None_ | _Provider / Route-only plugin_ |
 
 ## Key Capabilities & Integration Points

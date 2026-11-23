@@ -22,15 +22,12 @@
     "ignoreDeprecations": "5.0",
     "paths": {
       "@payment-bold/*": ["./src/*"]
-    },
+    }
   },
   "ts-node": {
     "swc": true
   },
-  "include": [
-    "**/*",
-    ".medusa/types/*"
-  ],
+  "include": ["**/*", ".medusa/types/*"],
   "exclude": [
     "node_modules",
     ".medusa/server",

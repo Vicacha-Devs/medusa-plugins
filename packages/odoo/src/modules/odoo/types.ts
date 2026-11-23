@@ -5,7 +5,10 @@ export type OdooProtocolVersion = "jsonrpc" | "json2"
 
 export type OdooCircuitState = "closed" | "open" | "half-open"
 
-export type OdooSyncDirection = "odoo_to_medusa" | "medusa_to_odoo" | "bidirectional"
+export type OdooSyncDirection =
+  | "odoo_to_medusa"
+  | "medusa_to_odoo"
+  | "bidirectional"
 
 export type OdooEntityType =
   | "product"
@@ -49,8 +52,10 @@ export interface OdooConnectionConfig {
   webhookSecret?: string
 }
 
-export interface OdooRedactedConnectionConfig
-  extends Omit<OdooConnectionConfig, "password" | "apiKey" | "webhookSecret"> {
+export interface OdooRedactedConnectionConfig extends Omit<
+  OdooConnectionConfig,
+  "password" | "apiKey" | "webhookSecret"
+> {
   password?: string
   apiKey?: string
   webhookSecret?: string

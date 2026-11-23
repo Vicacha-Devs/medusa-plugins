@@ -255,10 +255,8 @@ export function resolveTree(
 
   const allNodes = Object.values(effectiveTree.nodes)
   const sectionNodes = allNodes
-    .filter(
-      (n): n is TreeSectionNodeV1 => n.type === "section" && !n.hidden
-    )
-    .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
+    .filter((n): n is TreeSectionNodeV1 => n.type === "section" && !n.hidden)
+    .toSorted((a, b) => (a.order ?? 0) - (b.order ?? 0))
 
   for (let idx = 0; idx < sectionNodes.length; idx++) {
     const sec = sectionNodes[idx]
@@ -273,7 +271,7 @@ export function resolveTree(
 
   const itemNodes = allNodes
     .filter((n): n is TreeItemNodeV1 => n.type === "item" && !n.hidden)
-    .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
+    .toSorted((a, b) => (a.order ?? 0) - (b.order ?? 0))
 
   for (let idx = 0; idx < itemNodes.length; idx++) {
     const item = itemNodes[idx]

@@ -7,5 +7,5 @@ export default {
   ar: { translation: ar },
   en: { translation: en },
   es: { translation: es },
-  tr: { translation: tr }, 
+  tr: { translation: tr },
 }

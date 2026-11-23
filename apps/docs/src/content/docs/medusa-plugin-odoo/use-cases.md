@@ -17,9 +17,9 @@ flowchart LR
 
 ## Medusa Modules & Data Models
 
-| Module | Data Model |
-| :--- | :--- |
-| `odoo` | _(service-only module)_ |
+| Module      | Data Model              |
+| :---------- | :---------------------- |
+| `odoo`      | _(service-only module)_ |
 | `odoo-sync` | _(service-only module)_ |
 
 ## Key Capabilities & Integration Points

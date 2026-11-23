@@ -7,7 +7,9 @@ interface UsePaymentProvidersResult {
   isError: boolean
 }
 
-export function usePaymentProviders(currencyCode?: string): UsePaymentProvidersResult {
+export function usePaymentProviders(
+  currencyCode?: string
+): UsePaymentProvidersResult {
   const { regions, isLoading, isError } = useRegions({
     fields: "+payment_providers.*",
   })

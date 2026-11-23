@@ -20,7 +20,7 @@ export default defineConfig({
       options: {},
     },
   ],
-});
+})
 ```
 
 ## الوثائق الكاملة
@@ -28,4 +28,3 @@ export default defineConfig({
 - [Overview (EN)](/medusa-payment-mollie/)
 - [Data Models & Use Cases](/medusa-payment-mollie/use-cases/)
 - [Developer Guide & Admin UI](/medusa-payment-mollie/guide/)
-

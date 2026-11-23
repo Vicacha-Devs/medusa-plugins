@@ -162,18 +162,26 @@ export const CreditNoteTemplate: React.FC<ReactPdfTemplateProps> = ({
         {/* Reference Invoice & Refund Reason Banner */}
         <View style={styles.refBanner}>
           <View>
-            <Text style={{ fontSize: 8.5, fontWeight: "bold", color: accentColor }}>
-              {t.reference_invoice}: {refInvoiceNumber || `#${order.display_id}`}
+            <Text
+              style={{ fontSize: 8.5, fontWeight: "bold", color: accentColor }}
+            >
+              {t.reference_invoice}:{" "}
+              {refInvoiceNumber || `#${order.display_id}`}
             </Text>
             {refund?.reason || refund?.note ? (
               <Text style={styles.muted}>
-                {t.refund_reason}: {[refund.reason, refund.note].filter(Boolean).join(" — ")}
+                {t.refund_reason}:{" "}
+                {[refund.reason, refund.note].filter(Boolean).join(" — ")}
               </Text>
             ) : null}
           </View>
           <View style={{ alignItems: "flex-end" }}>
-            <Text style={{ fontSize: 8.5, fontWeight: "bold" }}>{t.bill_to}</Text>
-            <Text style={styles.muted}>{billingLines.slice(0, 2).join(", ")}</Text>
+            <Text style={{ fontSize: 8.5, fontWeight: "bold" }}>
+              {t.bill_to}
+            </Text>
+            <Text style={styles.muted}>
+              {billingLines.slice(0, 2).join(", ")}
+            </Text>
             {b2b?.tax_id ? (
               <Text style={styles.muted}>
                 {t.tax_id}: {b2b.tax_id}
@@ -201,7 +209,11 @@ export const CreditNoteTemplate: React.FC<ReactPdfTemplateProps> = ({
         </View>
 
         {order.items.map((item, idx) => (
-          <View key={item.id || `cn-${idx}`} style={styles.tableRow} wrap={false}>
+          <View
+            key={item.id || `cn-${idx}`}
+            style={styles.tableRow}
+            wrap={false}
+          >
             <View style={styles.colDesc}>
               <Text>{item.title}</Text>
             </View>

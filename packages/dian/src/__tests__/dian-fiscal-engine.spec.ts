@@ -153,7 +153,9 @@ describe("Colombian DIAN Fiscal Engine (Modulo-11, CUFE/CUDE SHA-384, UBL 2.1, X
           quantity: 2,
           unit_price: 1000000,
           subtotal: 2000000,
-          tax_lines: [{ code: "IVA19", name: "IVA 19%", rate: 19, total: 380000 }],
+          tax_lines: [
+            { code: "IVA19", name: "IVA 19%", rate: 19, total: 380000 },
+          ],
         },
       ],
     }
@@ -312,7 +314,9 @@ describe("Colombian DIAN Fiscal Engine (Modulo-11, CUFE/CUDE SHA-384, UBL 2.1, X
     }
 
     const unsignedXml = buildDianUblXml(ctx)
-    assert.ok(unsignedXml.includes("<cbc:CustomizationID>10</cbc:CustomizationID>"))
+    assert.ok(
+      unsignedXml.includes("<cbc:CustomizationID>10</cbc:CustomizationID>")
+    )
     assert.ok(unsignedXml.includes("<cbc:ID>SETP990000001</cbc:ID>"))
 
     const signed = signDianUblXmlXadesEpes(unsignedXml, {
@@ -328,7 +332,11 @@ describe("Colombian DIAN Fiscal Engine (Modulo-11, CUFE/CUDE SHA-384, UBL 2.1, X
       application_response_xml: "<ApplicationResponse />",
     })
     assert.ok(attachedXml.includes("<AttachedDocument"))
-    assert.ok(attachedXml.includes("<cbc:ParentDocumentID>SETP990000001</cbc:ParentDocumentID>"))
+    assert.ok(
+      attachedXml.includes(
+        "<cbc:ParentDocumentID>SETP990000001</cbc:ParentDocumentID>"
+      )
+    )
 
     const zipBuf = createDianZipArchive([
       { filename: "ad900123456SETP990000001.xml", content: attachedXml },

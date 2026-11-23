@@ -71,28 +71,28 @@ api/
 
 All storefront routes resolve the publishable API key's `sales_channel_ids` and enforce `status:=published` (or the entity's `storefrontFilterConstraint`) via `compileTypesenseFilter`:
 
-| Method | Path | Description |
-| --- | --- | --- |
-| `GET` / `POST` | `/store/typesense/products` | Searches Typesense (`keyword`, `semantic`, or `hybrid`), supports disjunctive & range facets, and hydrates hits via Medusa `query.graph` with live `calculated_price` and `variants.inventory_quantity`. |
-| `GET` / `POST` | `/store/typesense/categories` | Searches `medusa_categories` with `is_active:=true && is_internal:=false` and optional Medusa graph hydration. |
-| `GET` / `POST` | `/store/typesense/collections` | Searches `medusa_collections` with optional Medusa graph hydration. |
-| `POST` | `/store/typesense/search` | Federated multi-search across `products`, `categories`, `collections`, and custom entities in a single Typesense `multi_search` call. |
-| `GET` | `/store/typesense/token` | Generates a short-lived HMAC-signed Typesense Scoped Search-Only API Key with embedded `status:=published` and `sales_channel_ids` constraints for `typesense-instantsearch-adapter`. |
-| `POST` | `/store/typesense/chat` | Multi-turn conversational RAG search powered by Typesense Conversation Models. |
-| `POST` | `/store/typesense/analytics` | Records storefront `search`, `click`, or `conversion` events into `mpt_search_analytics`. |
+| Method         | Path                           | Description                                                                                                                                                                                              |
+| -------------- | ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `GET` / `POST` | `/store/typesense/products`    | Searches Typesense (`keyword`, `semantic`, or `hybrid`), supports disjunctive & range facets, and hydrates hits via Medusa `query.graph` with live `calculated_price` and `variants.inventory_quantity`. |
+| `GET` / `POST` | `/store/typesense/categories`  | Searches `medusa_categories` with `is_active:=true && is_internal:=false` and optional Medusa graph hydration.                                                                                           |
+| `GET` / `POST` | `/store/typesense/collections` | Searches `medusa_collections` with optional Medusa graph hydration.                                                                                                                                      |
+| `POST`         | `/store/typesense/search`      | Federated multi-search across `products`, `categories`, `collections`, and custom entities in a single Typesense `multi_search` call.                                                                    |
+| `GET`          | `/store/typesense/token`       | Generates a short-lived HMAC-signed Typesense Scoped Search-Only API Key with embedded `status:=published` and `sales_channel_ids` constraints for `typesense-instantsearch-adapter`.                    |
+| `POST`         | `/store/typesense/chat`        | Multi-turn conversational RAG search powered by Typesense Conversation Models.                                                                                                                           |
+| `POST`         | `/store/typesense/analytics`   | Records storefront `search`, `click`, or `conversion` events into `mpt_search_analytics`.                                                                                                                |
 
 ### Admin Endpoints (`/admin/typesense/*`)
 
-| Method | Path | Description |
-| --- | --- | --- |
-| `GET` | `/admin/typesense/health` | Cluster health, collection alias metrics, and recent `mpt_sync_job` entries. |
-| `GET` / `POST` | `/admin/typesense/collections` | List all collections/aliases or trigger zero-downtime reindex across all enabled entities. |
-| `POST` | `/admin/typesense/collections/:entity/sync` | Trigger `syncEntitiesToTypesenseWorkflow` (`fullRebuild: true` or incremental `ids: [...]`) for `:entity`. |
-| `GET` / `POST` | `/admin/typesense/entities` | List built-in and custom entity index configurations or register/update an entity config. |
-| `DELETE` | `/admin/typesense/entities/:entity` | Delete a custom entity configuration (and optionally drop its Typesense collection). |
-| `GET` / `POST` / `DELETE` | `/admin/typesense/synonyms/:entity[/:id]` | List, upsert, or delete Multi-way and One-way Synonyms. |
-| `GET` / `POST` / `DELETE` | `/admin/typesense/curations/:entity[/:id]` | List, upsert, or delete Curations/Overrides (pinning, hiding, filter/sort injection, promo banners). |
-| `GET` / `POST` / `DELETE` | `/admin/typesense/stopwords[/:id]` | List, upsert, or delete Stopwords Sets. |
-| `POST` | `/admin/typesense/playground` | Execute Admin Search Playground queries with full telemetry & highlight inspection. |
-| `GET` | `/admin/typesense/analytics` | Retrieve popular queries, zero-result queries, CTR, conversion rate & average latency. |
-| `GET` / `POST` / `DELETE` | `/admin/typesense/documents/:entity/:id` | Inspect raw indexed JSON document, trigger single-item re-sync (`upsertTypesenseDocumentsWorkflow`), or delete from index (`deleteTypesenseDocumentsWorkflow`). |
+| Method                    | Path                                        | Description                                                                                                                                                     |
+| ------------------------- | ------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `GET`                     | `/admin/typesense/health`                   | Cluster health, collection alias metrics, and recent `mpt_sync_job` entries.                                                                                    |
+| `GET` / `POST`            | `/admin/typesense/collections`              | List all collections/aliases or trigger zero-downtime reindex across all enabled entities.                                                                      |
+| `POST`                    | `/admin/typesense/collections/:entity/sync` | Trigger `syncEntitiesToTypesenseWorkflow` (`fullRebuild: true` or incremental `ids: [...]`) for `:entity`.                                                      |
+| `GET` / `POST`            | `/admin/typesense/entities`                 | List built-in and custom entity index configurations or register/update an entity config.                                                                       |
+| `DELETE`                  | `/admin/typesense/entities/:entity`         | Delete a custom entity configuration (and optionally drop its Typesense collection).                                                                            |
+| `GET` / `POST` / `DELETE` | `/admin/typesense/synonyms/:entity[/:id]`   | List, upsert, or delete Multi-way and One-way Synonyms.                                                                                                         |
+| `GET` / `POST` / `DELETE` | `/admin/typesense/curations/:entity[/:id]`  | List, upsert, or delete Curations/Overrides (pinning, hiding, filter/sort injection, promo banners).                                                            |
+| `GET` / `POST` / `DELETE` | `/admin/typesense/stopwords[/:id]`          | List, upsert, or delete Stopwords Sets.                                                                                                                         |
+| `POST`                    | `/admin/typesense/playground`               | Execute Admin Search Playground queries with full telemetry & highlight inspection.                                                                             |
+| `GET`                     | `/admin/typesense/analytics`                | Retrieve popular queries, zero-result queries, CTR, conversion rate & average latency.                                                                          |
+| `GET` / `POST` / `DELETE` | `/admin/typesense/documents/:entity/:id`    | Inspect raw indexed JSON document, trigger single-item re-sync (`upsertTypesenseDocumentsWorkflow`), or delete from index (`deleteTypesenseDocumentsWorkflow`). |

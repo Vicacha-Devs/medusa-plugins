@@ -56,9 +56,7 @@ function applyLocaleTranslations(
     )
   } else if (typeof translations === "object") {
     localeOverride =
-      translations[locale] ||
-      translations[locale.split("-")[0]] ||
-      undefined
+      translations[locale] || translations[locale.split("-")[0]] || undefined
   }
 
   if (!localeOverride || typeof localeOverride !== "object") {
@@ -192,10 +190,8 @@ export function transformProductToDocument(
     anyInStock = true
   }
 
-  const minPrice =
-    allPriceAmounts.length > 0 ? Math.min(...allPriceAmounts) : 0
-  const maxPrice =
-    allPriceAmounts.length > 0 ? Math.max(...allPriceAmounts) : 0
+  const minPrice = allPriceAmounts.length > 0 ? Math.min(...allPriceAmounts) : 0
+  const maxPrice = allPriceAmounts.length > 0 ? Math.max(...allPriceAmounts) : 0
 
   const collectionId = String(
     product.collection?.id || product.collection_id || ""
@@ -279,14 +275,8 @@ export function transformCategoryToDocument(
     : []
   const products = Array.isArray(category.products) ? category.products : []
 
-  const breadcrumbNames = uniqueStrings([
-    parent?.name,
-    category.name,
-  ])
-  const breadcrumbHandles = uniqueStrings([
-    parent?.handle,
-    category.handle,
-  ])
+  const breadcrumbNames = uniqueStrings([parent?.name, category.name])
+  const breadcrumbHandles = uniqueStrings([parent?.handle, category.handle])
 
   const nowTs = Math.floor(Date.now() / 1000)
   const createdAtTs = toUnixTimestamp(category.created_at, nowTs)
@@ -300,9 +290,7 @@ export function transformCategoryToDocument(
     is_active: category.is_active !== false,
     is_internal: Boolean(category.is_internal),
     rank: typeof category.rank === "number" ? category.rank : 0,
-    parent_category_id: String(
-      category.parent_category_id || parent?.id || ""
-    ),
+    parent_category_id: String(category.parent_category_id || parent?.id || ""),
     parent_category_name: String(parent?.name || ""),
     mpath: String(category.mpath || ""),
     breadcrumb_names: breadcrumbNames,

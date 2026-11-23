@@ -6,7 +6,7 @@ export class DianSdkClient {
       credentials: "include",
       headers: {
         "Content-Type": "application/json",
-        ...(init?.headers || {}),
+        ...init?.headers,
       },
       ...init,
     })
@@ -69,9 +69,7 @@ export class DianSdkClient {
   }
 
   async listFiscalProfiles(customerId?: string) {
-    const q = customerId
-      ? `?customer_id=${encodeURIComponent(customerId)}`
-      : ""
+    const q = customerId ? `?customer_id=${encodeURIComponent(customerId)}` : ""
     return this.fetchJson<{ fiscal_profiles: Array<Record<string, any>> }>(
       `/admin/dian/fiscal-profiles${q}`
     )

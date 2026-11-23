@@ -12,7 +12,7 @@ pnpm add @vicacha-devs/medusa-payment-mollie
 ## `medusa-config.ts` Registration
 
 ```ts
-import { defineConfig } from "@medusajs/framework/utils";
+import { defineConfig } from "@medusajs/framework/utils"
 
 export default defineConfig({
   plugins: [
@@ -21,18 +21,21 @@ export default defineConfig({
       options: {},
     },
   ],
-});
+})
 ```
 
 ## Admin UI Extensions
 
 ### Admin Routes
+
 - No custom Admin UI pages registered.
 
 ### Admin Widgets
+
 - No Admin UI widgets registered.
 
 ### Supported Admin Locales
+
 `en`
 
 ## API Reference

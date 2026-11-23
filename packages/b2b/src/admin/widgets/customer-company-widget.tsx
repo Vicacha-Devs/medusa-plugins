@@ -40,7 +40,7 @@ const CustomerCompanyWidget = () => {
             <Link
               to={`/b2b/companies/${company.id}`}
               className="txt-compact-small text-ui-fg-interactive hover:text-ui-fg-interactive-hover transition-colors"
-              >
+            >
               {company.name}
             </Link>
           </div>

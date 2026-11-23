@@ -153,11 +153,7 @@ export function createSocialCommerceHooks(
       { handoff: CheckoutHandoffResult }
     > {
       return {
-        mutationKey: [
-          "social-commerce",
-          "store",
-          "checkout-handoff",
-        ] as const,
+        mutationKey: ["social-commerce", "store", "checkout-handoff"] as const,
         mutationFn: (input: CheckoutHandoffInput) =>
           client.createCheckoutHandoff(input),
       }

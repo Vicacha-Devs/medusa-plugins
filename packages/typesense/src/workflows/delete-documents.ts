@@ -6,10 +6,7 @@ import {
 } from "@medusajs/framework/workflows-sdk"
 
 import type TypesenseModuleService from "../modules/typesense/service"
-import {
-  TYPESENSE_MODULE,
-  type DeleteTypesenseDocumentsInput,
-} from "../types"
+import { TYPESENSE_MODULE, type DeleteTypesenseDocumentsInput } from "../types"
 
 export const deleteTypesenseDocumentsStep = createStep(
   "delete-typesense-documents",

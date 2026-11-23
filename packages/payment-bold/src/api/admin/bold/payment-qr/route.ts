@@ -16,7 +16,10 @@ const CreateBoldQrSchema = z.object({
   email: z.string().email().optional(),
 })
 
-export async function POST(req: MedusaRequest, res: MedusaResponse): Promise<void> {
+export async function POST(
+  req: MedusaRequest,
+  res: MedusaResponse
+): Promise<void> {
   const parsed = CreateBoldQrSchema.safeParse(req.body ?? {})
   if (!parsed.success) {
     res.status(400).json({
@@ -26,9 +29,15 @@ export async function POST(req: MedusaRequest, res: MedusaResponse): Promise<voi
     return
   }
 
-  const paymentModule: IPaymentModuleService = req.scope.resolve(Modules.PAYMENT)
+  const paymentModule: IPaymentModuleService = req.scope.resolve(
+    Modules.PAYMENT
+  )
   const input = parsed.data
-  const currency = (input.currency || input.currency_code || "COP").toLowerCase()
+  const currency = (
+    input.currency ||
+    input.currency_code ||
+    "COP"
+  ).toLowerCase()
 
   try {
     const paymentSession = await paymentModule.createPaymentSession(
@@ -53,7 +62,7 @@ export async function POST(req: MedusaRequest, res: MedusaResponse): Promise<voi
       qr_payload: (sessionData.qr_payload as string) || "",
       paymentSession,
     })
-  } catch (_error: unknown) {
+  } catch {
     res.status(500).json({ message: "Failed to generate QR payment session" })
   }
 }

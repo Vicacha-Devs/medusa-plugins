@@ -69,10 +69,18 @@ export const ProductStoriesCard = ({
         <Table>
           <Table.Header>
             <Table.Row>
-              <Table.HeaderCell>{t("analyticsTab.colSlideTitle")}</Table.HeaderCell>
-              <Table.HeaderCell>{t("analyticsTab.colImpressions")}</Table.HeaderCell>
-              <Table.HeaderCell>{t("analyticsTab.colHotspotClicks")}</Table.HeaderCell>
-              <Table.HeaderCell>{t("analyticsTab.colAddToCarts")}</Table.HeaderCell>
+              <Table.HeaderCell>
+                {t("analyticsTab.colSlideTitle")}
+              </Table.HeaderCell>
+              <Table.HeaderCell>
+                {t("analyticsTab.colImpressions")}
+              </Table.HeaderCell>
+              <Table.HeaderCell>
+                {t("analyticsTab.colHotspotClicks")}
+              </Table.HeaderCell>
+              <Table.HeaderCell>
+                {t("analyticsTab.colAddToCarts")}
+              </Table.HeaderCell>
               <Table.HeaderCell className="text-right">
                 {t("widget.activeBadge")}
               </Table.HeaderCell>

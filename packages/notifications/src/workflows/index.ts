@@ -1,7 +1,4 @@
-import {
-  ContainerRegistrationKeys,
-  Modules,
-} from "@medusajs/framework/utils"
+import { ContainerRegistrationKeys, Modules } from "@medusajs/framework/utils"
 import {
   createStep,
   createWorkflow,
@@ -244,7 +241,7 @@ export async function executeEventNotificationsDispatch(
     }
   }
 
-  const sortedMappings = [...mappings].sort(
+  const sortedMappings = [...mappings].toSorted(
     (a: any, b: any) => Number(b.priority ?? 0) - Number(a.priority ?? 0)
   )
 

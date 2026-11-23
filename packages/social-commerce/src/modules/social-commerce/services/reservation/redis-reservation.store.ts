@@ -200,7 +200,11 @@ export class RedisReservationStore implements ReservationStoreBackend {
     reservationId: string,
     sessionId?: string,
     variantId?: string
-  ): Promise<{ confirmed: boolean; quantity: number; reservation: ReservationRecord | null }> {
+  ): Promise<{
+    confirmed: boolean
+    quantity: number
+    reservation: ReservationRecord | null
+  }> {
     const existing = await this.getReservation(reservationId, Date.now())
     const targetSessionId = sessionId ?? existing?.session_id
     const targetVariantId = variantId ?? existing?.variant_id
@@ -218,7 +222,9 @@ export class RedisReservationStore implements ReservationStoreBackend {
       )
     )
     const updated =
-      confirmedQty > 0 ? await this.getReservation(reservationId, Date.now()) : null
+      confirmedQty > 0
+        ? await this.getReservation(reservationId, Date.now())
+        : null
     return {
       confirmed: confirmedQty > 0,
       quantity: confirmedQty,

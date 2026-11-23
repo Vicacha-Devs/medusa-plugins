@@ -124,4 +124,3 @@ export const CatalogTab = ({ catalogItems }: CatalogTabProps) => {
     </Container>
   )
 }
-

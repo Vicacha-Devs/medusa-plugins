@@ -217,7 +217,8 @@ export function normalizeCatalogItemRecord(
   raw: RawRecord<CatalogSyncItemRecord>
 ): CatalogSyncItemRecord {
   const socialAccountId = raw.social_account_id ?? raw.account_id ?? ""
-  const externalProductId = raw.external_product_id ?? raw.external_item_id ?? null
+  const externalProductId =
+    raw.external_product_id ?? raw.external_item_id ?? null
   const syncStatus = raw.sync_status ?? raw.status ?? "pending"
 
   return {

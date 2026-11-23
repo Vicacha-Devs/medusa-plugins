@@ -1,7 +1,4 @@
-import type {
-  SmsDriver,
-  WhatsAppDriver,
-} from "./core"
+import type { SmsDriver, WhatsAppDriver } from "./core"
 
 export interface SmtpEmailProviderOptions {
   channels?: string[]

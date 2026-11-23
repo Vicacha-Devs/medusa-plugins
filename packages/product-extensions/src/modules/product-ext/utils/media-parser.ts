@@ -103,7 +103,9 @@ export function parseVideoMediaItem(
     } else if (host === "vimeo.com" || host === "player.vimeo.com") {
       provider = "vimeo"
       const candidateId =
-        pathParts[0] === "video" ? pathParts[1] : pathParts[pathParts.length - 1]
+        pathParts[0] === "video"
+          ? pathParts[1]
+          : pathParts[pathParts.length - 1]
       if (candidateId && VIMEO_ID_REGEX.test(candidateId)) {
         embedId = candidateId
         embedUrl = `https://player.vimeo.com/video/${candidateId}`
@@ -114,7 +116,8 @@ export function parseVideoMediaItem(
       if (rawMuxId && SAFE_EMBED_ID_REGEX.test(rawMuxId)) {
         embedId = rawMuxId
         embedUrl = `https://player.mux.com/${rawMuxId}`
-        posterUrl = posterUrl ?? `https://image.mux.com/${rawMuxId}/thumbnail.jpg`
+        posterUrl =
+          posterUrl ?? `https://image.mux.com/${rawMuxId}/thumbnail.jpg`
       }
       mimeType = mimeType ?? inferVideoMimeType(parsed.pathname)
     } else if (host.endsWith("cloudflarestream.com")) {
@@ -376,7 +379,7 @@ export function buildUnifiedProductMedia(params: {
     })
   }
 
-  return unified.sort((a, b) => a.position - b.position)
+  return unified.toSorted((a, b) => a.position - b.position)
 }
 
 export interface CsvImageAltRow {

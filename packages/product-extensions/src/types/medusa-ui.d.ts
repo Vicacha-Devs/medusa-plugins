@@ -22,15 +22,13 @@ declare module "@medusajs/ui" {
   }
   export const Container: React.FC<ContainerProps>
 
-  export interface HeadingProps
-    extends React.HTMLAttributes<HTMLHeadingElement> {
+  export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
     level?: "h1" | "h2" | "h3"
     children?: React.ReactNode
   }
   export const Heading: React.FC<HeadingProps>
 
-  export interface TextProps
-    extends React.HTMLAttributes<HTMLParagraphElement> {
+  export interface TextProps extends React.HTMLAttributes<HTMLParagraphElement> {
     size?: "xsmall" | "small" | "base" | "large" | "xlarge"
     weight?: "regular" | "plus"
     leading?: "normal" | "compact"
@@ -46,8 +44,7 @@ declare module "@medusajs/ui" {
   }
   export const Badge: React.FC<BadgeProps>
 
-  export interface ButtonProps
-    extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     variant?: "primary" | "secondary" | "transparent" | "danger"
     size?: "small" | "base" | "large" | "xlarge"
     isLoading?: boolean
@@ -55,14 +52,12 @@ declare module "@medusajs/ui" {
   }
   export const Button: React.FC<ButtonProps>
 
-  export interface InputProps
-    extends React.InputHTMLAttributes<HTMLInputElement> {
+  export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     size?: "base" | "small"
   }
   export const Input: React.FC<InputProps>
 
-  export interface LabelProps
-    extends React.LabelHTMLAttributes<HTMLLabelElement> {
+  export interface LabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> {
     size?: "xsmall" | "small" | "base" | "large"
     weight?: "regular" | "plus"
     children?: React.ReactNode
@@ -85,13 +80,11 @@ declare module "@medusajs/ui" {
     onValueChange?: (value: string) => void
     children?: React.ReactNode
   }
-  export interface TabsTriggerProps
-    extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  export interface TabsTriggerProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     value: string
     children?: React.ReactNode
   }
-  export interface TabsContentProps
-    extends React.HTMLAttributes<HTMLDivElement> {
+  export interface TabsContentProps extends React.HTMLAttributes<HTMLDivElement> {
     value: string
     children?: React.ReactNode
   }
@@ -108,8 +101,7 @@ declare module "@medusajs/ui" {
     onValueChange?: (value: string) => void
     children?: React.ReactNode
   }
-  export interface SelectItemProps
-    extends React.HTMLAttributes<HTMLDivElement> {
+  export interface SelectItemProps extends React.HTMLAttributes<HTMLDivElement> {
     value: string
     children?: React.ReactNode
   }
@@ -215,9 +207,13 @@ declare module "@medusajs/framework/utils" {
         config?: Record<string, any>
       ) => Promise<any[]>
     } & {
-      [K in keyof TModels as `create${string & K}s`]: (data: any) => Promise<any>
+      [K in keyof TModels as `create${string & K}s`]: (
+        data: any
+      ) => Promise<any>
     } & {
-      [K in keyof TModels as `update${string & K}s`]: (data: any) => Promise<any>
+      [K in keyof TModels as `update${string & K}s`]: (
+        data: any
+      ) => Promise<any>
     } & {
       [K in keyof TModels as `delete${string & K}s`]: (
         id: string | string[]
@@ -344,7 +340,9 @@ declare module "@medusajs/framework/zod" {
     number(): ZodType<number>
     boolean(): ZodType<boolean>
     unknown(): ZodType<unknown>
-    enum<T extends readonly [string, ...string[]]>(values: T): ZodType<T[number]>
+    enum<T extends readonly [string, ...string[]]>(
+      values: T
+    ): ZodType<T[number]>
     array<T extends ZodType<any>>(schema: T): ZodType<Array<T["_output"]>>
     record<K extends ZodType<string>, V extends ZodType<any>>(
       key: K,
@@ -431,11 +429,7 @@ declare module "react" {
   export type SVGProps<T = SVGSVGElement> = Record<string, any>
   export type FC<P = {}> = (props: P & { key?: any }) => any
 
-  export function createElement(
-    type: any,
-    props?: any,
-    ...children: any[]
-  ): any
+  export function createElement(type: any, props?: any, ...children: any[]): any
   export const Fragment: any
 
   export function useState<T>(

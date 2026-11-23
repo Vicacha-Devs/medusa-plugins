@@ -1,6 +1,13 @@
 import { SectionRow } from "@medusajs/dashboard/components"
 import { ArrowPath } from "@medusajs/icons"
-import { Badge, Button, Container, Heading, StatusBadge, Text } from "@medusajs/ui"
+import {
+  Badge,
+  Button,
+  Container,
+  Heading,
+  StatusBadge,
+  Text,
+} from "@medusajs/ui"
 import { useTranslation } from "react-i18next"
 import type { StoriesAnalyticsOverview } from "../../modules/story/types"
 

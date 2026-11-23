@@ -18,13 +18,13 @@ flowchart LR
 
 ## Medusa Modules & Data Models
 
-| Module | Data Model |
-| :--- | :--- |
-| `social-commerce` | `catalog-sync-item` |
-| `social-commerce` | `live-product` |
-| `social-commerce` | `live-session` |
-| `social-commerce` | `social-account` |
-| `social-commerce` | `social-media-post` |
+| Module            | Data Model           |
+| :---------------- | :------------------- |
+| `social-commerce` | `catalog-sync-item`  |
+| `social-commerce` | `live-product`       |
+| `social-commerce` | `live-session`       |
+| `social-commerce` | `social-account`     |
+| `social-commerce` | `social-media-post`  |
 | `social-commerce` | `social-product-tag` |
 
 ## Key Capabilities & Integration Points

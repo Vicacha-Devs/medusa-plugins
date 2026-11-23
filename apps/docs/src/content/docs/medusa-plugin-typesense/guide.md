@@ -12,7 +12,7 @@ pnpm add @vicacha-devs/medusa-plugin-typesense
 ## `medusa-config.ts` Registration
 
 ```ts
-import { defineConfig } from "@medusajs/framework/utils";
+import { defineConfig } from "@medusajs/framework/utils"
 
 export default defineConfig({
   plugins: [
@@ -21,12 +21,13 @@ export default defineConfig({
       options: {},
     },
   ],
-});
+})
 ```
 
 ## Admin UI Extensions
 
 ### Admin Routes
+
 - `/app/typesense/analytics`
 - `/app/typesense/collections`
 - `/app/typesense/entities`
@@ -35,9 +36,11 @@ export default defineConfig({
 - `/app/typesense/playground`
 
 ### Admin Widgets
+
 - `product-typesense-widget`
 
 ### Supported Admin Locales
+
 `ar`, `de`, `en`, `es`, `fr`, `it`, `nl`, `pl`, `pt`, `tr`
 
 ## API Reference

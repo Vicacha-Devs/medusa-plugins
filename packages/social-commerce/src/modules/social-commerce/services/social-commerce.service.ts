@@ -75,7 +75,10 @@ export class SocialCommerceService extends MedusaService({
   CatalogSyncItem,
 }) {
   protected readonly moduleOptions: SocialCommerceModuleOptions
-  protected readonly providers = new Map<SocialPlatform, SocialPlatformProvider>()
+  protected readonly providers = new Map<
+    SocialPlatform,
+    SocialPlatformProvider
+  >()
 
   public readonly repository: SocialCommerceRepository
   public readonly reservationService: InventoryReservationService
@@ -150,26 +153,38 @@ export class SocialCommerceService extends MedusaService({
       "tiktok",
       new TikTokProvider({
         clientKey:
-          this.moduleOptions.tiktok?.client_key || process.env.TIKTOK_CLIENT_KEY,
+          this.moduleOptions.tiktok?.client_key ||
+          process.env.TIKTOK_CLIENT_KEY,
         clientSecret:
-          this.moduleOptions.tiktok?.client_secret || process.env.TIKTOK_CLIENT_SECRET,
+          this.moduleOptions.tiktok?.client_secret ||
+          process.env.TIKTOK_CLIENT_SECRET,
         redirectUri:
-          this.moduleOptions.tiktok?.redirect_uri || process.env.TIKTOK_REDIRECT_URI,
-        shopId: this.moduleOptions.tiktok?.shop_id || process.env.TIKTOK_SHOP_ID,
+          this.moduleOptions.tiktok?.redirect_uri ||
+          process.env.TIKTOK_REDIRECT_URI,
+        shopId:
+          this.moduleOptions.tiktok?.shop_id || process.env.TIKTOK_SHOP_ID,
       })
     )
 
     const metaConfig = {
       appId: this.moduleOptions.meta?.app_id || process.env.META_APP_ID,
-      appSecret: this.moduleOptions.meta?.app_secret || process.env.META_APP_SECRET,
+      appSecret:
+        this.moduleOptions.meta?.app_secret || process.env.META_APP_SECRET,
       redirectUri:
         this.moduleOptions.meta?.redirect_uri || process.env.META_REDIRECT_URI,
       graphApiVersion: this.moduleOptions.meta?.graph_api_version || "v20.0",
-      catalogId: this.moduleOptions.meta?.catalog_id || process.env.META_CATALOG_ID,
+      catalogId:
+        this.moduleOptions.meta?.catalog_id || process.env.META_CATALOG_ID,
     }
 
-    this.providers.set("instagram", new MetaGraphProvider("instagram", metaConfig))
-    this.providers.set("facebook", new MetaGraphProvider("facebook", metaConfig))
+    this.providers.set(
+      "instagram",
+      new MetaGraphProvider("instagram", metaConfig)
+    )
+    this.providers.set(
+      "facebook",
+      new MetaGraphProvider("facebook", metaConfig)
+    )
   }
 
   /**
@@ -182,7 +197,9 @@ export class SocialCommerceService extends MedusaService({
     this.providers.set(platform, provider)
   }
 
-  private resolveProviderSync(platform: SocialPlatform): SocialPlatformProvider {
+  private resolveProviderSync(
+    platform: SocialPlatform
+  ): SocialPlatformProvider {
     const provider = this.providers.get(platform)
     if (!provider) {
       throw new MedusaError(
@@ -201,7 +218,9 @@ export class SocialCommerceService extends MedusaService({
   // 1. OAuth 2.0 & Multi-Platform Social Account Management
   // ===========================================================================
 
-  async sanitizeAccount(account: SocialAccountRecord): Promise<SocialAccountPublicDTO> {
+  async sanitizeAccount(
+    account: SocialAccountRecord
+  ): Promise<SocialAccountPublicDTO> {
     return this.accountService.sanitizeAccount(account)
   }
 
@@ -255,11 +274,15 @@ export class SocialCommerceService extends MedusaService({
     return this.accountService.updateAccountMetadata(accountId, metadata)
   }
 
-  async refreshAccountTokens(accountId: string): Promise<SocialAccountPublicDTO> {
+  async refreshAccountTokens(
+    accountId: string
+  ): Promise<SocialAccountPublicDTO> {
     return this.accountService.refreshAccountTokens(accountId)
   }
 
-  async refreshAccountToken(accountId: string): Promise<SocialAccountPublicDTO> {
+  async refreshAccountToken(
+    accountId: string
+  ): Promise<SocialAccountPublicDTO> {
     return this.accountService.refreshAccountTokens(accountId)
   }
 
@@ -364,11 +387,15 @@ export class SocialCommerceService extends MedusaService({
   // 4. Live Shopping Sessions & Flash-Sale Stock Reservations
   // ===========================================================================
 
-  async scheduleLiveSession(input: CreateLiveSessionInput): Promise<LiveSessionRecord> {
+  async scheduleLiveSession(
+    input: CreateLiveSessionInput
+  ): Promise<LiveSessionRecord> {
     return this.liveShoppingService.scheduleLiveSession(input)
   }
 
-  async createLiveSession(input: CreateLiveSessionInput): Promise<LiveSessionRecord> {
+  async createLiveSession(
+    input: CreateLiveSessionInput
+  ): Promise<LiveSessionRecord> {
     return this.liveShoppingService.scheduleLiveSession(input)
   }
 
@@ -376,19 +403,29 @@ export class SocialCommerceService extends MedusaService({
     sessionId: string,
     products: AttachLiveProductInput[]
   ): Promise<LiveProductRecord[]> {
-    return this.liveShoppingService.pinProductsToLiveSession(sessionId, products)
+    return this.liveShoppingService.pinProductsToLiveSession(
+      sessionId,
+      products
+    )
   }
 
   async attachProductsToLiveSession(
     sessionId: string,
     products: AttachLiveProductInput[]
   ): Promise<LiveProductRecord[]> {
-    return this.liveShoppingService.pinProductsToLiveSession(sessionId, products)
+    return this.liveShoppingService.pinProductsToLiveSession(
+      sessionId,
+      products
+    )
   }
 
   async startLiveSession(
     sessionId: string,
-    options?: { stream_url?: string; platform_live_id?: string; external_id?: string }
+    options?: {
+      stream_url?: string
+      platform_live_id?: string
+      external_id?: string
+    }
   ): Promise<LiveSessionRecord> {
     return this.liveShoppingService.startLiveSession(sessionId, options)
   }
@@ -531,7 +568,9 @@ export class SocialCommerceService extends MedusaService({
     return Boolean(expected && expected.trim().length > 0)
   }
 
-  async verifyCatalogFeedToken(providedToken?: string | null): Promise<boolean> {
+  async verifyCatalogFeedToken(
+    providedToken?: string | null
+  ): Promise<boolean> {
     const expected =
       this.moduleOptions.feed_token ||
       process.env.SOCIAL_COMMERCE_FEED_TOKEN ||
@@ -555,7 +594,10 @@ export class SocialCommerceService extends MedusaService({
     products: Array<Record<string, unknown>>,
     options?: MapMedusaProductsOptions
   ): Promise<CatalogFeedProductItem[]> {
-    return this.catalogFeedService.mapMedusaProductsToFeedItems(products, options)
+    return this.catalogFeedService.mapMedusaProductsToFeedItems(
+      products,
+      options
+    )
   }
 
   async renderCatalogFeed(

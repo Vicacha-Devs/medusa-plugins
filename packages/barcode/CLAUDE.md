@@ -1,6 +1,7 @@
 # CLAUDE.md — Complete Architecture & Contributor Reference (`medusa-plugin-barcode`)
 
 ## 1. Mission & Scope
+
 `medusa-plugin-barcode` is a 4-in-1 **GS1 Barcode, Dynamic QR, Thermal/Sheet Price Label Printing, 10-Provider GTIN Product Lookup & Warehouse Inventory Stock-Take Suite** for **Medusa v2**.
 
 It supersedes `@bambiste/medusa-barcode`, `@bambiste/medusa-qr`, `medusa-pos-plugin` (barcode lookup routes), and `inventory-count` while maintaining backward-compatible exports.
@@ -126,6 +127,7 @@ medusa-plugin-barcode/
 ---
 
 ## 3. Strict Medusa v2 & Security Engineering Rules
+
 1. **`@medusajs/eslint-plugin` Compliance**:
    - Every public method on `BarcodeModuleService` in `src/modules/barcode/service.ts` (and the operations in `src/modules/barcode/operations/*.ts` it delegates to) **must** be `async` and throw `MedusaError` from `@medusajs/framework/utils`.
    - Every `createStep` and `createWorkflow` in `src/workflows/*.ts` **must** have an explicit kebab-case ID matching the step/workflow name (e.g. `"lookup-and-create-product"`).

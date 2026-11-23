@@ -32,7 +32,9 @@ export class LiveShoppingService {
   /**
    * Creates a scheduled or active Live Shopping session.
    */
-  async scheduleLiveSession(input: CreateLiveSessionInput): Promise<LiveSessionRecord> {
+  async scheduleLiveSession(
+    input: CreateLiveSessionInput
+  ): Promise<LiveSessionRecord> {
     const accountId = (input.social_account_id ?? input.account_id ?? "").trim()
     if (!accountId) {
       throw new MedusaError(
@@ -66,7 +68,9 @@ export class LiveShoppingService {
       title: input.title.trim(),
       description: input.description ?? null,
       stream_url: input.stream_url ? sanitizeHttpUrl(input.stream_url) : null,
-      playback_url: input.playback_url ? sanitizeHttpUrl(input.playback_url) : null,
+      playback_url: input.playback_url
+        ? sanitizeHttpUrl(input.playback_url)
+        : null,
       status: "scheduled",
       scheduled_at: input.scheduled_at ? new Date(input.scheduled_at) : null,
       started_at: null,
@@ -136,7 +140,8 @@ export class LiveShoppingService {
           allocated_stock: nextStock,
           sort_order: item.sort_order ?? match.sort_order,
           pinned_at: nextPinnedAt,
-          is_pinned: item.is_pinned !== undefined ? item.is_pinned : match.is_pinned,
+          is_pinned:
+            item.is_pinned !== undefined ? item.is_pinned : match.is_pinned,
           metadata: item.metadata ?? match.metadata,
         })
       } else {
@@ -182,7 +187,11 @@ export class LiveShoppingService {
    */
   async startLiveSession(
     sessionId: string,
-    options?: { stream_url?: string; platform_live_id?: string; external_id?: string }
+    options?: {
+      stream_url?: string
+      platform_live_id?: string
+      external_id?: string
+    }
   ): Promise<LiveSessionRecord> {
     const session = await this.repo.retrieveLiveSession(sessionId)
     if (!session) {
@@ -193,7 +202,9 @@ export class LiveShoppingService {
     }
 
     const platformLiveId =
-      options?.platform_live_id ?? options?.external_id ?? session.platform_live_id
+      options?.platform_live_id ??
+      options?.external_id ??
+      session.platform_live_id
 
     const updated = await this.repo.updateLiveSession(sessionId, {
       status: "live",
@@ -261,7 +272,11 @@ export class LiveShoppingService {
       LiveSessionRecord & {
         products: Array<
           LiveProductRecord & {
-            stock_availability: { total: number; reserved: number; available: number }
+            stock_availability: {
+              total: number
+              reserved: number
+              available: number
+            }
           }
         >
       }
@@ -290,7 +305,10 @@ export class LiveShoppingService {
                 : {
                     total: p.live_stock ?? 0,
                     reserved: p.reserved_quantity,
-                    available: Math.max(0, (p.live_stock ?? 0) - p.reserved_quantity),
+                    available: Math.max(
+                      0,
+                      (p.live_stock ?? 0) - p.reserved_quantity
+                    ),
                   }
             return {
               ...p,
@@ -360,7 +378,8 @@ export class LiveShoppingService {
     quantity: number
     reservation: ReservationRecord | null
   }> {
-    const result = await this.reservationService.confirmReservation(reservationId)
+    const result =
+      await this.reservationService.confirmReservation(reservationId)
     if (result.confirmed && result.reservation) {
       const liveProducts = await this.repo.listLiveProducts({
         live_session_id: result.reservation.session_id,

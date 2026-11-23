@@ -84,7 +84,10 @@ export const AccountsTab = ({
           {accounts.map((acc) => (
             <Table.Row key={acc.id}>
               <Table.Cell>
-                <Badge size="2xsmall" color={platformBadgeUiColor(acc.platform)}>
+                <Badge
+                  size="2xsmall"
+                  color={platformBadgeUiColor(acc.platform)}
+                >
                   {acc.platform}
                 </Badge>
               </Table.Cell>
@@ -117,4 +120,3 @@ export const AccountsTab = ({
     </Container>
   )
 }
-

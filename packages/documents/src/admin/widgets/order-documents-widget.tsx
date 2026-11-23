@@ -2,14 +2,7 @@ import React from "react"
 import { defineWidgetConfig } from "@medusajs/admin-sdk"
 import { SectionRow } from "@medusajs/dashboard/components"
 import { ArrowUpRightOnBox } from "@medusajs/icons"
-import {
-  Badge,
-  Button,
-  Container,
-  Heading,
-  Select,
-  Text,
-} from "@medusajs/ui"
+import { Badge, Button, Container, Heading, Select, Text } from "@medusajs/ui"
 import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom"
 

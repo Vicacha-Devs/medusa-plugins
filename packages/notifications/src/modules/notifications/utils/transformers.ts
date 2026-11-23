@@ -42,7 +42,10 @@ export function formatDateTime(
 
 export function formatAddressInline(addr?: Record<string, any> | null): string {
   if (!addr || typeof addr !== "object") return ""
-  const name = [addr.first_name, addr.last_name].filter(Boolean).join(" ").trim()
+  const name = [addr.first_name, addr.last_name]
+    .filter(Boolean)
+    .join(" ")
+    .trim()
   const parts = [
     name,
     addr.company,
@@ -61,18 +64,13 @@ export function buildGlobalStoreContext(
   pluginOptions?: NotificationsPluginOptions
 ): Record<string, any> {
   const storeName =
-    pluginOptions?.storeName ||
-    process.env.STORE_NAME ||
-    "Medusa Store"
+    pluginOptions?.storeName || process.env.STORE_NAME || "Medusa Store"
   const storeUrl =
     pluginOptions?.storeUrl ||
     process.env.STORE_URL ||
     process.env.STOREFRONT_URL ||
     "https://store.example.com"
-  const logoUrl =
-    pluginOptions?.logoUrl ||
-    process.env.MAILER_LOGO_URL ||
-    ""
+  const logoUrl = pluginOptions?.logoUrl || process.env.MAILER_LOGO_URL || ""
 
   return {
     store_name: storeName,
@@ -95,25 +93,27 @@ export function transformOrderData(
   const globalCtx = buildGlobalStoreContext(pluginOptions)
   const items = Array.isArray(order?.items) ? order.items : []
 
-  const transformedItems = items.map((item: Record<string, any>, idx: number) => {
-    const qty = Number(item.quantity ?? 1)
-    const unitPrice = Number(item.unit_price ?? 0)
-    const lineTotal = Number(item.total ?? unitPrice * qty)
-    return {
-      index: idx + 1,
-      id: item.id || `item_${idx + 1}`,
-      title: item.title || item.product_title || "Item",
-      subtitle: item.subtitle || item.variant_title || "",
-      variant_title: item.variant_title || item.variant?.title || "",
-      sku: item.variant_sku || item.variant?.sku || item.sku || "N/A",
-      thumbnail: item.thumbnail || item.product?.thumbnail || "",
-      quantity: qty,
-      unit_price: unitPrice,
-      unit_price_formatted: formatCurrencyAmount(unitPrice, currency, locale),
-      total: lineTotal,
-      total_formatted: formatCurrencyAmount(lineTotal, currency, locale),
+  const transformedItems = items.map(
+    (item: Record<string, any>, idx: number) => {
+      const qty = Number(item.quantity ?? 1)
+      const unitPrice = Number(item.unit_price ?? 0)
+      const lineTotal = Number(item.total ?? unitPrice * qty)
+      return {
+        index: idx + 1,
+        id: item.id || `item_${idx + 1}`,
+        title: item.title || item.product_title || "Item",
+        subtitle: item.subtitle || item.variant_title || "",
+        variant_title: item.variant_title || item.variant?.title || "",
+        sku: item.variant_sku || item.variant?.sku || item.sku || "N/A",
+        thumbnail: item.thumbnail || item.product?.thumbnail || "",
+        quantity: qty,
+        unit_price: unitPrice,
+        unit_price_formatted: formatCurrencyAmount(unitPrice, currency, locale),
+        total: lineTotal,
+        total_formatted: formatCurrencyAmount(lineTotal, currency, locale),
+      }
     }
-  })
+  )
 
   const customerFirstName =
     order?.customer?.first_name ||
@@ -134,7 +134,9 @@ export function transformOrderData(
   const shippingTotal = Number(order?.shipping_total ?? 0)
   const taxTotal = Number(order?.tax_total ?? 0)
   const discountTotal = Number(order?.discount_total ?? 0)
-  const total = Number(order?.total ?? subtotal + shippingTotal + taxTotal - discountTotal)
+  const total = Number(
+    order?.total ?? subtotal + shippingTotal + taxTotal - discountTotal
+  )
 
   const displayId = order?.display_id ?? order?.id ?? "1001"
   const orderUrl = `${globalCtx.store_url.replace(/\/$/, "")}/orders/${order?.id || displayId}`
@@ -168,10 +170,7 @@ export function transformOrderData(
       last_name: customerLastName,
       full_name: customerFullName,
       email: order?.email || order?.customer?.email || "",
-      phone:
-        order?.customer?.phone ||
-        order?.shipping_address?.phone ||
-        "",
+      phone: order?.customer?.phone || order?.shipping_address?.phone || "",
       telegram_chat_id:
         order?.customer?.metadata?.telegram_chat_id ||
         order?.metadata?.telegram_chat_id ||
@@ -269,14 +268,9 @@ export function transformInventoryLevelData(
     ...globalCtx,
     id: inventory?.id || "ilev_01",
     inventory_item_id: inventory?.inventory_item_id || "iitem_01",
-    sku:
-      inventory?.sku ||
-      inventory?.inventory_item?.sku ||
-      "SKU-DEFAULT-01",
+    sku: inventory?.sku || inventory?.inventory_item?.sku || "SKU-DEFAULT-01",
     title:
-      inventory?.title ||
-      inventory?.inventory_item?.title ||
-      "Inventory Item",
+      inventory?.title || inventory?.inventory_item?.title || "Inventory Item",
     location_id: inventory?.location_id || "sloc_01",
     location_name:
       inventory?.location_name ||
@@ -390,7 +384,8 @@ export function getMockContextByType(
           labels: [
             {
               tracking_number: "JJD009988776655",
-              tracking_url: "https://www.dhl.com/en/express/tracking.html?AWB=JJD009988776655",
+              tracking_url:
+                "https://www.dhl.com/en/express/tracking.html?AWB=JJD009988776655",
             },
           ],
         },

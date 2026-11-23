@@ -1,2 +1,2 @@
-export * from "./admin/validators";
-export * from "./store/validators";
+export * from "./admin/validators"
+export * from "./store/validators"

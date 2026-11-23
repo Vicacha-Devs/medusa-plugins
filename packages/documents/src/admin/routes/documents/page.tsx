@@ -6,18 +6,18 @@ import { DocumentText } from "@medusajs/icons"
 import { toast } from "@medusajs/ui"
 import { useTranslation } from "react-i18next"
 
-import {
-  useBulkDownloadDocuments,
-  useDocumentsList,
-} from "../../../hooks"
+import { useBulkDownloadDocuments, useDocumentsList } from "../../../hooks"
 import { documentsAdminSdk } from "../../../sdk"
-import type { DocumentStatus, DocumentType } from "../../../modules/documents/types"
+import type {
+  DocumentStatus,
+  DocumentType,
+} from "../../../modules/documents/types"
 import {
   DocumentsBulkGenerateSection,
   DocumentsOverviewSection,
   DocumentsTableSection,
 } from "../../components/documents"
-import { RbacGuard } from "../../components/rbac-guard";
+import { RbacGuard } from "../../components/rbac-guard"
 
 const DocumentsHubPage: React.FC = () => {
   const { t, i18n } = useTranslation()
@@ -169,6 +169,6 @@ const GuardedDocumentsHubPage = () => (
   <RbacGuard permission="documents.read">
     <DocumentsHubPage />
   </RbacGuard>
-);
+)
 
-export default GuardedDocumentsHubPage;
+export default GuardedDocumentsHubPage

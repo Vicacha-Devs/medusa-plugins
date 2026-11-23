@@ -24,18 +24,18 @@ i18n/
 
 Each locale is registered under both the default `translation` namespace and the `"product-ext"` namespace (used by `defineRouteConfig({ translationNs: "product-ext" })`):
 
-| Code | Language | Direction |
-| --- | --- | --- |
-| `en` | English | LTR |
-| `es` | Español | LTR |
-| `fr` | Français | LTR |
-| `de` | Deutsch | LTR |
-| `it` | Italiano | LTR |
-| `pt` | Português | LTR |
-| `nl` | Nederlands | LTR |
-| `pl` | Polski | LTR |
-| `tr` | Türkçe | LTR |
-| `ar` | العربية | RTL |
+| Code | Language   | Direction |
+| ---- | ---------- | --------- |
+| `en` | English    | LTR       |
+| `es` | Español    | LTR       |
+| `fr` | Français   | LTR       |
+| `de` | Deutsch    | LTR       |
+| `it` | Italiano   | LTR       |
+| `pt` | Português  | LTR       |
+| `nl` | Nederlands | LTR       |
+| `pl` | Polski     | LTR       |
+| `tr` | Türkçe     | LTR       |
+| `ar` | العربية    | RTL       |
 
 ---
 

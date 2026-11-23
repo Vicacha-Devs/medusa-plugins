@@ -2,7 +2,8 @@ openapi: 3.1.0
 info:
   title: "@vicacha-devs/medusa-plugin-documents API"
   version: 0.0.1
-  description: "Comprehensive commercial documents plugin for Medusa v2: Invoices,
+  description:
+    "Comprehensive commercial documents plugin for Medusa v2: Invoices,
     Packing Slips, Credit Notes & POS Receipts with Dual PDF Engine
     (@react-pdf/renderer + Handlebars/pdfmake), per-region settings, 10-locale
     i18n (including RTL Arabic & Turkish), localized Admin UI, optional B2B
@@ -221,7 +222,8 @@ paths:
     post:
       operationId: postAdminDocumentsByIdSendForSignature
       summary: Create / Trigger documents by ID send for signature
-      description: POST /admin/documents/{id}/send-for-signature endpoint exposed by
+      description:
+        POST /admin/documents/{id}/send-for-signature endpoint exposed by
         @vicacha-devs/medusa-plugin-documents.
       tags:
         - "Admin: documents"
@@ -644,7 +646,8 @@ paths:
     get:
       operationId: getStoreDocumentsByOrder_idCreditNote.pdf
       summary: Get documents by ID credit note.pdf
-      description: GET /store/documents/{order_id}/credit-note.pdf endpoint exposed by
+      description:
+        GET /store/documents/{order_id}/credit-note.pdf endpoint exposed by
         @vicacha-devs/medusa-plugin-documents.
       tags:
         - "Storefront: documents"
@@ -669,7 +672,8 @@ paths:
     get:
       operationId: getStoreDocumentsByOrder_idInvoice.pdf
       summary: Get documents by ID invoice.pdf
-      description: GET /store/documents/{order_id}/invoice.pdf endpoint exposed by
+      description:
+        GET /store/documents/{order_id}/invoice.pdf endpoint exposed by
         @vicacha-devs/medusa-plugin-documents.
       tags:
         - "Storefront: documents"
@@ -694,7 +698,8 @@ paths:
     get:
       operationId: getStoreDocumentsByOrder_idPackingSlip.pdf
       summary: Get documents by ID packing slip.pdf
-      description: GET /store/documents/{order_id}/packing-slip.pdf endpoint exposed
+      description:
+        GET /store/documents/{order_id}/packing-slip.pdf endpoint exposed
         by @vicacha-devs/medusa-plugin-documents.
       tags:
         - "Storefront: documents"
@@ -719,7 +724,8 @@ paths:
     get:
       operationId: getStoreDocumentsByOrder_idReceipt.pdf
       summary: Get documents by ID receipt.pdf
-      description: GET /store/documents/{order_id}/receipt.pdf endpoint exposed by
+      description:
+        GET /store/documents/{order_id}/receipt.pdf endpoint exposed by
         @vicacha-devs/medusa-plugin-documents.
       tags:
         - "Storefront: documents"
@@ -744,7 +750,8 @@ paths:
     get:
       operationId: getStoreDocumentsByOrder_idSigned.pdf
       summary: Get documents by ID signed.pdf
-      description: GET /store/documents/{order_id}/signed.pdf endpoint exposed by
+      description:
+        GET /store/documents/{order_id}/signed.pdf endpoint exposed by
         @vicacha-devs/medusa-plugin-documents.
       tags:
         - "Storefront: documents"
@@ -769,7 +776,8 @@ paths:
     get:
       operationId: getStoreDocumentsByOrder_idSigningUrl
       summary: Get documents by ID signing url
-      description: GET /store/documents/{order_id}/signing-url endpoint exposed by
+      description:
+        GET /store/documents/{order_id}/signing-url endpoint exposed by
         @vicacha-devs/medusa-plugin-documents.
       tags:
         - "Storefront: documents"

@@ -1,13 +1,13 @@
-import { useDate } from "@medusajs/dashboard/hooks";
-import { Tooltip } from "@medusajs/ui";
-import type { JSX } from "react";
-import { useTranslation } from "react-i18next";
+import { useDate } from "@medusajs/dashboard/hooks"
+import { Tooltip } from "@medusajs/ui"
+import type { JSX } from "react"
+import { useTranslation } from "react-i18next"
 
-import { PlaceholderCell } from "./placeholder-cell";
+import { PlaceholderCell } from "./placeholder-cell"
 
 type DateCellProps = {
-  date?: Date | string | null;
-};
+  date?: Date | string | null
+}
 
 export const DateCell = ({ date }: DateCellProps): JSX.Element => {
   const { getFullDate } = useDate()
@@ -36,11 +36,11 @@ export const DateCell = ({ date }: DateCellProps): JSX.Element => {
 }
 
 export const DateHeader = (): JSX.Element => {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
   return (
     <div className="flex h-full w-full items-center">
       <span className="truncate">{t("fields.date")}</span>
     </div>
-  );
-};
+  )
+}

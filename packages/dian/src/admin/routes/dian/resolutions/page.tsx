@@ -5,7 +5,7 @@ import { LayoutComposer } from "@medusajs/dashboard/components"
 import { useTranslation } from "react-i18next"
 import { useDianResolutions } from "../../../../hooks"
 import { DianResolutionsSection } from "../../../components"
-import { RbacGuard } from "../../../components/rbac-guard";
+import { RbacGuard } from "../../../components/rbac-guard"
 
 const DianResolutionsPage: React.FC = () => {
   const { resolutions, loading, refresh } = useDianResolutions()
@@ -47,6 +47,6 @@ const GuardedDianResolutionsPage = () => (
   <RbacGuard permission="dian.read">
     <DianResolutionsPage />
   </RbacGuard>
-);
+)
 
-export default GuardedDianResolutionsPage;
+export default GuardedDianResolutionsPage

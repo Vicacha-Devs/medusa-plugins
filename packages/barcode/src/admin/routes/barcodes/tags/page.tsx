@@ -11,7 +11,7 @@ import {
   DynamicQrTagsTableSection,
 } from "../../../components"
 import { useBarcodeStudio } from "../../../hooks/use-barcode-studio"
-import { RbacGuard } from "../../../components/rbac-guard";
+import { RbacGuard } from "../../../components/rbac-guard"
 
 const BarcodeTagsPage = () => {
   const navigate = useNavigate()
@@ -67,6 +67,6 @@ const GuardedBarcodeTagsPage = () => (
   <RbacGuard permission="barcodes.read">
     <BarcodeTagsPage />
   </RbacGuard>
-);
+)
 
-export default GuardedBarcodeTagsPage;
+export default GuardedBarcodeTagsPage

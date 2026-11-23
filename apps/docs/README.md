@@ -17,10 +17,10 @@ One-time repository setup: **Settings → Pages → Build and deployment → Sou
 
 By default the workflow builds for the project URL `https://vicacha-devs.github.io/vicacha-medusa-plugins/`. To serve a custom domain instead, point a `CNAME` DNS record at `vicacha-devs.github.io`, set the domain in Settings → Pages, and set these repository variables (Settings → Secrets and variables → Actions → Variables):
 
-| Variable | Value |
-| --- | --- |
+| Variable    | Value                                |
+| ----------- | ------------------------------------ |
 | `DOCS_SITE` | `https://medusa-plugins.vicacha.dev` |
-| `DOCS_BASE` | `/` |
+| `DOCS_BASE` | `/`                                  |
 
 The same variables work locally, e.g. `DOCS_SITE=https://vicacha-devs.github.io DOCS_BASE=/vicacha-medusa-plugins pnpm docs:build`; without them the build targets the custom domain from `/`.
 `src/plugins/rehype-base-links.ts` and `src/route-middleware.ts` prefix root-relative content links and landing-page hero buttons with the base path.

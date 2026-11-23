@@ -12,7 +12,8 @@ export default async function registerSocialCommerceLoader({
   container,
   options,
 }: LoaderArgs): Promise<void> {
-  let logger: { info: (msg: string) => void; warn: (msg: string) => void } = console
+  let logger: { info: (msg: string) => void; warn: (msg: string) => void } =
+    console
   try {
     const resolvedLogger = container.resolve<typeof logger>(
       ContainerRegistrationKeys.LOGGER

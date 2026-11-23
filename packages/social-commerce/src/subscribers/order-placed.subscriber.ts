@@ -1,5 +1,8 @@
 import { resolveSocialCommerceService } from "../modules/social-commerce/index.js"
-import type { SubscriberArgs, SubscriberConfig } from "./social-events.subscriber.js"
+import type {
+  SubscriberArgs,
+  SubscriberConfig,
+} from "./social-events.subscriber.js"
 
 export interface OrderPlacedEventData {
   id: string
@@ -24,7 +27,10 @@ export default async function handleOrderPlaced({
   const reservationIds = new Set<string>()
   const metadata = data.metadata ?? {}
 
-  if (typeof metadata.reservation_id === "string" && metadata.reservation_id.trim()) {
+  if (
+    typeof metadata.reservation_id === "string" &&
+    metadata.reservation_id.trim()
+  ) {
     reservationIds.add(metadata.reservation_id.trim())
   }
 
@@ -37,10 +43,11 @@ export default async function handleOrderPlaced({
   }
 
   if (typeof data.cart_id === "string" && data.cart_id.trim()) {
-    const cartReservations = await socialService.reservationService.listReservations({
-      cart_id: data.cart_id.trim(),
-      status: "held",
-    })
+    const cartReservations =
+      await socialService.reservationService.listReservations({
+        cart_id: data.cart_id.trim(),
+        status: "held",
+      })
     for (const res of cartReservations) {
       reservationIds.add(res.id)
     }

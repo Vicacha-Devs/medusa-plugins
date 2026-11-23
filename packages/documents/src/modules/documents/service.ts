@@ -174,7 +174,11 @@ class DocumentsModuleService extends MedusaService({
       orderDisplayId?: string | number | null
       referenceDate?: Date
     } = {}
-  ): Promise<{ documentNumber: string; sequenceNumber: number; settingsId: string }> {
+  ): Promise<{
+    documentNumber: string
+    sequenceNumber: number
+    settingsId: string
+  }> {
     const settings = await this.resolveSettings(options.regionId)
 
     const prefixField = `${documentType}_prefix`
@@ -428,7 +432,8 @@ class DocumentsModuleService extends MedusaService({
         doc.file_url.startsWith("http://")
       ) {
         try {
-          const { validateSafeExternalUrl } = await import("./services/docuseal")
+          const { validateSafeExternalUrl } =
+            await import("./services/docuseal")
           const safeUrl = validateSafeExternalUrl(doc.file_url)
           const response = await fetch(safeUrl.toString(), {
             signal: AbortSignal.timeout(15_000),
@@ -445,7 +450,7 @@ class DocumentsModuleService extends MedusaService({
 
     if (doc.render_context_snapshot) {
       const settings = await this.resolveSettings(
-        (doc.settings_snapshot?.region_id as string | null | undefined)
+        doc.settings_snapshot?.region_id as string | null | undefined
       )
       const buffer = await this.renderPdf(
         doc.render_context_snapshot as unknown as DocumentRenderContext,

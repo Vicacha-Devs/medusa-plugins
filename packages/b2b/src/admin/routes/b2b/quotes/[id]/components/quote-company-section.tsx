@@ -44,7 +44,10 @@ export const QuoteCompanySection = ({ quote }: QuoteCompanySectionProps) => {
         }
       />
       {company.currency_code && (
-        <SectionRow title={t("fields.currency")} value={company.currency_code.toUpperCase()} />
+        <SectionRow
+          title={t("fields.currency")}
+          value={company.currency_code.toUpperCase()}
+        />
       )}
     </Container>
   )

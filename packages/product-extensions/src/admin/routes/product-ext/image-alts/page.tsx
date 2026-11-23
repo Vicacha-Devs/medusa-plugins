@@ -7,7 +7,7 @@ import { Toaster } from "@medusajs/ui"
 import { useTranslation } from "react-i18next"
 import { ImageAltsCsvSection } from "../../../components"
 import { useProductExtStudio } from "../../../hooks/use-product-ext-studio"
-import { RbacGuard } from "../../../components/rbac-guard";
+import { RbacGuard } from "../../../components/rbac-guard"
 
 const ImageAltsRoutePage = () => {
   const studio = useProductExtStudio()
@@ -53,6 +53,6 @@ const GuardedImageAltsRoutePage = () => (
   <RbacGuard permission="product_extensions.read">
     <ImageAltsRoutePage />
   </RbacGuard>
-);
+)
 
-export default GuardedImageAltsRoutePage;
+export default GuardedImageAltsRoutePage

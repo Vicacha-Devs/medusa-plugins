@@ -136,7 +136,7 @@ export class OdooClient {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          ...(extraHeaders ?? {}),
+          ...extraHeaders,
         },
         body: JSON.stringify(body),
         signal: controller.signal,
@@ -383,10 +383,7 @@ export class OdooClient {
     return this.rpc<number[]>(model, "search", [domain], kwargs)
   }
 
-  async create(
-    model: string,
-    vals: Record<string, unknown>
-  ): Promise<number> {
+  async create(model: string, vals: Record<string, unknown>): Promise<number> {
     const res = await this.rpc<number | number[]>(model, "create", [[vals]])
     return Array.isArray(res) ? res[0] : res
   }
@@ -531,8 +528,7 @@ export class OdooClient {
           typeof v.default_code === "string" && v.default_code
             ? v.default_code
             : null,
-        barcode:
-          typeof v.barcode === "string" && v.barcode ? v.barcode : null,
+        barcode: typeof v.barcode === "string" && v.barcode ? v.barcode : null,
         price: Number(v.lst_price ?? 0),
         options: {
           Title:
@@ -576,9 +572,7 @@ export class OdooClient {
       ]
 
       const optionValues = Array.from(
-        new Set(
-          templateVariants.map((v) => v.options.Title || "Default")
-        )
+        new Set(templateVariants.map((v) => v.options.Title || "Default"))
       )
 
       return {
@@ -588,8 +582,7 @@ export class OdooClient {
           typeof tmpl.description_sale === "string"
             ? tmpl.description_sale
             : null,
-        sku:
-          typeof tmpl.default_code === "string" ? tmpl.default_code : null,
+        sku: typeof tmpl.default_code === "string" ? tmpl.default_code : null,
         barcode: typeof tmpl.barcode === "string" ? tmpl.barcode : null,
         listPrice: Number(tmpl.list_price ?? 0),
         categoryId,
@@ -728,13 +721,7 @@ export class OdooClient {
         ["default_code", "in", params.skus],
         ["barcode", "in", params.skus],
       ],
-      [
-        "id",
-        "default_code",
-        "barcode",
-        "qty_available",
-        "virtual_available",
-      ],
+      ["id", "default_code", "barcode", "qty_available", "virtual_available"],
       params.skus.length * 2,
       0
     )

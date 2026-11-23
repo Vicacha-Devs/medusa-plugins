@@ -1,23 +1,23 @@
-import { join } from "node:path";
+import { join } from "node:path"
 
 import {
   type NonDefaultLocale,
   type PluginPackageMeta,
   plugins,
-} from "../../docs-packages.ts";
-import { writeMarkdownFile, yamlQuote } from "./plugin-inspector.ts";
+} from "../../docs-packages.ts"
+import { writeMarkdownFile, yamlQuote } from "./plugin-inspector.ts"
 
 interface LandingTranslations {
-  title: string;
-  description: string;
-  tagline: string;
-  gettingStarted: string;
-  architecture: string;
-  pillarsHeading: string;
-  matrixHeading: string;
-  pkgCol: string;
-  catCol: string;
-  summaryCol: string;
+  title: string
+  description: string
+  tagline: string
+  gettingStarted: string
+  architecture: string
+  pillarsHeading: string
+  matrixHeading: string
+  pkgCol: string
+  catCol: string
+  summaryCol: string
 }
 
 const LANDING_COPY: Record<NonDefaultLocale, LandingTranslations> = {
@@ -63,17 +63,17 @@ const LANDING_COPY: Record<NonDefaultLocale, LandingTranslations> = {
     catCol: "Kategori",
     summaryCol: "Özet",
   },
-};
+}
 
 export function generateLocalizedLandings(contentDocsRoot: string): void {
   for (const locale of ["es", "ar", "tr"] as const) {
-    const copy = LANDING_COPY[locale];
+    const copy = LANDING_COPY[locale]
     const rows = plugins
       .map(
         (p) =>
           `| [${p.translations[locale]}](/${locale}/${p.slug}/) | ${p.category} | ${p.summary[locale]} |`
       )
-      .join("\n");
+      .join("\n")
 
     const mdx = `---
 title: ${yamlQuote(copy.title)}
@@ -96,8 +96,8 @@ hero:
 | ${copy.pkgCol} | ${copy.catCol} | ${copy.summaryCol} |
 | :--- | :--- | :--- |
 ${rows}
-`;
-    writeMarkdownFile(join(contentDocsRoot, locale, "index.mdx"), mdx);
+`
+    writeMarkdownFile(join(contentDocsRoot, locale, "index.mdx"), mdx)
   }
 }
 
@@ -106,17 +106,17 @@ export function buildLocalizedOverview(
   locale: NonDefaultLocale,
   routeCount: number
 ): string {
-  const title = plugin.translations[locale];
-  const summary = plugin.summary[locale];
+  const title = plugin.translations[locale]
+  const summary = plugin.summary[locale]
   const apiLink = plugin.schemaFile
     ? `- [Interactive OpenAPI Reference](/${plugin.slug}/api/) (${routeCount} endpoints)`
-    : "";
+    : ""
 
   const labels: Record<NonDefaultLocale, { install: string; docs: string }> = {
     es: { install: "Instalación Rápida", docs: "Documentación Completa" },
     ar: { install: "التثبيت السريع", docs: "الوثائق الكاملة" },
     tr: { install: "Hızlı Kurulum", docs: "Tam Dokümantasyon" },
-  };
+  }
 
   return `---
 title: ${yamlQuote(title)}
@@ -149,5 +149,5 @@ export default defineConfig({
 - [Data Models & Use Cases](/${plugin.slug}/use-cases/)
 - [Developer Guide & Admin UI](/${plugin.slug}/guide/)
 ${apiLink}
-`;
+`
 }

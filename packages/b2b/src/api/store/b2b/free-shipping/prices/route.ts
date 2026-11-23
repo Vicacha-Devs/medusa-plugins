@@ -1,24 +1,24 @@
-import { listShippingOptionsForCartWorkflow } from "@medusajs/core-flows";
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http";
-import { RemoteQueryFunction } from "@medusajs/framework/types";
-import { ContainerRegistrationKeys } from "@medusajs/framework/utils";
-import { StoreFreeShippingPrice } from "@b2b/types/shipping-options";
-import { computeShippingOptionTargets } from "../utils";
-import { StoreGetFreeShippingPricesParamsType } from "../validators";
+import { listShippingOptionsForCartWorkflow } from "@medusajs/core-flows"
+import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import { RemoteQueryFunction } from "@medusajs/framework/types"
+import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
+import { StoreFreeShippingPrice } from "@b2b/types/shipping-options"
+import { computeShippingOptionTargets } from "../utils"
+import { StoreGetFreeShippingPricesParamsType } from "../validators"
 
 export const GET = async (
   req: MedusaRequest<{}, StoreGetFreeShippingPricesParamsType>,
   res: MedusaResponse<{
-    prices: StoreFreeShippingPrice[];
+    prices: StoreFreeShippingPrice[]
   }>
 ) => {
-  const { cart_id } = req.filterableFields;
+  const { cart_id } = req.filterableFields
   const listShippingOptionsWorkflow = listShippingOptionsForCartWorkflow(
     req.scope
-  );
+  )
   const query = req.scope.resolve<RemoteQueryFunction>(
     ContainerRegistrationKeys.QUERY
-  );
+  )
 
   const {
     data: [cart],
@@ -29,19 +29,19 @@ export const GET = async (
       filters: { id: cart_id },
     },
     { throwIfKeyNotFound: true }
-  );
+  )
 
   const { result: shippingOptions } = await listShippingOptionsWorkflow.run({
     input: { cart_id, is_return: false },
-  });
+  })
 
   // Return any valid free shipping prices that can be found for the cart
   const freeShippingPrices = shippingOptions
     .map((shippingOption) => {
-      const calculatedPrice = shippingOption.calculated_price;
+      const calculatedPrice = shippingOption.calculated_price
 
       if (!calculatedPrice) {
-        return;
+        return
       }
 
       // Get all prices that are:
@@ -54,18 +54,18 @@ export const GET = async (
             (priceRule) => priceRule.attribute === "item_total"
           ) &&
           price.amount === 0
-      );
+      )
 
       return validCurrencyPrices.map((price) => {
         return {
           ...price,
           shipping_option_id: shippingOption.id,
           ...computeShippingOptionTargets(cart as any, price),
-        };
-      });
+        }
+      })
     })
     .flat(1)
-    .filter(Boolean);
+    .filter(Boolean)
 
-  res.json({ prices: freeShippingPrices });
-};
+  res.json({ prices: freeShippingPrices })
+}

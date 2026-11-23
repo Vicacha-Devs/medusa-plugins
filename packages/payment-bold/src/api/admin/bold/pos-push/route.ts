@@ -16,7 +16,10 @@ const CreateBoldPosPushSchema = z.object({
   description: z.string().max(500).optional(),
 })
 
-export async function POST(req: MedusaRequest, res: MedusaResponse): Promise<void> {
+export async function POST(
+  req: MedusaRequest,
+  res: MedusaResponse
+): Promise<void> {
   const parsed = CreateBoldPosPushSchema.safeParse(req.body ?? {})
   if (!parsed.success) {
     res.status(400).json({
@@ -26,7 +29,9 @@ export async function POST(req: MedusaRequest, res: MedusaResponse): Promise<voi
     return
   }
 
-  const paymentModule: IPaymentModuleService = req.scope.resolve(Modules.PAYMENT)
+  const paymentModule: IPaymentModuleService = req.scope.resolve(
+    Modules.PAYMENT
+  )
   const input = parsed.data
 
   try {
@@ -48,7 +53,7 @@ export async function POST(req: MedusaRequest, res: MedusaResponse): Promise<voi
     )
 
     res.status(200).json({ paymentSession })
-  } catch (_error: unknown) {
+  } catch {
     res.status(500).json({ message: "Failed to trigger terminal checkout" })
   }
 }

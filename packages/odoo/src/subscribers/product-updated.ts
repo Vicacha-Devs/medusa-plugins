@@ -1,6 +1,9 @@
 import type { SubscriberArgs, SubscriberConfig } from "@medusajs/framework"
 import type OdooModuleService from "../modules/odoo/service"
-import { ODOO_MODULE, type OdooProductSyncSettings } from "../modules/odoo/types"
+import {
+  ODOO_MODULE,
+  type OdooProductSyncSettings,
+} from "../modules/odoo/types"
 
 export default async function odooProductUpdatedSubscriber({
   event,

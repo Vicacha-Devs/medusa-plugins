@@ -1,29 +1,29 @@
 // Canonical package list for the @vicacha-devs/docs site — single source of truth
 // shared by astro.config.ts, scripts/generate-openapi.ts, and scripts/sync-readmes.ts.
 
-export type SupportedLocale = "en" | "es" | "ar" | "tr";
-export type NonDefaultLocale = "es" | "ar" | "tr";
+export type SupportedLocale = "en" | "es" | "ar" | "tr"
+export type NonDefaultLocale = "es" | "ar" | "tr"
 
 export interface PluginPackageMeta {
-  slug: string;
-  npmName: string;
-  pluginId: string;
-  category: string;
-  label: string;
-  translations: Record<NonDefaultLocale, string>;
-  summary: Record<SupportedLocale, string>;
+  slug: string
+  npmName: string
+  pluginId: string
+  category: string
+  label: string
+  translations: Record<NonDefaultLocale, string>
+  summary: Record<SupportedLocale, string>
   /** Empty when the plugin exposes no HTTP routes (no OpenAPI reference). */
-  schemaFile: string;
-  dir: string;
+  schemaFile: string
+  dir: string
 }
 
 export interface GuideMeta {
-  slug: string;
-  label: string;
-  translations: Record<NonDefaultLocale, string>;
+  slug: string
+  label: string
+  translations: Record<NonDefaultLocale, string>
 }
 
-export const SUPPORTED_LOCALES: SupportedLocale[] = ["en", "es", "ar", "tr"];
+export const SUPPORTED_LOCALES: SupportedLocale[] = ["en", "es", "ar", "tr"]
 
 export const plugins: PluginPackageMeta[] = [
   {
@@ -286,7 +286,7 @@ export const plugins: PluginPackageMeta[] = [
     schemaFile: "typesense",
     dir: "typesense",
   },
-];
+]
 
 export const guides: GuideMeta[] = [
   {
@@ -352,4 +352,4 @@ export const guides: GuideMeta[] = [
       tr: "Katkı ve Eklenti Oluşturma",
     },
   },
-];
+]

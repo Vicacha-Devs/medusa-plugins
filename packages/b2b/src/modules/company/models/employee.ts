@@ -1,5 +1,5 @@
-import { model } from "@medusajs/framework/utils";
-import { Company } from "./company";
+import { model } from "@medusajs/framework/utils"
+import { Company } from "./company"
 
 export const Employee = model
   .define("employee", {
@@ -27,4 +27,4 @@ export const Employee = model
       on: ["company_id", "is_active"],
       where: "deleted_at IS NULL",
     },
-  ]);
+  ])

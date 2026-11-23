@@ -1,6 +1,4 @@
-import {
-  Modules,
-} from "@medusajs/framework/utils"
+import { Modules } from "@medusajs/framework/utils"
 import type {
   OdooCustomerSyncSettings,
   OdooSyncDirection,
@@ -10,33 +8,36 @@ import type { OdooModuleService } from "../service"
 import { errorMessage } from "../utils/errors"
 import { resolveFromScope, resolveQueryGraph } from "../utils/scope"
 
-export async function syncCustomers(this: OdooModuleService, params?: {
-  scope?: unknown
-  customerIds?: string[]
-  directionOverride?: OdooSyncDirection
-  medusaCustomers?: Array<{
-    id: string
-    email: string
-    first_name?: string | null
-    last_name?: string | null
-    phone?: string | null
-    company_name?: string | null
-    addresses?: Array<{
-      address_1?: string | null
-      city?: string | null
-      postal_code?: string | null
-      country_code?: string | null
-    }> | null
-  }>
-  onUpsertMedusaCustomer?: (partner: {
-    odooId: number
-    email: string
-    firstName: string
-    lastName: string
-    phone?: string | null
-  }) => Promise<string>
-  trigger?: string
-}): Promise<OdooSyncResult> {
+export async function syncCustomers(
+  this: OdooModuleService,
+  params?: {
+    scope?: unknown
+    customerIds?: string[]
+    directionOverride?: OdooSyncDirection
+    medusaCustomers?: Array<{
+      id: string
+      email: string
+      first_name?: string | null
+      last_name?: string | null
+      phone?: string | null
+      company_name?: string | null
+      addresses?: Array<{
+        address_1?: string | null
+        city?: string | null
+        postal_code?: string | null
+        country_code?: string | null
+      }> | null
+    }>
+    onUpsertMedusaCustomer?: (partner: {
+      odooId: number
+      email: string
+      firstName: string
+      lastName: string
+      phone?: string | null
+    }) => Promise<string>
+    trigger?: string
+  }
+): Promise<OdooSyncResult> {
   const started = Date.now()
   const settings =
     await this.getSectionSettings<OdooCustomerSyncSettings>("customers")
@@ -66,10 +67,7 @@ export async function syncCustomers(this: OdooModuleService, params?: {
     let failed = 0
     const errors: string[] = []
 
-    if (
-      direction === "odoo_to_medusa" ||
-      direction === "bidirectional"
-    ) {
+    if (direction === "odoo_to_medusa" || direction === "bidirectional") {
       const partners = await client.fetchCustomers(500)
       for (const p of partners) {
         const email =
@@ -131,16 +129,14 @@ export async function syncCustomers(this: OdooModuleService, params?: {
                     await customerMod.updateCustomers(medusaId, {
                       first_name: firstName,
                       last_name: lastName,
-                      phone:
-                        typeof p.phone === "string" ? p.phone : undefined,
+                      phone: typeof p.phone === "string" ? p.phone : undefined,
                     })
                   } else {
                     const createdCust = await customerMod.createCustomers({
                       email,
                       first_name: firstName,
                       last_name: lastName,
-                      phone:
-                        typeof p.phone === "string" ? p.phone : undefined,
+                      phone: typeof p.phone === "string" ? p.phone : undefined,
                       metadata: { odoo_partner_id: p.id },
                     })
                     const custObj = Array.isArray(createdCust)
@@ -180,10 +176,7 @@ export async function syncCustomers(this: OdooModuleService, params?: {
       }
     }
 
-    if (
-      direction === "medusa_to_odoo" ||
-      direction === "bidirectional"
-    ) {
+    if (direction === "medusa_to_odoo" || direction === "bidirectional") {
       let medusaCustomers = params?.medusaCustomers
       if (!medusaCustomers) {
         const query = resolveQueryGraph(this.container_, params?.scope)

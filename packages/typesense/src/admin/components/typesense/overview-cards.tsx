@@ -1,11 +1,4 @@
-import {
-  Button,
-  clx,
-  Container,
-  Heading,
-  Skeleton,
-  Text,
-} from "@medusajs/ui"
+import { Button, clx, Container, Heading, Skeleton, Text } from "@medusajs/ui"
 import React from "react"
 
 export type StatCardProps = {

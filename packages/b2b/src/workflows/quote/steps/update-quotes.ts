@@ -1,10 +1,10 @@
 import {
   convertItemResponseToUpdateRequest,
   getSelectsAndRelationsFromObjectArray,
-} from "@medusajs/framework/utils";
-import { StepResponse, createStep } from "@medusajs/framework/workflows-sdk";
-import { QUOTE_MODULE } from "@b2b/modules/quote";
-import { IQuoteModuleService, ModuleUpdateQuote } from "@b2b/types";
+} from "@medusajs/framework/utils"
+import { StepResponse, createStep } from "@medusajs/framework/workflows-sdk"
+import { QUOTE_MODULE } from "@b2b/modules/quote"
+import { IQuoteModuleService, ModuleUpdateQuote } from "@b2b/types"
 
 /*
   A step to update a quote.
@@ -15,34 +15,34 @@ import { IQuoteModuleService, ModuleUpdateQuote } from "@b2b/types";
 export const updateQuotesStep = createStep(
   "update-quotes",
   async (data: ModuleUpdateQuote[], { container }) => {
-    const quoteModule = container.resolve<IQuoteModuleService>(QUOTE_MODULE);
-    const { selects, relations } = getSelectsAndRelationsFromObjectArray(data);
+    const quoteModule = container.resolve<IQuoteModuleService>(QUOTE_MODULE)
+    const { selects, relations } = getSelectsAndRelationsFromObjectArray(data)
 
     const dataBeforeUpdate = await quoteModule.listQuotes(
       { id: data.map((d) => d.id) },
       { relations, select: selects }
-    );
+    )
 
-    const updatedQuotes = await quoteModule.updateQuotes(data);
+    const updatedQuotes = await quoteModule.updateQuotes(data)
 
     return new StepResponse(updatedQuotes, {
       dataBeforeUpdate,
       selects,
       relations,
-    });
+    })
   },
   async (revertInput, { container }) => {
     if (!revertInput) {
-      return;
+      return
     }
 
-    const quoteModule = container.resolve<IQuoteModuleService>(QUOTE_MODULE);
-    const { dataBeforeUpdate, selects, relations } = revertInput;
+    const quoteModule = container.resolve<IQuoteModuleService>(QUOTE_MODULE)
+    const { dataBeforeUpdate, selects, relations } = revertInput
 
     await quoteModule.updateQuotes(
       dataBeforeUpdate.map((data) =>
         convertItemResponseToUpdateRequest(data, selects, relations)
       )
-    );
+    )
   }
-);
+)

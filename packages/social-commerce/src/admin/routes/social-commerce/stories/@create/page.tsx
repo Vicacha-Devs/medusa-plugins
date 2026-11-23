@@ -14,7 +14,7 @@ import {
   type CreateStoryFormState,
 } from "../../../../hooks/use-social-dashboard.js"
 import type { MediaType } from "../../../../../modules/social-commerce/types/index.js"
-import { RbacGuard } from "../../../../components/rbac-guard";
+import { RbacGuard } from "../../../../components/rbac-guard"
 
 const CreateStoryDrawerContent = () => {
   const { t } = useTranslation()
@@ -189,6 +189,6 @@ const GuardedStoryCreateModal = () => (
   <RbacGuard permission="social_commerce.write">
     <StoryCreateModal />
   </RbacGuard>
-);
+)
 
-export default GuardedStoryCreateModal;
+export default GuardedStoryCreateModal

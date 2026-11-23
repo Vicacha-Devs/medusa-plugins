@@ -18,7 +18,12 @@ type MediaGalleryProps = {
   isPending?: boolean
 }
 
-export const MediaGallery = ({ images, thumbnail, onDelete, isPending = false }: MediaGalleryProps) => {
+export const MediaGallery = ({
+  images,
+  thumbnail,
+  onDelete,
+  isPending = false,
+}: MediaGalleryProps) => {
   const { state } = useLocation()
   const [curr, setCurr] = useState<number>(state?.curr || 0)
 

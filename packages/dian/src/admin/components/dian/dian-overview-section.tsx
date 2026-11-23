@@ -36,9 +36,7 @@ export const DianOverviewSection: React.FC<DianOverviewSectionProps> = ({
           <div className="flex items-center gap-2">
             <Heading level="h1">{t("dian.overview.title")}</Heading>
             <Badge color={isProd ? "green" : "orange"}>
-              {isProd
-                ? t("dian.overview.envProd")
-                : t("dian.overview.envTest")}
+              {isProd ? t("dian.overview.envProd") : t("dian.overview.envTest")}
             </Badge>
           </div>
           <Text size="small" className="text-ui-fg-subtle mt-1">

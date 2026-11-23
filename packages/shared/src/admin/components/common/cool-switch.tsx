@@ -1,6 +1,6 @@
-import { Switch, Label, Container, Text, Tooltip } from "@medusajs/ui";
-import { InformationCircleSolid } from "@medusajs/icons";
-import type { JSX } from "react";
+import { Switch, Label, Container, Text, Tooltip } from "@medusajs/ui"
+import { InformationCircleSolid } from "@medusajs/icons"
+import type { JSX } from "react"
 
 const CoolSwitch = ({
   checked,
@@ -10,12 +10,12 @@ const CoolSwitch = ({
   description,
   tooltip,
 }: {
-  checked: boolean;
-  onChange: (checked: boolean) => void;
-  fieldName: string;
-  label: string;
-  description: string;
-  tooltip?: string;
+  checked: boolean
+  onChange: (checked: boolean) => void
+  fieldName: string
+  label: string
+  description: string
+  tooltip?: string
 }): JSX.Element => {
   return (
     <Container className="bg-ui-bg-subtle flex flex-col gap-2">
@@ -32,7 +32,7 @@ const CoolSwitch = ({
       </div>
       <Text size="xsmall">{description}</Text>
     </Container>
-  );
-};
+  )
+}
 
-export { CoolSwitch };
+export { CoolSwitch }

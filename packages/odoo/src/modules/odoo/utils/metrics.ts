@@ -40,13 +40,14 @@ class OdooMetricsRegistry {
       (this.syncDurationMsCount.get(durKey) ?? 0) + 1
     )
 
-    const actions: Array<["created" | "updated" | "skipped" | "failed", number]> =
-      [
-        ["created", params.created ?? 0],
-        ["updated", params.updated ?? 0],
-        ["skipped", params.skipped ?? 0],
-        ["failed", params.failed ?? 0],
-      ]
+    const actions: Array<
+      ["created" | "updated" | "skipped" | "failed", number]
+    > = [
+      ["created", params.created ?? 0],
+      ["updated", params.updated ?? 0],
+      ["skipped", params.skipped ?? 0],
+      ["failed", params.failed ?? 0],
+    ]
 
     for (const [action, count] of actions) {
       if (count > 0) {

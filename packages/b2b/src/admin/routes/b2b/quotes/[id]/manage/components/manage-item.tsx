@@ -1,24 +1,24 @@
-import { ActionMenu } from "@medusajs/dashboard/components";
-import { AdminOrder, AdminOrderPreview } from "@medusajs/framework/types";
+import { ActionMenu } from "@medusajs/dashboard/components"
+import { AdminOrder, AdminOrderPreview } from "@medusajs/framework/types"
 import {
   ArrowUturnLeft,
   DocumentSeries,
   PencilSquare,
   XCircle,
-} from "@medusajs/icons";
-import { Input, Text, toast } from "@medusajs/ui";
-import { AmountCell } from "@vicacha-devs/medusa-shared-admin/admin";
-import debounce from "lodash/debounce";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { useTranslation } from "react-i18next";
+} from "@medusajs/icons"
+import { Input, Text, toast } from "@medusajs/ui"
+import { AmountCell } from "@vicacha-devs/medusa-shared-admin/admin"
+import debounce from "lodash/debounce"
+import { useCallback, useEffect, useMemo, useRef, useState } from "react"
+import { useTranslation } from "react-i18next"
 
 import {
   useAddItemsToQuote,
   useRemoveQuoteItem,
   useUpdateQuoteItem,
-} from "../../../../../../hooks/api";
-import { ManageItemInfo } from "./manage-item-info";
-import { ManageItemPriceForm } from "./manage-item-price-form";
+} from "../../../../../../hooks/api"
+import { ManageItemInfo } from "./manage-item-info"
+import { ManageItemPriceForm } from "./manage-item-price-form"
 
 type ManageItemProps = {
   originalItem: AdminOrder["items"][0]

@@ -122,7 +122,9 @@ export const MessageBubble = ({
         </div>
 
         {timestamp && (
-          <span className="txt-compact-xsmall text-ui-fg-muted">{timestamp}</span>
+          <span className="txt-compact-xsmall text-ui-fg-muted">
+            {timestamp}
+          </span>
         )}
       </div>
     </div>

@@ -1,13 +1,16 @@
 import { defineRouteConfig } from "@medusajs/admin-sdk"
 import { CORE_LAYOUT_IDS } from "@medusajs/admin-shared"
-import { ConfigurableDataTable, LayoutComposer } from "@medusajs/dashboard/components"
+import {
+  ConfigurableDataTable,
+  LayoutComposer,
+} from "@medusajs/dashboard/components"
 import { DocumentText } from "@medusajs/icons"
 import { Toaster } from "@medusajs/ui"
 import { useFeatureFlag } from "@vicacha-devs/medusa-shared-admin/admin"
 import { useTranslation } from "react-i18next"
 
 import { QuotesTable, useQuotesTableAdapter } from "./components"
-import { RbacGuard } from "@vicacha-devs/medusa-shared-admin/admin";
+import { RbacGuard } from "@vicacha-devs/medusa-shared-admin/admin"
 
 const Quotes = () => {
   const { t } = useTranslation()
@@ -57,6 +60,6 @@ const GuardedQuotes = () => (
   <RbacGuard permission="b2b.read">
     <Quotes />
   </RbacGuard>
-);
+)
 
-export default GuardedQuotes;
+export default GuardedQuotes

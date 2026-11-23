@@ -6,7 +6,7 @@ import { Toaster } from "@medusajs/ui"
 import { useTranslation } from "react-i18next"
 import { CatalogTab } from "../../../components/index.js"
 import { useSocialDashboard } from "../../../hooks/use-social-dashboard.js"
-import { RbacGuard } from "../../../components/rbac-guard";
+import { RbacGuard } from "../../../components/rbac-guard"
 
 const SocialCatalogPage = () => {
   const { catalogItems } = useSocialDashboard()
@@ -46,6 +46,6 @@ const GuardedSocialCatalogPage = () => (
   <RbacGuard permission="social_commerce.read">
     <SocialCatalogPage />
   </RbacGuard>
-);
+)
 
-export default GuardedSocialCatalogPage;
+export default GuardedSocialCatalogPage

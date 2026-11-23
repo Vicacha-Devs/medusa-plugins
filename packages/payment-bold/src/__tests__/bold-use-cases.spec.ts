@@ -108,9 +108,18 @@ function createMedusaTestHarness(emulator: BoldQaEmulator) {
   const options = emulator.clientOptions
 
   const linkProvider = new BoldLinkPaymentProviderService({ logger }, options)
-  const onlineProvider = new BoldOnlinePaymentProviderService({ logger }, options)
-  const buttonProvider = new BoldButtonPaymentProviderService({ logger }, options)
-  const terminalProvider = new BoldTerminalPaymentProviderService({ logger }, options)
+  const onlineProvider = new BoldOnlinePaymentProviderService(
+    { logger },
+    options
+  )
+  const buttonProvider = new BoldButtonPaymentProviderService(
+    { logger },
+    options
+  )
+  const terminalProvider = new BoldTerminalPaymentProviderService(
+    { logger },
+    options
+  )
 
   const providersById = new Map<string, any>([
     [EMedusaFormatBoldPaymentProvider.LINK, linkProvider],
@@ -119,13 +128,19 @@ function createMedusaTestHarness(emulator: BoldQaEmulator) {
     [EMedusaFormatBoldPaymentProvider.TERMINAL, terminalProvider],
   ])
 
-  const collections = new Map<string, { id: string; amount: number; currency_code: string }>()
+  const collections = new Map<
+    string,
+    { id: string; amount: number; currency_code: string }
+  >()
   const sessions = new Map<string, MockSession>()
   const payments = new Map<string, MockPayment>()
   let seq = 1
 
   const paymentModule = {
-    async createPaymentCollections(input: { amount: number; currency_code: string }) {
+    async createPaymentCollections(input: {
+      amount: number
+      currency_code: string
+    }) {
       const col = { id: `pay_col_${seq++}`, ...input }
       collections.set(col.id, col)
       return col
@@ -207,7 +222,11 @@ function createMedusaTestHarness(emulator: BoldQaEmulator) {
       if (session) session.status = "captured"
       return payment
     },
-    async refundPayment(input: { payment_id: string; amount: number; note?: string }) {
+    async refundPayment(input: {
+      payment_id: string
+      amount: number
+      note?: string
+    }) {
       const payment = payments.get(input.payment_id)
       if (!payment) throw new Error(`Payment ${input.payment_id} not found`)
       const provider = providersById.get(payment.provider_id)
@@ -250,7 +269,12 @@ function createMedusaTestHarness(emulator: BoldQaEmulator) {
   return {
     scope,
     paymentModule,
-    providers: { linkProvider, onlineProvider, buttonProvider, terminalProvider },
+    providers: {
+      linkProvider,
+      onlineProvider,
+      buttonProvider,
+      terminalProvider,
+    },
     sessions,
     payments,
   }
@@ -320,7 +344,11 @@ describe("@vicacha-devs/medusa-payment-bold — Automated 4-Channel Use-Case Sui
     assert.equal(linkRes.statusCode, 200)
     const created = linkRes.jsonBody as { paymentSession: MockSession }
     assert.equal(created.paymentSession.status, "pending")
-    assert.ok(String(created.paymentSession.data.payment_url).includes("/checkout/LNK_QA_"))
+    assert.ok(
+      String(created.paymentSession.data.payment_url).includes(
+        "/checkout/LNK_QA_"
+      )
+    )
 
     // Verify exact Bold HTTP payload sent over TCP
     const boldReq = emulator.requests.find((r) => r.path === "/online/link/v1")
@@ -333,7 +361,9 @@ describe("@vicacha-devs/medusa-payment-bold — Automated 4-Channel Use-Case Sui
     }
     assert.equal(sentAmount.currency, "COP")
     assert.equal(sentAmount.total_amount, 119000)
-    assert.deepEqual(sentAmount.taxes, [{ type: "VAT", base: 100000, value: 19000 }])
+    assert.deepEqual(sentAmount.taxes, [
+      { type: "VAT", base: 100000, value: 19000 },
+    ])
 
     // 1c. Simulate customer completing link + fire real HMAC-SHA256 webhook
     const webhook = emulator.simulatePaymentOutcome("ORD-LINK-1001", "APPROVED")
@@ -357,7 +387,11 @@ describe("@vicacha-devs/medusa-payment-bold — Automated 4-Channel Use-Case Sui
     await refundRoute(
       {
         scope: harness.scope,
-        body: { payment_id: payment.id, amount: 50000, note: "Partial refund QA" },
+        body: {
+          payment_id: payment.id,
+          amount: 50000,
+          note: "Partial refund QA",
+        },
       } as any,
       refundRes as any
     )
@@ -367,7 +401,11 @@ describe("@vicacha-devs/medusa-payment-bold — Automated 4-Channel Use-Case Sui
     await refundRoute(
       {
         scope: harness.scope,
-        body: { payment_id: payment.id, amount: 90000, note: "Exceeds balance" },
+        body: {
+          payment_id: payment.id,
+          amount: 90000,
+          note: "Exceeds balance",
+        },
       } as any,
       overRefundRes as any
     )
@@ -398,11 +436,19 @@ describe("@vicacha-devs/medusa-payment-bold — Automated 4-Channel Use-Case Sui
       qrRes as any
     )
     assert.equal(qrRes.statusCode, 200)
-    const body = qrRes.jsonBody as { qr_payload: string; paymentSession: MockSession }
+    const body = qrRes.jsonBody as {
+      qr_payload: string
+      paymentSession: MockSession
+    }
     assert.ok(body.qr_payload.length > 10, "returns non-empty QR payload")
-    assert.equal(body.paymentSession.provider_id, EMedusaFormatBoldPaymentProvider.ONLINE)
+    assert.equal(
+      body.paymentSession.provider_id,
+      EMedusaFormatBoldPaymentProvider.ONLINE
+    )
 
-    const intentReq = emulator.requests.find((r) => r.path === "/v1/payment-intent")
+    const intentReq = emulator.requests.find(
+      (r) => r.path === "/v1/payment-intent"
+    )
     assert.ok(intentReq, "Bold /v1/payment-intent was called")
     assert.equal(intentReq.authorization, `x-api-key ${buttonApiKey}`)
     assert.deepEqual(intentReq.body?.payment_method, {
@@ -436,11 +482,15 @@ describe("@vicacha-devs/medusa-payment-bold — Automated 4-Channel Use-Case Sui
       qr_payload: string
       paymentSession: MockSession
     }
-    assert.ok(expiredBody.qr_payload.startsWith("000201"), "TEXT EMVCo QR payload returned")
+    assert.ok(
+      expiredBody.qr_payload.startsWith("000201"),
+      "TEXT EMVCo QR payload returned"
+    )
     emulator.simulatePaymentOutcome("ORD-QR-2002", "EXPIRED")
-    const expiredStatus = await harness.providers.onlineProvider.getPaymentStatus({
-      data: expiredBody.paymentSession.data,
-    })
+    const expiredStatus =
+      await harness.providers.onlineProvider.getPaymentStatus({
+        data: expiredBody.paymentSession.data,
+      })
     assert.equal(expiredStatus.status, "canceled")
   })
 
@@ -466,7 +516,9 @@ describe("@vicacha-devs/medusa-payment-bold — Automated 4-Channel Use-Case Sui
       btnRes as any
     )
     assert.equal(btnRes.statusCode, 200)
-    const { paymentSession } = btnRes.jsonBody as { paymentSession: MockSession }
+    const { paymentSession } = btnRes.jsonBody as {
+      paymentSession: MockSession
+    }
     const expectedHash = BoldIntegrityService.generateButtonHash(
       "ORD-BTN-3001",
       250000,
@@ -531,10 +583,14 @@ describe("@vicacha-devs/medusa-payment-bold — Automated 4-Channel Use-Case Sui
       pushRes as any
     )
     assert.equal(pushRes.statusCode, 200)
-    const { paymentSession } = pushRes.jsonBody as { paymentSession: MockSession }
+    const { paymentSession } = pushRes.jsonBody as {
+      paymentSession: MockSession
+    }
     assert.ok(paymentSession.data.terminal_checkout_id)
 
-    const posReq = emulator.requests.find((r) => r.path === "/payments/app-checkout")
+    const posReq = emulator.requests.find(
+      (r) => r.path === "/payments/app-checkout"
+    )
     assert.ok(posReq, "Bold /payments/app-checkout was called")
     assert.equal(posReq.body?.payment_method, "POS")
     assert.equal(posReq.body?.terminal_serial, "N86-QA-001")
@@ -542,7 +598,10 @@ describe("@vicacha-devs/medusa-payment-bold — Automated 4-Channel Use-Case Sui
     // 4c. Check GET /admin/bold/payment-status while pending
     const statusRes = createMockRes()
     await getPaymentStatusRoute(
-      { scope: harness.scope, query: { paymentSessionId: paymentSession.id } } as any,
+      {
+        scope: harness.scope,
+        query: { paymentSessionId: paymentSession.id },
+      } as any,
       statusRes as any
     )
     assert.equal(statusRes.statusCode, 200)
@@ -577,12 +636,14 @@ describe("@vicacha-devs/medusa-payment-bold — Automated 4-Channel Use-Case Sui
       } as any,
       pushDeclineRes as any
     )
-    const declinedSession = (pushDeclineRes.jsonBody as { paymentSession: MockSession })
-      .paymentSession
+    const declinedSession = (
+      pushDeclineRes.jsonBody as { paymentSession: MockSession }
+    ).paymentSession
     emulator.simulatePaymentOutcome("ORD-POS-4002", "REJECTED")
-    const declineAuth = await harness.providers.terminalProvider.authorizePayment({
-      data: declinedSession.data,
-    })
+    const declineAuth =
+      await harness.providers.terminalProvider.authorizePayment({
+        data: declinedSession.data,
+      })
     assert.equal(declineAuth.status, "canceled")
 
     // 4f. Reject unknown/unbound terminal serial
@@ -624,7 +685,9 @@ describe("@vicacha-devs/medusa-payment-bold — Automated 4-Channel Use-Case Sui
       } as any,
       linkRes as any
     )
-    const { paymentSession } = linkRes.jsonBody as { paymentSession: MockSession }
+    const { paymentSession } = linkRes.jsonBody as {
+      paymentSession: MockSession
+    }
 
     // 5a. Missing signature headers -> 401
     const noSigRes = createMockRes()
@@ -638,7 +701,12 @@ describe("@vicacha-devs/medusa-payment-bold — Automated 4-Channel Use-Case Sui
     const forged = signBoldWebhook(
       {
         event: "sale.successful",
-        data: { reference: "ORD-SEC-5001", status: "APPROVED", amount: 100000, currency: "COP" },
+        data: {
+          reference: "ORD-SEC-5001",
+          status: "APPROVED",
+          amount: 100000,
+          currency: "COP",
+        },
       },
       "wrong-secret-key"
     )
@@ -656,9 +724,13 @@ describe("@vicacha-devs/medusa-payment-bold — Automated 4-Channel Use-Case Sui
     assert.equal(paymentSession.status, "pending")
 
     // 5c. Valid signature but tampered amount (1000 instead of 100000) -> NOT authorized
-    const tampered = emulator.simulatePaymentOutcome("ORD-SEC-5001", "APPROVED", {
-      amount: 1000,
-    })
+    const tampered = emulator.simulatePaymentOutcome(
+      "ORD-SEC-5001",
+      "APPROVED",
+      {
+        amount: 1000,
+      }
+    )
     const tamperRes = createMockRes()
     await webhookRoute(
       {
@@ -670,7 +742,11 @@ describe("@vicacha-devs/medusa-payment-bold — Automated 4-Channel Use-Case Sui
       tamperRes as any
     )
     assert.equal(tamperRes.statusCode, 200)
-    assert.equal(paymentSession.status, "pending", "tampered amount must NOT authorize session")
+    assert.equal(
+      paymentSession.status,
+      "pending",
+      "tampered amount must NOT authorize session"
+    )
 
     // 5d. SSRF guard: reject non-HTTPS non-loopback custom base URL
     assert.throws(() => {
@@ -685,7 +761,10 @@ describe("@vicacha-devs/medusa-payment-bold — Automated 4-Channel Use-Case Sui
 
     // 5e. Fault injection: Bold 401 maps to MedusaError UNAUTHORIZED
     emulator.injectFault("/payments/binded-terminals", 401, "Expired API key")
-    const client = new BoldHttpClient(emulator.clientOptions, createSilentLogger())
+    const client = new BoldHttpClient(
+      emulator.clientOptions,
+      createSilentLogger()
+    )
     await assert.rejects(
       () => client.getTerminals(),
       (err: any) => err.type === "unauthorized"

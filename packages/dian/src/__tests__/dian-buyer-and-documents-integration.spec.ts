@@ -230,7 +230,8 @@ describe("DIAN Client, B2B Legal Client (@vicacha-devs/medusa-plugin-b2b), and P
       withholdings: [],
       cufe_cude: "c".repeat(96),
       cufe_cude_algorithm: "CUFE-SHA384",
-      qr_url: "https://catalogo-vpfe-hab.dian.gov.co/document/searchqr?documentkey=ccc",
+      qr_url:
+        "https://catalogo-vpfe-hab.dian.gov.co/document/searchqr?documentkey=ccc",
       qr_data: "CUFE: ccc",
     }
 

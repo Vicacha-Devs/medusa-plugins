@@ -43,7 +43,10 @@ export function createAuthenticityHmac(
     (payload.batchLot ?? "").trim(),
   ].join("|")
 
-  return crypto.createHmac("sha256", key).update(canonical, "utf8").digest("hex")
+  return crypto
+    .createHmac("sha256", key)
+    .update(canonical, "utf8")
+    .digest("hex")
 }
 
 /**

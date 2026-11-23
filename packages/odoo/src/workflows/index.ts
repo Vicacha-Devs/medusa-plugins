@@ -1,7 +1,4 @@
-import {
-  ContainerRegistrationKeys,
-  Modules,
-} from "@medusajs/framework/utils"
+import { ContainerRegistrationKeys, Modules } from "@medusajs/framework/utils"
 import {
   createStep,
   createWorkflow,
@@ -101,8 +98,7 @@ export async function executeOrderSyncToOdoo(
         title: String(it.title ?? "Item"),
         quantity: Number(it.quantity ?? 1),
         unit_price: Number(it.unit_price ?? 0),
-        variant_sku:
-          typeof it.variant_sku === "string" ? it.variant_sku : null,
+        variant_sku: typeof it.variant_sku === "string" ? it.variant_sku : null,
       })),
     },
     manual: input.manual,
@@ -111,7 +107,9 @@ export async function executeOrderSyncToOdoo(
   if (syncResult.ok && syncResult.odooOrderId) {
     try {
       const orderModule = container.resolve(Modules.ORDER) as {
-        updateOrders?: (data: Array<Record<string, unknown>>) => Promise<unknown>
+        updateOrders?: (
+          data: Array<Record<string, unknown>>
+        ) => Promise<unknown>
       }
       if (orderModule?.updateOrders) {
         const existingMetadata =
@@ -187,10 +185,7 @@ export const syncInventoryWithOdooWorkflow = createWorkflow(
 
 const syncOrderStep = createStep(
   "sync-order",
-  async (
-    input: { orderId: string; manual?: boolean },
-    { container }
-  ) => {
+  async (input: { orderId: string; manual?: boolean }, { container }) => {
     const res = await executeOrderSyncToOdoo(container, input)
     return new StepResponse(res, {
       orderId: input.orderId,

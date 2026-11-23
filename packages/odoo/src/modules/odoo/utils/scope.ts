@@ -8,7 +8,9 @@ type QueryGraphArgs = {
 }
 
 export interface QueryGraph {
-  graph: (args: QueryGraphArgs) => Promise<{ data: Array<Record<string, unknown>> }>
+  graph: (
+    args: QueryGraphArgs
+  ) => Promise<{ data: Array<Record<string, unknown>> }>
 }
 
 /**
@@ -47,5 +49,7 @@ export const resolveQueryGraph = (
     ContainerRegistrationKeys.QUERY,
     scopeOverride
   )
-  return query && typeof query.graph === "function" ? (query as QueryGraph) : null
+  return query && typeof query.graph === "function"
+    ? (query as QueryGraph)
+    : null
 }

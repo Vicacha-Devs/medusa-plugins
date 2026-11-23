@@ -21,9 +21,14 @@ export const useQuotesTableColumns = () => {
         header: t("quotes.table.customer"),
         cell: ({ row }) => {
           const customer = (row.original as any).customer
-          if (!customer) return <span className="txt-compact-small text-ui-fg-subtle">—</span>
+          if (!customer)
+            return (
+              <span className="txt-compact-small text-ui-fg-subtle">—</span>
+            )
           const name =
-            [customer.first_name, customer.last_name].filter(Boolean).join(" ") ||
+            [customer.first_name, customer.last_name]
+              .filter(Boolean)
+              .join(" ") ||
             customer.email ||
             customer.id
           return (
@@ -40,7 +45,10 @@ export const useQuotesTableColumns = () => {
         header: t("quotes.table.draftOrder"),
         cell: ({ row }) => {
           const draftOrder = (row.original as any).draft_order
-          if (!draftOrder) return <span className="txt-compact-small text-ui-fg-subtle">—</span>
+          if (!draftOrder)
+            return (
+              <span className="txt-compact-small text-ui-fg-subtle">—</span>
+            )
           return (
             <Link
               to={`/orders/${draftOrder.id}`}

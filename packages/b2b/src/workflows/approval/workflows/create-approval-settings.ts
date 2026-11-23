@@ -1,15 +1,18 @@
-import { transform } from "@medusajs/framework/workflows-sdk";
-import { createRemoteLinkStep } from "@medusajs/medusa/core-flows";
-import { createWorkflow, WorkflowResponse } from "@medusajs/framework/workflows-sdk";
-import { APPROVAL_MODULE } from "@b2b/modules/approval";
-import { COMPANY_MODULE } from "@b2b/modules/company";
-import { ModuleCompany } from "@b2b/types";
-import { createApprovalSettingsStep } from "../steps";
+import { transform } from "@medusajs/framework/workflows-sdk"
+import { createRemoteLinkStep } from "@medusajs/medusa/core-flows"
+import {
+  createWorkflow,
+  WorkflowResponse,
+} from "@medusajs/framework/workflows-sdk"
+import { APPROVAL_MODULE } from "@b2b/modules/approval"
+import { COMPANY_MODULE } from "@b2b/modules/company"
+import { ModuleCompany } from "@b2b/types"
+import { createApprovalSettingsStep } from "../steps"
 
 export const createApprovalSettingsWorkflow = createWorkflow(
   "create-approval-settings",
   function (input: ModuleCompany[]) {
-    const approvalSettings = createApprovalSettingsStep(input);
+    const approvalSettings = createApprovalSettingsStep(input)
 
     const linkData = transform(approvalSettings, (settings) =>
       settings.map((setting) => ({
@@ -20,10 +23,10 @@ export const createApprovalSettingsWorkflow = createWorkflow(
           approval_settings_id: setting.id,
         },
       }))
-    );
+    )
 
-    createRemoteLinkStep(linkData);
+    createRemoteLinkStep(linkData)
 
-    return new WorkflowResponse(approvalSettings);
+    return new WorkflowResponse(approvalSettings)
   }
-);
+)

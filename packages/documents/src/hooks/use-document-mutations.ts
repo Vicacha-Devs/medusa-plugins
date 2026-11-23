@@ -23,7 +23,10 @@ export function useGenerateDocument(
   >
 ) {
   const client = options?.client ?? documentsAdminSdk
-  return useDocumentsMutation<GenerateDocumentResponse, GenerateDocumentPayload>(
+  return useDocumentsMutation<
+    GenerateDocumentResponse,
+    GenerateDocumentPayload
+  >(
     (payload) => client.generateDocument(payload),
     options,
     documentsQueryKeys.all

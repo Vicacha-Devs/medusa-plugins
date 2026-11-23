@@ -1,4 +1,4 @@
-import type { JSX } from "react";
+import type { JSX } from "react"
 import { CheckMini, EllipseMiniSolid, XMarkMini } from "@medusajs/icons"
 import { clx } from "@medusajs/ui"
 import * as Popover from "@radix-ui/react-popover"

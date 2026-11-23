@@ -88,7 +88,12 @@ export class SocialCommerceRepository {
       created_at: now,
       updated_at: now,
     })
-    const { id: _id, created_at: _ca, updated_at: _ua, ...payload } = normalizedInput
+    const {
+      id: _id,
+      created_at: _ca,
+      updated_at: _ua,
+      ...payload
+    } = normalizedInput
     if (this.hasInjectedOrmService("socialAccountService")) {
       const res = await this.host.createSocialAccounts(payload)
       return normalizeAccountRecord(
@@ -135,7 +140,9 @@ export class SocialCommerceRepository {
   async retrieveAccount(id: string): Promise<SocialAccountRecord | null> {
     if (this.hasInjectedOrmService("socialAccountService")) {
       try {
-        const res = (await this.host.retrieveSocialAccount(id)) as SocialAccountRecord
+        const res = (await this.host.retrieveSocialAccount(
+          id
+        )) as SocialAccountRecord
         return res ? normalizeAccountRecord(res) : null
       } catch {
         return null
@@ -145,7 +152,9 @@ export class SocialCommerceRepository {
     return found ? normalizeAccountRecord({ ...found }) : null
   }
 
-  async listAccounts(filters?: Record<string, unknown>): Promise<SocialAccountRecord[]> {
+  async listAccounts(
+    filters?: Record<string, unknown>
+  ): Promise<SocialAccountRecord[]> {
     if (this.hasInjectedOrmService("socialAccountService")) {
       const list = (await this.host.listSocialAccounts(
         filters ?? {}
@@ -154,7 +163,9 @@ export class SocialCommerceRepository {
     }
     return Array.from(this.memAccounts.values())
       .map((a) => normalizeAccountRecord({ ...a }))
-      .filter((a) => matchesFilter(a as unknown as Record<string, unknown>, filters))
+      .filter((a) =>
+        matchesFilter(a as unknown as Record<string, unknown>, filters)
+      )
   }
 
   async deleteAccount(id: string): Promise<void> {
@@ -179,7 +190,12 @@ export class SocialCommerceRepository {
       created_at: now,
       updated_at: now,
     })
-    const { id: _id, created_at: _ca, updated_at: _ua, ...payload } = normalizedInput
+    const {
+      id: _id,
+      created_at: _ca,
+      updated_at: _ua,
+      ...payload
+    } = normalizedInput
     if (this.hasInjectedOrmService("socialMediaPostService")) {
       const res = await this.host.createSocialMediaPosts(payload)
       return normalizePostRecord(
@@ -238,7 +254,9 @@ export class SocialCommerceRepository {
     return found ? normalizePostRecord({ ...found }) : null
   }
 
-  async listPosts(filters?: Record<string, unknown>): Promise<SocialMediaPostRecord[]> {
+  async listPosts(
+    filters?: Record<string, unknown>
+  ): Promise<SocialMediaPostRecord[]> {
     if (this.hasInjectedOrmService("socialMediaPostService")) {
       const list = (await this.host.listSocialMediaPosts(
         filters ?? {}
@@ -247,7 +265,9 @@ export class SocialCommerceRepository {
     }
     return Array.from(this.memPosts.values())
       .map((p) => normalizePostRecord({ ...p }))
-      .filter((p) => matchesFilter(p as unknown as Record<string, unknown>, filters))
+      .filter((p) =>
+        matchesFilter(p as unknown as Record<string, unknown>, filters)
+      )
   }
 
   async deletePost(id: string): Promise<void> {
@@ -272,7 +292,12 @@ export class SocialCommerceRepository {
       created_at: now,
       updated_at: now,
     })
-    const { id: _id, created_at: _ca, updated_at: _ua, ...payload } = normalizedInput
+    const {
+      id: _id,
+      created_at: _ca,
+      updated_at: _ua,
+      ...payload
+    } = normalizedInput
     if (this.hasInjectedOrmService("socialProductTagService")) {
       const res = await this.host.createSocialProductTags(payload)
       return normalizeTagRecord(
@@ -289,7 +314,9 @@ export class SocialCommerceRepository {
     return { ...record }
   }
 
-  async listTags(filters?: Record<string, unknown>): Promise<SocialProductTagRecord[]> {
+  async listTags(
+    filters?: Record<string, unknown>
+  ): Promise<SocialProductTagRecord[]> {
     if (this.hasInjectedOrmService("socialProductTagService")) {
       const list = (await this.host.listSocialProductTags(
         filters ?? {}
@@ -298,7 +325,9 @@ export class SocialCommerceRepository {
     }
     return Array.from(this.memTags.values())
       .map((t) => normalizeTagRecord({ ...t }))
-      .filter((t) => matchesFilter(t as unknown as Record<string, unknown>, filters))
+      .filter((t) =>
+        matchesFilter(t as unknown as Record<string, unknown>, filters)
+      )
   }
 
   async deleteTag(id: string): Promise<void> {
@@ -323,7 +352,12 @@ export class SocialCommerceRepository {
       created_at: now,
       updated_at: now,
     })
-    const { id: _id, created_at: _ca, updated_at: _ua, ...payload } = normalizedInput
+    const {
+      id: _id,
+      created_at: _ca,
+      updated_at: _ua,
+      ...payload
+    } = normalizedInput
     if (this.hasInjectedOrmService("liveSessionService")) {
       const res = await this.host.createLiveSessions(payload)
       return normalizeLiveSessionRecord(
@@ -370,7 +404,9 @@ export class SocialCommerceRepository {
   async retrieveLiveSession(id: string): Promise<LiveSessionRecord | null> {
     if (this.hasInjectedOrmService("liveSessionService")) {
       try {
-        const res = (await this.host.retrieveLiveSession(id)) as LiveSessionRecord
+        const res = (await this.host.retrieveLiveSession(
+          id
+        )) as LiveSessionRecord
         return res ? normalizeLiveSessionRecord(res) : null
       } catch {
         return null
@@ -391,7 +427,9 @@ export class SocialCommerceRepository {
     }
     return Array.from(this.memLiveSessions.values())
       .map((s) => normalizeLiveSessionRecord({ ...s }))
-      .filter((s) => matchesFilter(s as unknown as Record<string, unknown>, filters))
+      .filter((s) =>
+        matchesFilter(s as unknown as Record<string, unknown>, filters)
+      )
   }
 
   // ---------------------------------------------------------------------------
@@ -408,7 +446,12 @@ export class SocialCommerceRepository {
       created_at: now,
       updated_at: now,
     })
-    const { id: _id, created_at: _ca, updated_at: _ua, ...payload } = normalizedInput
+    const {
+      id: _id,
+      created_at: _ca,
+      updated_at: _ua,
+      ...payload
+    } = normalizedInput
     if (this.hasInjectedOrmService("liveProductService")) {
       const res = await this.host.createLiveProducts(payload)
       return normalizeLiveProductRecord(
@@ -463,7 +506,9 @@ export class SocialCommerceRepository {
     }
     return Array.from(this.memLiveProducts.values())
       .map((p) => normalizeLiveProductRecord({ ...p }))
-      .filter((p) => matchesFilter(p as unknown as Record<string, unknown>, filters))
+      .filter((p) =>
+        matchesFilter(p as unknown as Record<string, unknown>, filters)
+      )
   }
 
   // ---------------------------------------------------------------------------
@@ -480,7 +525,12 @@ export class SocialCommerceRepository {
       created_at: now,
       updated_at: now,
     })
-    const { id: _id, created_at: _ca, updated_at: _ua, ...payload } = normalizedInput
+    const {
+      id: _id,
+      created_at: _ca,
+      updated_at: _ua,
+      ...payload
+    } = normalizedInput
     if (this.hasInjectedOrmService("catalogSyncItemService")) {
       const res = await this.host.createCatalogSyncItems(payload)
       return normalizeCatalogItemRecord(
@@ -535,6 +585,8 @@ export class SocialCommerceRepository {
     }
     return Array.from(this.memCatalogItems.values())
       .map((i) => normalizeCatalogItemRecord({ ...i }))
-      .filter((i) => matchesFilter(i as unknown as Record<string, unknown>, filters))
+      .filter((i) =>
+        matchesFilter(i as unknown as Record<string, unknown>, filters)
+      )
   }
 }

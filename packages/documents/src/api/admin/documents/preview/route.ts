@@ -32,7 +32,7 @@ async function handlePreview(req: MedusaRequest, res: MedusaResponse) {
   const resolvedSettings = await documentsService.resolveSettings(regionId)
   const mergedSettings = {
     ...resolvedSettings,
-    ...(body.settings_override || {}),
+    ...body.settings_override,
   }
 
   const settingsSnapshot = await documentsService.buildSettingsSnapshot(

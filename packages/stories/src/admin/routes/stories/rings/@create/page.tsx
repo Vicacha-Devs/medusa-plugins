@@ -7,7 +7,7 @@ import {
   StoryRingCreateForm,
   type StoryRingCreateFormValues,
 } from "../../../../components/story-rings-tab"
-import { RbacGuard } from "../../../../components/rbac-guard";
+import { RbacGuard } from "../../../../components/rbac-guard"
 
 const CreateRingContent = () => {
   const { t } = useTranslation()
@@ -56,6 +56,6 @@ const GuardedStoryRingCreateDrawer = () => (
   <RbacGuard permission="stories.write">
     <StoryRingCreateDrawer />
   </RbacGuard>
-);
+)
 
-export default GuardedStoryRingCreateDrawer;
+export default GuardedStoryRingCreateDrawer

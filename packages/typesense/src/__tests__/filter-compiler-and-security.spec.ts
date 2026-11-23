@@ -138,7 +138,7 @@ describe("Filter Compiler, Security Controls & Zod Validation", () => {
           keys.push(nextKey)
         }
       }
-      return keys.sort()
+      return keys.toSorted()
     }
 
     const enData = JSON.parse(
@@ -152,11 +152,7 @@ describe("Filter Compiler, Security Controls & Zod Validation", () => {
         fs.readFileSync(path.join(jsonDir, `${loc}.json`), "utf8")
       )
       const locKeys = collectLeafKeys(data)
-      assert.deepEqual(
-        locKeys,
-        expectedKeys,
-        `Key mismatch in ${loc}.json`
-      )
+      assert.deepEqual(locKeys, expectedKeys, `Key mismatch in ${loc}.json`)
     }
   })
 })

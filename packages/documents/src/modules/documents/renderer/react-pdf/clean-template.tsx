@@ -252,7 +252,8 @@ export const CleanTemplate: React.FC<ReactPdfTemplateProps> = ({
                   .join(" ")}
               </Text>
             ) : null}
-            {settings.company_tax_id && sections.show_company_tax_id !== false ? (
+            {settings.company_tax_id &&
+            sections.show_company_tax_id !== false ? (
               <Text style={styles.mutedText}>
                 {t.tax_id}: {settings.company_tax_id}
               </Text>
@@ -345,7 +346,8 @@ export const CleanTemplate: React.FC<ReactPdfTemplateProps> = ({
             ) : null}
           </View>
 
-          {sections.show_shipping_address !== false && shippingLines.length > 0 ? (
+          {sections.show_shipping_address !== false &&
+          shippingLines.length > 0 ? (
             <View style={styles.addressCol}>
               <Text style={styles.sectionHeading}>{t.ship_to}</Text>
               {shippingLines.map((line, idx) => (
@@ -384,7 +386,11 @@ export const CleanTemplate: React.FC<ReactPdfTemplateProps> = ({
         </View>
 
         {order.items.map((item, idx) => (
-          <View key={item.id || `item-${idx}`} style={styles.tableRow} wrap={false}>
+          <View
+            key={item.id || `item-${idx}`}
+            style={styles.tableRow}
+            wrap={false}
+          >
             <View style={styles.colDesc}>
               <Text style={styles.tdText}>{item.title}</Text>
               {item.variant_title ? (
@@ -401,19 +407,31 @@ export const CleanTemplate: React.FC<ReactPdfTemplateProps> = ({
             </View>
             <View style={styles.colPrice}>
               <Text style={styles.tdText}>
-                {formatCurrency(item.unit_price, order.currency_code, context.locale)}
+                {formatCurrency(
+                  item.unit_price,
+                  order.currency_code,
+                  context.locale
+                )}
               </Text>
             </View>
             {sections.show_tax_column !== false ? (
               <View style={styles.colTax}>
                 <Text style={styles.tdText}>
-                  {formatCurrency(item.tax_total, order.currency_code, context.locale)}
+                  {formatCurrency(
+                    item.tax_total,
+                    order.currency_code,
+                    context.locale
+                  )}
                 </Text>
               </View>
             ) : null}
             <View style={styles.colTotal}>
               <Text style={styles.tdText}>
-                {formatCurrency(item.total, order.currency_code, context.locale)}
+                {formatCurrency(
+                  item.total,
+                  order.currency_code,
+                  context.locale
+                )}
               </Text>
             </View>
           </View>
@@ -425,14 +443,23 @@ export const CleanTemplate: React.FC<ReactPdfTemplateProps> = ({
             <View style={styles.totalLine}>
               <Text style={styles.mutedText}>{t.subtotal}</Text>
               <Text style={styles.tdText}>
-                {formatCurrency(order.subtotal, order.currency_code, context.locale)}
+                {formatCurrency(
+                  order.subtotal,
+                  order.currency_code,
+                  context.locale
+                )}
               </Text>
             </View>
             {order.discount_total ? (
               <View style={styles.totalLine}>
                 <Text style={styles.mutedText}>{t.discount_total}</Text>
                 <Text style={styles.tdText}>
-                  -{formatCurrency(Math.abs(order.discount_total), order.currency_code, context.locale)}
+                  -
+                  {formatCurrency(
+                    Math.abs(order.discount_total),
+                    order.currency_code,
+                    context.locale
+                  )}
                 </Text>
               </View>
             ) : null}
@@ -440,20 +467,32 @@ export const CleanTemplate: React.FC<ReactPdfTemplateProps> = ({
               <View style={styles.totalLine}>
                 <Text style={styles.mutedText}>{t.shipping_total}</Text>
                 <Text style={styles.tdText}>
-                  {formatCurrency(order.shipping_total, order.currency_code, context.locale)}
+                  {formatCurrency(
+                    order.shipping_total,
+                    order.currency_code,
+                    context.locale
+                  )}
                 </Text>
               </View>
             ) : null}
             <View style={styles.totalLine}>
               <Text style={styles.mutedText}>{t.tax_total}</Text>
               <Text style={styles.tdText}>
-                {formatCurrency(order.tax_total, order.currency_code, context.locale)}
+                {formatCurrency(
+                  order.tax_total,
+                  order.currency_code,
+                  context.locale
+                )}
               </Text>
             </View>
             <View style={styles.grandTotalLine}>
               <Text style={styles.grandTotalLabel}>{t.grand_total}</Text>
               <Text style={styles.grandTotalValue}>
-                {formatCurrency(order.total, order.currency_code, context.locale)}
+                {formatCurrency(
+                  order.total,
+                  order.currency_code,
+                  context.locale
+                )}
               </Text>
             </View>
           </View>
@@ -486,7 +525,10 @@ export const CleanTemplate: React.FC<ReactPdfTemplateProps> = ({
             companyName={settings.company_name}
             buyerName={
               b2b?.company_name ||
-              [order.billing_address?.first_name, order.billing_address?.last_name]
+              [
+                order.billing_address?.first_name,
+                order.billing_address?.last_name,
+              ]
                 .filter(Boolean)
                 .join(" ")
             }

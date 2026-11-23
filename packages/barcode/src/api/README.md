@@ -54,32 +54,32 @@ api/
 
 ## Admin endpoints (`15` barcode routes)
 
-| Method(s) | Path | Zod Validator | Workflow / Service Delegate | Description |
-| --- | --- | --- | --- | --- |
-| `GET` | `/admin/barcodes` | — | `BarcodeModuleService` | Lists `BarcodeProduct` links (filterable by `?product_id=`), tags, sessions, cache stats & active providers |
-| `POST` | `/admin/barcodes/lookup` | `LookupBarcodeBodySchema` | `barcodeService.lookupBarcode` | Queries the 10-provider chain (`first-hit` or `deep-merge`) without creating a product |
-| `POST` | `/admin/barcodes/create-from-barcode` | `CreateFromBarcodeBodySchema` | `lookupAndCreateProductWorkflow` | Enriches a barcode and creates a Medusa Product + Variant + `BarcodeProduct` link |
-| `POST` | `/admin/barcodes/batch` | `BatchBarcodeImportBodySchema` | `batchBarcodeImportWorkflow` | Batch-imports up to 100 barcodes into Medusa Products + Variants with rollback compensation |
-| `POST` | `/admin/barcodes/bulk-generate` | `BulkGenerateBarcodesBodySchema` | `bulkGenerateVariantBarcodesWorkflow` | Generates GS1 in-store (`200`–`299`) EAN-13 codes for variants and syncs `barcode`/`ean`/`upc` |
-| `POST` | `/admin/barcodes/scan` | `QuickScanAdjustBodySchema` | `BarcodeModuleService` / `Modules.INVENTORY` | Resolves a scanned barcode and performs optional `lookup`, `increment`, `decrement`, or `set` stock actions |
-| `GET`, `DELETE` | `/admin/barcodes/cache` | — | `barcodeService.purgeExpiredCache` / `clearAllCache` | Lists `barcode_cache` rows or purges expired entries (`?all=true` clears all cache rows) |
-| `GET`, `DELETE` | `/admin/barcodes/:barcode` | — | `BarcodeModuleService` | Returns parsed GS1 metadata, linked `BarcodeProduct`, `BarcodeTag`, and SVG, or deletes mapping/cache |
-| `GET`, `POST` | `/admin/barcodes/tags` | `CreateBarcodeTagBodySchema` (`POST`) | `generateBarcodeTagWorkflow` | Lists `BarcodeTag` rows (`?product_id=`, `?target_id=`) or creates a signed 1D/2D `BarcodeTag` |
-| `GET`, `PATCH`, `DELETE` | `/admin/barcodes/tags/:id` | `UpdateBarcodeTagBodySchema` (`PATCH`) | `BarcodeModuleService` | Retrieves, updates, or deletes a specific `BarcodeTag` by ID |
-| `GET`, `POST` | `/admin/barcodes/templates` | `CreateLabelTemplateBodySchema` (`POST`) | `BarcodeModuleService` | Lists all 7 built-in thermal/A4 presets + custom templates, or creates a custom `BarcodeLabelTemplate` |
-| `POST` | `/admin/barcodes/print` | `PrintLabelsBodySchema` | `barcodeService.printLabels` | Renders print-ready HTML+SVG sheets and raw Zebra ZPL II (`^XA...^XZ`) thermal commands |
-| `GET`, `POST` | `/admin/barcodes/count-sessions` | `CreateCountSessionBodySchema` (`POST`) | `barcodeService.startCountSession` | Lists warehouse stock-take sessions with items, or starts a new `BarcodeCountSession` |
-| `POST` | `/admin/barcodes/count-sessions/:id/scan` | `RecordCountScanBodySchema` | `scanInventoryCountWorkflow` | Records a barcode scan (`delta` or `set_quantity`) inside an active count session |
-| `POST` | `/admin/barcodes/count-sessions/:id/apply` | `ApplyCountSessionBodySchema` | `applyInventoryCountWorkflow` | Completes a count session and reconciles stock variances with `Modules.INVENTORY` |
+| Method(s)                | Path                                       | Zod Validator                            | Workflow / Service Delegate                          | Description                                                                                                 |
+| ------------------------ | ------------------------------------------ | ---------------------------------------- | ---------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| `GET`                    | `/admin/barcodes`                          | —                                        | `BarcodeModuleService`                               | Lists `BarcodeProduct` links (filterable by `?product_id=`), tags, sessions, cache stats & active providers |
+| `POST`                   | `/admin/barcodes/lookup`                   | `LookupBarcodeBodySchema`                | `barcodeService.lookupBarcode`                       | Queries the 10-provider chain (`first-hit` or `deep-merge`) without creating a product                      |
+| `POST`                   | `/admin/barcodes/create-from-barcode`      | `CreateFromBarcodeBodySchema`            | `lookupAndCreateProductWorkflow`                     | Enriches a barcode and creates a Medusa Product + Variant + `BarcodeProduct` link                           |
+| `POST`                   | `/admin/barcodes/batch`                    | `BatchBarcodeImportBodySchema`           | `batchBarcodeImportWorkflow`                         | Batch-imports up to 100 barcodes into Medusa Products + Variants with rollback compensation                 |
+| `POST`                   | `/admin/barcodes/bulk-generate`            | `BulkGenerateBarcodesBodySchema`         | `bulkGenerateVariantBarcodesWorkflow`                | Generates GS1 in-store (`200`–`299`) EAN-13 codes for variants and syncs `barcode`/`ean`/`upc`              |
+| `POST`                   | `/admin/barcodes/scan`                     | `QuickScanAdjustBodySchema`              | `BarcodeModuleService` / `Modules.INVENTORY`         | Resolves a scanned barcode and performs optional `lookup`, `increment`, `decrement`, or `set` stock actions |
+| `GET`, `DELETE`          | `/admin/barcodes/cache`                    | —                                        | `barcodeService.purgeExpiredCache` / `clearAllCache` | Lists `barcode_cache` rows or purges expired entries (`?all=true` clears all cache rows)                    |
+| `GET`, `DELETE`          | `/admin/barcodes/:barcode`                 | —                                        | `BarcodeModuleService`                               | Returns parsed GS1 metadata, linked `BarcodeProduct`, `BarcodeTag`, and SVG, or deletes mapping/cache       |
+| `GET`, `POST`            | `/admin/barcodes/tags`                     | `CreateBarcodeTagBodySchema` (`POST`)    | `generateBarcodeTagWorkflow`                         | Lists `BarcodeTag` rows (`?product_id=`, `?target_id=`) or creates a signed 1D/2D `BarcodeTag`              |
+| `GET`, `PATCH`, `DELETE` | `/admin/barcodes/tags/:id`                 | `UpdateBarcodeTagBodySchema` (`PATCH`)   | `BarcodeModuleService`                               | Retrieves, updates, or deletes a specific `BarcodeTag` by ID                                                |
+| `GET`, `POST`            | `/admin/barcodes/templates`                | `CreateLabelTemplateBodySchema` (`POST`) | `BarcodeModuleService`                               | Lists all 7 built-in thermal/A4 presets + custom templates, or creates a custom `BarcodeLabelTemplate`      |
+| `POST`                   | `/admin/barcodes/print`                    | `PrintLabelsBodySchema`                  | `barcodeService.printLabels`                         | Renders print-ready HTML+SVG sheets and raw Zebra ZPL II (`^XA...^XZ`) thermal commands                     |
+| `GET`, `POST`            | `/admin/barcodes/count-sessions`           | `CreateCountSessionBodySchema` (`POST`)  | `barcodeService.startCountSession`                   | Lists warehouse stock-take sessions with items, or starts a new `BarcodeCountSession`                       |
+| `POST`                   | `/admin/barcodes/count-sessions/:id/scan`  | `RecordCountScanBodySchema`              | `scanInventoryCountWorkflow`                         | Records a barcode scan (`delta` or `set_quantity`) inside an active count session                           |
+| `POST`                   | `/admin/barcodes/count-sessions/:id/apply` | `ApplyCountSessionBodySchema`            | `applyInventoryCountWorkflow`                        | Completes a count session and reconciles stock variances with `Modules.INVENTORY`                           |
 
 ---
 
 ## Store endpoints (`2` barcode routes)
 
-| Method(s) | Path | Zod Validator | Service Delegate | Description |
-| --- | --- | --- | --- | --- |
-| `GET` | `/store/barcodes/:code` | — | `barcodeService.resolveStoreScan` | Resolves a barcode/QR scan and increments `scan_count` (`?format=json`), or streams raw `image/svg+xml` (`?format=svg&symbology=ean13`) |
-| `GET`, `POST` | `/store/barcodes/:code/verify` | `VerifyStoreBarcodeBodySchema` (`POST`) | `barcodeService.verifyTagAuthenticity` | Constant-time `HMAC-SHA256` anti-counterfeit verification via `?sig=` query param or JSON body `{ signature }` |
+| Method(s)     | Path                           | Zod Validator                           | Service Delegate                       | Description                                                                                                                             |
+| ------------- | ------------------------------ | --------------------------------------- | -------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| `GET`         | `/store/barcodes/:code`        | —                                       | `barcodeService.resolveStoreScan`      | Resolves a barcode/QR scan and increments `scan_count` (`?format=json`), or streams raw `image/svg+xml` (`?format=svg&symbology=ean13`) |
+| `GET`, `POST` | `/store/barcodes/:code/verify` | `VerifyStoreBarcodeBodySchema` (`POST`) | `barcodeService.verifyTagAuthenticity` | Constant-time `HMAC-SHA256` anti-counterfeit verification via `?sig=` query param or JSON body `{ signature }`                          |
 
 ---
 

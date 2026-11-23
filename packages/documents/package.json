@@ -2,9 +2,27 @@
   "name": "@vicacha-devs/medusa-plugin-documents",
   "version": "0.0.1",
   "description": "Comprehensive commercial documents plugin for Medusa v2: Invoices, Packing Slips, Credit Notes & POS Receipts with Dual PDF Engine (@react-pdf/renderer + Handlebars/pdfmake), per-region settings, 10-locale i18n (including RTL Arabic & Turkish), localized Admin UI, optional B2B context, and optional Docuseal e-signatures.",
-  "author": "Vicacha Devs",
+  "keywords": [
+    "b2b",
+    "credit-note",
+    "documents",
+    "docuseal",
+    "handlebars",
+    "invoice",
+    "medusa",
+    "medusa-plugin",
+    "medusa-plugin-documents",
+    "medusa-plugin-integration",
+    "medusa-v2",
+    "packing-slip",
+    "pdf",
+    "pdfmake",
+    "pos",
+    "react-pdf",
+    "receipt"
+  ],
   "license": "MIT",
-  "types": "./src/index.ts",
+  "author": "Vicacha Devs",
   "files": [
     ".medusa/server",
     "src",
@@ -14,6 +32,7 @@
     "LICENSE",
     "tsconfig.json"
   ],
+  "types": "./src/index.ts",
   "exports": {
     "./package.json": "./package.json",
     "./admin": {
@@ -56,25 +75,9 @@
       "default": "./.medusa/server/src/index.js"
     }
   },
-  "keywords": [
-    "medusa",
-    "medusa-v2",
-    "medusa-plugin",
-    "medusa-plugin-documents",
-    "documents",
-    "invoice",
-    "packing-slip",
-    "credit-note",
-    "receipt",
-    "pos",
-    "pdf",
-    "react-pdf",
-    "pdfmake",
-    "handlebars",
-    "docuseal",
-    "b2b",
-    "medusa-plugin-integration"
-  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "medusa plugin:build && tsc-alias -p tsconfig.json",
     "dev": "medusa plugin:develop",
@@ -84,6 +87,15 @@
     "test": "node --import ./src/__tests__/register-ts-resolver.mjs --test src/__tests__/documents.spec.ts",
     "publish:local": "medusa plugin:publish",
     "clean": "rm -rf .medusa node_modules"
+  },
+  "dependencies": {
+    "@mikro-orm/migrations": "6.4.3",
+    "@react-pdf/renderer": "^4.1.6",
+    "handlebars": "^4.7.9",
+    "html-to-pdfmake": "^2.5.33",
+    "jsdom": "^29.0.1",
+    "pdfmake": "^0.2.18",
+    "zod": "4.6.7"
   },
   "devDependencies": {
     "@hookform/resolvers": "5.7.1",
@@ -130,20 +142,8 @@
     "react-router-dom": "7.18.5",
     "zod": "4.6.7"
   },
-  "publishConfig": {
-    "access": "public"
-  },
   "engines": {
     "node": ">=22.22.0"
   },
-  "packageManager": "pnpm@11.20.0",
-  "dependencies": {
-    "@react-pdf/renderer": "^4.1.6",
-    "handlebars": "^4.7.9",
-    "html-to-pdfmake": "^2.5.33",
-    "jsdom": "^29.0.1",
-    "pdfmake": "^0.2.18",
-    "zod": "4.6.7",
-    "@mikro-orm/migrations": "6.4.3"
-  }
+  "packageManager": "pnpm@11.20.0"
 }

@@ -7,15 +7,15 @@ description: "Comprehensive Bold Colombia payment integration for Medusa v2 supp
 
 ## Package Snapshot
 
-| Capability | Details |
-| :--- | :--- |
-| Medusa Modules / Models | 0 modules / 0 data models |
-| Workflows | 8 |
-| Subscribers / Jobs | 0 subscribers / 0 scheduled jobs |
-| Providers | bold-button, bold-link, bold-online, bold-terminal |
-| Admin UI Routes / Widgets | 1 routes / 9 widgets |
-| Admin i18n Locales | ar, en, es, tr |
-| HTTP Endpoints | 14 ([OpenAPI Reference](/medusa-payment-bold/api/)) |
+| Capability                | Details                                             |
+| :------------------------ | :-------------------------------------------------- |
+| Medusa Modules / Models   | 0 modules / 0 data models                           |
+| Workflows                 | 8                                                   |
+| Subscribers / Jobs        | 0 subscribers / 0 scheduled jobs                    |
+| Providers                 | bold-button, bold-link, bold-online, bold-terminal  |
+| Admin UI Routes / Widgets | 1 routes / 9 widgets                                |
+| Admin i18n Locales        | ar, en, es, tr                                      |
+| HTTP Endpoints            | 14 ([OpenAPI Reference](/medusa-payment-bold/api/)) |
 
 Comprehensive **Bold Colombia** 4-channel payment suite (`bold-link`, `bold-online`, `bold-button`, `bold-terminal`), Admin operations widget, real-time SSE status streaming, HMAC-SHA256 webhook verification, and built-in **QA Gateway Emulator** for **Medusa v2**.
 
@@ -25,12 +25,12 @@ Comprehensive **Bold Colombia** 4-channel payment suite (`bold-link`, `bold-onli
 
 ## Payment Providers (4 Channels)
 
-| Provider ID | Medusa Registration ID | Bold API Endpoint | Use Case |
-| :--- | :--- | :--- | :--- |
-| `bold-link` | `pp_bold-link_bold` | `POST /online/link/v1` | Shareable payment links with VAT breakdown & nanosecond expiration |
-| `bold-online` | `pp_bold-online_bold` | `POST /v1/payment-intent` | Dynamic QR (`BOLD_BASE64`, `PLAIN_BASE64`, `TEXT`), Cards, PSE, Nequi, Bancolombia |
-| `bold-button` | `pp_bold-button_bold` | SHA-256 integrity hash + `/v2/payment-voucher/:ref` | Storefront Bold Boton de Pagos checkout with deterministic `hash` / `integrity_signature` |
-| `bold-terminal` | `pp_bold-terminal_bold` | `GET /payments/binded-terminals` + `POST /payments/app-checkout` | Physical Smart POS Dataphone payment dispatch |
+| Provider ID     | Medusa Registration ID  | Bold API Endpoint                                                | Use Case                                                                                  |
+| :-------------- | :---------------------- | :--------------------------------------------------------------- | :---------------------------------------------------------------------------------------- |
+| `bold-link`     | `pp_bold-link_bold`     | `POST /online/link/v1`                                           | Shareable payment links with VAT breakdown & nanosecond expiration                        |
+| `bold-online`   | `pp_bold-online_bold`   | `POST /v1/payment-intent`                                        | Dynamic QR (`BOLD_BASE64`, `PLAIN_BASE64`, `TEXT`), Cards, PSE, Nequi, Bancolombia        |
+| `bold-button`   | `pp_bold-button_bold`   | SHA-256 integrity hash + `/v2/payment-voucher/:ref`              | Storefront Bold Boton de Pagos checkout with deterministic `hash` / `integrity_signature` |
+| `bold-terminal` | `pp_bold-terminal_bold` | `GET /payments/binded-terminals` + `POST /payments/app-checkout` | Physical Smart POS Dataphone payment dispatch                                             |
 
 ---
 
@@ -61,20 +61,20 @@ Comprehensive **Bold Colombia** 4-channel payment suite (`bold-link`, `bold-onli
 
 ## REST API & Webhooks
 
-| Method | Route | Description |
-| :--- | :--- | :--- |
-| `POST` | `/admin/bold/payment-link` | Zod-validated Payment Link creation via `createBoldPaymentLinkWorkflow` (`pp_bold-link_bold`) |
-| `POST` | `/admin/bold/payment-qr` | Zod-validated QR session creation (`pp_bold-online_bold`), returns `{ qr_payload, paymentSession }` |
-| `POST` | `/admin/bold/payment-button` | Zod-validated Button session creation (`pp_bold-button_bold`) with SHA-256 `hash` / `integrity_signature` |
-| `GET` | `/admin/bold/terminals` | Lists bound POS dataphones (`GET /payments/binded-terminals`) |
-| `POST` | `/admin/bold/pos-push` | Zod-validated POS dataphone checkout dispatch (`pp_bold-terminal_bold`) |
-| `GET` | `/admin/bold/payment-status` | Queries Medusa payment session status by `paymentSessionId` |
-| `GET` | `/admin/bold/payment-stream` | Server-Sent Events (`text/event-stream`) polling Bold & auto-capturing on authorization |
-| `POST` | `/admin/bold/refund` | Full or partial refund via `refundBoldPaymentWorkflow` (`POST /v1/refunds`) |
-| `GET` | `/admin/bold/banks` | Active PSE financial institutions (`GET /v1/payment/pse/banks`) |
-| `GET` | `/admin/bold/payment-methods` | Merchant enabled Integration API methods |
-| `GET` | `/admin/bold/payment-link-methods` | Payment Link API method min/max limits |
-| `POST` | `/hooks/payment/bold` | Fail-closed HMAC-SHA256 (`x-bold-signature` + `x-bold-timestamp`) webhook verifier with amount & currency validation |
+| Method | Route                              | Description                                                                                                          |
+| :----- | :--------------------------------- | :------------------------------------------------------------------------------------------------------------------- |
+| `POST` | `/admin/bold/payment-link`         | Zod-validated Payment Link creation via `createBoldPaymentLinkWorkflow` (`pp_bold-link_bold`)                        |
+| `POST` | `/admin/bold/payment-qr`           | Zod-validated QR session creation (`pp_bold-online_bold`), returns `{ qr_payload, paymentSession }`                  |
+| `POST` | `/admin/bold/payment-button`       | Zod-validated Button session creation (`pp_bold-button_bold`) with SHA-256 `hash` / `integrity_signature`            |
+| `GET`  | `/admin/bold/terminals`            | Lists bound POS dataphones (`GET /payments/binded-terminals`)                                                        |
+| `POST` | `/admin/bold/pos-push`             | Zod-validated POS dataphone checkout dispatch (`pp_bold-terminal_bold`)                                              |
+| `GET`  | `/admin/bold/payment-status`       | Queries Medusa payment session status by `paymentSessionId`                                                          |
+| `GET`  | `/admin/bold/payment-stream`       | Server-Sent Events (`text/event-stream`) polling Bold & auto-capturing on authorization                              |
+| `POST` | `/admin/bold/refund`               | Full or partial refund via `refundBoldPaymentWorkflow` (`POST /v1/refunds`)                                          |
+| `GET`  | `/admin/bold/banks`                | Active PSE financial institutions (`GET /v1/payment/pse/banks`)                                                      |
+| `GET`  | `/admin/bold/payment-methods`      | Merchant enabled Integration API methods                                                                             |
+| `GET`  | `/admin/bold/payment-link-methods` | Payment Link API method min/max limits                                                                               |
+| `POST` | `/hooks/payment/bold`              | Fail-closed HMAC-SHA256 (`x-bold-signature` + `x-bold-timestamp`) webhook verifier with amount & currency validation |
 
 ---
 
@@ -103,6 +103,7 @@ pnpm emulator
 ```
 
 QA Control Endpoints on the running emulator:
+
 - `GET /__qa/health` — Emulator health check
 - `GET /__qa/requests` — Inspect all captured Bold API requests & headers
 - `POST /__qa/simulate-payment` — Body `{ "reference": "ORD-1", "outcome": "APPROVED"|"REJECTED"|"EXPIRED", "webhookUrl": "http://127.0.0.1:9001/hooks/payment/bold" }` transitions payment status and delivers a real HMAC-SHA256 signed webhook

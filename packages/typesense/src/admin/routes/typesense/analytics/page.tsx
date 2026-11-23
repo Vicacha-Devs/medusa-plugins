@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom"
 
 import { AnalyticsTab } from "../../../components/typesense/analytics-tab"
 import { useTypesenseStudio } from "../../../components/typesense/use-typesense-studio"
-import { RbacGuard } from "../../../components/rbac-guard";
+import { RbacGuard } from "../../../components/rbac-guard"
 
 const TypesenseAnalyticsPage: React.FC = () => {
   const navigate = useNavigate()
@@ -60,6 +60,6 @@ const GuardedTypesenseAnalyticsPage = () => (
   <RbacGuard permission="typesense.read">
     <TypesenseAnalyticsPage />
   </RbacGuard>
-);
+)
 
-export default GuardedTypesenseAnalyticsPage;
+export default GuardedTypesenseAnalyticsPage

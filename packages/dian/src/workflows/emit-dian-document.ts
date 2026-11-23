@@ -2,6 +2,7 @@ import {
   createStep,
   createWorkflow,
   StepResponse,
+  transform,
   WorkflowResponse,
 } from "@medusajs/framework/workflows-sdk"
 import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
@@ -40,7 +41,7 @@ export const fetchOrderForDianStep = createStep(
           ],
           filters: { id: input.order_id },
         })
-        order = Array.isArray(data) ? data[0] ?? null : null
+        order = Array.isArray(data) ? (data[0] ?? null) : null
       }
     } catch {
       // Fallback if graph query is not available in test container
@@ -94,10 +95,9 @@ export const emitDianDocumentWorkflow = createWorkflow(
   "emit-dian-document-workflow",
   (input: EmitDianDocumentInput) => {
     const order = fetchOrderForDianStep({ order_id: input.order_id })
-    const document = emitDianElectronicDocumentStep({
-      ...input,
-      order,
-    })
+    const document = emitDianElectronicDocumentStep(
+      transform({ input, order }, ({ input, order }) => ({ ...input, order }))
+    )
     return new WorkflowResponse(document)
   }
 )

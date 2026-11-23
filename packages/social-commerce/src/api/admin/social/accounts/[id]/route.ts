@@ -10,7 +10,10 @@ export async function GET(req: HttpRequest, res: HttpResponse): Promise<void> {
   try {
     const id = req.params?.id
     if (!id) {
-      throw new MedusaError(MedusaError.Types.INVALID_DATA, "Account ID is required.")
+      throw new MedusaError(
+        MedusaError.Types.INVALID_DATA,
+        "Account ID is required."
+      )
     }
     const socialService = resolveSocialService(req)
     const account = await socialService.getAccount(id)
@@ -24,7 +27,10 @@ export async function POST(req: HttpRequest, res: HttpResponse): Promise<void> {
   try {
     const id = req.params?.id
     if (!id) {
-      throw new MedusaError(MedusaError.Types.INVALID_DATA, "Account ID is required.")
+      throw new MedusaError(
+        MedusaError.Types.INVALID_DATA,
+        "Account ID is required."
+      )
     }
     const socialService = resolveSocialService(req)
     const account = await socialService.refreshAccountTokens(id)
@@ -34,11 +40,17 @@ export async function POST(req: HttpRequest, res: HttpResponse): Promise<void> {
   }
 }
 
-export async function DELETE(req: HttpRequest, res: HttpResponse): Promise<void> {
+export async function DELETE(
+  req: HttpRequest,
+  res: HttpResponse
+): Promise<void> {
   try {
     const id = req.params?.id
     if (!id) {
-      throw new MedusaError(MedusaError.Types.INVALID_DATA, "Account ID is required.")
+      throw new MedusaError(
+        MedusaError.Types.INVALID_DATA,
+        "Account ID is required."
+      )
     }
     const socialService = resolveSocialService(req)
     const hardDelete = req.query?.hard === "true" || req.query?.hard === true

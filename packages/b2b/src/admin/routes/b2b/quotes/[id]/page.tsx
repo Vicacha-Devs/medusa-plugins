@@ -1,19 +1,19 @@
-import { CORE_LAYOUT_IDS } from "@medusajs/admin-shared";
-import { LayoutComposer } from "@medusajs/dashboard/components";
-import { useOrderPreview } from "@medusajs/dashboard/hooks";
-import { Text, toast, usePrompt } from "@medusajs/ui";
+import { CORE_LAYOUT_IDS } from "@medusajs/admin-shared"
+import { LayoutComposer } from "@medusajs/dashboard/components"
+import { useOrderPreview } from "@medusajs/dashboard/hooks"
+import { Text, toast, usePrompt } from "@medusajs/ui"
 import {
   detailPageDefaultEntries,
   OrderSummarySection,
   TwoColumnPageSkeleton,
-} from "@vicacha-devs/medusa-shared-admin/admin";
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useNavigate, useParams } from "react-router-dom";
+} from "@vicacha-devs/medusa-shared-admin/admin"
+import { useState } from "react"
+import { useTranslation } from "react-i18next"
+import { useNavigate, useParams } from "react-router-dom"
 
-import { EQuoteStatus } from "../../../../../types";
-import { useQuote, useRejectQuote, useSendQuote } from "../../../../hooks/api";
-import { SendQuoteDrawer } from "../components/send-quote-drawer";
+import { EQuoteStatus } from "../../../../../types"
+import { useQuote, useRejectQuote, useSendQuote } from "../../../../hooks/api"
+import { SendQuoteDrawer } from "../components/send-quote-drawer"
 import {
   QuoteCompanySection,
   QuoteCustomerSection,
@@ -21,8 +21,8 @@ import {
   QuoteGeneralSection,
   QuoteMessagesSection,
   QuoteOrderSection,
-} from "./components";
-import { RbacGuard } from "@vicacha-devs/medusa-shared-admin/admin";
+} from "./components"
+import { RbacGuard } from "@vicacha-devs/medusa-shared-admin/admin"
 
 const CUSTOMER_FIELDS =
   "*customer,*customer.employee,*customer.employee.company"
@@ -38,7 +38,9 @@ const QuoteDetail = () => {
     fields: CUSTOMER_FIELDS,
   })
   const { mutateAsync: sendQuote, isPending: isSending } = useSendQuote(id!)
-  const { mutateAsync: rejectQuote, isPending: isRejecting } = useRejectQuote(id!)
+  const { mutateAsync: rejectQuote, isPending: isRejecting } = useRejectQuote(
+    id!
+  )
 
   const draftOrderId = (quote as any)?.draft_order_id
   const draftOrderCurrencyCode = (quote as any)?.draft_order?.currency_code
@@ -195,7 +197,7 @@ const Breadcrumb = ({ id }: { id?: string }) => {
   const { quote } = useQuote(id ?? "", undefined, { enabled: !!id })
   const displayId = (quote as any)?.draft_order?.display_id
 
-  return displayId != null ? `#${displayId}` : id ?? t("quote.title")
+  return displayId != null ? `#${displayId}` : (id ?? t("quote.title"))
 }
 
 export const handle = {
@@ -206,6 +208,6 @@ const GuardedQuoteDetail = () => (
   <RbacGuard permission="b2b.read">
     <QuoteDetail />
   </RbacGuard>
-);
+)
 
-export default GuardedQuoteDetail;
+export default GuardedQuoteDetail

@@ -13,7 +13,9 @@ interface Props {
 export const CompanyCustomerGroupSection = ({ company }: Props) => {
   const { t } = useTranslation()
   const c = company as any
-  const group = Array.isArray(c.customer_group) ? c.customer_group[0] : c.customer_group
+  const group = Array.isArray(c.customer_group)
+    ? c.customer_group[0]
+    : c.customer_group
 
   return (
     <Container className="divide-y p-0">

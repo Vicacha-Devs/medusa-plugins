@@ -26,7 +26,7 @@ const deleteDocumentTemplateStep = createStep(
     if (!previous) return
     const documentsService =
       container.resolve<DocumentsModuleService>(DOCUMENTS_MODULE)
-    const { created_at, updated_at, deleted_at, ...rest } = previous as any
+    const { updated_at: _updatedAt, ...rest } = previous as any
     await documentsService.createDocumentTemplates(rest)
   }
 )

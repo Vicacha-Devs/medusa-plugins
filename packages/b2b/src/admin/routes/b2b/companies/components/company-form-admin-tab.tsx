@@ -34,7 +34,9 @@ export const CompanyFormAdminTab = ({
                 disabled={regionsLoading}
               >
                 <Select.Trigger>
-                  <Select.Value placeholder={t("companies.form.selectCurrency")} />
+                  <Select.Value
+                    placeholder={t("companies.form.selectCurrency")}
+                  />
                 </Select.Trigger>
                 <Select.Content>
                   {availableCurrencies.map((c) => (
@@ -60,7 +62,9 @@ export const CompanyFormAdminTab = ({
             <Form.Control>
               <Select value={field.value ?? ""} onValueChange={field.onChange}>
                 <Select.Trigger>
-                  <Select.Value placeholder={t("companies.form.selectFrequency")} />
+                  <Select.Value
+                    placeholder={t("companies.form.selectFrequency")}
+                  />
                 </Select.Trigger>
                 <Select.Content>
                   {Object.values(ESpendingLimitResetFrequency).map((freq) => (
@@ -80,7 +84,9 @@ export const CompanyFormAdminTab = ({
         name="spending_limit_reset_at"
         render={({ field }: any) => (
           <Form.Item>
-            <Form.Label optional>{t("companies.form.spendingLimitResetAt")}</Form.Label>
+            <Form.Label optional>
+              {t("companies.form.spendingLimitResetAt")}
+            </Form.Label>
             <Form.Control>
               <Input type="date" {...field} />
             </Form.Control>

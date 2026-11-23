@@ -17,11 +17,11 @@ workflows/
 
 ## Workflow Index
 
-| Workflow ID | Export | Step ID | File | Trigger |
-| --- | --- | --- | --- | --- |
-| `account-connected` | `accountConnectedWorkflow` | `initial-account-sync` | `account-connected.workflow.ts` | `/social/oauth/callback` & `social.account_connected` subscriber |
-| `media-synced` | `mediaSyncedWorkflow` | `sync-social-media` | `media-synced.workflow.ts` | `POST /admin/social/sync` |
-| `live-started` | `liveStartedWorkflow` | `start-live-session` | `live-started.workflow.ts` | `POST /admin/social/live/:id` (`action: "start"`) & `social.live_started` subscriber |
-| `live-ended` | `liveEndedWorkflow` | `end-live-session` | `live-ended.workflow.ts` | `POST /admin/social/live/:id` (`action: "end"`) & `social.live_ended` subscriber |
-| `catalog-sync` | `catalogSyncWorkflow` | `sync-catalog-batch` | `catalog-sync.workflow.ts` | `POST /admin/social/catalog` |
-| `checkout-handoff` | `checkoutHandoffWorkflow` | `build-social-checkout-handoff` | `checkout-handoff.workflow.ts` | `GET` / `POST /store/social/checkout-handoff` |
+| Workflow ID         | Export                     | Step ID                         | File                            | Trigger                                                                              |
+| ------------------- | -------------------------- | ------------------------------- | ------------------------------- | ------------------------------------------------------------------------------------ |
+| `account-connected` | `accountConnectedWorkflow` | `initial-account-sync`          | `account-connected.workflow.ts` | `/social/oauth/callback` & `social.account_connected` subscriber                     |
+| `media-synced`      | `mediaSyncedWorkflow`      | `sync-social-media`             | `media-synced.workflow.ts`      | `POST /admin/social/sync`                                                            |
+| `live-started`      | `liveStartedWorkflow`      | `start-live-session`            | `live-started.workflow.ts`      | `POST /admin/social/live/:id` (`action: "start"`) & `social.live_started` subscriber |
+| `live-ended`        | `liveEndedWorkflow`        | `end-live-session`              | `live-ended.workflow.ts`        | `POST /admin/social/live/:id` (`action: "end"`) & `social.live_ended` subscriber     |
+| `catalog-sync`      | `catalogSyncWorkflow`      | `sync-catalog-batch`            | `catalog-sync.workflow.ts`      | `POST /admin/social/catalog`                                                         |
+| `checkout-handoff`  | `checkoutHandoffWorkflow`  | `build-social-checkout-handoff` | `checkout-handoff.workflow.ts`  | `GET` / `POST /store/social/checkout-handoff`                                        |

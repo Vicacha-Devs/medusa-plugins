@@ -1,6 +1,6 @@
 import { ModuleProviderExports } from "@medusajs/framework/types"
 import { BoldOnlinePaymentProviderService } from "./providers/bold-online"
-import { BoldLinkPaymentProviderService} from "./providers/bold-link"
+import { BoldLinkPaymentProviderService } from "./providers/bold-link"
 import { BoldButtonPaymentProviderService } from "./providers/bold-button"
 import { BoldTerminalPaymentProviderService } from "./providers/bold-terminal"
 
@@ -11,21 +11,21 @@ export * from "./sdk/client"
 export * from "./sdk/query-keys"
 
 export {
-    BoldButtonPaymentProviderService,
-    BoldLinkPaymentProviderService,
-    BoldOnlinePaymentProviderService,
-    BoldTerminalPaymentProviderService,
+  BoldButtonPaymentProviderService,
+  BoldLinkPaymentProviderService,
+  BoldOnlinePaymentProviderService,
+  BoldTerminalPaymentProviderService,
 }
 
 const services = [
-    BoldButtonPaymentProviderService,
-    BoldLinkPaymentProviderService,
-    BoldOnlinePaymentProviderService,
-    BoldTerminalPaymentProviderService,
+  BoldButtonPaymentProviderService,
+  BoldLinkPaymentProviderService,
+  BoldOnlinePaymentProviderService,
+  BoldTerminalPaymentProviderService,
 ]
 
 const providerExports: ModuleProviderExports = {
-    services,
+  services,
 }
 
 export default providerExports

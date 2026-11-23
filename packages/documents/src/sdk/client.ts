@@ -5,12 +5,7 @@ import type {
   BulkGenerateDocumentsResponse,
   DeleteDocumentResponse,
   DeleteDocumentTemplateResponse,
-  DocumentRecord,
   DocumentsApiClientOptions,
-  DocumentSettingsRecord,
-  DocumentStatus,
-  DocumentTemplateRecord,
-  DocumentType,
   ExportCsvParams,
   GenerateDocumentPayload,
   GenerateDocumentResponse,
@@ -23,7 +18,6 @@ import type {
   ListDocumentTemplatesParams,
   ListDocumentTemplatesResponse,
   MedusaRegionSummary,
-  PackingSlipPreset,
   PreviewDocumentParams,
   RegenerateDocumentPayload,
   ResetRegionalSettingsResponse,
@@ -31,15 +25,9 @@ import type {
   SendDocumentEmailResponse,
   SendDocumentForSignaturePayload,
   SendDocumentForSignatureResponse,
-  SignatureRequestRecord,
-  SignatureStatus,
   StoreDocumentPdfType,
   StoreOrderDocumentsResponse,
-  StoreOrderDocumentSummary,
-  StoreOrderSignatureSummary,
   StoreOrderSigningUrlResponse,
-  SupportedLocale,
-  TemplatePreset,
   UpdateDocumentSettingsPayload,
   UpdateDocumentSettingsResponse,
   UpsertDocumentTemplatePayload,
@@ -86,10 +74,13 @@ export class DocumentsApiClient {
     return `${this.baseUrl}${this.prefix}${normalizedEndpoint}${buildQueryString(params)}`
   }
 
-  private buildHeaders(customHeaders?: HeadersInit, hasJsonBody = true): Record<string, string> {
+  private buildHeaders(
+    customHeaders?: HeadersInit,
+    hasJsonBody = true
+  ): Record<string, string> {
     const headers: Record<string, string> = {
       ...(hasJsonBody ? { "Content-Type": "application/json" } : {}),
-      ...(this.options.headers || {}),
+      ...this.options.headers,
     }
 
     if (this.options.publishableApiKey) {
@@ -120,7 +111,8 @@ export class DocumentsApiClient {
   ): Promise<T> {
     const url = this.resolveUrl(endpoint, queryParams)
     const fetchFn = this.options.fetchImpl ?? globalThis.fetch
-    const hasJsonBody = options?.body !== undefined && !(options.body instanceof FormData)
+    const hasJsonBody =
+      options?.body !== undefined && !(options.body instanceof FormData)
 
     const response = await fetchFn(url, {
       credentials: this.options.credentials ?? "include",
@@ -153,7 +145,8 @@ export class DocumentsApiClient {
   ): Promise<Blob> {
     const url = this.resolveUrl(endpoint, queryParams)
     const fetchFn = this.options.fetchImpl ?? globalThis.fetch
-    const hasJsonBody = options?.body !== undefined && !(options.body instanceof FormData)
+    const hasJsonBody =
+      options?.body !== undefined && !(options.body instanceof FormData)
 
     const response = await fetchFn(url, {
       credentials: this.options.credentials ?? "include",
@@ -177,7 +170,9 @@ export class DocumentsApiClient {
   // Admin Document Endpoints (/admin/documents)
   // ---------------------------------------------------------------------------
 
-  async listDocuments(params?: ListDocumentsParams): Promise<ListDocumentsResponse> {
+  async listDocuments(
+    params?: ListDocumentsParams
+  ): Promise<ListDocumentsResponse> {
     return this.fetch<ListDocumentsResponse>(
       "/documents",
       { method: "GET" },
@@ -254,7 +249,10 @@ export class DocumentsApiClient {
     )
   }
 
-  async downloadDocumentPdf(id: string, options?: { signed?: boolean }): Promise<Blob> {
+  async downloadDocumentPdf(
+    id: string,
+    options?: { signed?: boolean }
+  ): Promise<Blob> {
     return this.fetchBlob(
       `/documents/${encodeURIComponent(id)}/pdf`,
       { method: "GET" },
@@ -265,10 +263,13 @@ export class DocumentsApiClient {
   async bulkGenerateDocuments(
     payload: BulkGenerateDocumentsPayload
   ): Promise<BulkGenerateDocumentsResponse> {
-    return this.fetch<BulkGenerateDocumentsResponse>("/documents/bulk-generate", {
-      method: "POST",
-      body: JSON.stringify(payload),
-    })
+    return this.fetch<BulkGenerateDocumentsResponse>(
+      "/documents/bulk-generate",
+      {
+        method: "POST",
+        body: JSON.stringify(payload),
+      }
+    )
   }
 
   async bulkDownloadZip(payload: BulkDownloadPayload): Promise<Blob> {
@@ -405,7 +406,9 @@ export class DocumentsApiClient {
   // Storefront Endpoints (/store/documents)
   // ---------------------------------------------------------------------------
 
-  async listOrderDocuments(orderId: string): Promise<StoreOrderDocumentsResponse> {
+  async listOrderDocuments(
+    orderId: string
+  ): Promise<StoreOrderDocumentsResponse> {
     return this.fetch<StoreOrderDocumentsResponse>(
       `/documents/${encodeURIComponent(orderId)}`,
       { method: "GET" }
@@ -430,7 +433,9 @@ export class DocumentsApiClient {
     )
   }
 
-  async getOrderSigningUrl(orderId: string): Promise<StoreOrderSigningUrlResponse> {
+  async getOrderSigningUrl(
+    orderId: string
+  ): Promise<StoreOrderSigningUrlResponse> {
     return this.fetch<StoreOrderSigningUrlResponse>(
       `/documents/${encodeURIComponent(orderId)}/signing-url`,
       { method: "GET" }

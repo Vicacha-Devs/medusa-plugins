@@ -2,7 +2,8 @@ openapi: 3.1.0
 info:
   title: "@vicacha-devs/medusa-plugin-stories API"
   version: 0.0.1
-  description: Shoppable Stories, Highlights Rings & Interactive 9:16 Video/Image
+  description:
+    Shoppable Stories, Highlights Rings & Interactive 9:16 Video/Image
     Player plugin for Medusa v2 — Story Groups, Multi-Slide Timelines, X/Y
     Product Hotspots, Interactive Stickers (Polls, Countdowns, Coupons),
     Conversion Funnel Analytics, Storefront React UI Kit, Typed SDK & 9:16 Admin

@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next"
 import { TypesenseHeaderBar } from "../../../components/typesense/header-bar"
 import { OverviewTab } from "../../../components/typesense/overview-tab"
 import { useTypesenseStudio } from "../../../components/typesense/use-typesense-studio"
-import { RbacGuard } from "../../../components/rbac-guard";
+import { RbacGuard } from "../../../components/rbac-guard"
 
 const TypesenseCollectionsPage: React.FC = () => {
   const studio = useTypesenseStudio()
@@ -19,7 +19,10 @@ const TypesenseCollectionsPage: React.FC = () => {
       preferredLayoutId={CORE_LAYOUT_IDS.SINGLE_COLUMN}
       sections={{
         main: (
-          <div className="flex flex-col gap-y-4" dir={studio.isRtl ? "rtl" : "ltr"}>
+          <div
+            className="flex flex-col gap-y-4"
+            dir={studio.isRtl ? "rtl" : "ltr"}
+          >
             <LayoutComposer.Entry id="TypesenseCollectionsHeader">
               <TypesenseHeaderBar
                 healthy={studio.healthy}
@@ -68,6 +71,6 @@ const GuardedTypesenseCollectionsPage = () => (
   <RbacGuard permission="typesense.read">
     <TypesenseCollectionsPage />
   </RbacGuard>
-);
+)
 
-export default GuardedTypesenseCollectionsPage;
+export default GuardedTypesenseCollectionsPage

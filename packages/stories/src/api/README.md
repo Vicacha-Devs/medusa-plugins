@@ -41,21 +41,21 @@ api/
 
 ### Storefront Endpoints
 
-| Method | Path | Validator Schema | Description |
-| --- | --- | --- | --- |
-| `GET` | `/store/stories` | — | Returns `{ stories, groups }` filtered by `placement` (`home`, `collection`, `category`, `product`, `floating_bubble`, `global`), `target_entity_id`, `collection_id`, `group_id`, or `product_id`. Automatically filters out inactive and expired stories. |
-| `POST` | `/store/stories/:id/events` | `RecordStoryEngagementSchema` | Executes `recordStoryEngagementWorkflow` to record `impression`, `complete`, `tap_forward`, `tap_back`, `exit`, `hotspot_click`, `link_click`, `add_to_cart`, or `sticker_interact`. |
-| `POST` | `/store/stories/:id/interact` | `InteractWithStoryStickerSchema` | Records a `poll` vote (`option_id`), `question_badge` response (`answer_text`), or `coupon` claim on a sticker. |
+| Method | Path                          | Validator Schema                 | Description                                                                                                                                                                                                                                                 |
+| ------ | ----------------------------- | -------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `GET`  | `/store/stories`              | —                                | Returns `{ stories, groups }` filtered by `placement` (`home`, `collection`, `category`, `product`, `floating_bubble`, `global`), `target_entity_id`, `collection_id`, `group_id`, or `product_id`. Automatically filters out inactive and expired stories. |
+| `POST` | `/store/stories/:id/events`   | `RecordStoryEngagementSchema`    | Executes `recordStoryEngagementWorkflow` to record `impression`, `complete`, `tap_forward`, `tap_back`, `exit`, `hotspot_click`, `link_click`, `add_to_cart`, or `sticker_interact`.                                                                        |
+| `POST` | `/store/stories/:id/interact` | `InteractWithStoryStickerSchema` | Records a `poll` vote (`option_id`), `question_badge` response (`answer_text`), or `coupon` claim on a sticker.                                                                                                                                             |
 
 ### Admin Endpoints
 
-| Method | Path | Validator Schema | Workflow / Service Method |
-| --- | --- | --- | --- |
-| `GET` | `/admin/stories` | — | `storiesService.listAdminStudioState` |
-| `POST` | `/admin/stories` | `CreateStorySlideSchema` | `createStorySlideWorkflow` |
-| `GET` / `PATCH` / `DELETE` | `/admin/stories/:id` | `UpdateStorySlideSchema` | `getSlideById`, `updateSlide`, `deleteSlide` |
-| `GET` / `POST` | `/admin/stories/groups` | `CreateStoryGroupSchema` | `listGroups`, `createStoryGroupWorkflow` |
-| `GET` / `PATCH` / `DELETE` | `/admin/stories/groups/:id` | `UpdateStoryGroupSchema` | `getGroupById`, `updateGroup`, `deleteGroup` |
-| `POST` / `DELETE` | `/admin/stories/:id/hotspots` | `CreateStoryHotspotSchema` / `DeleteStoryHotspotSchema` | `addHotspotToSlide`, `removeHotspot` |
-| `POST` / `DELETE` | `/admin/stories/:id/stickers` | `CreateStoryStickerSchema` / `DeleteStoryStickerSchema` | `addStickerToSlide`, `removeSticker` |
-| `GET` | `/admin/stories/analytics` | — | `storiesService.getAnalyticsOverview` |
+| Method                     | Path                          | Validator Schema                                        | Workflow / Service Method                    |
+| -------------------------- | ----------------------------- | ------------------------------------------------------- | -------------------------------------------- |
+| `GET`                      | `/admin/stories`              | —                                                       | `storiesService.listAdminStudioState`        |
+| `POST`                     | `/admin/stories`              | `CreateStorySlideSchema`                                | `createStorySlideWorkflow`                   |
+| `GET` / `PATCH` / `DELETE` | `/admin/stories/:id`          | `UpdateStorySlideSchema`                                | `getSlideById`, `updateSlide`, `deleteSlide` |
+| `GET` / `POST`             | `/admin/stories/groups`       | `CreateStoryGroupSchema`                                | `listGroups`, `createStoryGroupWorkflow`     |
+| `GET` / `PATCH` / `DELETE` | `/admin/stories/groups/:id`   | `UpdateStoryGroupSchema`                                | `getGroupById`, `updateGroup`, `deleteGroup` |
+| `POST` / `DELETE`          | `/admin/stories/:id/hotspots` | `CreateStoryHotspotSchema` / `DeleteStoryHotspotSchema` | `addHotspotToSlide`, `removeHotspot`         |
+| `POST` / `DELETE`          | `/admin/stories/:id/stickers` | `CreateStoryStickerSchema` / `DeleteStoryStickerSchema` | `addStickerToSlide`, `removeSticker`         |
+| `GET`                      | `/admin/stories/analytics`    | —                                                       | `storiesService.getAnalyticsOverview`        |

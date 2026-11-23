@@ -2,8 +2,21 @@
   "name": "@vicacha-devs/medusa-plugin-stories",
   "version": "0.0.1",
   "description": "Shoppable Stories, Highlights Rings & Interactive 9:16 Video/Image Player plugin for Medusa v2 — Story Groups, Multi-Slide Timelines, X/Y Product Hotspots, Interactive Stickers (Polls, Countdowns, Coupons), Conversion Funnel Analytics, Storefront React UI Kit, Typed SDK & 9:16 Admin Studio.",
-  "author": "Vicacha Devs",
+  "keywords": [
+    "highlights",
+    "medusa",
+    "medusa-plugin",
+    "medusa-plugin-integration",
+    "medusa-plugin-stories",
+    "medusa-v2",
+    "product-hotspots",
+    "shoppable-stories",
+    "shoppable-video",
+    "social-stories",
+    "stories"
+  ],
   "license": "MIT",
+  "author": "Vicacha Devs",
   "files": [
     ".medusa/server",
     "src",
@@ -52,19 +65,6 @@
     },
     "./*": "./.medusa/server/src/*.js"
   },
-  "keywords": [
-    "medusa",
-    "medusa-v2",
-    "medusa-plugin",
-    "medusa-plugin-stories",
-    "stories",
-    "shoppable-stories",
-    "highlights",
-    "shoppable-video",
-    "product-hotspots",
-    "social-stories",
-    "medusa-plugin-integration"
-  ],
   "scripts": {
     "build": "medusa plugin:build && tsc-alias -p tsconfig.json",
     "publish:local": "medusa plugin:publish",

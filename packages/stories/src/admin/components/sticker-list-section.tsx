@@ -1,12 +1,5 @@
 import { SectionRow } from "@medusajs/dashboard/components"
-import {
-  Badge,
-  Button,
-  Container,
-  Heading,
-  Table,
-  Text,
-} from "@medusajs/ui"
+import { Badge, Button, Container, Heading, Table, Text } from "@medusajs/ui"
 import { useTranslation } from "react-i18next"
 import type { StorySlideDTO } from "../../modules/story/types"
 
@@ -48,8 +41,12 @@ export const StickerActiveListSection = ({
         <Table>
           <Table.Header>
             <Table.Row>
-              <Table.HeaderCell>{t("stickersTab.promptField")}</Table.HeaderCell>
-              <Table.HeaderCell>{t("analyticsTab.colStickerVotes")}</Table.HeaderCell>
+              <Table.HeaderCell>
+                {t("stickersTab.promptField")}
+              </Table.HeaderCell>
+              <Table.HeaderCell>
+                {t("analyticsTab.colStickerVotes")}
+              </Table.HeaderCell>
               <Table.HeaderCell className="text-right" />
             </Table.Row>
           </Table.Header>

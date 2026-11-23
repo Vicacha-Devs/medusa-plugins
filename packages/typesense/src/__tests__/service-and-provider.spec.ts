@@ -202,10 +202,7 @@ function createInMemoryMockTypesenseClient() {
             ([name, collection_name]) => ({ name, collection_name })
           ),
         }),
-        upsert: async (
-          name: string,
-          body: { collection_name: string }
-        ) => {
+        upsert: async (name: string, body: { collection_name: string }) => {
           aliases.set(name, body.collection_name)
           return { name, collection_name: body.collection_name }
         },
@@ -339,10 +336,7 @@ describe("TypesenseModuleService & TypesenseSearchProviderService", () => {
       ],
     })
 
-    assert.notEqual(
-      secondReindex.collectionName,
-      firstReindex.collectionName
-    )
+    assert.notEqual(secondReindex.collectionName, firstReindex.collectionName)
     const copiedSynonyms = await service.listSynonyms("products")
     assert.equal(copiedSynonyms.length, 1)
     assert.equal(copiedSynonyms[0].id, "syn-trail")
@@ -389,9 +383,7 @@ describe("TypesenseModuleService & TypesenseSearchProviderService", () => {
     // 6. Test Custom Entity Indexing ('brands')
     const brandSync = await service.upsertEntityRecords({
       entity: "brands",
-      records: [
-        { id: "brand_1", name: "NordicPeak", slug: "nordic-peak" },
-      ],
+      records: [{ id: "brand_1", name: "NordicPeak", slug: "nordic-peak" }],
     })
     assert.equal(brandSync.documentsProcessed, 1)
     const brandDoc = await service.retrieveIndexedDocument("brands", "brand_1")
@@ -405,10 +397,7 @@ describe("TypesenseModuleService & TypesenseSearchProviderService", () => {
       expiresInSeconds: 1800,
     })
     assert.ok(tokenRes.scopedApiKey.length > 20)
-    assert.deepEqual(tokenRes.collections, [
-      "medusa_products",
-      "medusa_brands",
-    ])
+    assert.deepEqual(tokenRes.collections, ["medusa_products", "medusa_brands"])
     assert.ok(tokenRes.filterBy.includes("status:=published"))
     assert.ok(tokenRes.filterBy.includes("sc_storefront"))
   })

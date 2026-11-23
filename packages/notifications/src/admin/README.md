@@ -66,15 +66,15 @@ export const handle = {
 }
 ```
 
-| Route Path | File | Layout ID | Widget Zone Prefix | Description |
-| --- | --- | --- | --- | --- |
-| `/app/mpn` | `routes/mpn/page.tsx` | `SINGLE_COLUMN` | `mpn.overview` | Overview dashboard with `StatCard` KPIs and `NavigationCard` links to all 6 sub-routes |
-| `/app/mpn/templates` | `routes/mpn/templates/page.tsx` | `SINGLE_COLUMN` | `mpn.templates` | Visual Block Tree & Raw Template Builder, 1-click preset cloning, and live multi-locale preview |
-| `/app/mpn/mappings` | `routes/mpn/mappings/page.tsx` | `SINGLE_COLUMN` | `mpn.mappings` | Store Event → Channel → Template → Recipient Rule mapping form and active rules table |
-| `/app/mpn/channels` | `routes/mpn/channels/page.tsx` | `TWO_COLUMN` | `mpn.channels` | WhatsApp/OpenWA & Telegram verification gate in `main`; SMS carrier selector in `side` |
-| `/app/mpn/logs` | `routes/mpn/logs/page.tsx` | `SINGLE_COLUMN` | `mpn.logs` | PII-masked, idempotent delivery ledger table |
-| `/app/mpn/broadcasts` | `routes/mpn/broadcasts/page.tsx` | `TWO_COLUMN` | `mpn.broadcasts` | Broadcast campaign form & history table in `main`; TCPA/10DLC consent summary in `side` |
-| `/app/mpn/sandbox` | `routes/mpn/sandbox/page.tsx` | `SINGLE_COLUMN` | `mpn.sandbox` | Dummy OTP & local sandbox message inspector with 1-click clear |
+| Route Path            | File                             | Layout ID       | Widget Zone Prefix | Description                                                                                     |
+| --------------------- | -------------------------------- | --------------- | ------------------ | ----------------------------------------------------------------------------------------------- |
+| `/app/mpn`            | `routes/mpn/page.tsx`            | `SINGLE_COLUMN` | `mpn.overview`     | Overview dashboard with `StatCard` KPIs and `NavigationCard` links to all 6 sub-routes          |
+| `/app/mpn/templates`  | `routes/mpn/templates/page.tsx`  | `SINGLE_COLUMN` | `mpn.templates`    | Visual Block Tree & Raw Template Builder, 1-click preset cloning, and live multi-locale preview |
+| `/app/mpn/mappings`   | `routes/mpn/mappings/page.tsx`   | `SINGLE_COLUMN` | `mpn.mappings`     | Store Event → Channel → Template → Recipient Rule mapping form and active rules table           |
+| `/app/mpn/channels`   | `routes/mpn/channels/page.tsx`   | `TWO_COLUMN`    | `mpn.channels`     | WhatsApp/OpenWA & Telegram verification gate in `main`; SMS carrier selector in `side`          |
+| `/app/mpn/logs`       | `routes/mpn/logs/page.tsx`       | `SINGLE_COLUMN` | `mpn.logs`         | PII-masked, idempotent delivery ledger table                                                    |
+| `/app/mpn/broadcasts` | `routes/mpn/broadcasts/page.tsx` | `TWO_COLUMN`    | `mpn.broadcasts`   | Broadcast campaign form & history table in `main`; TCPA/10DLC consent summary in `side`         |
+| `/app/mpn/sandbox`    | `routes/mpn/sandbox/page.tsx`    | `SINGLE_COLUMN` | `mpn.sandbox`      | Dummy OTP & local sandbox message inspector with 1-click clear                                  |
 
 ---
 
@@ -82,26 +82,26 @@ export const handle = {
 
 All Admin UI components are modular, single-responsibility files kept strictly under **170 lines per file**:
 
-| File | Responsibility |
-| --- | --- |
-| `index.ts` | Barrel exporting all Notification Studio components, constants, and `useNotificationStudio` |
-| `constants.ts` | Re-exports `CHANNELS`, `CONTEXT_TYPES`, `BLOCK_TYPES`, and `LOCALES` from `src/types` |
-| `header-bar.tsx` | Studio header bar with `<Toaster />`, subtitle, and refresh action button |
-| `overview-cards.tsx` | Reusable `StatCard` and `NavigationCard` components for `/app/mpn` |
-| `templates-tab.tsx` | Coordinates `TemplatesListSection`, `TemplateEditorSection`, and `TemplatePreviewSection` |
-| `templates-list-section.tsx` | Channel-filtered table of `system_*` presets and `mpntpl_*` DB templates with Preview/Clone actions |
-| `template-editor-section.tsx` | Subject, Meta WABA template name, Raw content textarea, and hierarchical Block Tree editor |
-| `template-preview-section.tsx` | Live rendered preview across 10 locales and 7 entity context types with SMS encoding/segment badges |
-| `event-mappings-tab.tsx` | Combines `EventMappingForm` and the active event mappings table with delete action |
-| `event-mapping-form.tsx` | `KeyboundForm` for binding a Medusa event to a channel, template, recipient rule, thread ID, and PDF invoice attachment |
-| `channels-tab.tsx` | Coordinator rendering `ChannelsMainSection` and `ChannelsSideSection` |
-| `channels-main-section.tsx` | WhatsApp driver selector (`meta-cloud`, `openwa`, `waha`, `evolution`) and Telegram supergroup verification gate |
-| `channels-side-section.tsx` | SMS carrier driver selector (`twilio`, `signalhouse`, `msg91`, `smsapi`, `dummy`) |
-| `delivery-logs-tab.tsx` | Paginated table of PII-masked `mpn_delivery_log` records with status badges |
-| `broadcasts-tab.tsx` | Customer group / custom recipient broadcast campaign form and campaign history table |
+| File                            | Responsibility                                                                                                           |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `index.ts`                      | Barrel exporting all Notification Studio components, constants, and `useNotificationStudio`                              |
+| `constants.ts`                  | Re-exports `CHANNELS`, `CONTEXT_TYPES`, `BLOCK_TYPES`, and `LOCALES` from `src/types`                                    |
+| `header-bar.tsx`                | Studio header bar with `<Toaster />`, subtitle, and refresh action button                                                |
+| `overview-cards.tsx`            | Reusable `StatCard` and `NavigationCard` components for `/app/mpn`                                                       |
+| `templates-tab.tsx`             | Coordinates `TemplatesListSection`, `TemplateEditorSection`, and `TemplatePreviewSection`                                |
+| `templates-list-section.tsx`    | Channel-filtered table of `system_*` presets and `mpntpl_*` DB templates with Preview/Clone actions                      |
+| `template-editor-section.tsx`   | Subject, Meta WABA template name, Raw content textarea, and hierarchical Block Tree editor                               |
+| `template-preview-section.tsx`  | Live rendered preview across 10 locales and 7 entity context types with SMS encoding/segment badges                      |
+| `event-mappings-tab.tsx`        | Combines `EventMappingForm` and the active event mappings table with delete action                                       |
+| `event-mapping-form.tsx`        | `KeyboundForm` for binding a Medusa event to a channel, template, recipient rule, thread ID, and PDF invoice attachment  |
+| `channels-tab.tsx`              | Coordinator rendering `ChannelsMainSection` and `ChannelsSideSection`                                                    |
+| `channels-main-section.tsx`     | WhatsApp driver selector (`meta-cloud`, `openwa`, `waha`, `evolution`) and Telegram supergroup verification gate         |
+| `channels-side-section.tsx`     | SMS carrier driver selector (`twilio`, `signalhouse`, `msg91`, `smsapi`, `dummy`)                                        |
+| `delivery-logs-tab.tsx`         | Paginated table of PII-masked `mpn_delivery_log` records with status badges                                              |
+| `broadcasts-tab.tsx`            | Customer group / custom recipient broadcast campaign form and campaign history table                                     |
 | `broadcast-consent-section.tsx` | Side card displaying opted-in vs. opted-out counts (`mpn_consent_record`) and webhook keywords (`JOIN`/`STOP`, `/start`) |
-| `sandbox-tab.tsx` | Table of captured sandbox messages (`mpn_sandbox_message`) highlighting extracted OTP codes |
-| `use-notification-studio.ts` | Unified studio state hook composing the domain hooks from `src/hooks/*` |
+| `sandbox-tab.tsx`               | Table of captured sandbox messages (`mpn_sandbox_message`) highlighting extracted OTP codes                              |
+| `use-notification-studio.ts`    | Unified studio state hook composing the domain hooks from `src/hooks/*`                                                  |
 
 ---
 

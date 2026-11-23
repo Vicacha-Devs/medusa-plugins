@@ -142,7 +142,8 @@ export const DIAN_SOAP_ENDPOINTS = {
 } as const
 
 export const DIAN_QR_BASE_URLS = {
-  production: "https://catalogo-vpfe.dian.gov.co/document/searchqr?documentkey=",
+  production:
+    "https://catalogo-vpfe.dian.gov.co/document/searchqr?documentkey=",
   habilitation:
     "https://catalogo-vpfe-hab.dian.gov.co/document/searchqr?documentkey=",
 } as const

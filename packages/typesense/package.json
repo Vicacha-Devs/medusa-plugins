@@ -2,8 +2,26 @@
   "name": "@vicacha-devs/medusa-plugin-typesense",
   "version": "0.0.1",
   "description": "Full-featured Typesense search, vector/hybrid AI search, merchandising (synonyms, curations, stopwords), custom entity indexing, and InstantSearch plugin for Medusa v2",
-  "author": "Vicacha Devs",
+  "keywords": [
+    "ecommerce",
+    "faceted-search",
+    "hybrid-search",
+    "instantsearch",
+    "medusa",
+    "medusa-plugin",
+    "medusa-plugin-integration",
+    "medusa-plugin-search",
+    "medusa-plugin-typesense",
+    "medusa-search",
+    "medusa-search-provider",
+    "medusa-v2",
+    "search",
+    "semantic-search",
+    "typesense",
+    "vector-search"
+  ],
   "license": "MIT",
+  "author": "Vicacha Devs",
   "files": [
     ".medusa/server",
     "src",
@@ -11,6 +29,7 @@
     "LICENSE",
     "tsconfig.json"
   ],
+  "types": "./src/index.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
@@ -57,24 +76,6 @@
       "default": "./.medusa/server/src/rbac.js"
     }
   },
-  "keywords": [
-    "medusa",
-    "medusa-v2",
-    "medusa-plugin",
-    "medusa-plugin-search",
-    "medusa-plugin-integration",
-    "medusa-plugin-typesense",
-    "medusa-search",
-    "medusa-search-provider",
-    "typesense",
-    "search",
-    "faceted-search",
-    "semantic-search",
-    "vector-search",
-    "hybrid-search",
-    "instantsearch",
-    "ecommerce"
-  ],
   "scripts": {
     "build": "medusa plugin:build",
     "publish:local": "medusa plugin:publish",
@@ -83,6 +84,10 @@
     "prepublishOnly": "medusa plugin:build",
     "typecheck": "tsc --noEmit",
     "test": "node --import ./src/__tests__/register-ts-resolver.mjs --test src/__tests__/*.spec.ts"
+  },
+  "dependencies": {
+    "typesense": "^3.1.1",
+    "zod": "4.6.7"
   },
   "devDependencies": {
     "@hookform/resolvers": "5.7.1",
@@ -131,13 +136,8 @@
     "react-i18next": "18.0.1",
     "react-router-dom": "7.18.5"
   },
-  "dependencies": {
-    "typesense": "^3.1.1",
-    "zod": "4.6.7"
-  },
   "engines": {
     "node": ">=22.22.0"
   },
-  "packageManager": "pnpm@11.20.0",
-  "types": "./src/index.ts"
+  "packageManager": "pnpm@11.20.0"
 }

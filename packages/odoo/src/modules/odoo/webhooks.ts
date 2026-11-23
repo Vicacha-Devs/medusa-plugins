@@ -1,6 +1,4 @@
-import {
-  MedusaError,
-} from "@medusajs/framework/utils"
+import { MedusaError } from "@medusajs/framework/utils"
 import type {
   OdooWebhookPayload,
   OdooWebhookProcessResult,
@@ -13,13 +11,16 @@ import {
   verifyOdooWebhookSignature,
 } from "./utils/security"
 
-export async function processWebhookEvent(this: OdooModuleService, params: {
-  rawBody: string | Buffer
-  signatureHeader?: string | null
-  payload: OdooWebhookPayload
-  scope?: unknown
-  executeSync?: boolean
-}): Promise<OdooWebhookProcessResult> {
+export async function processWebhookEvent(
+  this: OdooModuleService,
+  params: {
+    rawBody: string | Buffer
+    signatureHeader?: string | null
+    payload: OdooWebhookPayload
+    scope?: unknown
+    executeSync?: boolean
+  }
+): Promise<OdooWebhookProcessResult> {
   const config = await this.getConnectionConfig()
   const webhookSettings =
     await this.getSectionSettings<OdooWebhookSettings>("webhooks")
@@ -63,7 +64,9 @@ export async function processWebhookEvent(this: OdooModuleService, params: {
 
   let actionTaken = "logged"
   let processingError: string | null = null
-  const syncScope = params.scope as { resolve: (key: string) => unknown } | undefined
+  const syncScope = params.scope as
+    | { resolve: (key: string) => unknown }
+    | undefined
   const evt = params.payload.event
   const recordId =
     params.payload.record_id ??

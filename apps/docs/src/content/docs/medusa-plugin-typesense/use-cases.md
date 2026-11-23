@@ -18,11 +18,11 @@ flowchart LR
 
 ## Medusa Modules & Data Models
 
-| Module | Data Model |
-| :--- | :--- |
-| `typesense` | `entity-config` |
+| Module      | Data Model         |
+| :---------- | :----------------- |
+| `typesense` | `entity-config`    |
 | `typesense` | `search-analytics` |
-| `typesense` | `sync-job` |
+| `typesense` | `sync-job`         |
 
 ## Key Capabilities & Integration Points
 

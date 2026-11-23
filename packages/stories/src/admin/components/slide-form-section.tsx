@@ -9,10 +9,7 @@ import {
   Switch,
 } from "@medusajs/ui"
 import { useTranslation } from "react-i18next"
-import type {
-  StoryGroupDTO,
-  StoryMediaType,
-} from "../../modules/story/types"
+import type { StoryGroupDTO, StoryMediaType } from "../../modules/story/types"
 import type { NewSlideFormState } from "../hooks/use-stories-studio"
 import { CanvasTimelineSection } from "./slide-timeline-section"
 
