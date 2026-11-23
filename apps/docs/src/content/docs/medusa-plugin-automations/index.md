@@ -17,24 +17,35 @@ description: "Automations plugin for Medusa v2 by Vicacha Devs."
 | Admin i18n Locales        | en                                                       |
 | HTTP Endpoints            | 8 ([OpenAPI Reference](/medusa-plugin-automations/api/)) |
 
-Rule-based **trigger → condition → action** automation engine for **Medusa v2** (`>= 2.23.0`).
+Rule-based **trigger → condition → action** automation engine for **Medusa v2** (`>= 2.23.0`), built as an ESM-only package with an optional zero-hard-dependency bridge to `@vicacha-devs/medusa-plugin-notifications`.
 
-- **Triggers**: Commerce events (`order.placed`, `order.completed`, `customer.created`, `inventory-level.updated`, etc.), scheduled rules, and manual triggers (`POST /admin/automations/:id/trigger`).
-- **Condition Engine**: Prototype-safe nested path evaluation (`eq`, `neq`, `gt`, `gte`, `lt`, `lte`, `in`, `not_in`, `contains`, `not_contains`, `exists`, `not_exists`).
-- **Action Handlers**:
-  - `notification`: Dispatches via Medusa's built-in `Modules.NOTIFICATION`.
-  - `mpn-notification-studio`: Optional zero-hard-dependency integration with `@vicacha-devs/medusa-plugin-notifications`.
-  - `webhook`: SSRF-guarded outgoing JSON webhook POST.
-  - Extensible via `registerActionHandler()` or `options.actionHandlers`.
+---
 
-## Installation
+## Key Features
+
+- **Triggers**:
+  - **Commerce Events**: `order.placed`, `order.completed`, `order.canceled`, `customer.created`, `product.created`, `product.updated`, `inventory-level.updated` (via `src/subscribers/automation-events.ts`).
+  - **Scheduled & Manual Triggers**: Cron-ready rule definitions plus manual execution via `POST /admin/automations/:id/trigger`.
+- **Prototype-Safe Condition Evaluator (`evaluateConditions`)**:
+  - Resolves nested dot/array paths (`order.total`, `order.items.0.sku`, `customer.tags`) while blocking `__proto__`, `constructor`, and `prototype`.
+  - Supports 12 operators: `eq`, `neq`, `gt`, `gte`, `lt`, `lte`, `in`, `not_in`, `contains`, `not_contains`, `exists`, `not_exists`.
+- **Built-in & Extensible Action Handlers (`AutomationActionHandler`)**:
+  - `notification`: Dispatches via Medusa's built-in `Modules.NOTIFICATION` (`email`, `sms`, `whatsapp`, `telegram`, `slack`).
+  - `mpn-notification-studio`: Optional bridge to `@vicacha-devs/medusa-plugin-notifications` (falls back to `Modules.NOTIFICATION` when standalone).
+  - `webhook`: SSRF-guarded outgoing JSON `POST` (`https://` in production; loopback allowed in non-production).
+  - Register custom handlers via `service.registerActionHandler(handler)` or `options.actionHandlers`.
+
+---
+
+## Installation & Configuration
 
 ```bash
 pnpm add @vicacha-devs/medusa-plugin-automations
 ```
 
 ```ts
-// medusa-config.ts
+import { defineConfig } from "@medusajs/framework/utils"
+
 export default defineConfig({
   plugins: [
     {
@@ -43,4 +54,26 @@ export default defineConfig({
     },
   ],
 })
+```
+
+---
+
+## Data Models & REST API
+
+- **Models**: `automation_rule` (`AutomationRuleModel`) and `automation_execution_log` (`AutomationExecutionLogModel`).
+- **Admin Endpoints**:
+  - `GET /admin/automations` · `POST /admin/automations`
+  - `GET /admin/automations/:id` · `PATCH /admin/automations/:id` · `DELETE /admin/automations/:id`
+  - `POST /admin/automations/:id/trigger`
+  - `GET /admin/automations/:id/logs`
+  - `GET /admin/automations/actions`
+- **Admin UI**: `/app/automations` route for viewing, toggling, and manually triggering rules.
+
+---
+
+## Development & Testing
+
+```bash
+pnpm --filter @vicacha-devs/medusa-plugin-automations test
+pnpm --filter @vicacha-devs/medusa-plugin-automations typecheck
 ```
