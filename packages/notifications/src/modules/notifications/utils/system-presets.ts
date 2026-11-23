@@ -3,6 +3,7 @@ import type {
   SystemTemplatePreset,
   TemplateBlockNode,
 } from "../../../types"
+import { AUTH_SYSTEM_TEMPLATE_PRESETS } from "./auth-presets"
 
 export type { SystemTemplatePreset } from "../../../types"
 
@@ -682,6 +683,7 @@ export const SYSTEM_TEMPLATE_PRESETS: SystemTemplatePreset[] = [
       },
     ],
   },
+  ...AUTH_SYSTEM_TEMPLATE_PRESETS,
 ]
 
 export function getSystemPresetById(

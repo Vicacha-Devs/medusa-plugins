@@ -20,6 +20,10 @@ export const config: SubscriberConfig = {
   event: [
     "customer.created",
     "customer.updated",
+    "invite.created",
+    "invite.resent",
+    "auth.password_reset",
+    "auth.verification_requested",
     "document.generated",
     "auth.otp_generated",
     "loyalty.points_credited",
