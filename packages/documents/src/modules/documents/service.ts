@@ -39,7 +39,6 @@ class DocumentsModuleService extends MedusaService({
     container: InjectedDependencies,
     options?: DocumentsPluginOptions
   ) {
-     
     super(...arguments)
     this.options_ = options ?? {}
     this.docuseal = new DocusealService(this.options_.docuseal)
