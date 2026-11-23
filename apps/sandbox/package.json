@@ -20,7 +20,9 @@
     "@medusajs/dashboard": "2.23.0",
     "@medusajs/framework": "2.23.0",
     "@medusajs/medusa": "2.23.0",
+    "@vicacha-devs/medusa-fulfillment-eu": "workspace:*",
     "@vicacha-devs/medusa-payment-bold": "workspace:*",
+    "@vicacha-devs/medusa-payment-mollie": "workspace:*",
     "@vicacha-devs/medusa-plugin-b2b": "workspace:*",
     "@vicacha-devs/medusa-plugin-barcode": "workspace:*",
     "@vicacha-devs/medusa-plugin-dian": "workspace:*",
@@ -28,7 +30,6 @@
     "@vicacha-devs/medusa-plugin-notifications": "workspace:*",
     "@vicacha-devs/medusa-plugin-odoo": "workspace:*",
     "@vicacha-devs/medusa-plugin-product-extensions": "workspace:*",
-    "@vicacha-devs/medusa-plugin-rbac": "workspace:*",
     "@vicacha-devs/medusa-plugin-social-commerce": "workspace:*",
     "@vicacha-devs/medusa-plugin-stories": "workspace:*",
     "@vicacha-devs/medusa-plugin-typesense": "workspace:*"

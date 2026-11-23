@@ -46,7 +46,9 @@ export default defineConfig({
     }),
   },
   plugins: [
+    { resolve: "@vicacha-devs/medusa-fulfillment-eu", options: {} },
     { resolve: "@vicacha-devs/medusa-payment-bold", options: {} },
+    { resolve: "@vicacha-devs/medusa-payment-mollie", options: {} },
     { resolve: "@vicacha-devs/medusa-plugin-b2b", options: {} },
     { resolve: "@vicacha-devs/medusa-plugin-barcode", options: {} },
     { resolve: "@vicacha-devs/medusa-plugin-dian", options: {} },
@@ -54,7 +56,6 @@ export default defineConfig({
     { resolve: "@vicacha-devs/medusa-plugin-notifications", options: {} },
     { resolve: "@vicacha-devs/medusa-plugin-odoo", options: {} },
     { resolve: "@vicacha-devs/medusa-plugin-product-extensions", options: {} },
-    { resolve: "@vicacha-devs/medusa-plugin-rbac", options: {} },
     { resolve: "@vicacha-devs/medusa-plugin-social-commerce", options: {} },
     { resolve: "@vicacha-devs/medusa-plugin-stories", options: {} },
     { resolve: "@vicacha-devs/medusa-plugin-typesense", options: {} },
