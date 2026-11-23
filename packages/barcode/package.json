@@ -1,6 +1,6 @@
 {
   "name": "@vicacha-devs/medusa-plugin-barcode",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Unified 4-in-1 Barcode, GS1, Dynamic QR, Multi-Provider GTIN Lookup, Thermal/Sheet Label Printing (HTML/SVG & ZPL II), Anti-Counterfeit Verification & Warehouse Stock-Take Scanner plugin for Medusa v2.",
   "keywords": [
     "barcode",

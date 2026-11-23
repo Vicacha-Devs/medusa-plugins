@@ -1,6 +1,6 @@
 {
   "name": "@vicacha-devs/medusa-plugin-b2b",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "B2B commerce capabilities for Medusa v2: companies, employees, quotes, approvals, spending limits, and B2B cart workflows.",
   "keywords": [
     "b2b",
