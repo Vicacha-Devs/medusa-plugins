@@ -18,6 +18,8 @@
     "**/.medusa/**",
     ".turbo/**",
     ".qa/**",
+    "**/.astro/**",
+    "**/public/vendor/**",
     "node_modules/**",
     "**/node_modules/**"
   ]

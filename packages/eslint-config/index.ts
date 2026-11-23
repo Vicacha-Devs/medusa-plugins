@@ -9,6 +9,8 @@ export const medusaMonorepoConfig = [
       "**/build/**",
       "**/.turbo/**",
       "**/.qa/**",
+      "**/.astro/**",
+      "**/public/vendor/**",
       "**/coverage/**",
       "**/playwright-report/**",
       "**/test-results/**",

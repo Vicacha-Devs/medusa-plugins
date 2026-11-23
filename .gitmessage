@@ -1,0 +1,34 @@
+# <type>(<scope>): <short summary in imperative mood>
+# |<----                Keep header under 72 characters               ---->|
+
+# Explain WHY this change is being made and how it impacts Medusa v2 admin/API/modules:
+# |<----                  Wrap body lines at 100 chars                ---->|
+
+# Footer (optional):
+# Closes #123
+# BREAKING CHANGE: <description of breaking change and migration steps>
+
+# --- COMMIT CONVENTIONS (@vicacha-devs/medusa-v2-extensions) ---
+# Allowed <type> values:
+#   feat     - New plugin capability, Medusa v2 module, workflow, admin route, or API endpoint
+#   fix      - Bug fix in admin UI, workflows, providers, or API routes
+#   docs     - Documentation and README updates
+#   style    - Code formatting or Admin UI styling adjustments
+#   refactor - Refactoring code (e.g., splitting files to stay <= 500 lines)
+#   perf     - Query, indexing, caching, or bundle performance improvements
+#   test     - Adding or updating node --test or Playwright E2E tests
+#   build    - Plugin build, Turborepo, or dependency updates
+#   ci       - GitHub Actions, Changesets, or monorepo QA scripts
+#   chore    - Routine maintenance tasks
+#   revert   - Revert a previous commit
+#
+# Allowed <scope> values (package/plugin name):
+#   b2b, barcode, dian, documents, fulfillment-eu, notifications, odoo,
+#   payment-bold, payment-mollie, product-extensions, rbac, social-commerce,
+#   stories, typesense, shared, plugin-testing, sandbox, docs,
+#   eslint-config, typescript-config, repo, deps
+#
+# Examples:
+#   feat(b2b): add approval threshold workflow for company quotes
+#   fix(payment-bold): handle constant-time HMAC verification on webhook replay
+#   docs(docs): add OpenAPI reference and GitHub Pages deployment
