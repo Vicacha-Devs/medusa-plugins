@@ -53,7 +53,6 @@ class DianModuleService extends MedusaService({
   public readonly soapProvider: NativeDianSoapProvider
 
   constructor(container: InjectedDependencies, options?: DianPluginOptions) {
-     
     super(...arguments)
     this.container_ = container ?? {}
     this.options_ = options ?? {}
