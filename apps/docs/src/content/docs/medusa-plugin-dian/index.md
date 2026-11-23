@@ -22,6 +22,7 @@ Colombian **DIAN Electronic Invoicing (_Facturación Electrónica DIAN — Anexo
 Supports both **Native "Software Propio"** transmission (UBL 2.1 XML, SHA-384 CUFE/CUDE, XAdES-EPES digital signature, DIAN SOAP Web Services, and RADIAN events) and **Pluggable Colombian Proveedores Tecnológicos / ERPs** (`siigo`, `alegra`, `dataico`, `facturatech`).
 
 > **Medusa compatibility:** `>= 2.21.0`
+> **Required core plugin:** [`@vicacha-devs/medusa-plugin-einvoicing`](../einvoicing/README.md) — `@vicacha-devs/medusa-plugin-dian` acts as the Colombia (`CO` / `co-dian`) fiscal driver (`DianFiscalDriver`) for `einvoicing`.
 
 ---
 
