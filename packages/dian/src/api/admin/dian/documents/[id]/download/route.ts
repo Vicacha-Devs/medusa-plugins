@@ -1,5 +1,5 @@
 import type { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
-import { z } from "zod"
+import { z } from "@medusajs/framework/zod"
 import DianModuleService from "../../../../../../modules/dian/service"
 import { sanitizeArchiveFilename } from "../../../../../../modules/dian/utils"
 import { DIAN_MODULE } from "../../../../../../types"

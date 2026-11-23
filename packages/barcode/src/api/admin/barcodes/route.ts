@@ -1,5 +1,5 @@
 import type { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
-import { z } from "zod"
+import { z } from "@medusajs/framework/zod"
 import type { BarcodeModuleService } from "../../../modules/barcode/service"
 import { BARCODE_MODULE } from "../../../modules/barcode/types"
 

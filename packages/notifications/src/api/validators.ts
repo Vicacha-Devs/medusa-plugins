@@ -1,4 +1,4 @@
-import { z } from "zod"
+import { z } from "@medusajs/framework/zod"
 import {
   BLOCK_TYPES,
   CONTEXT_TYPES,
