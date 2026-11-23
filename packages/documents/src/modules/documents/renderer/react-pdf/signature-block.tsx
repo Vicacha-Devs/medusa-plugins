@@ -1,4 +1,5 @@
 import React from "react"
+// @ts-expect-error TS1479: ESM-only package; loaded via require(esm) on Node >=22.12
 import { Text, View, StyleSheet } from "@react-pdf/renderer"
 
 import { DocumentTranslations } from "../../i18n"

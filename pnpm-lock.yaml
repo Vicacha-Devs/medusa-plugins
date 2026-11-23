@@ -682,7 +682,7 @@ importers:
     dependencies:
       '@mikro-orm/migrations':
         specifier: 6.4.3
-        version: 6.4.3(@mikro-orm/core@6.6.17)(@types/node@20.0.0)(pg@8.23.1)(supports-color@8.1.1)
+        version: 6.4.3(@mikro-orm/core@6.6.17)(@types/node@22.20.1)(pg@8.23.1)(supports-color@8.1.1)
       '@react-pdf/renderer':
         specifier: ^4.1.6
         version: 4.9.0(react@19.3.1)
@@ -713,22 +713,22 @@ importers:
         version: 2.23.0
       '@medusajs/cli':
         specifier: 2.23.0
-        version: 2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
+        version: 2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
       '@medusajs/dashboard':
         specifier: 2.23.0
         version: 2.23.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(ajv@8.13.0)(typescript@5.6.2)
       '@medusajs/framework':
         specifier: 2.23.0
-        version: 2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
+        version: 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
       '@medusajs/icons':
         specifier: 2.23.0
         version: 2.23.0(react@19.3.1)
       '@medusajs/medusa':
         specifier: 2.23.0
-        version: 2.23.0(52a3ccc97d8f24d7003ddce7aa9cf5ad)
+        version: 2.23.0(b1fd0c54fc0227ed4ab81e3fd067e3bc)
       '@medusajs/test-utils':
         specifier: 2.23.0
-        version: 2.23.0(@medusajs/core-flows@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)))(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))(@medusajs/medusa@2.23.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
+        version: 2.23.0(@medusajs/core-flows@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)))(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))(@medusajs/medusa@2.23.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
       '@medusajs/ui':
         specifier: 4.3.0
         version: 4.3.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(typescript@5.6.2)
@@ -739,8 +739,8 @@ importers:
         specifier: ^28.0.1
         version: 28.0.3
       '@types/node':
-        specifier: 20.0.0
-        version: 20.0.0
+        specifier: ^22.13.0
+        version: 22.20.1
       '@types/pdfmake':
         specifier: ^0.2.11
         version: 0.2.13
@@ -773,7 +773,7 @@ importers:
         version: 7.18.5(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       ts-node:
         specifier: 10.9.2
-        version: 10.9.2(@swc/core@1.7.28(@swc/helpers@0.5.23))(@types/node@20.0.0)(typescript@5.6.2)
+        version: 10.9.2(@swc/core@1.7.28(@swc/helpers@0.5.23))(@types/node@22.20.1)(typescript@5.6.2)
       tsc-alias:
         specifier: ^1.9.2
         version: 1.9.2
@@ -782,7 +782,7 @@ importers:
         version: 5.6.2
       vite:
         specifier: ^8.3.8
-        version: 8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0)
+        version: 8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0)
 
   packages/eslint-config:
     dependencies:
@@ -1284,16 +1284,16 @@ importers:
         version: 2.23.0
       '@medusajs/cli':
         specifier: 2.23.0
-        version: 2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
+        version: 2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
       '@medusajs/core-flows':
         specifier: 2.23.0
-        version: 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))
+        version: 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))
       '@medusajs/dashboard':
         specifier: 2.23.0
         version: 2.23.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(ajv@8.13.0)(typescript@5.6.2)
       '@medusajs/framework':
         specifier: 2.23.0
-        version: 2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
+        version: 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
       '@medusajs/icons':
         specifier: 2.23.0
         version: 2.23.0(react@19.3.1)
@@ -1302,13 +1302,13 @@ importers:
         version: 2.23.0
       '@medusajs/medusa':
         specifier: 2.23.0
-        version: 2.23.0(52a3ccc97d8f24d7003ddce7aa9cf5ad)
+        version: 2.23.0(b1fd0c54fc0227ed4ab81e3fd067e3bc)
       '@medusajs/test-utils':
         specifier: 2.23.0
-        version: 2.23.0(@medusajs/core-flows@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)))(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))(@medusajs/medusa@2.23.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
+        version: 2.23.0(@medusajs/core-flows@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)))(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))(@medusajs/medusa@2.23.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
       '@medusajs/types':
         specifier: 2.23.0
-        version: 2.23.0(express@5.3.0(supports-color@8.1.1))(redis@6.3.1(@opentelemetry/api@1.10.0))(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))
+        version: 2.23.0(express@5.3.0(supports-color@8.1.1))(redis@6.3.1(@opentelemetry/api@1.10.0))(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))
       '@medusajs/ui':
         specifier: 4.3.0
         version: 4.3.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(typescript@5.6.2)
@@ -1316,8 +1316,8 @@ importers:
         specifier: 1.7.28
         version: 1.7.28(@swc/helpers@0.5.23)
       '@types/node':
-        specifier: 20.0.0
-        version: 20.0.0
+        specifier: ^22.13.0
+        version: 22.20.1
       '@types/react':
         specifier: ^19.3.0
         version: 19.3.0
@@ -1347,7 +1347,7 @@ importers:
         version: 7.18.5(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       ts-node:
         specifier: 10.9.2
-        version: 10.9.2(@swc/core@1.7.28(@swc/helpers@0.5.23))(@types/node@20.0.0)(typescript@5.6.2)
+        version: 10.9.2(@swc/core@1.7.28(@swc/helpers@0.5.23))(@types/node@22.20.1)(typescript@5.6.2)
       tsc-alias:
         specifier: ^1.9.2
         version: 1.9.2
@@ -1356,7 +1356,7 @@ importers:
         version: 5.6.2
       vite:
         specifier: ^8.3.8
-        version: 8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0)
+        version: 8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0)
 
   packages/stories:
     dependencies:
@@ -12569,6 +12569,67 @@ snapshots:
       - yaml
       - yup
 
+  '@medusajs/admin-bundler@2.23.0(@types/node@22.20.1)(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(ajv@8.13.0)(esbuild@0.28.2)(jiti@2.0.0)(picomatch@4.0.7)(supports-color@8.1.1)(typescript@5.6.2)(yaml@2.9.0)':
+    dependencies:
+      '@medusajs/admin-shared': 2.23.0
+      '@medusajs/admin-vite-plugin': 2.23.0(picomatch@4.0.7)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))
+      '@medusajs/dashboard': 2.23.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(ajv@8.13.0)(typescript@5.6.2)
+      '@medusajs/ui-preset': 2.23.0(tailwindcss@4.3.5)
+      '@tailwindcss/vite': 4.3.5(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))
+      '@vitejs/plugin-react': 6.3.0(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))
+      compression: 1.8.2(supports-color@8.1.1)
+      express: 5.3.0(supports-color@8.1.1)
+      get-port: 7.2.0
+      glob: 14.0.2
+      outdent: 0.8.0
+      tailwindcss: 4.3.5
+      vite: 8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0)
+    transitivePeerDependencies:
+      - '@rolldown/plugin-babel'
+      - '@sinclair/typebox'
+      - '@standard-schema/spec'
+      - '@types/node'
+      - '@types/react'
+      - '@types/react-dom'
+      - '@typeschema/main'
+      - '@vinejs/vine'
+      - '@vitejs/devtools'
+      - ajv
+      - ajv-errors
+      - ajv-formats
+      - arktype
+      - ata-validator
+      - babel-plugin-react-compiler
+      - class-transformer
+      - class-validator
+      - computed-types
+      - effect
+      - esbuild
+      - fluentvalidation-ts
+      - fp-ts
+      - io-ts
+      - jiti
+      - joi
+      - less
+      - nope-validator
+      - oxc-transform-react
+      - picomatch
+      - remix
+      - sass
+      - sass-embedded
+      - stylus
+      - sugarss
+      - superstruct
+      - supports-color
+      - terser
+      - tsx
+      - typanion
+      - typescript
+      - valibot
+      - vest
+      - yaml
+      - yup
+
   '@medusajs/admin-bundler@2.23.0(@types/node@22.20.1)(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(ajv@8.13.0)(esbuild@0.28.2)(jiti@2.7.0)(picomatch@4.0.7)(supports-color@8.1.1)(typescript@5.6.2)(yaml@2.9.0)':
     dependencies:
       '@medusajs/admin-shared': 2.23.0
@@ -12665,6 +12726,20 @@ snapshots:
     transitivePeerDependencies:
       - picomatch
 
+  '@medusajs/admin-vite-plugin@2.23.0(picomatch@4.0.7)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))':
+    dependencies:
+      '@babel/parser': 8.0.10
+      '@babel/traverse': 8.0.10
+      '@babel/types': 8.0.10
+      '@medusajs/admin-shared': 2.23.0
+      fdir: 6.5.0(picomatch@4.0.7)
+      magic-string: 1.4.3
+      outdent: 0.8.0
+      picocolors: 1.1.1
+      vite: 8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0)
+    transitivePeerDependencies:
+      - picomatch
+
   '@medusajs/admin-vite-plugin@2.23.0(picomatch@4.0.7)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))':
     dependencies:
       '@babel/parser': 8.0.10
@@ -12687,6 +12762,10 @@ snapshots:
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
 
+  '@medusajs/analytics-local@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
+
   '@medusajs/analytics-local@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
@@ -12699,6 +12778,11 @@ snapshots:
   '@medusajs/analytics-posthog@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))(posthog-node@5.74.0(@opentelemetry/api@1.10.0)(rxjs@7.8.2))':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
+      posthog-node: 5.74.0(@opentelemetry/api@1.10.0)(rxjs@7.8.2)
+
+  '@medusajs/analytics-posthog@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))(posthog-node@5.74.0(@opentelemetry/api@1.10.0)(rxjs@7.8.2))':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
       posthog-node: 5.74.0(@opentelemetry/api@1.10.0)(rxjs@7.8.2)
 
   '@medusajs/analytics-posthog@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))(posthog-node@5.74.0(@opentelemetry/api@1.10.0)(rxjs@7.8.2))':
@@ -12714,6 +12798,10 @@ snapshots:
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
 
+  '@medusajs/analytics@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
+
   '@medusajs/analytics@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
@@ -12726,6 +12814,10 @@ snapshots:
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
 
+  '@medusajs/api-key@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
+
   '@medusajs/api-key@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
@@ -12737,6 +12829,10 @@ snapshots:
   '@medusajs/audit@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
+
+  '@medusajs/audit@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
 
   '@medusajs/audit@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
@@ -12752,6 +12848,11 @@ snapshots:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
       scrypt-kdf: 4.0.0
 
+  '@medusajs/auth-emailpass@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
+      scrypt-kdf: 4.0.0
+
   '@medusajs/auth-emailpass@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
@@ -12764,6 +12865,10 @@ snapshots:
   '@medusajs/auth-github@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
+
+  '@medusajs/auth-github@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
 
   '@medusajs/auth-github@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
@@ -12780,6 +12885,14 @@ snapshots:
   '@medusajs/auth-google@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))(supports-color@8.1.1)':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
+      jsonwebtoken: 9.0.3
+      jwks-rsa: 4.1.0(supports-color@8.1.1)
+    transitivePeerDependencies:
+      - supports-color
+
+  '@medusajs/auth-google@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))(supports-color@8.1.1)':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
       jsonwebtoken: 9.0.3
       jwks-rsa: 4.1.0(supports-color@8.1.1)
     transitivePeerDependencies:
@@ -12802,6 +12915,12 @@ snapshots:
   '@medusajs/auth-oidc@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
+      oauth4webapi: 3.8.9
+      openid-client: 6.9.1
+
+  '@medusajs/auth-oidc@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
       oauth4webapi: 3.8.9
       openid-client: 6.9.1
 
@@ -12837,6 +12956,19 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  '@medusajs/auth@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))(supports-color@8.1.1)':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
+      '@otplib/core': 13.6.0
+      '@otplib/plugin-crypto-node': 13.6.0
+      '@otplib/totp': 13.6.0
+      '@otplib/uri': 13.6.0
+      jsonwebtoken: 9.0.3
+      jwks-rsa: 4.1.0(supports-color@8.1.1)
+      scrypt-kdf: 4.0.0
+    transitivePeerDependencies:
+      - supports-color
+
   '@medusajs/auth@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))(supports-color@8.1.1)':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
@@ -12858,6 +12990,10 @@ snapshots:
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
 
+  '@medusajs/cache-inmemory@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
+
   '@medusajs/cache-inmemory@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
@@ -12872,6 +13008,13 @@ snapshots:
   '@medusajs/cache-redis@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))(supports-color@8.1.1)':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
+      ioredis: 6.0.0(supports-color@8.1.1)
+    transitivePeerDependencies:
+      - supports-color
+
+  '@medusajs/cache-redis@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))(supports-color@8.1.1)':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
       ioredis: 6.0.0(supports-color@8.1.1)
     transitivePeerDependencies:
       - supports-color
@@ -12894,6 +13037,14 @@ snapshots:
   '@medusajs/caching-redis@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))(supports-color@8.1.1)':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
+      ioredis: 6.0.0(supports-color@8.1.1)
+      xxhash-wasm: 1.1.0
+    transitivePeerDependencies:
+      - supports-color
+
+  '@medusajs/caching-redis@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))(supports-color@8.1.1)':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
       ioredis: 6.0.0(supports-color@8.1.1)
       xxhash-wasm: 1.1.0
     transitivePeerDependencies:
@@ -12923,6 +13074,14 @@ snapshots:
       node-cache: 5.1.2
       xxhash-wasm: 1.1.0
 
+  '@medusajs/caching@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))(awilix@13.0.7)':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
+      awilix: 13.0.7
+      fast-json-stable-stringify: 2.1.0
+      node-cache: 5.1.2
+      xxhash-wasm: 1.1.0
+
   '@medusajs/caching@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))(awilix@13.0.7)':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
@@ -12938,6 +13097,10 @@ snapshots:
   '@medusajs/cart@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
+
+  '@medusajs/cart@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
 
   '@medusajs/cart@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
@@ -13092,6 +13255,25 @@ snapshots:
     transitivePeerDependencies:
       - '@types/react'
 
+  '@medusajs/cloud@2.23.0(@medusajs/admin-sdk@2.23.0)(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@medusajs/dashboard@2.23.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(ajv@8.13.0)(typescript@5.6.2))(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))(@medusajs/icons@2.23.0(react@19.3.1))(@medusajs/test-utils@2.23.0)(@medusajs/ui@4.3.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(typescript@5.6.2))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react-router-dom@7.18.5(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
+      '@medusajs/js-sdk': 2.23.0
+      '@tanstack/react-query': 5.107.1(@types/react@19.3.0)(react@19.3.1)
+      dompurify: 3.4.17
+    optionalDependencies:
+      '@medusajs/admin-sdk': 2.23.0
+      '@medusajs/cli': 2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
+      '@medusajs/dashboard': 2.23.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(ajv@8.13.0)(typescript@5.6.2)
+      '@medusajs/icons': 2.23.0(react@19.3.1)
+      '@medusajs/test-utils': 2.23.0(@medusajs/core-flows@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)))(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))(@medusajs/medusa@2.23.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
+      '@medusajs/ui': 4.3.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(typescript@5.6.2)
+      react: 19.3.1
+      react-dom: 19.3.1(react@19.3.1)
+      react-router-dom: 7.18.5(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+    transitivePeerDependencies:
+      - '@types/react'
+
   '@medusajs/cloud@2.23.0(@medusajs/admin-sdk@2.23.0)(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@medusajs/dashboard@2.23.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(ajv@8.13.0)(typescript@5.6.2))(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))(@medusajs/icons@2.23.0(react@19.3.1))(@medusajs/test-utils@2.23.0)(@medusajs/ui@4.3.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(typescript@5.6.2))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react-router-dom@7.18.5(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
@@ -13125,6 +13307,13 @@ snapshots:
       deeks: 3.2.1
       json-2-csv: 5.6.0
 
+  '@medusajs/core-flows@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
+      csv-parse: 7.0.2
+      deeks: 3.2.1
+      json-2-csv: 5.6.0
+
   '@medusajs/core-flows@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
@@ -13140,6 +13329,10 @@ snapshots:
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
 
+  '@medusajs/currency@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
+
   '@medusajs/currency@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
@@ -13151,6 +13344,10 @@ snapshots:
   '@medusajs/customer@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
+
+  '@medusajs/customer@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
 
   '@medusajs/customer@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
@@ -13389,6 +13586,59 @@ snapshots:
       - vest
       - yup
 
+  '@medusajs/draft-order@2.23.0(@medusajs/admin-sdk@2.23.0)(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@medusajs/dashboard@2.23.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(ajv@8.13.0)(typescript@5.6.2))(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))(@medusajs/icons@2.23.0(react@19.3.1))(@medusajs/test-utils@2.23.0)(@medusajs/ui@4.3.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(typescript@5.6.2))(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(ajv@8.13.0)(react-dom@19.3.1(react@19.3.1))(react-router-dom@7.18.5(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)':
+    dependencies:
+      '@ariakit/react': 0.4.36(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+      '@babel/runtime': 8.1.3
+      '@hookform/resolvers': 6.0.0(ajv@8.13.0)(react-hook-form@7.92.0(@types/react@19.3.0)(react@19.3.1))(zod@4.6.7)
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
+      '@medusajs/js-sdk': 2.23.0
+      '@tanstack/react-query': 5.107.1(@types/react@19.3.0)(react@19.3.1)
+      '@uiw/react-json-view': 2.0.0-alpha.43(@babel/runtime@8.1.3)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+      date-fns: 4.4.0
+      dequal: 2.0.3
+      lodash.debounce: 4.0.8
+      match-sorter: 8.3.1
+      radix-ui: 1.8.1(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+      react-hook-form: 7.92.0(@types/react@19.3.0)(react@19.3.1)
+      zod: 4.6.7
+    optionalDependencies:
+      '@medusajs/admin-sdk': 2.23.0
+      '@medusajs/cli': 2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
+      '@medusajs/dashboard': 2.23.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(ajv@8.13.0)(typescript@5.6.2)
+      '@medusajs/icons': 2.23.0(react@19.3.1)
+      '@medusajs/test-utils': 2.23.0(@medusajs/core-flows@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)))(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))(@medusajs/medusa@2.23.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
+      '@medusajs/ui': 4.3.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(typescript@5.6.2)
+      react: 19.3.1
+      react-dom: 19.3.1(react@19.3.1)
+      react-router-dom: 7.18.5(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+    transitivePeerDependencies:
+      - '@sinclair/typebox'
+      - '@standard-schema/spec'
+      - '@types/react'
+      - '@types/react-dom'
+      - '@typeschema/main'
+      - '@vinejs/vine'
+      - ajv
+      - ajv-errors
+      - ajv-formats
+      - arktype
+      - ata-validator
+      - class-transformer
+      - class-validator
+      - computed-types
+      - effect
+      - fluentvalidation-ts
+      - fp-ts
+      - io-ts
+      - joi
+      - nope-validator
+      - superstruct
+      - typanion
+      - valibot
+      - vest
+      - yup
+
   '@medusajs/draft-order@2.23.0(@medusajs/admin-sdk@2.23.0)(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@medusajs/dashboard@2.23.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(ajv@8.13.0)(typescript@5.6.2))(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))(@medusajs/icons@2.23.0(react@19.3.1))(@medusajs/test-utils@2.23.0)(@medusajs/ui@4.3.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(typescript@5.6.2))(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(ajv@8.13.0)(react-dom@19.3.1(react@19.3.1))(react-router-dom@7.18.5(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)':
     dependencies:
       '@ariakit/react': 0.4.36(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
@@ -13461,6 +13711,10 @@ snapshots:
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
 
+  '@medusajs/event-bus-local@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
+
   '@medusajs/event-bus-local@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
@@ -13479,6 +13733,17 @@ snapshots:
   '@medusajs/event-bus-redis@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))(pg@8.23.1)(redis@6.3.1(@opentelemetry/api@1.10.0))(supports-color@8.1.1)':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
+      bullmq: 6.7.6(ioredis@6.0.0(supports-color@8.1.1))(pg@8.23.1)(redis@6.3.1(@opentelemetry/api@1.10.0))
+      ioredis: 6.0.0(supports-color@8.1.1)
+    transitivePeerDependencies:
+      - bullmq-otel
+      - pg
+      - redis
+      - supports-color
+
+  '@medusajs/event-bus-redis@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))(pg@8.23.1)(redis@6.3.1(@opentelemetry/api@1.10.0))(supports-color@8.1.1)':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
       bullmq: 6.7.6(ioredis@6.0.0(supports-color@8.1.1))(pg@8.23.1)(redis@6.3.1(@opentelemetry/api@1.10.0))
       ioredis: 6.0.0(supports-color@8.1.1)
     transitivePeerDependencies:
@@ -13506,6 +13771,10 @@ snapshots:
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
 
+  '@medusajs/file-local@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
+
   '@medusajs/file-local@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
@@ -13526,6 +13795,14 @@ snapshots:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
       ulid: 3.0.2
 
+  '@medusajs/file-s3@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))':
+    dependencies:
+      '@aws-sdk/client-s3': 3.1173.0
+      '@aws-sdk/lib-storage': 3.1173.0(@aws-sdk/client-s3@3.1173.0)
+      '@aws-sdk/s3-request-presigner': 3.1173.0
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
+      ulid: 3.0.2
+
   '@medusajs/file-s3@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
       '@aws-sdk/client-s3': 3.1173.0
@@ -13541,6 +13818,10 @@ snapshots:
   '@medusajs/file@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
+
+  '@medusajs/file@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
 
   '@medusajs/file@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
@@ -13606,6 +13887,54 @@ snapshots:
       '@medusajs/types': 2.23.0(express@5.3.0(supports-color@8.1.1))(redis@6.3.1(@opentelemetry/api@1.10.0))(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))
       '@medusajs/utils': 2.23.0(@types/node@20.0.0)(express@5.3.0(supports-color@8.1.1))(supports-color@8.1.1)
       '@medusajs/workflows-sdk': 2.23.0(@types/node@20.0.0)(express@5.3.0(supports-color@8.1.1))(supports-color@8.1.1)
+      '@types/express': 5.0.6
+      chokidar: 6.0.0
+      compression: 1.8.2(supports-color@8.1.1)
+      connect-dynamodb: 3.0.5
+      connect-redis: 11.0.0(express-session@1.19.0(supports-color@8.1.1))(redis@6.3.1(@opentelemetry/api@1.10.0))
+      cookie-parser: 1.4.7
+      cors: 2.8.6
+      express: 5.3.0(supports-color@8.1.1)
+      express-session: 1.19.0(supports-color@8.1.1)
+      glob: 14.0.2
+      http-errors: 2.0.1
+      jsonwebtoken: 9.0.3
+      lodash.memoize: 4.1.2
+      morgan: 1.12.1(supports-color@8.1.1)
+      path-to-regexp: 9.0.0
+      redis: 6.3.1(@opentelemetry/api@1.10.0)
+      tsconfig-paths: 4.2.0
+      zod-validation-error: 5.0.0(zod@4.6.7)
+    transitivePeerDependencies:
+      - '@node-rs/xxhash'
+      - '@opentelemetry/api'
+      - '@types/node'
+      - better-sqlite3
+      - debug
+      - libsql
+      - mariadb
+      - mysql
+      - mysql2
+      - pg-native
+      - pg-query-stream
+      - sqlite3
+      - supports-color
+      - tedious
+      - vite
+      - zod
+
+  '@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)':
+    dependencies:
+      '@aws-sdk/client-dynamodb': 3.1173.0
+      '@jercle/yargonaut': 1.1.5
+      '@medusajs/cli': 2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
+      '@medusajs/deps': 2.23.0(@types/node@22.20.1)(supports-color@8.1.1)
+      '@medusajs/modules-sdk': 2.23.0(@types/node@22.20.1)(express@5.3.0(supports-color@8.1.1))(supports-color@8.1.1)
+      '@medusajs/orchestration': 2.23.0(@types/node@22.20.1)(express@5.3.0(supports-color@8.1.1))(supports-color@8.1.1)
+      '@medusajs/telemetry': 2.23.0(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
+      '@medusajs/types': 2.23.0(express@5.3.0(supports-color@8.1.1))(redis@6.3.1(@opentelemetry/api@1.10.0))(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))
+      '@medusajs/utils': 2.23.0(@types/node@22.20.1)(express@5.3.0(supports-color@8.1.1))(supports-color@8.1.1)
+      '@medusajs/workflows-sdk': 2.23.0(@types/node@22.20.1)(express@5.3.0(supports-color@8.1.1))(supports-color@8.1.1)
       '@types/express': 5.0.6
       chokidar: 6.0.0
       compression: 1.8.2(supports-color@8.1.1)
@@ -13746,6 +14075,10 @@ snapshots:
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
 
+  '@medusajs/fulfillment-manual@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
+
   '@medusajs/fulfillment-manual@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
@@ -13757,6 +14090,10 @@ snapshots:
   '@medusajs/fulfillment@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
+
+  '@medusajs/fulfillment@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
 
   '@medusajs/fulfillment@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
@@ -13774,6 +14111,10 @@ snapshots:
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
 
+  '@medusajs/index@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
+
   '@medusajs/index@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
@@ -13785,6 +14126,10 @@ snapshots:
   '@medusajs/inventory@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
+
+  '@medusajs/inventory@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
 
   '@medusajs/inventory@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
@@ -13803,6 +14148,10 @@ snapshots:
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
 
+  '@medusajs/link-modules@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
+
   '@medusajs/link-modules@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
@@ -13814,6 +14163,10 @@ snapshots:
   '@medusajs/locking-postgres@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
+
+  '@medusajs/locking-postgres@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
 
   '@medusajs/locking-postgres@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
@@ -13833,6 +14186,13 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  '@medusajs/locking-redis@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))(supports-color@8.1.1)':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
+      ioredis: 6.0.0(supports-color@8.1.1)
+    transitivePeerDependencies:
+      - supports-color
+
   '@medusajs/locking-redis@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))(supports-color@8.1.1)':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
@@ -13847,6 +14207,10 @@ snapshots:
   '@medusajs/locking@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
+
+  '@medusajs/locking@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
 
   '@medusajs/locking@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
@@ -14269,6 +14633,145 @@ snapshots:
       - yaml
       - yup
 
+  '@medusajs/medusa@2.23.0(b1fd0c54fc0227ed4ab81e3fd067e3bc)':
+    dependencies:
+      '@inquirer/checkbox': 5.3.0(@types/node@22.20.1)
+      '@inquirer/confirm': 6.4.0(@types/node@22.20.1)
+      '@inquirer/input': 5.2.0(@types/node@22.20.1)
+      '@medusajs/admin-bundler': 2.23.0(@types/node@22.20.1)(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(ajv@8.13.0)(esbuild@0.28.2)(jiti@2.0.0)(picomatch@4.0.7)(supports-color@8.1.1)(typescript@5.6.2)(yaml@2.9.0)
+      '@medusajs/analytics': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))
+      '@medusajs/analytics-local': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))
+      '@medusajs/analytics-posthog': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))(posthog-node@5.74.0(@opentelemetry/api@1.10.0)(rxjs@7.8.2))
+      '@medusajs/api-key': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))
+      '@medusajs/audit': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))
+      '@medusajs/auth': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))(supports-color@8.1.1)
+      '@medusajs/auth-emailpass': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))
+      '@medusajs/auth-github': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))
+      '@medusajs/auth-google': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))(supports-color@8.1.1)
+      '@medusajs/auth-oidc': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))
+      '@medusajs/cache-inmemory': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))
+      '@medusajs/cache-redis': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))(supports-color@8.1.1)
+      '@medusajs/caching': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))(awilix@13.0.7)
+      '@medusajs/caching-redis': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))(supports-color@8.1.1)
+      '@medusajs/cart': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))
+      '@medusajs/cloud': 2.23.0(@medusajs/admin-sdk@2.23.0)(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@medusajs/dashboard@2.23.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(ajv@8.13.0)(typescript@5.6.2))(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))(@medusajs/icons@2.23.0(react@19.3.1))(@medusajs/test-utils@2.23.0)(@medusajs/ui@4.3.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(typescript@5.6.2))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react-router-dom@7.18.5(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)
+      '@medusajs/core-flows': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))
+      '@medusajs/currency': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))
+      '@medusajs/customer': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))
+      '@medusajs/draft-order': 2.23.0(@medusajs/admin-sdk@2.23.0)(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@medusajs/dashboard@2.23.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(ajv@8.13.0)(typescript@5.6.2))(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))(@medusajs/icons@2.23.0(react@19.3.1))(@medusajs/test-utils@2.23.0)(@medusajs/ui@4.3.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(typescript@5.6.2))(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(ajv@8.13.0)(react-dom@19.3.1(react@19.3.1))(react-router-dom@7.18.5(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)
+      '@medusajs/event-bus-local': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))
+      '@medusajs/event-bus-redis': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))(pg@8.23.1)(redis@6.3.1(@opentelemetry/api@1.10.0))(supports-color@8.1.1)
+      '@medusajs/file': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))
+      '@medusajs/file-local': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))
+      '@medusajs/file-s3': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
+      '@medusajs/fulfillment': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))
+      '@medusajs/fulfillment-manual': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))
+      '@medusajs/index': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))
+      '@medusajs/inventory': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))
+      '@medusajs/link-modules': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))
+      '@medusajs/locking': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))
+      '@medusajs/locking-postgres': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))
+      '@medusajs/locking-redis': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))(supports-color@8.1.1)
+      '@medusajs/notification': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))
+      '@medusajs/notification-local': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))
+      '@medusajs/notification-sendgrid': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
+      '@medusajs/order': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))
+      '@medusajs/payment': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))(@types/node@22.20.1)
+      '@medusajs/payment-adyen': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))(supports-color@8.1.1)
+      '@medusajs/payment-stripe': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))(@types/node@22.20.1)
+      '@medusajs/pricing': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))
+      '@medusajs/product': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))
+      '@medusajs/promotion': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))
+      '@medusajs/rbac': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))
+      '@medusajs/region': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))
+      '@medusajs/sales-channel': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))
+      '@medusajs/search': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))
+      '@medusajs/search-postgres': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))
+      '@medusajs/settings': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))
+      '@medusajs/stock-location': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))
+      '@medusajs/store': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))
+      '@medusajs/tax': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))
+      '@medusajs/telemetry': 2.23.0(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
+      '@medusajs/translation': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))
+      '@medusajs/user': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))
+      '@medusajs/workflow-engine-inmemory': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))
+      '@medusajs/workflow-engine-redis': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))(pg@8.23.1)(redis@6.3.1(@opentelemetry/api@1.10.0))(supports-color@8.1.1)
+      boxen: 9.0.0
+      chokidar: 6.0.0
+      compression: 1.8.2(supports-color@8.1.1)
+      express: 5.3.0(supports-color@8.1.1)
+      fs-exists-cached: 1.0.0
+      jsonwebtoken: 9.0.3
+      multer: 2.5.0
+      node-schedule: 2.1.1
+      qs: 6.17.1
+      request-ip: 3.3.0
+      slugify: 1.6.9
+    optionalDependencies:
+      '@swc/core': 1.7.28(@swc/helpers@0.5.23)
+      posthog-node: 5.74.0(@opentelemetry/api@1.10.0)(rxjs@7.8.2)
+      react-dom: 19.3.1(react@19.3.1)
+      yalc: 1.0.0-pre.53
+    transitivePeerDependencies:
+      - '@medusajs/admin-sdk'
+      - '@medusajs/cli'
+      - '@medusajs/dashboard'
+      - '@medusajs/icons'
+      - '@medusajs/test-utils'
+      - '@medusajs/ui'
+      - '@rolldown/plugin-babel'
+      - '@sinclair/typebox'
+      - '@standard-schema/spec'
+      - '@types/node'
+      - '@types/react'
+      - '@types/react-dom'
+      - '@typeschema/main'
+      - '@vinejs/vine'
+      - '@vitejs/devtools'
+      - ajv
+      - ajv-errors
+      - ajv-formats
+      - arktype
+      - ata-validator
+      - awilix
+      - babel-plugin-react-compiler
+      - bullmq-otel
+      - class-transformer
+      - class-validator
+      - computed-types
+      - debug
+      - effect
+      - esbuild
+      - fluentvalidation-ts
+      - fp-ts
+      - io-ts
+      - jiti
+      - joi
+      - less
+      - nope-validator
+      - oxc-transform-react
+      - pg
+      - picomatch
+      - react
+      - react-router-dom
+      - redis
+      - remix
+      - sass
+      - sass-embedded
+      - stylus
+      - sugarss
+      - superstruct
+      - supports-color
+      - terser
+      - tsx
+      - typanion
+      - typescript
+      - valibot
+      - vest
+      - yaml
+      - yup
+
   '@medusajs/modules-sdk@2.23.0(@types/node@20.0.0)(express@5.3.0(supports-color@8.1.1))(supports-color@8.1.1)':
     dependencies:
       '@medusajs/deps': 2.23.0(@types/node@20.0.0)(supports-color@8.1.1)
@@ -14315,6 +14818,10 @@ snapshots:
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
 
+  '@medusajs/notification-local@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
+
   '@medusajs/notification-local@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
@@ -14335,6 +14842,14 @@ snapshots:
       - debug
       - supports-color
 
+  '@medusajs/notification-sendgrid@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
+      '@sendgrid/mail': 8.1.6(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
+    transitivePeerDependencies:
+      - debug
+      - supports-color
+
   '@medusajs/notification-sendgrid@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
@@ -14350,6 +14865,10 @@ snapshots:
   '@medusajs/notification@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
+
+  '@medusajs/notification@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
 
   '@medusajs/notification@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
@@ -14401,6 +14920,10 @@ snapshots:
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
 
+  '@medusajs/order@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
+
   '@medusajs/order@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
@@ -14416,6 +14939,13 @@ snapshots:
     dependencies:
       '@adyen/api-library': 32.3.0(supports-color@8.1.1)
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
+    transitivePeerDependencies:
+      - supports-color
+
+  '@medusajs/payment-adyen@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))(supports-color@8.1.1)':
+    dependencies:
+      '@adyen/api-library': 32.3.0(supports-color@8.1.1)
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
     transitivePeerDependencies:
       - supports-color
 
@@ -14440,6 +14970,13 @@ snapshots:
     transitivePeerDependencies:
       - '@types/node'
 
+  '@medusajs/payment-stripe@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))(@types/node@22.20.1)':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
+      stripe: 23.2.0(@types/node@22.20.1)
+    transitivePeerDependencies:
+      - '@types/node'
+
   '@medusajs/payment-stripe@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))(@types/node@22.20.1)':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
@@ -14461,6 +14998,13 @@ snapshots:
     transitivePeerDependencies:
       - '@types/node'
 
+  '@medusajs/payment@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))(@types/node@22.20.1)':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
+      stripe: 23.2.0(@types/node@22.20.1)
+    transitivePeerDependencies:
+      - '@types/node'
+
   '@medusajs/payment@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))(@types/node@22.20.1)':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
@@ -14476,6 +15020,10 @@ snapshots:
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
 
+  '@medusajs/pricing@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
+
   '@medusajs/pricing@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
@@ -14488,6 +15036,10 @@ snapshots:
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
 
+  '@medusajs/product@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
+
   '@medusajs/product@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
@@ -14499,6 +15051,10 @@ snapshots:
   '@medusajs/promotion@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
+
+  '@medusajs/promotion@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
 
   '@medusajs/promotion@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
@@ -14548,6 +15104,10 @@ snapshots:
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
 
+  '@medusajs/rbac@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
+
   '@medusajs/rbac@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
@@ -14559,6 +15119,10 @@ snapshots:
   '@medusajs/region@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
+
+  '@medusajs/region@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
 
   '@medusajs/region@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
@@ -14572,6 +15136,10 @@ snapshots:
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
 
+  '@medusajs/sales-channel@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
+
   '@medusajs/sales-channel@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
@@ -14583,6 +15151,10 @@ snapshots:
   '@medusajs/search-postgres@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
+
+  '@medusajs/search-postgres@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
 
   '@medusajs/search-postgres@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
@@ -14596,6 +15168,10 @@ snapshots:
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
 
+  '@medusajs/search@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
+
   '@medusajs/search@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
@@ -14607,6 +15183,10 @@ snapshots:
   '@medusajs/settings@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
+
+  '@medusajs/settings@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
 
   '@medusajs/settings@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
@@ -14620,6 +15200,10 @@ snapshots:
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
 
+  '@medusajs/stock-location@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
+
   '@medusajs/stock-location@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
@@ -14632,6 +15216,10 @@ snapshots:
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
 
+  '@medusajs/store@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
+
   '@medusajs/store@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
@@ -14643,6 +15231,10 @@ snapshots:
   '@medusajs/tax@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
+
+  '@medusajs/tax@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
 
   '@medusajs/tax@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
@@ -14690,6 +15282,20 @@ snapshots:
       - debug
       - supports-color
 
+  '@medusajs/test-utils@2.23.0(@medusajs/core-flows@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)))(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))(@medusajs/medusa@2.23.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
+      '@types/express': 5.0.6
+      axios: 1.21.1(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
+      express: 5.3.0(supports-color@8.1.1)
+      ulid: 3.0.2
+    optionalDependencies:
+      '@medusajs/core-flows': 2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))
+      '@medusajs/medusa': 2.23.0(b1fd0c54fc0227ed4ab81e3fd067e3bc)
+    transitivePeerDependencies:
+      - debug
+      - supports-color
+
   '@medusajs/test-utils@2.23.0(@medusajs/core-flows@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)))(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))(@medusajs/medusa@2.23.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
@@ -14713,6 +15319,10 @@ snapshots:
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
 
+  '@medusajs/translation@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
+
   '@medusajs/translation@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
@@ -14732,6 +15342,14 @@ snapshots:
       express: 5.3.0(supports-color@8.1.1)
       redis: 6.3.1(@opentelemetry/api@1.10.0)
       vite: 8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0)
+
+  '@medusajs/types@2.23.0(express@5.3.0(supports-color@8.1.1))(redis@6.3.1(@opentelemetry/api@1.10.0))(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))':
+    dependencies:
+      bignumber.js: 11.1.5
+    optionalDependencies:
+      express: 5.3.0(supports-color@8.1.1)
+      redis: 6.3.1(@opentelemetry/api@1.10.0)
+      vite: 8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0)
 
   '@medusajs/types@2.23.0(express@5.3.0(supports-color@8.1.1))(redis@6.3.1(@opentelemetry/api@1.10.0))(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))':
     dependencies:
@@ -14784,6 +15402,11 @@ snapshots:
   '@medusajs/user@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
+      jsonwebtoken: 9.0.3
+
+  '@medusajs/user@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
       jsonwebtoken: 9.0.3
 
   '@medusajs/user@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
@@ -14863,6 +15486,12 @@ snapshots:
       cron-parser: 5.10.6
       ulid: 3.0.2
 
+  '@medusajs/workflow-engine-inmemory@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
+      cron-parser: 5.10.6
+      ulid: 3.0.2
+
   '@medusajs/workflow-engine-inmemory@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
@@ -14884,6 +15513,18 @@ snapshots:
   '@medusajs/workflow-engine-redis@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7))(pg@8.23.1)(redis@6.3.1(@opentelemetry/api@1.10.0))(supports-color@8.1.1)':
     dependencies:
       '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@20.0.0)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(zod@4.6.7)
+      bullmq: 6.7.6(ioredis@6.0.0(supports-color@8.1.1))(pg@8.23.1)(redis@6.3.1(@opentelemetry/api@1.10.0))
+      ioredis: 6.0.0(supports-color@8.1.1)
+      ulid: 3.0.2
+    transitivePeerDependencies:
+      - bullmq-otel
+      - pg
+      - redis
+      - supports-color
+
+  '@medusajs/workflow-engine-redis@2.23.0(@medusajs/framework@2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7))(pg@8.23.1)(redis@6.3.1(@opentelemetry/api@1.10.0))(supports-color@8.1.1)':
+    dependencies:
+      '@medusajs/framework': 2.23.0(@medusajs/cli@2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(@opentelemetry/api@1.10.0)(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))(zod@4.6.7)
       bullmq: 6.7.6(ioredis@6.0.0(supports-color@8.1.1))(pg@8.23.1)(redis@6.3.1(@opentelemetry/api@1.10.0))
       ioredis: 6.0.0(supports-color@8.1.1)
       ulid: 3.0.2
@@ -15031,6 +15672,25 @@ snapshots:
       '@mikro-orm/knex': 6.4.3(@mikro-orm/core@6.6.17)(pg@8.23.1)(supports-color@8.1.1)
       fs-extra: 11.2.0
       umzug: 3.8.2(@types/node@20.0.0)
+    transitivePeerDependencies:
+      - '@types/node'
+      - better-sqlite3
+      - libsql
+      - mariadb
+      - mysql
+      - mysql2
+      - pg
+      - pg-native
+      - sqlite3
+      - supports-color
+      - tedious
+
+  '@mikro-orm/migrations@6.4.3(@mikro-orm/core@6.6.17)(@types/node@22.20.1)(pg@8.23.1)(supports-color@8.1.1)':
+    dependencies:
+      '@mikro-orm/core': 6.6.17
+      '@mikro-orm/knex': 6.4.3(@mikro-orm/core@6.6.17)(pg@8.23.1)(supports-color@8.1.1)
+      fs-extra: 11.2.0
+      umzug: 3.8.2(@types/node@22.20.1)
     transitivePeerDependencies:
       - '@types/node'
       - better-sqlite3
@@ -17145,6 +17805,13 @@ snapshots:
       tailwindcss: 4.3.5
       vite: 8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0)
 
+  '@tailwindcss/vite@4.3.5(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))':
+    dependencies:
+      '@tailwindcss/node': 4.3.5
+      '@tailwindcss/oxide': 4.3.5
+      tailwindcss: 4.3.5
+      vite: 8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0)
+
   '@tailwindcss/vite@4.3.5(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))':
     dependencies:
       '@tailwindcss/node': 4.3.5
@@ -17463,6 +18130,11 @@ snapshots:
     dependencies:
       '@rolldown/pluginutils': 1.1.1
       vite: 8.3.8(@types/node@20.0.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0)
+
+  '@vitejs/plugin-react@6.3.0(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0))':
+    dependencies:
+      '@rolldown/pluginutils': 1.1.1
+      vite: 8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0)
 
   '@vitejs/plugin-react@6.3.0(vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))':
     dependencies:
@@ -22005,6 +22677,26 @@ snapshots:
     optionalDependencies:
       '@swc/core': 1.7.28(@swc/helpers@0.5.23)
 
+  ts-node@10.9.2(@swc/core@1.7.28(@swc/helpers@0.5.23))(@types/node@22.20.1)(typescript@5.6.2):
+    dependencies:
+      '@cspotcode/source-map-support': 0.8.1
+      '@tsconfig/node10': 1.0.12
+      '@tsconfig/node12': 1.0.11
+      '@tsconfig/node14': 1.0.3
+      '@tsconfig/node16': 1.0.4
+      '@types/node': 22.20.1
+      acorn: 8.18.0
+      acorn-walk: 8.3.5
+      arg: 4.1.3
+      create-require: 1.1.1
+      diff: 4.0.4
+      make-error: 1.3.6
+      typescript: 5.6.2
+      v8-compile-cache-lib: 3.0.1
+      yn: 3.1.1
+    optionalDependencies:
+      '@swc/core': 1.7.28(@swc/helpers@0.5.23)
+
   tsc-alias@1.9.2:
     dependencies:
       chokidar: 3.6.0
@@ -22346,6 +23038,20 @@ snapshots:
       esbuild: 0.28.2
       fsevents: 2.3.3
       jiti: 2.7.0
+      yaml: 2.9.0
+
+  vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.0.0)(yaml@2.9.0):
+    dependencies:
+      lightningcss: 1.33.0
+      picomatch: 4.0.7
+      postcss: 8.5.33
+      rolldown: 1.2.19
+      tinyglobby: 0.2.17
+    optionalDependencies:
+      '@types/node': 22.20.1
+      esbuild: 0.28.2
+      fsevents: 2.3.3
+      jiti: 2.0.0
       yaml: 2.9.0
 
   vite@8.3.8(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0):
