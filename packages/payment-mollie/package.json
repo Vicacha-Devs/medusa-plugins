@@ -1,6 +1,6 @@
 {
   "name": "@vicacha-devs/medusa-payment-mollie",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Mollie (iDEAL, Bancontact, SEPA, Cards) and B2B Net-14 Invoice payment provider plugin for Medusa v2.",
   "keywords": [
     "bancontact",
