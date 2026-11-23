@@ -32,15 +32,13 @@ export class EinvoicingModuleService extends MedusaService({
     }
   }
 
-  async registerDriver(driver: FiscalCountryDriver): void {
+  async registerDriver(driver: FiscalCountryDriver): Promise<void> {
     this.drivers_.set(driver.id, driver)
   }
 
-  async listDrivers(): Array<{
-    id: string
-    label: string
-    countryCodes: string[]
-  }> {
+  async listDrivers(): Promise<
+    Array<{ id: string; label: string; countryCodes: string[] }>
+  > {
     return [...this.drivers_.values()].map((d) => ({
       id: d.id,
       label: d.label,
@@ -51,7 +49,7 @@ export class EinvoicingModuleService extends MedusaService({
   async resolveDriverForCountry(
     countryCode: string,
     preferredDriverId?: string
-  ): FiscalCountryDriver {
+  ): Promise<FiscalCountryDriver> {
     if (preferredDriverId && this.drivers_.has(preferredDriverId)) {
       return this.drivers_.get(preferredDriverId)!
     }
@@ -74,7 +72,7 @@ export class EinvoicingModuleService extends MedusaService({
       is_active: true,
     })
     const cfg = configs?.[0]
-    const driver = this.resolveDriverForCountry(
+    const driver = await this.resolveDriverForCountry(
       countryCode,
       input.driver_id || cfg?.driver_id
     )
