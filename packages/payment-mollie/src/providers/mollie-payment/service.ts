@@ -191,6 +191,15 @@ export class MolliePaymentProviderService extends AbstractPaymentProvider<Mollie
 export class B2BInvoiceProviderService extends AbstractPaymentProvider {
   static identifier = "b2b-invoice"
 
+  // Explicit constructor keeps the class assignable to Medusa's Constructor<any>.
+  // oxlint-disable-next-line no-useless-constructor
+  constructor(
+    container: Record<string, unknown>,
+    options: Record<string, unknown>
+  ) {
+    super(container, options)
+  }
+
   async initiatePayment(
     input: InitiatePaymentInput
   ): Promise<InitiatePaymentOutput> {

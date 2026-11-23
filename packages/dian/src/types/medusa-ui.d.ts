@@ -243,6 +243,11 @@ declare module "@medusajs/framework/http" {
 }
 
 declare module "@medusajs/framework/workflows-sdk" {
+  export function transform<TInput = any, TOutput = any>(
+    input: TInput,
+    fn: (input: any) => TOutput
+  ): TOutput
+
   export class StepResponse<TOutput = any, TComp = any> {
     constructor(output: TOutput, compensateInput?: TComp)
   }
