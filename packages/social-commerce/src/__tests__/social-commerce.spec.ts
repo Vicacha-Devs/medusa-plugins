@@ -2,12 +2,10 @@ import { describe, it } from "node:test"
 import assert from "node:assert/strict"
 import {
   accountConnectedWorkflow,
-  adminI18n,
   CatalogFeedService,
   computeHmacSha256Hex,
   createPkceChallenge,
   createSignedOAuthState,
-  createSocialCommerceHooks,
   createSocialCommerceSDK,
   CreateLocalStorySchema,
   decryptToken,
@@ -25,12 +23,13 @@ import {
   sanitizeHttpUrl,
   SOCIAL_COMMERCE_LEGACY_MODULE,
   SocialCommerceService,
-  SUPPORTED_UI_LOCALES,
   TagProductsOnPostSchema,
   TikTokProvider,
   verifySignedOAuthState,
   verifyWebhookHmacSha256,
 } from "../index.js"
+import adminI18n, { SUPPORTED_UI_LOCALES } from "../admin/i18n/index.js"
+import { createSocialCommerceHooks } from "../hooks/index.js"
 import { POST as connectPost } from "../api/admin/social/connect/route.js"
 import { GET as oauthCallbackGet } from "../api/social/oauth/callback/route.js"
 import { GET as storeStoriesGet } from "../api/store/social/stories/route.js"

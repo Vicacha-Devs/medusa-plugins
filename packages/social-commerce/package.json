@@ -27,16 +27,15 @@
     "LICENSE",
     "tsconfig.json"
   ],
+  "type": "module",
   "exports": {
     "./package.json": "./package.json",
     ".": {
       "import": "./.medusa/server/src/index.js",
-      "require": "./.medusa/server/src/index.js",
       "default": "./.medusa/server/src/index.js"
     },
     "./admin": {
-      "import": "./.medusa/server/src/admin/index.mjs",
-      "require": "./.medusa/server/src/admin/index.js",
+      "import": "./.medusa/server/src/admin/index.js",
       "default": "./.medusa/server/src/admin/index.js"
     },
     "./hooks": {
@@ -62,13 +61,13 @@
     "./*": "./.medusa/server/src/*.js"
   },
   "scripts": {
-    "build": "medusa plugin:build && tsc-alias -p tsconfig.json",
+    "build": "medusa plugin:build && tsc-alias -p tsconfig.json --resolve-full-paths",
     "publish:local": "medusa plugin:publish",
     "dev": "medusa plugin:develop",
     "lint": "medusa lint",
     "prepublishOnly": "medusa plugin:build",
     "typecheck": "tsc --noEmit",
-    "test": "node --import ./src/__tests__/register-ts-resolver.mjs --test src/__tests__/*.spec.ts",
+    "test": "node --import ./src/__tests__/register-ts-resolver.mjs --import ../plugin-testing/register-js-extension.mjs --test src/__tests__/*.spec.ts",
     "clean": "rm -rf .medusa node_modules"
   },
   "devDependencies": {
@@ -85,6 +84,7 @@
     "@medusajs/test-utils": "2.23.0",
     "@medusajs/types": "2.23.0",
     "@medusajs/ui": "4.3.0",
+    "@mikro-orm/migrations": "6.4.3",
     "@swc/core": "1.7.28",
     "@types/node": "^22.13.0",
     "@types/react": "^19.3.0",

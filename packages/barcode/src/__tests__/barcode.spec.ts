@@ -37,7 +37,7 @@ import {
   scanInventoryCountWorkflow,
 } from "../workflows"
 import middlewares from "../api/middlewares"
-import { adminI18n, SUPPORTED_UI_LOCALES } from "../index"
+import adminI18n, { SUPPORTED_UI_LOCALES } from "../admin/i18n"
 import { createBarcodeSdk } from "../sdk"
 
 class MockProvider extends BaseBarcodeProvider {

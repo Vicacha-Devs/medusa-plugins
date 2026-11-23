@@ -73,6 +73,11 @@ const sharedResolver = join(
   "plugin-testing",
   "register-ts-resolver.mjs"
 )
+const jsExtensionHook = join(
+  packagesDir,
+  "plugin-testing",
+  "register-js-extension.mjs"
+)
 const pluginDirs = readdirSync(packagesDir, { withFileTypes: true })
   .filter((e) => {
     if (!e.isDirectory()) return false
@@ -104,7 +109,7 @@ for (const dir of pluginDirs) {
       `test-${dir}`,
       `Offline Unit/Contract Suite: ${dir}`,
       process.execPath,
-      ["--import", resolver, "--test", ...specs],
+      ["--import", resolver, "--import", jsExtensionHook, "--test", ...specs],
       pkgDir
     )
   )

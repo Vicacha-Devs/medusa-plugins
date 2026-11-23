@@ -23,9 +23,7 @@ export interface LoadedExternalTemplate {
   subject?: string | null
 }
 
-const nodeRequire = createRequire(
-  typeof __filename === "string" ? __filename : `${process.cwd()}/package.json`
-)
+const nodeRequire = createRequire(import.meta.url)
 
 /**
  * Loads declarative external templates configured under `options.extend.services[].templates`

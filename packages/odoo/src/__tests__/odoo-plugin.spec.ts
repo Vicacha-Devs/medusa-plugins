@@ -20,7 +20,7 @@ import {
 import middlewares, {
   OdooConfigSchema as ReExportedOdooConfigSchema,
 } from "../api/middlewares"
-import { adminI18n, SUPPORTED_UI_LOCALES } from "../index"
+import adminI18n, { SUPPORTED_UI_LOCALES } from "../admin/i18n"
 
 class InMemoryOdooService extends OdooModuleService {
   private settingsMap = new Map<

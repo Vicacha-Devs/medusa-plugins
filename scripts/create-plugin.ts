@@ -101,6 +101,7 @@ const files: Record<string, string> = {
     {
       name: pkgName,
       version: "0.1.0",
+      type: "module",
       description,
       author: "Vicacha Devs",
       license: "MIT",
@@ -109,14 +110,12 @@ const files: Record<string, string> = {
         "./package.json": "./package.json",
         ".": {
           import: "./.medusa/server/src/index.js",
-          require: "./.medusa/server/src/index.js",
           default: "./.medusa/server/src/index.js",
         },
         ...(opts.withAdmin
           ? {
               "./admin": {
-                import: "./.medusa/server/src/admin/index.mjs",
-                require: "./.medusa/server/src/admin/index.js",
+                import: "./.medusa/server/src/admin/index.js",
                 default: "./.medusa/server/src/admin/index.js",
               },
             }
@@ -137,16 +136,18 @@ const files: Record<string, string> = {
       },
       publishConfig: { access: "public", provenance: true },
       scripts: {
-        build: "medusa plugin:build && tsc-alias -p tsconfig.json",
+        build:
+          "medusa plugin:build && tsc-alias -p tsconfig.json --resolve-full-paths",
         clean: "rm -rf .medusa dist",
         dev: "medusa plugin:develop",
         lint: "medusa lint",
         prepublishOnly: "medusa plugin:build",
-        test: "node --import ../../packages/plugin-testing/register-ts-resolver.mjs --test src/__tests__/*.spec.ts",
+        test: "node --import ../plugin-testing/register-ts-resolver.mjs --import ../plugin-testing/register-js-extension.mjs --test src/__tests__/*.spec.ts",
         typecheck: "tsc --noEmit",
       },
       devDependencies: {
         "@medusajs/admin-sdk": "2.23.0",
+        "@medusajs/admin-shared": "2.23.0",
         "@medusajs/cli": "2.23.0",
         "@medusajs/framework": "2.23.0",
         "@medusajs/medusa": "2.23.0",
@@ -163,6 +164,7 @@ const files: Record<string, string> = {
       },
       peerDependencies: {
         "@medusajs/admin-sdk": "2.23.0",
+        "@medusajs/admin-shared": "2.23.0",
         "@medusajs/framework": "2.23.0",
         "@medusajs/medusa": "2.23.0",
         "@medusajs/ui": "4.3.0",
@@ -179,9 +181,20 @@ const files: Record<string, string> = {
   "tsconfig.json": `${JSON.stringify(
     {
       extends: "../../packages/typescript-config/plugin.json",
-      compilerOptions: { rootDir: "src", outDir: ".medusa/server" },
-      include: ["src"],
-      exclude: ["node_modules", ".medusa", "dist"],
+      compilerOptions: {
+        rootDir: "./",
+        outDir: "./.medusa/server",
+        noEmit: false,
+      },
+      include: ["**/*", ".medusa/types/*"],
+      exclude: [
+        "node_modules",
+        ".medusa/server",
+        ".medusa/admin",
+        "src/admin",
+        "src/__tests__",
+        "eslint.config.*",
+      ],
     },
     null,
     2
@@ -211,7 +224,7 @@ const files: Record<string, string> = {
 
   "src/sdk/index.ts": `export const ${moduleCamel}Endpoints = {\n  adminBase: "/admin/${slug}",\n  storeBase: "/store/${slug}",\n} as const\n`,
 
-  [`src/__tests__/${slug}.spec.ts`]: `import assert from "node:assert/strict"\nimport { describe, it } from "node:test"\nimport ${modulePascal}ModuleService from "../modules/${slug}/service"\nimport { create${modulePascal}Workflow } from "../workflows"\nimport { ${moduleCamel}Endpoints } from "../sdk"\n\ndescribe("${pkgName}", () => {\n  it("summarizes module readiness and executes create workflow", async () => {\n    const service = new ${modulePascal}ModuleService()\n    const summary = await service.summarize()\n    assert.equal(summary.status, "ready")\n    assert.equal(${moduleCamel}Endpoints.adminBase, "/admin/${slug}")\n\n    const { result } = await create${modulePascal}Workflow({}).run({\n      input: { label: "  Smoke Item  " },\n    })\n    assert.equal(result.label, "Smoke Item")\n    assert.equal(result.active, true)\n  })\n})\n`,
+  [`src/__tests__/${slug}.spec.ts`]: `import assert from "node:assert/strict"\nimport { describe, it } from "node:test"\nimport ${modulePascal}ModuleService from "../modules/${slug}/service"\nimport { create${modulePascal}Workflow } from "../workflows"\nimport { ${moduleCamel}Endpoints } from "../sdk"\n\ndescribe("${pkgName}", () => {\n  it("summarizes module readiness and executes create workflow", async () => {\n    const service = new ${modulePascal}ModuleService()\n    const summary = await service.summarize()\n    assert.equal(summary.status, "ready")\n    assert.equal(${moduleCamel}Endpoints.adminBase, "/admin/${slug}")\n\n    const { result } = await create${modulePascal}Workflow().run({\n      input: { label: "  Smoke Item  " },\n    })\n    assert.equal(result.label, "Smoke Item")\n    assert.equal(result.active, true)\n  })\n})\n`,
 }
 
 if (opts.withAdmin) {
@@ -232,7 +245,7 @@ if (opts.withAdmin) {
     2
   )}\n`
   files["src/admin/i18n/index.ts"] =
-    `import en from "./en.json"\nimport es from "./es.json"\n\nexport const translations = { en, es } as const\n`
+    `import en from "./en.json"\nimport es from "./es.json"\n\nexport const translations = { en, es } as const\n\nexport default {\n  en: { translation: en },\n  es: { translation: es },\n}\n`
 }
 
 if (opts.withProvider) {
@@ -298,5 +311,5 @@ if (opts.wireSandbox) {
 
 process.stdout.write(
   `[plugin:new] Created ${pkgName} (${Object.keys(files).length} files).\n` +
-    `Next: node --import ./packages/plugin-testing/register-ts-resolver.mjs --test packages/${folderName}/src/__tests__/*.spec.ts\n`
+    `Next: node --import ./packages/plugin-testing/register-ts-resolver.mjs --import ./packages/plugin-testing/register-js-extension.mjs --test packages/${folderName}/src/__tests__/*.spec.ts\n`
 )

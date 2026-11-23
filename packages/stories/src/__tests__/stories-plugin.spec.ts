@@ -20,7 +20,7 @@ import {
 } from "../api/validators"
 import middlewares from "../api/middlewares"
 import { createStoriesSdk } from "../sdk"
-import { adminI18n, SUPPORTED_UI_LOCALES } from "../index"
+import adminI18n, { SUPPORTED_UI_LOCALES } from "../admin/i18n"
 
 describe("medusa-plugin-stories security utilities", () => {
   it("accepts http/https and relative store paths while rejecting javascript:/data: URLs with MedusaError", () => {
