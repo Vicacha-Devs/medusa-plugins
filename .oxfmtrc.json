@@ -18,6 +18,8 @@
     "**/.turbo/**",
     ".qa",
     "**/.qa/**",
+    "**/.astro/**",
+    "**/public/vendor/**",
     "node_modules",
     "**/node_modules/**",
     "pnpm-lock.yaml",

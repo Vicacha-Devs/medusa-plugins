@@ -100,7 +100,10 @@ export class EuFulfillmentProviderService extends AbstractFulfillmentProviderSer
 
   protected readonly options_: EuFulfillmentOptions
 
-  constructor(_container: Record<string, unknown>, options: EuFulfillmentOptions = {}) {
+  constructor(
+    _container: Record<string, unknown>,
+    options: EuFulfillmentOptions = {}
+  ) {
     super()
     this.options_ = options
   }

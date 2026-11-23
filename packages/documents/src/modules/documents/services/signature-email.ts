@@ -35,7 +35,10 @@ function sanitizeHeaderLine(value: unknown, maxLen = 180): string {
     .slice(0, maxLen)
 }
 
-function sanitizeHexColor(raw: string | null | undefined, fallback: string): string {
+function sanitizeHexColor(
+  raw: string | null | undefined,
+  fallback: string
+): string {
   const cleaned = String(raw ?? "").trim()
   return /^#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/.test(cleaned)
     ? cleaned

@@ -12,7 +12,7 @@ import {
   StoryRingsTableSection,
 } from "../../../components/story-rings-tab"
 import { useStoriesStudio } from "../../../hooks/use-stories-studio"
-import { RbacGuard } from "../../../components/rbac-guard";
+import { RbacGuard } from "../../../components/rbac-guard"
 
 const StoriesRingsPage = () => {
   const navigate = useNavigate()
@@ -83,6 +83,6 @@ const GuardedStoriesRingsPage = () => (
   <RbacGuard permission="stories.read">
     <StoriesRingsPage />
   </RbacGuard>
-);
+)
 
-export default GuardedStoriesRingsPage;
+export default GuardedStoriesRingsPage

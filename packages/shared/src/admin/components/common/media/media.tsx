@@ -6,7 +6,11 @@ type MediaProps = MediaViewProps & {
   description: string
 }
 
-export const Media = ({ title, description, ...mediaViewProps }: MediaProps) => {
+export const Media = ({
+  title,
+  description,
+  ...mediaViewProps
+}: MediaProps) => {
   return (
     <RouteFocusModal>
       <RouteFocusModal.Title asChild>

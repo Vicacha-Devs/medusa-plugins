@@ -8,14 +8,14 @@
 
 ## Package Exports (`package.json`)
 
-| Import Path | Target Source | Purpose |
-|---|---|---|
-| `@vicacha-devs/medusa-plugin-social-commerce` | `src/index.ts` | Root export (module, service, models, providers, workflows, validators, SDK, hooks, i18n) |
-| `@vicacha-devs/medusa-plugin-social-commerce/modules/social-commerce` | `src/modules/social-commerce/index.ts` | Medusa Module definition (`SOCIAL_COMMERCE_MODULE = "social_commerce"`) |
-| `@vicacha-devs/medusa-plugin-social-commerce/workflows` | `src/workflows/index.ts` | `accountConnectedWorkflow`, `mediaSyncedWorkflow`, `liveStartedWorkflow`, `liveEndedWorkflow`, `catalogSyncWorkflow`, `checkoutHandoffWorkflow` |
-| `@vicacha-devs/medusa-plugin-social-commerce/sdk` | `src/sdk/index.ts` | `createSocialCommerceSDK`, `SocialCommerceSDKClient` |
-| `@vicacha-devs/medusa-plugin-social-commerce/hooks` | `src/hooks/index.ts` | `createSocialCommerceHooks`, `SOCIAL_COMMERCE_QUERY_KEYS` |
-| `@vicacha-devs/medusa-plugin-social-commerce/types` | `src/types/index.ts` | Shared TypeScript types |
+| Import Path                                                           | Target Source                          | Purpose                                                                                                                                         |
+| --------------------------------------------------------------------- | -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `@vicacha-devs/medusa-plugin-social-commerce`                         | `src/index.ts`                         | Root export (module, service, models, providers, workflows, validators, SDK, hooks, i18n)                                                       |
+| `@vicacha-devs/medusa-plugin-social-commerce/modules/social-commerce` | `src/modules/social-commerce/index.ts` | Medusa Module definition (`SOCIAL_COMMERCE_MODULE = "social_commerce"`)                                                                         |
+| `@vicacha-devs/medusa-plugin-social-commerce/workflows`               | `src/workflows/index.ts`               | `accountConnectedWorkflow`, `mediaSyncedWorkflow`, `liveStartedWorkflow`, `liveEndedWorkflow`, `catalogSyncWorkflow`, `checkoutHandoffWorkflow` |
+| `@vicacha-devs/medusa-plugin-social-commerce/sdk`                     | `src/sdk/index.ts`                     | `createSocialCommerceSDK`, `SocialCommerceSDKClient`                                                                                            |
+| `@vicacha-devs/medusa-plugin-social-commerce/hooks`                   | `src/hooks/index.ts`                   | `createSocialCommerceHooks`, `SOCIAL_COMMERCE_QUERY_KEYS`                                                                                       |
+| `@vicacha-devs/medusa-plugin-social-commerce/types`                   | `src/types/index.ts`                   | Shared TypeScript types                                                                                                                         |
 
 ---
 

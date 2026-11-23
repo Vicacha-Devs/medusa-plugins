@@ -15,9 +15,7 @@ export const DianCustomerFiscalProfile = model
       .default("13"),
     identification_number: model.text(),
     dv: model.text().nullable(),
-    organization_type: model
-      .enum([...DIAN_ORGANIZATION_TYPES])
-      .default("2"),
+    organization_type: model.enum([...DIAN_ORGANIZATION_TYPES]).default("2"),
     tax_regime: model.enum([...DIAN_TAX_REGIMES]).default("49"),
     fiscal_responsibilities: model.json().nullable(), // e.g. ["R-99-PN"] or ["O-13", "O-23"]
     tributo_id: model.text().default("ZZ"),

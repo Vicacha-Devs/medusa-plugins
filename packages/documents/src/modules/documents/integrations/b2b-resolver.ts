@@ -65,7 +65,11 @@ export async function resolveB2BBuyerContext(
     order.company && typeof order.company === "object" ? order.company : null
 
   // Tier 1B: Optional dynamic resolution from Medusa container if B2B module is installed
-  if (!moduleCompany && container && (options?.enabled || options?.module_key)) {
+  if (
+    !moduleCompany &&
+    container &&
+    (options?.enabled || options?.module_key)
+  ) {
     const candidateKeys = [
       options?.module_key,
       "company",
@@ -80,7 +84,10 @@ export async function resolveB2BBuyerContext(
 
     for (const key of candidateKeys) {
       try {
-        const b2bService = container.resolve(key) as Record<string, unknown> | null
+        const b2bService = container.resolve(key) as Record<
+          string,
+          unknown
+        > | null
         if (!b2bService || typeof b2bService !== "object") continue
 
         if (
@@ -211,12 +218,12 @@ export async function resolveB2BBuyerContext(
 
   const hasB2BSignals = Boolean(
     companyName ||
-      taxId ||
-      vatNumber ||
-      registrationNumber ||
-      poNumber ||
-      paymentTerms ||
-      costCenter
+    taxId ||
+    vatNumber ||
+    registrationNumber ||
+    poNumber ||
+    paymentTerms ||
+    costCenter
   )
 
   if (!hasB2BSignals) {

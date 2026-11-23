@@ -4,9 +4,13 @@ import { useTranslation } from "react-i18next"
 import { useParams } from "react-router-dom"
 
 import { AdminUpdateEmployee } from "../../../../../../../types"
-import { useCompany, useEmployee, useUpdateEmployee } from "../../../../../../hooks/api"
+import {
+  useCompany,
+  useEmployee,
+  useUpdateEmployee,
+} from "../../../../../../hooks/api"
 import { EmployeesUpdateForm } from "../components/employees-update-form"
-import { RbacGuard } from "@vicacha-devs/medusa-shared-admin/admin";
+import { RbacGuard } from "@vicacha-devs/medusa-shared-admin/admin"
 
 const UpdateContent = () => {
   const { t } = useTranslation()
@@ -14,7 +18,10 @@ const UpdateContent = () => {
   const { handleSuccess } = useRouteModal()
 
   const { data: companyData, isLoading: companyLoading } = useCompany(id!)
-  const { data: employeeData, isLoading: employeeLoading } = useEmployee(id!, employeeId!)
+  const { data: employeeData, isLoading: employeeLoading } = useEmployee(
+    id!,
+    employeeId!
+  )
   const { mutateAsync, isPending, error } = useUpdateEmployee(id!, employeeId!)
 
   if (companyLoading || employeeLoading) return null
@@ -26,15 +33,20 @@ const UpdateContent = () => {
 
   const handleSubmit = async (formData: AdminUpdateEmployee) => {
     try {
-      await mutateAsync({ ...formData, id: employeeId }, {
-        onSuccess: () => {
-          toast.success(
-            t("employees.toasts.updated", { email: employee?.customer?.email })
-          )
-          handleSuccess()
-        },
-        onError: (err) => toast.error(err.message),
-      })
+      await mutateAsync(
+        { ...formData, id: employeeId },
+        {
+          onSuccess: () => {
+            toast.success(
+              t("employees.toasts.updated", {
+                email: employee?.customer?.email,
+              })
+            )
+            handleSuccess()
+          },
+          onError: (err) => toast.error(err.message),
+        }
+      )
     } catch {}
   }
 
@@ -65,6 +77,6 @@ const GuardedEmployeeUpdate = () => (
   <RbacGuard permission="b2b.read">
     <EmployeeUpdate />
   </RbacGuard>
-);
+)
 
-export default GuardedEmployeeUpdate;
+export default GuardedEmployeeUpdate

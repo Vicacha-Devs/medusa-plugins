@@ -84,7 +84,8 @@ export const CompactTemplate: React.FC<ReactPdfTemplateProps> = ({
         <View style={styles.topBar} fixed>
           <View>
             <Text style={styles.title}>
-              {settings.company_name} — {t.invoice_title} {context.document_number}
+              {settings.company_name} — {t.invoice_title}{" "}
+              {context.document_number}
             </Text>
             <Text>
               {t.order_number}: #{order.display_id} • {t.issue_date}:{" "}
@@ -126,13 +127,21 @@ export const CompactTemplate: React.FC<ReactPdfTemplateProps> = ({
         </View>
 
         {order.items.map((item, idx) => (
-          <View key={item.id || `c-${idx}`} style={styles.tableRow} wrap={false}>
+          <View
+            key={item.id || `c-${idx}`}
+            style={styles.tableRow}
+            wrap={false}
+          >
             <Text style={styles.cIdx}>{idx + 1}</Text>
             <Text style={styles.cDesc}>{item.title}</Text>
             <Text style={styles.cSku}>{item.sku || "-"}</Text>
             <Text style={styles.cQty}>{item.quantity}</Text>
             <Text style={styles.cPrice}>
-              {formatCurrency(item.unit_price, order.currency_code, context.locale)}
+              {formatCurrency(
+                item.unit_price,
+                order.currency_code,
+                context.locale
+              )}
             </Text>
             <Text style={styles.cTotal}>
               {formatCurrency(item.total, order.currency_code, context.locale)}

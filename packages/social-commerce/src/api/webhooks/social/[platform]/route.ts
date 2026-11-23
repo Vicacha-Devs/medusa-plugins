@@ -158,5 +158,3 @@ export async function POST(req: HttpRequest, res: HttpResponse): Promise<void> {
     sendErrorResponse(res, err)
   }
 }
-
-

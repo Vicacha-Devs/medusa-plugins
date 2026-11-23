@@ -29,8 +29,7 @@ export default defineConfig({
       storeCors:
         process.env.STORE_CORS || "http://127.0.0.1:8000,http://localhost:8000",
       adminCors:
-        process.env.ADMIN_CORS ||
-        "http://127.0.0.1:9001,http://localhost:9001",
+        process.env.ADMIN_CORS || "http://127.0.0.1:9001,http://localhost:9001",
       authCors:
         process.env.AUTH_CORS || "http://127.0.0.1:9001,http://localhost:9001",
       jwtSecret: resolveSandboxSecret("JWT_SECRET"),
@@ -46,7 +45,9 @@ export default defineConfig({
     }),
   },
   plugins: [
+    { resolve: "@vicacha-devs/medusa-fulfillment-eu", options: {} },
     { resolve: "@vicacha-devs/medusa-payment-bold", options: {} },
+    { resolve: "@vicacha-devs/medusa-payment-mollie", options: {} },
     { resolve: "@vicacha-devs/medusa-plugin-b2b", options: {} },
     { resolve: "@vicacha-devs/medusa-plugin-barcode", options: {} },
     { resolve: "@vicacha-devs/medusa-plugin-dian", options: {} },
@@ -54,7 +55,6 @@ export default defineConfig({
     { resolve: "@vicacha-devs/medusa-plugin-notifications", options: {} },
     { resolve: "@vicacha-devs/medusa-plugin-odoo", options: {} },
     { resolve: "@vicacha-devs/medusa-plugin-product-extensions", options: {} },
-    { resolve: "@vicacha-devs/medusa-plugin-rbac", options: {} },
     { resolve: "@vicacha-devs/medusa-plugin-social-commerce", options: {} },
     { resolve: "@vicacha-devs/medusa-plugin-stories", options: {} },
     { resolve: "@vicacha-devs/medusa-plugin-typesense", options: {} },

@@ -133,7 +133,9 @@ export class TikTokProvider implements SocialPlatformProvider {
         errObj.code !== "0"
       ) {
         const codeStr = String(errObj.code)
-        const detail = errObj.message ? `${errObj.message} (${codeStr})` : codeStr
+        const detail = errObj.message
+          ? `${errObj.message} (${codeStr})`
+          : codeStr
         throw new MedusaError(
           MedusaError.Types.INVALID_DATA,
           `${context}: ${detail}`

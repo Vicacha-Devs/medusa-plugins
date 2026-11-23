@@ -9,9 +9,17 @@ import type {
  * inject either a real `ioredis` instance or a custom Redis adapter.
  */
 export interface RedisLikeClient {
-  eval(script: string, numKeys: number, ...args: (string | number)[]): Promise<unknown>
+  eval(
+    script: string,
+    numKeys: number,
+    ...args: (string | number)[]
+  ): Promise<unknown>
   get(key: string): Promise<string | null>
-  set(key: string, value: string, ...args: (string | number)[]): Promise<unknown>
+  set(
+    key: string,
+    value: string,
+    ...args: (string | number)[]
+  ): Promise<unknown>
   del(...keys: string[]): Promise<number>
   sadd(key: string, ...members: string[]): Promise<number>
   smembers(key: string): Promise<string[]>
@@ -54,7 +62,11 @@ export interface ReservationStoreBackend {
     reservationId: string,
     sessionId?: string,
     variantId?: string
-  ): Promise<{ confirmed: boolean; quantity: number; reservation: ReservationRecord | null }>
+  ): Promise<{
+    confirmed: boolean
+    quantity: number
+    reservation: ReservationRecord | null
+  }>
 
   getAvailableStock(
     sessionId: string,

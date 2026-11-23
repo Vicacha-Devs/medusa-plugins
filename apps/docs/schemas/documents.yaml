@@ -1,0 +1,818 @@
+openapi: 3.1.0
+info:
+  title: "@vicacha-devs/medusa-plugin-documents API"
+  version: 0.0.1
+  description:
+    "Comprehensive commercial documents plugin for Medusa v2: Invoices,
+    Packing Slips, Credit Notes & POS Receipts with Dual PDF Engine
+    (@react-pdf/renderer + Handlebars/pdfmake), per-region settings, 10-locale
+    i18n (including RTL Arabic & Turkish), localized Admin UI, optional B2B
+    context, and optional Docuseal e-signatures."
+servers:
+  - url: http://127.0.0.1:9000
+    description: Local Medusa v2 Server
+components:
+  securitySchemes:
+    adminBearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Medusa Admin JWT or API token
+    publishableKey:
+      type: apiKey
+      in: header
+      name: x-publishable-api-key
+      description: Medusa Storefront Publishable API Key
+paths:
+  /admin/documents:
+    get:
+      operationId: getAdminDocuments
+      summary: List documents
+      description: GET /admin/documents endpoint exposed by
+        @vicacha-devs/medusa-plugin-documents.
+      tags:
+        - "Admin: documents"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    post:
+      operationId: postAdminDocuments
+      summary: Create / Trigger documents
+      description: POST /admin/documents endpoint exposed by
+        @vicacha-devs/medusa-plugin-documents.
+      tags:
+        - "Admin: documents"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/documents/{id}:
+    delete:
+      operationId: deleteAdminDocumentsById
+      summary: Delete documents by ID
+      description: DELETE /admin/documents/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-documents.
+      tags:
+        - "Admin: documents"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    get:
+      operationId: getAdminDocumentsById
+      summary: Get documents by ID
+      description: GET /admin/documents/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-documents.
+      tags:
+        - "Admin: documents"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/documents/{id}/pdf:
+    get:
+      operationId: getAdminDocumentsByIdPdf
+      summary: Get documents by ID pdf
+      description: GET /admin/documents/{id}/pdf endpoint exposed by
+        @vicacha-devs/medusa-plugin-documents.
+      tags:
+        - "Admin: documents"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/documents/{id}/regenerate:
+    post:
+      operationId: postAdminDocumentsByIdRegenerate
+      summary: Create / Trigger documents by ID regenerate
+      description: POST /admin/documents/{id}/regenerate endpoint exposed by
+        @vicacha-devs/medusa-plugin-documents.
+      tags:
+        - "Admin: documents"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/documents/{id}/send-email:
+    post:
+      operationId: postAdminDocumentsByIdSendEmail
+      summary: Create / Trigger documents by ID send email
+      description: POST /admin/documents/{id}/send-email endpoint exposed by
+        @vicacha-devs/medusa-plugin-documents.
+      tags:
+        - "Admin: documents"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/documents/{id}/send-for-signature:
+    post:
+      operationId: postAdminDocumentsByIdSendForSignature
+      summary: Create / Trigger documents by ID send for signature
+      description:
+        POST /admin/documents/{id}/send-for-signature endpoint exposed by
+        @vicacha-devs/medusa-plugin-documents.
+      tags:
+        - "Admin: documents"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/documents/bulk-download:
+    post:
+      operationId: postAdminDocumentsBulkDownload
+      summary: Create / Trigger documents bulk download
+      description: POST /admin/documents/bulk-download endpoint exposed by
+        @vicacha-devs/medusa-plugin-documents.
+      tags:
+        - "Admin: documents"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/documents/bulk-generate:
+    post:
+      operationId: postAdminDocumentsBulkGenerate
+      summary: Create / Trigger documents bulk generate
+      description: POST /admin/documents/bulk-generate endpoint exposed by
+        @vicacha-devs/medusa-plugin-documents.
+      tags:
+        - "Admin: documents"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/documents/export.csv:
+    get:
+      operationId: getAdminDocumentsExport.csv
+      summary: List documents export.csv
+      description: GET /admin/documents/export.csv endpoint exposed by
+        @vicacha-devs/medusa-plugin-documents.
+      tags:
+        - "Admin: documents"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/documents/preview:
+    get:
+      operationId: getAdminDocumentsPreview
+      summary: List documents preview
+      description: GET /admin/documents/preview endpoint exposed by
+        @vicacha-devs/medusa-plugin-documents.
+      tags:
+        - "Admin: documents"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    post:
+      operationId: postAdminDocumentsPreview
+      summary: Create / Trigger documents preview
+      description: POST /admin/documents/preview endpoint exposed by
+        @vicacha-devs/medusa-plugin-documents.
+      tags:
+        - "Admin: documents"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/documents/settings:
+    delete:
+      operationId: deleteAdminDocumentsSettings
+      summary: Delete documents settings
+      description: DELETE /admin/documents/settings endpoint exposed by
+        @vicacha-devs/medusa-plugin-documents.
+      tags:
+        - "Admin: documents"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    get:
+      operationId: getAdminDocumentsSettings
+      summary: List documents settings
+      description: GET /admin/documents/settings endpoint exposed by
+        @vicacha-devs/medusa-plugin-documents.
+      tags:
+        - "Admin: documents"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    put:
+      operationId: putAdminDocumentsSettings
+      summary: Update documents settings
+      description: PUT /admin/documents/settings endpoint exposed by
+        @vicacha-devs/medusa-plugin-documents.
+      tags:
+        - "Admin: documents"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/documents/templates:
+    get:
+      operationId: getAdminDocumentsTemplates
+      summary: List documents templates
+      description: GET /admin/documents/templates endpoint exposed by
+        @vicacha-devs/medusa-plugin-documents.
+      tags:
+        - "Admin: documents"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    post:
+      operationId: postAdminDocumentsTemplates
+      summary: Create / Trigger documents templates
+      description: POST /admin/documents/templates endpoint exposed by
+        @vicacha-devs/medusa-plugin-documents.
+      tags:
+        - "Admin: documents"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/documents/templates/{id}:
+    delete:
+      operationId: deleteAdminDocumentsTemplatesById
+      summary: Delete documents templates by ID
+      description: DELETE /admin/documents/templates/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-documents.
+      tags:
+        - "Admin: documents"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    get:
+      operationId: getAdminDocumentsTemplatesById
+      summary: Get documents templates by ID
+      description: GET /admin/documents/templates/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-documents.
+      tags:
+        - "Admin: documents"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    put:
+      operationId: putAdminDocumentsTemplatesById
+      summary: Update documents templates by ID
+      description: PUT /admin/documents/templates/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-documents.
+      tags:
+        - "Admin: documents"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/documents/webhooks/docuseal:
+    post:
+      operationId: postAdminDocumentsWebhooksDocuseal
+      summary: Create / Trigger documents webhooks docuseal
+      description: POST /admin/documents/webhooks/docuseal endpoint exposed by
+        @vicacha-devs/medusa-plugin-documents.
+      tags:
+        - "Admin: documents"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/plugin:
+    get:
+      operationId: getAdminPlugin
+      summary: List plugin
+      description: GET /admin/plugin endpoint exposed by
+        @vicacha-devs/medusa-plugin-documents.
+      tags:
+        - "Admin: plugin"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /store/documents/{order_id}:
+    get:
+      operationId: getStoreDocumentsByOrder_id
+      summary: Get documents by ID
+      description: GET /store/documents/{order_id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-documents.
+      tags:
+        - "Storefront: documents"
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          description: Resource identifier (order_id)
+          schema:
+            type: string
+      security:
+        - publishableKey: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /store/documents/{order_id}/credit-note.pdf:
+    get:
+      operationId: getStoreDocumentsByOrder_idCreditNote.pdf
+      summary: Get documents by ID credit note.pdf
+      description:
+        GET /store/documents/{order_id}/credit-note.pdf endpoint exposed by
+        @vicacha-devs/medusa-plugin-documents.
+      tags:
+        - "Storefront: documents"
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          description: Resource identifier (order_id)
+          schema:
+            type: string
+      security:
+        - publishableKey: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /store/documents/{order_id}/invoice.pdf:
+    get:
+      operationId: getStoreDocumentsByOrder_idInvoice.pdf
+      summary: Get documents by ID invoice.pdf
+      description:
+        GET /store/documents/{order_id}/invoice.pdf endpoint exposed by
+        @vicacha-devs/medusa-plugin-documents.
+      tags:
+        - "Storefront: documents"
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          description: Resource identifier (order_id)
+          schema:
+            type: string
+      security:
+        - publishableKey: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /store/documents/{order_id}/packing-slip.pdf:
+    get:
+      operationId: getStoreDocumentsByOrder_idPackingSlip.pdf
+      summary: Get documents by ID packing slip.pdf
+      description:
+        GET /store/documents/{order_id}/packing-slip.pdf endpoint exposed
+        by @vicacha-devs/medusa-plugin-documents.
+      tags:
+        - "Storefront: documents"
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          description: Resource identifier (order_id)
+          schema:
+            type: string
+      security:
+        - publishableKey: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /store/documents/{order_id}/receipt.pdf:
+    get:
+      operationId: getStoreDocumentsByOrder_idReceipt.pdf
+      summary: Get documents by ID receipt.pdf
+      description:
+        GET /store/documents/{order_id}/receipt.pdf endpoint exposed by
+        @vicacha-devs/medusa-plugin-documents.
+      tags:
+        - "Storefront: documents"
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          description: Resource identifier (order_id)
+          schema:
+            type: string
+      security:
+        - publishableKey: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /store/documents/{order_id}/signed.pdf:
+    get:
+      operationId: getStoreDocumentsByOrder_idSigned.pdf
+      summary: Get documents by ID signed.pdf
+      description:
+        GET /store/documents/{order_id}/signed.pdf endpoint exposed by
+        @vicacha-devs/medusa-plugin-documents.
+      tags:
+        - "Storefront: documents"
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          description: Resource identifier (order_id)
+          schema:
+            type: string
+      security:
+        - publishableKey: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /store/documents/{order_id}/signing-url:
+    get:
+      operationId: getStoreDocumentsByOrder_idSigningUrl
+      summary: Get documents by ID signing url
+      description:
+        GET /store/documents/{order_id}/signing-url endpoint exposed by
+        @vicacha-devs/medusa-plugin-documents.
+      tags:
+        - "Storefront: documents"
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          description: Resource identifier (order_id)
+          schema:
+            type: string
+      security:
+        - publishableKey: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /store/plugin:
+    get:
+      operationId: getStorePlugin
+      summary: List plugin
+      description: GET /store/plugin endpoint exposed by
+        @vicacha-devs/medusa-plugin-documents.
+      tags:
+        - "Storefront: plugin"
+      security:
+        - publishableKey: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true

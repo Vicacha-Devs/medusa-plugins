@@ -1,19 +1,22 @@
-import { defineRouteConfig } from "@medusajs/admin-sdk";
-import { CORE_LAYOUT_IDS } from "@medusajs/admin-shared";
-import { ConfigurableDataTable, LayoutComposer } from "@medusajs/dashboard/components";
-import { CheckCircle } from "@medusajs/icons";
-import { Toaster } from "@medusajs/ui";
+import { defineRouteConfig } from "@medusajs/admin-sdk"
+import { CORE_LAYOUT_IDS } from "@medusajs/admin-shared"
+import {
+  ConfigurableDataTable,
+  LayoutComposer,
+} from "@medusajs/dashboard/components"
+import { CheckCircle } from "@medusajs/icons"
+import { Toaster } from "@medusajs/ui"
 import { useFeatureFlag } from "@vicacha-devs/medusa-shared-admin/admin"
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next"
 
-import { ApprovalsTable } from "./components/approvals-table.tsx";
-import { useApprovalsTableAdapter } from "./components/approvals-table-adapter.tsx";
-import { RbacGuard } from "@vicacha-devs/medusa-shared-admin/admin";
+import { ApprovalsTable } from "./components/approvals-table.tsx"
+import { useApprovalsTableAdapter } from "./components/approvals-table-adapter.tsx"
+import { RbacGuard } from "@vicacha-devs/medusa-shared-admin/admin"
 
 const Approvals = () => {
-  const { t } = useTranslation();
-  const isViewConfigEnabled = useFeatureFlag("view_configurations");
-  const adapter = useApprovalsTableAdapter();
+  const { t } = useTranslation()
+  const isViewConfigEnabled = useFeatureFlag("view_configurations")
+  const adapter = useApprovalsTableAdapter()
 
   return (
     <LayoutComposer
@@ -28,16 +31,16 @@ const Approvals = () => {
                 heading={t("approvals.title")}
                 subHeading={t("overview.nav.approvals.description")}
               />
-            ): (
+            ) : (
               <ApprovalsTable />
             )}
             <Toaster />
           </LayoutComposer.Entry>
-        )
+        ),
       }}
     />
-  );
-};
+  )
+}
 
 const Breadcrumb = () => {
   const { t } = useTranslation()
@@ -48,7 +51,7 @@ const Breadcrumb = () => {
 export const config = defineRouteConfig({
   label: "Approvals",
   icon: CheckCircle,
-});
+})
 
 export const handle = {
   breadcrumb: () => <Breadcrumb />,
@@ -58,6 +61,6 @@ const GuardedApprovals = () => (
   <RbacGuard permission="b2b.read">
     <Approvals />
   </RbacGuard>
-);
+)
 
-export default GuardedApprovals;
+export default GuardedApprovals

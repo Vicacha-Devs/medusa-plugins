@@ -21,7 +21,9 @@ import type {
 export const storiesQueryKeys = {
   all: ["stories"] as const,
   adminState: (filters?: { product_id?: string }) =>
-    filters ? (["stories", "admin", filters] as const) : (["stories", "admin"] as const),
+    filters
+      ? (["stories", "admin", filters] as const)
+      : (["stories", "admin"] as const),
   groups: () => ["stories", "groups"] as const,
   analytics: () => ["stories", "analytics"] as const,
   storefront: (filters?: {
@@ -57,16 +59,13 @@ export function createStoriesSdk(options?: StoriesSdkOptions) {
   const baseUrl = (options?.baseUrl ?? "").replace(/\/+$/, "")
   const fetchImpl = options?.fetchImpl ?? globalThis.fetch
 
-  async function request<T>(
-    path: string,
-    init?: RequestInit
-  ): Promise<T> {
+  async function request<T>(path: string, init?: RequestInit): Promise<T> {
     const headers: Record<string, string> = {
       "Content-Type": "application/json",
       ...(options?.publishableApiKey
         ? { "x-publishable-api-key": options.publishableApiKey }
         : {}),
-      ...((init?.headers as Record<string, string>) ?? {}),
+      ...(init?.headers as Record<string, string>),
     }
 
     const res = await fetchImpl(`${baseUrl}${path}`, {

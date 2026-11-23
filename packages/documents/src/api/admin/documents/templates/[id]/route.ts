@@ -60,5 +60,7 @@ export async function DELETE(req: MedusaRequest, res: MedusaResponse) {
   }
 
   await deleteDocumentTemplateWorkflow(req.scope).run({ input: { id } })
-  return res.status(200).json({ id, object: "document_template", deleted: true })
+  return res
+    .status(200)
+    .json({ id, object: "document_template", deleted: true })
 }

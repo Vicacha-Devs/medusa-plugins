@@ -2,16 +2,16 @@ import {
   MiddlewareRoute,
   validateAndTransformBody,
   validateAndTransformQuery,
-} from "@medusajs/framework";
-import { authenticate } from "@medusajs/medusa";
+} from "@medusajs/framework"
+import { authenticate } from "@medusajs/medusa"
 import {
   ensureCompanyMember,
   ensureRole,
-} from "@b2b/api/middlewares/ensure-role";
+} from "@b2b/api/middlewares/ensure-role"
 import {
   storeCompanyQueryConfig,
   storeEmployeeQueryConfig,
-} from "./query-config";
+} from "./query-config"
 import {
   StoreCreateCompany,
   StoreCreateEmployee,
@@ -20,7 +20,7 @@ import {
   StoreUpdateApprovalSettings,
   StoreUpdateCompany,
   StoreUpdateEmployee,
-} from "./validators";
+} from "./validators"
 
 export const storeCompaniesMiddlewares: MiddlewareRoute[] = [
   /* Company middlewares */
@@ -134,4 +134,4 @@ export const storeCompaniesMiddlewares: MiddlewareRoute[] = [
       validateAndTransformBody(StoreUpdateApprovalSettings),
     ],
   },
-];
+]

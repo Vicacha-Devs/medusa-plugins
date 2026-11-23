@@ -1,13 +1,13 @@
-import { ProductHeader } from "@medusajs/dashboard/components";
-import { createDataTableColumnHelper } from "@medusajs/ui";
-import { ProductCell } from "@vicacha-devs/medusa-shared-admin/admin";
-import { useMemo } from "react";
-import { useTranslation } from "react-i18next";
+import { ProductHeader } from "@medusajs/dashboard/components"
+import { createDataTableColumnHelper } from "@medusajs/ui"
+import { ProductCell } from "@vicacha-devs/medusa-shared-admin/admin"
+import { useMemo } from "react"
+import { useTranslation } from "react-i18next"
 
-const columnHelper = createDataTableColumnHelper<any>();
+const columnHelper = createDataTableColumnHelper<any>()
 
 export const useManageItemsTableColumns = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
   return useMemo(
     () => [
@@ -25,5 +25,5 @@ export const useManageItemsTableColumns = () => {
       }),
     ],
     [t]
-  );
-};
+  )
+}

@@ -151,7 +151,9 @@ export const CatalogFeedItemSchema = z.object({
   size: z.string().optional(),
   material: z.string().optional(),
   gender: z.enum(["male", "female", "unisex"]).optional(),
-  age_group: z.enum(["newborn", "infant", "toddler", "kids", "adult"]).optional(),
+  age_group: z
+    .enum(["newborn", "infant", "toddler", "kids", "adult"])
+    .optional(),
   custom_options: z.record(z.string(), z.string()).optional(),
   inventory_quantity: z.number().int().min(0).optional(),
 })
@@ -199,4 +201,3 @@ export function parseWithMedusaError<T>(
   }
   return parsed.data
 }
-

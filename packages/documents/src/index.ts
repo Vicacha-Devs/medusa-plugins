@@ -1,8 +1,5 @@
 export * from "./types"
-export {
-  DOCUMENTS_MODULE,
-  DocumentsModuleService,
-} from "./modules/documents"
+export { DOCUMENTS_MODULE, DocumentsModuleService } from "./modules/documents"
 export * from "./modules/documents/i18n"
 export * from "./modules/documents/utils/numbering"
 export * from "./modules/documents/utils/formatters"

@@ -23,7 +23,6 @@ import {
   slugifyAttributeKey,
   SUPPORTED_UI_LOCALES,
   upsertProductExtWorkflow,
-  upsertVariantExtWorkflow,
   validateExternalMediaUrl,
   validateTreeDocV1,
   type ProductExtServiceInstance,
@@ -37,7 +36,6 @@ import * as AdminProductExtRoute from "../api/admin/products/[product_id]/extens
 import * as AdminVariantExtRoute from "../api/admin/products/[product_id]/variants/[variant_id]/extension/route"
 import * as StoreProductExtRoute from "../api/store/products/[product_id]/extension/route"
 import type { TreeDocV1 } from "../types"
-
 
 function createTestContainer(serviceInstance?: ProductExtModuleService) {
   const svc = serviceInstance ?? new ProductExtModuleService()
@@ -263,7 +261,10 @@ describe("medusa-plugin-product-ext", () => {
       assert.equal(redS, null)
 
       // Trigger compensation rollback
-      if ("compensate" in execution && typeof execution.compensate === "function") {
+      if (
+        "compensate" in execution &&
+        typeof execution.compensate === "function"
+      ) {
         await execution.compensate()
       }
 
@@ -327,7 +328,9 @@ describe("medusa-plugin-product-ext", () => {
 
       // Product A: 10 inches (= 0.254 m)
       await setProductAttributesWorkflow(
-        container as unknown as Parameters<typeof setProductAttributesWorkflow>[0]
+        container as unknown as Parameters<
+          typeof setProductAttributesWorkflow
+        >[0]
       ).run({
         input: {
           product_id: "prod_knife_imperial",
@@ -340,7 +343,9 @@ describe("medusa-plugin-product-ext", () => {
 
       // Product B: 12 cm (= 0.12 m)
       await setProductAttributesWorkflow(
-        container as unknown as Parameters<typeof setProductAttributesWorkflow>[0]
+        container as unknown as Parameters<
+          typeof setProductAttributesWorkflow
+        >[0]
       ).run({
         input: {
           product_id: "prod_knife_metric",
@@ -630,7 +635,7 @@ describe("medusa-plugin-product-ext", () => {
 
       const enKeys = flattenKeys(
         bundles.en.translation as unknown as Record<string, unknown>
-      ).sort()
+      ).toSorted()
       assert.ok(enKeys.length >= 100)
 
       for (const localeCode of locales) {
@@ -638,7 +643,7 @@ describe("medusa-plugin-product-ext", () => {
         assert.ok(entry, `Missing locale bundle for ${localeCode}`)
         const localeKeys = flattenKeys(
           entry.translation as unknown as Record<string, unknown>
-        ).sort()
+        ).toSorted()
         assert.deepEqual(
           localeKeys,
           enKeys,
@@ -763,7 +768,6 @@ describe("medusa-plugin-product-ext", () => {
         postRes.getBody().extension.media_items[0].name,
         "Route Clip"
       )
-
 
       // 3. Variant POST & GET -> returns top-level fields AND extension object
       const varPostRes = createMockRes()
@@ -950,6 +954,3 @@ describe("medusa-plugin-product-ext", () => {
     })
   })
 })
-
-
-

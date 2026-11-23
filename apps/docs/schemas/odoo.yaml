@@ -1,0 +1,573 @@
+openapi: 3.1.0
+info:
+  title: "@vicacha-devs/medusa-plugin-odoo API"
+  version: 0.0.1
+  description: Bidirectional Odoo ERP (Odoo 14-19+ JSON-RPC 2.0 & JSON-2 API)
+    integration plugin for Medusa v2 — products & variants, multi-warehouse
+    inventory & drift reconciliation, orders & invoices/payments, customers,
+    POS/warehouse barcode resolver, offline POS replay, webhooks, Prometheus
+    metrics, SDK, React hooks & Admin UI.
+servers:
+  - url: http://127.0.0.1:9000
+    description: Local Medusa v2 Server
+components:
+  securitySchemes:
+    adminBearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Medusa Admin JWT or API token
+    publishableKey:
+      type: apiKey
+      in: header
+      name: x-publishable-api-key
+      description: Medusa Storefront Publishable API Key
+paths:
+  /admin/odoo/config:
+    get:
+      operationId: getAdminOdooConfig
+      summary: List odoo config
+      description: GET /admin/odoo/config endpoint exposed by
+        @vicacha-devs/medusa-plugin-odoo.
+      tags:
+        - "Admin: odoo"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    post:
+      operationId: postAdminOdooConfig
+      summary: Create / Trigger odoo config
+      description: POST /admin/odoo/config endpoint exposed by
+        @vicacha-devs/medusa-plugin-odoo.
+      tags:
+        - "Admin: odoo"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/odoo/conflicts:
+    get:
+      operationId: getAdminOdooConflicts
+      summary: List odoo conflicts
+      description: GET /admin/odoo/conflicts endpoint exposed by
+        @vicacha-devs/medusa-plugin-odoo.
+      tags:
+        - "Admin: odoo"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    post:
+      operationId: postAdminOdooConflicts
+      summary: Create / Trigger odoo conflicts
+      description: POST /admin/odoo/conflicts endpoint exposed by
+        @vicacha-devs/medusa-plugin-odoo.
+      tags:
+        - "Admin: odoo"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/odoo/failures:
+    get:
+      operationId: getAdminOdooFailures
+      summary: List odoo failures
+      description: GET /admin/odoo/failures endpoint exposed by
+        @vicacha-devs/medusa-plugin-odoo.
+      tags:
+        - "Admin: odoo"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    post:
+      operationId: postAdminOdooFailures
+      summary: Create / Trigger odoo failures
+      description: POST /admin/odoo/failures endpoint exposed by
+        @vicacha-devs/medusa-plugin-odoo.
+      tags:
+        - "Admin: odoo"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/odoo/logs:
+    get:
+      operationId: getAdminOdooLogs
+      summary: List odoo logs
+      description: GET /admin/odoo/logs endpoint exposed by
+        @vicacha-devs/medusa-plugin-odoo.
+      tags:
+        - "Admin: odoo"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/odoo/mappings:
+    get:
+      operationId: getAdminOdooMappings
+      summary: List odoo mappings
+      description: GET /admin/odoo/mappings endpoint exposed by
+        @vicacha-devs/medusa-plugin-odoo.
+      tags:
+        - "Admin: odoo"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    post:
+      operationId: postAdminOdooMappings
+      summary: Create / Trigger odoo mappings
+      description: POST /admin/odoo/mappings endpoint exposed by
+        @vicacha-devs/medusa-plugin-odoo.
+      tags:
+        - "Admin: odoo"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/odoo/metrics:
+    get:
+      operationId: getAdminOdooMetrics
+      summary: List odoo metrics
+      description: GET /admin/odoo/metrics endpoint exposed by
+        @vicacha-devs/medusa-plugin-odoo.
+      tags:
+        - "Admin: odoo"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/odoo/options:
+    get:
+      operationId: getAdminOdooOptions
+      summary: List odoo options
+      description: GET /admin/odoo/options endpoint exposed by
+        @vicacha-devs/medusa-plugin-odoo.
+      tags:
+        - "Admin: odoo"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/odoo/pos-transactions:
+    get:
+      operationId: getAdminOdooPosTransactions
+      summary: List odoo pos transactions
+      description: GET /admin/odoo/pos-transactions endpoint exposed by
+        @vicacha-devs/medusa-plugin-odoo.
+      tags:
+        - "Admin: odoo"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    post:
+      operationId: postAdminOdooPosTransactions
+      summary: Create / Trigger odoo pos transactions
+      description: POST /admin/odoo/pos-transactions endpoint exposed by
+        @vicacha-devs/medusa-plugin-odoo.
+      tags:
+        - "Admin: odoo"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/odoo/sections/{section}:
+    get:
+      operationId: getAdminOdooSectionsBySection
+      summary: Get odoo sections by ID
+      description: GET /admin/odoo/sections/{section} endpoint exposed by
+        @vicacha-devs/medusa-plugin-odoo.
+      tags:
+        - "Admin: odoo"
+      parameters:
+        - name: section
+          in: path
+          required: true
+          description: Resource identifier (section)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    post:
+      operationId: postAdminOdooSectionsBySection
+      summary: Create / Trigger odoo sections by ID
+      description: POST /admin/odoo/sections/{section} endpoint exposed by
+        @vicacha-devs/medusa-plugin-odoo.
+      tags:
+        - "Admin: odoo"
+      parameters:
+        - name: section
+          in: path
+          required: true
+          description: Resource identifier (section)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/odoo/status:
+    get:
+      operationId: getAdminOdooStatus
+      summary: List odoo status
+      description: GET /admin/odoo/status endpoint exposed by
+        @vicacha-devs/medusa-plugin-odoo.
+      tags:
+        - "Admin: odoo"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/odoo/sync-order/{id}:
+    post:
+      operationId: postAdminOdooSyncOrderById
+      summary: Create / Trigger odoo sync order by ID
+      description: POST /admin/odoo/sync-order/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-odoo.
+      tags:
+        - "Admin: odoo"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/odoo/sync/{entity}:
+    post:
+      operationId: postAdminOdooSyncByEntity
+      summary: Create / Trigger odoo sync by ID
+      description: POST /admin/odoo/sync/{entity} endpoint exposed by
+        @vicacha-devs/medusa-plugin-odoo.
+      tags:
+        - "Admin: odoo"
+      parameters:
+        - name: entity
+          in: path
+          required: true
+          description: Resource identifier (entity)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/odoo/verify-connection:
+    post:
+      operationId: postAdminOdooVerifyConnection
+      summary: Create / Trigger odoo verify connection
+      description: POST /admin/odoo/verify-connection endpoint exposed by
+        @vicacha-devs/medusa-plugin-odoo.
+      tags:
+        - "Admin: odoo"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/plugin:
+    get:
+      operationId: getAdminPlugin
+      summary: List plugin
+      description: GET /admin/plugin endpoint exposed by @vicacha-devs/medusa-plugin-odoo.
+      tags:
+        - "Admin: plugin"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /hooks/odoo:
+    post:
+      operationId: postHooksOdoo
+      summary: Create / Trigger  hooks odoo
+      description: POST /hooks/odoo endpoint exposed by @vicacha-devs/medusa-plugin-odoo.
+      tags:
+        - Webhooks & Hooks
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /store/odoo/barcode:
+    post:
+      operationId: postStoreOdooBarcode
+      summary: Create / Trigger odoo barcode
+      description: POST /store/odoo/barcode endpoint exposed by
+        @vicacha-devs/medusa-plugin-odoo.
+      tags:
+        - "Storefront: odoo"
+      security:
+        - publishableKey: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /store/plugin:
+    get:
+      operationId: getStorePlugin
+      summary: List plugin
+      description: GET /store/plugin endpoint exposed by @vicacha-devs/medusa-plugin-odoo.
+      tags:
+        - "Storefront: plugin"
+      security:
+        - publishableKey: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true

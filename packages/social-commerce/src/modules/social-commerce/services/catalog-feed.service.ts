@@ -271,7 +271,9 @@ export class CatalogFeedService {
         if (safeThumb) rawImages.push(safeThumb)
       }
       if (Array.isArray(product.images)) {
-        for (const img of product.images as Array<Record<string, unknown> | string>) {
+        for (const img of product.images as Array<
+          Record<string, unknown> | string
+        >) {
           const rawUrl =
             typeof img === "string"
               ? img
@@ -329,7 +331,9 @@ export class CatalogFeedService {
         // Extract variant options (size, color, material, etc.)
         const customOptions: Record<string, string> = {}
         if (Array.isArray(variant.options)) {
-          for (const vOpt of variant.options as Array<Record<string, unknown>>) {
+          for (const vOpt of variant.options as Array<
+            Record<string, unknown>
+          >) {
             const val = typeof vOpt?.value === "string" ? vOpt.value.trim() : ""
             if (!val) continue
             const optTitle =
@@ -358,8 +362,11 @@ export class CatalogFeedService {
             ? variant.inventory_quantity
             : undefined
 
-        let availability: "in stock" | "out of stock" | "preorder" | "backorder" =
-          "in stock"
+        let availability:
+          | "in stock"
+          | "out of stock"
+          | "preorder"
+          | "backorder" = "in stock"
         if (manageInventory && typeof invQty === "number" && invQty <= 0) {
           availability = allowBackorder ? "backorder" : "out of stock"
         }
@@ -479,9 +486,7 @@ export class CatalogFeedService {
       const calcAmount = Number(
         calcPrice.calculated_amount ?? calcPrice.amount ?? 0
       )
-      const origAmount = Number(
-        calcPrice.original_amount ?? calcAmount
-      )
+      const origAmount = Number(calcPrice.original_amount ?? calcAmount)
       const currency = String(
         calcPrice.currency_code || target.currencyCode
       ).toUpperCase()
@@ -503,12 +508,10 @@ export class CatalogFeedService {
       const matched =
         prices.find(
           (p) =>
-            target.regionId &&
-            String(p.region_id || "") === target.regionId
+            target.regionId && String(p.region_id || "") === target.regionId
         ) ||
         prices.find(
-          (p) =>
-            String(p.currency_code || "").toLowerCase() === targetCurrLower
+          (p) => String(p.currency_code || "").toLowerCase() === targetCurrLower
         ) ||
         prices[0]
 
@@ -579,7 +582,8 @@ export class CatalogFeedService {
 
     const color = item.color?.trim() || customOptions.color || undefined
     const size = item.size?.trim() || customOptions.size || undefined
-    const material = item.material?.trim() || customOptions.material || undefined
+    const material =
+      item.material?.trim() || customOptions.material || undefined
 
     // Append variant options as query parameters on deep link if enabled
     let finalLink = baseLink
@@ -612,9 +616,7 @@ export class CatalogFeedService {
     const safeAdditionalImages = Array.isArray(item.additional_image_links)
       ? item.additional_image_links
           .map((u) => sanitizeHttpUrl(u))
-          .filter(
-            (u): u is string => Boolean(u && u !== safeImage)
-          )
+          .filter((u): u is string => Boolean(u && u !== safeImage))
           .slice(0, 10)
       : undefined
 
@@ -717,8 +719,7 @@ export class CatalogFeedService {
                   /^[a-z][a-z0-9_]{0,31}$/.test(key)
               )
               .map(
-                ([key, val]) =>
-                  `\n      <g:${key}>${escapeXml(val)}</g:${key}>`
+                ([key, val]) => `\n      <g:${key}>${escapeXml(val)}</g:${key}>`
               )
               .join("")
           : ""
@@ -847,7 +848,8 @@ ${xmlItems}
             `Invalid variant identifier in checkout handoff parameter: "${pair}".`
           )
         }
-        const qty = rawQty !== undefined ? Number.parseInt(rawQty.trim(), 10) : 1
+        const qty =
+          rawQty !== undefined ? Number.parseInt(rawQty.trim(), 10) : 1
         if (!Number.isInteger(qty) || qty <= 0 || qty > 1000) {
           throw new MedusaError(
             MedusaError.Types.INVALID_DATA,

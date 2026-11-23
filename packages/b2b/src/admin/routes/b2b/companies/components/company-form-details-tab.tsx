@@ -124,7 +124,9 @@ export const CompanyFormDetailsTab = ({
                 disabled={regionsLoading}
               >
                 <Select.Trigger>
-                  <Select.Value placeholder={t("companies.form.selectCountry")} />
+                  <Select.Value
+                    placeholder={t("companies.form.selectCountry")}
+                  />
                 </Select.Trigger>
                 <Select.Content>
                   {availableCountries.map((c: any) => (

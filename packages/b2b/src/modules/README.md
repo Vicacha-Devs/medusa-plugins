@@ -59,6 +59,7 @@ A `Quote` tracks the lifecycle of a request-for-quote negotiation. The `draft_or
 **Service token:** `APPROVAL_MODULE`
 
 **Custom methods:**
+
 - `hasPendingApprovals(cartId: string): Promise<boolean>` — returns `true` if any `Approval` for the cart is still `pending`.
 
 ---

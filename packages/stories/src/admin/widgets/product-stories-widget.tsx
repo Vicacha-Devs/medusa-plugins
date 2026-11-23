@@ -12,11 +12,8 @@ interface ProductWidgetProps {
 
 const ProductStoriesWidget = ({ data }: ProductWidgetProps) => {
   const { t } = useTranslation()
-  const {
-    taggedSlides,
-    isCreating,
-    handleQuickCreateProductStory,
-  } = useProductStories(data)
+  const { taggedSlides, isCreating, handleQuickCreateProductStory } =
+    useProductStories(data)
 
   return (
     <ProductStoriesCard

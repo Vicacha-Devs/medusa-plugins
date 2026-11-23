@@ -23,7 +23,9 @@ import type { SocialAccountService } from "./social-account.service"
 export class SocialMediaService {
   private readonly repo: SocialCommerceRepository
   private readonly accountService: SocialAccountService
-  private readonly resolveProvider: (platform: SocialPlatform) => SocialPlatformProvider
+  private readonly resolveProvider: (
+    platform: SocialPlatform
+  ) => SocialPlatformProvider
 
   constructor(
     repo: SocialCommerceRepository,
@@ -40,7 +42,9 @@ export class SocialMediaService {
    */
   async upsertFetchedPost(
     account: SocialAccountRecord,
-    item: Awaited<ReturnType<SocialPlatformProvider["fetchMediaPosts"]>>["posts"][number]
+    item: Awaited<
+      ReturnType<SocialPlatformProvider["fetchMediaPosts"]>
+    >["posts"][number]
   ): Promise<{ post: SocialMediaPostRecord; created: boolean }> {
     const existing = await this.repo.listPosts({
       platform: account.platform,
@@ -65,8 +69,8 @@ export class SocialMediaService {
         expires_at: item.expires_at,
         synced_at: new Date(),
         metadata: {
-          ...(existing[0].metadata ?? {}),
-          ...(item.metadata ?? {}),
+          ...existing[0].metadata,
+          ...item.metadata,
         },
       })
       return { post: updated, created: false }
@@ -135,8 +139,9 @@ export class SocialMediaService {
       await this.accountService.getDecryptedAccountWithToken(accountId)
     const provider = this.resolveProvider(account.platform)
 
-    const fetchedFeed: Awaited<ReturnType<typeof provider.fetchMediaPosts>>["posts"] =
-      []
+    const fetchedFeed: Awaited<
+      ReturnType<typeof provider.fetchMediaPosts>
+    >["posts"] = []
     const maxPages = options?.fetchAllPages
       ? Math.max(1, options?.maxPages ?? 10)
       : 1
@@ -267,7 +272,9 @@ export class SocialMediaService {
    */
   async publishLocalStory(
     input: CreateLocalStoryInput
-  ): Promise<SocialMediaPostRecord & { tagged_products: SocialProductTagRecord[] }> {
+  ): Promise<
+    SocialMediaPostRecord & { tagged_products: SocialProductTagRecord[] }
+  > {
     const safeMediaUrl = sanitizeHttpUrl(input.media_url)
     if (!safeMediaUrl) {
       throw new MedusaError(
@@ -276,7 +283,9 @@ export class SocialMediaService {
       )
     }
 
-    const safeThumb = input.thumbnail_url ? sanitizeHttpUrl(input.thumbnail_url) : null
+    const safeThumb = input.thumbnail_url
+      ? sanitizeHttpUrl(input.thumbnail_url)
+      : null
     const safeCtaUrl = input.cta_url ? sanitizeHttpUrl(input.cta_url) : null
     const safeAvatarUrl = input.author_avatar_url
       ? sanitizeHttpUrl(input.author_avatar_url)
@@ -305,7 +314,9 @@ export class SocialMediaService {
       share_count: 0,
       published_at: new Date(),
       expires_at: expiresAt,
-      is_shoppable: Boolean(input.product_tags && input.product_tags.length > 0),
+      is_shoppable: Boolean(
+        input.product_tags && input.product_tags.length > 0
+      ),
       is_featured: Boolean(input.is_featured),
       sort_order: typeof input.sort_order === "number" ? input.sort_order : 0,
       author_name: input.author_name?.trim() || "Store Highlights",
@@ -318,7 +329,11 @@ export class SocialMediaService {
 
     let taggedProducts: SocialProductTagRecord[] = []
     if (Array.isArray(input.product_tags) && input.product_tags.length > 0) {
-      taggedProducts = await this.tagProductsOnPost(post.id, input.product_tags, true)
+      taggedProducts = await this.tagProductsOnPost(
+        post.id,
+        input.product_tags,
+        true
+      )
     }
 
     const refreshed = (await this.repo.retrievePost(post.id)) ?? post
@@ -341,7 +356,9 @@ export class SocialMediaService {
     limit?: number
     offset?: number
   }): Promise<{
-    posts: Array<SocialMediaPostRecord & { tagged_products: SocialProductTagRecord[] }>
+    posts: Array<
+      SocialMediaPostRecord & { tagged_products: SocialProductTagRecord[] }
+    >
     count: number
   }> {
     const queryFilters: Record<string, unknown> = {}
@@ -433,12 +450,16 @@ export class SocialMediaService {
       return timeB - timeA
     })
 
-    const limit = filters?.limit ? Math.max(1, Math.min(100, filters.limit)) : 50
+    const limit = filters?.limit
+      ? Math.max(1, Math.min(100, filters.limit))
+      : 50
     const sliced = active.slice(0, limit)
 
     return Promise.all(
       sliced.map(async (story) => {
-        const tags = await this.repo.listTags({ social_media_post_id: story.id })
+        const tags = await this.repo.listTags({
+          social_media_post_id: story.id,
+        })
         return {
           ...story,
           tagged_products: tags,
@@ -452,7 +473,9 @@ export class SocialMediaService {
    */
   async getMediaPostWithTags(
     postId: string
-  ): Promise<SocialMediaPostRecord & { tagged_products: SocialProductTagRecord[] }> {
+  ): Promise<
+    SocialMediaPostRecord & { tagged_products: SocialProductTagRecord[] }
+  > {
     const post = await this.repo.retrievePost(postId)
     if (!post) {
       throw new MedusaError(
@@ -503,7 +526,9 @@ export class SocialMediaService {
   /**
    * Deletes a `SocialMediaPost` and its associated `SocialProductTag` rows.
    */
-  async purgeMediaPost(postId: string): Promise<{ id: string; deleted: boolean }> {
+  async purgeMediaPost(
+    postId: string
+  ): Promise<{ id: string; deleted: boolean }> {
     const existing = await this.repo.retrievePost(postId)
     if (!existing) {
       throw new MedusaError(
@@ -583,7 +608,9 @@ export class SocialMediaService {
     }
 
     if (replaceExisting) {
-      const existingTags = await this.repo.listTags({ social_media_post_id: postId })
+      const existingTags = await this.repo.listTags({
+        social_media_post_id: postId,
+      })
       for (const existing of existingTags) {
         await this.repo.deleteTag(existing.id)
       }
@@ -639,7 +666,10 @@ export class SocialMediaService {
       )
     }
     const tags = await this.repo.listTags({ product_id: productId.trim() })
-    const results: Array<{ post: SocialMediaPostRecord; tag: SocialProductTagRecord }> = []
+    const results: Array<{
+      post: SocialMediaPostRecord
+      tag: SocialProductTagRecord
+    }> = []
 
     for (const tag of tags) {
       const post = await this.repo.retrievePost(tag.social_media_post_id)

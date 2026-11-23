@@ -86,10 +86,24 @@ export const DEFAULT_COLLECTION_GRAPH_FIELDS: string[] = [
 
 export const DEFAULT_PRODUCT_SCHEMA_FIELDS: TypesenseSchemaField[] = [
   { name: "id", type: "string", facet: false },
-  { name: "title", type: "string", facet: false, sort: true, infix: true, stem: true },
+  {
+    name: "title",
+    type: "string",
+    facet: false,
+    sort: true,
+    infix: true,
+    stem: true,
+  },
   { name: "subtitle", type: "string", optional: true, stem: true },
   { name: "description", type: "string", optional: true, stem: true },
-  { name: "handle", type: "string", optional: true, facet: false, sort: true, infix: true },
+  {
+    name: "handle",
+    type: "string",
+    optional: true,
+    facet: false,
+    sort: true,
+    infix: true,
+  },
   { name: "status", type: "string", facet: true, optional: true },
   { name: "thumbnail", type: "string", optional: true, index: false },
   { name: "is_giftcard", type: "bool", facet: true, optional: true },
@@ -108,7 +122,13 @@ export const DEFAULT_PRODUCT_SCHEMA_FIELDS: TypesenseSchemaField[] = [
   { name: "sales_channel_ids", type: "string[]", facet: true, optional: true },
   { name: "variant_ids", type: "string[]", optional: true },
   { name: "variant_titles", type: "string[]", optional: true },
-  { name: "variant_skus", type: "string[]", facet: true, optional: true, infix: true },
+  {
+    name: "variant_skus",
+    type: "string[]",
+    facet: true,
+    optional: true,
+    infix: true,
+  },
   { name: "variant_barcodes", type: "string[]", optional: true, infix: true },
   { name: "option_names", type: "string[]", facet: true, optional: true },
   { name: "option_values", type: "string[]", facet: true, optional: true },
@@ -145,7 +165,13 @@ export const DEFAULT_CATEGORY_SCHEMA_FIELDS: TypesenseSchemaField[] = [
   { name: "breadcrumb_names", type: "string[]", facet: true, optional: true },
   { name: "breadcrumb_handles", type: "string[]", facet: true, optional: true },
   { name: "child_category_ids", type: "string[]", optional: true },
-  { name: "product_count", type: "int32", facet: true, sort: true, optional: true },
+  {
+    name: "product_count",
+    type: "int32",
+    facet: true,
+    sort: true,
+    optional: true,
+  },
   { name: "locale", type: "string", facet: true, optional: true },
   { name: "created_at_ts", type: "int64", sort: true },
   { name: "updated_at_ts", type: "int64", sort: true },
@@ -157,7 +183,13 @@ export const DEFAULT_COLLECTION_SCHEMA_FIELDS: TypesenseSchemaField[] = [
   { name: "id", type: "string", facet: false },
   { name: "title", type: "string", sort: true, infix: true, stem: true },
   { name: "handle", type: "string", sort: true, infix: true },
-  { name: "product_count", type: "int32", facet: true, sort: true, optional: true },
+  {
+    name: "product_count",
+    type: "int32",
+    facet: true,
+    sort: true,
+    optional: true,
+  },
   { name: "locale", type: "string", facet: true, optional: true },
   { name: "created_at_ts", type: "int64", sort: true },
   { name: "updated_at_ts", type: "int64", sort: true },
@@ -167,8 +199,22 @@ export const DEFAULT_COLLECTION_SCHEMA_FIELDS: TypesenseSchemaField[] = [
 
 export const DEFAULT_CUSTOM_ENTITY_SCHEMA_FIELDS: TypesenseSchemaField[] = [
   { name: "id", type: "string", facet: false },
-  { name: "title", type: "string", optional: true, sort: true, infix: true, stem: true },
-  { name: "name", type: "string", optional: true, sort: true, infix: true, stem: true },
+  {
+    name: "title",
+    type: "string",
+    optional: true,
+    sort: true,
+    infix: true,
+    stem: true,
+  },
+  {
+    name: "name",
+    type: "string",
+    optional: true,
+    sort: true,
+    infix: true,
+    stem: true,
+  },
   { name: "description", type: "string", optional: true, stem: true },
   { name: "handle", type: "string", optional: true, sort: true, infix: true },
   { name: "slug", type: "string", optional: true, sort: true, infix: true },
@@ -181,7 +227,9 @@ export const DEFAULT_CUSTOM_ENTITY_SCHEMA_FIELDS: TypesenseSchemaField[] = [
   { name: ".*", type: "auto", optional: true },
 ]
 
-export function getBuiltInEntityDefaults(entity: string): TypesenseEntityDefinition {
+export function getBuiltInEntityDefaults(
+  entity: string
+): TypesenseEntityDefinition {
   if (entity === "products") {
     return {
       entity: "products",

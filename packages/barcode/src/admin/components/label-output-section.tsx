@@ -1,10 +1,4 @@
-import {
-  Container,
-  Heading,
-  StatusBadge,
-  Text,
-  Textarea,
-} from "@medusajs/ui"
+import { Container, Heading, StatusBadge, Text, Textarea } from "@medusajs/ui"
 import { useTranslation } from "react-i18next"
 
 import type { LabelPrintOutput } from "../../modules/barcode/types"

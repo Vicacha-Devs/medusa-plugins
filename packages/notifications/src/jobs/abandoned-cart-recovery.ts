@@ -77,7 +77,9 @@ export async function runAbandonedCartRecoveryJob(
     if (cart.completed_at) continue
     if (!Array.isArray(cart.items) || cart.items.length === 0) continue
 
-    const updatedAtMs = cart.updated_at ? new Date(cart.updated_at).getTime() : 0
+    const updatedAtMs = cart.updated_at
+      ? new Date(cart.updated_at).getTime()
+      : 0
     if (!updatedAtMs || updatedAtMs > cutoffMs) {
       continue
     }
@@ -93,9 +95,7 @@ export async function runAbandonedCartRecoveryJob(
     const consentRows = await mpnService.listMpnConsentRecords({
       identifier: phone,
     })
-    const activeConsent = consentRows.find(
-      (r: any) => r.status === "opted_in"
-    )
+    const activeConsent = consentRows.find((r: any) => r.status === "opted_in")
     if (!activeConsent) {
       skipped++
       continue

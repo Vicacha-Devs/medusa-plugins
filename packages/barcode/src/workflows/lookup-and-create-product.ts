@@ -1,13 +1,13 @@
-import { Modules } from "@medusajs/framework/utils";
+import { Modules } from "@medusajs/framework/utils"
 import {
   createStep,
   createWorkflow,
   StepResponse,
   WorkflowResponse,
-} from "@medusajs/framework/workflows-sdk";
+} from "@medusajs/framework/workflows-sdk"
 
-import { downloadProductImageBuffer } from "../modules/barcode/providers";
-import type { BarcodeModuleService } from "../modules/barcode/service";
+import { downloadProductImageBuffer } from "../modules/barcode/providers"
+import type { BarcodeModuleService } from "../modules/barcode/service"
 import {
   BARCODE_EVENTS,
   BARCODE_MODULE,
@@ -15,35 +15,35 @@ import {
   type CreateProductPayload,
   type LookupAndCreateProductInput,
   type NormalizedBarcodeProduct,
-} from "../modules/barcode/types";
-import { mapToMedusaCreateProduct } from "../modules/barcode/utils/normalize-product";
-import { tryResolveService } from "./helpers";
+} from "../modules/barcode/types"
+import { mapToMedusaCreateProduct } from "../modules/barcode/utils/normalize-product"
+import { tryResolveService } from "./helpers"
 
-export type { LookupAndCreateProductInput };
+export type { LookupAndCreateProductInput }
 
 type LookupAndCreateProductOutput = {
-  created: boolean;
-  existing: boolean;
-  product: Record<string, unknown> | null;
-  lookup: BarcodeLookupChainResult;
-  product_id: string;
-  variant_id: string | null;
-  product_payload: CreateProductPayload | null;
+  created: boolean
+  existing: boolean
+  product: Record<string, unknown> | null
+  lookup: BarcodeLookupChainResult
+  product_id: string
+  variant_id: string | null
+  product_payload: CreateProductPayload | null
   barcode_product: Awaited<
     ReturnType<BarcodeModuleService["upsertBarcodeProductLink"]>
-  >;
-};
+  >
+}
 
 type LookupAndCreateProductCompensation = {
-  barcodeProductId: string | null;
-  createdProductId: string | null;
-};
+  barcodeProductId: string | null
+  createdProductId: string | null
+}
 
 const lookupAndCreateProductStep = createStep(
   "lookup-and-create-product",
   async (
     input: LookupAndCreateProductInput,
-    { container },
+    { container }
   ): Promise<
     StepResponse<
       LookupAndCreateProductOutput,
@@ -51,19 +51,19 @@ const lookupAndCreateProductStep = createStep(
     >
   > => {
     const barcodeService = container.resolve(
-      BARCODE_MODULE,
-    ) as BarcodeModuleService;
-    const moduleOptions = await barcodeService.getModuleOptions();
+      BARCODE_MODULE
+    ) as BarcodeModuleService
+    const moduleOptions = await barcodeService.getModuleOptions()
     const productService = tryResolveService(container, [
       Modules.PRODUCT,
       "product",
-    ]);
+    ])
 
     // Self-healing existing product check
     if (input.skipExistingCheck !== true) {
       const existingMapping = await barcodeService.findBarcodeProduct(
-        input.barcode,
-      );
+        input.barcode
+      )
       if (existingMapping) {
         if (
           productService &&
@@ -71,19 +71,19 @@ const lookupAndCreateProductStep = createStep(
         ) {
           const existingProducts = (await productService.listProducts({
             id: [existingMapping.product_id],
-          })) as Array<Record<string, unknown>>;
+          })) as Array<Record<string, unknown>>
           const foundExisting = Array.isArray(existingProducts)
             ? (existingProducts.find(
-                (p) => p.id === existingMapping.product_id,
+                (p) => p.id === existingMapping.product_id
               ) ?? existingProducts[0])
-            : null;
+            : null
           if (foundExisting) {
             const parsed = await barcodeService.parseAndValidateBarcode(
-              input.barcode,
-            );
+              input.barcode
+            )
             const cachedProduct =
               (existingMapping.product_data as unknown as NormalizedBarcodeProduct) ||
-              null;
+              null
             return new StepResponse(
               {
                 created: false,
@@ -109,11 +109,11 @@ const lookupAndCreateProductStep = createStep(
               {
                 barcodeProductId: null,
                 createdProductId: null,
-              },
-            );
+              }
+            )
           }
           // Product was deleted in Medusa — self-heal stale BarcodeProduct link
-          await barcodeService.removeBarcodeProduct(input.barcode);
+          await barcodeService.removeBarcodeProduct(input.barcode)
         }
       }
     }
@@ -121,7 +121,7 @@ const lookupAndCreateProductStep = createStep(
     const lookupResult = await barcodeService.lookupBarcode(input.barcode, {
       skipCache: input.skipCache,
       strategy: input.strategy || moduleOptions.enrichmentStrategy,
-    });
+    })
 
     const normalized: NormalizedBarcodeProduct = lookupResult.product || {
       barcode: lookupResult.barcode,
@@ -148,17 +148,17 @@ const lookupAndCreateProductStep = createStep(
       page_count: null,
       provider: "manual",
       raw_data: {},
-    };
+    }
 
     // Optional File Module image upload
     const shouldDownload =
-      input.downloadImages ?? moduleOptions.downloadProductImages ?? false;
+      input.downloadImages ?? moduleOptions.downloadProductImages ?? false
     if (shouldDownload && normalized.images.length > 0) {
-      const fileService = tryResolveService(container, [Modules.FILE, "file"]);
+      const fileService = tryResolveService(container, [Modules.FILE, "file"])
       if (fileService && typeof fileService.createFiles === "function") {
-        const uploadedUrls: string[] = [];
+        const uploadedUrls: string[] = []
         for (const imageUrl of normalized.images.slice(0, 3)) {
-          const downloaded = await downloadProductImageBuffer(imageUrl);
+          const downloaded = await downloadProductImageBuffer(imageUrl)
           if (downloaded) {
             try {
               const createdFiles = (await fileService.createFiles([
@@ -168,17 +168,17 @@ const lookupAndCreateProductStep = createStep(
                   content: downloaded.buffer.toString("base64"),
                   access: "public",
                 },
-              ])) as Array<{ url?: string }>;
+              ])) as Array<{ url?: string }>
               if (createdFiles?.[0]?.url) {
-                uploadedUrls.push(createdFiles[0].url);
+                uploadedUrls.push(createdFiles[0].url)
               }
             } catch {
-              uploadedUrls.push(imageUrl);
+              uploadedUrls.push(imageUrl)
             }
           }
         }
         if (uploadedUrls.length > 0) {
-          normalized.images = uploadedUrls;
+          normalized.images = uploadedUrls
         }
       }
     }
@@ -195,27 +195,27 @@ const lookupAndCreateProductStep = createStep(
       salesChannelIds: input.salesChannelIds,
       categoryIds: input.categoryIds,
       collectionId: input.collectionId,
-    });
+    })
 
-    let createdProductId = `prod_${lookupResult.barcode}`;
-    let createdVariantId: string | null = `variant_${lookupResult.barcode}`;
-    let createdProductObj: Record<string, unknown> | null = null;
-    let createdInProductModule = false;
+    let createdProductId = `prod_${lookupResult.barcode}`
+    let createdVariantId: string | null = `variant_${lookupResult.barcode}`
+    let createdProductObj: Record<string, unknown> | null = null
+    let createdInProductModule = false
 
     if (productService && typeof productService.createProducts === "function") {
-      const created = await productService.createProducts([createPayload]);
-      const firstProduct = Array.isArray(created) ? created[0] : created;
+      const created = await productService.createProducts([createPayload])
+      const firstProduct = Array.isArray(created) ? created[0] : created
       if (
         firstProduct &&
         typeof firstProduct === "object" &&
         "id" in firstProduct
       ) {
-        createdProductObj = firstProduct as Record<string, unknown>;
-        createdProductId = String((firstProduct as { id: string }).id);
+        createdProductObj = firstProduct as Record<string, unknown>
+        createdProductId = String((firstProduct as { id: string }).id)
         const variants = (firstProduct as { variants?: Array<{ id?: string }> })
-          .variants;
-        createdVariantId = variants?.[0]?.id ? String(variants[0].id) : null;
-        createdInProductModule = true;
+          .variants
+        createdVariantId = variants?.[0]?.id ? String(variants[0].id) : null
+        createdInProductModule = true
       }
     }
 
@@ -226,12 +226,12 @@ const lookupAndCreateProductStep = createStep(
       provider: normalized.provider,
       product_data: normalized,
       status: "created",
-    });
+    })
 
     const eventBus = tryResolveService(container, [
       Modules.EVENT_BUS,
       "event_bus",
-    ]);
+    ])
     if (eventBus && typeof eventBus.emit === "function") {
       try {
         await eventBus.emit({
@@ -242,7 +242,7 @@ const lookupAndCreateProductStep = createStep(
             variant_id: createdVariantId,
             provider: normalized.provider,
           },
-        });
+        })
       } catch {
         // Non-fatal if event bus fails
       }
@@ -262,37 +262,37 @@ const lookupAndCreateProductStep = createStep(
       {
         barcodeProductId: barcodeProduct.id,
         createdProductId: createdInProductModule ? createdProductId : null,
-      },
-    );
+      }
+    )
   },
   async (compInput, { container }) => {
-    if (!compInput) return;
+    if (!compInput) return
     const barcodeService = container.resolve(
-      BARCODE_MODULE,
-    ) as BarcodeModuleService;
+      BARCODE_MODULE
+    ) as BarcodeModuleService
 
     if (compInput.barcodeProductId) {
-      await barcodeService.deleteBarcodeProducts([compInput.barcodeProductId]);
+      await barcodeService.deleteBarcodeProducts([compInput.barcodeProductId])
     }
     if (compInput.createdProductId) {
       const productService = tryResolveService(container, [
         Modules.PRODUCT,
         "product",
-      ]);
+      ])
       if (
         productService &&
         typeof productService.deleteProducts === "function"
       ) {
-        await productService.deleteProducts([compInput.createdProductId]);
+        await productService.deleteProducts([compInput.createdProductId])
       }
     }
-  },
-);
+  }
+)
 
 export const lookupAndCreateProductWorkflow = createWorkflow(
   "lookup-and-create-product",
   (input: LookupAndCreateProductInput) => {
-    const result = lookupAndCreateProductStep(input);
-    return new WorkflowResponse(result);
-  },
-);
+    const result = lookupAndCreateProductStep(input)
+    return new WorkflowResponse(result)
+  }
+)

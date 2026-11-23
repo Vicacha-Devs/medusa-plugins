@@ -24,9 +24,7 @@ export interface LoadedExternalTemplate {
 }
 
 const nodeRequire = createRequire(
-  typeof __filename === "string"
-    ? __filename
-    : `${process.cwd()}/package.json`
+  typeof __filename === "string" ? __filename : `${process.cwd()}/package.json`
 )
 
 /**
@@ -115,7 +113,9 @@ export function loadExternalTemplates(
   return registry
 }
 
-function pickExternalTemplateExports(rawModule: any): Record<string, any> | null {
+function pickExternalTemplateExports(
+  rawModule: any
+): Record<string, any> | null {
   const candidates = [rawModule, rawModule?.default]
   return (
     candidates.find(

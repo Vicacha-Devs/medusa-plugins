@@ -18,7 +18,9 @@ const BoldAuditTimelineWidget = ({ data: order }: { data: any }) => {
 
   const boldCollections =
     order?.payment_collections?.filter((pc: any) =>
-      pc.payment_sessions?.some((s: any) => s.provider_id?.startsWith("pp_bold"))
+      pc.payment_sessions?.some((s: any) =>
+        s.provider_id?.startsWith("pp_bold")
+      )
     ) || []
 
   if (boldCollections.length === 0) {
@@ -95,12 +97,24 @@ const BoldAuditTimelineWidget = ({ data: order }: { data: any }) => {
       <Table>
         <Table.Header>
           <Table.Row>
-            <Table.HeaderCell>{t("bold.admin.audit.headers.event")}</Table.HeaderCell>
-            <Table.HeaderCell>{t("bold.admin.audit.headers.provider_mode")}</Table.HeaderCell>
-            <Table.HeaderCell>{t("bold.admin.audit.headers.reference")}</Table.HeaderCell>
-            <Table.HeaderCell>{t("bold.admin.audit.headers.amount")}</Table.HeaderCell>
-            <Table.HeaderCell>{t("bold.admin.audit.headers.status")}</Table.HeaderCell>
-            <Table.HeaderCell>{t("bold.admin.audit.headers.timestamp")}</Table.HeaderCell>
+            <Table.HeaderCell>
+              {t("bold.admin.audit.headers.event")}
+            </Table.HeaderCell>
+            <Table.HeaderCell>
+              {t("bold.admin.audit.headers.provider_mode")}
+            </Table.HeaderCell>
+            <Table.HeaderCell>
+              {t("bold.admin.audit.headers.reference")}
+            </Table.HeaderCell>
+            <Table.HeaderCell>
+              {t("bold.admin.audit.headers.amount")}
+            </Table.HeaderCell>
+            <Table.HeaderCell>
+              {t("bold.admin.audit.headers.status")}
+            </Table.HeaderCell>
+            <Table.HeaderCell>
+              {t("bold.admin.audit.headers.timestamp")}
+            </Table.HeaderCell>
           </Table.Row>
         </Table.Header>
         <Table.Body>

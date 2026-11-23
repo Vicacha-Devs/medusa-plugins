@@ -71,7 +71,10 @@ export const BatchBarcodeImportBodySchema = z.object({
 export const BulkGenerateBarcodesBodySchema = z.object({
   variant_ids: z.array(z.string().min(1).max(128)).max(250).optional(),
   product_ids: z.array(z.string().min(1).max(128)).max(250).optional(),
-  prefix: z.string().regex(/^2\d{2}$/).optional(),
+  prefix: z
+    .string()
+    .regex(/^2\d{2}$/)
+    .optional(),
   overwrite: z.boolean().optional(),
 })
 

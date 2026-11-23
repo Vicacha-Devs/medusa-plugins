@@ -118,7 +118,11 @@ export const CreateBroadcastSchema = z.object({
   channel: z.enum(["sms", "whatsapp", "telegram", "email"]).default("sms"),
   template_id: z.string().min(1).max(120),
   customer_group_id: z.string().max(120).nullable().optional(),
-  custom_recipients: z.array(z.string().max(255)).max(500).nullable().optional(),
+  custom_recipients: z
+    .array(z.string().max(255))
+    .max(500)
+    .nullable()
+    .optional(),
   send_now: z.boolean().optional().default(false),
   scheduled_at: z.string().nullable().optional(),
 })
@@ -131,9 +135,13 @@ export const StoreConsentSchema = z.object({
 })
 
 export type BlockInput = z.infer<typeof BlockInputSchema>
-export type CreateOrCloneTemplateInput = z.infer<typeof CreateOrCloneTemplateSchema>
+export type CreateOrCloneTemplateInput = z.infer<
+  typeof CreateOrCloneTemplateSchema
+>
 export type UpdateTemplateInput = z.infer<typeof UpdateTemplateSchema>
-export type RenderTemplatePreviewInput = z.infer<typeof RenderTemplatePreviewSchema>
+export type RenderTemplatePreviewInput = z.infer<
+  typeof RenderTemplatePreviewSchema
+>
 export type UpsertEventMappingInput = z.infer<typeof UpsertEventMappingSchema>
 export type UpdateChannelConfigInput = z.infer<typeof UpdateChannelConfigSchema>
 export type ManualSendInput = z.infer<typeof ManualSendSchema>

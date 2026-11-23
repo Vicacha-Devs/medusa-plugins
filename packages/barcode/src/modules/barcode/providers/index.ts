@@ -65,8 +65,7 @@ export abstract class BaseBarcodeProvider {
           signal: controller.signal,
         })
         if (!response.ok) {
-          const isRetryable =
-            response.status === 429 || response.status >= 500
+          const isRetryable = response.status === 429 || response.status >= 500
           if (isRetryable && attempt < maxAttempts) {
             await new Promise((r) => setTimeout(r, 50 * 2 ** attempt))
             continue
@@ -159,7 +158,10 @@ abstract class BaseOpenFactsProvider extends BaseBarcodeProvider {
         : normalizeStringArray(p.labels_tags)
 
     let weightGrams: number | null = null
-    if (typeof p.product_quantity === "number" && Number.isFinite(p.product_quantity)) {
+    if (
+      typeof p.product_quantity === "number" &&
+      Number.isFinite(p.product_quantity)
+    ) {
       weightGrams = p.product_quantity
     } else if (typeof p.product_quantity === "string") {
       const parsed = Number.parseFloat(p.product_quantity)
@@ -181,8 +183,11 @@ abstract class BaseOpenFactsProvider extends BaseBarcodeProvider {
       barcode_type: _format,
       name: name.trim(),
       description:
-        ((p.generic_name as string) || (p.ingredients_text as string) || "").trim() ||
-        null,
+        (
+          (p.generic_name as string) ||
+          (p.ingredients_text as string) ||
+          ""
+        ).trim() || null,
       brand: brands,
       manufacturer: (p.manufacturing_places as string) || null,
       categories,
@@ -261,11 +266,17 @@ export class GoogleBooksProvider extends BaseBarcodeProvider {
     barcode: string,
     format: BarcodeSymbology
   ): Promise<NormalizedBarcodeProduct | null> {
-    if (!barcode.startsWith("978") && !barcode.startsWith("979") && format !== "isbn13") {
+    if (
+      !barcode.startsWith("978") &&
+      !barcode.startsWith("979") &&
+      format !== "isbn13"
+    ) {
       return null
     }
     const host = this.baseUrl || "https://www.googleapis.com/books/v1/volumes"
-    const keyParam = this.apiKey ? `&key=${encodeURIComponent(this.apiKey)}` : ""
+    const keyParam = this.apiKey
+      ? `&key=${encodeURIComponent(this.apiKey)}`
+      : ""
     const url = `${host}?q=isbn:${encodeURIComponent(barcode)}${keyParam}`
 
     const data = await this.fetchJson<{
@@ -278,8 +289,10 @@ export class GoogleBooksProvider extends BaseBarcodeProvider {
       return null
     }
 
-    const subtitle = typeof info.subtitle === "string" ? `: ${info.subtitle}` : ""
-    const imageLinks = (info.imageLinks as Record<string, string> | undefined) || {}
+    const subtitle =
+      typeof info.subtitle === "string" ? `: ${info.subtitle}` : ""
+    const imageLinks =
+      (info.imageLinks as Record<string, string> | undefined) || {}
     const images = normalizeStringArray([
       imageLinks.thumbnail?.replace(/^http:\/\//i, "https://"),
       imageLinks.smallThumbnail?.replace(/^http:\/\//i, "https://"),
@@ -292,8 +305,12 @@ export class GoogleBooksProvider extends BaseBarcodeProvider {
       barcode,
       barcode_type: "isbn13",
       name: `${info.title.trim()}${subtitle}`,
-      description: typeof info.description === "string" ? info.description : null,
-      brand: typeof info.publisher === "string" ? info.publisher : authors[0] || null,
+      description:
+        typeof info.description === "string" ? info.description : null,
+      brand:
+        typeof info.publisher === "string"
+          ? info.publisher
+          : authors[0] || null,
       manufacturer: typeof info.publisher === "string" ? info.publisher : null,
       categories,
       images,
@@ -304,7 +321,8 @@ export class GoogleBooksProvider extends BaseBarcodeProvider {
         typeof info.pageCount === "number" ? `${info.pageCount} pages` : null,
       ingredients: null,
       nutrition: null,
-      country_of_origin: typeof info.language === "string" ? info.language : null,
+      country_of_origin:
+        typeof info.language === "string" ? info.language : null,
       suggested_price: null,
       currency_code: null,
       isbn: barcode,
@@ -337,7 +355,11 @@ export class OpenLibraryProvider extends BaseBarcodeProvider {
     barcode: string,
     format: BarcodeSymbology
   ): Promise<NormalizedBarcodeProduct | null> {
-    if (!barcode.startsWith("978") && !barcode.startsWith("979") && format !== "isbn13") {
+    if (
+      !barcode.startsWith("978") &&
+      !barcode.startsWith("979") &&
+      format !== "isbn13"
+    ) {
       return null
     }
     const bibKey = `ISBN:${barcode}`
@@ -346,7 +368,8 @@ export class OpenLibraryProvider extends BaseBarcodeProvider {
       bibKey
     )}&format=json&jscmd=data`
 
-    const data = await this.fetchJson<Record<string, Record<string, unknown>>>(url)
+    const data =
+      await this.fetchJson<Record<string, Record<string, unknown>>>(url)
     const book = data?.[bibKey]
     if (!book || typeof book.title !== "string" || !book.title.trim()) {
       return null
@@ -444,10 +467,10 @@ export class BrocadeProvider extends BaseBarcodeProvider {
       barcode,
       barcode_type: format,
       name: data.name.trim(),
-      description:
-        typeof data.properties === "string" ? data.properties : null,
+      description: typeof data.properties === "string" ? data.properties : null,
       brand: typeof data.brand_name === "string" ? data.brand_name : null,
-      manufacturer: typeof data.brand_name === "string" ? data.brand_name : null,
+      manufacturer:
+        typeof data.brand_name === "string" ? data.brand_name : null,
       categories: [],
       images: [],
       weight: null,
@@ -542,8 +565,7 @@ export class UpcItemDbProvider extends BaseBarcodeProvider {
       length: parsedDims.length,
       width: parsedDims.width,
       height: parsedDims.height,
-      dimensions:
-        typeof item.dimension === "string" ? item.dimension : null,
+      dimensions: typeof item.dimension === "string" ? item.dimension : null,
       quantity_label: typeof item.size === "string" ? item.size : null,
       ingredients: null,
       nutrition: null,
@@ -721,7 +743,7 @@ export class ProviderRegistry {
   }
 
   getAll(): BaseBarcodeProvider[] {
-    return Array.from(this.providers.values()).sort(
+    return Array.from(this.providers.values()).toSorted(
       (a, b) => a.priority - b.priority
     )
   }
@@ -755,9 +777,11 @@ export class ProviderRegistry {
       return all
     }
 
-    return [...all].sort((a, b) => {
-      const aIsBook = a.name === "googlebooks" || a.name === "openlibrary" ? 0 : 1
-      const bIsBook = b.name === "googlebooks" || b.name === "openlibrary" ? 0 : 1
+    return [...all].toSorted((a, b) => {
+      const aIsBook =
+        a.name === "googlebooks" || a.name === "openlibrary" ? 0 : 1
+      const bIsBook =
+        b.name === "googlebooks" || b.name === "openlibrary" ? 0 : 1
       if (aIsBook !== bIsBook) return aIsBook - bIsBook
       return a.priority - b.priority
     })
@@ -775,7 +799,9 @@ export function createDefaultProviderRegistry(
   const registry = new ProviderRegistry()
 
   if (cfg.openFoodFacts?.enabled !== false) {
-    registry.register(new OpenFoodFactsProvider({ timeout, ...cfg.openFoodFacts }))
+    registry.register(
+      new OpenFoodFactsProvider({ timeout, ...cfg.openFoodFacts })
+    )
   }
   if (cfg.googleBooks?.enabled !== false) {
     registry.register(new GoogleBooksProvider({ timeout, ...cfg.googleBooks }))
@@ -808,7 +834,9 @@ export function createDefaultProviderRegistry(
     registry.register(new EanSearchProvider({ timeout, ...cfg.eanSearch }))
   }
   if (cfg.barcodeLookup?.enabled !== false && cfg.barcodeLookup?.apiKey) {
-    registry.register(new BarcodeLookupProvider({ timeout, ...cfg.barcodeLookup }))
+    registry.register(
+      new BarcodeLookupProvider({ timeout, ...cfg.barcodeLookup })
+    )
   }
 
   return registry
@@ -905,14 +933,17 @@ export async function downloadProductImageBuffer(
       return null
     }
     const arrayBuffer = await response.arrayBuffer()
-    if (arrayBuffer.byteLength === 0 || arrayBuffer.byteLength > 8 * 1024 * 1024) {
+    if (
+      arrayBuffer.byteLength === 0 ||
+      arrayBuffer.byteLength > 8 * 1024 * 1024
+    ) {
       return null
     }
     const ext = contentType.includes("png")
       ? "png"
       : contentType.includes("webp")
-      ? "webp"
-      : "jpg"
+        ? "webp"
+        : "jpg"
     const filename = `barcode-${Date.now()}.${ext}`
     return {
       buffer: Buffer.from(arrayBuffer),

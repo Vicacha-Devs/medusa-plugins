@@ -51,9 +51,18 @@ export interface EntitiesTabProps {
 const EMBEDDER_MODELS = [
   { value: "ts/all-MiniLM-L6-v2", labelKey: "entities.modelMiniLM" },
   { value: "ts/e5-small", labelKey: "entities.modelE5Small" },
-  { value: "ts/multilingual-e5-small", labelKey: "entities.modelMultilingualE5" },
-  { value: "openai/text-embedding-3-small", labelKey: "entities.modelOpenAISmall" },
-  { value: "openai/text-embedding-3-large", labelKey: "entities.modelOpenAILarge" },
+  {
+    value: "ts/multilingual-e5-small",
+    labelKey: "entities.modelMultilingualE5",
+  },
+  {
+    value: "openai/text-embedding-3-small",
+    labelKey: "entities.modelOpenAISmall",
+  },
+  {
+    value: "openai/text-embedding-3-large",
+    labelKey: "entities.modelOpenAILarge",
+  },
 ] as const
 
 export const EntitiesTab: React.FC<EntitiesTabProps> = (props) => {
@@ -79,19 +88,67 @@ export const EntitiesTab: React.FC<EntitiesTabProps> = (props) => {
 
   const form = useForm<EntityConfigFormValues>({
     resolver: zodResolver(entityConfigSchema),
-    defaultValues: { entityKey, graphEntity, graphFieldsStr, queryByStr, facetByStr, enableEmbedder, embedderModel },
+    defaultValues: {
+      entityKey,
+      graphEntity,
+      graphFieldsStr,
+      queryByStr,
+      facetByStr,
+      enableEmbedder,
+      embedderModel,
+    },
   })
 
   useEffect(() => {
-    form.reset({ entityKey, graphEntity, graphFieldsStr, queryByStr, facetByStr, enableEmbedder, embedderModel })
-  }, [entityKey, graphEntity, graphFieldsStr, queryByStr, facetByStr, enableEmbedder, embedderModel, form])
+    form.reset({
+      entityKey,
+      graphEntity,
+      graphFieldsStr,
+      queryByStr,
+      facetByStr,
+      enableEmbedder,
+      embedderModel,
+    })
+  }, [
+    entityKey,
+    graphEntity,
+    graphFieldsStr,
+    queryByStr,
+    facetByStr,
+    enableEmbedder,
+    embedderModel,
+    form,
+  ])
 
   const textFields = [
-    { name: "entityKey" as const, label: "entities.entityKeyLabel", ph: "entities.entityKeyPlaceholder", set: setEntityKey },
-    { name: "graphEntity" as const, label: "entities.graphEntityLabel", ph: "entities.graphEntityPlaceholder", set: setGraphEntity },
-    { name: "graphFieldsStr" as const, label: "entities.graphFieldsLabel", set: setGraphFieldsStr },
-    { name: "queryByStr" as const, label: "entities.queryByLabel", set: setQueryByStr },
-    { name: "facetByStr" as const, label: "entities.facetByLabel", optional: true, set: setFacetByStr },
+    {
+      name: "entityKey" as const,
+      label: "entities.entityKeyLabel",
+      ph: "entities.entityKeyPlaceholder",
+      set: setEntityKey,
+    },
+    {
+      name: "graphEntity" as const,
+      label: "entities.graphEntityLabel",
+      ph: "entities.graphEntityPlaceholder",
+      set: setGraphEntity,
+    },
+    {
+      name: "graphFieldsStr" as const,
+      label: "entities.graphFieldsLabel",
+      set: setGraphFieldsStr,
+    },
+    {
+      name: "queryByStr" as const,
+      label: "entities.queryByLabel",
+      set: setQueryByStr,
+    },
+    {
+      name: "facetByStr" as const,
+      label: "entities.facetByLabel",
+      optional: true,
+      set: setFacetByStr,
+    },
   ]
 
   return (
@@ -116,7 +173,9 @@ export const EntitiesTab: React.FC<EntitiesTabProps> = (props) => {
                 name={tf.name}
                 render={({ field }: any) => (
                   <Form.Item>
-                    <Form.Label optional={tf.optional}>{t(tf.label)}</Form.Label>
+                    <Form.Label optional={tf.optional}>
+                      {t(tf.label)}
+                    </Form.Label>
                     <Form.Control>
                       <Input
                         placeholder={tf.ph ? t(tf.ph) : undefined}
@@ -149,7 +208,9 @@ export const EntitiesTab: React.FC<EntitiesTabProps> = (props) => {
                           }}
                         />
                       </Form.Control>
-                      <Form.Label>{t("entities.enableEmbedderLabel")}</Form.Label>
+                      <Form.Label>
+                        {t("entities.enableEmbedderLabel")}
+                      </Form.Label>
                     </div>
                   </Form.Item>
                 )}
@@ -170,7 +231,11 @@ export const EntitiesTab: React.FC<EntitiesTabProps> = (props) => {
                           }}
                         >
                           <Select.Trigger>
-                            <Select.Value placeholder={t("entities.selectEmbedderPlaceholder")} />
+                            <Select.Value
+                              placeholder={t(
+                                "entities.selectEmbedderPlaceholder"
+                              )}
+                            />
                           </Select.Trigger>
                           <Select.Content>
                             {EMBEDDER_MODELS.map((m) => (
@@ -190,11 +255,20 @@ export const EntitiesTab: React.FC<EntitiesTabProps> = (props) => {
 
           <SectionRow
             title={t("entities.entityKeyLabel")}
-            value={<Badge size="xsmall" color="grey">{entityKey || "—"}</Badge>}
+            value={
+              <Badge size="xsmall" color="grey">
+                {entityKey || "—"}
+              </Badge>
+            }
           />
 
           <div className="flex items-center justify-end px-6 py-4">
-            <Button type="submit" variant="primary" size="small" isLoading={saving}>
+            <Button
+              type="submit"
+              variant="primary"
+              size="small"
+              isLoading={saving}
+            >
               {t("entities.saveButton")}
             </Button>
           </div>

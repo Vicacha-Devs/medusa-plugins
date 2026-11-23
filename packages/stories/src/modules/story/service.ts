@@ -456,10 +456,7 @@ export class StoriesModuleService extends MedusaService(StoriesModels) {
 
     const x = clampCoordinatePercent(input.x_percent)
     const y = clampCoordinatePercent(input.y_percent)
-    const thumb = sanitizeHttpUrl(
-      input.product_thumbnail,
-      "product_thumbnail"
-    )
+    const thumb = sanitizeHttpUrl(input.product_thumbnail, "product_thumbnail")
 
     const hotspot = await this.createStoryHotspots({
       story_id: storyId,
@@ -597,7 +594,7 @@ export class StoriesModuleService extends MedusaService(StoriesModels) {
     }
 
     let options = Array.isArray(sticker.options)
-      ? ([...(sticker.options as unknown as StoryStickerOption[])])
+      ? [...(sticker.options as unknown as StoryStickerOption[])]
       : null
 
     if (sticker.type === "poll" && options && params.optionId) {
@@ -685,7 +682,7 @@ export class StoriesModuleService extends MedusaService(StoriesModels) {
         if (s.expires_at && new Date(s.expires_at) <= now) return false
         return true
       })
-      .sort((a, b) => (a.display_order ?? 0) - (b.display_order ?? 0))
+      .toSorted((a, b) => (a.display_order ?? 0) - (b.display_order ?? 0))
 
     const hydrated = await Promise.all(
       activeSlides.map((s) => this.hydrateSlide(s as unknown as StorySlideDTO))
@@ -731,7 +728,7 @@ export class StoriesModuleService extends MedusaService(StoriesModels) {
         }
         return true
       })
-      .sort((a, b) => {
+      .toSorted((a, b) => {
         if (a.is_pinned !== b.is_pinned) return a.is_pinned ? -1 : 1
         return (a.display_order ?? 0) - (b.display_order ?? 0)
       })
@@ -761,9 +758,7 @@ export class StoriesModuleService extends MedusaService(StoriesModels) {
     return hydratedGroups
   }
 
-  async listAdminStudioState(filters?: {
-    product_id?: string
-  }): Promise<{
+  async listAdminStudioState(filters?: { product_id?: string }): Promise<{
     groups: StoryGroupDTO[]
     slides: StorySlideDTO[]
   }> {
@@ -772,7 +767,7 @@ export class StoriesModuleService extends MedusaService(StoriesModels) {
       this.listStories({}),
     ])
 
-    const sortedSlides = [...rawSlides].sort(
+    const sortedSlides = [...rawSlides].toSorted(
       (a, b) => (a.display_order ?? 0) - (b.display_order ?? 0)
     )
     const hydratedSlides = await Promise.all(
@@ -795,7 +790,7 @@ export class StoriesModuleService extends MedusaService(StoriesModels) {
     }
 
     const sortedGroups = [...rawGroups]
-      .sort((a, b) => (a.display_order ?? 0) - (b.display_order ?? 0))
+      .toSorted((a, b) => (a.display_order ?? 0) - (b.display_order ?? 0))
       .map((g) => ({
         ...(g as unknown as StoryGroupDTO),
         slides: slidesByGroup.get(g.id) ?? [],
@@ -967,7 +962,9 @@ export class StoriesModuleService extends MedusaService(StoriesModels) {
     })
 
     const topSlides = [...slides]
-      .sort((a, b) => Number(b.views_count ?? 0) - Number(a.views_count ?? 0))
+      .toSorted(
+        (a, b) => Number(b.views_count ?? 0) - Number(a.views_count ?? 0)
+      )
       .slice(0, 10)
       .map((s) => ({
         id: s.id,

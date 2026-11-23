@@ -43,8 +43,8 @@ pnpm qa:docker:down
 
 ## Included Tests
 
-| File | Mode | What It Verifies |
-| :--- | :--- | :--- |
-| [`tests/sandbox-wiring.spec.ts`](./tests/sandbox-wiring.spec.ts) | Offline (`node --test`) | All 11 workspace plugins declared in `package.json` and wired in `medusa-config.ts` |
-| [`e2e/admin-smoke.spec.ts`](./e2e/admin-smoke.spec.ts) | Playwright E2E | `/health` liveness, Admin UI login shell, and `401` enforcement on unauthenticated `/admin/*` endpoints |
-| [`e2e/bold-payment-flows.spec.ts`](./e2e/bold-payment-flows.spec.ts) | Playwright E2E | Bold Payment Link, QR Code, and Smart POS Terminal flows + signed HMAC webhook simulation against `BoldQaEmulator` |
+| File                                                                 | Mode                    | What It Verifies                                                                                                   |
+| :------------------------------------------------------------------- | :---------------------- | :----------------------------------------------------------------------------------------------------------------- |
+| [`tests/sandbox-wiring.spec.ts`](./tests/sandbox-wiring.spec.ts)     | Offline (`node --test`) | All 11 workspace plugins declared in `package.json` and wired in `medusa-config.ts`                                |
+| [`e2e/admin-smoke.spec.ts`](./e2e/admin-smoke.spec.ts)               | Playwright E2E          | `/health` liveness, Admin UI login shell, and `401` enforcement on unauthenticated `/admin/*` endpoints            |
+| [`e2e/bold-payment-flows.spec.ts`](./e2e/bold-payment-flows.spec.ts) | Playwright E2E          | Bold Payment Link, QR Code, and Smart POS Terminal flows + signed HMAC webhook simulation against `BoldQaEmulator` |

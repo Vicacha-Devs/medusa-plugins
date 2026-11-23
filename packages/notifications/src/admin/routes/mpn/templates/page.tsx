@@ -6,14 +6,11 @@ import React from "react"
 import { useTranslation } from "react-i18next"
 import { TemplatesBuilderTab } from "../../../components/mpn/templates-tab"
 import { useNotificationStudio } from "../../../components/mpn/use-notification-studio"
-import { RbacGuard } from "../../../components/rbac-guard";
+import { RbacGuard } from "../../../components/rbac-guard"
 
 const MpnTemplatesPage: React.FC = () => {
-  const {
-    templates,
-    loadAllStudioData,
-    setStatusBanner,
-  } = useNotificationStudio()
+  const { templates, loadAllStudioData, setStatusBanner } =
+    useNotificationStudio()
 
   return (
     <LayoutComposer
@@ -53,6 +50,6 @@ const GuardedMpnTemplatesPage = () => (
   <RbacGuard permission="notifications.read">
     <MpnTemplatesPage />
   </RbacGuard>
-);
+)
 
-export default GuardedMpnTemplatesPage;
+export default GuardedMpnTemplatesPage

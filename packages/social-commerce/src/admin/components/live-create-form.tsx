@@ -88,7 +88,9 @@ export const LiveCreateForm = ({
           name="title"
           render={({ field }: any) => (
             <Form.Item>
-              <Form.Label>{t("liveTab.titleLabel", "Session Title")}</Form.Label>
+              <Form.Label>
+                {t("liveTab.titleLabel", "Session Title")}
+              </Form.Label>
               <Form.Control>
                 <Input
                   {...field}
@@ -113,7 +115,9 @@ export const LiveCreateForm = ({
           name="streamUrl"
           render={({ field }: any) => (
             <Form.Item>
-              <Form.Label>{t("liveTab.streamUrlLabel", "Stream URL")}</Form.Label>
+              <Form.Label>
+                {t("liveTab.streamUrlLabel", "Stream URL")}
+              </Form.Label>
               <Form.Control>
                 <Input
                   {...field}

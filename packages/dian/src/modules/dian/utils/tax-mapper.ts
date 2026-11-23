@@ -37,7 +37,11 @@ function roundTwo(value: number): number {
  * from a Medusa tax line or item metadata.
  */
 export function classifyColombianTaxCode(
-  taxLine?: { code?: string | null; name?: string | null; rate?: number | null },
+  taxLine?: {
+    code?: string | null
+    name?: string | null
+    rate?: number | null
+  },
   itemMetadata?: Record<string, unknown> | null
 ): DianTaxCode {
   const explicitMeta = String(itemMetadata?.dian_tax_code ?? "")
@@ -54,7 +58,8 @@ export function classifyColombianTaxCode(
     return explicitMeta as DianTaxCode
   }
 
-  const codeAndName = `${taxLine?.code ?? ""} ${taxLine?.name ?? ""}`.toLowerCase()
+  const codeAndName =
+    `${taxLine?.code ?? ""} ${taxLine?.name ?? ""}`.toLowerCase()
   if (codeAndName.includes("inc") || codeAndName.includes("impoconsumo")) {
     return "04"
   }
@@ -79,9 +84,10 @@ export function classifyColombianTaxCode(
  * Resolves the DIAN item coding standard (`999` SKU default, `010` GTIN, or `001` UNSPSC)
  * for an order line item.
  */
-export function resolveLineItemStandardCoding(
-  item: Record<string, any>
-): { standard_code_id: DianItemStandard; standard_item_id: string } {
+export function resolveLineItemStandardCoding(item: Record<string, any>): {
+  standard_code_id: DianItemStandard
+  standard_item_id: string
+} {
   const meta = (item?.metadata ?? item?.variant?.metadata ?? {}) as Record<
     string,
     unknown

@@ -1,11 +1,23 @@
-import { useMutation, useQueryClient, UseMutationOptions } from "@tanstack/react-query"
+import {
+  useMutation,
+  useQueryClient,
+  UseMutationOptions,
+} from "@tanstack/react-query"
 
 import { boldAdminSdk } from "../sdk/client"
 import { boldQueryKeys } from "../sdk/query-keys"
-import { BoldMutationHookOptions, BoldTerminalPayload, BoldTerminalResponse } from "../types"
+import {
+  BoldMutationHookOptions,
+  BoldTerminalPayload,
+  BoldTerminalResponse,
+} from "../types"
 
 export const usePushToBoldTerminal = (
-  options?: UseMutationOptions<BoldTerminalResponse, Error, BoldTerminalPayload> &
+  options?: UseMutationOptions<
+    BoldTerminalResponse,
+    Error,
+    BoldTerminalPayload
+  > &
     BoldMutationHookOptions
 ) => {
   const queryClient = useQueryClient()

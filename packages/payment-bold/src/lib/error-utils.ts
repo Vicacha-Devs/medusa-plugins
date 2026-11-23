@@ -1,4 +1,3 @@
-
 /**
  * Utility to inspect standard JS errors, Axios/Fetch responses,
  * and Medusa error payloads for 401/403 API authorization denials.

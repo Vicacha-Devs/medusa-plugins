@@ -18,7 +18,7 @@ export function createMockRenderContext(
   const sampleProducts = [
     { title: "Ergonomic Mechanical Keyboard", sku: "KB-MECH-01", price: 149.0 },
     { title: "USB-C Thunderbolt 4 Dock", sku: "DK-TB4-02", price: 229.0 },
-    { title: "4K UltraSharp Monitor 27\"", sku: "MN-4K27-03", price: 499.0 },
+    { title: '4K UltraSharp Monitor 27"', sku: "MN-4K27-03", price: 499.0 },
     { title: "Wireless Precision Mouse", sku: "MS-WL-04", price: 79.0 },
     { title: "Noise-Canceling Studio Headset", sku: "HS-NC-05", price: 199.0 },
     { title: "Aluminum Laptop Stand", sku: "ST-ALU-06", price: 59.0 },
@@ -34,8 +34,7 @@ export function createMockRenderContext(
       const rawTax = Number((rawSubtotal * 0.1).toFixed(2))
       return {
         id: `item_${idx + 1}`,
-        title:
-          itemCount > 6 ? `${sample.title} (#${idx + 1})` : sample.title,
+        title: itemCount > 6 ? `${sample.title} (#${idx + 1})` : sample.title,
         variant_title: idx % 2 === 0 ? "Space Gray / Pro" : "Silver / Standard",
         sku: `${sample.sku}-${String(idx + 1).padStart(2, "0")}`,
         quantity,

@@ -1,9 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod"
-import {
-  Form,
-  KeyboundForm,
-  RouteDrawer,
-} from "@medusajs/dashboard/components"
+import { Form, KeyboundForm, RouteDrawer } from "@medusajs/dashboard/components"
 import { getCurrencySymbol } from "@medusajs/dashboard/lib"
 import { Button, CurrencyInput, Input, Text } from "@medusajs/ui"
 import { CoolSwitch } from "@vicacha-devs/medusa-shared-admin/admin"
@@ -22,7 +18,14 @@ export function EmployeesCreateForm({
   error,
   company,
 }: {
-  handleSubmit: (data: AdminCreateEmployee & { email: string; first_name?: string; last_name?: string; phone?: string }) => Promise<void>
+  handleSubmit: (
+    data: AdminCreateEmployee & {
+      email: string
+      first_name?: string
+      last_name?: string
+      phone?: string
+    }
+  ) => Promise<void>
   loading: boolean
   error: Error | null
   company: QueryCompany
@@ -51,7 +54,9 @@ export function EmployeesCreateForm({
             ...data,
             company_id: company.id,
             customer_id: "",
-            spending_limit: data.spending_limit ? parseInt(data.spending_limit, 10) : 0,
+            spending_limit: data.spending_limit
+              ? parseInt(data.spending_limit, 10)
+              : 0,
           })
         )}
         className="flex flex-1 flex-col overflow-hidden"
@@ -64,7 +69,9 @@ export function EmployeesCreateForm({
               name="first_name"
               render={({ field }: any) => (
                 <Form.Item>
-                  <Form.Label optional>{t("employees.form.firstName")}</Form.Label>
+                  <Form.Label optional>
+                    {t("employees.form.firstName")}
+                  </Form.Label>
                   <Form.Control>
                     <Input placeholder="John" {...field} />
                   </Form.Control>
@@ -77,7 +84,9 @@ export function EmployeesCreateForm({
               name="last_name"
               render={({ field }: any) => (
                 <Form.Item>
-                  <Form.Label optional>{t("employees.form.lastName")}</Form.Label>
+                  <Form.Label optional>
+                    {t("employees.form.lastName")}
+                  </Form.Label>
                   <Form.Control>
                     <Input placeholder="Doe" {...field} />
                   </Form.Control>
@@ -92,7 +101,11 @@ export function EmployeesCreateForm({
                 <Form.Item>
                   <Form.Label>{t("employees.form.email")}</Form.Label>
                   <Form.Control>
-                    <Input type="email" placeholder="john.doe@example.com" {...field} />
+                    <Input
+                      type="email"
+                      placeholder="john.doe@example.com"
+                      {...field}
+                    />
                   </Form.Control>
                   <Form.ErrorMessage />
                 </Form.Item>
@@ -130,7 +143,9 @@ export function EmployeesCreateForm({
                       code={company.currency_code || "USD"}
                       placeholder="1000"
                       value={field.value ?? ""}
-                      onChange={(e) => field.onChange(e.target.value.replace(/[^0-9]/g, ""))}
+                      onChange={(e) =>
+                        field.onChange(e.target.value.replace(/[^0-9]/g, ""))
+                      }
                     />
                   </Form.Control>
                   <Form.ErrorMessage />
@@ -142,7 +157,9 @@ export function EmployeesCreateForm({
               name="is_admin"
               render={({ field }: any) => (
                 <Form.Item>
-                  <Form.Label optional>{t("employees.form.adminAccess")}</Form.Label>
+                  <Form.Label optional>
+                    {t("employees.form.adminAccess")}
+                  </Form.Label>
                   <Form.Control>
                     <CoolSwitch
                       fieldName="is_admin"

@@ -1,7 +1,6 @@
 import { RegionCountryDTO } from "@medusajs/framework/types"
 import { jsonResponse } from "../lib"
 
-
 const acceptedOrderKeys = ["name", "iso_2"]
 
 /**

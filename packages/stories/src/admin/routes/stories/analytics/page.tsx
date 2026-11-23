@@ -11,7 +11,7 @@ import {
   AnalyticsTopSlidesSection,
 } from "../../../components/analytics-tab"
 import { useStoriesStudio } from "../../../hooks/use-stories-studio"
-import { RbacGuard } from "../../../components/rbac-guard";
+import { RbacGuard } from "../../../components/rbac-guard"
 
 const StoriesAnalyticsPage = () => {
   const studio = useStoriesStudio()
@@ -61,6 +61,6 @@ const GuardedStoriesAnalyticsPage = () => (
   <RbacGuard permission="stories.read">
     <StoriesAnalyticsPage />
   </RbacGuard>
-);
+)
 
-export default GuardedStoriesAnalyticsPage;
+export default GuardedStoriesAnalyticsPage

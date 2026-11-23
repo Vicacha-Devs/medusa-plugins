@@ -5,10 +5,7 @@ import {
   WorkflowResponse,
 } from "@medusajs/framework/workflows-sdk"
 import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
-import {
-  TYPESENSE_MODULE,
-  type UpsertTypesenseDocumentsInput,
-} from "../types"
+import { TYPESENSE_MODULE, type UpsertTypesenseDocumentsInput } from "../types"
 import type TypesenseModuleService from "../modules/typesense/service"
 
 export type { UpsertTypesenseDocumentsInput } from "../types"
@@ -93,12 +90,14 @@ export const upsertTypesenseDocumentsStep = createStep(
       TYPESENSE_MODULE
     ) as TypesenseModuleService
     for (const locale of compInput.locales) {
-      await typesenseService.deleteEntityDocumentIds({
-        entity: compInput.entity,
-        ids: compInput.ids,
-        locale,
-        triggeredBy: "event",
-      }).catch(() => undefined)
+      await typesenseService
+        .deleteEntityDocumentIds({
+          entity: compInput.entity,
+          ids: compInput.ids,
+          locale,
+          triggeredBy: "event",
+        })
+        .catch(() => undefined)
     }
   }
 )

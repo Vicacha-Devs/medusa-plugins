@@ -14,7 +14,7 @@ import {
   type CreateLiveFormState,
 } from "../../../../hooks/use-social-dashboard.js"
 import type { SocialPlatform } from "../../../../../modules/social-commerce/types/index.js"
-import { RbacGuard } from "../../../../components/rbac-guard";
+import { RbacGuard } from "../../../../components/rbac-guard"
 
 const CreateLiveDrawerContent = () => {
   const { t } = useTranslation()
@@ -154,6 +154,6 @@ const GuardedLiveCreateModal = () => (
   <RbacGuard permission="social_commerce.write">
     <LiveCreateModal />
   </RbacGuard>
-);
+)
 
-export default GuardedLiveCreateModal;
+export default GuardedLiveCreateModal

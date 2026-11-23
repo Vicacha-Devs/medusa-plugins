@@ -16,10 +16,10 @@ export interface ProviderLike {
 export const BOLD_PROVIDER_VALUES = Object.values(EBoldPaymentProvider)
 
 /**
- * Parses and returns an array of currently active Bold payment providers from a list of 
+ * Parses and returns an array of currently active Bold payment providers from a list of
  * Medusa registered payment provider instances.
  *
- * This function inspects each provider record against the known `EBoldPaymentProvider` enums 
+ * This function inspects each provider record against the known `EBoldPaymentProvider` enums
  * (`bold-online`, `bold-link`, `bold-button`, `bold-terminal`) to identify matches.
  *
  * @param providers - An array of Medusa payment provider objects or raw ID strings.
@@ -32,7 +32,7 @@ export const BOLD_PROVIDER_VALUES = Object.values(EBoldPaymentProvider)
  *   { id: "pp_bold-terminal_01J0A2" },
  *   { id: "pp_stripe_stripe" }
  * ]
- * 
+ *
  * const activeBold = getActiveBoldProviders(medusaProviders)
  * // Result: [EBoldPaymentProvider.LINK, EBoldPaymentProvider.TERMINAL]
  * ```

@@ -4,10 +4,7 @@ import {
   ModuleProvider,
   Modules,
 } from "@medusajs/framework/utils"
-import type {
-  TelegramInlineButton,
-  TelegramProviderOptions,
-} from "../../types"
+import type { TelegramInlineButton, TelegramProviderOptions } from "../../types"
 import {
   ChannelRateLimiter,
   isValidTelegramRecipient,
@@ -143,8 +140,7 @@ export class TelegramNotificationProviderService extends AbstractNotificationPro
       any
     >
     if (!response.ok || json.ok === false) {
-      const description =
-        json.description || `Telegram HTTP ${response.status}`
+      const description = json.description || `Telegram HTTP ${response.status}`
       throw new Error(`Telegram Bot API error: ${description}`)
     }
 

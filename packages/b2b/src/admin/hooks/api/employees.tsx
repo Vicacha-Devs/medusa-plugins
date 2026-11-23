@@ -1,4 +1,4 @@
-import { FetchError } from "@medusajs/js-sdk";
+import { FetchError } from "@medusajs/js-sdk"
 import {
   QueryKey,
   useMutation,
@@ -6,16 +6,16 @@ import {
   useQuery,
   useQueryClient,
   UseQueryOptions,
-} from "@tanstack/react-query";
-import { queryKeysFactory, sdk } from "@vicacha-devs/medusa-shared-admin/admin";
+} from "@tanstack/react-query"
+import { queryKeysFactory, sdk } from "@vicacha-devs/medusa-shared-admin/admin"
 import {
   AdminCreateEmployee,
   AdminEmployeeResponse,
   AdminEmployeesResponse,
   AdminUpdateEmployee,
-} from "../../../types";
+} from "../../../types"
 
-export const employeeQueryKey = queryKeysFactory("employee");
+export const employeeQueryKey = queryKeysFactory("employee")
 
 export const useEmployees = (
   companyId: string,
@@ -37,8 +37,8 @@ export const useEmployees = (
         { method: "GET", query: safeQuery }
       ),
     ...options,
-  });
-};
+  })
+}
 
 export const useEmployee = (
   companyId: string,
@@ -59,8 +59,8 @@ export const useEmployee = (
       ),
     enabled: !!companyId && !!employeeId,
     ...options,
-  });
-};
+  })
+}
 
 export const useCreateEmployee = (
   companyId: string,
@@ -70,7 +70,7 @@ export const useCreateEmployee = (
     AdminCreateEmployee
   >
 ) => {
-  const queryClient = useQueryClient();
+  const queryClient = useQueryClient()
 
   return useMutation({
     mutationFn: (employee: AdminCreateEmployee) =>
@@ -84,15 +84,20 @@ export const useCreateEmployee = (
           body: employee,
         }
       ),
-    onSuccess: (data: any, variables: any, onMutateResult: any, context: any) => {
+    onSuccess: (
+      data: any,
+      variables: any,
+      onMutateResult: any,
+      context: any
+    ) => {
       queryClient.invalidateQueries({
         queryKey: employeeQueryKey.lists(),
-      });
-      options?.onSuccess?.(data, variables, onMutateResult, context);
+      })
+      options?.onSuccess?.(data, variables, onMutateResult, context)
     },
     ...options,
-  });
-};
+  })
+}
 
 export const useUpdateEmployee = (
   companyId: string,
@@ -103,7 +108,7 @@ export const useUpdateEmployee = (
     AdminUpdateEmployee
   >
 ) => {
-  const queryClient = useQueryClient();
+  const queryClient = useQueryClient()
 
   return useMutation({
     mutationFn: (employee: AdminUpdateEmployee) =>
@@ -117,24 +122,29 @@ export const useUpdateEmployee = (
           body: employee,
         }
       ),
-    onSuccess: (data: any, variables: any, onMutateResult: any, context: any) => {
+    onSuccess: (
+      data: any,
+      variables: any,
+      onMutateResult: any,
+      context: any
+    ) => {
       queryClient.invalidateQueries({
         queryKey: employeeQueryKey.detail(employeeId),
-      });
+      })
       queryClient.invalidateQueries({
         queryKey: employeeQueryKey.lists(),
-      });
-      options?.onSuccess?.(data, variables, onMutateResult, context);
+      })
+      options?.onSuccess?.(data, variables, onMutateResult, context)
     },
     ...options,
-  });
-};
+  })
+}
 
 export const useDeleteEmployee = (
   companyId: string,
   options?: UseMutationOptions<void, FetchError, string>
 ) => {
-  const queryClient = useQueryClient();
+  const queryClient = useQueryClient()
 
   return useMutation({
     mutationFn: (employeeId: string) =>
@@ -144,12 +154,17 @@ export const useDeleteEmployee = (
           method: "DELETE",
         }
       ),
-    onSuccess: (data: any, variables: any, onMutateResult: any, context: any) => {
+    onSuccess: (
+      data: any,
+      variables: any,
+      onMutateResult: any,
+      context: any
+    ) => {
       queryClient.invalidateQueries({
         queryKey: employeeQueryKey.lists(),
-      });
-      options?.onSuccess?.(data, variables, onMutateResult, context);
+      })
+      options?.onSuccess?.(data, variables, onMutateResult, context)
     },
     ...options,
-  });
-};
+  })
+}

@@ -27,7 +27,9 @@ export class SocialAccountService {
   private readonly pkceVerifiers = new Map<string, string>()
   private readonly repo: SocialCommerceRepository
   private readonly moduleOptions: SocialCommerceModuleOptions
-  private readonly resolveProvider: (platform: SocialPlatform) => SocialPlatformProvider
+  private readonly resolveProvider: (
+    platform: SocialPlatform
+  ) => SocialPlatformProvider
   private readonly getOptionalProvider: (
     platform: SocialPlatform
   ) => SocialPlatformProvider | undefined
@@ -53,7 +55,9 @@ export class SocialAccountService {
   /**
    * Strips encrypted `access_token` and `refresh_token` before returning account data to API callers.
    */
-  async sanitizeAccount(account: SocialAccountRecord): Promise<SocialAccountPublicDTO> {
+  async sanitizeAccount(
+    account: SocialAccountRecord
+  ): Promise<SocialAccountPublicDTO> {
     return toPublicAccountDTO(account)
   }
 
@@ -169,14 +173,15 @@ export class SocialAccountService {
         token_expires_at: expiresAt,
         scopes: tokenResult.scopes,
         external_catalog_id:
-          tokenResult.external_catalog_id ?? existingList[0].external_catalog_id,
+          tokenResult.external_catalog_id ??
+          existingList[0].external_catalog_id,
         external_shop_id:
           tokenResult.external_shop_id ?? existingList[0].external_shop_id,
         status: "active",
         is_active: true,
         metadata: {
-          ...(existingList[0].metadata ?? {}),
-          ...(tokenResult.metadata ?? {}),
+          ...existingList[0].metadata,
+          ...tokenResult.metadata,
         },
       })
       return toPublicAccountDTO(updated)
@@ -272,7 +277,8 @@ export class SocialAccountService {
     }
 
     const secret = this.getEncryptionSecret()
-    const rawEncryptedAccess = account.access_token || account.encrypted_access_token
+    const rawEncryptedAccess =
+      account.access_token || account.encrypted_access_token
     const rawEncryptedRefresh =
       account.refresh_token ?? account.encrypted_refresh_token ?? null
 
@@ -302,7 +308,9 @@ export class SocialAccountService {
           )
           const updatedRefresh =
             account.refresh_token ?? account.encrypted_refresh_token ?? null
-          refreshToken = updatedRefresh ? decryptToken(updatedRefresh, secret) : null
+          refreshToken = updatedRefresh
+            ? decryptToken(updatedRefresh, secret)
+            : null
         }
       }
     }
@@ -313,9 +321,13 @@ export class SocialAccountService {
   /**
    * Refreshes OAuth tokens for a specific social account and re-encrypts at rest.
    */
-  async refreshAccountTokens(accountId: string): Promise<SocialAccountPublicDTO> {
+  async refreshAccountTokens(
+    accountId: string
+  ): Promise<SocialAccountPublicDTO> {
     const { account, accessToken, refreshToken } =
-      await this.getDecryptedAccountWithToken(accountId, { skipAutoRefresh: true })
+      await this.getDecryptedAccountWithToken(accountId, {
+        skipAutoRefresh: true,
+      })
     const provider = this.resolveProvider(account.platform)
 
     const tokenForRefresh = refreshToken || accessToken

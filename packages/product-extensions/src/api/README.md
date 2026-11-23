@@ -54,36 +54,36 @@ api/
 
 ### Storefront Endpoints
 
-| Method | Path | Description |
-| --- | --- | --- |
-| `GET` | `/store/products/:product_id/extension` | Returns the resolved storefront payload (`videos`, `tagline`, `media_gallery`, `models_3d`, `attachments`, `image_alts`, `content_sections`, `features`, `attributes`, `option_metadata`, `seo_metadata`, `resolved_override`, and optional `variants` map). Query params: `variant_ids`, `sales_channel_id`, `locale`. |
-| `POST` | `/store/product-ext/filter` | Filters product IDs matching an array of typed attribute criteria (`eq`, `in`, `min`, `max`, `unit`) with automatic SI/Imperial unit normalization. |
+| Method | Path                                    | Description                                                                                                                                                                                                                                                                                                             |
+| ------ | --------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `GET`  | `/store/products/:product_id/extension` | Returns the resolved storefront payload (`videos`, `tagline`, `media_gallery`, `models_3d`, `attachments`, `image_alts`, `content_sections`, `features`, `attributes`, `option_metadata`, `seo_metadata`, `resolved_override`, and optional `variants` map). Query params: `variant_ids`, `sales_channel_id`, `locale`. |
+| `POST` | `/store/product-ext/filter`             | Filters product IDs matching an array of typed attribute criteria (`eq`, `in`, `min`, `max`, `unit`) with automatic SI/Imperial unit normalization.                                                                                                                                                                     |
 
 ### Admin Endpoints
 
-| Method | Path | Validator Schema | Workflow / Service Method |
-| --- | --- | --- | --- |
-| `GET` | `/admin/products/:product_id/extension` | — | `service.getByProductId` |
-| `POST` | `/admin/products/:product_id/extension` | `UpsertProductExtensionSchema` | `upsertProductExtWorkflow` |
-| `GET` | `/admin/products/:product_id/variants/:variant_id/extension` | — | `service.getByVariantId` |
-| `POST` | `/admin/products/:product_id/variants/:variant_id/extension` | `UpsertVariantExtensionSchema` | `upsertVariantExtWorkflow` |
-| `POST` | `/admin/products/:product_id/variants/bulk-media` | `BulkAssignVariantMediaByOptionSchema` | `bulkAssignVariantMediaByOptionWorkflow` |
-| `GET` | `/admin/products/:product_id/attributes` | — | `service.getProductAttributeValues` |
-| `POST` | `/admin/products/:product_id/attributes` | `SetProductAttributesBodySchema` | `applyAttributeTemplateWorkflow` + `setProductAttributesWorkflow` |
-| `GET` | `/admin/product-ext/attributes` | — | `service.listAttributes` |
-| `POST` | `/admin/product-ext/attributes` | `CreateAttributeDefinitionSchema` | `createAttributeWorkflow` |
-| `PATCH` | `/admin/product-ext/attributes/:id` | `UpdateAttributeDefinitionSchema` | `updateAttributeWorkflow` |
-| `DELETE` | `/admin/product-ext/attributes/:id` | — | `deleteAttributeWorkflow` |
-| `GET` | `/admin/product-ext/templates` | — | `service.listTemplates` |
-| `POST` | `/admin/product-ext/templates` | `CreateAttributeTemplateSchema` | `createTemplateWorkflow` |
-| `PATCH` | `/admin/product-ext/templates/:id` | `UpdateAttributeTemplateSchema` | `updateTemplateWorkflow` |
-| `DELETE` | `/admin/product-ext/templates/:id` | — | `deleteTemplateWorkflow` |
-| `GET` | `/admin/product-ext/features` | — | `service.listFeatures` |
-| `POST` | `/admin/product-ext/features` | `CreateProductFeatureSchema` | `createFeatureWorkflow` |
-| `PATCH` | `/admin/product-ext/features/:id` | `UpdateProductFeatureSchema` | `updateFeatureWorkflow` |
-| `DELETE` | `/admin/product-ext/features/:id` | — | `deleteFeatureWorkflow` |
-| `GET` | `/admin/product-ext/image-alts` | — | `service.exportAllImageAltsCsv` |
-| `POST` | `/admin/product-ext/image-alts` | `ImportImageAltsCsvSchema` | `importImageAltsWorkflow` |
+| Method   | Path                                                         | Validator Schema                       | Workflow / Service Method                                         |
+| -------- | ------------------------------------------------------------ | -------------------------------------- | ----------------------------------------------------------------- |
+| `GET`    | `/admin/products/:product_id/extension`                      | —                                      | `service.getByProductId`                                          |
+| `POST`   | `/admin/products/:product_id/extension`                      | `UpsertProductExtensionSchema`         | `upsertProductExtWorkflow`                                        |
+| `GET`    | `/admin/products/:product_id/variants/:variant_id/extension` | —                                      | `service.getByVariantId`                                          |
+| `POST`   | `/admin/products/:product_id/variants/:variant_id/extension` | `UpsertVariantExtensionSchema`         | `upsertVariantExtWorkflow`                                        |
+| `POST`   | `/admin/products/:product_id/variants/bulk-media`            | `BulkAssignVariantMediaByOptionSchema` | `bulkAssignVariantMediaByOptionWorkflow`                          |
+| `GET`    | `/admin/products/:product_id/attributes`                     | —                                      | `service.getProductAttributeValues`                               |
+| `POST`   | `/admin/products/:product_id/attributes`                     | `SetProductAttributesBodySchema`       | `applyAttributeTemplateWorkflow` + `setProductAttributesWorkflow` |
+| `GET`    | `/admin/product-ext/attributes`                              | —                                      | `service.listAttributes`                                          |
+| `POST`   | `/admin/product-ext/attributes`                              | `CreateAttributeDefinitionSchema`      | `createAttributeWorkflow`                                         |
+| `PATCH`  | `/admin/product-ext/attributes/:id`                          | `UpdateAttributeDefinitionSchema`      | `updateAttributeWorkflow`                                         |
+| `DELETE` | `/admin/product-ext/attributes/:id`                          | —                                      | `deleteAttributeWorkflow`                                         |
+| `GET`    | `/admin/product-ext/templates`                               | —                                      | `service.listTemplates`                                           |
+| `POST`   | `/admin/product-ext/templates`                               | `CreateAttributeTemplateSchema`        | `createTemplateWorkflow`                                          |
+| `PATCH`  | `/admin/product-ext/templates/:id`                           | `UpdateAttributeTemplateSchema`        | `updateTemplateWorkflow`                                          |
+| `DELETE` | `/admin/product-ext/templates/:id`                           | —                                      | `deleteTemplateWorkflow`                                          |
+| `GET`    | `/admin/product-ext/features`                                | —                                      | `service.listFeatures`                                            |
+| `POST`   | `/admin/product-ext/features`                                | `CreateProductFeatureSchema`           | `createFeatureWorkflow`                                           |
+| `PATCH`  | `/admin/product-ext/features/:id`                            | `UpdateProductFeatureSchema`           | `updateFeatureWorkflow`                                           |
+| `DELETE` | `/admin/product-ext/features/:id`                            | —                                      | `deleteFeatureWorkflow`                                           |
+| `GET`    | `/admin/product-ext/image-alts`                              | —                                      | `service.exportAllImageAltsCsv`                                   |
+| `POST`   | `/admin/product-ext/image-alts`                              | `ImportImageAltsCsvSchema`             | `importImageAltsWorkflow`                                         |
 
 ---
 

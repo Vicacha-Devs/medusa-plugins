@@ -1,4 +1,7 @@
-import { AdminClaimListParams, AdminClaimListResponse } from "@medusajs/framework/types"
+import {
+  AdminClaimListParams,
+  AdminClaimListResponse,
+} from "@medusajs/framework/types"
 import { FetchError } from "@medusajs/js-sdk"
 import { QueryKey, useQuery, UseQueryOptions } from "@tanstack/react-query"
 import { queryKeysFactory, sdk } from "../../lib"

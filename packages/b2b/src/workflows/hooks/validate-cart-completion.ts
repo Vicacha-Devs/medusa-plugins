@@ -1,11 +1,14 @@
-import { completeCartWorkflow } from "@medusajs/core-flows";
-import { StepResponse } from "@medusajs/framework/workflows-sdk";
-import { ContainerRegistrationKeys, MedusaError } from "@medusajs/framework/utils";
-import { getCartApprovalStatus } from "@b2b/utils/get-cart-approval-status";
-import { checkSpendingLimit } from "@b2b/utils/check-spending-limit";
+import { completeCartWorkflow } from "@medusajs/core-flows"
+import { StepResponse } from "@medusajs/framework/workflows-sdk"
+import {
+  ContainerRegistrationKeys,
+  MedusaError,
+} from "@medusajs/framework/utils"
+import { getCartApprovalStatus } from "@b2b/utils/get-cart-approval-status"
+import { checkSpendingLimit } from "@b2b/utils/check-spending-limit"
 
 completeCartWorkflow.hooks.validate(async ({ cart }, { container }) => {
-  const query = container.resolve(ContainerRegistrationKeys.QUERY);
+  const query = container.resolve(ContainerRegistrationKeys.QUERY)
 
   const {
     data: [queryCart],
@@ -15,16 +18,16 @@ completeCartWorkflow.hooks.validate(async ({ cart }, { container }) => {
     filters: {
       id: cart.id,
     },
-  });
+  })
 
   // Check if cart is pending approval
-  const { isPendingApproval } = getCartApprovalStatus(queryCart);
+  const { isPendingApproval } = getCartApprovalStatus(queryCart)
 
   if (isPendingApproval) {
     throw new MedusaError(
       MedusaError.Types.NOT_ALLOWED,
       "Cart is pending approval"
-    );
+    )
   }
 
   // Check if spending limit will be exceeded
@@ -37,22 +40,22 @@ completeCartWorkflow.hooks.validate(async ({ cart }, { container }) => {
       filters: {
         id: queryCart.customer_id,
       },
-    });
+    })
 
     if (customer.employee?.spending_limit) {
       const spendLimitExceeded = checkSpendingLimit(
         queryCart as any,
         customer as any
-      );
+      )
 
       if (spendLimitExceeded) {
         throw new MedusaError(
           MedusaError.Types.INVALID_DATA,
           "Cart total exceeds spending limit"
-        );
+        )
       }
     }
   }
 
-  return new StepResponse(undefined, null);
-});
+  return new StepResponse(undefined, null)
+})

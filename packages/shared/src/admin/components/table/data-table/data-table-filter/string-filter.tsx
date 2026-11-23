@@ -1,14 +1,14 @@
-import type { JSX } from "react";
-import { Input, Label, clx } from "@medusajs/ui";
-import * as Popover from "@radix-ui/react-popover";
-import { debounce } from "lodash";
-import { ChangeEvent, useCallback, useEffect, useState } from "react";
-import { useSelectedParams } from "../hooks";
-import { useDataTableFilterContext } from "./context";
-import { IFilter } from "./types";
-import FilterChip from "./filter-chip";
+import type { JSX } from "react"
+import { Input, Label, clx } from "@medusajs/ui"
+import * as Popover from "@radix-ui/react-popover"
+import { debounce } from "lodash"
+import { ChangeEvent, useCallback, useEffect, useState } from "react"
+import { useSelectedParams } from "../hooks"
+import { useDataTableFilterContext } from "./context"
+import { IFilter } from "./types"
+import FilterChip from "./filter-chip"
 
-type StringFilterProps = IFilter;
+type StringFilterProps = IFilter
 
 export const StringFilter = ({
   filter,
@@ -16,59 +16,59 @@ export const StringFilter = ({
   readonly,
   openOnMount,
 }: StringFilterProps): JSX.Element => {
-  const [open, setOpen] = useState(openOnMount);
+  const [open, setOpen] = useState(openOnMount)
 
-  const { key, label } = filter;
+  const { key, label } = filter
 
-  const { removeFilter } = useDataTableFilterContext();
-  const selectedParams = useSelectedParams({ param: key, prefix });
+  const { removeFilter } = useDataTableFilterContext()
+  const selectedParams = useSelectedParams({ param: key, prefix })
 
-  const query = selectedParams.get();
+  const query = selectedParams.get()
 
   const [previousValue, setPreviousValue] = useState<string | undefined>(
     query?.[0]
-  );
+  )
 
   const debouncedOnChange = useCallback(
     debounce((e: ChangeEvent<HTMLInputElement>) => {
-      const value = e.target.value;
+      const value = e.target.value
 
       if (!value) {
-        selectedParams.delete();
+        selectedParams.delete()
       } else {
-        selectedParams.add(value);
+        selectedParams.add(value)
       }
     }, 500),
     [selectedParams]
-  );
+  )
 
   useEffect(() => {
     return () => {
-      debouncedOnChange.cancel();
-    };
-  }, [debouncedOnChange]);
+      debouncedOnChange.cancel()
+    }
+  }, [debouncedOnChange])
 
-  let timeoutId: ReturnType<typeof setTimeout> | null = null;
+  let timeoutId: ReturnType<typeof setTimeout> | null = null
 
   const handleOpenChange = (open: boolean) => {
-    setOpen(open);
-    setPreviousValue(query?.[0]);
+    setOpen(open)
+    setPreviousValue(query?.[0])
 
     if (timeoutId) {
-      clearTimeout(timeoutId);
+      clearTimeout(timeoutId)
     }
 
     if (!open && !query.length) {
       timeoutId = setTimeout(() => {
-        removeFilter(key);
-      }, 200);
+        removeFilter(key)
+      }, 200)
     }
-  };
+  }
 
   const handleRemove = () => {
-    selectedParams.delete();
-    removeFilter(key);
-  };
+    selectedParams.delete()
+    removeFilter(key)
+  }
 
   return (
     <Popover.Root modal open={open} onOpenChange={handleOpenChange}>
@@ -96,8 +96,8 @@ export const StringFilter = ({
                   e.target.attributes.getNamedItem("data-name")?.value ===
                   "filters_menu_content"
                 ) {
-                  e.preventDefault();
-                  e.stopPropagation();
+                  e.preventDefault()
+                  e.stopPropagation()
                 }
               }
             }}
@@ -121,5 +121,5 @@ export const StringFilter = ({
         </Popover.Portal>
       )}
     </Popover.Root>
-  );
-};
+  )
+}

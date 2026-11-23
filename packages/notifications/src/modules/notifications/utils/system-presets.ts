@@ -3,6 +3,7 @@ import type {
   SystemTemplatePreset,
   TemplateBlockNode,
 } from "../../../types"
+import { AUTH_SYSTEM_TEMPLATE_PRESETS } from "./auth-presets"
 
 export type { SystemTemplatePreset } from "../../../types"
 
@@ -22,7 +23,7 @@ export function buildBlockTreeFromFlatBlocks(
   const nodeMap = new Map<string, TemplateBlockNode>()
   const roots: TemplateBlockNode[] = []
 
-  const sorted = [...flatBlocks].sort(
+  const sorted = [...flatBlocks].toSorted(
     (a, b) => Number(a.position ?? 0) - Number(b.position ?? 0)
   )
 
@@ -682,6 +683,7 @@ export const SYSTEM_TEMPLATE_PRESETS: SystemTemplatePreset[] = [
       },
     ],
   },
+  ...AUTH_SYSTEM_TEMPLATE_PRESETS,
 ]
 
 export function getSystemPresetById(

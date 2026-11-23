@@ -1,9 +1,13 @@
-import { IAuthModuleService } from "@medusajs/framework/types";
-import { Modules } from "@medusajs/framework/utils";
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk";
-import { ContainerRegistrationKeys } from "@medusajs/framework/utils";
+import { IAuthModuleService } from "@medusajs/framework/types"
+import { Modules } from "@medusajs/framework/utils"
+import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
 
-export const removeAdminRoleStep = createStep<{ email: string }, undefined, string>(
+export const removeAdminRoleStep = createStep<
+  { email: string },
+  undefined,
+  string
+>(
   "remove-admin-role",
   async (
     input: { email: string },
@@ -11,9 +15,9 @@ export const removeAdminRoleStep = createStep<{ email: string }, undefined, stri
   ): Promise<StepResponse<undefined, string>> => {
     const authModuleService = container.resolve<IAuthModuleService>(
       Modules.AUTH
-    );
+    )
 
-    const query = container.resolve(ContainerRegistrationKeys.QUERY);
+    const query = container.resolve(ContainerRegistrationKeys.QUERY)
 
     const {
       data: [providerIdentity],
@@ -24,7 +28,7 @@ export const removeAdminRoleStep = createStep<{ email: string }, undefined, stri
         provider: "emailpass",
         entity_id: input.email,
       },
-    });
+    })
 
     await authModuleService.updateProviderIdentities([
       {
@@ -33,15 +37,15 @@ export const removeAdminRoleStep = createStep<{ email: string }, undefined, stri
           role: null,
         },
       },
-    ]);
+    ])
 
-    return new StepResponse(undefined, providerIdentity.id);
+    return new StepResponse(undefined, providerIdentity.id)
   },
   async (providerIdentityId: string | undefined, { container }) => {
     if (!providerIdentityId) return
     const authModuleService = container.resolve<IAuthModuleService>(
       Modules.AUTH
-    );
+    )
 
     await authModuleService.updateProviderIdentities([
       {
@@ -50,6 +54,6 @@ export const removeAdminRoleStep = createStep<{ email: string }, undefined, stri
           role: "company_admin",
         },
       },
-    ]);
+    ])
   }
-);
+)

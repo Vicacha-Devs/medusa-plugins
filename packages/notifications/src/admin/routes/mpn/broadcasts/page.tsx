@@ -6,7 +6,7 @@ import React from "react"
 import { useTranslation } from "react-i18next"
 import { BroadcastsConsentTab } from "../../../components/mpn/broadcasts-tab"
 import { useNotificationStudio } from "../../../components/mpn/use-notification-studio"
-import { RbacGuard } from "../../../components/rbac-guard";
+import { RbacGuard } from "../../../components/rbac-guard"
 
 const MpnBroadcastsPage: React.FC = () => {
   const {
@@ -70,6 +70,6 @@ const GuardedMpnBroadcastsPage = () => (
   <RbacGuard permission="notifications.read">
     <MpnBroadcastsPage />
   </RbacGuard>
-);
+)
 
-export default GuardedMpnBroadcastsPage;
+export default GuardedMpnBroadcastsPage

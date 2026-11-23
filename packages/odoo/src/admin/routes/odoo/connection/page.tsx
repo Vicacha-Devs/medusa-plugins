@@ -1,14 +1,13 @@
 import { defineRouteConfig } from "@medusajs/admin-sdk"
 import { CORE_LAYOUT_IDS } from "@medusajs/admin-shared"
 import { LayoutComposer } from "@medusajs/dashboard/components"
-import { Toaster } from "@medusajs/ui"
 import { useTranslation } from "react-i18next"
 import {
   ConnectionSecuritySideSection,
   ConnectionTab,
 } from "../../../components"
 import { useOdooDashboard } from "../../../hooks/use-odoo-dashboard"
-import { RbacGuard } from "../../../components/rbac-guard";
+import { RbacGuard } from "../../../components/rbac-guard"
 
 const OdooConnectionPage = () => {
   const { i18n } = useTranslation()
@@ -75,6 +74,6 @@ const GuardedOdooConnectionPage = () => (
   <RbacGuard permission="odoo.read">
     <OdooConnectionPage />
   </RbacGuard>
-);
+)
 
-export default GuardedOdooConnectionPage;
+export default GuardedOdooConnectionPage

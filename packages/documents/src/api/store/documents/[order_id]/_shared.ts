@@ -1,5 +1,8 @@
 import type { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
-import { DOCUMENTS_MODULE, DocumentType } from "../../../../modules/documents/types"
+import {
+  DOCUMENTS_MODULE,
+  DocumentType,
+} from "../../../../modules/documents/types"
 import DocumentsModuleService from "../../../../modules/documents/service"
 import { sanitizeFilename } from "../../../../modules/documents/utils/formatters"
 import { assertCustomerOwnsOrder } from "../../../middlewares"

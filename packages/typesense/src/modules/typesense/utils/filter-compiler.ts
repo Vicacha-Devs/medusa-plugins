@@ -104,10 +104,14 @@ export function compileFilterObjectToTypesense(
         if (opVal === undefined || opVal === null) continue
         switch (op) {
           case "$eq":
-            clauses.push(`${field}:=${escapeTypesenseFilterValue(opVal as any)}`)
+            clauses.push(
+              `${field}:=${escapeTypesenseFilterValue(opVal as any)}`
+            )
             break
           case "$ne":
-            clauses.push(`${field}:!=${escapeTypesenseFilterValue(opVal as any)}`)
+            clauses.push(
+              `${field}:!=${escapeTypesenseFilterValue(opVal as any)}`
+            )
             break
           case "$in":
             if (Array.isArray(opVal) && opVal.length > 0) {
@@ -122,16 +126,24 @@ export function compileFilterObjectToTypesense(
             }
             break
           case "$gt":
-            clauses.push(`${field}:>${escapeTypesenseFilterValue(Number(opVal))}`)
+            clauses.push(
+              `${field}:>${escapeTypesenseFilterValue(Number(opVal))}`
+            )
             break
           case "$gte":
-            clauses.push(`${field}:>=${escapeTypesenseFilterValue(Number(opVal))}`)
+            clauses.push(
+              `${field}:>=${escapeTypesenseFilterValue(Number(opVal))}`
+            )
             break
           case "$lt":
-            clauses.push(`${field}:<${escapeTypesenseFilterValue(Number(opVal))}`)
+            clauses.push(
+              `${field}:<${escapeTypesenseFilterValue(Number(opVal))}`
+            )
             break
           case "$lte":
-            clauses.push(`${field}:<=${escapeTypesenseFilterValue(Number(opVal))}`)
+            clauses.push(
+              `${field}:<=${escapeTypesenseFilterValue(Number(opVal))}`
+            )
             break
           case "$range":
             if (Array.isArray(opVal) && opVal.length === 2) {
@@ -220,14 +232,23 @@ export function compileRangeFacetStrings(
 
   const results: string[] = []
   for (const spec of rangeFacets) {
-    if (!spec || !spec.field || !Array.isArray(spec.ranges) || spec.ranges.length === 0) {
+    if (
+      !spec ||
+      !spec.field ||
+      !Array.isArray(spec.ranges) ||
+      spec.ranges.length === 0
+    ) {
       continue
     }
     const field = assertSafeTypesenseField(spec.field)
     const rangeEntries: string[] = []
     for (const r of spec.ranges) {
-      const safeLabel = String(r.label || "range").replace(/[^a-zA-Z0-9_-]/g, "_")
-      const fromVal = typeof r.from === "number" && Number.isFinite(r.from) ? r.from : 0
+      const safeLabel = String(r.label || "range").replace(
+        /[^a-zA-Z0-9_-]/g,
+        "_"
+      )
+      const fromVal =
+        typeof r.from === "number" && Number.isFinite(r.from) ? r.from : 0
       const toVal =
         typeof r.to === "number" && Number.isFinite(r.to) ? r.to : ""
       rangeEntries.push(`${safeLabel}:[${fromVal}, ${toVal}]`)

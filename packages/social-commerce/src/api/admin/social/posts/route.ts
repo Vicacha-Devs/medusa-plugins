@@ -37,7 +37,8 @@ export async function GET(req: HttpRequest, res: HttpResponse): Promise<void> {
     const mediaType = req.query?.media_type as MediaType | undefined
     const status = req.query?.status as PostStatus | undefined
     const includeExpired =
-      req.query?.include_expired === "true" || req.query?.include_expired === true
+      req.query?.include_expired === "true" ||
+      req.query?.include_expired === true
     const limit = req.query?.limit ? Number(req.query.limit) : 50
     const offset = req.query?.offset ? Number(req.query.offset) : 0
 

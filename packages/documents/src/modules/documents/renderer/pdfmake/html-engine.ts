@@ -4,7 +4,6 @@ import { JSDOM } from "jsdom"
 import type {
   CustomHtmlRenderOptions,
   DocumentRenderContext,
-  PageOrientation,
   PageSize,
   TemplateSectionsConfig,
   TemplateStylesConfig,
@@ -24,13 +23,13 @@ import {
 export type { CustomHtmlRenderOptions } from "../../types"
 
 // Load pdfmake with virtual font file system
-// eslint-disable-next-line @typescript-eslint/no-require-imports
 const pdfMake = require("pdfmake/build/pdfmake")
-// eslint-disable-next-line @typescript-eslint/no-require-imports
 const pdfFonts = require("pdfmake/build/vfs_fonts")
 
 if (pdfMake && pdfFonts) {
-  pdfMake.vfs = pdfFonts.pdfMake ? pdfFonts.pdfMake.vfs : pdfFonts.vfs || pdfFonts
+  pdfMake.vfs = pdfFonts.pdfMake
+    ? pdfFonts.pdfMake.vfs
+    : pdfFonts.vfs || pdfFonts
 }
 
 /**
@@ -90,14 +89,14 @@ export async function renderHandlebarsPdf(
       options.styles?.secondary_color ||
       context.settings.secondary_color ||
       DEFAULT_TEMPLATE_STYLES.secondary_color,
-    ...(context.settings.styles || {}),
-    ...(options.styles || {}),
+    ...context.settings.styles,
+    ...options.styles,
   }
 
   const mergedSections: TemplateSectionsConfig = {
     ...DEFAULT_TEMPLATE_SECTIONS,
-    ...(context.settings.sections || {}),
-    ...(options.sections || {}),
+    ...context.settings.sections,
+    ...options.sections,
   }
 
   const templateSource =
@@ -110,7 +109,9 @@ export async function renderHandlebarsPdf(
   const sign = isCreditNote ? -1 : 1
 
   const formattedItems = context.order.items.map((item, idx) => {
-    const unitPrice = isCreditNote ? -Math.abs(item.unit_price) : item.unit_price
+    const unitPrice = isCreditNote
+      ? -Math.abs(item.unit_price)
+      : item.unit_price
     const itemTotal = isCreditNote ? -Math.abs(item.total) : item.total
     return {
       ...item,
@@ -185,8 +186,7 @@ export async function renderHandlebarsPdf(
   })
 
   const pageSize =
-    options.page_size ||
-    (context.document_type === "receipt" ? "80MM" : "A4")
+    options.page_size || (context.document_type === "receipt" ? "80MM" : "A4")
   const isThermal = pageSize === "80MM" || pageSize === "58MM"
 
   const docDefinition: Record<string, unknown> = {

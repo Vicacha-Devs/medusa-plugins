@@ -1,17 +1,17 @@
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework";
-import { ContainerRegistrationKeys } from "@medusajs/framework/utils";
-import { createEmployeesWorkflow } from "@b2b/workflows/employee/workflows";
+import { MedusaRequest, MedusaResponse } from "@medusajs/framework"
+import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
+import { createEmployeesWorkflow } from "@b2b/workflows/employee/workflows"
 import {
   StoreCreateEmployeeType,
   StoreGetEmployeeParamsType,
-} from "@b2b/api/store/b2b/companies/validators";
+} from "@b2b/api/store/b2b/companies/validators"
 
 export const GET = async (
   req: MedusaRequest<StoreGetEmployeeParamsType>,
   res: MedusaResponse
 ) => {
-  const { id } = req.params;
-  const query = req.scope.resolve(ContainerRegistrationKeys.QUERY);
+  const { id } = req.params
+  const query = req.scope.resolve(ContainerRegistrationKeys.QUERY)
 
   const {
     data: [{ employees }],
@@ -26,22 +26,22 @@ export const GET = async (
       },
     },
     { throwIfKeyNotFound: true }
-  );
+  )
 
   res.json({
     employees,
     count: metadata!.count,
     offset: metadata!.skip,
     limit: metadata!.take,
-  });
-};
+  })
+}
 
 export const POST = async (
   req: MedusaRequest<StoreCreateEmployeeType>,
   res: MedusaResponse
 ) => {
-  const { id } = req.params;
-  const query = req.scope.resolve(ContainerRegistrationKeys.QUERY);
+  const { id } = req.params
+  const query = req.scope.resolve(ContainerRegistrationKeys.QUERY)
 
   const { result: createdEmployee } = await createEmployeesWorkflow.run({
     input: {
@@ -52,7 +52,7 @@ export const POST = async (
       customerId: req.validatedBody.customer_id,
     },
     container: req.scope,
-  });
+  })
 
   const {
     data: [employee],
@@ -66,7 +66,7 @@ export const POST = async (
       },
     },
     { throwIfKeyNotFound: true }
-  );
+  )
 
-  res.json({ employee });
-};
+  res.json({ employee })
+}

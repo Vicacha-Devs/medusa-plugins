@@ -1,5 +1,8 @@
 declare var Buffer: {
-  from(data: string | Uint8Array | ArrayBuffer | number[], encoding?: string): Buffer
+  from(
+    data: string | Uint8Array | ArrayBuffer | number[],
+    encoding?: string
+  ): Buffer
   alloc(size: number, fill?: number | string): Buffer
   concat(list: Uint8Array[], totalLength?: number): Buffer
   isBuffer(obj: unknown): obj is Buffer
@@ -23,7 +26,10 @@ declare module "node:crypto" {
     digest(encoding: "hex" | "base64"): string
     digest(): Buffer
   }
-  export function createHmac(algorithm: string, key: string | Uint8Array): {
+  export function createHmac(
+    algorithm: string,
+    key: string | Uint8Array
+  ): {
     update(data: string | Uint8Array, inputEncoding?: string): any
     digest(encoding: "hex" | "base64"): string
     digest(): Buffer
@@ -237,6 +243,11 @@ declare module "@medusajs/framework/http" {
 }
 
 declare module "@medusajs/framework/workflows-sdk" {
+  export function transform<TInput = any, TOutput = any>(
+    input: TInput,
+    fn: (input: any) => TOutput
+  ): TOutput
+
   export class StepResponse<TOutput = any, TComp = any> {
     constructor(output: TOutput, compensateInput?: TComp)
   }
@@ -310,7 +321,9 @@ declare module "@medusajs/framework/zod" {
     boolean(): ZodType<boolean>
     unknown(): ZodType<unknown>
     any(): ZodType<any>
-    enum<T extends readonly [string, ...string[]]>(values: T): ZodType<T[number]>
+    enum<T extends readonly [string, ...string[]]>(
+      values: T
+    ): ZodType<T[number]>
     array<T extends ZodType<any>>(schema: T): ZodType<Array<T["_output"]>>
     record<K extends ZodType<string>, V extends ZodType<any>>(
       key: K,

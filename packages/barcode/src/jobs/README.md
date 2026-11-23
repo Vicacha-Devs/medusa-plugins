@@ -11,12 +11,12 @@ jobs/
 
 ## `purge-expired-barcode-cache`
 
-| Property | Value |
-| --- | --- |
-| **File** | `src/jobs/purge-expired-barcode-cache.ts` |
-| **Job Name** | `"purge-expired-barcode-cache"` |
-| **Cron Schedule** | `"0 */6 * * *"` (every 6 hours at minute 0) |
-| **Service Delegate** | `barcodeService.purgeExpiredCache()` |
+| Property             | Value                                       |
+| -------------------- | ------------------------------------------- |
+| **File**             | `src/jobs/purge-expired-barcode-cache.ts`   |
+| **Job Name**         | `"purge-expired-barcode-cache"`             |
+| **Cron Schedule**    | `"0 */6 * * *"` (every 6 hours at minute 0) |
+| **Service Delegate** | `barcodeService.purgeExpiredCache()`        |
 
 ### Behavior
 

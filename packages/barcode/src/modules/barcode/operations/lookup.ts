@@ -1,22 +1,22 @@
-import { MedusaError } from "@medusajs/framework/utils";
+import { MedusaError } from "@medusajs/framework/utils"
 
-import type { BarcodeOpsContext } from "./context";
-import { runProviderLookupChain } from "../providers";
+import type { BarcodeOpsContext } from "./context"
+import { runProviderLookupChain } from "../providers"
 import type {
   BarcodeLookupChainResult,
   EnrichmentStrategy,
   NormalizedBarcodeProduct,
-} from "../types";
-import { parseBarcode } from "../utils/barcode-parser";
+} from "../types"
+import { parseBarcode } from "../utils/barcode-parser"
 
 export async function parseAndValidateBarcode(rawBarcode: string) {
   if (!rawBarcode || !String(rawBarcode).trim()) {
     throw new MedusaError(
       MedusaError.Types.INVALID_DATA,
-      "Barcode value is required",
-    );
+      "Barcode value is required"
+    )
   }
-  return parseBarcode(rawBarcode);
+  return parseBarcode(rawBarcode)
 }
 
 /**
@@ -26,37 +26,37 @@ export async function lookupBarcode(
   ctx: BarcodeOpsContext,
   rawBarcode: string,
   lookupOptions: {
-    skipCache?: boolean;
-    strategy?: EnrichmentStrategy;
-    providers?: string[];
-  } = {},
+    skipCache?: boolean
+    strategy?: EnrichmentStrategy
+    providers?: string[]
+  } = {}
 ): Promise<BarcodeLookupChainResult> {
-  const parsed = await parseAndValidateBarcode(rawBarcode);
+  const parsed = await parseAndValidateBarcode(rawBarcode)
   const strategy =
-    lookupOptions.strategy || ctx.options.enrichmentStrategy || "first-hit";
+    lookupOptions.strategy || ctx.options.enrichmentStrategy || "first-hit"
 
   const useCache =
-    ctx.options.cacheEnabled !== false && !lookupOptions.skipCache;
+    ctx.options.cacheEnabled !== false && !lookupOptions.skipCache
 
   if (useCache) {
     try {
       const cachedRows = await ctx.svc.listBarcodeCaches(
         { barcode: parsed.normalized },
-        { take: 1 },
-      );
-      const cached = cachedRows[0];
+        { take: 1 }
+      )
+      const cached = cachedRows[0]
       if (cached && cached.expires_at) {
-        const expiresAt = new Date(cached.expires_at);
+        const expiresAt = new Date(cached.expires_at)
         if (expiresAt.getTime() > Date.now()) {
-          const nextHits = Number(cached.hit_count || 0) + 1;
+          const nextHits = Number(cached.hit_count || 0) + 1
           await ctx.svc.updateBarcodeCaches({
             id: cached.id,
             hit_count: nextHits,
-          });
+          })
 
           const cachedProduct = cached.found
             ? (cached.response_data as unknown as NormalizedBarcodeProduct)
-            : null;
+            : null
 
           return {
             barcode: parsed.normalized,
@@ -73,7 +73,7 @@ export async function lookupBarcode(
                 product: cachedProduct,
               },
             ],
-          };
+          }
         }
       }
     } catch {
@@ -84,16 +84,16 @@ export async function lookupBarcode(
   const result = await runProviderLookupChain(parsed.normalized, ctx.registry, {
     strategy,
     preferredProviders: lookupOptions.providers,
-  });
+  })
 
   if (ctx.options.cacheEnabled !== false) {
-    const ttlSeconds = ctx.options.cacheTtlSeconds ?? 86400;
-    const expiresAt = new Date(Date.now() + ttlSeconds * 1000);
+    const ttlSeconds = ctx.options.cacheTtlSeconds ?? 86400
+    const expiresAt = new Date(Date.now() + ttlSeconds * 1000)
     try {
       const existing = await ctx.svc.listBarcodeCaches(
         { barcode: parsed.normalized },
-        { take: 1 },
-      );
+        { take: 1 }
+      )
       const payload = {
         barcode: parsed.normalized,
         barcode_type: parsed.type,
@@ -108,22 +108,22 @@ export async function lookupBarcode(
         >,
         expires_at: expiresAt,
         hit_count: existing[0] ? Number(existing[0].hit_count || 0) + 1 : 1,
-      };
+      }
 
       if (existing[0]) {
         await ctx.svc.updateBarcodeCaches({
           id: existing[0].id,
           ...payload,
-        });
+        })
       } else {
-        await ctx.svc.createBarcodeCaches(payload);
+        await ctx.svc.createBarcodeCaches(payload)
       }
     } catch {
       // Non-fatal cache write failure
     }
   }
 
-  return result;
+  return result
 }
 
 /**
@@ -131,14 +131,14 @@ export async function lookupBarcode(
  */
 export async function findBarcodeProduct(
   ctx: BarcodeOpsContext,
-  rawBarcode: string,
+  rawBarcode: string
 ) {
-  const parsed = await parseAndValidateBarcode(rawBarcode);
+  const parsed = await parseAndValidateBarcode(rawBarcode)
   const rows = await ctx.svc.listBarcodeProducts(
     { barcode: parsed.normalized },
-    { take: 1 },
-  );
-  return rows[0] || null;
+    { take: 1 }
+  )
+  return rows[0] || null
 }
 
 /**
@@ -146,18 +146,18 @@ export async function findBarcodeProduct(
  */
 export async function removeBarcodeProduct(
   ctx: BarcodeOpsContext,
-  rawBarcode: string,
+  rawBarcode: string
 ): Promise<{ deleted_count: number }> {
-  const parsed = await parseAndValidateBarcode(rawBarcode);
+  const parsed = await parseAndValidateBarcode(rawBarcode)
   const rows = await ctx.svc.listBarcodeProducts(
     { barcode: parsed.normalized },
-    { take: 50 },
-  );
-  const ids = rows.map((r) => r.id);
+    { take: 50 }
+  )
+  const ids = rows.map((r) => r.id)
   if (ids.length > 0) {
-    await ctx.svc.deleteBarcodeProducts(ids);
+    await ctx.svc.deleteBarcodeProducts(ids)
   }
-  return { deleted_count: ids.length };
+  return { deleted_count: ids.length }
 }
 
 /**
@@ -166,19 +166,19 @@ export async function removeBarcodeProduct(
 export async function upsertBarcodeProductLink(
   ctx: BarcodeOpsContext,
   input: {
-    barcode: string;
-    product_id: string;
-    variant_id?: string | null;
-    provider: string;
-    product_data: NormalizedBarcodeProduct;
-    status?: "created" | "linked" | "updated";
-  },
+    barcode: string
+    product_id: string
+    variant_id?: string | null
+    provider: string
+    product_data: NormalizedBarcodeProduct
+    status?: "created" | "linked" | "updated"
+  }
 ) {
-  const parsed = parseBarcode(input.barcode);
+  const parsed = parseBarcode(input.barcode)
   const existing = await ctx.svc.listBarcodeProducts(
     { barcode: parsed.normalized },
-    { take: 1 },
-  );
+    { take: 1 }
+  )
 
   const payload = {
     barcode: parsed.normalized,
@@ -189,14 +189,14 @@ export async function upsertBarcodeProductLink(
     product_data: input.product_data as unknown as Record<string, unknown>,
     last_synced_at: new Date(),
     status: input.status || (existing[0] ? "updated" : "created"),
-  };
+  }
 
   if (existing[0]) {
     return await ctx.svc.updateBarcodeProducts({
       id: existing[0].id,
       ...payload,
-    });
+    })
   }
 
-  return await ctx.svc.createBarcodeProducts(payload);
+  return await ctx.svc.createBarcodeProducts(payload)
 }

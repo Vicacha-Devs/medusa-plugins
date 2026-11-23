@@ -1,8 +1,5 @@
 import React from "react"
-import type {
-  DocumentRenderContext,
-  TemplateRenderTarget,
-} from "../types"
+import type { DocumentRenderContext, TemplateRenderTarget } from "../types"
 import { getTranslations } from "../i18n"
 import { CleanTemplate } from "./react-pdf/clean-template"
 import { ClassicTemplate } from "./react-pdf/classic-template"

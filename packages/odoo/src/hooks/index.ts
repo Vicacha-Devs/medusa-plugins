@@ -20,7 +20,9 @@ import { useOdooMutation, useOdooQuery } from "./use-sdk-primitives"
 
 export * from "./use-sdk-primitives"
 
-export function useOdooStatus(options?: OdooQueryHookOptions<OdooStatusOverview>) {
+export function useOdooStatus(
+  options?: OdooQueryHookOptions<OdooStatusOverview>
+) {
   return useOdooQuery(
     odooQueryKeys.status(),
     () => defaultOdooSdk.admin.getStatus(),
@@ -165,12 +167,7 @@ export function useTriggerOdooSync(
   options?: OdooMutationHookOptions<
     OdooSyncResult | OdooReconciliationResult,
     {
-      entity:
-        | "products"
-        | "inventory"
-        | "customers"
-        | "reconciliation"
-        | "all"
+      entity: "products" | "inventory" | "customers" | "reconciliation" | "all"
       direction?: OdooSyncDirection
       strategy?: OdooReconciliationStrategy
       driftThreshold?: number

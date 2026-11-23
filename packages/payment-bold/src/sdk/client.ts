@@ -5,7 +5,6 @@ import {
   BoldLinkPayload,
   BoldLinkResponse,
   BoldPaymentLinkPaymentMethodLimits,
-  BoldPaymentMethod,
   BoldQrPayload,
   BoldQrResponse,
   BoldRefundPayload,
@@ -13,7 +12,7 @@ import {
   BoldStatusStreamCallbacks,
   BoldTerminalItem,
   BoldTerminalPayload,
-  BoldTerminalResponse
+  BoldTerminalResponse,
 } from "../types"
 import { BOLD_FAILED_STATUSES, BOLD_SUCCESS_STATUSES } from "../types/constants"
 
@@ -38,7 +37,9 @@ export class BoldApiClient {
     const data = await response.json()
 
     if (!response.ok) {
-      throw new Error(data.message || `Request failed with status ${response.status}`)
+      throw new Error(
+        data.message || `Request failed with status ${response.status}`
+      )
     }
 
     return data as T
@@ -133,15 +134,21 @@ export class BoldApiClient {
   }
 
   async getPaymentMethods(): Promise<Array<BoldIntegrationAPIPaymentMethod>> {
-    return this.fetch<Array<BoldIntegrationAPIPaymentMethod>>("/bold/payment-methods", {
-      method: "GET",
-    })
+    return this.fetch<Array<BoldIntegrationAPIPaymentMethod>>(
+      "/bold/payment-methods",
+      {
+        method: "GET",
+      }
+    )
   }
 
   async getPaymentLinkPaymentMethods(): Promise<BoldPaymentLinkPaymentMethodLimits> {
-    return this.fetch<BoldPaymentLinkPaymentMethodLimits>("/bold/payment-link-methods", {
-      method: "GET",
-    })
+    return this.fetch<BoldPaymentLinkPaymentMethodLimits>(
+      "/bold/payment-link-methods",
+      {
+        method: "GET",
+      }
+    )
   }
 }
 

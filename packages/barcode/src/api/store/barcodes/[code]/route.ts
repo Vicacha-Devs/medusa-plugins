@@ -1,7 +1,10 @@
 import type { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
 
 import type { BarcodeModuleService } from "../../../../modules/barcode/service"
-import { BARCODE_MODULE, type BarcodeSymbology } from "../../../../modules/barcode/types"
+import {
+  BARCODE_MODULE,
+  type BarcodeSymbology,
+} from "../../../../modules/barcode/types"
 
 export async function GET(req: MedusaRequest, res: MedusaResponse) {
   const barcodeService = req.scope.resolve(

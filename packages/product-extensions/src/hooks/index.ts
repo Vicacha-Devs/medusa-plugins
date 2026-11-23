@@ -119,7 +119,7 @@ export function useVariantResolvedGallery(
     }
 
     if (entries.length > 0) {
-      return entries.sort((a, b) => a.position - b.position)
+      return entries.toSorted((a, b) => a.position - b.position)
     }
   }
 

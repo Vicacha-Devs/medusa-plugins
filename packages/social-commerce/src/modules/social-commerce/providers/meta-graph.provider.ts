@@ -308,7 +308,8 @@ export class MetaGraphProvider implements SocialPlatformProvider {
     return {
       access_token: token,
       refresh_token: token,
-      expires_in: typeof json.expires_in === "number" ? json.expires_in : 5184000,
+      expires_in:
+        typeof json.expires_in === "number" ? json.expires_in : 5184000,
     }
   }
 

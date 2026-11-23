@@ -43,9 +43,7 @@ export function MedusaService(models = {}) {
       this.__stores = {}
       let counter = 1
       for (const key of Object.keys(models)) {
-        const plural = key.endsWith("y")
-          ? `${key.slice(0, -1)}ies`
-          : `${key}s`
+        const plural = key.endsWith("y") ? `${key.slice(0, -1)}ies` : `${key}s`
         this.__stores[plural] = []
 
         if (typeof this[`list${plural}`] !== "function") {
@@ -196,7 +194,6 @@ export class Migration {
   }
 }
 
-
 const createZodChain = (shape = {}) => {
   const schema = {
     shape,
@@ -288,7 +285,6 @@ export default {
   Fragment,
   useTranslation,
 }
-
 
 export const zodResolver = () => () => ({ values: {}, errors: {} })
 export const useForm = (opts = {}) => ({

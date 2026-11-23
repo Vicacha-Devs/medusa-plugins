@@ -4,13 +4,29 @@ export type SocialPlatform = ExternalSocialPlatform | "local"
 export type SocialMediaType = "video" | "reel" | "story" | "image" | "carousel"
 export type MediaType = SocialMediaType
 
-export type SocialMediaStatus = "active" | "expired" | "deleted" | "private" | "archived" | "hidden"
+export type SocialMediaStatus =
+  | "active"
+  | "expired"
+  | "deleted"
+  | "private"
+  | "archived"
+  | "hidden"
 export type PostStatus = SocialMediaStatus
 
-export type SocialAccountStatus = "active" | "expired" | "revoked" | "error" | "disconnected"
+export type SocialAccountStatus =
+  | "active"
+  | "expired"
+  | "revoked"
+  | "error"
+  | "disconnected"
 export type LiveSessionStatus = "scheduled" | "live" | "ended" | "cancelled"
 export type CatalogSyncStatus = "synced" | "pending" | "failed"
-export type CatalogFeedFormat = "xml" | "csv" | "json" | "meta_xml" | "tiktok_csv"
+export type CatalogFeedFormat =
+  | "xml"
+  | "csv"
+  | "json"
+  | "meta_xml"
+  | "tiktok_csv"
 export type ReservationStatus = "held" | "confirmed" | "released" | "expired"
 
 export interface CatalogFeedItemContext {

@@ -1,6 +1,6 @@
 # `@vicacha-devs/medusa-plugin-dian` — Admin Extensions
 
-Multi-route Medusa v2 Admin extensions for Colombian DIAN Electronic Invoicing (*Facturación Electrónica DIAN*), built with `LayoutComposer` (`CORE_LAYOUT_IDS.SINGLE_COLUMN`) and decoupled single-responsibility subcomponents:
+Multi-route Medusa v2 Admin extensions for Colombian DIAN Electronic Invoicing (_Facturación Electrónica DIAN_), built with `LayoutComposer` (`CORE_LAYOUT_IDS.SINGLE_COLUMN`) and decoupled single-responsibility subcomponents:
 
 - `/dian` (`src/admin/routes/dian/page.tsx`): Overview KPI cards (`DianOverviewSection`) + Electronic Documents table (`DianDocumentsTableSection`).
 - `/dian/resolutions` (`src/admin/routes/dian/resolutions/page.tsx`): Formulario 1876 Numbering Resolutions (`DianResolutionsSection`) + DIAN `GetNumberingRange` SOAP sync.

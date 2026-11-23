@@ -1,23 +1,23 @@
-import { execFileSync } from "node:child_process";
-import { existsSync, readdirSync } from "node:fs";
-import { dirname, join, resolve } from "node:path";
-import { fileURLToPath } from "node:url";
+import { execFileSync } from "node:child_process"
+import { existsSync, readdirSync } from "node:fs"
+import { dirname, join, resolve } from "node:path"
+import { fileURLToPath } from "node:url"
 
-import type { QaCheckResult, QaRepoReport } from "./types.ts";
+import type { QaCheckResult, QaRepoReport } from "./types.ts"
 
-import { writeQaDashboard } from "./dashboard.ts";
-import { runMedusaPluginsDoctor } from "./doctor.ts";
-import { runMedusaPluginsJudges } from "./judges.ts";
+import { writeQaDashboard } from "./dashboard.ts"
+import { runMedusaPluginsDoctor } from "./doctor.ts"
+import { runMedusaPluginsJudges } from "./judges.ts"
 import {
   discoverSiblingReports,
   safeReadJson,
   summarizeChecks,
   writeQaReport,
-} from "./types.ts";
+} from "./types.ts"
 
-const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), "../..");
-const strict = process.argv.includes("--strict");
-const packagesDir = join(repoRoot, "packages");
+const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), "../..")
+const strict = process.argv.includes("--strict")
+const packagesDir = join(repoRoot, "packages")
 
 function runCommandGate(
   id: string,
@@ -26,9 +26,9 @@ function runCommandGate(
   args: string[],
   cwd: string
 ): QaCheckResult {
-  const start = Date.now();
+  const start = Date.now()
   try {
-    execFileSync(bin, args, { cwd, stdio: "pipe", encoding: "utf8" });
+    execFileSync(bin, args, { cwd, stdio: "pipe", encoding: "utf8" })
     return {
       id,
       name,
@@ -36,12 +36,12 @@ function runCommandGate(
       status: "pass",
       durationMs: Date.now() - start,
       summary: `Passed in ${Date.now() - start}ms`,
-    };
+    }
   } catch (err) {
     const out =
       (err as { stderr?: string; stdout?: string; message?: string }).stderr ||
       (err as { stdout?: string }).stdout ||
-      (err as Error).message;
+      (err as Error).message
     return {
       id,
       name,
@@ -50,13 +50,13 @@ function runCommandGate(
       durationMs: Date.now() - start,
       summary: `Failed (${Date.now() - start}ms)`,
       details: String(out).trim().split("\n").slice(-10),
-    };
+    }
   }
 }
 
-const doctor = runMedusaPluginsDoctor(repoRoot);
-const judges = runMedusaPluginsJudges(repoRoot);
-const verifyChecks: QaCheckResult[] = [];
+const doctor = runMedusaPluginsDoctor(repoRoot)
+const judges = runMedusaPluginsJudges(repoRoot)
+const verifyChecks: QaCheckResult[] = []
 
 verifyChecks.push(
   runCommandGate(
@@ -66,38 +66,38 @@ verifyChecks.push(
     [join(repoRoot, "scripts", "publint-all.ts")],
     repoRoot
   )
-);
+)
 
 const sharedResolver = join(
   packagesDir,
   "plugin-testing",
   "register-ts-resolver.mjs"
-);
+)
 const pluginDirs = readdirSync(packagesDir, { withFileTypes: true })
   .filter((e) => {
-    if (!e.isDirectory()) return false;
+    if (!e.isDirectory()) return false
     const pkg = safeReadJson<{ name?: string; private?: boolean }>(
       join(packagesDir, e.name, "package.json")
-    );
+    )
     return Boolean(
       pkg && !pkg.private && pkg.name?.startsWith("@vicacha-devs/medusa-")
-    );
+    )
   })
   .map((e) => e.name)
-  .sort();
+  .toSorted()
 
 for (const dir of pluginDirs) {
-  const pkgDir = join(packagesDir, dir);
-  const testsDir = join(pkgDir, "src", "__tests__");
-  if (!existsSync(testsDir)) continue;
+  const pkgDir = join(packagesDir, dir)
+  const testsDir = join(pkgDir, "src", "__tests__")
+  if (!existsSync(testsDir)) continue
   const specs = readdirSync(testsDir)
     .filter((f) => f.endsWith(".spec.ts") || f.endsWith(".test.ts"))
-    .sort()
-    .map((f) => join("src", "__tests__", f));
-  if (specs.length === 0) continue;
+    .toSorted()
+    .map((f) => join("src", "__tests__", f))
+  if (specs.length === 0) continue
 
-  const localResolver = join(testsDir, "register-ts-resolver.mjs");
-  const resolver = existsSync(localResolver) ? localResolver : sharedResolver;
+  const localResolver = join(testsDir, "register-ts-resolver.mjs")
+  const resolver = existsSync(localResolver) ? localResolver : sharedResolver
 
   verifyChecks.push(
     runCommandGate(
@@ -107,7 +107,7 @@ for (const dir of pluginDirs) {
       ["--import", resolver, "--test", ...specs],
       pkgDir
     )
-  );
+  )
 }
 
 verifyChecks.push(
@@ -118,9 +118,9 @@ verifyChecks.push(
     ["--test", "tests/sandbox-wiring.spec.ts"],
     join(repoRoot, "apps", "sandbox")
   )
-);
+)
 
-const allChecks = [...doctor.checks, ...judges.checks, ...verifyChecks];
+const allChecks = [...doctor.checks, ...judges.checks, ...verifyChecks]
 const report: QaRepoReport = {
   schemaVersion: "qa-report/v1",
   repoId: "medusa-v2-extensions",
@@ -134,25 +134,25 @@ const report: QaRepoReport = {
   checks: allChecks,
   plugins: judges.plugins,
   drifts: doctor.drifts,
-};
+}
 
-const reportPath = writeQaReport(repoRoot, report);
-const siblingReports = discoverSiblingReports(repoRoot);
+const reportPath = writeQaReport(repoRoot, report)
+const siblingReports = discoverSiblingReports(repoRoot)
 const dashPath = writeQaDashboard(
   repoRoot,
   siblingReports.length > 1
     ? "Vicacha Ecosystem QA Control Center"
     : `${report.repoName} QA Report`,
   siblingReports.length > 0 ? siblingReports : [report]
-);
+)
 
 for (const check of allChecks) {
   process.stdout.write(
     `[${check.status.toUpperCase()}] ${check.name} (${check.durationMs}ms) — ${check.summary}\n`
-  );
+  )
 }
-process.stdout.write(`\nReport: ${reportPath}\nDashboard: ${dashPath}\n`);
+process.stdout.write(`\nReport: ${reportPath}\nDashboard: ${dashPath}\n`)
 
 if (report.summary.fail > 0 || (strict && report.summary.warn > 0)) {
-  process.exit(1);
+  process.exit(1)
 }

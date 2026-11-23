@@ -18,7 +18,7 @@ import {
   StatCard,
 } from "../../components/index.js"
 import { useSocialDashboard } from "../../hooks/use-social-dashboard.js"
-import { RbacGuard } from "../../components/rbac-guard";
+import { RbacGuard } from "../../components/rbac-guard"
 
 const SocialCommerceOverview = () => {
   const { t, i18n } = useTranslation()
@@ -44,10 +44,7 @@ const SocialCommerceOverview = () => {
       sections={{
         main: (
           <LayoutComposer.Entry id="SocialCommerceOverviewSection">
-            <div
-              className="flex flex-col gap-y-4"
-              dir={isRtl ? "rtl" : "ltr"}
-            >
+            <div className="flex flex-col gap-y-4" dir={isRtl ? "rtl" : "ltr"}>
               <DashboardHeader
                 platformFilter={platformFilter}
                 onPlatformFilterChange={setPlatformFilter}
@@ -167,6 +164,6 @@ const GuardedSocialCommerceOverview = () => (
   <RbacGuard permission="social_commerce.read">
     <SocialCommerceOverview />
   </RbacGuard>
-);
+)
 
-export default GuardedSocialCommerceOverview;
+export default GuardedSocialCommerceOverview

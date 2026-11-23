@@ -16,14 +16,13 @@ import {
   Heading,
   StatusBadge,
   Text,
-  Toaster,
 } from "@medusajs/ui"
 import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router-dom"
 
 import { NavigationCard, StatCard } from "../../components"
 import { useBarcodeStudio } from "../../hooks/use-barcode-studio"
-import { RbacGuard } from "../../components/rbac-guard";
+import { RbacGuard } from "../../components/rbac-guard"
 
 const BarcodesOverviewPage = () => {
   const { t, i18n } = useTranslation()
@@ -42,10 +41,7 @@ const BarcodesOverviewPage = () => {
       sections={{
         main: (
           <LayoutComposer.Entry id="BarcodesOverviewMain">
-            <div
-              className="flex flex-col gap-y-4"
-              dir={isRtl ? "rtl" : "ltr"}
-            >
+            <div className="flex flex-col gap-y-4" dir={isRtl ? "rtl" : "ltr"}>
               <div className="flex flex-wrap items-center justify-between gap-4">
                 <div>
                   <div className="flex flex-wrap items-center gap-2">
@@ -211,6 +207,6 @@ const GuardedBarcodesOverviewPage = () => (
   <RbacGuard permission="barcodes.read">
     <BarcodesOverviewPage />
   </RbacGuard>
-);
+)
 
-export default GuardedBarcodesOverviewPage;
+export default GuardedBarcodesOverviewPage

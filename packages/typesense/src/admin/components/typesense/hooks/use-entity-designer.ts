@@ -47,7 +47,9 @@ export function useEntityDesigner(entities: any[]) {
         (item) => (item.entity || item.entity_type) === targetEntityKey
       )
       if (existing) {
-        setGraphEntity(existing.graphEntity || existing.graph_entity || targetEntityKey)
+        setGraphEntity(
+          existing.graphEntity || existing.graph_entity || targetEntityKey
+        )
         setGraphFieldsStr(
           Array.isArray(existing.graphFields || existing.graph_fields)
             ? (existing.graphFields || existing.graph_fields).join(", ")

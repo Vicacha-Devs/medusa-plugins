@@ -13,9 +13,7 @@ import type {
   TEMPLATE_SOURCES,
   WHATSAPP_DRIVERS,
 } from "./constants"
-import type {
-  RenderedNotificationPayload,
-} from "./domain"
+import type { RenderedNotificationPayload } from "./domain"
 
 export type NotificationChannel = (typeof NOTIFICATION_CHANNELS)[number]
 export type TemplateMode = (typeof TEMPLATE_MODES)[number]

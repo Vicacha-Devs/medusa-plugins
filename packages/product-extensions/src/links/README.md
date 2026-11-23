@@ -13,10 +13,10 @@ links/
 
 ## Link definitions
 
-| File | Left | Right | Cardinality |
-| --- | --- | --- | --- |
-| `product-extension-link.ts` | `ProductModule.linkable.product` | `ProductExtModule.linkable.productExtension` | 1 : 1 |
-| `variant-extension-link.ts` | `ProductModule.linkable.productVariant` | `ProductExtModule.linkable.variantExtension` | 1 : 1 |
+| File                        | Left                                    | Right                                        | Cardinality |
+| --------------------------- | --------------------------------------- | -------------------------------------------- | ----------- |
+| `product-extension-link.ts` | `ProductModule.linkable.product`        | `ProductExtModule.linkable.productExtension` | 1 : 1       |
+| `variant-extension-link.ts` | `ProductModule.linkable.productVariant` | `ProductExtModule.linkable.variantExtension` | 1 : 1       |
 
 ---
 

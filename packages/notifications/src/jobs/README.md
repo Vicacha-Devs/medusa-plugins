@@ -12,10 +12,10 @@ jobs/
 
 ## Job Schedule Summary
 
-| Job Name | File | Cron Schedule | Frequency | Purpose |
-| --- | --- | --- | --- | --- |
-| `mpn-abandoned-cart-recovery` | `abandoned-cart-recovery.ts` | `*/15 * * * *` | Every 15 minutes | Scans abandoned carts, verifies `opted_in` TCPA consent & 24h per-phone cooldown, and dispatches `cart.abandoned` notifications. |
-| `mpn-log-retention-and-broadcasts` | `log-retention-and-broadcasts.ts` | `0 * * * *` | Every hour | Prunes `mpn_delivery_log` records older than `logRetentionDays` (default `30` days). |
+| Job Name                           | File                              | Cron Schedule  | Frequency        | Purpose                                                                                                                          |
+| ---------------------------------- | --------------------------------- | -------------- | ---------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| `mpn-abandoned-cart-recovery`      | `abandoned-cart-recovery.ts`      | `*/15 * * * *` | Every 15 minutes | Scans abandoned carts, verifies `opted_in` TCPA consent & 24h per-phone cooldown, and dispatches `cart.abandoned` notifications. |
+| `mpn-log-retention-and-broadcasts` | `log-retention-and-broadcasts.ts` | `0 * * * *`    | Every hour       | Prunes `mpn_delivery_log` records older than `logRetentionDays` (default `30` days).                                             |
 
 ---
 

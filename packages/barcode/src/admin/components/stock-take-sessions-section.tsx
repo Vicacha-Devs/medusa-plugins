@@ -1,11 +1,5 @@
 import { SectionRow } from "@medusajs/dashboard/components"
-import {
-  Button,
-  Container,
-  Heading,
-  StatusBadge,
-  Table,
-} from "@medusajs/ui"
+import { Button, Container, Heading, StatusBadge, Table } from "@medusajs/ui"
 import { useTranslation } from "react-i18next"
 
 export interface StockTakeSessionsSectionProps {

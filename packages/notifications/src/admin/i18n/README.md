@@ -24,18 +24,18 @@ i18n/
 
 Both the Admin UI (`src/admin/i18n/json/`) and the backend template renderer (`src/modules/notifications/i18n/locales/`) ship with **10 built-in locales**:
 
-| Code | Language | Direction |
-| --- | --- | --- |
-| `en` | English | `ltr` |
-| `es` | Spanish | `ltr` |
-| `pl` | Polish | `ltr` |
-| `de` | German | `ltr` |
-| `fr` | French | `ltr` |
-| `it` | Italian | `ltr` |
-| `nl` | Dutch | `ltr` |
-| `pt` | Portuguese | `ltr` |
-| `tr` | Turkish | `ltr` |
-| `ar` | Arabic | `rtl` (`isRtlLocale("ar") === true`) |
+| Code | Language   | Direction                            |
+| ---- | ---------- | ------------------------------------ |
+| `en` | English    | `ltr`                                |
+| `es` | Spanish    | `ltr`                                |
+| `pl` | Polish     | `ltr`                                |
+| `de` | German     | `ltr`                                |
+| `fr` | French     | `ltr`                                |
+| `it` | Italian    | `ltr`                                |
+| `nl` | Dutch      | `ltr`                                |
+| `pt` | Portuguese | `ltr`                                |
+| `tr` | Turkish    | `ltr`                                |
+| `ar` | Arabic     | `rtl` (`isRtlLocale("ar") === true`) |
 
 When Arabic (`ar`) is active, the Notification Studio automatically sets `dir="rtl"` on the container and preview surfaces so forms, tables, and rendered templates align right-to-left.
 

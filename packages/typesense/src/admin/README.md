@@ -61,10 +61,10 @@ export const config = defineRouteConfig({
 
 ## Data fetching & state hooks
 
-| Hook | File | Purpose |
-| --- | --- | --- |
-| `useTypesenseStudio` | `components/typesense/use-typesense-studio.ts` | Manages cluster health, collections, sync jobs, custom entity configurations, synonyms, curations, stopwords, playground search queries, and search analytics |
-| `useProductTypesenseWidgetState` | `src/hooks/use-product-typesense-widget-state.ts` | Fetches `/admin/typesense/documents/products/:id`, inspects indexed prices/stock/SKUs, and triggers single-product re-sync |
+| Hook                             | File                                              | Purpose                                                                                                                                                       |
+| -------------------------------- | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `useTypesenseStudio`             | `components/typesense/use-typesense-studio.ts`    | Manages cluster health, collections, sync jobs, custom entity configurations, synonyms, curations, stopwords, playground search queries, and search analytics |
+| `useProductTypesenseWidgetState` | `src/hooks/use-product-typesense-widget-state.ts` | Fetches `/admin/typesense/documents/products/:id`, inspects indexed prices/stock/SKUs, and triggers single-product re-sync                                    |
 
 ---
 
@@ -72,15 +72,15 @@ export const config = defineRouteConfig({
 
 All components live in `components/typesense/` and are internal to the Admin extension:
 
-| Component | File | Purpose |
-| --- | --- | --- |
-| `TypesenseHeaderBar` | `header-bar.tsx` | Cluster health badge, node host/port, UI language switcher, refresh, and "Reindex All" button |
-| `StatCard`, `NavigationCard` | `overview-cards.tsx` | KPI stat cards and navigation cards on `/typesense` |
-| `OverviewTab` | `overview-tab.tsx` | Active collection aliases, physical versioned collections, document counts, and `mpt_sync_job` history |
-| `EntitiesTab` | `entities-tab.tsx` | Built-in and custom entity index schemas, `queryBy` / `facetBy` settings, and custom entity registration modal |
-| `MerchandisingTab`, `SynonymsSection`, `CurationsSection`, `StopwordsSection` | `merchandising-tab.tsx`, `synonyms-section.tsx`, `curations-section.tsx`, `stopwords-section.tsx` | Merchandising Studio for managing Multi-way/One-way Synonyms, Curations/Overrides, and Stopwords Sets |
-| `PlaygroundTab`, `PlaygroundResultsSection`, `renderSafeHighlight` | `playground-tab.tsx`, `playground-results-section.tsx`, `safe-highlight.tsx` | Interactive Keyword, Semantic, and Hybrid (`alpha`) search tester with safe JSX highlight rendering |
-| `AnalyticsTab` | `analytics-tab.tsx` | Search volume, average latency, CTR, conversion rate, popular queries, and zero-result queries with 1-click synonym creation |
+| Component                                                                     | File                                                                                              | Purpose                                                                                                                      |
+| ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `TypesenseHeaderBar`                                                          | `header-bar.tsx`                                                                                  | Cluster health badge, node host/port, UI language switcher, refresh, and "Reindex All" button                                |
+| `StatCard`, `NavigationCard`                                                  | `overview-cards.tsx`                                                                              | KPI stat cards and navigation cards on `/typesense`                                                                          |
+| `OverviewTab`                                                                 | `overview-tab.tsx`                                                                                | Active collection aliases, physical versioned collections, document counts, and `mpt_sync_job` history                       |
+| `EntitiesTab`                                                                 | `entities-tab.tsx`                                                                                | Built-in and custom entity index schemas, `queryBy` / `facetBy` settings, and custom entity registration modal               |
+| `MerchandisingTab`, `SynonymsSection`, `CurationsSection`, `StopwordsSection` | `merchandising-tab.tsx`, `synonyms-section.tsx`, `curations-section.tsx`, `stopwords-section.tsx` | Merchandising Studio for managing Multi-way/One-way Synonyms, Curations/Overrides, and Stopwords Sets                        |
+| `PlaygroundTab`, `PlaygroundResultsSection`, `renderSafeHighlight`            | `playground-tab.tsx`, `playground-results-section.tsx`, `safe-highlight.tsx`                      | Interactive Keyword, Semantic, and Hybrid (`alpha`) search tester with safe JSX highlight rendering                          |
+| `AnalyticsTab`                                                                | `analytics-tab.tsx`                                                                               | Search volume, average latency, CTR, conversion rate, popular queries, and zero-result queries with 1-click synonym creation |
 
 ---
 

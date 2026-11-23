@@ -5,12 +5,11 @@ import ItemsPopover from "./approvals-items-popover.tsx"
 import ApprovalStatusBadge from "./approval-status-badge.tsx"
 
 defineCellRenderer("b2b-short-id", {
-  render: (value) =>
-    typeof value === "string" ? `#${value.slice(-4)}` : "-",
+  render: (value) => (typeof value === "string" ? `#${value.slice(-4)}` : "-"),
 })
 
 defineCellRenderer("b2b-approval-status", {
-  render: (value) => (<ApprovalStatusBadge status={value} />),
+  render: (value) => <ApprovalStatusBadge status={value} />,
 })
 
 defineCellRenderer("b2b-items", {
@@ -60,8 +59,8 @@ defineCellRenderer("b2b-approval-handled-at", {
     const dates = approvals
       .filter((a) => a.handled_at)
       .map((a) => a.handled_at)
-      .sort()
-      .reverse()
+      .toSorted()
+      .toReversed()
     if (!dates.length) return "-"
     return new Date(dates[0]).toLocaleDateString()
   },

@@ -20,10 +20,10 @@ api/
 
 ## Endpoints
 
-| Method | Path | Body Schema | Description |
-| :--- | :--- | :--- | :--- |
-| `GET` | `/admin/bold/terminals` | — | Invokes `listActiveTerminals()` on the registered Bold payment provider to list available physical POS Dataphones. |
-| `POST` | `/admin/bold/pos-push` | `AdminBoldPosPushSchema` | Creates a `pp_bold-terminal_bold` payment session on `payment_collection_id` for `amount` (remaining `payableAmount`) and pushes the charge to `terminal_serial`. |
+| Method | Path                       | Body Schema                  | Description                                                                                                                                                             |
+| :----- | :------------------------- | :--------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `GET`  | `/admin/bold/terminals`    | —                            | Invokes `listActiveTerminals()` on the registered Bold payment provider to list available physical POS Dataphones.                                                      |
+| `POST` | `/admin/bold/pos-push`     | `AdminBoldPosPushSchema`     | Creates a `pp_bold-terminal_bold` payment session on `payment_collection_id` for `amount` (remaining `payableAmount`) and pushes the charge to `terminal_serial`.       |
 | `POST` | `/admin/bold/payment-link` | `AdminBoldPaymentLinkSchema` | Creates a `pp_bold-link_bold` payment session on `payment_collection_id` for `amount` (remaining `payableAmount`) and returns `payment_link_url` and `payment_link_id`. |
 
 ---

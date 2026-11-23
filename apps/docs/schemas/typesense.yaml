@@ -1,0 +1,912 @@
+openapi: 3.1.0
+info:
+  title: "@vicacha-devs/medusa-plugin-typesense API"
+  version: 0.0.1
+  description: Full-featured Typesense search, vector/hybrid AI search,
+    merchandising (synonyms, curations, stopwords), custom entity indexing, and
+    InstantSearch plugin for Medusa v2
+servers:
+  - url: http://127.0.0.1:9000
+    description: Local Medusa v2 Server
+components:
+  securitySchemes:
+    adminBearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Medusa Admin JWT or API token
+    publishableKey:
+      type: apiKey
+      in: header
+      name: x-publishable-api-key
+      description: Medusa Storefront Publishable API Key
+paths:
+  /admin/plugin:
+    get:
+      operationId: getAdminPlugin
+      summary: List plugin
+      description: GET /admin/plugin endpoint exposed by
+        @vicacha-devs/medusa-plugin-typesense.
+      tags:
+        - "Admin: plugin"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/typesense/analytics:
+    get:
+      operationId: getAdminTypesenseAnalytics
+      summary: List typesense analytics
+      description: GET /admin/typesense/analytics endpoint exposed by
+        @vicacha-devs/medusa-plugin-typesense.
+      tags:
+        - "Admin: typesense"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/typesense/collections:
+    get:
+      operationId: getAdminTypesenseCollections
+      summary: List typesense collections
+      description: GET /admin/typesense/collections endpoint exposed by
+        @vicacha-devs/medusa-plugin-typesense.
+      tags:
+        - "Admin: typesense"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    post:
+      operationId: postAdminTypesenseCollections
+      summary: Create / Trigger typesense collections
+      description: POST /admin/typesense/collections endpoint exposed by
+        @vicacha-devs/medusa-plugin-typesense.
+      tags:
+        - "Admin: typesense"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/typesense/collections/{entity}/sync:
+    post:
+      operationId: postAdminTypesenseCollectionsByEntitySync
+      summary: Create / Trigger typesense collections by ID sync
+      description:
+        POST /admin/typesense/collections/{entity}/sync endpoint exposed by
+        @vicacha-devs/medusa-plugin-typesense.
+      tags:
+        - "Admin: typesense"
+      parameters:
+        - name: entity
+          in: path
+          required: true
+          description: Resource identifier (entity)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/typesense/curations/{entity}:
+    get:
+      operationId: getAdminTypesenseCurationsByEntity
+      summary: Get typesense curations by ID
+      description: GET /admin/typesense/curations/{entity} endpoint exposed by
+        @vicacha-devs/medusa-plugin-typesense.
+      tags:
+        - "Admin: typesense"
+      parameters:
+        - name: entity
+          in: path
+          required: true
+          description: Resource identifier (entity)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    post:
+      operationId: postAdminTypesenseCurationsByEntity
+      summary: Create / Trigger typesense curations by ID
+      description: POST /admin/typesense/curations/{entity} endpoint exposed by
+        @vicacha-devs/medusa-plugin-typesense.
+      tags:
+        - "Admin: typesense"
+      parameters:
+        - name: entity
+          in: path
+          required: true
+          description: Resource identifier (entity)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/typesense/curations/{entity}/{id}:
+    delete:
+      operationId: deleteAdminTypesenseCurationsByEntityById
+      summary: Delete typesense curations by ID by ID
+      description:
+        DELETE /admin/typesense/curations/{entity}/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-typesense.
+      tags:
+        - "Admin: typesense"
+      parameters:
+        - name: entity
+          in: path
+          required: true
+          description: Resource identifier (entity)
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/typesense/documents/{entity}/{id}:
+    delete:
+      operationId: deleteAdminTypesenseDocumentsByEntityById
+      summary: Delete typesense documents by ID by ID
+      description:
+        DELETE /admin/typesense/documents/{entity}/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-typesense.
+      tags:
+        - "Admin: typesense"
+      parameters:
+        - name: entity
+          in: path
+          required: true
+          description: Resource identifier (entity)
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    get:
+      operationId: getAdminTypesenseDocumentsByEntityById
+      summary: Get typesense documents by ID by ID
+      description:
+        GET /admin/typesense/documents/{entity}/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-typesense.
+      tags:
+        - "Admin: typesense"
+      parameters:
+        - name: entity
+          in: path
+          required: true
+          description: Resource identifier (entity)
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    post:
+      operationId: postAdminTypesenseDocumentsByEntityById
+      summary: Create / Trigger typesense documents by ID by ID
+      description:
+        POST /admin/typesense/documents/{entity}/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-typesense.
+      tags:
+        - "Admin: typesense"
+      parameters:
+        - name: entity
+          in: path
+          required: true
+          description: Resource identifier (entity)
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/typesense/entities:
+    get:
+      operationId: getAdminTypesenseEntities
+      summary: List typesense entities
+      description: GET /admin/typesense/entities endpoint exposed by
+        @vicacha-devs/medusa-plugin-typesense.
+      tags:
+        - "Admin: typesense"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    post:
+      operationId: postAdminTypesenseEntities
+      summary: Create / Trigger typesense entities
+      description: POST /admin/typesense/entities endpoint exposed by
+        @vicacha-devs/medusa-plugin-typesense.
+      tags:
+        - "Admin: typesense"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/typesense/entities/{entity}:
+    delete:
+      operationId: deleteAdminTypesenseEntitiesByEntity
+      summary: Delete typesense entities by ID
+      description: DELETE /admin/typesense/entities/{entity} endpoint exposed by
+        @vicacha-devs/medusa-plugin-typesense.
+      tags:
+        - "Admin: typesense"
+      parameters:
+        - name: entity
+          in: path
+          required: true
+          description: Resource identifier (entity)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    get:
+      operationId: getAdminTypesenseEntitiesByEntity
+      summary: Get typesense entities by ID
+      description: GET /admin/typesense/entities/{entity} endpoint exposed by
+        @vicacha-devs/medusa-plugin-typesense.
+      tags:
+        - "Admin: typesense"
+      parameters:
+        - name: entity
+          in: path
+          required: true
+          description: Resource identifier (entity)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/typesense/health:
+    get:
+      operationId: getAdminTypesenseHealth
+      summary: List typesense health
+      description: GET /admin/typesense/health endpoint exposed by
+        @vicacha-devs/medusa-plugin-typesense.
+      tags:
+        - "Admin: typesense"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/typesense/playground:
+    post:
+      operationId: postAdminTypesensePlayground
+      summary: Create / Trigger typesense playground
+      description: POST /admin/typesense/playground endpoint exposed by
+        @vicacha-devs/medusa-plugin-typesense.
+      tags:
+        - "Admin: typesense"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/typesense/stopwords:
+    get:
+      operationId: getAdminTypesenseStopwords
+      summary: List typesense stopwords
+      description: GET /admin/typesense/stopwords endpoint exposed by
+        @vicacha-devs/medusa-plugin-typesense.
+      tags:
+        - "Admin: typesense"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    post:
+      operationId: postAdminTypesenseStopwords
+      summary: Create / Trigger typesense stopwords
+      description: POST /admin/typesense/stopwords endpoint exposed by
+        @vicacha-devs/medusa-plugin-typesense.
+      tags:
+        - "Admin: typesense"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/typesense/stopwords/{id}:
+    delete:
+      operationId: deleteAdminTypesenseStopwordsById
+      summary: Delete typesense stopwords by ID
+      description: DELETE /admin/typesense/stopwords/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-typesense.
+      tags:
+        - "Admin: typesense"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/typesense/synonyms/{entity}:
+    get:
+      operationId: getAdminTypesenseSynonymsByEntity
+      summary: Get typesense synonyms by ID
+      description: GET /admin/typesense/synonyms/{entity} endpoint exposed by
+        @vicacha-devs/medusa-plugin-typesense.
+      tags:
+        - "Admin: typesense"
+      parameters:
+        - name: entity
+          in: path
+          required: true
+          description: Resource identifier (entity)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    post:
+      operationId: postAdminTypesenseSynonymsByEntity
+      summary: Create / Trigger typesense synonyms by ID
+      description: POST /admin/typesense/synonyms/{entity} endpoint exposed by
+        @vicacha-devs/medusa-plugin-typesense.
+      tags:
+        - "Admin: typesense"
+      parameters:
+        - name: entity
+          in: path
+          required: true
+          description: Resource identifier (entity)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/typesense/synonyms/{entity}/{id}:
+    delete:
+      operationId: deleteAdminTypesenseSynonymsByEntityById
+      summary: Delete typesense synonyms by ID by ID
+      description:
+        DELETE /admin/typesense/synonyms/{entity}/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-typesense.
+      tags:
+        - "Admin: typesense"
+      parameters:
+        - name: entity
+          in: path
+          required: true
+          description: Resource identifier (entity)
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /store/plugin:
+    get:
+      operationId: getStorePlugin
+      summary: List plugin
+      description: GET /store/plugin endpoint exposed by
+        @vicacha-devs/medusa-plugin-typesense.
+      tags:
+        - "Storefront: plugin"
+      security:
+        - publishableKey: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /store/typesense/analytics:
+    post:
+      operationId: postStoreTypesenseAnalytics
+      summary: Create / Trigger typesense analytics
+      description: POST /store/typesense/analytics endpoint exposed by
+        @vicacha-devs/medusa-plugin-typesense.
+      tags:
+        - "Storefront: typesense"
+      security:
+        - publishableKey: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /store/typesense/categories:
+    get:
+      operationId: getStoreTypesenseCategories
+      summary: List typesense categories
+      description: GET /store/typesense/categories endpoint exposed by
+        @vicacha-devs/medusa-plugin-typesense.
+      tags:
+        - "Storefront: typesense"
+      security:
+        - publishableKey: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+    post:
+      operationId: postStoreTypesenseCategories
+      summary: Create / Trigger typesense categories
+      description: POST /store/typesense/categories endpoint exposed by
+        @vicacha-devs/medusa-plugin-typesense.
+      tags:
+        - "Storefront: typesense"
+      security:
+        - publishableKey: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /store/typesense/chat:
+    post:
+      operationId: postStoreTypesenseChat
+      summary: Create / Trigger typesense chat
+      description: POST /store/typesense/chat endpoint exposed by
+        @vicacha-devs/medusa-plugin-typesense.
+      tags:
+        - "Storefront: typesense"
+      security:
+        - publishableKey: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /store/typesense/collections:
+    get:
+      operationId: getStoreTypesenseCollections
+      summary: List typesense collections
+      description: GET /store/typesense/collections endpoint exposed by
+        @vicacha-devs/medusa-plugin-typesense.
+      tags:
+        - "Storefront: typesense"
+      security:
+        - publishableKey: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+    post:
+      operationId: postStoreTypesenseCollections
+      summary: Create / Trigger typesense collections
+      description: POST /store/typesense/collections endpoint exposed by
+        @vicacha-devs/medusa-plugin-typesense.
+      tags:
+        - "Storefront: typesense"
+      security:
+        - publishableKey: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /store/typesense/products:
+    get:
+      operationId: getStoreTypesenseProducts
+      summary: List typesense products
+      description: GET /store/typesense/products endpoint exposed by
+        @vicacha-devs/medusa-plugin-typesense.
+      tags:
+        - "Storefront: typesense"
+      security:
+        - publishableKey: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+    post:
+      operationId: postStoreTypesenseProducts
+      summary: Create / Trigger typesense products
+      description: POST /store/typesense/products endpoint exposed by
+        @vicacha-devs/medusa-plugin-typesense.
+      tags:
+        - "Storefront: typesense"
+      security:
+        - publishableKey: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /store/typesense/search:
+    get:
+      operationId: getStoreTypesenseSearch
+      summary: List typesense search
+      description: GET /store/typesense/search endpoint exposed by
+        @vicacha-devs/medusa-plugin-typesense.
+      tags:
+        - "Storefront: typesense"
+      security:
+        - publishableKey: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+    post:
+      operationId: postStoreTypesenseSearch
+      summary: Create / Trigger typesense search
+      description: POST /store/typesense/search endpoint exposed by
+        @vicacha-devs/medusa-plugin-typesense.
+      tags:
+        - "Storefront: typesense"
+      security:
+        - publishableKey: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /store/typesense/token:
+    get:
+      operationId: getStoreTypesenseToken
+      summary: List typesense token
+      description: GET /store/typesense/token endpoint exposed by
+        @vicacha-devs/medusa-plugin-typesense.
+      tags:
+        - "Storefront: typesense"
+      security:
+        - publishableKey: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true

@@ -30,7 +30,9 @@ export const ProductSyncSettingsSection = ({
       <div className="flex items-center justify-between px-6 py-4">
         <Heading level="h2">{t("settingsTab.productTitle")}</Heading>
         <StatusBadge
-          color={productSettings?.enableProductSync !== false ? "green" : "grey"}
+          color={
+            productSettings?.enableProductSync !== false ? "green" : "grey"
+          }
         >
           {productSettings?.enableProductSync !== false ? "ON" : "OFF"}
         </StatusBadge>

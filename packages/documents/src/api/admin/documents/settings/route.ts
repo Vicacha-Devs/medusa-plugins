@@ -32,8 +32,7 @@ export async function GET(req: MedusaRequest, res: MedusaResponse) {
 
   return res.status(200).json({
     settings,
-    is_regional_override:
-      regionId !== null && settings.region_id === regionId,
+    is_regional_override: regionId !== null && settings.region_id === regionId,
     configured_region_ids: configuredRegions,
     integrations: {
       docuseal_configured: documentsService.docuseal.isConfigured(),
@@ -60,9 +59,6 @@ export async function PUT(req: MedusaRequest, res: MedusaResponse) {
   const targetRegionId =
     parsed.data.region_id !== undefined ? parsed.data.region_id : queryRegionId
 
-  const documentsService =
-    req.scope.resolve<DocumentsModuleService>(DOCUMENTS_MODULE)
-
   const { result: updated } = await upsertDocumentSettingsWorkflow(
     req.scope
   ).run({ input: { data: parsed.data, region_id: targetRegionId } })
@@ -83,16 +79,17 @@ export async function DELETE(req: MedusaRequest, res: MedusaResponse) {
 
   if (!regionId || regionId === "global") {
     return res.status(400).json({
-      message: "A non-global region_id query parameter is required to reset an override",
+      message:
+        "A non-global region_id query parameter is required to reset an override",
     })
   }
 
   const documentsService =
     req.scope.resolve<DocumentsModuleService>(DOCUMENTS_MODULE)
 
-  const { result: deleted } = await deleteRegionSettingsWorkflow(
-    req.scope
-  ).run({ input: { region_id: regionId } })
+  const { result: deleted } = await deleteRegionSettingsWorkflow(req.scope).run(
+    { input: { region_id: regionId } }
+  )
   const fallbackSettings = await documentsService.getGlobalSettings()
 
   return res.status(200).json({

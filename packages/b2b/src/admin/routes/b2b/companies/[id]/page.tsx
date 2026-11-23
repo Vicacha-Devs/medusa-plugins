@@ -1,6 +1,9 @@
 import { LayoutComposer } from "@medusajs/dashboard/components"
 import { CORE_LAYOUT_IDS } from "@medusajs/admin-shared"
-import { detailPageDefaultEntries, TwoColumnPageSkeleton } from "@vicacha-devs/medusa-shared-admin/admin"
+import {
+  detailPageDefaultEntries,
+  TwoColumnPageSkeleton,
+} from "@vicacha-devs/medusa-shared-admin/admin"
 import { useParams } from "react-router-dom"
 import { useTranslation } from "react-i18next"
 
@@ -9,7 +12,7 @@ import { CompanyGeneralSection } from "./components/company-general-section"
 import { CompanyEmployeesSection } from "./components/company-employees-section"
 import { CompanyApprovalSettingsSection } from "./components/company-approval-settings-section"
 import { CompanyCustomerGroupSection } from "./components/company-customer-group-section"
-import { RbacGuard } from "@vicacha-devs/medusa-shared-admin/admin";
+import { RbacGuard } from "@vicacha-devs/medusa-shared-admin/admin"
 
 const CompanyDetail = () => {
   const { id } = useParams()
@@ -17,7 +20,14 @@ const CompanyDetail = () => {
   const company = data?.company
 
   if (isLoading || !company) {
-    return <TwoColumnPageSkeleton mainSections={2} sidebarSections={2} showJSON showMetadata />
+    return (
+      <TwoColumnPageSkeleton
+        mainSections={2}
+        sidebarSections={2}
+        showJSON
+        showMetadata
+      />
+    )
   }
 
   if (isError) {
@@ -70,6 +80,6 @@ const GuardedCompanyDetail = () => (
   <RbacGuard permission="b2b.read">
     <CompanyDetail />
   </RbacGuard>
-);
+)
 
-export default GuardedCompanyDetail;
+export default GuardedCompanyDetail

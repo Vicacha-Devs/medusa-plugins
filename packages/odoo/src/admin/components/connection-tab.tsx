@@ -71,12 +71,51 @@ export const ConnectionTab = ({
   }
 
   const textFields = [
-    { name: "url" as const, id: "odoo-url", label: t("connectionTab.urlLabel"), placeholder: t("connectionTab.urlPlaceholder") },
-    { name: "db" as const, id: "odoo-db", label: t("connectionTab.dbLabel"), placeholder: t("connectionTab.dbPlaceholder") },
-    { name: "username" as const, id: "odoo-user", label: t("connectionTab.usernameLabel"), placeholder: t("connectionTab.usernamePlaceholder") },
-    { name: "password" as const, id: "odoo-pass", label: `${t("connectionTab.passwordLabel")} ${savedFlags?.hasPassword ? t("connectionTab.savedSuffix") : ""}`.trim(), placeholder: t("connectionTab.passwordPlaceholder"), type: "password", optional: true },
-    { name: "apiKey" as const, id: "odoo-apikey", label: `${t("connectionTab.apiKeyLabel")} ${savedFlags?.hasApiKey ? t("connectionTab.savedSuffix") : ""}`.trim(), placeholder: t("connectionTab.apiKeyPlaceholder"), type: "password", optional: true },
-    { name: "webhookSecret" as const, id: "odoo-webhook-secret", label: `${t("connectionTab.webhookSecretLabel")} ${savedFlags?.hasWebhookSecret ? t("connectionTab.savedSuffix") : ""}`.trim(), placeholder: t("connectionTab.webhookSecretPlaceholder"), type: "password", optional: true },
+    {
+      name: "url" as const,
+      id: "odoo-url",
+      label: t("connectionTab.urlLabel"),
+      placeholder: t("connectionTab.urlPlaceholder"),
+    },
+    {
+      name: "db" as const,
+      id: "odoo-db",
+      label: t("connectionTab.dbLabel"),
+      placeholder: t("connectionTab.dbPlaceholder"),
+    },
+    {
+      name: "username" as const,
+      id: "odoo-user",
+      label: t("connectionTab.usernameLabel"),
+      placeholder: t("connectionTab.usernamePlaceholder"),
+    },
+    {
+      name: "password" as const,
+      id: "odoo-pass",
+      label:
+        `${t("connectionTab.passwordLabel")} ${savedFlags?.hasPassword ? t("connectionTab.savedSuffix") : ""}`.trim(),
+      placeholder: t("connectionTab.passwordPlaceholder"),
+      type: "password",
+      optional: true,
+    },
+    {
+      name: "apiKey" as const,
+      id: "odoo-apikey",
+      label:
+        `${t("connectionTab.apiKeyLabel")} ${savedFlags?.hasApiKey ? t("connectionTab.savedSuffix") : ""}`.trim(),
+      placeholder: t("connectionTab.apiKeyPlaceholder"),
+      type: "password",
+      optional: true,
+    },
+    {
+      name: "webhookSecret" as const,
+      id: "odoo-webhook-secret",
+      label:
+        `${t("connectionTab.webhookSecretLabel")} ${savedFlags?.hasWebhookSecret ? t("connectionTab.savedSuffix") : ""}`.trim(),
+      placeholder: t("connectionTab.webhookSecretPlaceholder"),
+      type: "password",
+      optional: true,
+    },
   ]
 
   return (
@@ -126,15 +165,24 @@ export const ConnectionTab = ({
                   <Select
                     value={form.protocol}
                     onValueChange={(val) =>
-                      updateField("protocol", val === "json2" ? "json2" : "jsonrpc")
+                      updateField(
+                        "protocol",
+                        val === "json2" ? "json2" : "jsonrpc"
+                      )
                     }
                   >
                     <Select.Trigger id="odoo-protocol">
-                      <Select.Value placeholder={t("connectionTab.protocolPlaceholder")} />
+                      <Select.Value
+                        placeholder={t("connectionTab.protocolPlaceholder")}
+                      />
                     </Select.Trigger>
                     <Select.Content>
-                      <Select.Item value="jsonrpc">JSON-RPC 2.0 (Odoo 14–18)</Select.Item>
-                      <Select.Item value="json2">JSON-2 API (Odoo 19+)</Select.Item>
+                      <Select.Item value="jsonrpc">
+                        JSON-RPC 2.0 (Odoo 14–18)
+                      </Select.Item>
+                      <Select.Item value="json2">
+                        JSON-2 API (Odoo 19+)
+                      </Select.Item>
                     </Select.Content>
                   </Select>
                 </Form.Control>
@@ -150,7 +198,9 @@ export const ConnectionTab = ({
             <Switch
               id="odoo-private-net"
               checked={form.allowPrivateNetwork}
-              onCheckedChange={(checked) => updateField("allowPrivateNetwork", checked)}
+              onCheckedChange={(checked) =>
+                updateField("allowPrivateNetwork", checked)
+              }
             />
           }
         />
@@ -165,7 +215,12 @@ export const ConnectionTab = ({
           >
             {t("connectionTab.verifyButton")}
           </Button>
-          <Button type="submit" size="small" variant="primary" isLoading={isSaving}>
+          <Button
+            type="submit"
+            size="small"
+            variant="primary"
+            isLoading={isSaving}
+          >
             {t("connectionTab.saveButton")}
           </Button>
         </div>

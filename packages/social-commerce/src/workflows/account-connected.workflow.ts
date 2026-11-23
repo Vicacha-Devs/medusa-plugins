@@ -17,7 +17,9 @@ export interface AccountConnectedWorkflowInput {
   required_scopes?: string[]
 }
 
-function parseScopesList(scopes: string[] | string | null | undefined): string[] {
+function parseScopesList(
+  scopes: string[] | string | null | undefined
+): string[] {
   if (!scopes) return []
   if (Array.isArray(scopes)) {
     return scopes.map((s) => String(s).trim()).filter(Boolean)
@@ -35,7 +37,10 @@ export const verifyAccountScopesStep = createStep(
     const account = await socialService.getAccount(input.account_id)
     const grantedScopes = parseScopesList(account.scopes)
 
-    if (Array.isArray(input.required_scopes) && input.required_scopes.length > 0) {
+    if (
+      Array.isArray(input.required_scopes) &&
+      input.required_scopes.length > 0
+    ) {
       const missing = input.required_scopes.filter(
         (reqScope) => !grantedScopes.includes(reqScope)
       )
@@ -64,7 +69,10 @@ export const initialAccountSyncStep = createStep(
       : null
 
     const grantedScopes = parseScopesList(existingAccount.scopes)
-    if (Array.isArray(input.required_scopes) && input.required_scopes.length > 0) {
+    if (
+      Array.isArray(input.required_scopes) &&
+      input.required_scopes.length > 0
+    ) {
       const missing = input.required_scopes.filter(
         (reqScope) => !grantedScopes.includes(reqScope)
       )
@@ -77,7 +85,7 @@ export const initialAccountSyncStep = createStep(
     }
 
     await socialService.updateAccountMetadata(input.account_id, {
-      ...(existingAccount.metadata ?? {}),
+      ...existingAccount.metadata,
       connection_verified_at: new Date().toISOString(),
       workflow: "account-connected",
     })

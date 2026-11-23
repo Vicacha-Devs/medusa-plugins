@@ -28,16 +28,16 @@ Generates **Invoices**, **Packing Slips**, **Credit Notes**, and **80mm / 58mm P
 
 ## 1. Features Overview
 
-| Capability | Description |
-|---|---|
-| **4 First-Class Document Types** | `invoice`, `packing_slip`, `credit_note`, and `receipt` (POS thermal), each with its own numbering sequence, template preset, auto-generation toggle, and auto-email toggle. |
-| **Dual PDF Engine (Zero Chromium)** | **Engine A (`@react-pdf/renderer`)** for type-safe React presets (`clean`, `classic`, `compact`, `packing_slip`, `credit_note`, `pos_80mm`, `pos_58mm`) + TipTap rich-text notes; **Engine B (`Handlebars + pdfmake`)** for custom HTML templates with visual style & section toggles. |
-| **Immutable Snapshots & Versioning** | Every generated PDF is uploaded to Medusa's File Module (`Modules.FILE`) alongside an immutable `settings_snapshot` and `render_context_snapshot`. Order edits flag existing invoices as `is_stale`, allowing admins to issue versioned revisions (`v2`, `v3`) while preserving `prior_versions` in the audit trail. |
-| **Per-Region Settings** | Configure regional legal entities, tax IDs, logos, currencies, locales, and numbering sequences per Medusa Region (`region_id`) with automatic fallback to the Global Default (`region_id = null`). |
-| **10 Built-in Locales (PDF + Admin UI)** | Ships with `en`, `es`, `pl`, `de`, `fr`, `pt`, `it`, `nl`, `tr`, and `ar` dictionaries for both rendered PDFs and the Medusa Admin UI (`react-i18next` with RTL support for Arabic), plus custom merchant translation overrides (`custom_translations`). |
-| **Optional B2B Integration** | Works 100% standalone for B2C stores. If an optional B2B module is registered in the Medusa container or B2B metadata (`tax_id`, `vat_number`, `po_number`, `payment_terms`) is present on the order/customer, documents automatically include buyer B2B details. |
-| **Optional Docuseal E-Signatures** | Supports Docuseal Cloud and self-hosted instances. Zero-config direct PDF signing (`POST /submissions/pdf`) or template-based signing (`POST /submissions`), HMAC-verified webhooks (`X-Docuseal-Signature`), and storefront signing embeds. |
-| **Bulk Operations & Accounting CSV** | Batch-generate documents across multiple orders, download multi-document `.zip` archives, and export formula-injection-safe `.csv` ledgers. |
+| Capability                               | Description                                                                                                                                                                                                                                                                                                          |
+| ---------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **4 First-Class Document Types**         | `invoice`, `packing_slip`, `credit_note`, and `receipt` (POS thermal), each with its own numbering sequence, template preset, auto-generation toggle, and auto-email toggle.                                                                                                                                         |
+| **Dual PDF Engine (Zero Chromium)**      | **Engine A (`@react-pdf/renderer`)** for type-safe React presets (`clean`, `classic`, `compact`, `packing_slip`, `credit_note`, `pos_80mm`, `pos_58mm`) + TipTap rich-text notes; **Engine B (`Handlebars + pdfmake`)** for custom HTML templates with visual style & section toggles.                               |
+| **Immutable Snapshots & Versioning**     | Every generated PDF is uploaded to Medusa's File Module (`Modules.FILE`) alongside an immutable `settings_snapshot` and `render_context_snapshot`. Order edits flag existing invoices as `is_stale`, allowing admins to issue versioned revisions (`v2`, `v3`) while preserving `prior_versions` in the audit trail. |
+| **Per-Region Settings**                  | Configure regional legal entities, tax IDs, logos, currencies, locales, and numbering sequences per Medusa Region (`region_id`) with automatic fallback to the Global Default (`region_id = null`).                                                                                                                  |
+| **10 Built-in Locales (PDF + Admin UI)** | Ships with `en`, `es`, `pl`, `de`, `fr`, `pt`, `it`, `nl`, `tr`, and `ar` dictionaries for both rendered PDFs and the Medusa Admin UI (`react-i18next` with RTL support for Arabic), plus custom merchant translation overrides (`custom_translations`).                                                             |
+| **Optional B2B Integration**             | Works 100% standalone for B2C stores. If an optional B2B module is registered in the Medusa container or B2B metadata (`tax_id`, `vat_number`, `po_number`, `payment_terms`) is present on the order/customer, documents automatically include buyer B2B details.                                                    |
+| **Optional Docuseal E-Signatures**       | Supports Docuseal Cloud and self-hosted instances. Zero-config direct PDF signing (`POST /submissions/pdf`) or template-based signing (`POST /submissions`), HMAC-verified webhooks (`X-Docuseal-Signature`), and storefront signing embeds.                                                                         |
+| **Bulk Operations & Accounting CSV**     | Batch-generate documents across multiple orders, download multi-document `.zip` archives, and export formula-injection-safe `.csv` ledgers.                                                                                                                                                                          |
 
 ---
 
@@ -120,14 +120,15 @@ export default defineConfig({
 
 ## 4. Document Types & Lifecycle Events
 
-| Document Type | Default Prefix | Subscriber Event(s) | Auto-Gen Setting | Description |
-|---|---|---|---|---|
-| `invoice` | `INV` | `order.placed` | `auto_generate_invoice` (`true`) | Commercial tax invoice with line items, taxes, discounts, shipping, notes, and bank details. |
-| `packing_slip` | `PS` | `order.fulfillment_created`, `shipment.created` | `auto_generate_packing_slip` (`false`) | Warehouse dispatch & delivery slip showing SKUs, variants, quantities, weights, carrier, and tracking numbers. **Strictly omits all prices.** |
-| `credit_note` | `CN` | `order.refund_created`, `payment.refunded` | `auto_generate_credit_note` (`true`) | Accounting credit note with negative line items and totals, linked to the original invoice via `related_document_id` and displaying the refund reason. |
-| `receipt` | `RCP` | `order.placed` | `auto_generate_receipt` (`false`) | Point-of-Sale (POS) thermal receipt sized for `80mm` or `58mm` roll printers with dynamic height calculation based on line item count. |
+| Document Type  | Default Prefix | Subscriber Event(s)                             | Auto-Gen Setting                       | Description                                                                                                                                            |
+| -------------- | -------------- | ----------------------------------------------- | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `invoice`      | `INV`          | `order.placed`                                  | `auto_generate_invoice` (`true`)       | Commercial tax invoice with line items, taxes, discounts, shipping, notes, and bank details.                                                           |
+| `packing_slip` | `PS`           | `order.fulfillment_created`, `shipment.created` | `auto_generate_packing_slip` (`false`) | Warehouse dispatch & delivery slip showing SKUs, variants, quantities, weights, carrier, and tracking numbers. **Strictly omits all prices.**          |
+| `credit_note`  | `CN`           | `order.refund_created`, `payment.refunded`      | `auto_generate_credit_note` (`true`)   | Accounting credit note with negative line items and totals, linked to the original invoice via `related_document_id` and displaying the refund reason. |
+| `receipt`      | `RCP`          | `order.placed`                                  | `auto_generate_receipt` (`false`)      | Point-of-Sale (POS) thermal receipt sized for `80mm` or `58mm` roll printers with dynamic height calculation based on line item count.                 |
 
 ### Order Mutation & Stale Detection
+
 - `order.updated` & `order.edit_confirmed`: Marks existing generated `invoice` and `receipt` documents for the order as `is_stale = true` with a descriptive `stale_reason`.
 - `order.canceled`: Marks existing generated documents as `is_stale = true` (`"Order was canceled"`).
 - Admins can click **Issue v2** on the Order Documents Widget to generate a new versioned revision while preserving all prior PDFs in `prior_versions` and `audit_log`.
@@ -137,7 +138,9 @@ export default defineConfig({
 ## 5. Dual PDF Rendering Engine & Templates
 
 ### Engine A: Built-in `@react-pdf/renderer` Presets
+
 Fast, serverless-friendly React PDF components with TipTap rich-text notes support (`src/modules/documents/renderer/react-pdf/`):
+
 - `clean`: Modern minimalist layout with brand accent bar, structured metadata, optional B2B badge box, and optional signature block.
 - `classic`: Executive bordered layout with framed header and grid cells.
 - `compact`: High-density wholesale/B2B layout engineered for orders with 50–100+ line items.
@@ -146,7 +149,9 @@ Fast, serverless-friendly React PDF components with TipTap rich-text notes suppo
 - `pos_80mm` / `pos_58mm`: Thermal receipt roll layouts (`226.77pt` and `164.41pt` width) with automatic height calculation.
 
 ### Engine B: Custom `Handlebars + pdfmake` Templates (`mpd_document_template`)
+
 Merchants can create custom HTML/Handlebars templates via `/admin/documents/templates` with:
+
 - **Page Sizes**: `A4`, `LETTER`, `80MM`, `58MM`
 - **Orientations**: `portrait`, `landscape`
 - **Handlebars Variables**:
@@ -164,17 +169,18 @@ Merchants can create custom HTML/Handlebars templates via `/admin/documents/temp
 
 Each document type (`invoice`, `packing_slip`, `credit_note`, `receipt`) maintains its own independent sequence in `mpd_document_settings`:
 
-| Token | Output Example | Description |
-|---|---|---|
-| `{prefix}` | `INV` | Configured prefix for the document type |
-| `{year}` | `2026` | 4-digit UTC year |
-| `{short_year}` | `26` | 2-digit UTC year |
-| `{month}` | `10` | Zero-padded 2-digit UTC month (`01`–`12`) |
-| `{day}` | `09` | Zero-padded 2-digit UTC day (`01`–`31`) |
-| `{number}` | `00042` | Sequential counter padded to `{type}_number_padding` (default `5`) |
-| `{order_display_id}` | `1042` | Medusa order `display_id` |
+| Token                | Output Example | Description                                                        |
+| -------------------- | -------------- | ------------------------------------------------------------------ |
+| `{prefix}`           | `INV`          | Configured prefix for the document type                            |
+| `{year}`             | `2026`         | 4-digit UTC year                                                   |
+| `{short_year}`       | `26`           | 2-digit UTC year                                                   |
+| `{month}`            | `10`           | Zero-padded 2-digit UTC month (`01`–`12`)                          |
+| `{day}`              | `09`           | Zero-padded 2-digit UTC day (`01`–`31`)                            |
+| `{number}`           | `00042`        | Sequential counter padded to `{type}_number_padding` (default `5`) |
+| `{order_display_id}` | `1042`         | Medusa order `display_id`                                          |
 
 ### `forced_next_number`
+
 Setting `invoice_forced_next_number: 500` (or the equivalent field for `packing_slip`, `credit_note`, or `receipt`) forces the very next generated document of that type to use sequence number `500`, automatically resets `forced_next_number` to `null`, and increments `next_invoice_number` to `501`.
 
 ---
@@ -182,22 +188,24 @@ Setting `invoice_forced_next_number: 500` (or the equivalent field for `packing_
 ## 7. Multi-Language Support (i18n)
 
 ### Built-in Locales (PDF Generation & Admin UI)
+
 Both the backend PDF generator (`src/modules/documents/i18n/locales/all-locales.ts`) and the Medusa Admin UI (`src/admin/i18n/index.ts` via `react-i18next`) support **10 built-in languages**, including automatic **RTL (`dir="rtl"`)** layout in the Admin UI when Arabic (`ar`) is selected:
 
-| Code | Language | Invoice Title | Packing Slip Title | Credit Note Title |
-|---|---|---|---|---|
-| `en` | English | `INVOICE` | `PACKING SLIP` | `CREDIT NOTE` |
-| `es` | Spanish | `FACTURA` | `ALBARÁN DE ENTREGA` | `NOTA DE CRÉDITO` |
-| `pl` | Polish | `FAKTURA` | `SPECYFIKACJA WYSYŁKOWA` | `FAKTURA KORYGUJĄCA` |
-| `de` | German | `RECHNUNG` | `LIEFERSCHEIN` | `GUTSCHRIFT` |
-| `fr` | French | `FACTURE` | `BON DE LIVRAISON` | `AVOIR` |
-| `pt` | Portuguese | `FATURA` | `GUIA DE REMESSA` | `NOTA DE CRÉDITO` |
-| `it` | Italian | `FATTURA` | `DOCUMENTO DI TRASPORTO` | `NOTA DI CREDITO` |
-| `nl` | Dutch | `FACTUUR` | `PAKBON` | `CREDITNOTA` |
-| `tr` | Turkish | `FATURA` | `SEVK İRSALİYESİ` | `İADE FATURASI / ALACAK DEKONTU` |
-| `ar` | Arabic (RTL) | `فاتورة ضريبية` | `إشعار تسليم / تعبئة` | `إشعار دائن` |
+| Code | Language     | Invoice Title   | Packing Slip Title       | Credit Note Title                |
+| ---- | ------------ | --------------- | ------------------------ | -------------------------------- |
+| `en` | English      | `INVOICE`       | `PACKING SLIP`           | `CREDIT NOTE`                    |
+| `es` | Spanish      | `FACTURA`       | `ALBARÁN DE ENTREGA`     | `NOTA DE CRÉDITO`                |
+| `pl` | Polish       | `FAKTURA`       | `SPECYFIKACJA WYSYŁKOWA` | `FAKTURA KORYGUJĄCA`             |
+| `de` | German       | `RECHNUNG`      | `LIEFERSCHEIN`           | `GUTSCHRIFT`                     |
+| `fr` | French       | `FACTURE`       | `BON DE LIVRAISON`       | `AVOIR`                          |
+| `pt` | Portuguese   | `FATURA`        | `GUIA DE REMESSA`        | `NOTA DE CRÉDITO`                |
+| `it` | Italian      | `FATTURA`       | `DOCUMENTO DI TRASPORTO` | `NOTA DI CREDITO`                |
+| `nl` | Dutch        | `FACTUUR`       | `PAKBON`                 | `CREDITNOTA`                     |
+| `tr` | Turkish      | `FATURA`        | `SEVK İRSALİYESİ`        | `İADE FATURASI / ALACAK DEKONTU` |
+| `ar` | Arabic (RTL) | `فاتورة ضريبية` | `إشعار تسليم / تعبئة`    | `إشعار دائن`                     |
 
 ### Custom Translation Overrides
+
 Override any label per locale via `PUT /admin/documents/settings`:
 
 ```json
@@ -298,44 +306,45 @@ The subscriber (`src/subscribers/document-generated-email.ts`) checks `auto_emai
 
 ### Admin Endpoints
 
-| Method | Path | Description |
-|---|---|---|
-| `GET` | `/admin/documents` | List documents (`?order_id=`, `?document_type=`, `?status=`, `?is_stale=`, `?q=`, `?date_from=`, `?date_to=`, `?limit=`, `?offset=`) |
-| `POST` | `/admin/documents` | Generate a document (`{ order_id, document_type, template_id?, locale?, fulfillment_id?, refund_id? }`) |
-| `GET` | `/admin/documents/:id` | Retrieve document details, `audit_log`, `prior_versions`, `signature_requests`, and `related_children` |
-| `DELETE` | `/admin/documents/:id` | Delete a draft/failed document (generated invoices & credit notes are protected) |
-| `GET` | `/admin/documents/:id/pdf` | Stream PDF (`?signed=true` for countersigned PDF, `?download=true` for attachment disposition) |
-| `POST` | `/admin/documents/:id/regenerate` | Retry a `failed` document OR issue a new versioned revision (`v2`, `v3`) |
-| `POST` | `/admin/documents/:id/send-email` | Email PDF attachment via Notification Module (`{ recipient_email? }`) |
-| `POST` | `/admin/documents/:id/send-for-signature` | Create Docuseal signature request (`{ signer_email?, signer_name?, role?, template_id?, send_email? }`) |
-| `GET` | `/admin/documents/settings` | Get global or regional settings (`?region_id=...`) + integration status |
-| `PUT` | `/admin/documents/settings` | Upsert global or regional settings (`{ region_id?, ... }`) |
-| `DELETE` | `/admin/documents/settings` | Reset regional override (`?region_id=reg_...`) back to Global Default |
-| `GET / POST` | `/admin/documents/templates` | List presets/custom templates or create a custom template |
-| `GET / PUT / DELETE` | `/admin/documents/templates/:id` | Retrieve, update, or delete a custom template |
-| `GET / POST` | `/admin/documents/preview` | Live PDF preview (`?document_type=`, `?locale=`, `?order_id=`, `?items=75`) |
-| `POST` | `/admin/documents/bulk-generate` | Batch-generate documents (`{ order_ids: string[], document_type }`) |
-| `POST` | `/admin/documents/bulk-download` | Stream a `.zip` archive of `{ document_ids: string[] }` |
-| `GET` | `/admin/documents/export.csv` | Download formula-safe `.csv` accounting ledger |
-| `POST` | `/admin/documents/webhooks/docuseal` | HMAC-verified Docuseal webhook receiver |
+| Method               | Path                                      | Description                                                                                                                          |
+| -------------------- | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `GET`                | `/admin/documents`                        | List documents (`?order_id=`, `?document_type=`, `?status=`, `?is_stale=`, `?q=`, `?date_from=`, `?date_to=`, `?limit=`, `?offset=`) |
+| `POST`               | `/admin/documents`                        | Generate a document (`{ order_id, document_type, template_id?, locale?, fulfillment_id?, refund_id? }`)                              |
+| `GET`                | `/admin/documents/:id`                    | Retrieve document details, `audit_log`, `prior_versions`, `signature_requests`, and `related_children`                               |
+| `DELETE`             | `/admin/documents/:id`                    | Delete a draft/failed document (generated invoices & credit notes are protected)                                                     |
+| `GET`                | `/admin/documents/:id/pdf`                | Stream PDF (`?signed=true` for countersigned PDF, `?download=true` for attachment disposition)                                       |
+| `POST`               | `/admin/documents/:id/regenerate`         | Retry a `failed` document OR issue a new versioned revision (`v2`, `v3`)                                                             |
+| `POST`               | `/admin/documents/:id/send-email`         | Email PDF attachment via Notification Module (`{ recipient_email? }`)                                                                |
+| `POST`               | `/admin/documents/:id/send-for-signature` | Create Docuseal signature request (`{ signer_email?, signer_name?, role?, template_id?, send_email? }`)                              |
+| `GET`                | `/admin/documents/settings`               | Get global or regional settings (`?region_id=...`) + integration status                                                              |
+| `PUT`                | `/admin/documents/settings`               | Upsert global or regional settings (`{ region_id?, ... }`)                                                                           |
+| `DELETE`             | `/admin/documents/settings`               | Reset regional override (`?region_id=reg_...`) back to Global Default                                                                |
+| `GET / POST`         | `/admin/documents/templates`              | List presets/custom templates or create a custom template                                                                            |
+| `GET / PUT / DELETE` | `/admin/documents/templates/:id`          | Retrieve, update, or delete a custom template                                                                                        |
+| `GET / POST`         | `/admin/documents/preview`                | Live PDF preview (`?document_type=`, `?locale=`, `?order_id=`, `?items=75`)                                                          |
+| `POST`               | `/admin/documents/bulk-generate`          | Batch-generate documents (`{ order_ids: string[], document_type }`)                                                                  |
+| `POST`               | `/admin/documents/bulk-download`          | Stream a `.zip` archive of `{ document_ids: string[] }`                                                                              |
+| `GET`                | `/admin/documents/export.csv`             | Download formula-safe `.csv` accounting ledger                                                                                       |
+| `POST`               | `/admin/documents/webhooks/docuseal`      | HMAC-verified Docuseal webhook receiver                                                                                              |
 
 ### Storefront Endpoints (Requires Authenticated Customer Owning the Order)
 
-| Method | Path | Description |
-|---|---|---|
-| `GET` | `/store/documents/:order_id` | List customer's generated documents & signature requests for `:order_id` |
-| `GET` | `/store/documents/:order_id/invoice.pdf` | Stream customer Invoice PDF |
-| `GET` | `/store/documents/:order_id/packing-slip.pdf` | Stream customer Packing Slip PDF |
-| `GET` | `/store/documents/:order_id/credit-note.pdf` | Stream customer Credit Note PDF |
-| `GET` | `/store/documents/:order_id/receipt.pdf` | Stream customer POS Receipt PDF |
-| `GET` | `/store/documents/:order_id/signed.pdf` | Stream customer countersigned PDF |
-| `GET` | `/store/documents/:order_id/signing-url` | Get active Docuseal `embed_src` signing URL |
+| Method | Path                                          | Description                                                              |
+| ------ | --------------------------------------------- | ------------------------------------------------------------------------ |
+| `GET`  | `/store/documents/:order_id`                  | List customer's generated documents & signature requests for `:order_id` |
+| `GET`  | `/store/documents/:order_id/invoice.pdf`      | Stream customer Invoice PDF                                              |
+| `GET`  | `/store/documents/:order_id/packing-slip.pdf` | Stream customer Packing Slip PDF                                         |
+| `GET`  | `/store/documents/:order_id/credit-note.pdf`  | Stream customer Credit Note PDF                                          |
+| `GET`  | `/store/documents/:order_id/receipt.pdf`      | Stream customer POS Receipt PDF                                          |
+| `GET`  | `/store/documents/:order_id/signed.pdf`       | Stream customer countersigned PDF                                        |
+| `GET`  | `/store/documents/:order_id/signing-url`      | Get active Docuseal `embed_src` signing URL                              |
 
 ---
 
 ## 14. Database Schema (`mpd_` Prefix)
 
 All plugin tables use the `mpd_` prefix (`src/modules/documents/migrations/Migration20261009000000.ts`):
+
 - `mpd_document`: Primary document records, indexed on `order_id`, `related_document_id`, `fulfillment_id`, `refund_id`, and unique on `(document_type, document_number, version)`.
 - `mpd_document_settings`: Global (`region_id IS NULL`) and per-region (`region_id`) configuration rows.
 - `mpd_document_template`: Custom Handlebars/HTML and POS templates.

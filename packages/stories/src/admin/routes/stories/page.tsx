@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom"
 
 import { NavigationCard, StatCard } from "../../components/overview-cards"
 import { useStoriesStudio } from "../../hooks/use-stories-studio"
-import { RbacGuard } from "../../components/rbac-guard";
+import { RbacGuard } from "../../components/rbac-guard"
 
 const StoriesOverviewPage = () => {
   const { t, i18n } = useTranslation()
@@ -159,6 +159,6 @@ const GuardedStoriesOverviewPage = () => (
   <RbacGuard permission="stories.read">
     <StoriesOverviewPage />
   </RbacGuard>
-);
+)
 
-export default GuardedStoriesOverviewPage;
+export default GuardedStoriesOverviewPage

@@ -1,5 +1,12 @@
 import { defineWidgetConfig } from "@medusajs/admin-sdk"
-import { Container, Heading, Button, CurrencyInput, Badge, toast } from "@medusajs/ui"
+import {
+  Container,
+  Heading,
+  Button,
+  CurrencyInput,
+  Badge,
+  toast,
+} from "@medusajs/ui"
 import { useState } from "react"
 import { useTranslation } from "react-i18next"
 
@@ -7,7 +14,9 @@ import { useBoldRefund } from "../../hooks/use-bold-refund"
 
 const BoldRefundActionsWidget = ({ data: order }: { data: any }) => {
   const { t } = useTranslation()
-  const [refundAmount, setRefundAmount] = useState<number | undefined>(undefined)
+  const [refundAmount, setRefundAmount] = useState<number | undefined>(
+    undefined
+  )
   const { mutateAsync: refundPayment, isPending: loading } = useBoldRefund()
 
   const boldPayment = order?.payment_collections
@@ -112,7 +121,9 @@ const BoldRefundActionsWidget = ({ data: order }: { data: any }) => {
           symbol="$"
           code={currencyCode}
           value={refundAmount}
-          onValueChange={(val) => setRefundAmount(val ? Number(val) : undefined)}
+          onValueChange={(val) =>
+            setRefundAmount(val ? Number(val) : undefined)
+          }
           placeholder="0"
           disabled={loading}
         />

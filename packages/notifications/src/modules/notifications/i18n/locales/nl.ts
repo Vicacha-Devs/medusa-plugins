@@ -4,8 +4,7 @@ export const nl: NotificationTranslationDictionary = {
   general: {
     hello: "Hallo",
     thankYou: "Bedankt voor uw bestelling!",
-    questionsContact:
-      "Heeft u vragen? Beantwoord dit bericht gerust.",
+    questionsContact: "Heeft u vragen? Beantwoord dit bericht gerust.",
     viewInStore: "Bezoek Winkel",
     poweredBy: "Verzonden door",
     unsubscribeSms: "Antwoord STOP om af te melden.",
@@ -40,8 +39,7 @@ export const nl: NotificationTranslationDictionary = {
     downloadInvoiceButton: "Factuur PDF downloaden",
   },
   shipment: {
-    shippedSubject:
-      "Uw bestelling #{{data.order_display_id}} is verzonden!",
+    shippedSubject: "Uw bestelling #{{data.order_display_id}} is verzonden!",
     shippedTitle: "Uw pakket is onderweg",
     shippedIntro:
       "Uw bestelling #{{data.order_display_id}} is overgedragen aan de bezorgdienst.",

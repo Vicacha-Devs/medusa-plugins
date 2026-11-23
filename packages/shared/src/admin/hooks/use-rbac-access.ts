@@ -1,32 +1,32 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"
 
 export interface RbacMePayload {
-  isSuperAdmin?: boolean;
-  permissions?: string[];
+  isSuperAdmin?: boolean
+  permissions?: string[]
 }
 
 export interface RbacAccessState {
-  isLoading: boolean;
-  rbacActive: boolean;
-  isSuperAdmin: boolean;
-  permissions: string[];
-  hasPermission: (permission?: string) => boolean;
+  isLoading: boolean
+  rbacActive: boolean
+  isSuperAdmin: boolean
+  permissions: string[]
+  hasPermission: (permission?: string) => boolean
 }
 
 interface CachedRbacResult {
-  rbacActive: boolean;
-  isSuperAdmin: boolean;
-  permissions: string[];
-  fetchedAt: number;
+  rbacActive: boolean
+  isSuperAdmin: boolean
+  permissions: string[]
+  fetchedAt: number
 }
 
-const CACHE_TTL_MS = 30_000;
-let cachedResult: CachedRbacResult | null = null;
-let inflightPromise: Promise<CachedRbacResult> | null = null;
+const CACHE_TTL_MS = 30_000
+let cachedResult: CachedRbacResult | null = null
+let inflightPromise: Promise<CachedRbacResult> | null = null
 
 export function clearRbacAccessCache(): void {
-  cachedResult = null;
-  inflightPromise = null;
+  cachedResult = null
+  inflightPromise = null
 }
 
 export function matchRbacPermission(
@@ -34,27 +34,31 @@ export function matchRbacPermission(
   required: string,
   isSuperAdmin = false
 ): boolean {
-  if (isSuperAdmin) return true;
-  if (!required) return true;
-  if (granted.includes("*") || granted.includes("*:*") || granted.includes(required)) {
-    return true;
+  if (isSuperAdmin) return true
+  if (!required) return true
+  if (
+    granted.includes("*") ||
+    granted.includes("*:*") ||
+    granted.includes(required)
+  ) {
+    return true
   }
-  const sep = required.includes(".") ? "." : required.includes(":") ? ":" : null;
+  const sep = required.includes(".") ? "." : required.includes(":") ? ":" : null
   if (sep) {
-    const ns = required.split(sep)[0];
+    const ns = required.split(sep)[0]
     if (granted.includes(`${ns}.*`) || granted.includes(`${ns}:*`)) {
-      return true;
+      return true
     }
   }
-  return false;
+  return false
 }
 
 async function fetchRbacMe(): Promise<CachedRbacResult> {
   if (cachedResult && Date.now() - cachedResult.fetchedAt < CACHE_TTL_MS) {
-    return cachedResult;
+    return cachedResult
   }
   if (inflightPromise) {
-    return inflightPromise;
+    return inflightPromise
   }
 
   inflightPromise = (async () => {
@@ -62,16 +66,16 @@ async function fetchRbacMe(): Promise<CachedRbacResult> {
       const res = await fetch("/admin/rbac/me", {
         credentials: "include",
         headers: { Accept: "application/json" },
-      });
+      })
       if (res.status === 404) {
         const fallback: CachedRbacResult = {
           rbacActive: false,
           isSuperAdmin: false,
           permissions: [],
           fetchedAt: Date.now(),
-        };
-        cachedResult = fallback;
-        return fallback;
+        }
+        cachedResult = fallback
+        return fallback
       }
       if (!res.ok) {
         const denied: CachedRbacResult = {
@@ -79,34 +83,34 @@ async function fetchRbacMe(): Promise<CachedRbacResult> {
           isSuperAdmin: false,
           permissions: [],
           fetchedAt: Date.now(),
-        };
-        cachedResult = denied;
-        return denied;
+        }
+        cachedResult = denied
+        return denied
       }
-      const data = (await res.json()) as RbacMePayload;
+      const data = (await res.json()) as RbacMePayload
       const resolved: CachedRbacResult = {
         rbacActive: true,
         isSuperAdmin: Boolean(data?.isSuperAdmin),
         permissions: Array.isArray(data?.permissions) ? data.permissions : [],
         fetchedAt: Date.now(),
-      };
-      cachedResult = resolved;
-      return resolved;
+      }
+      cachedResult = resolved
+      return resolved
     } catch {
       const fallback: CachedRbacResult = {
         rbacActive: false,
         isSuperAdmin: false,
         permissions: [],
         fetchedAt: Date.now(),
-      };
-      cachedResult = fallback;
-      return fallback;
+      }
+      cachedResult = fallback
+      return fallback
     } finally {
-      inflightPromise = null;
+      inflightPromise = null
     }
-  })();
+  })()
 
-  return inflightPromise;
+  return inflightPromise
 }
 
 /**
@@ -117,17 +121,17 @@ export function useRbacAccess(): RbacAccessState {
     cachedResult && Date.now() - cachedResult.fetchedAt < CACHE_TTL_MS
       ? cachedResult
       : null
-  );
+  )
 
   useEffect(() => {
-    let active = true;
+    let active = true
     fetchRbacMe().then((res) => {
-      if (active) setState(res);
-    });
+      if (active) setState(res)
+    })
     return () => {
-      active = false;
-    };
-  }, []);
+      active = false
+    }
+  }, [])
 
   if (!state) {
     return {
@@ -136,7 +140,7 @@ export function useRbacAccess(): RbacAccessState {
       isSuperAdmin: false,
       permissions: [],
       hasPermission: () => false,
-    };
+    }
   }
 
   return {
@@ -145,12 +149,12 @@ export function useRbacAccess(): RbacAccessState {
     isSuperAdmin: state.isSuperAdmin,
     permissions: state.permissions,
     hasPermission: (permission?: string) => {
-      if (!state.rbacActive || !permission) return true;
+      if (!state.rbacActive || !permission) return true
       return matchRbacPermission(
         state.permissions,
         permission,
         state.isSuperAdmin
-      );
+      )
     },
-  };
+  }
 }

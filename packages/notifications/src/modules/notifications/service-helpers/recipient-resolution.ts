@@ -13,8 +13,14 @@ export function resolveRecipientForRule(params: {
   b2b_contacts?: B2BNotificationContacts
   channel_config?: Record<string, any> | null
 }): string | null {
-  const { rule, custom_recipient, channel, data, b2b_contacts, channel_config } =
-    params
+  const {
+    rule,
+    custom_recipient,
+    channel,
+    data,
+    b2b_contacts,
+    channel_config,
+  } = params
 
   if (rule === "custom_recipient" && custom_recipient) {
     return custom_recipient.trim()
@@ -45,7 +51,11 @@ export function resolveRecipientForRule(params: {
       return normalizeE164Phone(b2b_contacts?.buyer_phone || data.phone)
     }
     if (channel === "telegram") {
-      return b2b_contacts?.telegram_chat_id || data.customer?.telegram_chat_id || null
+      return (
+        b2b_contacts?.telegram_chat_id ||
+        data.customer?.telegram_chat_id ||
+        null
+      )
     }
   }
 

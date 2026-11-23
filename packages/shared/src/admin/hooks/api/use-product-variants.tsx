@@ -1,6 +1,9 @@
 import { QueryKey, useQuery, UseQueryOptions } from "@tanstack/react-query"
 import { FetchError } from "@medusajs/js-sdk"
-import { AdminProductVariantListResponse, AdminProductVariantParams } from "@medusajs/framework/types"
+import {
+  AdminProductVariantListResponse,
+  AdminProductVariantParams,
+} from "@medusajs/framework/types"
 
 import { queryKeysFactory, sdk } from "../../lib"
 

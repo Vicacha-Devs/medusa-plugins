@@ -13,8 +13,9 @@ export async function sendDocumentEmailNotification(
     force?: boolean
   }
 ): Promise<{ sent: boolean; recipient?: string; reason?: string }> {
-  const documentsService =
-    container.resolve(DOCUMENTS_MODULE) as DocumentsModuleService
+  const documentsService = container.resolve(
+    DOCUMENTS_MODULE
+  ) as DocumentsModuleService
 
   const { buffer, document } = await documentsService.getDocumentPdfBuffer(
     params.document_id

@@ -1,101 +1,113 @@
-import { zodResolver } from "@hookform/resolvers/zod";
-import { AdminOrder } from "@medusajs/framework/types";
-import { Button, Heading, Skeleton, toast } from "@medusajs/ui";
-import {
-  RouteFocusModal,
-  useRouteModal
-} from "@medusajs/dashboard/components";
-import { useOrderPreview } from "@medusajs/dashboard/hooks";
-import { safeFormatCurrency } from "@vicacha-devs/medusa-shared-admin/admin";
-import { useCallback, useMemo, useState } from "react";
-import { useForm } from "react-hook-form";
-import { useTranslation } from "react-i18next";
+import { zodResolver } from "@hookform/resolvers/zod"
+import { AdminOrder } from "@medusajs/framework/types"
+import { Button, Heading, Skeleton, toast } from "@medusajs/ui"
+import { RouteFocusModal, useRouteModal } from "@medusajs/dashboard/components"
+import { useOrderPreview } from "@medusajs/dashboard/hooks"
+import { safeFormatCurrency } from "@vicacha-devs/medusa-shared-admin/admin"
+import { useCallback, useMemo, useState } from "react"
+import { useForm } from "react-hook-form"
+import { useTranslation } from "react-i18next"
 
 import {
   useConfirmQuote,
   useUpdateAddedQuoteItem,
   useUpdateQuoteItem,
-} from "../../../../../../hooks/api";
-import { ManageItemsSection } from "./manage-items-section.tsx";
+} from "../../../../../../hooks/api"
+import { ManageItemsSection } from "./manage-items-section.tsx"
 import {
   ManageQuoteFormSchema,
   type ManageQuoteFormSchemaType,
-} from "./validators";
+} from "./validators"
 
 type ReturnCreateFormProps = {
-  order: AdminOrder;
-};
+  order: AdminOrder
+}
 
 type ItemChange = {
-  quantity?: number;
-  unit_price?: number;
-};
+  quantity?: number
+  unit_price?: number
+}
 
 export const ManageQuoteForm = ({ order }: ReturnCreateFormProps) => {
-  const { t } = useTranslation();
-  const { handleSuccess } = useRouteModal();
-  const { order: preview } = useOrderPreview(order.id, { fields: "currency_code,total,items,summary" });
+  const { t } = useTranslation()
+  const { handleSuccess } = useRouteModal()
+  const { order: preview } = useOrderPreview(order.id, {
+    fields: "currency_code,total,items,summary",
+  })
 
-  const { mutateAsync: confirmQuote } = useConfirmQuote(order.id);
-  const { mutateAsync: updateAddedItem } = useUpdateAddedQuoteItem(order.id);
-  const { mutateAsync: updateOriginalItem } = useUpdateQuoteItem(order.id);
+  const { mutateAsync: confirmQuote } = useConfirmQuote(order.id)
+  const { mutateAsync: updateAddedItem } = useUpdateAddedQuoteItem(order.id)
+  const { mutateAsync: updateOriginalItem } = useUpdateQuoteItem(order.id)
 
-  const [explicitChanges, setExplicitChanges] = useState<Record<string, ItemChange>>({});
+  const [explicitChanges, setExplicitChanges] = useState<
+    Record<string, ItemChange>
+  >({})
 
   const onItemChange = useCallback((itemId: string, changes: ItemChange) => {
     setExplicitChanges((prev) => ({
       ...prev,
       [itemId]: { ...prev[itemId], ...changes },
-    }));
-  }, []);
+    }))
+  }, [])
 
   const localNewTotal = useMemo(() => {
-    if (!preview) return 0;
-    let delta = 0;
+    if (!preview) return 0
+    let delta = 0
     for (const item of preview.items as any[]) {
-      const change = explicitChanges[item.id];
-      if (!change) continue;
-      const localQty = change.quantity ?? item.quantity;
-      const localPrice = change.unit_price ?? item.unit_price;
-      delta += localQty * localPrice - item.quantity * item.unit_price;
+      const change = explicitChanges[item.id]
+      if (!change) continue
+      const localQty = change.quantity ?? item.quantity
+      const localPrice = change.unit_price ?? item.unit_price
+      delta += localQty * localPrice - item.quantity * item.unit_price
     }
-    return preview.total + delta;
-  }, [preview, explicitChanges]);
+    return preview.total + delta
+  }, [preview, explicitChanges])
 
   const form = useForm<ManageQuoteFormSchemaType>({
     defaultValues: () => Promise.resolve({}),
     resolver: zodResolver(ManageQuoteFormSchema),
-  });
+  })
 
   const handleSubmit = form.handleSubmit(async () => {
     try {
       if (preview) {
         for (const item of preview.items as any[]) {
-          const change = explicitChanges[item.id];
-          if (!change) continue;
+          const change = explicitChanges[item.id]
+          if (!change) continue
 
-          const finalQty = change.quantity ?? item.quantity;
-          const finalPrice = change.unit_price ?? item.unit_price;
-          if (finalQty === item.quantity && finalPrice === item.unit_price) continue;
+          const finalQty = change.quantity ?? item.quantity
+          const finalPrice = change.unit_price ?? item.unit_price
+          if (finalQty === item.quantity && finalPrice === item.unit_price)
+            continue
 
-          const addItemAction = item.actions?.find((a: any) => a.action === "ITEM_ADD");
+          const addItemAction = item.actions?.find(
+            (a: any) => a.action === "ITEM_ADD"
+          )
           if (addItemAction) {
-            await updateAddedItem({ quantity: finalQty, unit_price: finalPrice, actionId: addItemAction.id });
+            await updateAddedItem({
+              quantity: finalQty,
+              unit_price: finalPrice,
+              actionId: addItemAction.id,
+            })
           } else {
-            await updateOriginalItem({ quantity: finalQty, unit_price: finalPrice, itemId: item.id });
+            await updateOriginalItem({
+              quantity: finalQty,
+              unit_price: finalPrice,
+              itemId: item.id,
+            })
           }
         }
       }
 
-      await confirmQuote({});
-      toast.success(t("quotes.toasts.updated"));
-      handleSuccess();
+      await confirmQuote({})
+      toast.success(t("quotes.toasts.updated"))
+      handleSuccess()
     } catch (e) {
       toast.error(t("general.error"), {
         description: e.message,
-      });
+      })
     }
-  });
+  })
 
   if (!preview) {
     return (
@@ -110,7 +122,7 @@ export const ManageQuoteForm = ({ order }: ReturnCreateFormProps) => {
           </RouteFocusModal.Body>
         </div>
       </RouteFocusModal.Form>
-    );
+    )
   }
 
   return (
@@ -122,7 +134,11 @@ export const ManageQuoteForm = ({ order }: ReturnCreateFormProps) => {
           <div className="mt-16 w-[720px] max-w-[100%] px-4 md:p-0">
             <Heading level="h1">{t("quotes.manage.title")}</Heading>
 
-            <ManageItemsSection preview={preview} order={order} onItemChange={onItemChange} />
+            <ManageItemsSection
+              preview={preview}
+              order={order}
+              onItemChange={onItemChange}
+            />
 
             {/*TOTALS SECTION*/}
             <div className="mt-8 border-y border-dotted py-4">
@@ -167,5 +183,5 @@ export const ManageQuoteForm = ({ order }: ReturnCreateFormProps) => {
         </RouteFocusModal.Footer>
       </form>
     </RouteFocusModal.Form>
-  );
-};
+  )
+}

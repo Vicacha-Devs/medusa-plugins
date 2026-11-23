@@ -1,17 +1,15 @@
 import { defineRouteConfig } from "@medusajs/admin-sdk"
 import { CORE_LAYOUT_IDS } from "@medusajs/admin-shared"
 import { LayoutComposer } from "@medusajs/dashboard/components"
-import { Toaster } from "@medusajs/ui"
 import { useTranslation } from "react-i18next"
 import {
   BarcodeLookupSection,
   PosTransactionsSection,
 } from "../../../components"
 import { useOdooDashboard } from "../../../hooks/use-odoo-dashboard"
-import { RbacGuard } from "../../../components/rbac-guard";
+import { RbacGuard } from "../../../components/rbac-guard"
 
 const OdooBarcodePage = () => {
-  const { i18n } = useTranslation()
   // const isRtl = (i18n.resolvedLanguage || i18n.language || "").startsWith("ar")
 
   const {
@@ -82,6 +80,6 @@ const GuardedOdooBarcodePage = () => (
   <RbacGuard permission="odoo.read">
     <OdooBarcodePage />
   </RbacGuard>
-);
+)
 
-export default GuardedOdooBarcodePage;
+export default GuardedOdooBarcodePage

@@ -26,8 +26,7 @@ export const useOrderOdooStatus = (data?: OrderOdooData) => {
   const odooOrderId = data?.metadata?.odoo_order_id ?? mapping?.odoo_id ?? null
   const odooInvoiceId =
     data?.metadata?.odoo_invoice_id ??
-    (mapping?.metadata as Record<string, unknown> | undefined)
-      ?.odooInvoiceId ??
+    (mapping?.metadata as Record<string, unknown> | undefined)?.odooInvoiceId ??
     null
 
   const handleSyncOrder = async () => {

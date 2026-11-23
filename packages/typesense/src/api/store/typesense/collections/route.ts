@@ -75,9 +75,17 @@ async function handleStoreCollectionsSearch(
 }
 
 export async function GET(req: MedusaRequest, res: MedusaResponse) {
-  return handleStoreCollectionsSearch(req, res, (req.query || {}) as Record<string, any>)
+  return handleStoreCollectionsSearch(
+    req,
+    res,
+    (req.query || {}) as Record<string, any>
+  )
 }
 
 export async function POST(req: MedusaRequest, res: MedusaResponse) {
-  return handleStoreCollectionsSearch(req, res, (req.body || {}) as Record<string, any>)
+  return handleStoreCollectionsSearch(
+    req,
+    res,
+    (req.body || {}) as Record<string, any>
+  )
 }

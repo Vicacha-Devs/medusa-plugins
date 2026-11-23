@@ -1,12 +1,12 @@
-import type { ReactNode } from "react";
-import { DataTableFilter, Filter } from "./data-table-filter";
-import { DataTableSearch } from "./data-table-search";
+import type { ReactNode } from "react"
+import { DataTableFilter, Filter } from "./data-table-filter"
+import { DataTableSearch } from "./data-table-search"
 
 export interface DataTableQueryProps {
-  search?: boolean | "autofocus";
-  orderBy?: (string | number)[];
-  filters?: Filter[];
-  prefix?: string;
+  search?: boolean | "autofocus"
+  orderBy?: (string | number)[]
+  filters?: Filter[]
+  prefix?: string
 }
 
 export const DataTableQuery = ({
@@ -33,5 +33,5 @@ export const DataTableQuery = ({
         </div>
       </div>
     )
-  );
-};
+  )
+}

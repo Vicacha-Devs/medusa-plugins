@@ -5,9 +5,12 @@ import {
   createOrderWorkflow,
 } from "@medusajs/core-flows"
 import { MedusaContainer } from "@medusajs/framework"
-import { ContainerRegistrationKeys, Modules, OrderStatus } from "@medusajs/framework/utils"
+import {
+  ContainerRegistrationKeys,
+  Modules,
+  OrderStatus,
+} from "@medusajs/framework/utils"
 
-import { COMPANY_MODULE } from "../modules/company"
 import { APPROVAL_MODULE } from "../modules/approval"
 import { QUOTE_MODULE } from "../modules/quote"
 import { EQuoteStatus, ESpendingLimitResetFrequency } from "../types/enums"
@@ -22,7 +25,12 @@ import { customerAcceptQuoteWorkflow } from "../workflows/quote/workflows/custom
 // Helpers
 // ────────────────────────────────────────────────────────────────────────────
 
-type ItemInput = { title: string; sku?: string; quantity: number; unit_price: number }
+type ItemInput = {
+  title: string
+  sku?: string
+  quantity: number
+  unit_price: number
+}
 
 async function createDraftOrderWithChange(
   container: MedusaContainer,
@@ -33,7 +41,12 @@ async function createDraftOrderWithChange(
     sales_channel_id,
     items,
   }: {
-    customer: { id: string; email: string; first_name?: string | null; last_name?: string | null }
+    customer: {
+      id: string
+      email: string
+      first_name?: string | null
+      last_name?: string | null
+    }
     currency_code: string
     region_id: string | undefined
     sales_channel_id: string | undefined
@@ -67,7 +80,9 @@ async function createDraftOrderWithChange(
     } as any,
   })
 
-  const { result: orderChange } = await beginOrderEditOrderWorkflow(container).run({
+  const { result: orderChange } = await beginOrderEditOrderWorkflow(
+    container
+  ).run({
     input: { order_id: draftOrder.id },
   })
 
@@ -88,10 +103,9 @@ export default async function seedB2bTestData({
   const userService = container.resolve(Modules.USER)
   const regionService = container.resolve(Modules.REGION)
   const salesChannelService = container.resolve(Modules.SALES_CHANNEL)
-  const companyService = container.resolve(COMPANY_MODULE as any) // resolve company service or query module
+  // resolve company service or query module
   const approvalService = container.resolve(APPROVAL_MODULE) as any
   const quoteService = container.resolve(QUOTE_MODULE) as any
-  const cartService = container.resolve(Modules.CART) as any
 
   // ── Admin user ──────────────────────────────────────────────────────────
 
@@ -107,25 +121,49 @@ export default async function seedB2bTestData({
 
   const [region] = await regionService.listRegions({}, { take: 1 })
   const regionId: string | undefined = region?.id
-  if (!regionId) logger.warn("No region found — draft orders will have no region_id")
+  if (!regionId)
+    logger.warn("No region found — draft orders will have no region_id")
 
   // Dynamically adopt the region's currency code to prevent cart validation errors
   const currency = region?.currency_code?.toLowerCase() ?? "cop"
   logger.info(`Using region currency: ${currency.toUpperCase()}`)
 
-  const salesChannels = await salesChannelService.listSalesChannels({ name: ["B2B"] })
+  const salesChannels = await salesChannelService.listSalesChannels({
+    name: ["B2B"],
+  })
   const b2bChannelId: string | undefined = salesChannels[0]?.id
-  if (!b2bChannelId) logger.warn("B2B sales channel not found — run seed-b2b-data.ts first")
+  if (!b2bChannelId)
+    logger.warn("B2B sales channel not found — run seed-b2b-data.ts first")
 
   // ── Customers (find-or-create) ──────────────────────────────────────────
 
   logger.info("Resolving test customers...")
 
   const CUSTOMER_DEFS = [
-    { first_name: "Ana",    last_name: "García",    email: "ana.garcia@acmecorp.co",       phone: "+57 310 1234567" },
-    { first_name: "Carlos", last_name: "Rodríguez", email: "carlos.rodriguez@acmecorp.co", phone: "+57 310 2345678" },
-    { first_name: "María",  last_name: "López",     email: "maria.lopez@globextravel.co",  phone: "+57 310 3456789" },
-    { first_name: "Juan",   last_name: "Martínez",  email: "juan.martinez@globextravel.co",phone: "+57 310 4567890" },
+    {
+      first_name: "Ana",
+      last_name: "García",
+      email: "ana.garcia@acmecorp.co",
+      phone: "+57 310 1234567",
+    },
+    {
+      first_name: "Carlos",
+      last_name: "Rodríguez",
+      email: "carlos.rodriguez@acmecorp.co",
+      phone: "+57 310 2345678",
+    },
+    {
+      first_name: "María",
+      last_name: "López",
+      email: "maria.lopez@globextravel.co",
+      phone: "+57 310 3456789",
+    },
+    {
+      first_name: "Juan",
+      last_name: "Martínez",
+      email: "juan.martinez@globextravel.co",
+      phone: "+57 310 4567890",
+    },
   ]
 
   const existingCustomers = await customerService.listCustomers(
@@ -133,17 +171,26 @@ export default async function seedB2bTestData({
     { take: CUSTOMER_DEFS.length }
   )
 
-  const existingByEmail = new Map(existingCustomers.map((c: any) => [c.email, c]))
-  const toCreateCustomers = CUSTOMER_DEFS.filter((c) => !existingByEmail.has(c.email))
+  const existingByEmail = new Map(
+    existingCustomers.map((c: any) => [c.email, c])
+  )
+  const toCreateCustomers = CUSTOMER_DEFS.filter(
+    (c) => !existingByEmail.has(c.email)
+  )
 
-  const newCustomers = toCreateCustomers.length > 0
-    ? await customerService.createCustomers(toCreateCustomers)
-    : []
+  const newCustomers =
+    toCreateCustomers.length > 0
+      ? await customerService.createCustomers(toCreateCustomers)
+      : []
 
   const customers = CUSTOMER_DEFS.map(
-    (def) => existingByEmail.get(def.email) ?? newCustomers.find((c: any) => c.email === def.email)
+    (def) =>
+      existingByEmail.get(def.email) ??
+      newCustomers.find((c: any) => c.email === def.email)
   )
-  logger.info(`Customers ready: ${existingCustomers.length} existing, ${newCustomers.length} created`)
+  logger.info(
+    `Customers ready: ${existingCustomers.length} existing, ${newCustomers.length} created`
+  )
 
   // ── Companies (find-or-create) ──────────────────────────────────────────
 
@@ -186,8 +233,12 @@ export default async function seedB2bTestData({
     filters: { name: { $in: COMPANY_DEFS.map((c) => c.name) } },
   })
 
-  const existingCompaniesMap = new Map(existingCompanies.map((c: any) => [c.name, c]))
-  const companiesToCreate = COMPANY_DEFS.filter((c) => !existingCompaniesMap.has(c.name))
+  const existingCompaniesMap = new Map(
+    existingCompanies.map((c: any) => [c.name, c])
+  )
+  const companiesToCreate = COMPANY_DEFS.filter(
+    (c) => !existingCompaniesMap.has(c.name)
+  )
 
   let createdCompanies: any[] = []
   if (companiesToCreate.length > 0) {
@@ -198,19 +249,55 @@ export default async function seedB2bTestData({
   }
 
   const cos = COMPANY_DEFS.map(
-    (def) => existingCompaniesMap.get(def.name) ?? createdCompanies.find((c: any) => c.name === def.name)
+    (def) =>
+      existingCompaniesMap.get(def.name) ??
+      createdCompanies.find((c: any) => c.name === def.name)
   )
-  logger.info(`Companies ready: ${existingCompanies.length} existing, ${createdCompanies.length} created`)
+  logger.info(
+    `Companies ready: ${existingCompanies.length} existing, ${createdCompanies.length} created`
+  )
 
   // ── Employees (find-or-create) ──────────────────────────────────────────
 
   logger.info("Resolving employees...")
 
   const employeeInputs = [
-    { employeeData: { company_id: cos[0].id, customer_id: customers[0].id, spending_limit: 5_000_000, is_admin: true  }, customerId: customers[0].id },
-    { employeeData: { company_id: cos[0].id, customer_id: customers[1].id, spending_limit: 2_000_000, is_admin: false }, customerId: customers[1].id },
-    { employeeData: { company_id: cos[1].id, customer_id: customers[2].id, spending_limit: 10_000_000, is_admin: true  }, customerId: customers[2].id },
-    { employeeData: { company_id: cos[1].id, customer_id: customers[3].id, spending_limit: 3_000_000, is_admin: false }, customerId: customers[3].id },
+    {
+      employeeData: {
+        company_id: cos[0].id,
+        customer_id: customers[0].id,
+        spending_limit: 5_000_000,
+        is_admin: true,
+      },
+      customerId: customers[0].id,
+    },
+    {
+      employeeData: {
+        company_id: cos[0].id,
+        customer_id: customers[1].id,
+        spending_limit: 2_000_000,
+        is_admin: false,
+      },
+      customerId: customers[1].id,
+    },
+    {
+      employeeData: {
+        company_id: cos[1].id,
+        customer_id: customers[2].id,
+        spending_limit: 10_000_000,
+        is_admin: true,
+      },
+      customerId: customers[2].id,
+    },
+    {
+      employeeData: {
+        company_id: cos[1].id,
+        customer_id: customers[3].id,
+        spending_limit: 3_000_000,
+        is_admin: false,
+      },
+      customerId: customers[3].id,
+    },
   ]
 
   // Query employees with linked customer relation via Remote Link Graph
@@ -221,9 +308,7 @@ export default async function seedB2bTestData({
 
   // Extract linked customer IDs from graph response
   const existingCustomerIds = new Set(
-    existingEmployees
-      .map((e: any) => e.customer?.id)
-      .filter(Boolean)
+    existingEmployees.map((e: any) => e.customer?.id).filter(Boolean)
   )
 
   for (const input of employeeInputs) {
@@ -236,13 +321,17 @@ export default async function seedB2bTestData({
           err?.message?.includes("Cannot create multiple links") ||
           err?.message?.includes("already exists")
         ) {
-          logger.warn(`Link already exists for customer ${input.customerId}. Skipping.`)
+          logger.warn(
+            `Link already exists for customer ${input.customerId}. Skipping.`
+          )
         } else {
           throw err
         }
       }
     } else {
-      logger.info(`Employee link already exists for customer ${input.customerId}. Skipping.`)
+      logger.info(
+        `Employee link already exists for customer ${input.customerId}. Skipping.`
+      )
     }
   }
 
@@ -252,15 +341,26 @@ export default async function seedB2bTestData({
 
   logger.info("Checking approval settings...")
 
-  const existingSettings = await approvalService.listApprovalSettings?.({
-    company_id: { $in: cos.map((c: any) => c.id) },
-  }) ?? []
+  const existingSettings =
+    (await approvalService.listApprovalSettings?.({
+      company_id: { $in: cos.map((c: any) => c.id) },
+    })) ?? []
 
-  const existingSettingsCompanyIds = new Set(existingSettings.map((s: any) => s.company_id))
+  const existingSettingsCompanyIds = new Set(
+    existingSettings.map((s: any) => s.company_id)
+  )
 
   const settingsToCreate = [
-    { company_id: cos[0].id, requires_admin_approval: true,  requires_sales_manager_approval: true  },
-    { company_id: cos[1].id, requires_admin_approval: true,  requires_sales_manager_approval: false },
+    {
+      company_id: cos[0].id,
+      requires_admin_approval: true,
+      requires_sales_manager_approval: true,
+    },
+    {
+      company_id: cos[1].id,
+      requires_admin_approval: true,
+      requires_sales_manager_approval: false,
+    },
   ].filter((s) => !existingSettingsCompanyIds.has(s.company_id))
 
   if (settingsToCreate.length > 0) {
@@ -279,10 +379,14 @@ export default async function seedB2bTestData({
   if (existingApprovals.length === 0) {
     logger.info("Creating approval test carts and approvals...")
 
-    const apprAddress = { first_name: "Approval", last_name: "Test", country_code: "co" }
+    const apprAddress = {
+      first_name: "Approval",
+      last_name: "Test",
+      country_code: "co",
+    }
 
     const createApprovalCart = async (
-      customer: typeof customers[0],
+      customer: (typeof customers)[0],
       companyId: string,
       items: ItemInput[]
     ) => {
@@ -317,22 +421,54 @@ export default async function seedB2bTestData({
     // 5 carts — one per approval scenario
     const [aCart1, aCart2, aCart3, gCart1, gCart2] = await Promise.all([
       createApprovalCart(customers[0], cos[0].id, [
-        { title: "Bogotá → Ciudad de México · Clase Económica", quantity: 3, unit_price: 1_100_000 },
-        { title: "Hotel Camino Real CDMX · 2 noches",           quantity: 3, unit_price: 450_000  },
+        {
+          title: "Bogotá → Ciudad de México · Clase Económica",
+          quantity: 3,
+          unit_price: 1_100_000,
+        },
+        {
+          title: "Hotel Camino Real CDMX · 2 noches",
+          quantity: 3,
+          unit_price: 450_000,
+        },
       ]),
       createApprovalCart(customers[1], cos[0].id, [
-        { title: "Bogotá → Lima · Clase Ejecutiva",             quantity: 2, unit_price: 3_200_000 },
+        {
+          title: "Bogotá → Lima · Clase Ejecutiva",
+          quantity: 2,
+          unit_price: 3_200_000,
+        },
       ]),
       createApprovalCart(customers[0], cos[0].id, [
-        { title: "Bogotá → Buenos Aires · Clase Económica",     quantity: 5, unit_price: 1_800_000 },
-        { title: "Hotel Sofitel BA · 3 noches",                 quantity: 5, unit_price: 620_000  },
+        {
+          title: "Bogotá → Buenos Aires · Clase Económica",
+          quantity: 5,
+          unit_price: 1_800_000,
+        },
+        {
+          title: "Hotel Sofitel BA · 3 noches",
+          quantity: 5,
+          unit_price: 620_000,
+        },
       ]),
       createApprovalCart(customers[2], cos[1].id, [
-        { title: "Medellín → Cartagena · Clase Económica",      quantity: 4, unit_price: 480_000  },
+        {
+          title: "Medellín → Cartagena · Clase Económica",
+          quantity: 4,
+          unit_price: 480_000,
+        },
       ]),
       createApprovalCart(customers[3], cos[1].id, [
-        { title: "Bogotá → San Andrés · Clase Económica",       quantity: 2, unit_price: 950_000  },
-        { title: "Hotel Decameron San Andrés · 4 noches",       quantity: 2, unit_price: 380_000  },
+        {
+          title: "Bogotá → San Andrés · Clase Económica",
+          quantity: 2,
+          unit_price: 950_000,
+        },
+        {
+          title: "Hotel Decameron San Andrés · 4 noches",
+          quantity: 2,
+          unit_price: 380_000,
+        },
       ]),
     ])
 
@@ -340,8 +476,18 @@ export default async function seedB2bTestData({
 
     // Scenario 1 — Both admin + sales_manager PENDING (Acme / Ana)
     const [appr1Admin, appr1SM] = await approvalService.createApprovals([
-      { cart_id: aCart1.id, type: "admin",         status: "pending", created_by: customers[0].id } as any,
-      { cart_id: aCart1.id, type: "sales_manager", status: "pending", created_by: customers[0].id } as any,
+      {
+        cart_id: aCart1.id,
+        type: "admin",
+        status: "pending",
+        created_by: customers[0].id,
+      } as any,
+      {
+        cart_id: aCart1.id,
+        type: "sales_manager",
+        status: "pending",
+        created_by: customers[0].id,
+      } as any,
     ])
     const [apprStatus1] = await approvalService.createApprovalStatuses([
       { cart_id: aCart1.id, status: "pending" },
@@ -349,8 +495,19 @@ export default async function seedB2bTestData({
 
     // Scenario 2 — Admin APPROVED, sales_manager PENDING (Acme / Carlos)
     const [appr2Admin, appr2SM] = await approvalService.createApprovals([
-      { cart_id: aCart2.id, type: "admin",         status: "approved", created_by: customers[1].id, handled_by: adminId } as any,
-      { cart_id: aCart2.id, type: "sales_manager", status: "pending",  created_by: customers[1].id } as any,
+      {
+        cart_id: aCart2.id,
+        type: "admin",
+        status: "approved",
+        created_by: customers[1].id,
+        handled_by: adminId,
+      } as any,
+      {
+        cart_id: aCart2.id,
+        type: "sales_manager",
+        status: "pending",
+        created_by: customers[1].id,
+      } as any,
     ])
     const [apprStatus2] = await approvalService.createApprovalStatuses([
       { cart_id: aCart2.id, status: "pending" },
@@ -358,8 +515,20 @@ export default async function seedB2bTestData({
 
     // Scenario 3 — Both APPROVED (Acme / Ana)
     const [appr3Admin, appr3SM] = await approvalService.createApprovals([
-      { cart_id: aCart3.id, type: "admin",         status: "approved", created_by: customers[0].id, handled_by: adminId } as any,
-      { cart_id: aCart3.id, type: "sales_manager", status: "approved", created_by: customers[0].id, handled_by: adminId } as any,
+      {
+        cart_id: aCart3.id,
+        type: "admin",
+        status: "approved",
+        created_by: customers[0].id,
+        handled_by: adminId,
+      } as any,
+      {
+        cart_id: aCart3.id,
+        type: "sales_manager",
+        status: "approved",
+        created_by: customers[0].id,
+        handled_by: adminId,
+      } as any,
     ])
     const [apprStatus3] = await approvalService.createApprovalStatuses([
       { cart_id: aCart3.id, status: "approved" },
@@ -367,7 +536,14 @@ export default async function seedB2bTestData({
 
     // Scenario 4 — Admin REJECTED (Globex / María)
     const [appr4Admin] = await approvalService.createApprovals([
-      { cart_id: gCart1.id, type: "admin", status: "rejected", created_by: customers[2].id, handled_by: adminId, reason: "Budget exceeded for this period." } as any,
+      {
+        cart_id: gCart1.id,
+        type: "admin",
+        status: "rejected",
+        created_by: customers[2].id,
+        handled_by: adminId,
+        reason: "Budget exceeded for this period.",
+      } as any,
     ])
     const [apprStatus4] = await approvalService.createApprovalStatuses([
       { cart_id: gCart1.id, status: "rejected" },
@@ -375,7 +551,12 @@ export default async function seedB2bTestData({
 
     // Scenario 5 — Admin PENDING (Globex / Juan)
     const [appr5Admin] = await approvalService.createApprovals([
-      { cart_id: gCart2.id, type: "admin", status: "pending", created_by: customers[3].id } as any,
+      {
+        cart_id: gCart2.id,
+        type: "admin",
+        status: "pending",
+        created_by: customers[3].id,
+      } as any,
     ])
     const [apprStatus5] = await approvalService.createApprovalStatuses([
       { cart_id: gCart2.id, status: "pending" },
@@ -383,23 +564,62 @@ export default async function seedB2bTestData({
 
     // Remote links
     await remoteLink.create([
-      { [Modules.CART]: { cart_id: aCart1.id }, [APPROVAL_MODULE]: { approval_id: appr1Admin.id } },
-      { [Modules.CART]: { cart_id: aCart1.id }, [APPROVAL_MODULE]: { approval_id: appr1SM.id } },
-      { [Modules.CART]: { cart_id: aCart1.id }, [APPROVAL_MODULE]: { approval_status_id: apprStatus1.id } },
+      {
+        [Modules.CART]: { cart_id: aCart1.id },
+        [APPROVAL_MODULE]: { approval_id: appr1Admin.id },
+      },
+      {
+        [Modules.CART]: { cart_id: aCart1.id },
+        [APPROVAL_MODULE]: { approval_id: appr1SM.id },
+      },
+      {
+        [Modules.CART]: { cart_id: aCart1.id },
+        [APPROVAL_MODULE]: { approval_status_id: apprStatus1.id },
+      },
 
-      { [Modules.CART]: { cart_id: aCart2.id }, [APPROVAL_MODULE]: { approval_id: appr2Admin.id } },
-      { [Modules.CART]: { cart_id: aCart2.id }, [APPROVAL_MODULE]: { approval_id: appr2SM.id } },
-      { [Modules.CART]: { cart_id: aCart2.id }, [APPROVAL_MODULE]: { approval_status_id: apprStatus2.id } },
+      {
+        [Modules.CART]: { cart_id: aCart2.id },
+        [APPROVAL_MODULE]: { approval_id: appr2Admin.id },
+      },
+      {
+        [Modules.CART]: { cart_id: aCart2.id },
+        [APPROVAL_MODULE]: { approval_id: appr2SM.id },
+      },
+      {
+        [Modules.CART]: { cart_id: aCart2.id },
+        [APPROVAL_MODULE]: { approval_status_id: apprStatus2.id },
+      },
 
-      { [Modules.CART]: { cart_id: aCart3.id }, [APPROVAL_MODULE]: { approval_id: appr3Admin.id } },
-      { [Modules.CART]: { cart_id: aCart3.id }, [APPROVAL_MODULE]: { approval_id: appr3SM.id } },
-      { [Modules.CART]: { cart_id: aCart3.id }, [APPROVAL_MODULE]: { approval_status_id: apprStatus3.id } },
+      {
+        [Modules.CART]: { cart_id: aCart3.id },
+        [APPROVAL_MODULE]: { approval_id: appr3Admin.id },
+      },
+      {
+        [Modules.CART]: { cart_id: aCart3.id },
+        [APPROVAL_MODULE]: { approval_id: appr3SM.id },
+      },
+      {
+        [Modules.CART]: { cart_id: aCart3.id },
+        [APPROVAL_MODULE]: { approval_status_id: apprStatus3.id },
+      },
 
-      { [Modules.CART]: { cart_id: gCart1.id }, [APPROVAL_MODULE]: { approval_id: appr4Admin.id } },
-      { [Modules.CART]: { cart_id: gCart1.id }, [APPROVAL_MODULE]: { approval_status_id: apprStatus4.id } },
+      {
+        [Modules.CART]: { cart_id: gCart1.id },
+        [APPROVAL_MODULE]: { approval_id: appr4Admin.id },
+      },
+      {
+        [Modules.CART]: { cart_id: gCart1.id },
+        [APPROVAL_MODULE]: { approval_status_id: apprStatus4.id },
+      },
 
-      { [Modules.CART]: { cart_id: gCart2.id }, [APPROVAL_MODULE]: { approval_id: appr5Admin.id } },
-      { [Modules.CART]: { cart_id: gCart2.id }, [APPROVAL_MODULE]: { approval_status_id: apprStatus5.id } },
+      {
+        [Modules.CART]: { cart_id: gCart2.id },
+        [APPROVAL_MODULE]: { approval_id: appr5Admin.id },
+      },
+      {
+        [Modules.CART]: { cart_id: gCart2.id },
+        [APPROVAL_MODULE]: { approval_status_id: apprStatus5.id },
+      },
     ])
 
     logger.info("Created approvals and linked cart records.")
@@ -417,193 +637,345 @@ export default async function seedB2bTestData({
     logger.info("Creating draft orders and quotes...")
 
     // 1. pending_merchant
-    const { draftOrder: do1, orderChange: oc1 } = await createDraftOrderWithChange(
-      container,
-      {
+    const { draftOrder: do1, orderChange: oc1 } =
+      await createDraftOrderWithChange(container, {
         customer: customers[0],
         currency_code: currency,
         region_id: regionId,
         sales_channel_id: b2bChannelId,
         items: [
-          { title: "Bogotá → Miami · Clase Ejecutiva", quantity: 12, unit_price: 2_500_000 },
-          { title: "Hotel Marriott Miami · 3 noches",  quantity: 12, unit_price: 800_000  },
+          {
+            title: "Bogotá → Miami · Clase Ejecutiva",
+            quantity: 12,
+            unit_price: 2_500_000,
+          },
+          {
+            title: "Hotel Marriott Miami · 3 noches",
+            quantity: 12,
+            unit_price: 800_000,
+          },
         ],
-      }
-    )
+      })
 
-    const [q1] = await quoteService.createQuotes([{
-      status: EQuoteStatus.PendingMerchant,
-      customer_id: customers[0].id,
-      draft_order_id: do1.id,
-      order_change_id: oc1.id,
-      cart_id: `cart_seed_acme_001`,
-    }])
+    const [q1] = await quoteService.createQuotes([
+      {
+        status: EQuoteStatus.PendingMerchant,
+        customer_id: customers[0].id,
+        draft_order_id: do1.id,
+        order_change_id: oc1.id,
+        cart_id: `cart_seed_acme_001`,
+      },
+    ])
 
     await quoteService.createMessages([
-      { quote_id: q1.id, text: "Necesitamos cotización para 12 ejecutivos — vuelos BOG→MIA más hotel 3 noches, primera quincena de octubre.", customer_id: customers[0].id },
-      { quote_id: q1.id, text: "¿Pueden incluir traslados aeropuerto-hotel en la cotización?", customer_id: customers[0].id },
+      {
+        quote_id: q1.id,
+        text: "Necesitamos cotización para 12 ejecutivos — vuelos BOG→MIA más hotel 3 noches, primera quincena de octubre.",
+        customer_id: customers[0].id,
+      },
+      {
+        quote_id: q1.id,
+        text: "¿Pueden incluir traslados aeropuerto-hotel en la cotización?",
+        customer_id: customers[0].id,
+      },
     ])
 
     // 2. pending_customer
-    const { draftOrder: do2, orderChange: oc2 } = await createDraftOrderWithChange(
-      container,
-      {
+    const { draftOrder: do2, orderChange: oc2 } =
+      await createDraftOrderWithChange(container, {
         customer: customers[2],
         currency_code: currency,
         region_id: regionId,
         sales_channel_id: b2bChannelId,
         items: [
-          { title: "Hotel Medellín · Habitación Doble Deluxe · Octubre", quantity: 5, unit_price: 280_000 },
+          {
+            title: "Hotel Medellín · Habitación Doble Deluxe · Octubre",
+            quantity: 5,
+            unit_price: 280_000,
+          },
         ],
-      }
-    )
+      })
 
-    const [q2] = await quoteService.createQuotes([{
-      status: EQuoteStatus.PendingMerchant,
-      customer_id: customers[2].id,
-      draft_order_id: do2.id,
-      order_change_id: oc2.id,
-      cart_id: `cart_seed_globex_001`,
-    }])
+    const [q2] = await quoteService.createQuotes([
+      {
+        status: EQuoteStatus.PendingMerchant,
+        customer_id: customers[2].id,
+        draft_order_id: do2.id,
+        order_change_id: oc2.id,
+        cart_id: `cart_seed_globex_001`,
+      },
+    ])
 
-    await merchantSendQuoteWorkflow(container).run({ input: { quote_id: q2.id } })
+    await merchantSendQuoteWorkflow(container).run({
+      input: { quote_id: q2.id },
+    })
 
     const item2Id: string | undefined = (do2 as any).items?.[0]?.id
     await quoteService.createMessages([
-      { quote_id: q2.id, text: "¿Pueden ajustar los precios de alojamiento para octubre? Buscamos algo bajo COP 300 000/noche.", customer_id: customers[2].id },
-      { quote_id: q2.id, text: "Revisamos disponibilidad con nuestros proveedores.", admin_id: adminId },
-      { quote_id: q2.id, text: "Tenemos opciones entre COP 250 000 y COP 290 000/noche. Les comparto el ítem actualizado.", admin_id: adminId, ...(item2Id && { item_id: item2Id }) },
-      { quote_id: q2.id, text: "Muchas gracias. Revisamos con el equipo y les confirmamos esta semana.", customer_id: customers[2].id },
+      {
+        quote_id: q2.id,
+        text: "¿Pueden ajustar los precios de alojamiento para octubre? Buscamos algo bajo COP 300 000/noche.",
+        customer_id: customers[2].id,
+      },
+      {
+        quote_id: q2.id,
+        text: "Revisamos disponibilidad con nuestros proveedores.",
+        admin_id: adminId,
+      },
+      {
+        quote_id: q2.id,
+        text: "Tenemos opciones entre COP 250 000 y COP 290 000/noche. Les comparto el ítem actualizado.",
+        admin_id: adminId,
+        ...(item2Id && { item_id: item2Id }),
+      },
+      {
+        quote_id: q2.id,
+        text: "Muchas gracias. Revisamos con el equipo y les confirmamos esta semana.",
+        customer_id: customers[2].id,
+      },
     ])
 
     // 3. accepted
-    const { draftOrder: do3, orderChange: oc3 } = await createDraftOrderWithChange(
-      container,
-      {
+    const { draftOrder: do3, orderChange: oc3 } =
+      await createDraftOrderWithChange(container, {
         customer: customers[0],
         currency_code: currency,
         region_id: regionId,
         sales_channel_id: b2bChannelId,
         items: [
-          { title: "Bogotá → Cancún · Clase Económica · Dic 20",  quantity: 15, unit_price: 1_200_000 },
-          { title: "Bogotá → Cancún · Clase Ejecutiva · Dic 20",  quantity: 5,  unit_price: 3_800_000 },
+          {
+            title: "Bogotá → Cancún · Clase Económica · Dic 20",
+            quantity: 15,
+            unit_price: 1_200_000,
+          },
+          {
+            title: "Bogotá → Cancún · Clase Ejecutiva · Dic 20",
+            quantity: 5,
+            unit_price: 3_800_000,
+          },
         ],
-      }
-    )
+      })
 
-    const [q3] = await quoteService.createQuotes([{
-      status: EQuoteStatus.PendingMerchant,
-      customer_id: customers[0].id,
-      draft_order_id: do3.id,
-      order_change_id: oc3.id,
-      cart_id: `cart_seed_acme_002`,
-    }])
+    const [q3] = await quoteService.createQuotes([
+      {
+        status: EQuoteStatus.PendingMerchant,
+        customer_id: customers[0].id,
+        draft_order_id: do3.id,
+        order_change_id: oc3.id,
+        cart_id: `cart_seed_acme_002`,
+      },
+    ])
 
-    await merchantSendQuoteWorkflow(container).run({ input: { quote_id: q3.id } })
-    await customerAcceptQuoteWorkflow(container).run({ input: { quote_id: q3.id, customer_id: customers[0].id } })
+    await merchantSendQuoteWorkflow(container).run({
+      input: { quote_id: q3.id },
+    })
+    await customerAcceptQuoteWorkflow(container).run({
+      input: { quote_id: q3.id, customer_id: customers[0].id },
+    })
 
     const item3EconId: string | undefined = (do3 as any).items?.[0]?.id
     const item3ExecId: string | undefined = (do3 as any).items?.[1]?.id
     await quoteService.createMessages([
-      { quote_id: q3.id, text: "Necesitamos cotización para 20 pasajeros en temporada alta — diciembre 20 al 3 de enero.", customer_id: customers[0].id },
-      { quote_id: q3.id, text: "Recibido. ¿Todos en clase económica o requieren mezcla ejecutiva/económica?", admin_id: adminId },
-      { quote_id: q3.id, text: "15 en económica, 5 en ejecutiva. Retorno fijo el 3 de enero. Destino Cancún.", customer_id: customers[0].id },
-      { quote_id: q3.id, text: "¿Hay flexibilidad en la fecha de retorno?", admin_id: adminId },
-      { quote_id: q3.id, text: "Retorno fijo el 3 de enero, sin flexibilidad.", customer_id: customers[0].id },
-      { quote_id: q3.id, text: "Acá la cotización en económica con 10% de descuento por volumen.", admin_id: adminId, ...(item3EconId && { item_id: item3EconId }) },
-      { quote_id: q3.id, text: "¿El descuento incluye el ítem ejecutivo también?", customer_id: customers[0].id },
-      { quote_id: q3.id, text: "Sí, ejecutiva con 15% de descuento por volumen, incluye una maleta de 23 kg.", admin_id: adminId, ...(item3ExecId && { item_id: item3ExecId }) },
-      { quote_id: q3.id, text: "¿Se puede incluir un seguro de viaje para todos los pasajeros?", customer_id: customers[0].id },
-      { quote_id: q3.id, text: "Podemos incluirlo por COP 45 000/persona adicional. ¿Lo añadimos?", admin_id: adminId },
-      { quote_id: q3.id, text: "Sí, por favor. Incluyan el seguro de viaje para todos.", customer_id: customers[0].id },
-      { quote_id: q3.id, text: "Cotización actualizada con el seguro incluido en ambos ítems.", admin_id: adminId },
-      { quote_id: q3.id, text: "Perfecto. Aceptamos la cotización. Procedemos con la reserva.", customer_id: customers[0].id },
+      {
+        quote_id: q3.id,
+        text: "Necesitamos cotización para 20 pasajeros en temporada alta — diciembre 20 al 3 de enero.",
+        customer_id: customers[0].id,
+      },
+      {
+        quote_id: q3.id,
+        text: "Recibido. ¿Todos en clase económica o requieren mezcla ejecutiva/económica?",
+        admin_id: adminId,
+      },
+      {
+        quote_id: q3.id,
+        text: "15 en económica, 5 en ejecutiva. Retorno fijo el 3 de enero. Destino Cancún.",
+        customer_id: customers[0].id,
+      },
+      {
+        quote_id: q3.id,
+        text: "¿Hay flexibilidad en la fecha de retorno?",
+        admin_id: adminId,
+      },
+      {
+        quote_id: q3.id,
+        text: "Retorno fijo el 3 de enero, sin flexibilidad.",
+        customer_id: customers[0].id,
+      },
+      {
+        quote_id: q3.id,
+        text: "Acá la cotización en económica con 10% de descuento por volumen.",
+        admin_id: adminId,
+        ...(item3EconId && { item_id: item3EconId }),
+      },
+      {
+        quote_id: q3.id,
+        text: "¿El descuento incluye el ítem ejecutivo también?",
+        customer_id: customers[0].id,
+      },
+      {
+        quote_id: q3.id,
+        text: "Sí, ejecutiva con 15% de descuento por volumen, incluye una maleta de 23 kg.",
+        admin_id: adminId,
+        ...(item3ExecId && { item_id: item3ExecId }),
+      },
+      {
+        quote_id: q3.id,
+        text: "¿Se puede incluir un seguro de viaje para todos los pasajeros?",
+        customer_id: customers[0].id,
+      },
+      {
+        quote_id: q3.id,
+        text: "Podemos incluirlo por COP 45 000/persona adicional. ¿Lo añadimos?",
+        admin_id: adminId,
+      },
+      {
+        quote_id: q3.id,
+        text: "Sí, por favor. Incluyan el seguro de viaje para todos.",
+        customer_id: customers[0].id,
+      },
+      {
+        quote_id: q3.id,
+        text: "Cotización actualizada con el seguro incluido en ambos ítems.",
+        admin_id: adminId,
+      },
+      {
+        quote_id: q3.id,
+        text: "Perfecto. Aceptamos la cotización. Procedemos con la reserva.",
+        customer_id: customers[0].id,
+      },
     ])
 
     // 4. customer_rejected
-    const { draftOrder: do4, orderChange: oc4 } = await createDraftOrderWithChange(
-      container,
-      {
+    const { draftOrder: do4, orderChange: oc4 } =
+      await createDraftOrderWithChange(container, {
         customer: customers[1],
         currency_code: currency,
         region_id: regionId,
         sales_channel_id: b2bChannelId,
         items: [
-          { title: "Bogotá → Cartagena · Ida y Vuelta · Grupo Corporativo", quantity: 8, unit_price: 950_000 },
+          {
+            title: "Bogotá → Cartagena · Ida y Vuelta · Grupo Corporativo",
+            quantity: 8,
+            unit_price: 950_000,
+          },
         ],
-      }
-    )
+      })
 
-    const [q4] = await quoteService.createQuotes([{
-      status: EQuoteStatus.PendingMerchant,
-      customer_id: customers[1].id,
-      draft_order_id: do4.id,
-      order_change_id: oc4.id,
-      cart_id: `cart_seed_acme_003`,
-    }])
+    const [q4] = await quoteService.createQuotes([
+      {
+        status: EQuoteStatus.PendingMerchant,
+        customer_id: customers[1].id,
+        draft_order_id: do4.id,
+        order_change_id: oc4.id,
+        cart_id: `cart_seed_acme_003`,
+      },
+    ])
 
-    await merchantSendQuoteWorkflow(container).run({ input: { quote_id: q4.id } })
-    await customerRejectQuoteWorkflow(container).run({ input: { quote_id: q4.id } })
+    await merchantSendQuoteWorkflow(container).run({
+      input: { quote_id: q4.id },
+    })
+    await customerRejectQuoteWorkflow(container).run({
+      input: { quote_id: q4.id },
+    })
 
     const item4Id: string | undefined = (do4 as any).items?.[0]?.id
     await quoteService.createMessages([
-      { quote_id: q4.id, text: "Solicitamos descuento adicional para grupo corporativo de 8 personas.", customer_id: customers[1].id },
-      { quote_id: q4.id, text: "Acá la cotización con nuestra mejor tarifa para ese período.", admin_id: adminId, ...(item4Id && { item_id: item4Id }) },
-      { quote_id: q4.id, text: "El precio está por encima de nuestro presupuesto. ¿Pueden bajar un 20%?", customer_id: customers[1].id },
-      { quote_id: q4.id, text: "No tenemos margen adicional para ese período. El precio enviado es nuestra tarifa mínima.", admin_id: adminId },
-      { quote_id: q4.id, text: "Lamentablemente rechazamos la cotización. Buscaremos otras alternativas.", customer_id: customers[1].id },
+      {
+        quote_id: q4.id,
+        text: "Solicitamos descuento adicional para grupo corporativo de 8 personas.",
+        customer_id: customers[1].id,
+      },
+      {
+        quote_id: q4.id,
+        text: "Acá la cotización con nuestra mejor tarifa para ese período.",
+        admin_id: adminId,
+        ...(item4Id && { item_id: item4Id }),
+      },
+      {
+        quote_id: q4.id,
+        text: "El precio está por encima de nuestro presupuesto. ¿Pueden bajar un 20%?",
+        customer_id: customers[1].id,
+      },
+      {
+        quote_id: q4.id,
+        text: "No tenemos margen adicional para ese período. El precio enviado es nuestra tarifa mínima.",
+        admin_id: adminId,
+      },
+      {
+        quote_id: q4.id,
+        text: "Lamentablemente rechazamos la cotización. Buscaremos otras alternativas.",
+        customer_id: customers[1].id,
+      },
     ])
 
     // 5. merchant_rejected
-    const { draftOrder: do5, orderChange: oc5 } = await createDraftOrderWithChange(
-      container,
-      {
+    const { draftOrder: do5, orderChange: oc5 } =
+      await createDraftOrderWithChange(container, {
         customer: customers[3],
         currency_code: currency,
         region_id: regionId,
         sales_channel_id: b2bChannelId,
         items: [
-          { title: "Bogotá → Miami · Clase Ejecutiva · Dic 24", quantity: 4, unit_price: 4_200_000 },
+          {
+            title: "Bogotá → Miami · Clase Ejecutiva · Dic 24",
+            quantity: 4,
+            unit_price: 4_200_000,
+          },
         ],
-      }
-    )
+      })
 
-    const [q5] = await quoteService.createQuotes([{
-      status: EQuoteStatus.PendingMerchant,
-      customer_id: customers[3].id,
-      draft_order_id: do5.id,
-      order_change_id: oc5.id,
-      cart_id: `cart_seed_globex_002`,
-    }])
+    const [q5] = await quoteService.createQuotes([
+      {
+        status: EQuoteStatus.PendingMerchant,
+        customer_id: customers[3].id,
+        draft_order_id: do5.id,
+        order_change_id: oc5.id,
+        cart_id: `cart_seed_globex_002`,
+      },
+    ])
 
-    await merchantRejectQuoteWorkflow(container).run({ input: { quote_id: q5.id } })
+    await merchantRejectQuoteWorkflow(container).run({
+      input: { quote_id: q5.id },
+    })
 
     await quoteService.createMessages([
-      { quote_id: q5.id, text: "Necesitamos tiquetes para el 24 de diciembre. Solo clase ejecutiva, 4 puestos.", customer_id: customers[3].id },
-      { quote_id: q5.id, text: "No tenemos disponibilidad en clase ejecutiva para esa fecha. No podemos procesar esta solicitud.", admin_id: adminId },
+      {
+        quote_id: q5.id,
+        text: "Necesitamos tiquetes para el 24 de diciembre. Solo clase ejecutiva, 4 puestos.",
+        customer_id: customers[3].id,
+      },
+      {
+        quote_id: q5.id,
+        text: "No tenemos disponibilidad en clase ejecutiva para esa fecha. No podemos procesar esta solicitud.",
+        admin_id: adminId,
+      },
     ])
 
     // 6. pending_merchant, no messages
-    const { draftOrder: do6, orderChange: oc6 } = await createDraftOrderWithChange(
-      container,
-      {
+    const { draftOrder: do6, orderChange: oc6 } =
+      await createDraftOrderWithChange(container, {
         customer: customers[2],
         currency_code: currency,
         region_id: regionId,
         sales_channel_id: b2bChannelId,
         items: [
-          { title: "Medellín → Bogotá · Clase Económica · Temporal", quantity: 3, unit_price: 350_000 },
+          {
+            title: "Medellín → Bogotá · Clase Económica · Temporal",
+            quantity: 3,
+            unit_price: 350_000,
+          },
         ],
-      }
-    )
+      })
 
-    await quoteService.createQuotes([{
-      status: EQuoteStatus.PendingMerchant,
-      customer_id: customers[2].id,
-      draft_order_id: do6.id,
-      order_change_id: oc6.id,
-      cart_id: `cart_seed_globex_003`,
-    }])
+    await quoteService.createQuotes([
+      {
+        status: EQuoteStatus.PendingMerchant,
+        customer_id: customers[2].id,
+        draft_order_id: do6.id,
+        order_change_id: oc6.id,
+        cart_id: `cart_seed_globex_003`,
+      },
+    ])
 
     logger.info("Created 6 quotes.")
   } else {

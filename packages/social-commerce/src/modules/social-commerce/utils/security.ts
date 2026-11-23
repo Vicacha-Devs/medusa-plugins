@@ -195,7 +195,9 @@ export function createSignedOAuthState(
     .createHmac("sha256", stateSecret)
     .update(raw, "utf8")
     .digest("hex")
-  return Buffer.from(JSON.stringify({ raw, hmac }), "utf8").toString("base64url")
+  return Buffer.from(JSON.stringify({ raw, hmac }), "utf8").toString(
+    "base64url"
+  )
 }
 
 /**
@@ -256,7 +258,10 @@ export function computeHmacSha256Hex(
 ): string {
   const payload =
     typeof rawBody === "string" ? rawBody : rawBody.toString("utf8")
-  return crypto.createHmac("sha256", secret).update(payload, "utf8").digest("hex")
+  return crypto
+    .createHmac("sha256", secret)
+    .update(payload, "utf8")
+    .digest("hex")
 }
 
 /**
@@ -366,9 +371,7 @@ export function escapeCsvField(
 /**
  * Validates that a URL is a safe http/https URL (prevents javascript: or data: XSS in links/media).
  */
-export function sanitizeHttpUrl(
-  url: string | null | undefined
-): string | null {
+export function sanitizeHttpUrl(url: string | null | undefined): string | null {
   if (!url) return null
   try {
     const parsed = new URL(url)

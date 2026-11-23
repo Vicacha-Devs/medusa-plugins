@@ -1,6 +1,8 @@
 export const NOTIFICATIONS_QUERY_KEY = "notifications" as const
 
-type QueryInvalidationListener = (invalidatedKeyPrefix: readonly unknown[]) => void
+type QueryInvalidationListener = (
+  invalidatedKeyPrefix: readonly unknown[]
+) => void
 
 const invalidationListeners = new Set<QueryInvalidationListener>()
 
@@ -56,7 +58,12 @@ export function matchesNotificationsQueryKeyPrefix(
     const a = candidateKey[i]
     const b = prefixKey[i]
     if (a === b) continue
-    if (typeof a === "object" && a !== null && typeof b === "object" && b !== null) {
+    if (
+      typeof a === "object" &&
+      a !== null &&
+      typeof b === "object" &&
+      b !== null
+    ) {
       if (JSON.stringify(a) === JSON.stringify(b)) continue
     }
     return false

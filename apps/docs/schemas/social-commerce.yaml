@@ -1,0 +1,864 @@
+openapi: 3.1.0
+info:
+  title: "@vicacha-devs/medusa-plugin-social-commerce API"
+  version: 0.0.1
+  description: Multi-platform Social Commerce, Ephemeral Stories, Live Selling &
+    Catalog Sync plugin for Medusa v2 (TikTok, Instagram, Facebook / Meta Graph
+    API)
+servers:
+  - url: http://127.0.0.1:9000
+    description: Local Medusa v2 Server
+components:
+  securitySchemes:
+    adminBearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Medusa Admin JWT or API token
+    publishableKey:
+      type: apiKey
+      in: header
+      name: x-publishable-api-key
+      description: Medusa Storefront Publishable API Key
+paths:
+  /admin/plugin:
+    get:
+      operationId: getAdminPlugin
+      summary: List plugin
+      description: GET /admin/plugin endpoint exposed by
+        @vicacha-devs/medusa-plugin-social-commerce.
+      tags:
+        - "Admin: plugin"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/social/accounts:
+    get:
+      operationId: getAdminSocialAccounts
+      summary: List social accounts
+      description: GET /admin/social/accounts endpoint exposed by
+        @vicacha-devs/medusa-plugin-social-commerce.
+      tags:
+        - "Admin: social"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/social/accounts/{id}:
+    delete:
+      operationId: deleteAdminSocialAccountsById
+      summary: Delete social accounts by ID
+      description: DELETE /admin/social/accounts/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-social-commerce.
+      tags:
+        - "Admin: social"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    get:
+      operationId: getAdminSocialAccountsById
+      summary: Get social accounts by ID
+      description: GET /admin/social/accounts/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-social-commerce.
+      tags:
+        - "Admin: social"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    post:
+      operationId: postAdminSocialAccountsById
+      summary: Create / Trigger social accounts by ID
+      description: POST /admin/social/accounts/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-social-commerce.
+      tags:
+        - "Admin: social"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/social/catalog:
+    get:
+      operationId: getAdminSocialCatalog
+      summary: List social catalog
+      description: GET /admin/social/catalog endpoint exposed by
+        @vicacha-devs/medusa-plugin-social-commerce.
+      tags:
+        - "Admin: social"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    post:
+      operationId: postAdminSocialCatalog
+      summary: Create / Trigger social catalog
+      description: POST /admin/social/catalog endpoint exposed by
+        @vicacha-devs/medusa-plugin-social-commerce.
+      tags:
+        - "Admin: social"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/social/connect:
+    post:
+      operationId: postAdminSocialConnect
+      summary: Create / Trigger social connect
+      description: POST /admin/social/connect endpoint exposed by
+        @vicacha-devs/medusa-plugin-social-commerce.
+      tags:
+        - "Admin: social"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/social/live:
+    get:
+      operationId: getAdminSocialLive
+      summary: List social live
+      description: GET /admin/social/live endpoint exposed by
+        @vicacha-devs/medusa-plugin-social-commerce.
+      tags:
+        - "Admin: social"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    post:
+      operationId: postAdminSocialLive
+      summary: Create / Trigger social live
+      description: POST /admin/social/live endpoint exposed by
+        @vicacha-devs/medusa-plugin-social-commerce.
+      tags:
+        - "Admin: social"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/social/live/{id}:
+    post:
+      operationId: postAdminSocialLiveById
+      summary: Create / Trigger social live by ID
+      description: POST /admin/social/live/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-social-commerce.
+      tags:
+        - "Admin: social"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/social/live/{id}/products:
+    post:
+      operationId: postAdminSocialLiveByIdProducts
+      summary: Create / Trigger social live by ID products
+      description: POST /admin/social/live/{id}/products endpoint exposed by
+        @vicacha-devs/medusa-plugin-social-commerce.
+      tags:
+        - "Admin: social"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/social/posts:
+    get:
+      operationId: getAdminSocialPosts
+      summary: List social posts
+      description: GET /admin/social/posts endpoint exposed by
+        @vicacha-devs/medusa-plugin-social-commerce.
+      tags:
+        - "Admin: social"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    post:
+      operationId: postAdminSocialPosts
+      summary: Create / Trigger social posts
+      description: POST /admin/social/posts endpoint exposed by
+        @vicacha-devs/medusa-plugin-social-commerce.
+      tags:
+        - "Admin: social"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/social/posts/{id}:
+    delete:
+      operationId: deleteAdminSocialPostsById
+      summary: Delete social posts by ID
+      description: DELETE /admin/social/posts/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-social-commerce.
+      tags:
+        - "Admin: social"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    get:
+      operationId: getAdminSocialPostsById
+      summary: Get social posts by ID
+      description: GET /admin/social/posts/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-social-commerce.
+      tags:
+        - "Admin: social"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    patch:
+      operationId: patchAdminSocialPostsById
+      summary: Update social posts by ID
+      description: PATCH /admin/social/posts/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-social-commerce.
+      tags:
+        - "Admin: social"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/social/posts/{id}/products:
+    get:
+      operationId: getAdminSocialPostsByIdProducts
+      summary: Get social posts by ID products
+      description: GET /admin/social/posts/{id}/products endpoint exposed by
+        @vicacha-devs/medusa-plugin-social-commerce.
+      tags:
+        - "Admin: social"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    post:
+      operationId: postAdminSocialPostsByIdProducts
+      summary: Create / Trigger social posts by ID products
+      description: POST /admin/social/posts/{id}/products endpoint exposed by
+        @vicacha-devs/medusa-plugin-social-commerce.
+      tags:
+        - "Admin: social"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/social/sync:
+    post:
+      operationId: postAdminSocialSync
+      summary: Create / Trigger social sync
+      description: POST /admin/social/sync endpoint exposed by
+        @vicacha-devs/medusa-plugin-social-commerce.
+      tags:
+        - "Admin: social"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /social/oauth/callback:
+    get:
+      operationId: getSocialOauthCallback
+      summary: List  social oauth callback
+      description: GET /social/oauth/callback endpoint exposed by
+        @vicacha-devs/medusa-plugin-social-commerce.
+      tags:
+        - Public & Utility
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+    post:
+      operationId: postSocialOauthCallback
+      summary: Create / Trigger  social oauth callback
+      description: POST /social/oauth/callback endpoint exposed by
+        @vicacha-devs/medusa-plugin-social-commerce.
+      tags:
+        - Public & Utility
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /store/plugin:
+    get:
+      operationId: getStorePlugin
+      summary: List plugin
+      description: GET /store/plugin endpoint exposed by
+        @vicacha-devs/medusa-plugin-social-commerce.
+      tags:
+        - "Storefront: plugin"
+      security:
+        - publishableKey: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /store/social/catalog-feed:
+    get:
+      operationId: getStoreSocialCatalogFeed
+      summary: List social catalog feed
+      description: GET /store/social/catalog-feed endpoint exposed by
+        @vicacha-devs/medusa-plugin-social-commerce.
+      tags:
+        - "Storefront: social"
+      security:
+        - publishableKey: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /store/social/checkout-handoff:
+    get:
+      operationId: getStoreSocialCheckoutHandoff
+      summary: List social checkout handoff
+      description: GET /store/social/checkout-handoff endpoint exposed by
+        @vicacha-devs/medusa-plugin-social-commerce.
+      tags:
+        - "Storefront: social"
+      security:
+        - publishableKey: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+    post:
+      operationId: postStoreSocialCheckoutHandoff
+      summary: Create / Trigger social checkout handoff
+      description: POST /store/social/checkout-handoff endpoint exposed by
+        @vicacha-devs/medusa-plugin-social-commerce.
+      tags:
+        - "Storefront: social"
+      security:
+        - publishableKey: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /store/social/feed:
+    get:
+      operationId: getStoreSocialFeed
+      summary: List social feed
+      description: GET /store/social/feed endpoint exposed by
+        @vicacha-devs/medusa-plugin-social-commerce.
+      tags:
+        - "Storefront: social"
+      security:
+        - publishableKey: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /store/social/live:
+    get:
+      operationId: getStoreSocialLive
+      summary: List social live
+      description: GET /store/social/live endpoint exposed by
+        @vicacha-devs/medusa-plugin-social-commerce.
+      tags:
+        - "Storefront: social"
+      security:
+        - publishableKey: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+    post:
+      operationId: postStoreSocialLive
+      summary: Create / Trigger social live
+      description: POST /store/social/live endpoint exposed by
+        @vicacha-devs/medusa-plugin-social-commerce.
+      tags:
+        - "Storefront: social"
+      security:
+        - publishableKey: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /store/social/posts/{id}:
+    get:
+      operationId: getStoreSocialPostsById
+      summary: Get social posts by ID
+      description: GET /store/social/posts/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-social-commerce.
+      tags:
+        - "Storefront: social"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - publishableKey: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /store/social/stories:
+    get:
+      operationId: getStoreSocialStories
+      summary: List social stories
+      description: GET /store/social/stories endpoint exposed by
+        @vicacha-devs/medusa-plugin-social-commerce.
+      tags:
+        - "Storefront: social"
+      security:
+        - publishableKey: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /webhooks/social/{platform}:
+    get:
+      operationId: getWebhooksSocialByPlatform
+      summary: Get  webhooks social by ID
+      description: GET /webhooks/social/{platform} endpoint exposed by
+        @vicacha-devs/medusa-plugin-social-commerce.
+      tags:
+        - Webhooks & Hooks
+      parameters:
+        - name: platform
+          in: path
+          required: true
+          description: Resource identifier (platform)
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+    post:
+      operationId: postWebhooksSocialByPlatform
+      summary: Create / Trigger  webhooks social by ID
+      description: POST /webhooks/social/{platform} endpoint exposed by
+        @vicacha-devs/medusa-plugin-social-commerce.
+      tags:
+        - Webhooks & Hooks
+      parameters:
+        - name: platform
+          in: path
+          required: true
+          description: Resource identifier (platform)
+          schema:
+            type: string
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /webhooks/tiktok:
+    get:
+      operationId: getWebhooksTiktok
+      summary: List  webhooks tiktok
+      description: GET /webhooks/tiktok endpoint exposed by
+        @vicacha-devs/medusa-plugin-social-commerce.
+      tags:
+        - Webhooks & Hooks
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+    post:
+      operationId: postWebhooksTiktok
+      summary: Create / Trigger  webhooks tiktok
+      description: POST /webhooks/tiktok endpoint exposed by
+        @vicacha-devs/medusa-plugin-social-commerce.
+      tags:
+        - Webhooks & Hooks
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true

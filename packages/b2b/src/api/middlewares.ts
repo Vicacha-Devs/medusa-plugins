@@ -2,12 +2,12 @@ import {
   MedusaNextFunction,
   MedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework";
-import { defineMiddlewares } from "@medusajs/medusa";
-import { adminMiddlewares } from "./admin/middlewares";
-import { storeMiddlewares } from "./store/middlewares";
+} from "@medusajs/framework"
+import { defineMiddlewares } from "@medusajs/medusa"
+import { adminMiddlewares } from "./admin/middlewares"
+import { storeMiddlewares } from "./store/middlewares"
 
-export * from "./validators";
+export * from "./validators"
 
 export default defineMiddlewares({
   routes: [
@@ -17,10 +17,10 @@ export default defineMiddlewares({
       matcher: "/store/customers/me",
       middlewares: [
         (req: MedusaRequest, res: MedusaResponse, next: MedusaNextFunction) => {
-          req.allowed = ["employee"];
-          next();
+          req.allowed = ["employee"]
+          next()
         },
       ],
     },
   ],
-});
+})

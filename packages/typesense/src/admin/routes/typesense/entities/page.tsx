@@ -15,7 +15,7 @@ import { useTranslation } from "react-i18next"
 
 import { EntitiesTab } from "../../../components/typesense/entities-tab"
 import { useTypesenseStudio } from "../../../components/typesense/use-typesense-studio"
-import { RbacGuard } from "../../../components/rbac-guard";
+import { RbacGuard } from "../../../components/rbac-guard"
 
 const TypesenseEntitiesPage: React.FC = () => {
   const { t } = useTranslation()
@@ -117,6 +117,6 @@ const GuardedTypesenseEntitiesPage = () => (
   <RbacGuard permission="typesense.read">
     <TypesenseEntitiesPage />
   </RbacGuard>
-);
+)
 
-export default GuardedTypesenseEntitiesPage;
+export default GuardedTypesenseEntitiesPage

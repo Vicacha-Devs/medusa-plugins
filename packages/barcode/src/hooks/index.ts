@@ -35,7 +35,10 @@ export function useHidBarcodeScanner({
       if (event.key === "Enter" || event.key === "Tab") {
         const candidate = bufferRef.current.trim()
         bufferRef.current = ""
-        if (candidate.length >= minLength && elapsed <= maxInterKeyDelayMs * 3) {
+        if (
+          candidate.length >= minLength &&
+          elapsed <= maxInterKeyDelayMs * 3
+        ) {
           event.preventDefault()
           setLastScanned(candidate)
           onScan(candidate)
@@ -43,7 +46,12 @@ export function useHidBarcodeScanner({
         return
       }
 
-      if (event.key.length === 1 && !event.ctrlKey && !event.metaKey && !event.altKey) {
+      if (
+        event.key.length === 1 &&
+        !event.ctrlKey &&
+        !event.metaKey &&
+        !event.altKey
+      ) {
         if (elapsed > maxInterKeyDelayMs) {
           bufferRef.current = event.key
         } else {
@@ -219,7 +227,8 @@ export function useStoreBarcodeResolver(sdkOptions?: BarcodeSdkOptions) {
         setScanResult(res)
         return res
       } catch (err) {
-        const msg = err instanceof Error ? err.message : "Failed to resolve scan"
+        const msg =
+          err instanceof Error ? err.message : "Failed to resolve scan"
         setError(msg)
         return null
       } finally {

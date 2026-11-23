@@ -2,14 +2,23 @@
   "name": "@vicacha-devs/medusa-v2-extensions",
   "version": "1.0.0",
   "private": true,
-  "description": "Enterprise Medusa v2 Extensions & Plugins Monorepo (11 publishable @vicacha-devs Medusa v2 plugins, shared configs, testing harness & sandbox host app)",
+  "description": "Enterprise Medusa v2 Extensions & Plugins Monorepo (13 publishable @vicacha-devs Medusa v2 plugins, shared configs, testing harness, sandbox host & docs apps)",
+  "homepage": "https://github.com/Vicacha-Devs/vicacha-medusa-plugins#readme",
+  "bugs": {
+    "url": "https://github.com/Vicacha-Devs/vicacha-medusa-plugins/issues"
+  },
   "license": "MIT",
   "author": "Vicacha Devs",
-  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vicacha-Devs/vicacha-medusa-plugins.git",
+    "directory": "."
+  },
   "workspaces": [
     "apps/*",
     "packages/*"
   ],
+  "type": "module",
   "scripts": {
     "bold:emulator": "node ./packages/payment-bold/scripts/bold-emulator.ts",
     "build": "turbo run build --filter=./packages/*",
@@ -17,11 +26,16 @@
     "check": "turbo run typecheck --filter=./packages/*",
     "clean": "turbo run clean",
     "dev": "turbo run dev",
+    "docs:build": "pnpm --filter @vicacha-devs/docs build",
+    "docs:dev": "pnpm --filter @vicacha-devs/docs dev",
+    "docs:judges": "pnpm --filter @vicacha-devs/docs test:judges",
+    "docs:preview": "pnpm --filter @vicacha-devs/docs preview",
     "format": "oxfmt",
     "format:check": "oxfmt --check",
     "lint": "oxlint && eslint .",
     "lint:fix": "oxlint --fix && eslint . --fix",
     "plugin:new": "node ./scripts/create-plugin.ts",
+    "prepare": "husky || true",
     "publint": "node ./scripts/publint-all.ts",
     "qa:docker:down": "docker compose -f docker-compose.qa.yml down",
     "qa:docker:up": "docker compose -f docker-compose.qa.yml --env-file .env.qa up -d",
@@ -48,7 +62,9 @@
     "@medusajs/eslint-plugin": "2.23.0",
     "@types/node": "^22.10.2",
     "eslint": "^10.9.1",
+    "husky": "9.1.7",
     "jiti": "^2.7.0",
+    "lint-staged": "17.0.8",
     "oxfmt": "0.75.0",
     "oxlint": "1.90.0",
     "publint": "0.3.25",

@@ -16,10 +16,7 @@ export async function GET(req: MedusaRequest, res: MedusaResponse) {
   const locale =
     typeof req.query.locale === "string" ? req.query.locale : undefined
   const service = req.scope.resolve<ProductExtModuleService>(PRODUCT_EXT_MODULE)
-  const attributes = await service.getProductAttributeValues(
-    product_id,
-    locale
-  )
+  const attributes = await service.getProductAttributeValues(product_id, locale)
 
   return res.status(200).json({
     product_id,
@@ -58,12 +55,10 @@ export async function POST(
     })
     attributesResult = result
   } else {
-    const service = req.scope.resolve<ProductExtModuleService>(
-      PRODUCT_EXT_MODULE
-    )
+    const service =
+      req.scope.resolve<ProductExtModuleService>(PRODUCT_EXT_MODULE)
     attributesResult = await service.getProductAttributeValues(product_id)
   }
-
 
   return res.status(200).json({
     product_id,

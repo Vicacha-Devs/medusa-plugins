@@ -10,7 +10,7 @@ import {
   useCompany,
   useRemoveCompanyFromCustomerGroup,
 } from "../../../../../hooks/api"
-import { RbacGuard } from "@vicacha-devs/medusa-shared-admin/admin";
+import { RbacGuard } from "@vicacha-devs/medusa-shared-admin/admin"
 
 const CustomerGroupContent = ({ id }: { id: string }) => {
   const { t } = useTranslation()
@@ -82,7 +82,7 @@ const CustomerGroupContent = ({ id }: { id: string }) => {
               customerGroups.map((group) => {
                 const isLinked = currentGroupId === group.id
                 const isOtherLinked = !!currentGroupId && !isLinked
-                
+
                 return (
                   <Table.Row key={group.id}>
                     <Table.Cell>{group.name}</Table.Cell>
@@ -112,9 +112,7 @@ const CustomerGroupContent = ({ id }: { id: string }) => {
               })
             ) : (
               <Table.Row>
-                <Table.Cell>
-                  {t("companies.customerGroup.noGroups")}
-                </Table.Cell>
+                <Table.Cell>{t("companies.customerGroup.noGroups")}</Table.Cell>
               </Table.Row>
             )}
           </Table.Body>
@@ -149,6 +147,6 @@ const GuardedCompanyCustomerGroup = () => (
   <RbacGuard permission="b2b.write">
     <CompanyCustomerGroup />
   </RbacGuard>
-);
+)
 
-export default GuardedCompanyCustomerGroup;
+export default GuardedCompanyCustomerGroup

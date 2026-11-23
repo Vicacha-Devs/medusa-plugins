@@ -37,7 +37,10 @@ export const POST = async (req: MedusaRequest, res: MedusaResponse) => {
       const tgSecretHeader = String(
         req.headers["x-telegram-bot-api-secret-token"] ?? ""
       )
-      if (!tgSecretHeader || !timingSafeStringEqual(tgSecretHeader, signingSecret)) {
+      if (
+        !tgSecretHeader ||
+        !timingSafeStringEqual(tgSecretHeader, signingSecret)
+      ) {
         return res.status(401).json({
           success: false,
           code: "INVALID_WEBHOOK_SIGNATURE",
@@ -45,8 +48,7 @@ export const POST = async (req: MedusaRequest, res: MedusaResponse) => {
         })
       }
     } else {
-      const rawBody =
-        (req as any).rawBody || JSON.stringify(req.body || {})
+      const rawBody = (req as any).rawBody || JSON.stringify(req.body || {})
       const sigHeader =
         (req.headers["x-signalhouse-signature"] as string) ||
         (req.headers["x-webhook-signature"] as string) ||

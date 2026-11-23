@@ -26,11 +26,11 @@ Batch generation logic lives in `executeBulkDocumentGeneration()` (`src/utils/bu
 
 ### On-demand HTTP endpoint & Admin UI
 
-| Trigger | Path / Component | Description |
-| --- | --- | --- |
-| Admin REST API | `POST /admin/documents/bulk-generate` | Validates `BulkGenerateSchema` (`order_ids` up to 100, `document_type`, `template_id`, `locale`, `force_new_version`) and calls `executeBulkDocumentGeneration(req.scope, ...)` |
-| Admin RouteDrawer | `src/admin/routes/documents/@bulk-generate/page.tsx` | Slide-over drawer modal at `/documents/bulk-generate` using `useBulkGenerateDocuments()` |
-| Admin Hub Card | `src/admin/components/documents/documents-bulk-generate-section.tsx` | Inline batch generation card in the `/documents` hub |
+| Trigger           | Path / Component                                                     | Description                                                                                                                                                                     |
+| ----------------- | -------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Admin REST API    | `POST /admin/documents/bulk-generate`                                | Validates `BulkGenerateSchema` (`order_ids` up to 100, `document_type`, `template_id`, `locale`, `force_new_version`) and calls `executeBulkDocumentGeneration(req.scope, ...)` |
+| Admin RouteDrawer | `src/admin/routes/documents/@bulk-generate/page.tsx`                 | Slide-over drawer modal at `/documents/bulk-generate` using `useBulkGenerateDocuments()`                                                                                        |
+| Admin Hub Card    | `src/admin/components/documents/documents-bulk-generate-section.tsx` | Inline batch generation card in the `/documents` hub                                                                                                                            |
 
 ---
 

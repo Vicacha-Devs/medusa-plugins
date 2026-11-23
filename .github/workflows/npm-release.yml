@@ -24,13 +24,17 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
       - uses: pnpm/action-setup@v4
-        with:
-          version: 10.33.3
       - uses: actions/setup-node@v4
         with:
           node-version: "24"
           cache: "pnpm"
-      - run: pnpm qa:verify
+      - run: pnpm install --frozen-lockfile
+      - name: Check formatting with Oxfmt
+        run: pnpm format:check
+      - name: Run Oxlint & ESLint
+        run: pnpm lint
+      - name: Run offline QA gates & plugin tests
+        run: pnpm qa:verify
 
   release:
     name: Changesets Version & Publish
@@ -42,18 +46,26 @@ jobs:
       pull-requests: write
       id-token: write
     steps:
+      # Short-lived token for the org's release GitHub App (when configured) so
+      # the "Version Packages" PR triggers required CI checks under rulesets.
+      - name: Create GitHub App token
+        id: app-token
+        if: vars.RELEASE_APP_ID != ''
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ vars.RELEASE_APP_ID }}
+          private-key: ${{ secrets.RELEASE_APP_PRIVATE_KEY }}
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          persist-credentials: false
       - uses: pnpm/action-setup@v4
-        with:
-          version: 10.33.3
       - uses: actions/setup-node@v4
         with:
           node-version: "24"
           registry-url: "https://registry.npmjs.org"
           cache: "pnpm"
-      - run: pnpm install --no-frozen-lockfile
+      - run: pnpm install --frozen-lockfile
       - name: Create Release Pull Request or Publish to npm
         uses: changesets/action@v1
         with:
@@ -62,5 +74,5 @@ jobs:
           commit: "chore(release): version Medusa plugins"
           title: "chore(release): version Medusa plugins"
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_CONFIG_PROVENANCE: true
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token || secrets.GITHUB_TOKEN }}
+          NPM_CONFIG_PROVENANCE: "true"

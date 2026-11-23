@@ -10,11 +10,23 @@ export const useQuotesTableFilters = () => {
       key: "status",
       type: "select" as const,
       options: [
-        { label: t("quotes.status.pending_merchant"), value: EQuoteStatus.PendingMerchant },
-        { label: t("quotes.status.pending_customer"), value: EQuoteStatus.PendingCustomer },
+        {
+          label: t("quotes.status.pending_merchant"),
+          value: EQuoteStatus.PendingMerchant,
+        },
+        {
+          label: t("quotes.status.pending_customer"),
+          value: EQuoteStatus.PendingCustomer,
+        },
         { label: t("quotes.status.accepted"), value: EQuoteStatus.Accepted },
-        { label: t("quotes.status.customer_rejected"), value: EQuoteStatus.CustomerRejected },
-        { label: t("quotes.status.merchant_rejected"), value: EQuoteStatus.MerchantRejected },
+        {
+          label: t("quotes.status.customer_rejected"),
+          value: EQuoteStatus.CustomerRejected,
+        },
+        {
+          label: t("quotes.status.merchant_rejected"),
+          value: EQuoteStatus.MerchantRejected,
+        },
         { label: t("quotes.status.expired"), value: EQuoteStatus.Expired },
       ],
     },

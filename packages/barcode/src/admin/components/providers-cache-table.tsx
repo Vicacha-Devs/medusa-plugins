@@ -1,10 +1,4 @@
-import {
-  Button,
-  Container,
-  Heading,
-  StatusBadge,
-  Table,
-} from "@medusajs/ui"
+import { Button, Container, Heading, StatusBadge, Table } from "@medusajs/ui"
 import { useTranslation } from "react-i18next"
 
 export interface ProvidersCacheSectionProps {

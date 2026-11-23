@@ -1,5 +1,8 @@
 import { Container, Heading, Text } from "@medusajs/ui"
-import { DataTable, useDataTable } from "@vicacha-devs/medusa-shared-admin/admin"
+import {
+  DataTable,
+  useDataTable,
+} from "@vicacha-devs/medusa-shared-admin/admin"
 import { useTranslation } from "react-i18next"
 import { useQuotes } from "../../../../hooks/api"
 import { useQuotesTableColumns } from "./table/columns"
@@ -12,7 +15,10 @@ const PREFIX = "quot"
 export const QuotesTable = () => {
   const { t } = useTranslation()
 
-  const { searchParams, raw } = useQuotesTableQuery({ pageSize: PAGE_SIZE, prefix: PREFIX })
+  const { searchParams, raw } = useQuotesTableQuery({
+    pageSize: PAGE_SIZE,
+    prefix: PREFIX,
+  })
 
   const result = useQuotes({ ...searchParams, order: "-created_at" })
   const quotes = result.quotes ?? []

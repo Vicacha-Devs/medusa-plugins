@@ -66,15 +66,15 @@ export const handle = {
 }
 ```
 
-| Route File | Admin Path | Layout Mode | Purpose |
-| --- | --- | --- | --- |
-| `routes/barcodes/page.tsx` | `/app/barcodes` | `SINGLE_COLUMN` | Studio overview KPIs & navigation cards to sub-routes |
-| `routes/barcodes/lookup/page.tsx` | `/app/barcodes/lookup` | `TWO_COLUMN` | Single GTIN/ISBN lookup, 1-click product creation & batch importer |
-| `routes/barcodes/tags/page.tsx` | `/app/barcodes/tags` | `TWO_COLUMN` | Dynamic 1D/2D barcode & HMAC-SHA256 QR tag management |
-| `routes/barcodes/tags/@create/page.tsx` | `/app/barcodes/tags/create` | `RouteDrawer` | Drawer modal form (`KeyboundForm` + `Form`) to create signed tags |
-| `routes/barcodes/print/page.tsx` | `/app/barcodes/print` | `TWO_COLUMN` | Thermal roll & A4 sheet price/barcode label designer (HTML+SVG & ZPL II) |
-| `routes/barcodes/stock-take/page.tsx` | `/app/barcodes/stock-take` | `TWO_COLUMN` | Warehouse stock-take count sessions, live scan variance & reconciliation |
-| `routes/barcodes/providers/page.tsx` | `/app/barcodes/providers` | `TWO_COLUMN` | 10-provider chain status & `barcode_cache` inspection/purging |
+| Route File                              | Admin Path                  | Layout Mode     | Purpose                                                                  |
+| --------------------------------------- | --------------------------- | --------------- | ------------------------------------------------------------------------ |
+| `routes/barcodes/page.tsx`              | `/app/barcodes`             | `SINGLE_COLUMN` | Studio overview KPIs & navigation cards to sub-routes                    |
+| `routes/barcodes/lookup/page.tsx`       | `/app/barcodes/lookup`      | `TWO_COLUMN`    | Single GTIN/ISBN lookup, 1-click product creation & batch importer       |
+| `routes/barcodes/tags/page.tsx`         | `/app/barcodes/tags`        | `TWO_COLUMN`    | Dynamic 1D/2D barcode & HMAC-SHA256 QR tag management                    |
+| `routes/barcodes/tags/@create/page.tsx` | `/app/barcodes/tags/create` | `RouteDrawer`   | Drawer modal form (`KeyboundForm` + `Form`) to create signed tags        |
+| `routes/barcodes/print/page.tsx`        | `/app/barcodes/print`       | `TWO_COLUMN`    | Thermal roll & A4 sheet price/barcode label designer (HTML+SVG & ZPL II) |
+| `routes/barcodes/stock-take/page.tsx`   | `/app/barcodes/stock-take`  | `TWO_COLUMN`    | Warehouse stock-take count sessions, live scan variance & reconciliation |
+| `routes/barcodes/providers/page.tsx`    | `/app/barcodes/providers`   | `TWO_COLUMN`    | 10-provider chain status & `barcode_cache` inspection/purging            |
 
 ---
 
@@ -98,10 +98,10 @@ It delegates state and API mutations to `useProductBarcodes(productId)` and rend
 
 All Admin routes and widgets remain thin entrypoints and delegate state management, hardware HID keyboard-wedge scanning (`useHidBarcodeScanner`), and API calls to hooks in `hooks/`:
 
-| Hook | File | Responsibilities |
-| --- | --- | --- |
-| `useBarcodeStudio` | `hooks/use-barcode-studio.ts` | Manages studio overview state, single/batch GTIN lookups, dynamic tag creation/deletion, thermal/A4 label rendering, warehouse count sessions, cache purging, USB HID scanner routing, and active UI locale (`en`, `es`, `fr`, `de`, `it`, `pt`, `nl`, `pl`, `tr`, `ar` with RTL direction). |
-| `useProductBarcodes` | `hooks/use-product-barcodes.ts` | Fetches `BarcodeProduct` mappings and `BarcodeTag` rows for a specific Medusa product ID, triggers `POST /admin/barcodes/bulk-generate` for missing variant barcodes, and prints `thermal_50x25` labels. |
+| Hook                 | File                            | Responsibilities                                                                                                                                                                                                                                                                             |
+| -------------------- | ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `useBarcodeStudio`   | `hooks/use-barcode-studio.ts`   | Manages studio overview state, single/batch GTIN lookups, dynamic tag creation/deletion, thermal/A4 label rendering, warehouse count sessions, cache purging, USB HID scanner routing, and active UI locale (`en`, `es`, `fr`, `de`, `it`, `pt`, `nl`, `pl`, `tr`, `ar` with RTL direction). |
+| `useProductBarcodes` | `hooks/use-product-barcodes.ts` | Fetches `BarcodeProduct` mappings and `BarcodeTag` rows for a specific Medusa product ID, triggers `POST /admin/barcodes/bulk-generate` for missing variant barcodes, and prints `thermal_50x25` labels.                                                                                     |
 
 ---
 
@@ -109,23 +109,23 @@ All Admin routes and widgets remain thin entrypoints and delegate state manageme
 
 Located in `components/`. Every component file is kept modular and concise (< 170 lines per file), using `@medusajs/ui` primitives (`Container`, `Heading`, `Text`, `Table`, `Badge`, `Button`, `Input`, `Select`, `Textarea`, `Toaster`) and `@medusajs/dashboard/components` (`LayoutComposer`, `SectionRow`, `RouteDrawer`, `KeyboundForm`, `Form`).
 
-| Component File | Exported Components | Purpose |
-| --- | --- | --- |
-| `overview-cards.tsx` | `StatCard`, `NavigationCard` | KPI metric cards and clickable sub-route navigation cards |
-| `barcode-studio-header.tsx` | `BarcodeStudioHeader` | Studio header with 10-locale selector, HID scan indicator & bulk EAN-13 button |
-| `gtin-lookup-section.tsx` | `GtinLookupLookupSection`, `GtinLookupTab` | Single GTIN/ISBN lookup form, strategy selector (`first-hit` / `deep-merge`) & product preview |
-| `batch-import-section.tsx` | `GtinLookupBatchSection` | Multi-line batch GTIN importer (up to 100 codes) & recently linked products table |
-| `dynamic-qr-tag-drawer-form.tsx` | `DynamicQrTagDrawerForm` | `react-hook-form` + Zod drawer form inside `RouteDrawer` for creating tags |
-| `dynamic-qr-tag-form.tsx` | `DynamicQrTagCreateSection` | Inline card form for creating 1D/2D & anti-counterfeit HMAC QR tags |
-| `dynamic-qr-tags-table.tsx` | `DynamicQrTagsTableSection`, `DynamicQrTagsTab` | Table of generated tags with SVG preview, scan count, HMAC seal & delete action |
-| `label-designer-section.tsx` | `LabelPrintDesignerSection`, `LabelPrintCenterTab` | Preset selector (7 thermal/A4 layouts), MRP/Sale price inputs & print trigger |
-| `label-output-section.tsx` | `LabelPrintOutputSection` | Print-ready HTML+SVG window launcher and raw Zebra ZPL II (`^XA...^XZ`) output |
-| `stock-take-scanner-section.tsx` | `StockTakeControlsSection`, `WarehouseStockTakeTab` | New count session form and rapid barcode scan (`+1` / `-1`) controls |
-| `stock-take-sessions-section.tsx` | `StockTakeSessionsSection` | Active/completed stock-take sessions list, variance badges & Inventory Module apply action |
-| `providers-overview-section.tsx` | `ProvidersRegistrySection`, `ProvidersCacheTab` | Displays the 10 external GTIN/ISBN lookup providers and priorities |
-| `providers-cache-table.tsx` | `ProvidersCacheSection` | Displays `barcode_cache` entries, hit counts, expiration & purge actions |
-| `product-barcode-card.tsx` | `ProductBarcodeCard` | Product detail widget UI for variant EAN-13 assignment and label printing |
-| `index.tsx` | Barrel re-exports | Re-exports all presentation components |
+| Component File                    | Exported Components                                 | Purpose                                                                                        |
+| --------------------------------- | --------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `overview-cards.tsx`              | `StatCard`, `NavigationCard`                        | KPI metric cards and clickable sub-route navigation cards                                      |
+| `barcode-studio-header.tsx`       | `BarcodeStudioHeader`                               | Studio header with 10-locale selector, HID scan indicator & bulk EAN-13 button                 |
+| `gtin-lookup-section.tsx`         | `GtinLookupLookupSection`, `GtinLookupTab`          | Single GTIN/ISBN lookup form, strategy selector (`first-hit` / `deep-merge`) & product preview |
+| `batch-import-section.tsx`        | `GtinLookupBatchSection`                            | Multi-line batch GTIN importer (up to 100 codes) & recently linked products table              |
+| `dynamic-qr-tag-drawer-form.tsx`  | `DynamicQrTagDrawerForm`                            | `react-hook-form` + Zod drawer form inside `RouteDrawer` for creating tags                     |
+| `dynamic-qr-tag-form.tsx`         | `DynamicQrTagCreateSection`                         | Inline card form for creating 1D/2D & anti-counterfeit HMAC QR tags                            |
+| `dynamic-qr-tags-table.tsx`       | `DynamicQrTagsTableSection`, `DynamicQrTagsTab`     | Table of generated tags with SVG preview, scan count, HMAC seal & delete action                |
+| `label-designer-section.tsx`      | `LabelPrintDesignerSection`, `LabelPrintCenterTab`  | Preset selector (7 thermal/A4 layouts), MRP/Sale price inputs & print trigger                  |
+| `label-output-section.tsx`        | `LabelPrintOutputSection`                           | Print-ready HTML+SVG window launcher and raw Zebra ZPL II (`^XA...^XZ`) output                 |
+| `stock-take-scanner-section.tsx`  | `StockTakeControlsSection`, `WarehouseStockTakeTab` | New count session form and rapid barcode scan (`+1` / `-1`) controls                           |
+| `stock-take-sessions-section.tsx` | `StockTakeSessionsSection`                          | Active/completed stock-take sessions list, variance badges & Inventory Module apply action     |
+| `providers-overview-section.tsx`  | `ProvidersRegistrySection`, `ProvidersCacheTab`     | Displays the 10 external GTIN/ISBN lookup providers and priorities                             |
+| `providers-cache-table.tsx`       | `ProvidersCacheSection`                             | Displays `barcode_cache` entries, hit counts, expiration & purge actions                       |
+| `product-barcode-card.tsx`        | `ProductBarcodeCard`                                | Product detail widget UI for variant EAN-13 assignment and label printing                      |
+| `index.tsx`                       | Barrel re-exports                                   | Re-exports all presentation components                                                         |
 
 ---
 

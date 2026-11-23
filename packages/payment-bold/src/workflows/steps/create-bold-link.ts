@@ -2,7 +2,6 @@ import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
 import { Modules } from "@medusajs/framework/utils"
 import { IPaymentModuleService } from "@medusajs/framework/types"
 import { createPaymentSessionsWorkflow } from "@medusajs/medusa/core-flows"
-import { EBoldPaymentProvider } from "@payment-bold/types"
 import { EMedusaFormatBoldPaymentProvider } from "@payment-bold/types/enums"
 
 export interface CreateBoldLinkStepInput {
@@ -22,7 +21,9 @@ export interface CreateBoldLinkStepInput {
 export const createBoldLinkStep = createStep(
   "create-bold-link",
   async (input: CreateBoldLinkStepInput, { container }) => {
-    const paymentModule: IPaymentModuleService = container.resolve(Modules.PAYMENT)
+    const paymentModule: IPaymentModuleService = container.resolve(
+      Modules.PAYMENT
+    )
     let collectionId = input.paymentCollectionId
     let createdCollection = false
 
@@ -37,7 +38,9 @@ export const createBoldLinkStep = createStep(
     }
 
     // 2. Create Payment Session using Medusa v2 Core Workflow
-    const { result: paymentSession } = await createPaymentSessionsWorkflow(container).run({
+    const { result: paymentSession } = await createPaymentSessionsWorkflow(
+      container
+    ).run({
       input: {
         payment_collection_id: collectionId,
         provider_id: EMedusaFormatBoldPaymentProvider.LINK,
@@ -60,8 +63,12 @@ export const createBoldLinkStep = createStep(
   },
   async (compensationData, { container }) => {
     if (compensationData?.collectionId) {
-      const paymentModule: IPaymentModuleService = container.resolve(Modules.PAYMENT)
-      await paymentModule.deletePaymentCollections([compensationData.collectionId])
+      const paymentModule: IPaymentModuleService = container.resolve(
+        Modules.PAYMENT
+      )
+      await paymentModule.deletePaymentCollections([
+        compensationData.collectionId,
+      ])
     }
   }
 )

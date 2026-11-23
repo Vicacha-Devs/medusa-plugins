@@ -22,7 +22,13 @@ interface StoredTransaction {
   channel: "LINK" | "QR" | "ONLINE" | "BUTTON" | "POS"
   amount: number
   currency: string
-  status: "ACTIVE" | "PROCESSING" | "APPROVED" | "REJECTED" | "EXPIRED" | "CANCELLED"
+  status:
+    | "ACTIVE"
+    | "PROCESSING"
+    | "APPROVED"
+    | "REJECTED"
+    | "EXPIRED"
+    | "CANCELLED"
   transactionId: string
   paymentMethod: string
   refundedAmount: number
@@ -73,8 +79,11 @@ export class BoldQaEmulator {
   private readonly transactionsByLinkId = new Map<string, StoredTransaction>()
   private readonly transactionsByTxId = new Map<string, StoredTransaction>()
   private readonly terminals: EmulatorTerminal[]
-  private nextFault: { pathContains: string; status: number; message: string } | null =
-    null
+  private nextFault: {
+    pathContains: string
+    status: number
+    message: string
+  } | null = null
   public readonly requests: RecordedRequest[] = []
 
   constructor(cfg: BoldEmulatorConfig) {
@@ -201,12 +210,18 @@ export class BoldQaEmulator {
     this.server = null
   }
 
-  private sendJson(res: http.ServerResponse, status: number, body: unknown): void {
+  private sendJson(
+    res: http.ServerResponse,
+    status: number,
+    body: unknown
+  ): void {
     res.writeHead(status, { "content-type": "application/json" })
     res.end(JSON.stringify(body))
   }
 
-  private async readBody(req: http.IncomingMessage): Promise<Record<string, unknown> | null> {
+  private async readBody(
+    req: http.IncomingMessage
+  ): Promise<Record<string, unknown> | null> {
     const chunks: Buffer[] = []
     for await (const chunk of req) {
       chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk))
@@ -289,15 +304,24 @@ export class BoldQaEmulator {
         | "EXPIRED"
         | "CANCELLED"
       if (body?.seedButton && ref) {
-        this.seedButtonOrder(ref, Number(body?.amount || 0), String(body?.currency || "COP"))
+        this.seedButtonOrder(
+          ref,
+          Number(body?.amount || 0),
+          String(body?.currency || "COP")
+        )
       }
       const envelope = this.simulatePaymentOutcome(ref, outcome)
       const webhookUrl = body?.webhookUrl ? String(body.webhookUrl) : ""
       let webhookStatus: number | null = null
       if (webhookUrl) {
         const parsedHook = new URL(webhookUrl)
-        if (parsedHook.hostname !== "127.0.0.1" && parsedHook.hostname !== "localhost") {
-          this.sendJson(res, 400, { message: "webhookUrl must target 127.0.0.1/localhost" })
+        if (
+          parsedHook.hostname !== "127.0.0.1" &&
+          parsedHook.hostname !== "localhost"
+        ) {
+          this.sendJson(res, 400, {
+            message: "webhookUrl must target 127.0.0.1/localhost",
+          })
           return
         }
         const hookRes = await fetch(webhookUrl, {
@@ -307,7 +331,12 @@ export class BoldQaEmulator {
         })
         webhookStatus = hookRes.status
       }
-      this.sendJson(res, 200, { simulated: true, outcome, webhookStatus, envelope })
+      this.sendJson(res, 200, {
+        simulated: true,
+        outcome,
+        webhookStatus,
+        envelope,
+      })
       return
     }
 
@@ -360,7 +389,9 @@ export class BoldQaEmulator {
 
     if (method === "GET" && pathname.startsWith("/online/link/v1/")) {
       if (!this.checkApiKey(req, this.cfg.integrationApiKey, res)) return
-      const linkId = decodeURIComponent(pathname.slice("/online/link/v1/".length))
+      const linkId = decodeURIComponent(
+        pathname.slice("/online/link/v1/".length)
+      )
       const tx = this.transactionsByLinkId.get(linkId)
       if (!tx) {
         this.sendJson(res, 404, { message: `Link ${linkId} not found` })
@@ -449,13 +480,17 @@ export class BoldQaEmulator {
       const qrPayload =
         qrFormat === "TEXT"
           ? `00020101021226BOLDQA${reference}5802CO6304ABCD`
-          : Buffer.from(`BOLD_QR_IMAGE:${reference}:${qrFormat}`).toString("base64")
+          : Buffer.from(`BOLD_QR_IMAGE:${reference}:${qrFormat}`).toString(
+              "base64"
+            )
 
       const tx: StoredTransaction = {
         id: intentId,
         reference,
         channel: pmName === "QR" ? "QR" : "ONLINE",
-        amount: Number((body?.metadata as Record<string, unknown>)?.amount || 0),
+        amount: Number(
+          (body?.metadata as Record<string, unknown>)?.amount || 0
+        ),
         currency: "COP",
         status: "ACTIVE",
         transactionId: `tx_online_${this.seq}`,
@@ -496,7 +531,9 @@ export class BoldQaEmulator {
       )
       const tx = this.transactionsByRef.get(reference)
       if (!tx) {
-        this.sendJson(res, 404, { message: `Voucher for ${reference} not found` })
+        this.sendJson(res, 404, {
+          message: `Voucher for ${reference} not found`,
+        })
         return
       }
       this.sendJson(res, 200, {
@@ -538,6 +575,8 @@ export class BoldQaEmulator {
       return
     }
 
-    this.sendJson(res, 404, { message: `Unhandled route ${method} ${pathname}` })
+    this.sendJson(res, 404, {
+      message: `Unhandled route ${method} ${pathname}`,
+    })
   }
 }

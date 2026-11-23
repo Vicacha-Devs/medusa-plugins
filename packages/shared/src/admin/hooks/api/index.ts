@@ -2,7 +2,7 @@ export * from "./use-claims"
 export * from "./use-customer-groups"
 export * from "./use-customers"
 export * from "./use-exchanges"
-export * from "./use-feature-flag";
+export * from "./use-feature-flag"
 export * from "./use-payment-collections"
 export * from "./use-plugins"
 export * from "./use-payment-providers"

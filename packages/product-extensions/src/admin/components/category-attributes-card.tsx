@@ -21,10 +21,7 @@ export const CategoryAttributesCard: React.FC<CategoryAttributesCardProps> = ({
   const isRtl = (i18n.resolvedLanguage || i18n.language || "").startsWith("ar")
 
   return (
-    <Container
-      className="divide-y p-0"
-      dir={isRtl ? "rtl" : "ltr"}
-    >
+    <Container className="divide-y p-0" dir={isRtl ? "rtl" : "ltr"}>
       <div className="flex items-center justify-between px-6 py-4">
         <div>
           <Heading level="h2">
@@ -51,10 +48,7 @@ export const CategoryAttributesCard: React.FC<CategoryAttributesCardProps> = ({
             key={attr.id}
             title={attr.label}
             value={
-              <Badge
-                size="small"
-                color={attr.is_global ? "purple" : "blue"}
-              >
+              <Badge size="small" color={attr.is_global ? "purple" : "blue"}>
                 {attr.key} · {attr.type}
               </Badge>
             }

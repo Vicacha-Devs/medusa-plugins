@@ -182,14 +182,14 @@ describe("Phase 1 — Numbering Formats & 10-Locale i18n (Document + Admin UI)",
     const enJson = JSON.parse(
       fs.readFileSync(path.join(baseDir, "en.json"), "utf8")
     )
-    const expectedKeys = flattenKeys(enJson).sort()
+    const expectedKeys = flattenKeys(enJson).toSorted()
     assert.ok(expectedKeys.length > 80)
 
     for (const loc of locales) {
       const locJson = JSON.parse(
         fs.readFileSync(path.join(baseDir, `${loc}.json`), "utf8")
       )
-      const locKeys = flattenKeys(locJson).sort()
+      const locKeys = flattenKeys(locJson).toSorted()
       assert.deepEqual(
         locKeys,
         expectedKeys,
@@ -252,7 +252,9 @@ describe("Phase 6 — Docuseal HMAC Webhook Verification & SSRF Protection", () 
   })
 
   it("blocks private/loopback/metadata SSRF URLs while allowing public HTTPS and configured self-hosted origin", () => {
-    assert.throws(() => validateSafeExternalUrl("http://127.0.0.1:8080/doc.pdf"))
+    assert.throws(() =>
+      validateSafeExternalUrl("http://127.0.0.1:8080/doc.pdf")
+    )
     assert.throws(() =>
       validateSafeExternalUrl("https://169.254.169.254/latest/meta-data/")
     )
@@ -632,9 +634,6 @@ describe("Phase 9 — DocumentsApiClient SDK & Query Keys", async () => {
     assert.equal(typesMod.EDocumentStatus.GENERATED, "generated")
     assert.equal(typesMod.ESignatureStatus.COMPLETED, "completed")
     assert.ok(typesMod.DOCUMENTS_ERROR_MAP.DOCUMENT_NOT_FOUND)
-    assert.equal(
-      typesMod.DOCUMENTS_ERROR_MAP.PDF_RENDER_FAILED.retryable,
-      true
-    )
+    assert.equal(typesMod.DOCUMENTS_ERROR_MAP.PDF_RENDER_FAILED.retryable, true)
   })
 })

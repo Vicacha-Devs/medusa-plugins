@@ -14,10 +14,7 @@ import type {
 } from "../types"
 import { typesenseStoreSdk } from "../sdk/client"
 import { typesenseQueryKeys } from "../sdk/query-keys"
-import {
-  useTypesenseMutation,
-  useTypesenseQuery,
-} from "./use-sdk-primitives"
+import { useTypesenseMutation, useTypesenseQuery } from "./use-sdk-primitives"
 
 export function useTypesenseSearch<T = Record<string, any>>(
   params: StoreSearchQueryParams,
@@ -61,7 +58,7 @@ export function useTypesenseProductsSearch<T = Record<string, any>>(
     options?.queryKey ??
     typesenseQueryKeys.storeSearch({
       entity: "product",
-      ...(params || {}),
+      ...params,
     } as Record<string, unknown>)
 
   return useTypesenseQuery<SearchExecutionResult<T>>(
@@ -80,7 +77,7 @@ export function useTypesenseCategoriesSearch<T = Record<string, any>>(
     options?.queryKey ??
     typesenseQueryKeys.storeSearch({
       entity: "product_category",
-      ...(params || {}),
+      ...params,
     } as Record<string, unknown>)
 
   return useTypesenseQuery<SearchExecutionResult<T>>(
@@ -99,7 +96,7 @@ export function useTypesenseCollectionsSearch<T = Record<string, any>>(
     options?.queryKey ??
     typesenseQueryKeys.storeSearch({
       entity: "product_collection",
-      ...(params || {}),
+      ...params,
     } as Record<string, unknown>)
 
   return useTypesenseQuery<SearchExecutionResult<T>>(
@@ -116,7 +113,9 @@ export function useTypesenseScopedToken(
   const client = options?.client ?? typesenseStoreSdk
   const queryKey =
     options?.queryKey ??
-    typesenseQueryKeys.scopedToken(params as Record<string, unknown> | undefined)
+    typesenseQueryKeys.scopedToken(
+      params as Record<string, unknown> | undefined
+    )
 
   return useTypesenseQuery<StoreScopedTokenResponse>(
     queryKey,

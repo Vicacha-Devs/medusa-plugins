@@ -12,11 +12,7 @@ export function getNestedValue(
     return undefined
   }
 
-  const segments = path
-    .trim()
-    .replace(/^\.+/, "")
-    .split(".")
-    .filter(Boolean)
+  const segments = path.trim().replace(/^\.+/, "").split(".").filter(Boolean)
 
   let current: any = source
   for (const segment of segments) {
@@ -57,11 +53,7 @@ export function applyVariableMap(
   }
   const enriched: Record<string, any> = { ...data }
   for (const [varName, dataPath] of Object.entries(variableMap)) {
-    if (
-      !varName ||
-      varName === "__proto__" ||
-      typeof dataPath !== "string"
-    ) {
+    if (!varName || varName === "__proto__" || typeof dataPath !== "string") {
       continue
     }
     const resolved = getNestedValue(data, dataPath)
@@ -112,7 +104,10 @@ export function multiInterpolateString(
   const resolveTranslation = (path: string): unknown => {
     const direct = getNestedValue(translationsObj, path)
     if (direct !== undefined) return direct
-    if (translationsObj.general && typeof translationsObj.general === "object") {
+    if (
+      translationsObj.general &&
+      typeof translationsObj.general === "object"
+    ) {
       return getNestedValue(translationsObj.general, path)
     }
     return undefined

@@ -9,7 +9,7 @@ import {
   DianSettingsSoftwareSection,
   DianSettingsTaxAutomationSection,
 } from "../../../components"
-import { RbacGuard } from "../../../components/rbac-guard";
+import { RbacGuard } from "../../../components/rbac-guard"
 
 const DianSettingsPage: React.FC = () => {
   const { config, municipalities, refresh } = useDianConfig()
@@ -65,6 +65,6 @@ const GuardedDianSettingsPage = () => (
   <RbacGuard permission="dian.read">
     <DianSettingsPage />
   </RbacGuard>
-);
+)
 
-export default GuardedDianSettingsPage;
+export default GuardedDianSettingsPage

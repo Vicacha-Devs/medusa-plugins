@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router-dom"
 import { FeatureBadgesTab } from "../../../components"
 import { useProductExtStudio } from "../../../hooks/use-product-ext-studio"
-import { RbacGuard } from "../../../components/rbac-guard";
+import { RbacGuard } from "../../../components/rbac-guard"
 
 const FeaturesRoutePage = () => {
   const navigate = useNavigate()
@@ -57,6 +57,6 @@ const GuardedFeaturesRoutePage = () => (
   <RbacGuard permission="product_extensions.read">
     <FeaturesRoutePage />
   </RbacGuard>
-);
+)
 
-export default GuardedFeaturesRoutePage;
+export default GuardedFeaturesRoutePage

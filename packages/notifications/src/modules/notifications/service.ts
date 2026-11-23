@@ -61,7 +61,11 @@ import type {
   SenderProfileConfig,
   TemplateBlockNode,
 } from "./types"
-import { buildIdempotencyKey, ChannelRateLimiter, extractOtpCode } from "./utils/security"
+import {
+  buildIdempotencyKey,
+  ChannelRateLimiter,
+  extractOtpCode,
+} from "./utils/security"
 import {
   buildBlockTreeFromFlatBlocks,
   getSystemPresetById,
@@ -100,10 +104,12 @@ export class NotificationsModuleService extends MedusaService({
     this.externalTemplates_ = loadExternalTemplates(this.options_, this.logger_)
   }
 
+  // eslint-disable-next-line @medusajs/service-methods-must-be-async -- pure synchronous helper
   getPluginOptions(): NotificationsPluginOptions {
     return this.options_
   }
 
+  // eslint-disable-next-line @medusajs/service-methods-must-be-async -- pure synchronous helper
   getSenderProfiles(): SenderProfileConfig[] {
     return resolveSenderProfiles(this.options_)
   }
@@ -122,7 +128,11 @@ export class NotificationsModuleService extends MedusaService({
 
     if (!filters?.source || filters.source === "external") {
       results.push(
-        ...listExternalTemplates(this.externalTemplates_, this.options_, filters)
+        ...listExternalTemplates(
+          this.externalTemplates_,
+          this.options_,
+          filters
+        )
       )
     }
 
@@ -252,7 +262,11 @@ export class NotificationsModuleService extends MedusaService({
 
     const contextData =
       params.data ||
-      getMockContextByType(params.context_type || "order", this.options_, locale)
+      getMockContextByType(
+        params.context_type || "order",
+        this.options_,
+        locale
+      )
 
     // Check external template service `render` callback first if prefixed with `external_` and not in `externalTemplates_`
     if (
@@ -296,6 +310,7 @@ export class NotificationsModuleService extends MedusaService({
     )
   }
 
+  // eslint-disable-next-line @medusajs/service-methods-must-be-async -- pure synchronous helper
   evaluateEventConditions(
     conditions: EventMappingCondition | null | undefined,
     data: Record<string, any>
@@ -303,6 +318,7 @@ export class NotificationsModuleService extends MedusaService({
     return evaluateEventConditions(conditions, data)
   }
 
+  // eslint-disable-next-line @medusajs/service-methods-must-be-async -- pure synchronous helper
   resolveRecipientForRule(params: {
     rule: RecipientRule | string
     custom_recipient?: string | null
@@ -326,7 +342,10 @@ export class NotificationsModuleService extends MedusaService({
     source?: string
     metadata?: Record<string, any>
   }): Promise<Record<string, any>> {
-    const cleanId = normalizeConsentIdentifier(params.channel, params.identifier)
+    const cleanId = normalizeConsentIdentifier(
+      params.channel,
+      params.identifier
+    )
     const existing = await this.listMpnConsentRecords({
       identifier: cleanId,
       channel: params.channel,
@@ -343,8 +362,8 @@ export class NotificationsModuleService extends MedusaService({
         opted_in_at: params.action === "opt_in" ? now : current.opted_in_at,
         opted_out_at: params.action === "opt_out" ? now : current.opted_out_at,
         metadata: {
-          ...(current.metadata || {}),
-          ...(params.metadata || {}),
+          ...current.metadata,
+          ...params.metadata,
         },
       })
     }
@@ -481,7 +500,8 @@ export class NotificationsModuleService extends MedusaService({
     attachments_meta?: Array<Record<string, any>> | null
     metadata?: Record<string, any> | null
   }): Promise<Record<string, any>> {
-    const otpCode = extractOtpCode(params.body) || extractOtpCode(params.subject)
+    const otpCode =
+      extractOtpCode(params.body) || extractOtpCode(params.subject)
     return await this.createMpnSandboxMessages({
       channel: params.channel,
       recipient: params.recipient,

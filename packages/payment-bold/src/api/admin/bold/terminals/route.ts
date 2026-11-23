@@ -10,7 +10,7 @@ export const GET = async (
 
   try {
     const { result: terminals } = await getTerminalsWorkflow(req.scope).run()
-    
+
     return res.json({ terminals: terminals || [] })
   } catch (err: any) {
     logger.error(
@@ -19,7 +19,8 @@ export const GET = async (
     )
 
     return res.status(500).json({
-      message: err.message || "Failed to retrieve terminal fleet status from Bold API",
+      message:
+        err.message || "Failed to retrieve terminal fleet status from Bold API",
     })
   }
 }

@@ -47,7 +47,9 @@ export const CompanyCreateAdminTab = ({
                 disabled={regionsLoading}
               >
                 <Select.Trigger>
-                  <Select.Value placeholder={t("companies.form.selectCurrency")} />
+                  <Select.Value
+                    placeholder={t("companies.form.selectCurrency")}
+                  />
                 </Select.Trigger>
                 <Select.Content>
                   {availableCurrencies.map((c) => (
@@ -106,12 +108,19 @@ export const CompanyCreateAdminTab = ({
             name="customer_group_id"
             render={({ field }: any) => (
               <Form.Item>
-                <Form.Label optional>{t("companies.customerGroup.header")}</Form.Label>
+                <Form.Label optional>
+                  {t("companies.customerGroup.header")}
+                </Form.Label>
                 <Form.Control>
-                  <Select value={field.value ?? ""} onValueChange={field.onChange}>
+                  <Select
+                    value={field.value ?? ""}
+                    onValueChange={field.onChange}
+                  >
                     <Select.Trigger>
                       <Select.Value
-                        placeholder={t("companies.customerGroup.selectPlaceholder")}
+                        placeholder={t(
+                          "companies.customerGroup.selectPlaceholder"
+                        )}
                       />
                     </Select.Trigger>
                     <Select.Content>
@@ -141,7 +150,9 @@ export const CompanyCreateAdminTab = ({
                 <CoolSwitch
                   fieldName="requires_admin_approval"
                   label={t("companies.approvalSettings.requiresAdmin")}
-                  description={t("companies.approvalSettings.requiresAdminDescription")}
+                  description={t(
+                    "companies.approvalSettings.requiresAdminDescription"
+                  )}
                   checked={field.value}
                   onChange={field.onChange}
                 />

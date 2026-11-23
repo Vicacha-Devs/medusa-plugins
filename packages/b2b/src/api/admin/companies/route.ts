@@ -1,4 +1,7 @@
-import type { AuthenticatedMedusaRequest, MedusaResponse } from "@medusajs/framework"
+import type {
+  AuthenticatedMedusaRequest,
+  MedusaResponse,
+} from "@medusajs/framework"
 import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
 
 /**
@@ -6,7 +9,10 @@ import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
  * on the customer edit form. There is no native Medusa Company model, so we
  * serve B2B companies from this endpoint.
  */
-export const GET = async (req: AuthenticatedMedusaRequest, res: MedusaResponse) => {
+export const GET = async (
+  req: AuthenticatedMedusaRequest,
+  res: MedusaResponse
+) => {
   const query = req.scope.resolve(ContainerRegistrationKeys.QUERY)
 
   const limit = Number(req.query.limit ?? 50)

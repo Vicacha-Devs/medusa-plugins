@@ -59,8 +59,12 @@ export const DriftConflictsSection = ({
         <Table>
           <Table.Header>
             <Table.Row>
-              <Table.HeaderCell>{t("overviewTab.conflictsLabel")}</Table.HeaderCell>
-              <Table.HeaderCell>{t("overviewTab.mappingsLabel")}</Table.HeaderCell>
+              <Table.HeaderCell>
+                {t("overviewTab.conflictsLabel")}
+              </Table.HeaderCell>
+              <Table.HeaderCell>
+                {t("overviewTab.mappingsLabel")}
+              </Table.HeaderCell>
               <Table.HeaderCell className="text-right">
                 {t("settingsTab.reconciliationTitle")}
               </Table.HeaderCell>

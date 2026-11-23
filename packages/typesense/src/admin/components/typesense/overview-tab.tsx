@@ -40,7 +40,10 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({
                 <Heading level="h2" className="capitalize">
                   {col.entity}
                 </Heading>
-                <Text size="xsmall" className="text-ui-fg-subtle mt-0.5 font-mono">
+                <Text
+                  size="xsmall"
+                  className="text-ui-fg-subtle mt-0.5 font-mono"
+                >
                   {t("overview.aliasLabel", {
                     alias: col.aliasName,
                     physical: col.physicalCollection || t("overview.none"),

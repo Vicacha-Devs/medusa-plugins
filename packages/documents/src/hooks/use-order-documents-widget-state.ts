@@ -78,8 +78,7 @@ export function useOrderDocumentsWidgetState({
   })
 
   const getDocTypeLabel = useCallback(
-    (type: DocumentType | string) =>
-      t(`types.${type}`, { defaultValue: type }),
+    (type: DocumentType | string) => t(`types.${type}`, { defaultValue: type }),
     [t]
   )
 
@@ -106,7 +105,14 @@ export function useOrderDocumentsWidgetState({
     } catch (err: any) {
       toast.error(err.message || t("widget.messages.generateError"))
     }
-  }, [orderId, selectedType, selectedLocale, generateMutation, getDocTypeLabel, t])
+  }, [
+    orderId,
+    selectedType,
+    selectedLocale,
+    generateMutation,
+    getDocTypeLabel,
+    t,
+  ])
 
   const handleRegenerate = useCallback(
     async (docId: string, isRetry = false) => {

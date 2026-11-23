@@ -2,14 +2,14 @@ import {
   beginOrderEditOrderWorkflow,
   createOrdersWorkflow,
   useRemoteQueryStep,
-} from "@medusajs/core-flows";
-import { OrderStatus } from "@medusajs/framework/utils";
+} from "@medusajs/core-flows"
+import { OrderStatus } from "@medusajs/framework/utils"
 import {
   createWorkflow,
   transform,
   WorkflowResponse,
-} from "@medusajs/framework/workflows-sdk";
-import { createQuotesWorkflow } from "./create-quote";
+} from "@medusajs/framework/workflows-sdk"
+import { createQuotesWorkflow } from "./create-quote"
 
 /*
   A workflow that creates a request for quote. 
@@ -42,7 +42,7 @@ export const createRequestForQuoteWorkflow = createWorkflow(
       variables: { id: input.cart_id },
       list: false,
       throw_if_key_not_found: true,
-    });
+    })
 
     const customer = useRemoteQueryStep({
       entry_point: "customer",
@@ -50,7 +50,7 @@ export const createRequestForQuoteWorkflow = createWorkflow(
       variables: { id: input.customer_id },
       list: false,
       throw_if_key_not_found: true,
-    }).config({ name: "customer-query" });
+    }).config({ name: "customer-query" })
 
     const orderInput = transform({ cart, customer }, ({ cart, customer }) => {
       return {
@@ -66,12 +66,12 @@ export const createRequestForQuoteWorkflow = createWorkflow(
         promo_codes: cart.promotions.map(({ code }) => code),
         currency_code: cart.currency_code,
         shipping_methods: cart.shipping_methods,
-      };
-    });
+      }
+    })
 
     const draftOrder = createOrdersWorkflow.runAsStep({
       input: orderInput,
-    });
+    })
 
     const orderEditInput = transform({ draftOrder }, ({ draftOrder }) => {
       return {
@@ -79,12 +79,12 @@ export const createRequestForQuoteWorkflow = createWorkflow(
         description: "",
         internal_note: "",
         metadata: {},
-      };
-    });
+      }
+    })
 
     const changeOrder = beginOrderEditOrderWorkflow.runAsStep({
       input: orderEditInput,
-    });
+    })
 
     const quotes = createQuotesWorkflow.runAsStep({
       input: [
@@ -95,8 +95,8 @@ export const createRequestForQuoteWorkflow = createWorkflow(
           order_change_id: changeOrder.id,
         },
       ],
-    });
+    })
 
-    return new WorkflowResponse({ quote: quotes[0] });
+    return new WorkflowResponse({ quote: quotes[0] })
   }
-);
+)

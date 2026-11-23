@@ -21,7 +21,9 @@ export function useStoriesQuery<TData>(
 ) {
   const enabled = options?.enabled ?? true
   const [data, setData] = useState<TData | undefined>(options?.initialData)
-  const [isLoading, setIsLoading] = useState<boolean>(enabled && !options?.initialData)
+  const [isLoading, setIsLoading] = useState<boolean>(
+    enabled && !options?.initialData
+  )
   const [error, setError] = useState<Error | null>(null)
   const fetcherRef = useRef(fetcher)
   fetcherRef.current = fetcher

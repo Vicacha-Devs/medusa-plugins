@@ -10,16 +10,16 @@ It maintains 100% backward compatibility with `@bambiste/medusa-stories` (`STORI
 
 ## Package Exports (`package.json`)
 
-| Import Path | Target Source | Purpose |
-|---|---|---|
-| `@vicacha-devs/medusa-plugin-stories` | `src/index.ts` | Root export (`StoriesModule`, `StoriesModuleService`, `STORIES_MODULE`, workflows, SDK, hooks, UI kit, i18n) |
-| `@vicacha-devs/medusa-plugin-stories/modules/story` | `src/modules/story/index.ts` | Medusa Module definition (`Module("stories", { service: StoriesModuleService })`) |
-| `@vicacha-devs/medusa-plugin-stories/modules/stories` | `src/modules/stories/index.ts` | Alias re-exporting `src/modules/story` |
-| `@vicacha-devs/medusa-plugin-stories/workflows` | `src/workflows/index.ts` | `createStoryGroupWorkflow`, `createStorySlideWorkflow`, `recordStoryEngagementWorkflow`, `expireEphemeralStoriesWorkflow`, `expireStoriesWorkflow` |
-| `@vicacha-devs/medusa-plugin-stories/sdk` | `src/sdk/index.ts` | `createStoriesSdk`, `defaultStoriesSdk`, `storiesQueryKeys` |
-| `@vicacha-devs/medusa-plugin-stories/hooks` | `src/hooks/index.ts` | Storefront & Admin hooks (`useStoreStories`, `useStoryPlayer`, `useRecordStoryEvent`, `useInteractStorySticker`, `useAdminStoriesState`, etc.) |
-| `@vicacha-devs/medusa-plugin-stories/ui` | `src/ui/index.ts` | `<StoryRingsBar />`, `<StoryPlayerModal />`, `<StoryHotspotPin />`, `<StoryProductSheet />` |
-| `@vicacha-devs/medusa-plugin-stories/types` | `src/types/index.ts` | Shared TypeScript types |
+| Import Path                                           | Target Source                  | Purpose                                                                                                                                            |
+| ----------------------------------------------------- | ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `@vicacha-devs/medusa-plugin-stories`                 | `src/index.ts`                 | Root export (`StoriesModule`, `StoriesModuleService`, `STORIES_MODULE`, workflows, SDK, hooks, UI kit, i18n)                                       |
+| `@vicacha-devs/medusa-plugin-stories/modules/story`   | `src/modules/story/index.ts`   | Medusa Module definition (`Module("stories", { service: StoriesModuleService })`)                                                                  |
+| `@vicacha-devs/medusa-plugin-stories/modules/stories` | `src/modules/stories/index.ts` | Alias re-exporting `src/modules/story`                                                                                                             |
+| `@vicacha-devs/medusa-plugin-stories/workflows`       | `src/workflows/index.ts`       | `createStoryGroupWorkflow`, `createStorySlideWorkflow`, `recordStoryEngagementWorkflow`, `expireEphemeralStoriesWorkflow`, `expireStoriesWorkflow` |
+| `@vicacha-devs/medusa-plugin-stories/sdk`             | `src/sdk/index.ts`             | `createStoriesSdk`, `defaultStoriesSdk`, `storiesQueryKeys`                                                                                        |
+| `@vicacha-devs/medusa-plugin-stories/hooks`           | `src/hooks/index.ts`           | Storefront & Admin hooks (`useStoreStories`, `useStoryPlayer`, `useRecordStoryEvent`, `useInteractStorySticker`, `useAdminStoriesState`, etc.)     |
+| `@vicacha-devs/medusa-plugin-stories/ui`              | `src/ui/index.ts`              | `<StoryRingsBar />`, `<StoryPlayerModal />`, `<StoryHotspotPin />`, `<StoryProductSheet />`                                                        |
+| `@vicacha-devs/medusa-plugin-stories/types`           | `src/types/index.ts`           | Shared TypeScript types                                                                                                                            |
 
 ---
 

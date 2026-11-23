@@ -136,7 +136,11 @@ export const GeneralSectionSkeleton = ({
   )
 }
 
-export const TableFooterSkeleton = ({ layout }: { layout: "fill" | "fit" }): JSX.Element => {
+export const TableFooterSkeleton = ({
+  layout,
+}: {
+  layout: "fill" | "fit"
+}): JSX.Element => {
   return (
     <div
       className={clx("flex items-center justify-between p-4", {
@@ -204,7 +208,9 @@ export const TableSkeleton = ({
   )
 }
 
-export const TableSectionSkeleton = (props: TableSkeletonProps): JSX.Element => {
+export const TableSectionSkeleton = (
+  props: TableSkeletonProps
+): JSX.Element => {
   return (
     <Container className="divide-y p-0" aria-hidden>
       <div className="flex items-center justify-between px-6 py-4" aria-hidden>

@@ -142,7 +142,7 @@ export class TypesenseSearchProviderService extends AbstractSearchProviderServic
   }
 
   protected createClient(options: TypesenseSearchProviderOptions): any {
-    const merged = { ...(options.config || {}), ...options }
+    const merged = { ...options.config, ...options }
     const nodes: TypesenseNodeConfig[] = []
     if (Array.isArray(merged.nodes) && merged.nodes.length > 0) {
       nodes.push(...merged.nodes)
@@ -293,10 +293,7 @@ export class TypesenseSearchProviderService extends AbstractSearchProviderServic
   }: SearchTypes.SearchDeleteDocumentsInput): Promise<SearchTypes.SearchTask> {
     const rawFilters = (filters || {}) as Record<string, any>
     const idFilter = rawFilters.id
-    if (
-      typeof idFilter === "string" &&
-      Object.keys(rawFilters).length === 1
-    ) {
+    if (typeof idFilter === "string" && Object.keys(rawFilters).length === 1) {
       try {
         await this.client_.collections(index).documents(idFilter).delete()
       } catch {
@@ -305,10 +302,7 @@ export class TypesenseSearchProviderService extends AbstractSearchProviderServic
       return { index, status: "succeeded" }
     }
 
-    if (
-      Array.isArray(idFilter) &&
-      Object.keys(rawFilters).length === 1
-    ) {
+    if (Array.isArray(idFilter) && Object.keys(rawFilters).length === 1) {
       const escaped = idFilter.map((v) => escapeTypesenseFilterValue(String(v)))
       if (escaped.length > 0) {
         await this.client_
@@ -342,9 +336,7 @@ export class TypesenseSearchProviderService extends AbstractSearchProviderServic
     return { index, status: "succeeded" }
   }
 
-  protected buildTypesenseQueryParams(
-    input: SearchTypes.ProviderSearchQuery
-  ): {
+  protected buildTypesenseQueryParams(input: SearchTypes.ProviderSearchQuery): {
     collection: string
     params: Record<string, any>
     skip: number

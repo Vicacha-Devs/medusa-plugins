@@ -1,0 +1,317 @@
+openapi: 3.1.0
+info:
+  title: "@vicacha-devs/medusa-plugin-dian API"
+  version: 0.0.1
+  description:
+    "Colombian DIAN Electronic Invoicing (Facturación Electrónica DIAN
+    Anexo Técnico 1.9, Resolución 000165) plugin for Medusa v2: UBL 2.1 XML,
+    CUFE/CUDE SHA-384, XAdES-EPES digital signature, DIAN SOAP Web Services &
+    Pluggable Providers (Siigo, Alegra, Dataico, FacturaTech), Credit/Debit
+    Notes, POS Equivalent (Tipo 20), B2B Legal Client validation via
+    @vicacha-devs/medusa-plugin-b2b, and PDF Representación Gráfica via
+    @vicacha-devs/medusa-plugin-documents."
+servers:
+  - url: http://127.0.0.1:9000
+    description: Local Medusa v2 Server
+components:
+  securitySchemes:
+    adminBearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Medusa Admin JWT or API token
+    publishableKey:
+      type: apiKey
+      in: header
+      name: x-publishable-api-key
+      description: Medusa Storefront Publishable API Key
+paths:
+  /admin/dian/config:
+    get:
+      operationId: getAdminDianConfig
+      summary: List dian config
+      description: GET /admin/dian/config endpoint exposed by
+        @vicacha-devs/medusa-plugin-dian.
+      tags:
+        - "Admin: dian"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    post:
+      operationId: postAdminDianConfig
+      summary: Create / Trigger dian config
+      description: POST /admin/dian/config endpoint exposed by
+        @vicacha-devs/medusa-plugin-dian.
+      tags:
+        - "Admin: dian"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/dian/documents:
+    get:
+      operationId: getAdminDianDocuments
+      summary: List dian documents
+      description: GET /admin/dian/documents endpoint exposed by
+        @vicacha-devs/medusa-plugin-dian.
+      tags:
+        - "Admin: dian"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    post:
+      operationId: postAdminDianDocuments
+      summary: Create / Trigger dian documents
+      description: POST /admin/dian/documents endpoint exposed by
+        @vicacha-devs/medusa-plugin-dian.
+      tags:
+        - "Admin: dian"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/dian/documents/{id}/download:
+    get:
+      operationId: getAdminDianDocumentsByIdDownload
+      summary: Get dian documents by ID download
+      description: GET /admin/dian/documents/{id}/download endpoint exposed by
+        @vicacha-devs/medusa-plugin-dian.
+      tags:
+        - "Admin: dian"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/dian/fiscal-profiles:
+    get:
+      operationId: getAdminDianFiscalProfiles
+      summary: List dian fiscal profiles
+      description: GET /admin/dian/fiscal-profiles endpoint exposed by
+        @vicacha-devs/medusa-plugin-dian.
+      tags:
+        - "Admin: dian"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    post:
+      operationId: postAdminDianFiscalProfiles
+      summary: Create / Trigger dian fiscal profiles
+      description: POST /admin/dian/fiscal-profiles endpoint exposed by
+        @vicacha-devs/medusa-plugin-dian.
+      tags:
+        - "Admin: dian"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/dian/resolutions:
+    get:
+      operationId: getAdminDianResolutions
+      summary: List dian resolutions
+      description: GET /admin/dian/resolutions endpoint exposed by
+        @vicacha-devs/medusa-plugin-dian.
+      tags:
+        - "Admin: dian"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    post:
+      operationId: postAdminDianResolutions
+      summary: Create / Trigger dian resolutions
+      description: POST /admin/dian/resolutions endpoint exposed by
+        @vicacha-devs/medusa-plugin-dian.
+      tags:
+        - "Admin: dian"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/plugin:
+    get:
+      operationId: getAdminPlugin
+      summary: List plugin
+      description: GET /admin/plugin endpoint exposed by @vicacha-devs/medusa-plugin-dian.
+      tags:
+        - "Admin: plugin"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /store/dian/fiscal-profile:
+    get:
+      operationId: getStoreDianFiscalProfile
+      summary: List dian fiscal profile
+      description: GET /store/dian/fiscal-profile endpoint exposed by
+        @vicacha-devs/medusa-plugin-dian.
+      tags:
+        - "Storefront: dian"
+      security:
+        - publishableKey: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+    post:
+      operationId: postStoreDianFiscalProfile
+      summary: Create / Trigger dian fiscal profile
+      description: POST /store/dian/fiscal-profile endpoint exposed by
+        @vicacha-devs/medusa-plugin-dian.
+      tags:
+        - "Storefront: dian"
+      security:
+        - publishableKey: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /store/plugin:
+    get:
+      operationId: getStorePlugin
+      summary: List plugin
+      description: GET /store/plugin endpoint exposed by @vicacha-devs/medusa-plugin-dian.
+      tags:
+        - "Storefront: plugin"
+      security:
+        - publishableKey: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true

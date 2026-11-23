@@ -4,8 +4,7 @@ export const fr: NotificationTranslationDictionary = {
   general: {
     hello: "Bonjour",
     thankYou: "Merci pour votre commande !",
-    questionsContact:
-      "Si vous avez des questions, répondez à ce message.",
+    questionsContact: "Si vous avez des questions, répondez à ce message.",
     viewInStore: "Visiter la boutique",
     poweredBy: "Envoyé par",
     unsubscribeSms: "Répondez STOP pour vous désabonner.",
@@ -13,8 +12,7 @@ export const fr: NotificationTranslationDictionary = {
   order: {
     placedSubject: "Commande #{{data.display_id}} confirmée",
     placedTitle: "Merci pour votre commande !",
-    placedIntro:
-      "Nous avons bien reçu votre commande #{{data.display_id}}.",
+    placedIntro: "Nous avons bien reçu votre commande #{{data.display_id}}.",
     completedSubject: "Commande #{{data.display_id}} terminée",
     completedTitle: "Votre commande est terminée",
     canceledSubject: "Commande #{{data.display_id}} annulée",
@@ -71,8 +69,7 @@ export const fr: NotificationTranslationDictionary = {
   cart: {
     recoverySubject: "Votre panier vous attend chez {{data.store_name}}",
     recoveryTitle: "Vous avez oublié quelque chose ?",
-    recoveryIntro:
-      "Vos articles sont toujours réservés dans votre panier.",
+    recoveryIntro: "Vos articles sont toujours réservés dans votre panier.",
     resumeCartButton: "Finaliser ma commande",
   },
   document: {

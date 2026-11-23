@@ -7,7 +7,6 @@
 "@vicacha-devs/medusa-plugin-notifications": minor
 "@vicacha-devs/medusa-plugin-odoo": minor
 "@vicacha-devs/medusa-plugin-product-extensions": minor
-"@vicacha-devs/medusa-plugin-rbac": minor
 "@vicacha-devs/medusa-plugin-social-commerce": minor
 "@vicacha-devs/medusa-plugin-stories": minor
 "@vicacha-devs/medusa-plugin-typesense": minor

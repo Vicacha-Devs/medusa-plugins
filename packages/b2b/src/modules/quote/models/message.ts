@@ -1,6 +1,6 @@
-import { model } from "@medusajs/framework/utils";
+import { model } from "@medusajs/framework/utils"
 
-import { Quote } from "./quote";
+import { Quote } from "./quote"
 
 export const Message = model
   .define("message", {
@@ -32,4 +32,4 @@ export const Message = model
       on: ["item_id"],
       where: "deleted_at IS NULL AND item_id IS NOT NULL",
     },
-  ]);
+  ])

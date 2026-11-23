@@ -33,7 +33,9 @@ export default defineMiddlewares({
     {
       matcher: "/admin/dian/documents",
       method: "GET",
-      middlewares: [validateAndTransformQuery(ListDianDocumentsQuerySchema, {})],
+      middlewares: [
+        validateAndTransformQuery(ListDianDocumentsQuerySchema, {}),
+      ],
     },
     {
       matcher: "/admin/dian/documents",

@@ -1,0 +1,337 @@
+openapi: 3.1.0
+info:
+  title: "@vicacha-devs/medusa-payment-bold API"
+  version: 0.0.1
+  description: Comprehensive Bold Colombia payment integration for Medusa v2
+    supporting Button, Links, Online API (Cards, PSE, Nequi, QR), and Smart POS
+    Terminals.
+servers:
+  - url: http://127.0.0.1:9000
+    description: Local Medusa v2 Server
+components:
+  securitySchemes:
+    adminBearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Medusa Admin JWT or API token
+    publishableKey:
+      type: apiKey
+      in: header
+      name: x-publishable-api-key
+      description: Medusa Storefront Publishable API Key
+paths:
+  /admin/bold/banks:
+    get:
+      operationId: getAdminBoldBanks
+      summary: List bold banks
+      description: GET /admin/bold/banks endpoint exposed by
+        @vicacha-devs/medusa-payment-bold.
+      tags:
+        - "Admin: bold"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/bold/payment-button:
+    post:
+      operationId: postAdminBoldPaymentButton
+      summary: Create / Trigger bold payment button
+      description: POST /admin/bold/payment-button endpoint exposed by
+        @vicacha-devs/medusa-payment-bold.
+      tags:
+        - "Admin: bold"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/bold/payment-link:
+    post:
+      operationId: postAdminBoldPaymentLink
+      summary: Create / Trigger bold payment link
+      description: POST /admin/bold/payment-link endpoint exposed by
+        @vicacha-devs/medusa-payment-bold.
+      tags:
+        - "Admin: bold"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/bold/payment-link-methods:
+    get:
+      operationId: getAdminBoldPaymentLinkMethods
+      summary: List bold payment link methods
+      description: GET /admin/bold/payment-link-methods endpoint exposed by
+        @vicacha-devs/medusa-payment-bold.
+      tags:
+        - "Admin: bold"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/bold/payment-methods:
+    get:
+      operationId: getAdminBoldPaymentMethods
+      summary: List bold payment methods
+      description: GET /admin/bold/payment-methods endpoint exposed by
+        @vicacha-devs/medusa-payment-bold.
+      tags:
+        - "Admin: bold"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/bold/payment-qr:
+    post:
+      operationId: postAdminBoldPaymentQr
+      summary: Create / Trigger bold payment qr
+      description: POST /admin/bold/payment-qr endpoint exposed by
+        @vicacha-devs/medusa-payment-bold.
+      tags:
+        - "Admin: bold"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/bold/payment-status:
+    get:
+      operationId: getAdminBoldPaymentStatus
+      summary: List bold payment status
+      description: GET /admin/bold/payment-status endpoint exposed by
+        @vicacha-devs/medusa-payment-bold.
+      tags:
+        - "Admin: bold"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/bold/payment-stream:
+    get:
+      operationId: getAdminBoldPaymentStream
+      summary: List bold payment stream
+      description: GET /admin/bold/payment-stream endpoint exposed by
+        @vicacha-devs/medusa-payment-bold.
+      tags:
+        - "Admin: bold"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/bold/pos-push:
+    post:
+      operationId: postAdminBoldPosPush
+      summary: Create / Trigger bold pos push
+      description: POST /admin/bold/pos-push endpoint exposed by
+        @vicacha-devs/medusa-payment-bold.
+      tags:
+        - "Admin: bold"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/bold/refund:
+    post:
+      operationId: postAdminBoldRefund
+      summary: Create / Trigger bold refund
+      description: POST /admin/bold/refund endpoint exposed by
+        @vicacha-devs/medusa-payment-bold.
+      tags:
+        - "Admin: bold"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/bold/terminals:
+    get:
+      operationId: getAdminBoldTerminals
+      summary: List bold terminals
+      description: GET /admin/bold/terminals endpoint exposed by
+        @vicacha-devs/medusa-payment-bold.
+      tags:
+        - "Admin: bold"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/plugin:
+    get:
+      operationId: getAdminPlugin
+      summary: List plugin
+      description: GET /admin/plugin endpoint exposed by @vicacha-devs/medusa-payment-bold.
+      tags:
+        - "Admin: plugin"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /hooks/payment/bold:
+    post:
+      operationId: postHooksPaymentBold
+      summary: Create / Trigger  hooks payment bold
+      description: POST /hooks/payment/bold endpoint exposed by
+        @vicacha-devs/medusa-payment-bold.
+      tags:
+        - Webhooks & Hooks
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /store/plugin:
+    get:
+      operationId: getStorePlugin
+      summary: List plugin
+      description: GET /store/plugin endpoint exposed by @vicacha-devs/medusa-payment-bold.
+      tags:
+        - "Storefront: plugin"
+      security:
+        - publishableKey: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true

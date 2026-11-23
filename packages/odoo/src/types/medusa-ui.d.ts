@@ -12,15 +12,13 @@ declare module "@medusajs/ui" {
   }
   export const Container: React.FC<ContainerProps>
 
-  export interface HeadingProps
-    extends React.HTMLAttributes<HTMLHeadingElement> {
+  export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
     level?: "h1" | "h2" | "h3"
     children?: React.ReactNode
   }
   export const Heading: React.FC<HeadingProps>
 
-  export interface TextProps
-    extends React.HTMLAttributes<HTMLParagraphElement> {
+  export interface TextProps extends React.HTMLAttributes<HTMLParagraphElement> {
     size?: "xsmall" | "small" | "base" | "large" | "xlarge"
     weight?: "regular" | "plus"
     leading?: "normal" | "compact"
@@ -36,8 +34,7 @@ declare module "@medusajs/ui" {
   }
   export const Badge: React.FC<BadgeProps>
 
-  export interface ButtonProps
-    extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     variant?: "primary" | "secondary" | "transparent" | "danger"
     size?: "small" | "base" | "large" | "xlarge"
     isLoading?: boolean
@@ -45,14 +42,12 @@ declare module "@medusajs/ui" {
   }
   export const Button: React.FC<ButtonProps>
 
-  export interface InputProps
-    extends React.InputHTMLAttributes<HTMLInputElement> {
+  export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     size?: "base" | "small"
   }
   export const Input: React.FC<InputProps>
 
-  export interface LabelProps
-    extends React.LabelHTMLAttributes<HTMLLabelElement> {
+  export interface LabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> {
     size?: "xsmall" | "small" | "base" | "large"
     weight?: "regular" | "plus"
     children?: React.ReactNode
@@ -75,13 +70,11 @@ declare module "@medusajs/ui" {
     onValueChange?: (value: string) => void
     children?: React.ReactNode
   }
-  export interface TabsTriggerProps
-    extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  export interface TabsTriggerProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     value: string
     children?: React.ReactNode
   }
-  export interface TabsContentProps
-    extends React.HTMLAttributes<HTMLDivElement> {
+  export interface TabsContentProps extends React.HTMLAttributes<HTMLDivElement> {
     value: string
     children?: React.ReactNode
   }
@@ -98,8 +91,7 @@ declare module "@medusajs/ui" {
     onValueChange?: (value: string) => void
     children?: React.ReactNode
   }
-  export interface SelectItemProps
-    extends React.HTMLAttributes<HTMLDivElement> {
+  export interface SelectItemProps extends React.HTMLAttributes<HTMLDivElement> {
     value: string
     children?: React.ReactNode
   }

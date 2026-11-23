@@ -85,7 +85,9 @@ export default defineMiddlewares({
     {
       matcher: "/store/product-ext/filter",
       method: "POST",
-      middlewares: [validateAndTransformBody(StoreFilterByAttributesBodySchema)],
+      middlewares: [
+        validateAndTransformBody(StoreFilterByAttributesBodySchema),
+      ],
     },
   ],
 })

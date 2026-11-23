@@ -8,7 +8,9 @@ export function isEmptyInterpolatedValue(value: unknown): boolean {
   )
 }
 
-export function getBlockMeta(node: TemplateBlockNode | Record<string, any>): Record<string, any> {
+export function getBlockMeta(
+  node: TemplateBlockNode | Record<string, any>
+): Record<string, any> {
   return (node as any).metadata || (node as any).props || {}
 }
 

@@ -6,7 +6,7 @@ import React from "react"
 import { useTranslation } from "react-i18next"
 import { EventMappingsTab } from "../../../components/mpn/event-mappings-tab"
 import { useNotificationStudio } from "../../../components/mpn/use-notification-studio"
-import { RbacGuard } from "../../../components/rbac-guard";
+import { RbacGuard } from "../../../components/rbac-guard"
 
 const MpnMappingsPage: React.FC = () => {
   const {
@@ -57,6 +57,6 @@ const GuardedMpnMappingsPage = () => (
   <RbacGuard permission="notifications.read">
     <MpnMappingsPage />
   </RbacGuard>
-);
+)
 
-export default GuardedMpnMappingsPage;
+export default GuardedMpnMappingsPage

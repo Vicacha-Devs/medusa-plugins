@@ -48,13 +48,14 @@ export const BoldRemotePaymentPanel = ({
           {isApproved
             ? t("bold.admin.widget.approved")
             : isLink
-            ? t("bold.admin.widget.link_btn")
-            : t("bold.admin.widget.qr_btn")}
+              ? t("bold.admin.widget.link_btn")
+              : t("bold.admin.widget.qr_btn")}
         </span>
       </Button>
 
-      {paymentLink && showPayload && (
-        isLink ? (
+      {paymentLink &&
+        showPayload &&
+        (isLink ? (
           <div className="pt-2 space-y-1">
             <Text className="text-xs text-ui-fg-subtle">
               {t("bold.admin.widget.generated_link")}
@@ -97,8 +98,7 @@ export const BoldRemotePaymentPanel = ({
               </Button>
             </div>
           </div>
-        )
-      )}
+        ))}
     </div>
   )
 }

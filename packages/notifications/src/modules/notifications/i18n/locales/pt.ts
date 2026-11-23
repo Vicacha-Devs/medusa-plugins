@@ -4,8 +4,7 @@ export const pt: NotificationTranslationDictionary = {
   general: {
     hello: "Olá",
     thankYou: "Obrigado por comprar conosco!",
-    questionsContact:
-      "Se tiver dúvidas, responda a esta mensagem.",
+    questionsContact: "Se tiver dúvidas, responda a esta mensagem.",
     viewInStore: "Visitar Loja",
     poweredBy: "Enviado por",
     unsubscribeSms: "Responda STOP para cancelar.",
@@ -40,8 +39,7 @@ export const pt: NotificationTranslationDictionary = {
     downloadInvoiceButton: "Baixar Fatura PDF",
   },
   shipment: {
-    shippedSubject:
-      "Seu Pedido #{{data.order_display_id}} foi enviado!",
+    shippedSubject: "Seu Pedido #{{data.order_display_id}} foi enviado!",
     shippedTitle: "Sua encomenda está a caminho",
     shippedIntro:
       "O pedido #{{data.order_display_id}} foi entregue à transportadora.",
@@ -69,8 +67,7 @@ export const pt: NotificationTranslationDictionary = {
       "Seu código {{data.store_name}} é {{data.otp_code}}. Válido por {{data.expires_in_minutes}} minutos.",
   },
   cart: {
-    recoverySubject:
-      "Você deixou itens no carrinho na {{data.store_name}}",
+    recoverySubject: "Você deixou itens no carrinho na {{data.store_name}}",
     recoveryTitle: "Esqueceu alguma coisa?",
     recoveryIntro: "Seu carrinho está salvo esperando por você.",
     resumeCartButton: "Finalizar Compra",

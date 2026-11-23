@@ -11,11 +11,7 @@ import {
   validateSafeOdooUrl,
   verifyOdooWebhookSignature,
 } from "../modules/odoo/utils/security"
-import {
-  createOdooSdk,
-  matchesOdooQueryKeyPrefix,
-  odooQueryKeys,
-} from "../sdk"
+import { createOdooSdk, matchesOdooQueryKeyPrefix, odooQueryKeys } from "../sdk"
 import {
   OdooBarcodeLookupSchema,
   OdooConfigSchema,
@@ -27,7 +23,10 @@ import middlewares, {
 import { adminI18n, SUPPORTED_UI_LOCALES } from "../index"
 
 class InMemoryOdooService extends OdooModuleService {
-  private settingsMap = new Map<string, { id: string; key: string; value: unknown }>()
+  private settingsMap = new Map<
+    string,
+    { id: string; key: string; value: unknown }
+  >()
   private mappingsList: Array<Record<string, any>> = []
   private syncLogsList: Array<Record<string, any>> = []
   private failuresList: Array<Record<string, any>> = []
@@ -245,10 +244,7 @@ describe("medusa-plugin-odoo — Security & SSRF Utilities", () => {
       () => validateSafeOdooUrl("http://metadata.google.internal"),
       /metadata/i
     )
-    assert.throws(
-      () => validateSafeOdooUrl("file:///etc/passwd"),
-      /protocol/i
-    )
+    assert.throws(() => validateSafeOdooUrl("file:///etc/passwd"), /protocol/i)
     assert.throws(
       () => validateSafeOdooUrl("https://admin:secret@erp.example.com"),
       /credentials/i
@@ -303,15 +299,12 @@ describe("medusa-plugin-odoo — Security & SSRF Utilities", () => {
       verifyOdooWebhookSignature(body, `sha256=${sig}`, secret),
       true
     )
+    assert.equal(verifyOdooWebhookSignature(`${body}x`, sig, secret), false)
+    assert.equal(verifyOdooWebhookSignature(body, "invalid-hex", secret), false)
     assert.equal(
-      verifyOdooWebhookSignature(`${body}x`, sig, secret),
-      false
+      slugifyHandle("The 3P Fulfilled Snowboard!"),
+      "the-3p-fulfilled-snowboard"
     )
-    assert.equal(
-      verifyOdooWebhookSignature(body, "invalid-hex", secret),
-      false
-    )
-    assert.equal(slugifyHandle("The 3P Fulfilled Snowboard!"), "the-3p-fulfilled-snowboard")
     assert.equal(computeExternalChecksum({ a: 1 }).length, 64)
   })
 })
@@ -325,16 +318,25 @@ describe("medusa-plugin-odoo — Multi-Protocol OdooClient (JSON-RPC 2.0 & JSON-
       const body = JSON.parse(String(init?.body || "{}"))
       calls.push({ url, body })
 
-      if (body?.params?.service === "common" && body?.params?.method === "authenticate") {
-        return new Response(JSON.stringify({ jsonrpc: "2.0", id: 1, result: 7 }), {
-          status: 200,
-        })
+      if (
+        body?.params?.service === "common" &&
+        body?.params?.method === "authenticate"
+      ) {
+        return new Response(
+          JSON.stringify({ jsonrpc: "2.0", id: 1, result: 7 }),
+          {
+            status: 200,
+          }
+        )
       }
 
       if (url.includes("/json/2/")) {
-        return new Response(JSON.stringify({ result: [{ id: 101, name: "Odoo 19 Product" }] }), {
-          status: 200,
-        })
+        return new Response(
+          JSON.stringify({ result: [{ id: 101, name: "Odoo 19 Product" }] }),
+          {
+            status: 200,
+          }
+        )
       }
 
       return new Response(
@@ -358,7 +360,11 @@ describe("medusa-plugin-odoo — Multi-Protocol OdooClient (JSON-RPC 2.0 & JSON-
       { fetchImpl: mockFetch }
     )
 
-    const rows1 = await jsonRpcClient.search("product.template", [], ["id", "name"])
+    const rows1 = await jsonRpcClient.search(
+      "product.template",
+      [],
+      ["id", "name"]
+    )
     assert.equal(rows1.length, 1)
     assert.equal(rows1[0].id, 100)
     assert.equal(jsonRpcClient.getUid(), 7)
@@ -374,10 +380,16 @@ describe("medusa-plugin-odoo — Multi-Protocol OdooClient (JSON-RPC 2.0 & JSON-
       { fetchImpl: mockFetch }
     )
 
-    const rows2 = await json2Client.search("product.template", [], ["id", "name"])
+    const rows2 = await json2Client.search(
+      "product.template",
+      [],
+      ["id", "name"]
+    )
     assert.equal(rows2.length, 1)
     assert.equal(rows2[0].id, 101)
-    assert.ok(calls.some((c) => c.url.endsWith("/json/2/product.template/search_read")))
+    assert.ok(
+      calls.some((c) => c.url.endsWith("/json/2/product.template/search_read"))
+    )
   })
 
   it("trips circuit breaker after threshold failures and recovers after reset window", async () => {
@@ -453,7 +465,7 @@ describe("medusa-plugin-odoo — OdooModuleService End-to-End ERP Flows", () => 
         )
       }
 
-      const [ , , , model, method, args ] = params.args ?? []
+      const [, , , model, method] = params.args ?? []
 
       if (model === "res.users" && method === "check_access_rights") {
         return new Response(JSON.stringify({ result: true }), { status: 200 })
@@ -536,7 +548,13 @@ describe("medusa-plugin-odoo — OdooModuleService End-to-End ERP Flows", () => 
       if (method === "create") {
         return new Response(JSON.stringify({ result: 901 }), { status: 200 })
       }
-      if (method === "write" || method === "action_confirm" || method === "action_post" || method === "action_create_payments" || method === "action_apply_inventory") {
+      if (
+        method === "write" ||
+        method === "action_confirm" ||
+        method === "action_post" ||
+        method === "action_create_payments" ||
+        method === "action_apply_inventory"
+      ) {
         return new Response(JSON.stringify({ result: true }), { status: 200 })
       }
       return new Response(JSON.stringify({ result: [] }), { status: 200 })
@@ -819,10 +837,7 @@ describe("medusa-plugin-odoo — Admin UI Localization (10 Locales Key Parity)",
 
     assert.equal(locales.length, 10)
 
-    const flattenKeys = (
-      obj: Record<string, unknown>,
-      prefix = ""
-    ): string[] =>
+    const flattenKeys = (obj: Record<string, unknown>, prefix = ""): string[] =>
       Object.entries(obj).flatMap(([k, v]) => {
         const nextKey = prefix ? `${prefix}.${k}` : k
         if (v && typeof v === "object" && !Array.isArray(v)) {
@@ -833,7 +848,7 @@ describe("medusa-plugin-odoo — Admin UI Localization (10 Locales Key Parity)",
 
     const enKeys = flattenKeys(
       bundles.en.translation as unknown as Record<string, unknown>
-    ).sort()
+    ).toSorted()
     assert.ok(enKeys.length >= 100)
 
     for (const localeCode of locales) {
@@ -842,7 +857,7 @@ describe("medusa-plugin-odoo — Admin UI Localization (10 Locales Key Parity)",
       assert.strictEqual(entry.translation, entry.odoo)
       const localeKeys = flattenKeys(
         entry.translation as unknown as Record<string, unknown>
-      ).sort()
+      ).toSorted()
       assert.deepEqual(
         localeKeys,
         enKeys,
@@ -1071,11 +1086,15 @@ describe("medusa-plugin-odoo — Auto-Discovery, Lifecycle & POS Enhancements", 
         }
         if (key === "inventory") {
           return {
-            updateInventoryLevels: async (levels: Array<Record<string, unknown>>) => {
+            updateInventoryLevels: async (
+              levels: Array<Record<string, unknown>>
+            ) => {
               updatedInventoryLevels.push(...levels)
               return levels
             },
-            listInventoryItems: async () => [{ id: "iitem_1", sku: "SB-PRO-1" }],
+            listInventoryItems: async () => [
+              { id: "iitem_1", sku: "SB-PRO-1" },
+            ],
             listInventoryLevels: async () => [
               {
                 id: "loclvl_1",
@@ -1207,7 +1226,9 @@ describe("medusa-plugin-odoo — Auto-Discovery, Lifecycle & POS Enhancements", 
       driftThresholdOverride: 0,
     })
     assert.equal(conflictRec.conflicts, 1)
-    const conflicts = await service.listErpConflictResolutions({ status: "open" })
+    const conflicts = await service.listErpConflictResolutions({
+      status: "open",
+    })
     await service.resolveConflict({
       id: conflicts[0].id,
       resolution: "custom",
@@ -1215,7 +1236,8 @@ describe("medusa-plugin-odoo — Auto-Discovery, Lifecycle & POS Enhancements", 
       scope: mockScope,
     })
     assert.equal(
-      updatedInventoryLevels[updatedInventoryLevels.length - 1].stocked_quantity,
+      updatedInventoryLevels[updatedInventoryLevels.length - 1]
+        .stocked_quantity,
       45
     )
 
@@ -1262,7 +1284,8 @@ describe("medusa-plugin-odoo — Auto-Discovery, Lifecycle & POS Enhancements", 
     const syncJob = await import("../jobs/odoo-scheduled-sync")
     const barcodeRoute = await import("../api/store/odoo/barcode/route")
     const conflictsRoute = await import("../api/admin/odoo/conflicts/route")
-    const syncEntityRoute = await import("../api/admin/odoo/sync/[entity]/route")
+    const syncEntityRoute =
+      await import("../api/admin/odoo/sync/[entity]/route")
     const posRoute = await import("../api/admin/odoo/pos-transactions/route")
     const webhookRoute = await import("../api/hooks/odoo/route")
 
@@ -1285,6 +1308,3 @@ describe("medusa-plugin-odoo — Auto-Discovery, Lifecycle & POS Enhancements", 
     assert.equal(typeof webhookRoute.POST, "function")
   })
 })
-
-
-

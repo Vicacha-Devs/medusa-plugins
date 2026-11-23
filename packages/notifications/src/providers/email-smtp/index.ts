@@ -1,3 +1,6 @@
+import { mkdirSync, writeFileSync } from "node:fs"
+import { tmpdir } from "node:os"
+import { join, resolve } from "node:path"
 import type { Logger, NotificationTypes } from "@medusajs/framework/types"
 import {
   AbstractNotificationProviderService,
@@ -12,6 +15,20 @@ import {
 
 function stripCrlf(value: string): string {
   return value.replace(/[\r\n]+/g, " ").trim()
+}
+
+export function htmlToPlainText(html: string): string {
+  return html
+    .replace(/<style[\s\S]*?<\/style>/gi, "")
+    .replace(/<script[\s\S]*?<\/script>/gi, "")
+    .replace(/<br\s*\/?>/gi, "\n")
+    .replace(/<\/(p|div|h[1-6]|li|tr|section|article)>/gi, "\n")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/[ \t]+/g, " ")
+    .replace(/[ \t]+\n/g, "\n")
+    .replace(/\n[ \t]+/g, "\n")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim()
 }
 
 export const MPN_EMAIL_PROVIDER_ID = "mpn-email"
@@ -87,10 +104,39 @@ export class SmtpEmailNotificationProviderService extends AbstractNotificationPr
       content.html ||
       (data.html as string) ||
       `<p>${escapeHtml(content.text || data.text || "")}</p>`
-    const text =
-      content.text ||
-      (data.text as string) ||
-      html.replace(/<[^>]+>/g, " ").trim()
+    const text = content.text || (data.text as string) || htmlToPlainText(html)
+
+    // 0. Dev-only local HTML file preview (never enabled in production)
+    const useLocalPreview =
+      process.env.NODE_ENV !== "production" &&
+      (this.options_.local_preview === true ||
+        process.env.MAILER_LOCAL_PREVIEW === "true")
+    if (useLocalPreview) {
+      const previewDir = resolve(
+        this.options_.local_preview_dir ||
+          join(tmpdir(), "medusa-email-previews")
+      )
+      mkdirSync(previewDir, { recursive: true })
+      const previewId = `email_preview_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`
+      const filePath = join(previewDir, `${previewId}.html`)
+      const previewDoc = `<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>${escapeHtml(subject)}</title></head>
+<body style="font-family:system-ui,sans-serif;margin:0;padding:0;background:#f8fafc;">
+  <div style="background:#0f172a;color:#f8fafc;padding:12px 20px;font-size:13px;">
+    <strong>From:</strong> ${escapeHtml(fromHeader)} &nbsp;|&nbsp;
+    <strong>To:</strong> ${escapeHtml(to)} &nbsp;|&nbsp;
+    <strong>Subject:</strong> ${escapeHtml(subject)}
+  </div>
+  <div style="padding:20px;">${html}</div>
+</body>
+</html>`
+      writeFileSync(filePath, previewDoc, "utf8")
+      this.logger_?.info(
+        `[mpn-email] Local preview written to file://${filePath}`
+      )
+      return { id: previewId }
+    }
 
     const attachments = Array.isArray(notification.attachments)
       ? notification.attachments.map((att: any) => ({
@@ -133,7 +179,9 @@ export class SmtpEmailNotificationProviderService extends AbstractNotificationPr
       })
 
       if (!response.ok) {
-        throw new Error(`Email HTTP relay failed with status ${response.status}`)
+        throw new Error(
+          `Email HTTP relay failed with status ${response.status}`
+        )
       }
       const body = (await response.json().catch(() => ({}))) as Record<
         string,
@@ -157,7 +205,10 @@ export class SmtpEmailNotificationProviderService extends AbstractNotificationPr
 
     if (smtpHost && smtpUser && smtpPass) {
       try {
-        const dynamicImport = new Function("specifier", "return import(specifier)")
+        const dynamicImport = new Function(
+          "specifier",
+          "return import(specifier)"
+        )
         const nodemailerMod: any = await dynamicImport("nodemailer")
         const nodemailer = nodemailerMod.default || nodemailerMod
         const transporter = nodemailer.createTransport({

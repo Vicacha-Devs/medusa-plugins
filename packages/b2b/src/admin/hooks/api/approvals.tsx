@@ -1,12 +1,12 @@
-import { FetchError } from "@medusajs/js-sdk";
-import { queryKeysFactory, sdk } from "@vicacha-devs/medusa-shared-admin/admin";
+import { FetchError } from "@medusajs/js-sdk"
+import { queryKeysFactory, sdk } from "@vicacha-devs/medusa-shared-admin/admin"
 import {
   useMutation,
   UseMutationOptions,
   useQuery,
   useQueryClient,
   UseQueryOptions,
-} from "@tanstack/react-query";
+} from "@tanstack/react-query"
 
 import {
   AdminApproval,
@@ -14,10 +14,10 @@ import {
   AdminApprovalsResponse,
   AdminUpdateApproval,
   AdminUpdateApprovalSettings,
-} from "../../../types";
-import { companyQueryKey } from "./companies";
+} from "../../../types"
+import { companyQueryKey } from "./companies"
 
-export const approvalSettingsQueryKey = queryKeysFactory("approvalSettings");
+export const approvalSettingsQueryKey = queryKeysFactory("approvalSettings")
 
 export const useUpdateApprovalSettings = (
   companyId: string,
@@ -27,7 +27,7 @@ export const useUpdateApprovalSettings = (
     AdminUpdateApprovalSettings
   >
 ) => {
-  const queryClient = useQueryClient();
+  const queryClient = useQueryClient()
 
   return useMutation({
     mutationFn: (payload: AdminUpdateApprovalSettings) =>
@@ -38,22 +38,27 @@ export const useUpdateApprovalSettings = (
           method: "POST",
         }
       ),
-    onSuccess: (data: any, variables: any, onMutateResult: any, context: any) => {
+    onSuccess: (
+      data: any,
+      variables: any,
+      onMutateResult: any,
+      context: any
+    ) => {
       queryClient.invalidateQueries({
         queryKey: approvalSettingsQueryKey.detail(companyId),
-      });
+      })
 
       queryClient.invalidateQueries({
         queryKey: companyQueryKey.detail(companyId),
-      });
+      })
 
-      options?.onSuccess?.(data, variables, onMutateResult, context);
+      options?.onSuccess?.(data, variables, onMutateResult, context)
     },
     ...options,
-  });
-};
+  })
+}
 
-const approvalQueryKey = queryKeysFactory("approval");
+const approvalQueryKey = queryKeysFactory("approval")
 
 export const useApprovals = (
   query?: Record<string, any>,
@@ -63,20 +68,20 @@ export const useApprovals = (
     sdk.client.fetch<AdminApprovalsResponse>(`/admin/b2b/approvals`, {
       method: "GET",
       query,
-    });
+    })
 
   return useQuery({
     queryKey: approvalQueryKey.list(query),
     queryFn: fetchApprovals,
     ...options,
-  });
-};
+  })
+}
 
 export const useUpdateApproval = (
   approvalId: string,
   options?: UseMutationOptions<AdminApproval, FetchError, AdminUpdateApproval>
 ) => {
-  const queryClient = useQueryClient();
+  const queryClient = useQueryClient()
 
   return useMutation({
     mutationFn: (payload: AdminUpdateApproval) =>
@@ -84,13 +89,18 @@ export const useUpdateApproval = (
         body: payload,
         method: "POST",
       }),
-    onSuccess: (data: any, variables: any, onMutateResult: any, context: any) => {
+    onSuccess: (
+      data: any,
+      variables: any,
+      onMutateResult: any,
+      context: any
+    ) => {
       queryClient.invalidateQueries({
         queryKey: approvalQueryKey.lists(),
-      });
+      })
 
-      options?.onSuccess?.(data, variables, onMutateResult, context);
+      options?.onSuccess?.(data, variables, onMutateResult, context)
     },
     ...options,
-  });
-};
+  })
+}

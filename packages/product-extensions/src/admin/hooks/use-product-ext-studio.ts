@@ -118,9 +118,8 @@ export function useProductExtStudio() {
   const [templateForm, setTemplateForm] = useState<TemplateFormState>(
     INITIAL_TEMPLATE_FORM
   )
-  const [featureForm, setFeatureForm] = useState<FeatureFormState>(
-    INITIAL_FEATURE_FORM
-  )
+  const [featureForm, setFeatureForm] =
+    useState<FeatureFormState>(INITIAL_FEATURE_FORM)
   const [bulkMediaForm, setBulkMediaForm] = useState<BulkMediaFormState>(
     INITIAL_BULK_MEDIA_FORM
   )
@@ -187,9 +186,7 @@ export function useProductExtStudio() {
           is_global: payload.is_global,
         })
 
-        toast.success(
-          t("messages.attributeCreated", { label: payload.label })
-        )
+        toast.success(t("messages.attributeCreated", { label: payload.label }))
         setAttributeForm(INITIAL_ATTRIBUTE_FORM)
         await loadAll()
         return true

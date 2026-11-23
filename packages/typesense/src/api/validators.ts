@@ -248,13 +248,23 @@ export const AdminPlaygroundSearchSchema = z.object({
 
 export type RangeFacetSpecInput = z.infer<typeof RangeFacetSpecSchema>
 export type StoreSearchParamsInput = z.infer<typeof StoreSearchParamsSchema>
-export type StoreFederatedSearchInput = z.infer<typeof StoreFederatedSearchSchema>
-export type StoreScopedTokenQueryInput = z.infer<typeof StoreScopedTokenQuerySchema>
-export type StoreConversationalChatInput = z.infer<typeof StoreConversationalChatSchema>
+export type StoreFederatedSearchInput = z.infer<
+  typeof StoreFederatedSearchSchema
+>
+export type StoreScopedTokenQueryInput = z.infer<
+  typeof StoreScopedTokenQuerySchema
+>
+export type StoreConversationalChatInput = z.infer<
+  typeof StoreConversationalChatSchema
+>
 export type StoreAnalyticsEventInput = z.infer<typeof StoreAnalyticsEventSchema>
 export type AdminSyncEntityInput = z.infer<typeof AdminSyncEntitySchema>
-export type AdminUpsertEntityConfigInput = z.infer<typeof AdminUpsertEntityConfigSchema>
+export type AdminUpsertEntityConfigInput = z.infer<
+  typeof AdminUpsertEntityConfigSchema
+>
 export type AdminSynonymInput = z.infer<typeof AdminSynonymSchema>
 export type AdminCurationInput = z.infer<typeof AdminCurationSchema>
 export type AdminStopwordSetInput = z.infer<typeof AdminStopwordSetSchema>
-export type AdminPlaygroundSearchInput = z.infer<typeof AdminPlaygroundSearchSchema>
+export type AdminPlaygroundSearchInput = z.infer<
+  typeof AdminPlaygroundSearchSchema
+>

@@ -10,7 +10,9 @@ import { useCompanies } from "../hooks/api"
 import { CompanyActionsMenu } from "../routes/b2b/companies/components/company-actions-menu"
 import "../routes/b2b/companies/components/companies-table-renderers"
 
-function useCustomerGroupCompaniesAdapter(customerGroupId: string): TableAdapter<QueryCompany> {
+function useCustomerGroupCompaniesAdapter(
+  customerGroupId: string
+): TableAdapter<QueryCompany> {
   const { t } = useTranslation()
 
   return useMemo(
@@ -55,10 +57,7 @@ const CustomerGroupCompaniesWidget = () => {
   const adapter = useCustomerGroupCompaniesAdapter(id!)
 
   return (
-    <ConfigurableDataTable
-      adapter={adapter}
-      heading={t("companies.title")}
-    />
+    <ConfigurableDataTable adapter={adapter} heading={t("companies.title")} />
   )
 }
 

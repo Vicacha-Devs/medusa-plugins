@@ -30,7 +30,8 @@ function toDosDateTime(date: Date): { dosTime: number; dosDate: number } {
   const minutes = date.getUTCMinutes()
   const seconds = Math.floor(date.getUTCSeconds() / 2)
 
-  const dosTime = ((hours & 0x1f) << 11) | ((minutes & 0x3f) << 5) | (seconds & 0x1f)
+  const dosTime =
+    ((hours & 0x1f) << 11) | ((minutes & 0x3f) << 5) | (seconds & 0x1f)
   const dosDate =
     (((year - 1980) & 0x7f) << 9) | ((month & 0x0f) << 5) | (day & 0x1f)
 

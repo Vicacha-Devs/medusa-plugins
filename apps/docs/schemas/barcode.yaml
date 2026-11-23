@@ -1,0 +1,762 @@
+openapi: 3.1.0
+info:
+  title: "@vicacha-devs/medusa-plugin-barcode API"
+  version: 0.0.1
+  description: Unified 4-in-1 Barcode, GS1, Dynamic QR, Multi-Provider GTIN
+    Lookup, Thermal/Sheet Label Printing (HTML/SVG & ZPL II), Anti-Counterfeit
+    Verification & Warehouse Stock-Take Scanner plugin for Medusa v2.
+servers:
+  - url: http://127.0.0.1:9000
+    description: Local Medusa v2 Server
+components:
+  securitySchemes:
+    adminBearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Medusa Admin JWT or API token
+    publishableKey:
+      type: apiKey
+      in: header
+      name: x-publishable-api-key
+      description: Medusa Storefront Publishable API Key
+paths:
+  /admin/barcodes:
+    get:
+      operationId: getAdminBarcodes
+      summary: List barcodes
+      description: GET /admin/barcodes endpoint exposed by
+        @vicacha-devs/medusa-plugin-barcode.
+      tags:
+        - "Admin: barcodes"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/barcodes/{barcode}:
+    delete:
+      operationId: deleteAdminBarcodesByBarcode
+      summary: Delete barcodes by ID
+      description: DELETE /admin/barcodes/{barcode} endpoint exposed by
+        @vicacha-devs/medusa-plugin-barcode.
+      tags:
+        - "Admin: barcodes"
+      parameters:
+        - name: barcode
+          in: path
+          required: true
+          description: Resource identifier (barcode)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    get:
+      operationId: getAdminBarcodesByBarcode
+      summary: Get barcodes by ID
+      description: GET /admin/barcodes/{barcode} endpoint exposed by
+        @vicacha-devs/medusa-plugin-barcode.
+      tags:
+        - "Admin: barcodes"
+      parameters:
+        - name: barcode
+          in: path
+          required: true
+          description: Resource identifier (barcode)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/barcodes/batch:
+    post:
+      operationId: postAdminBarcodesBatch
+      summary: Create / Trigger barcodes batch
+      description: POST /admin/barcodes/batch endpoint exposed by
+        @vicacha-devs/medusa-plugin-barcode.
+      tags:
+        - "Admin: barcodes"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/barcodes/bulk-generate:
+    post:
+      operationId: postAdminBarcodesBulkGenerate
+      summary: Create / Trigger barcodes bulk generate
+      description: POST /admin/barcodes/bulk-generate endpoint exposed by
+        @vicacha-devs/medusa-plugin-barcode.
+      tags:
+        - "Admin: barcodes"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/barcodes/cache:
+    delete:
+      operationId: deleteAdminBarcodesCache
+      summary: Delete barcodes cache
+      description: DELETE /admin/barcodes/cache endpoint exposed by
+        @vicacha-devs/medusa-plugin-barcode.
+      tags:
+        - "Admin: barcodes"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    get:
+      operationId: getAdminBarcodesCache
+      summary: List barcodes cache
+      description: GET /admin/barcodes/cache endpoint exposed by
+        @vicacha-devs/medusa-plugin-barcode.
+      tags:
+        - "Admin: barcodes"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/barcodes/count-sessions:
+    get:
+      operationId: getAdminBarcodesCountSessions
+      summary: List barcodes count sessions
+      description: GET /admin/barcodes/count-sessions endpoint exposed by
+        @vicacha-devs/medusa-plugin-barcode.
+      tags:
+        - "Admin: barcodes"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    post:
+      operationId: postAdminBarcodesCountSessions
+      summary: Create / Trigger barcodes count sessions
+      description: POST /admin/barcodes/count-sessions endpoint exposed by
+        @vicacha-devs/medusa-plugin-barcode.
+      tags:
+        - "Admin: barcodes"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/barcodes/count-sessions/{id}/apply:
+    post:
+      operationId: postAdminBarcodesCountSessionsByIdApply
+      summary: Create / Trigger barcodes count sessions by ID apply
+      description:
+        POST /admin/barcodes/count-sessions/{id}/apply endpoint exposed by
+        @vicacha-devs/medusa-plugin-barcode.
+      tags:
+        - "Admin: barcodes"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/barcodes/count-sessions/{id}/scan:
+    post:
+      operationId: postAdminBarcodesCountSessionsByIdScan
+      summary: Create / Trigger barcodes count sessions by ID scan
+      description:
+        POST /admin/barcodes/count-sessions/{id}/scan endpoint exposed by
+        @vicacha-devs/medusa-plugin-barcode.
+      tags:
+        - "Admin: barcodes"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/barcodes/create-from-barcode:
+    post:
+      operationId: postAdminBarcodesCreateFromBarcode
+      summary: Create / Trigger barcodes create from barcode
+      description: POST /admin/barcodes/create-from-barcode endpoint exposed by
+        @vicacha-devs/medusa-plugin-barcode.
+      tags:
+        - "Admin: barcodes"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/barcodes/lookup:
+    post:
+      operationId: postAdminBarcodesLookup
+      summary: Create / Trigger barcodes lookup
+      description: POST /admin/barcodes/lookup endpoint exposed by
+        @vicacha-devs/medusa-plugin-barcode.
+      tags:
+        - "Admin: barcodes"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/barcodes/print:
+    post:
+      operationId: postAdminBarcodesPrint
+      summary: Create / Trigger barcodes print
+      description: POST /admin/barcodes/print endpoint exposed by
+        @vicacha-devs/medusa-plugin-barcode.
+      tags:
+        - "Admin: barcodes"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/barcodes/scan:
+    post:
+      operationId: postAdminBarcodesScan
+      summary: Create / Trigger barcodes scan
+      description: POST /admin/barcodes/scan endpoint exposed by
+        @vicacha-devs/medusa-plugin-barcode.
+      tags:
+        - "Admin: barcodes"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/barcodes/tags:
+    get:
+      operationId: getAdminBarcodesTags
+      summary: List barcodes tags
+      description: GET /admin/barcodes/tags endpoint exposed by
+        @vicacha-devs/medusa-plugin-barcode.
+      tags:
+        - "Admin: barcodes"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    post:
+      operationId: postAdminBarcodesTags
+      summary: Create / Trigger barcodes tags
+      description: POST /admin/barcodes/tags endpoint exposed by
+        @vicacha-devs/medusa-plugin-barcode.
+      tags:
+        - "Admin: barcodes"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/barcodes/tags/{id}:
+    delete:
+      operationId: deleteAdminBarcodesTagsById
+      summary: Delete barcodes tags by ID
+      description: DELETE /admin/barcodes/tags/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-barcode.
+      tags:
+        - "Admin: barcodes"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    get:
+      operationId: getAdminBarcodesTagsById
+      summary: Get barcodes tags by ID
+      description: GET /admin/barcodes/tags/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-barcode.
+      tags:
+        - "Admin: barcodes"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    patch:
+      operationId: patchAdminBarcodesTagsById
+      summary: Update barcodes tags by ID
+      description: PATCH /admin/barcodes/tags/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-barcode.
+      tags:
+        - "Admin: barcodes"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/barcodes/templates:
+    get:
+      operationId: getAdminBarcodesTemplates
+      summary: List barcodes templates
+      description: GET /admin/barcodes/templates endpoint exposed by
+        @vicacha-devs/medusa-plugin-barcode.
+      tags:
+        - "Admin: barcodes"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    post:
+      operationId: postAdminBarcodesTemplates
+      summary: Create / Trigger barcodes templates
+      description: POST /admin/barcodes/templates endpoint exposed by
+        @vicacha-devs/medusa-plugin-barcode.
+      tags:
+        - "Admin: barcodes"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/plugin:
+    get:
+      operationId: getAdminPlugin
+      summary: List plugin
+      description: GET /admin/plugin endpoint exposed by
+        @vicacha-devs/medusa-plugin-barcode.
+      tags:
+        - "Admin: plugin"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/variants/barcode/{code}:
+    get:
+      operationId: getAdminVariantsBarcodeByCode
+      summary: Get variants barcode by ID
+      description: GET /admin/variants/barcode/{code} endpoint exposed by
+        @vicacha-devs/medusa-plugin-barcode.
+      tags:
+        - "Admin: variants"
+      parameters:
+        - name: code
+          in: path
+          required: true
+          description: Resource identifier (code)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /store/barcodes/{code}:
+    get:
+      operationId: getStoreBarcodesByCode
+      summary: Get barcodes by ID
+      description: GET /store/barcodes/{code} endpoint exposed by
+        @vicacha-devs/medusa-plugin-barcode.
+      tags:
+        - "Storefront: barcodes"
+      parameters:
+        - name: code
+          in: path
+          required: true
+          description: Resource identifier (code)
+          schema:
+            type: string
+      security:
+        - publishableKey: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /store/barcodes/{code}/verify:
+    get:
+      operationId: getStoreBarcodesByCodeVerify
+      summary: Get barcodes by ID verify
+      description: GET /store/barcodes/{code}/verify endpoint exposed by
+        @vicacha-devs/medusa-plugin-barcode.
+      tags:
+        - "Storefront: barcodes"
+      parameters:
+        - name: code
+          in: path
+          required: true
+          description: Resource identifier (code)
+          schema:
+            type: string
+      security:
+        - publishableKey: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+    post:
+      operationId: postStoreBarcodesByCodeVerify
+      summary: Create / Trigger barcodes by ID verify
+      description: POST /store/barcodes/{code}/verify endpoint exposed by
+        @vicacha-devs/medusa-plugin-barcode.
+      tags:
+        - "Storefront: barcodes"
+      parameters:
+        - name: code
+          in: path
+          required: true
+          description: Resource identifier (code)
+          schema:
+            type: string
+      security:
+        - publishableKey: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /store/plugin:
+    get:
+      operationId: getStorePlugin
+      summary: List plugin
+      description: GET /store/plugin endpoint exposed by
+        @vicacha-devs/medusa-plugin-barcode.
+      tags:
+        - "Storefront: plugin"
+      security:
+        - publishableKey: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /store/variants/barcode/{code}:
+    get:
+      operationId: getStoreVariantsBarcodeByCode
+      summary: Get variants barcode by ID
+      description: GET /store/variants/barcode/{code} endpoint exposed by
+        @vicacha-devs/medusa-plugin-barcode.
+      tags:
+        - "Storefront: variants"
+      parameters:
+        - name: code
+          in: path
+          required: true
+          description: Resource identifier (code)
+          schema:
+            type: string
+      security:
+        - publishableKey: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true

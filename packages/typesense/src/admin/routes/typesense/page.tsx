@@ -23,7 +23,7 @@ import {
 } from "../../components/typesense/overview-cards"
 import { OverviewTab } from "../../components/typesense/overview-tab"
 import { useTypesenseStudio } from "../../components/typesense/use-typesense-studio"
-import { RbacGuard } from "../../components/rbac-guard";
+import { RbacGuard } from "../../components/rbac-guard"
 
 const TypesenseOverviewPage: React.FC = () => {
   const { t } = useTranslation()
@@ -184,6 +184,6 @@ const GuardedTypesenseOverviewPage = () => (
   <RbacGuard permission="typesense.read">
     <TypesenseOverviewPage />
   </RbacGuard>
-);
+)
 
-export default GuardedTypesenseOverviewPage;
+export default GuardedTypesenseOverviewPage

@@ -2,8 +2,18 @@
   "name": "@vicacha-devs/medusa-plugin-b2b",
   "version": "0.0.1",
   "description": "B2B commerce capabilities for Medusa v2: companies, employees, quotes, approvals, spending limits, and B2B cart workflows.",
-  "author": "Vicacha Devs",
+  "keywords": [
+    "b2b",
+    "medusa",
+    "medusa-plugin",
+    "medusa-plugin-b2b",
+    "medusa-plugin-integration",
+    "medusa-plugin-other",
+    "medusa-v2",
+    "plugin"
+  ],
   "license": "MIT",
+  "author": "Vicacha Devs",
   "files": [
     ".medusa/server",
     "src",
@@ -32,15 +42,6 @@
     },
     "./*": "./.medusa/server/src/*.js"
   },
-  "keywords": [
-    "medusa",
-    "plugin",
-    "medusa-plugin",
-    "medusa-plugin-other",
-    "medusa-plugin-b2b",
-    "medusa-v2",
-    "b2b"
-  ],
   "scripts": {
     "build": "medusa plugin:build && tsc-alias -p tsconfig.json",
     "publish:local": "medusa plugin:publish",

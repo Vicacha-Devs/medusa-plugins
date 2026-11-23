@@ -6,7 +6,7 @@ import { Toaster } from "@medusajs/ui"
 import { useTranslation } from "react-i18next"
 import { AccountsTab } from "../../../components/index.js"
 import { useSocialDashboard } from "../../../hooks/use-social-dashboard.js"
-import { RbacGuard } from "../../../components/rbac-guard";
+import { RbacGuard } from "../../../components/rbac-guard"
 
 const SocialAccountsPage = () => {
   const { accounts, handleConnectPlatform } = useSocialDashboard()
@@ -51,6 +51,6 @@ const GuardedSocialAccountsPage = () => (
   <RbacGuard permission="social_commerce.read">
     <SocialAccountsPage />
   </RbacGuard>
-);
+)
 
-export default GuardedSocialAccountsPage;
+export default GuardedSocialAccountsPage

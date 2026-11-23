@@ -1,72 +1,72 @@
-import { Modules } from "@medusajs/framework/utils";
+import { Modules } from "@medusajs/framework/utils"
 import {
   createStep,
   createWorkflow,
   StepResponse,
   WorkflowResponse,
-} from "@medusajs/framework/workflows-sdk";
+} from "@medusajs/framework/workflows-sdk"
 
-import type { BarcodeModuleService } from "../modules/barcode/service";
-import { BARCODE_MODULE } from "../modules/barcode/types";
-import { parseBarcode } from "../modules/barcode/utils/barcode-parser";
-import { tryResolveService } from "./helpers";
+import type { BarcodeModuleService } from "../modules/barcode/service"
+import { BARCODE_MODULE } from "../modules/barcode/types"
+import { parseBarcode } from "../modules/barcode/utils/barcode-parser"
+import { tryResolveService } from "./helpers"
 
 export interface BulkGenerateVariantBarcodesInput {
-  variant_ids?: string[];
-  product_ids?: string[];
-  prefix?: string;
-  overwrite?: boolean;
+  variant_ids?: string[]
+  product_ids?: string[]
+  prefix?: string
+  overwrite?: boolean
 }
 
 const bulkGenerateVariantBarcodesStep = createStep(
   "bulk-generate-variant-barcodes",
   async (input: BulkGenerateVariantBarcodesInput, { container }) => {
     const barcodeService = container.resolve(
-      BARCODE_MODULE,
-    ) as BarcodeModuleService;
+      BARCODE_MODULE
+    ) as BarcodeModuleService
     const productService = tryResolveService(container, [
       Modules.PRODUCT,
       "product",
-    ]);
+    ])
 
     const generated: Array<{
-      variant_id: string;
-      product_id: string | null;
-      barcode: string;
-      ean: string;
-      upc: string;
-    }> = [];
-    const createdTagIds: string[] = [];
+      variant_id: string
+      product_id: string | null
+      barcode: string
+      ean: string
+      upc: string
+    }> = []
+    const createdTagIds: string[] = []
     const previousVariants: Array<{
-      id: string;
-      barcode: string | null;
-      ean: string | null;
-      upc: string | null;
-    }> = [];
+      id: string
+      barcode: string | null
+      ean: string | null
+      upc: string | null
+    }> = []
 
     const targetVariants: Array<{
-      id: string;
-      product_id?: string | null;
-      title?: string | null;
-      barcode?: string | null;
-      ean?: string | null;
-      upc?: string | null;
-    }> = [];
+      id: string
+      product_id?: string | null
+      title?: string | null
+      barcode?: string | null
+      ean?: string | null
+      upc?: string | null
+    }> = []
 
     if (
       productService &&
       typeof productService.listProductVariants === "function"
     ) {
-      const filter: Record<string, unknown> = {};
+      const filter: Record<string, unknown> = {}
       if (input.variant_ids && input.variant_ids.length > 0) {
-        filter.id = input.variant_ids;
+        filter.id = input.variant_ids
       }
       if (input.product_ids && input.product_ids.length > 0) {
-        filter.product_id = input.product_ids;
+        filter.product_id = input.product_ids
       }
       const rows = (await productService.listProductVariants(filter, {
         take: 250,
-      })) as typeof targetVariants;
+      })) as typeof targetVariants
       if (Array.isArray(rows)) {
         const filteredRows = rows.filter((r) => {
           if (
@@ -74,7 +74,7 @@ const bulkGenerateVariantBarcodesStep = createStep(
             input.variant_ids.length > 0 &&
             !input.variant_ids.includes(r.id)
           ) {
-            return false;
+            return false
           }
           if (
             input.product_ids &&
@@ -82,28 +82,28 @@ const bulkGenerateVariantBarcodesStep = createStep(
             r.product_id &&
             !input.product_ids.includes(r.product_id)
           ) {
-            return false;
+            return false
           }
-          return true;
-        });
-        targetVariants.push(...filteredRows);
+          return true
+        })
+        targetVariants.push(...filteredRows)
       }
     } else if (input.variant_ids && input.variant_ids.length > 0) {
       for (const vid of input.variant_ids) {
-        targetVariants.push({ id: vid, product_id: null });
+        targetVariants.push({ id: vid, product_id: null })
       }
     }
 
-    let seq = 1;
+    let seq = 1
     for (const variant of targetVariants) {
       if (variant.barcode && !input.overwrite) {
         // Ensure a BarcodeTag exists even when variant already has an assigned barcode
         const existingTags = await barcodeService.listBarcodeTags(
           { code: variant.barcode },
-          { take: 1 },
-        );
+          { take: 1 }
+        )
         if (!existingTags[0]) {
-          const parsedExisting = parseBarcode(variant.barcode);
+          const parsedExisting = parseBarcode(variant.barcode)
           const tag = await barcodeService.createOrUpdateBarcodeTag({
             code: variant.barcode,
             target_type: "variant",
@@ -116,10 +116,10 @@ const bulkGenerateVariantBarcodesStep = createStep(
                 ? "code128"
                 : parsedExisting.type,
             scan_action: "view",
-          });
-          createdTagIds.push(tag.id);
+          })
+          createdTagIds.push(tag.id)
         }
-        continue;
+        continue
       }
 
       previousVariants.push({
@@ -127,13 +127,13 @@ const bulkGenerateVariantBarcodesStep = createStep(
         barcode: variant.barcode ?? null,
         ean: variant.ean ?? null,
         upc: variant.upc ?? null,
-      });
+      })
 
       const codeInfo = await barcodeService.generateInternalVariantBarcode({
         seed: variant.id,
         sequence: seq++,
         prefix: input.prefix,
-      });
+      })
 
       if (
         productService &&
@@ -146,7 +146,7 @@ const bulkGenerateVariantBarcodesStep = createStep(
             ean: codeInfo.ean,
             upc: codeInfo.upc,
           },
-        ]);
+        ])
       }
 
       const tag = await barcodeService.createOrUpdateBarcodeTag({
@@ -158,8 +158,8 @@ const bulkGenerateVariantBarcodesStep = createStep(
         label: variant.title ?? variant.id,
         symbology: "ean13",
         scan_action: "view",
-      });
-      createdTagIds.push(tag.id);
+      })
+      createdTagIds.push(tag.id)
 
       generated.push({
         variant_id: variant.id,
@@ -167,7 +167,7 @@ const bulkGenerateVariantBarcodesStep = createStep(
         barcode: codeInfo.barcode,
         ean: codeInfo.ean,
         upc: codeInfo.upc,
-      });
+      })
     }
 
     return new StepResponse(
@@ -178,37 +178,37 @@ const bulkGenerateVariantBarcodesStep = createStep(
       {
         createdTagIds,
         previousVariants,
-      },
-    );
+      }
+    )
   },
   async (compInput, { container }) => {
-    if (!compInput) return;
+    if (!compInput) return
     const barcodeService = container.resolve(
-      BARCODE_MODULE,
-    ) as BarcodeModuleService;
+      BARCODE_MODULE
+    ) as BarcodeModuleService
 
     if (compInput.createdTagIds.length > 0) {
-      await barcodeService.deleteBarcodeTags(compInput.createdTagIds);
+      await barcodeService.deleteBarcodeTags(compInput.createdTagIds)
     }
 
     const productService = tryResolveService(container, [
       Modules.PRODUCT,
       "product",
-    ]);
+    ])
     if (
       productService &&
       typeof productService.upsertProductVariants === "function" &&
       compInput.previousVariants.length > 0
     ) {
-      await productService.upsertProductVariants(compInput.previousVariants);
+      await productService.upsertProductVariants(compInput.previousVariants)
     }
-  },
-);
+  }
+)
 
 export const bulkGenerateVariantBarcodesWorkflow = createWorkflow(
   "bulk-generate-variant-barcodes",
   (input: BulkGenerateVariantBarcodesInput) => {
-    const result = bulkGenerateVariantBarcodesStep(input);
-    return new WorkflowResponse(result);
-  },
-);
+    const result = bulkGenerateVariantBarcodesStep(input)
+    return new WorkflowResponse(result)
+  }
+)

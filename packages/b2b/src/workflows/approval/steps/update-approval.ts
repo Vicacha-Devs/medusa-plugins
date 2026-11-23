@@ -1,12 +1,12 @@
 import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk";
-import { APPROVAL_MODULE } from "@b2b/modules/approval";
+import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { APPROVAL_MODULE } from "@b2b/modules/approval"
 import {
   ApprovalStatusType,
   IApprovalModuleService,
   ModuleApproval,
   ModuleUpdateApproval,
-} from "@b2b/types";
+} from "@b2b/types"
 
 export const updateApprovalStep = createStep(
   "update-approval",
@@ -14,9 +14,9 @@ export const updateApprovalStep = createStep(
     input: ModuleUpdateApproval,
     { container }
   ): Promise<StepResponse<ModuleApproval, ModuleUpdateApproval[]>> => {
-    const query = container.resolve(ContainerRegistrationKeys.QUERY);
+    const query = container.resolve(ContainerRegistrationKeys.QUERY)
     const approvalModule =
-      container.resolve<IApprovalModuleService>(APPROVAL_MODULE);
+      container.resolve<IApprovalModuleService>(APPROVAL_MODULE)
 
     const {
       data: [approval],
@@ -26,7 +26,7 @@ export const updateApprovalStep = createStep(
       filters: {
         id: input.id,
       },
-    });
+    })
 
     const rollbackData: ModuleUpdateApproval[] = [
       {
@@ -34,7 +34,7 @@ export const updateApprovalStep = createStep(
         status: approval.status as unknown as ApprovalStatusType,
         handled_by: approval.handled_by,
       } as ModuleUpdateApproval,
-    ];
+    ]
 
     if (input.status === ApprovalStatusType.REJECTED) {
       const { data: approvalsToReject } = await query.graph({
@@ -44,9 +44,9 @@ export const updateApprovalStep = createStep(
           cart_id: approval.cart_id,
           id: { $ne: approval.id },
         },
-      });
+      })
 
-      const rejectedAt = new Date().toISOString();
+      const rejectedAt = new Date().toISOString()
 
       for (const sibling of approvalsToReject) {
         rollbackData.push({
@@ -54,7 +54,7 @@ export const updateApprovalStep = createStep(
           status: sibling.status as unknown as ApprovalStatusType,
           handled_by: sibling.handled_by,
           handled_at: sibling.handled_at,
-        } as ModuleUpdateApproval);
+        } as ModuleUpdateApproval)
       }
 
       await approvalModule.updateApprovals(
@@ -64,22 +64,24 @@ export const updateApprovalStep = createStep(
           handled_by: input.handled_by,
           handled_at: rejectedAt,
         }))
-      );
+      )
     }
 
-    const [updatedApproval] = await approvalModule.updateApprovals([{
-      ...input,
-      handled_at: new Date().toISOString(),
-    }]);
+    const [updatedApproval] = await approvalModule.updateApprovals([
+      {
+        ...input,
+        handled_at: new Date().toISOString(),
+      },
+    ])
 
-    return new StepResponse(updatedApproval, rollbackData);
+    return new StepResponse(updatedApproval, rollbackData)
   },
   async (rollbackData: ModuleUpdateApproval[] | undefined, { container }) => {
-    if (!rollbackData) return;
+    if (!rollbackData) return
 
     const approvalModule =
-      container.resolve<IApprovalModuleService>(APPROVAL_MODULE);
+      container.resolve<IApprovalModuleService>(APPROVAL_MODULE)
 
-    await approvalModule.updateApprovals(rollbackData);
+    await approvalModule.updateApprovals(rollbackData)
   }
-);
+)

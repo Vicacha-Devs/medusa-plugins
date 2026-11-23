@@ -17,16 +17,16 @@ Unlike intra-Medusa module links that join two internal PostgreSQL tables via `d
 
 ## Mapped Entity Types (`OdooEntityType`)
 
-| `entity_type` | Medusa Entity (`medusa_id`) | Odoo Model (`odoo_model`) | Odoo ID (`odoo_id`) | Notes |
-| :--- | :--- | :--- | :--- | :--- |
-| `"product"` | Product (`prod_*`) | `product.template` | `number` | Links a Medusa Product to an Odoo Product Template. |
-| `"variant"` | ProductVariant (`variant_*`) | `product.product` | `number` | Links a Medusa Variant to a specific Odoo Product Variant (`sku` / `barcode`). |
-| `"inventory"` | InventoryItem / Variant (`iitem_*` / `variant_*`) | `stock.quant` | `number` | Tracks stock quant linkage across warehouses. |
-| `"warehouse"` | StockLocation (`sloc_*`) | `stock.warehouse` | `number` | Maps a Medusa Stock Location to an Odoo Warehouse (`lot_stock_id`). |
-| `"order"` | Order (`order_*`) | `sale.order` | `number` | Links a Medusa Order to an Odoo Sales Order; stores `odooInvoiceId` in `metadata`. |
-| `"invoice"` | Order (`order_*`) | `account.move` | `number` | Links a Medusa Order to a posted Odoo Customer Invoice. |
-| `"customer"` | Customer (`cus_*`) | `res.partner` | `number` | Links a Medusa Customer to an Odoo Partner record. |
-| `"category"` | ProductCategory / Collection | `product.category` | `number` | Maps Medusa catalog groupings to Odoo internal categories. |
+| `entity_type` | Medusa Entity (`medusa_id`)                       | Odoo Model (`odoo_model`) | Odoo ID (`odoo_id`) | Notes                                                                              |
+| :------------ | :------------------------------------------------ | :------------------------ | :------------------ | :--------------------------------------------------------------------------------- |
+| `"product"`   | Product (`prod_*`)                                | `product.template`        | `number`            | Links a Medusa Product to an Odoo Product Template.                                |
+| `"variant"`   | ProductVariant (`variant_*`)                      | `product.product`         | `number`            | Links a Medusa Variant to a specific Odoo Product Variant (`sku` / `barcode`).     |
+| `"inventory"` | InventoryItem / Variant (`iitem_*` / `variant_*`) | `stock.quant`             | `number`            | Tracks stock quant linkage across warehouses.                                      |
+| `"warehouse"` | StockLocation (`sloc_*`)                          | `stock.warehouse`         | `number`            | Maps a Medusa Stock Location to an Odoo Warehouse (`lot_stock_id`).                |
+| `"order"`     | Order (`order_*`)                                 | `sale.order`              | `number`            | Links a Medusa Order to an Odoo Sales Order; stores `odooInvoiceId` in `metadata`. |
+| `"invoice"`   | Order (`order_*`)                                 | `account.move`            | `number`            | Links a Medusa Order to a posted Odoo Customer Invoice.                            |
+| `"customer"`  | Customer (`cus_*`)                                | `res.partner`             | `number`            | Links a Medusa Customer to an Odoo Partner record.                                 |
+| `"category"`  | ProductCategory / Collection                      | `product.category`        | `number`            | Maps Medusa catalog groupings to Odoo internal categories.                         |
 
 ---
 

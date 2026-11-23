@@ -9,16 +9,34 @@ import type { StoryPlacementZone } from "../../modules/story/types"
 import { ADMIN_RING_THEME_PRESETS } from "../utils/theme-presets"
 
 export const PLACEMENT_ZONES: StoryPlacementZone[] = [
-  "home", "collection", "category", "product", "floating_bubble", "global",
+  "home",
+  "collection",
+  "category",
+  "product",
+  "floating_bubble",
+  "global",
 ]
 
 const RING_THEME_VALUES = [
-  "instagram", "tiktok", "sunset", "emerald", "violet",
-  "cyber", "neon", "gold", "minimal", "custom",
+  "instagram",
+  "tiktok",
+  "sunset",
+  "emerald",
+  "violet",
+  "cyber",
+  "neon",
+  "gold",
+  "minimal",
+  "custom",
 ] as const
 
 const PLACEMENT_VALUES = [
-  "home", "collection", "category", "product", "floating_bubble", "global",
+  "home",
+  "collection",
+  "category",
+  "product",
+  "floating_bubble",
+  "global",
 ] as const
 
 export const makeStoryRingCreateFormSchema = () =>
@@ -79,7 +97,10 @@ export const StoryRingCreateForm = ({
               <Form.Item>
                 <Form.Label>{t("ringsTab.titleField")}</Form.Label>
                 <Form.Control>
-                  <Input placeholder={t("ringsTab.titlePlaceholder")} {...field} />
+                  <Input
+                    placeholder={t("ringsTab.titlePlaceholder")}
+                    {...field}
+                  />
                 </Form.Control>
                 <Form.ErrorMessage />
               </Form.Item>
@@ -92,7 +113,10 @@ export const StoryRingCreateForm = ({
               <Form.Item>
                 <Form.Label optional>{t("ringsTab.subtitleField")}</Form.Label>
                 <Form.Control>
-                  <Input placeholder={t("ringsTab.subtitlePlaceholder")} {...field} />
+                  <Input
+                    placeholder={t("ringsTab.subtitlePlaceholder")}
+                    {...field}
+                  />
                 </Form.Control>
                 <Form.ErrorMessage />
               </Form.Item>
@@ -105,7 +129,11 @@ export const StoryRingCreateForm = ({
               <Form.Item>
                 <Form.Label optional>{t("ringsTab.avatarField")}</Form.Label>
                 <Form.Control>
-                  <Input type="url" placeholder={t("ringsTab.avatarPlaceholder")} {...field} />
+                  <Input
+                    type="url"
+                    placeholder={t("ringsTab.avatarPlaceholder")}
+                    {...field}
+                  />
                 </Form.Control>
                 <Form.ErrorMessage />
               </Form.Item>
@@ -143,7 +171,10 @@ export const StoryRingCreateForm = ({
                 <Form.Item>
                   <Form.Label>{t("ringsTab.customColorField")}</Form.Label>
                   <Form.Control>
-                    <Input placeholder={t("ringsTab.customColorPlaceholder")} {...field} />
+                    <Input
+                      placeholder={t("ringsTab.customColorPlaceholder")}
+                      {...field}
+                    />
                   </Form.Control>
                   <Form.ErrorMessage />
                 </Form.Item>
@@ -182,7 +213,10 @@ export const StoryRingCreateForm = ({
                 <div className="flex items-center justify-between pt-2">
                   <Form.Label>{t("ringsTab.pinnedSwitch")}</Form.Label>
                   <Form.Control>
-                    <Switch checked={field.value} onCheckedChange={field.onChange} />
+                    <Switch
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
                   </Form.Control>
                 </div>
               </Form.Item>

@@ -26,7 +26,11 @@ const CountryItems = memo(({ items }: { items: typeof COUNTRIES }) => {
 
 CountryItems.displayName = "CountryItems"
 
-export function CountrySelect({ value, onChange, placeholder }: CountrySelectProps) {
+export function CountrySelect({
+  value,
+  onChange,
+  placeholder,
+}: CountrySelectProps) {
   const [open, setOpen] = useState(false)
 
   const { countries } = useCountries({
@@ -53,9 +57,7 @@ export function CountrySelect({ value, onChange, placeholder }: CountrySelectPro
       onValueChange={handleValueChange}
     >
       <Select.Trigger>
-        <Select.Value placeholder={placeholder}>
-          {selectedLabel}
-        </Select.Value>
+        <Select.Value placeholder={placeholder}>{selectedLabel}</Select.Value>
       </Select.Trigger>
       <Select.Content>
         {open ? <CountryItems items={countries} /> : null}

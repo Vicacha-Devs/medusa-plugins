@@ -9,7 +9,9 @@ interface CompanyGeneralSectionProps {
   company: QueryCompany
 }
 
-export const CompanyGeneralSection = ({ company }: CompanyGeneralSectionProps) => {
+export const CompanyGeneralSection = ({
+  company,
+}: CompanyGeneralSectionProps) => {
   const { t } = useTranslation()
   const c = company as any
 
@@ -24,7 +26,10 @@ export const CompanyGeneralSection = ({ company }: CompanyGeneralSectionProps) =
       </div>
       <SectionRow title={t("companies.detail.email")} value={c.email || "—"} />
       <SectionRow title={t("companies.detail.phone")} value={c.phone || "—"} />
-      <SectionRow title={t("companies.detail.address")} value={c.address || "—"} />
+      <SectionRow
+        title={t("companies.detail.address")}
+        value={c.address || "—"}
+      />
       <SectionRow title={t("companies.detail.city")} value={c.city || "—"} />
       <SectionRow title={t("companies.detail.state")} value={c.state || "—"} />
       {c.currency_code && (

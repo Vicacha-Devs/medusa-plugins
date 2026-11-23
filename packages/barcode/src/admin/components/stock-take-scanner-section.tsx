@@ -80,11 +80,7 @@ export const StockTakeControlsSection = ({
           />
         </div>
         <div className="mt-3 flex gap-2">
-          <Button
-            variant="primary"
-            size="small"
-            onClick={() => onScanDelta(1)}
-          >
+          <Button variant="primary" size="small" onClick={() => onScanDelta(1)}>
             {t("stockTakeTab.scanPlusOneButton")}
           </Button>
           <Button

@@ -31,7 +31,13 @@ const getView = (searchParams: URLSearchParams) => {
   return View.GALLERY
 }
 
-export const MediaView = ({ images, thumbnail, onDelete, isPending, editView }: MediaViewProps) => {
+export const MediaView = ({
+  images,
+  thumbnail,
+  onDelete,
+  isPending,
+  editView,
+}: MediaViewProps) => {
   const [searchParams, setSearchParams] = useSearchParams()
   const view = getView(searchParams)
 
@@ -48,7 +54,9 @@ export const MediaView = ({ images, thumbnail, onDelete, isPending, editView }: 
         goToEdit: handleGoToView(View.EDIT),
       }}
     >
-      {view === View.EDIT ? editView : (
+      {view === View.EDIT ? (
+        editView
+      ) : (
         <MediaGallery
           images={images}
           thumbnail={thumbnail}

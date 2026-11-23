@@ -226,7 +226,10 @@ const CODE39_PATTERNS: Record<string, string> = {
 /**
  * Encodes a 13-digit EAN-13 / ISBN-13 into a 95-module binary string.
  */
-export function encodeEan13Bits(rawCode: string): { bits: string; normalized: string } {
+export function encodeEan13Bits(rawCode: string): {
+  bits: string
+  normalized: string
+} {
   const digits = rawCode.replace(/\D/g, "")
   let normalized = digits
   if (digits.length === 12) {
@@ -262,7 +265,10 @@ export function encodeEan13Bits(rawCode: string): { bits: string; normalized: st
 /**
  * Encodes an 8-digit EAN-8 into a 67-module binary string.
  */
-export function encodeEan8Bits(rawCode: string): { bits: string; normalized: string } {
+export function encodeEan8Bits(rawCode: string): {
+  bits: string
+  normalized: string
+} {
   const digits = rawCode.replace(/\D/g, "")
   let normalized = digits
   if (digits.length === 7) {
@@ -290,7 +296,10 @@ export function encodeEan8Bits(rawCode: string): { bits: string; normalized: str
 /**
  * Encodes a Code 128B string into binary modules.
  */
-export function encodeCode128Bits(rawCode: string): { bits: string; normalized: string } {
+export function encodeCode128Bits(rawCode: string): {
+  bits: string
+  normalized: string
+} {
   const clean = rawCode.replace(/[^\x20-\x7E]/g, "") || "0"
   const codes: number[] = [104] // Start Code B
   let checksum = 104
@@ -305,14 +314,19 @@ export function encodeCode128Bits(rawCode: string): { bits: string; normalized: 
   codes.push(checksum % 103)
   codes.push(106) // Stop
 
-  const bits = codes.map((c) => CODE128_PATTERNS[c] || CODE128_PATTERNS[0]).join("")
+  const bits = codes
+    .map((c) => CODE128_PATTERNS[c] || CODE128_PATTERNS[0])
+    .join("")
   return { bits, normalized: clean }
 }
 
 /**
  * Encodes a Code 39 string into binary modules.
  */
-export function encodeCode39Bits(rawCode: string): { bits: string; normalized: string } {
+export function encodeCode39Bits(rawCode: string): {
+  bits: string
+  normalized: string
+} {
   const clean =
     rawCode
       .toUpperCase()

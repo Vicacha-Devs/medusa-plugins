@@ -1,0 +1,1396 @@
+openapi: 3.1.0
+info:
+  title: "@vicacha-devs/medusa-plugin-b2b API"
+  version: 0.0.1
+  description: "B2B commerce capabilities for Medusa v2: companies, employees,
+    quotes, approvals, spending limits, and B2B cart workflows."
+servers:
+  - url: http://127.0.0.1:9000
+    description: Local Medusa v2 Server
+components:
+  securitySchemes:
+    adminBearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Medusa Admin JWT or API token
+    publishableKey:
+      type: apiKey
+      in: header
+      name: x-publishable-api-key
+      description: Medusa Storefront Publishable API Key
+paths:
+  /admin/b2b/approvals:
+    get:
+      operationId: getAdminB2bApprovals
+      summary: List b2b approvals
+      description: GET /admin/b2b/approvals endpoint exposed by
+        @vicacha-devs/medusa-plugin-b2b.
+      tags:
+        - "Admin: b2b"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/b2b/approvals/{id}:
+    post:
+      operationId: postAdminB2bApprovalsById
+      summary: Create / Trigger b2b approvals by ID
+      description: POST /admin/b2b/approvals/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-b2b.
+      tags:
+        - "Admin: b2b"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/b2b/companies:
+    get:
+      operationId: getAdminB2bCompanies
+      summary: List b2b companies
+      description: GET /admin/b2b/companies endpoint exposed by
+        @vicacha-devs/medusa-plugin-b2b.
+      tags:
+        - "Admin: b2b"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    post:
+      operationId: postAdminB2bCompanies
+      summary: Create / Trigger b2b companies
+      description: POST /admin/b2b/companies endpoint exposed by
+        @vicacha-devs/medusa-plugin-b2b.
+      tags:
+        - "Admin: b2b"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/b2b/companies/{id}:
+    delete:
+      operationId: deleteAdminB2bCompaniesById
+      summary: Delete b2b companies by ID
+      description: DELETE /admin/b2b/companies/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-b2b.
+      tags:
+        - "Admin: b2b"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    get:
+      operationId: getAdminB2bCompaniesById
+      summary: Get b2b companies by ID
+      description: GET /admin/b2b/companies/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-b2b.
+      tags:
+        - "Admin: b2b"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    post:
+      operationId: postAdminB2bCompaniesById
+      summary: Create / Trigger b2b companies by ID
+      description: POST /admin/b2b/companies/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-b2b.
+      tags:
+        - "Admin: b2b"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/b2b/companies/{id}/approval-settings:
+    get:
+      operationId: getAdminB2bCompaniesByIdApprovalSettings
+      summary: Get b2b companies by ID approval settings
+      description:
+        GET /admin/b2b/companies/{id}/approval-settings endpoint exposed by
+        @vicacha-devs/medusa-plugin-b2b.
+      tags:
+        - "Admin: b2b"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    post:
+      operationId: postAdminB2bCompaniesByIdApprovalSettings
+      summary: Create / Trigger b2b companies by ID approval settings
+      description:
+        POST /admin/b2b/companies/{id}/approval-settings endpoint exposed
+        by @vicacha-devs/medusa-plugin-b2b.
+      tags:
+        - "Admin: b2b"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/b2b/companies/{id}/customer-group:
+    post:
+      operationId: postAdminB2bCompaniesByIdCustomerGroup
+      summary: Create / Trigger b2b companies by ID customer group
+      description:
+        POST /admin/b2b/companies/{id}/customer-group endpoint exposed by
+        @vicacha-devs/medusa-plugin-b2b.
+      tags:
+        - "Admin: b2b"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/b2b/companies/{id}/customer-group/{customerGroupId}:
+    delete:
+      operationId: deleteAdminB2bCompaniesByIdCustomerGroupByCustomerGroupId
+      summary: Delete b2b companies by ID customer group by ID
+      description:
+        DELETE /admin/b2b/companies/{id}/customer-group/{customerGroupId}
+        endpoint exposed by @vicacha-devs/medusa-plugin-b2b.
+      tags:
+        - "Admin: b2b"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+        - name: customerGroupId
+          in: path
+          required: true
+          description: Resource identifier (customerGroupId)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/b2b/companies/{id}/employees:
+    get:
+      operationId: getAdminB2bCompaniesByIdEmployees
+      summary: Get b2b companies by ID employees
+      description: GET /admin/b2b/companies/{id}/employees endpoint exposed by
+        @vicacha-devs/medusa-plugin-b2b.
+      tags:
+        - "Admin: b2b"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    post:
+      operationId: postAdminB2bCompaniesByIdEmployees
+      summary: Create / Trigger b2b companies by ID employees
+      description: POST /admin/b2b/companies/{id}/employees endpoint exposed by
+        @vicacha-devs/medusa-plugin-b2b.
+      tags:
+        - "Admin: b2b"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/b2b/companies/{id}/employees/{employeeId}:
+    delete:
+      operationId: deleteAdminB2bCompaniesByIdEmployeesByEmployeeId
+      summary: Delete b2b companies by ID employees by ID
+      description:
+        DELETE /admin/b2b/companies/{id}/employees/{employeeId} endpoint
+        exposed by @vicacha-devs/medusa-plugin-b2b.
+      tags:
+        - "Admin: b2b"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+        - name: employeeId
+          in: path
+          required: true
+          description: Resource identifier (employeeId)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    get:
+      operationId: getAdminB2bCompaniesByIdEmployeesByEmployeeId
+      summary: Get b2b companies by ID employees by ID
+      description: GET /admin/b2b/companies/{id}/employees/{employeeId} endpoint
+        exposed by @vicacha-devs/medusa-plugin-b2b.
+      tags:
+        - "Admin: b2b"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+        - name: employeeId
+          in: path
+          required: true
+          description: Resource identifier (employeeId)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    post:
+      operationId: postAdminB2bCompaniesByIdEmployeesByEmployeeId
+      summary: Create / Trigger b2b companies by ID employees by ID
+      description:
+        POST /admin/b2b/companies/{id}/employees/{employeeId} endpoint
+        exposed by @vicacha-devs/medusa-plugin-b2b.
+      tags:
+        - "Admin: b2b"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+        - name: employeeId
+          in: path
+          required: true
+          description: Resource identifier (employeeId)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/b2b/customers/{id}/employee:
+    get:
+      operationId: getAdminB2bCustomersByIdEmployee
+      summary: Get b2b customers by ID employee
+      description: GET /admin/b2b/customers/{id}/employee endpoint exposed by
+        @vicacha-devs/medusa-plugin-b2b.
+      tags:
+        - "Admin: b2b"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/b2b/quotes:
+    get:
+      operationId: getAdminB2bQuotes
+      summary: List b2b quotes
+      description: GET /admin/b2b/quotes endpoint exposed by
+        @vicacha-devs/medusa-plugin-b2b.
+      tags:
+        - "Admin: b2b"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/b2b/quotes/{id}:
+    get:
+      operationId: getAdminB2bQuotesById
+      summary: Get b2b quotes by ID
+      description: GET /admin/b2b/quotes/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-b2b.
+      tags:
+        - "Admin: b2b"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/b2b/quotes/{id}/messages:
+    post:
+      operationId: postAdminB2bQuotesByIdMessages
+      summary: Create / Trigger b2b quotes by ID messages
+      description: POST /admin/b2b/quotes/{id}/messages endpoint exposed by
+        @vicacha-devs/medusa-plugin-b2b.
+      tags:
+        - "Admin: b2b"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/b2b/quotes/{id}/reject:
+    post:
+      operationId: postAdminB2bQuotesByIdReject
+      summary: Create / Trigger b2b quotes by ID reject
+      description: POST /admin/b2b/quotes/{id}/reject endpoint exposed by
+        @vicacha-devs/medusa-plugin-b2b.
+      tags:
+        - "Admin: b2b"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/b2b/quotes/{id}/send:
+    post:
+      operationId: postAdminB2bQuotesByIdSend
+      summary: Create / Trigger b2b quotes by ID send
+      description: POST /admin/b2b/quotes/{id}/send endpoint exposed by
+        @vicacha-devs/medusa-plugin-b2b.
+      tags:
+        - "Admin: b2b"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/companies:
+    get:
+      operationId: getAdminCompanies
+      summary: List companies
+      description: GET /admin/companies endpoint exposed by @vicacha-devs/medusa-plugin-b2b.
+      tags:
+        - "Admin: companies"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/views/b2b-approvals/columns:
+    get:
+      operationId: getAdminViewsB2bApprovalsColumns
+      summary: List views b2b approvals columns
+      description: GET /admin/views/b2b-approvals/columns endpoint exposed by
+        @vicacha-devs/medusa-plugin-b2b.
+      tags:
+        - "Admin: views"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/views/b2b-companies/columns:
+    get:
+      operationId: getAdminViewsB2bCompaniesColumns
+      summary: List views b2b companies columns
+      description: GET /admin/views/b2b-companies/columns endpoint exposed by
+        @vicacha-devs/medusa-plugin-b2b.
+      tags:
+        - "Admin: views"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/views/b2b-company-employees/columns:
+    get:
+      operationId: getAdminViewsB2bCompanyEmployeesColumns
+      summary: List views b2b company employees columns
+      description:
+        GET /admin/views/b2b-company-employees/columns endpoint exposed by
+        @vicacha-devs/medusa-plugin-b2b.
+      tags:
+        - "Admin: views"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/views/b2b-quotes/columns:
+    get:
+      operationId: getAdminViewsB2bQuotesColumns
+      summary: List views b2b quotes columns
+      description: GET /admin/views/b2b-quotes/columns endpoint exposed by
+        @vicacha-devs/medusa-plugin-b2b.
+      tags:
+        - "Admin: views"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /store/b2b/approvals:
+    get:
+      operationId: getStoreB2bApprovals
+      summary: List b2b approvals
+      description: GET /store/b2b/approvals endpoint exposed by
+        @vicacha-devs/medusa-plugin-b2b.
+      tags:
+        - "Storefront: b2b"
+      security:
+        - publishableKey: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /store/b2b/approvals/{id}:
+    post:
+      operationId: postStoreB2bApprovalsById
+      summary: Create / Trigger b2b approvals by ID
+      description: POST /store/b2b/approvals/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-b2b.
+      tags:
+        - "Storefront: b2b"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - publishableKey: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /store/b2b/carts/{id}/approvals:
+    post:
+      operationId: postStoreB2bCartsByIdApprovals
+      summary: Create / Trigger b2b carts by ID approvals
+      description: POST /store/b2b/carts/{id}/approvals endpoint exposed by
+        @vicacha-devs/medusa-plugin-b2b.
+      tags:
+        - "Storefront: b2b"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - publishableKey: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /store/b2b/carts/{id}/line-items/bulk:
+    post:
+      operationId: postStoreB2bCartsByIdLineItemsBulk
+      summary: Create / Trigger b2b carts by ID line items bulk
+      description:
+        POST /store/b2b/carts/{id}/line-items/bulk endpoint exposed by
+        @vicacha-devs/medusa-plugin-b2b.
+      tags:
+        - "Storefront: b2b"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - publishableKey: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /store/b2b/companies:
+    post:
+      operationId: postStoreB2bCompanies
+      summary: Create / Trigger b2b companies
+      description: POST /store/b2b/companies endpoint exposed by
+        @vicacha-devs/medusa-plugin-b2b.
+      tags:
+        - "Storefront: b2b"
+      security:
+        - publishableKey: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /store/b2b/companies/{id}:
+    delete:
+      operationId: deleteStoreB2bCompaniesById
+      summary: Delete b2b companies by ID
+      description: DELETE /store/b2b/companies/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-b2b.
+      tags:
+        - "Storefront: b2b"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - publishableKey: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+    get:
+      operationId: getStoreB2bCompaniesById
+      summary: Get b2b companies by ID
+      description: GET /store/b2b/companies/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-b2b.
+      tags:
+        - "Storefront: b2b"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - publishableKey: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+    post:
+      operationId: postStoreB2bCompaniesById
+      summary: Create / Trigger b2b companies by ID
+      description: POST /store/b2b/companies/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-b2b.
+      tags:
+        - "Storefront: b2b"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - publishableKey: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /store/b2b/companies/{id}/approval-settings:
+    post:
+      operationId: postStoreB2bCompaniesByIdApprovalSettings
+      summary: Create / Trigger b2b companies by ID approval settings
+      description:
+        POST /store/b2b/companies/{id}/approval-settings endpoint exposed
+        by @vicacha-devs/medusa-plugin-b2b.
+      tags:
+        - "Storefront: b2b"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - publishableKey: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /store/b2b/companies/{id}/employees:
+    get:
+      operationId: getStoreB2bCompaniesByIdEmployees
+      summary: Get b2b companies by ID employees
+      description: GET /store/b2b/companies/{id}/employees endpoint exposed by
+        @vicacha-devs/medusa-plugin-b2b.
+      tags:
+        - "Storefront: b2b"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - publishableKey: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+    post:
+      operationId: postStoreB2bCompaniesByIdEmployees
+      summary: Create / Trigger b2b companies by ID employees
+      description: POST /store/b2b/companies/{id}/employees endpoint exposed by
+        @vicacha-devs/medusa-plugin-b2b.
+      tags:
+        - "Storefront: b2b"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - publishableKey: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /store/b2b/companies/{id}/employees/{employeeId}:
+    delete:
+      operationId: deleteStoreB2bCompaniesByIdEmployeesByEmployeeId
+      summary: Delete b2b companies by ID employees by ID
+      description:
+        DELETE /store/b2b/companies/{id}/employees/{employeeId} endpoint
+        exposed by @vicacha-devs/medusa-plugin-b2b.
+      tags:
+        - "Storefront: b2b"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+        - name: employeeId
+          in: path
+          required: true
+          description: Resource identifier (employeeId)
+          schema:
+            type: string
+      security:
+        - publishableKey: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+    get:
+      operationId: getStoreB2bCompaniesByIdEmployeesByEmployeeId
+      summary: Get b2b companies by ID employees by ID
+      description: GET /store/b2b/companies/{id}/employees/{employeeId} endpoint
+        exposed by @vicacha-devs/medusa-plugin-b2b.
+      tags:
+        - "Storefront: b2b"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+        - name: employeeId
+          in: path
+          required: true
+          description: Resource identifier (employeeId)
+          schema:
+            type: string
+      security:
+        - publishableKey: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+    post:
+      operationId: postStoreB2bCompaniesByIdEmployeesByEmployeeId
+      summary: Create / Trigger b2b companies by ID employees by ID
+      description:
+        POST /store/b2b/companies/{id}/employees/{employeeId} endpoint
+        exposed by @vicacha-devs/medusa-plugin-b2b.
+      tags:
+        - "Storefront: b2b"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+        - name: employeeId
+          in: path
+          required: true
+          description: Resource identifier (employeeId)
+          schema:
+            type: string
+      security:
+        - publishableKey: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /store/b2b/free-shipping/prices:
+    get:
+      operationId: getStoreB2bFreeShippingPrices
+      summary: List b2b free shipping prices
+      description: GET /store/b2b/free-shipping/prices endpoint exposed by
+        @vicacha-devs/medusa-plugin-b2b.
+      tags:
+        - "Storefront: b2b"
+      security:
+        - publishableKey: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /store/b2b/quotes:
+    get:
+      operationId: getStoreB2bQuotes
+      summary: List b2b quotes
+      description: GET /store/b2b/quotes endpoint exposed by
+        @vicacha-devs/medusa-plugin-b2b.
+      tags:
+        - "Storefront: b2b"
+      security:
+        - publishableKey: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+    post:
+      operationId: postStoreB2bQuotes
+      summary: Create / Trigger b2b quotes
+      description: POST /store/b2b/quotes endpoint exposed by
+        @vicacha-devs/medusa-plugin-b2b.
+      tags:
+        - "Storefront: b2b"
+      security:
+        - publishableKey: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /store/b2b/quotes/{id}:
+    get:
+      operationId: getStoreB2bQuotesById
+      summary: Get b2b quotes by ID
+      description: GET /store/b2b/quotes/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-b2b.
+      tags:
+        - "Storefront: b2b"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - publishableKey: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /store/b2b/quotes/{id}/accept:
+    post:
+      operationId: postStoreB2bQuotesByIdAccept
+      summary: Create / Trigger b2b quotes by ID accept
+      description: POST /store/b2b/quotes/{id}/accept endpoint exposed by
+        @vicacha-devs/medusa-plugin-b2b.
+      tags:
+        - "Storefront: b2b"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - publishableKey: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /store/b2b/quotes/{id}/messages:
+    post:
+      operationId: postStoreB2bQuotesByIdMessages
+      summary: Create / Trigger b2b quotes by ID messages
+      description: POST /store/b2b/quotes/{id}/messages endpoint exposed by
+        @vicacha-devs/medusa-plugin-b2b.
+      tags:
+        - "Storefront: b2b"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - publishableKey: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /store/b2b/quotes/{id}/preview:
+    get:
+      operationId: getStoreB2bQuotesByIdPreview
+      summary: Get b2b quotes by ID preview
+      description: GET /store/b2b/quotes/{id}/preview endpoint exposed by
+        @vicacha-devs/medusa-plugin-b2b.
+      tags:
+        - "Storefront: b2b"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - publishableKey: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /store/b2b/quotes/{id}/reject:
+    post:
+      operationId: postStoreB2bQuotesByIdReject
+      summary: Create / Trigger b2b quotes by ID reject
+      description: POST /store/b2b/quotes/{id}/reject endpoint exposed by
+        @vicacha-devs/medusa-plugin-b2b.
+      tags:
+        - "Storefront: b2b"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - publishableKey: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true

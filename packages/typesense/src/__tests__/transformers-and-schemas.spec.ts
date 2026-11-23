@@ -180,7 +180,10 @@ describe("Document Transformers & Schema Builder", () => {
     assert.ok(brandDoc)
     assert.equal(brandDoc.id, "brand_01")
     assert.equal(brandDoc.name, "Acme Athletics")
-    assert.equal(brandDoc.founded_at_ts, toUnixTimestamp("2020-05-01T00:00:00.000Z"))
+    assert.equal(
+      brandDoc.founded_at_ts,
+      toUnixTimestamp("2020-05-01T00:00:00.000Z")
+    )
   })
 
   it("builds Typesense collection schema with auto-embedding field and locale tokenization", () => {
@@ -204,7 +207,9 @@ describe("Document Transformers & Schema Builder", () => {
     assert.ok(titleField)
     assert.equal(titleField.locale, "es")
 
-    const embeddingField = schema.fields.find((f: any) => f.name === "embedding")
+    const embeddingField = schema.fields.find(
+      (f: any) => f.name === "embedding"
+    )
     assert.ok(embeddingField)
     assert.equal(embeddingField.type, "float[]")
     assert.deepEqual(embeddingField.embed.from, [

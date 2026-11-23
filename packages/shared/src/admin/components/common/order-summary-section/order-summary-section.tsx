@@ -2,10 +2,18 @@ import { ReactNode, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom"
 
-import { ActionMenu, DisplayId, Thumbnail } from "@medusajs/dashboard/components"
+import {
+  ActionMenu,
+  DisplayId,
+  Thumbnail,
+} from "@medusajs/dashboard/components"
 import { useDate, useOrderPreview } from "@medusajs/dashboard/hooks"
-import { formatCurrency, getLocaleAmount, getStylizedAmount } from "@medusajs/dashboard/lib"
-import { 
+import {
+  formatCurrency,
+  getLocaleAmount,
+  getStylizedAmount,
+} from "@medusajs/dashboard/lib"
+import {
   AdminClaim,
   AdminExchange,
   AdminOrder,
@@ -18,7 +26,7 @@ import {
   AdminReturn,
   AdminReturnItem,
   AdminReturnReason,
- } from "@medusajs/framework/types"
+} from "@medusajs/framework/types"
 import {
   ArrowDownRightMini,
   ArrowLongRight,
@@ -52,7 +60,7 @@ import {
   getReturnableQuantity,
   getTotalCaptured,
   getTotalCreditLines,
-  isAmountLessThenRoundingError
+  isAmountLessThenRoundingError,
 } from "../../../lib"
 import { CopyPaymentLink } from "../copy-payment-link"
 import ShippingInfoPopover from "./shipping-info-popover"
@@ -133,7 +141,7 @@ export const OrderSummarySection = ({
 
   const { mutateAsync: markAsPaid } = useMarkPaymentCollectionAsPaid(
     order.id,
-    unpaidPaymentCollection?.id!
+    unpaidPaymentCollection?.id
   )
 
   const pendingDifference = order.summary?.pending_difference || 0
@@ -309,73 +317,75 @@ const Header = ({
   return (
     <div className="flex items-center justify-between px-6 py-4">
       <Heading level="h2">{t("fields.summary")}</Heading>
-      {!readOnly && <ActionMenu
-        groups={[
-          {
-            actions: [
-              {
-                label: t(
-                  isOrderEditPending
-                    ? "orders.summary.editOrderContinue"
-                    : "orders.summary.editOrder"
-                ),
-                to: `/orders/${order.id}/edits`,
-                icon: <PencilSquare />,
-                disabled:
-                  order.status === "canceled" ||
-                  (orderPreview?.order_change &&
-                    orderPreview?.order_change?.change_type !== "edit") ||
-                  (orderPreview?.order_change?.change_type === "edit" &&
-                    orderPreview?.order_change?.status === "requested"),
-              },
-            ],
-          },
-          {
-            actions: [
-              {
-                label: t("orders.returns.create"),
-                to: `/orders/${order.id}/returns`,
-                icon: <ArrowUturnLeft />,
-                disabled:
-                  shouldDisableReturn ||
-                  isOrderEditActive ||
-                  !!orderPreview?.order_change?.exchange_id ||
-                  !!orderPreview?.order_change?.claim_id,
-              },
-              {
-                label:
-                  orderPreview?.order_change?.id &&
-                  orderPreview?.order_change?.exchange_id
-                    ? t("orders.exchanges.manage")
-                    : t("orders.exchanges.create"),
-                to: `/orders/${order.id}/exchanges`,
-                icon: <ArrowPath />,
-                disabled:
-                  shouldDisableReturn ||
-                  isOrderEditActive ||
-                  (!!orderPreview?.order_change?.return_id &&
-                    !orderPreview?.order_change?.exchange_id) ||
-                  !!orderPreview?.order_change?.claim_id,
-              },
-              {
-                label:
-                  orderPreview?.order_change?.id &&
-                  orderPreview?.order_change?.claim_id
-                    ? t("orders.claims.manage")
-                    : t("orders.claims.create"),
-                to: `/orders/${order.id}/claims`,
-                icon: <ExclamationCircle />,
-                disabled:
-                  shouldDisableReturn ||
-                  isOrderEditActive ||
-                  (!!orderPreview?.order_change?.return_id &&
-                    !orderPreview?.order_change?.claim_id) ||
-                  !!orderPreview?.order_change?.exchange_id,
-              },
-            ],
-          },
-        ]}
-      />}
+      {!readOnly && (
+        <ActionMenu
+          groups={[
+            {
+              actions: [
+                {
+                  label: t(
+                    isOrderEditPending
+                      ? "orders.summary.editOrderContinue"
+                      : "orders.summary.editOrder"
+                  ),
+                  to: `/orders/${order.id}/edits`,
+                  icon: <PencilSquare />,
+                  disabled:
+                    order.status === "canceled" ||
+                    (orderPreview?.order_change &&
+                      orderPreview?.order_change?.change_type !== "edit") ||
+                    (orderPreview?.order_change?.change_type === "edit" &&
+                      orderPreview?.order_change?.status === "requested"),
+                },
+              ],
+            },
+            {
+              actions: [
+                {
+                  label: t("orders.returns.create"),
+                  to: `/orders/${order.id}/returns`,
+                  icon: <ArrowUturnLeft />,
+                  disabled:
+                    shouldDisableReturn ||
+                    isOrderEditActive ||
+                    !!orderPreview?.order_change?.exchange_id ||
+                    !!orderPreview?.order_change?.claim_id,
+                },
+                {
+                  label:
+                    orderPreview?.order_change?.id &&
+                    orderPreview?.order_change?.exchange_id
+                      ? t("orders.exchanges.manage")
+                      : t("orders.exchanges.create"),
+                  to: `/orders/${order.id}/exchanges`,
+                  icon: <ArrowPath />,
+                  disabled:
+                    shouldDisableReturn ||
+                    isOrderEditActive ||
+                    (!!orderPreview?.order_change?.return_id &&
+                      !orderPreview?.order_change?.exchange_id) ||
+                    !!orderPreview?.order_change?.claim_id,
+                },
+                {
+                  label:
+                    orderPreview?.order_change?.id &&
+                    orderPreview?.order_change?.claim_id
+                      ? t("orders.claims.manage")
+                      : t("orders.claims.create"),
+                  to: `/orders/${order.id}/claims`,
+                  icon: <ExclamationCircle />,
+                  disabled:
+                    shouldDisableReturn ||
+                    isOrderEditActive ||
+                    (!!orderPreview?.order_change?.return_id &&
+                      !orderPreview?.order_change?.claim_id) ||
+                    !!orderPreview?.order_change?.exchange_id,
+                },
+              ],
+            },
+          ]}
+        />
+      )}
     </div>
   )
 }
@@ -655,7 +665,7 @@ const CostBreakdown = ({
       {isShippingOpen && (
         <div className="flex flex-col gap-1 pl-5">
           {(order.shipping_methods || [])
-            .sort((m1, m2) =>
+            .toSorted((m1, m2) =>
               (m1.created_at as string).localeCompare(m2.created_at as string)
             )
             .map((sm, i) => {
@@ -782,7 +792,7 @@ const DiscountAndTotalBreakdown = ({
               .flatMap((item) => item.adjustments || [])
               .map((adjustment) => adjustment.code!)
           )
-        ).sort(),
+        ).toSorted(),
       })
     }
     if (order.shipping_discount_total) {
@@ -795,7 +805,7 @@ const DiscountAndTotalBreakdown = ({
               .flatMap((shippingMethod) => shippingMethod.adjustments || [])
               .map((adjustment) => adjustment.code!)
           )
-        ).sort(),
+        ).toSorted(),
       })
     }
     return discounts

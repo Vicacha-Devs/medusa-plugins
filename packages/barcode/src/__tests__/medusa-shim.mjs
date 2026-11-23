@@ -51,9 +51,7 @@ export function MedusaService(models = {}) {
       this.__stores = {}
       let counter = 1
       for (const key of Object.keys(models)) {
-        const plural = key.endsWith("y")
-          ? `${key.slice(0, -1)}ies`
-          : `${key}s`
+        const plural = key.endsWith("y") ? `${key.slice(0, -1)}ies` : `${key}s`
         this.__stores[plural] = []
 
         if (typeof this[`list${plural}`] !== "function") {
@@ -315,7 +313,7 @@ export const useParams = () => ({})
 export const useForm = (opts = {}) => ({
   control: {},
   register: () => ({}),
-  handleSubmit: (fn) => (e) => fn(opts.defaultValues || {}),
+  handleSubmit: (fn) => (_e) => fn(opts.defaultValues || {}),
   watch: () => opts.defaultValues || {},
   reset: () => {},
   setValue: () => {},
@@ -331,6 +329,3 @@ export default {
   Fragment,
   useTranslation,
 }
-
-
-

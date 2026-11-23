@@ -1,10 +1,7 @@
 import type React from "react"
 import type { StorySlideDTO } from "../../modules/story/types"
 import type { NewStickerFormState } from "../hooks/use-stories-studio"
-import {
-  STICKER_TYPES,
-  StickerBuilderSection,
-} from "./sticker-form-section"
+import { STICKER_TYPES, StickerBuilderSection } from "./sticker-form-section"
 import { StickerActiveListSection } from "./sticker-list-section"
 
 export { STICKER_TYPES, StickerActiveListSection, StickerBuilderSection }

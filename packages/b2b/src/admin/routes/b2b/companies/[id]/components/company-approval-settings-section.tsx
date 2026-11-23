@@ -9,11 +9,21 @@ interface Props {
   company: QueryCompany
 }
 
-const BoolBadge = ({ value, t }: { value: boolean; t: (k: string) => string }) =>
+const BoolBadge = ({
+  value,
+  t,
+}: {
+  value: boolean
+  t: (k: string) => string
+}) =>
   value ? (
-    <Badge size="xsmall" color="green">{t("general.yes")}</Badge>
+    <Badge size="xsmall" color="green">
+      {t("general.yes")}
+    </Badge>
   ) : (
-    <Badge size="xsmall" color="grey">{t("general.no")}</Badge>
+    <Badge size="xsmall" color="grey">
+      {t("general.no")}
+    </Badge>
   )
 
 export const CompanyApprovalSettingsSection = ({ company }: Props) => {
@@ -45,7 +55,12 @@ export const CompanyApprovalSettingsSection = ({ company }: Props) => {
       />
       <SectionRow
         title={t("companies.approvalSettings.requiresSalesManager")}
-        value={<BoolBadge value={!!settings?.requires_sales_manager_approval} t={t} />}
+        value={
+          <BoolBadge
+            value={!!settings?.requires_sales_manager_approval}
+            t={t}
+          />
+        }
       />
     </Container>
   )

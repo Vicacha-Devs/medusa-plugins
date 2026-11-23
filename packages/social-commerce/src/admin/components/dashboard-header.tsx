@@ -39,9 +39,7 @@ export const DashboardHeader = ({
           <Heading className="font-sans font-medium h1-core">
             {t("header.title")}
           </Heading>
-          <Text className="text-ui-fg-subtle mt-1">
-            {t("header.subtitle")}
-          </Text>
+          <Text className="text-ui-fg-subtle mt-1">{t("header.subtitle")}</Text>
         </div>
 
         <div className="flex items-center gap-x-2">
@@ -86,4 +84,3 @@ export const DashboardHeader = ({
     </>
   )
 }
-

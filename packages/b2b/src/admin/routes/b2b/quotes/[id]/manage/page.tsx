@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom"
 
 import { useQuote } from "../../../../../hooks/api"
 import { ManageQuoteForm } from "./components/manage-quote-form"
-import { RbacGuard } from "@vicacha-devs/medusa-shared-admin/admin";
+import { RbacGuard } from "@vicacha-devs/medusa-shared-admin/admin"
 
 const QuoteManage = () => {
   const { id } = useParams()
@@ -41,7 +41,8 @@ const QuoteManage = () => {
           <RouteFocusModal.Header />
           <RouteFocusModal.Body className="flex size-full items-center justify-center p-8">
             <Alert variant="warning">
-              This quote has no associated draft order. It may have been created outside the normal quote flow.
+              This quote has no associated draft order. It may have been created
+              outside the normal quote flow.
             </Alert>
           </RouteFocusModal.Body>
         </div>
@@ -54,6 +55,6 @@ const GuardedQuoteManage = () => (
   <RbacGuard permission="b2b.write">
     <QuoteManage />
   </RbacGuard>
-);
+)
 
-export default GuardedQuoteManage;
+export default GuardedQuoteManage

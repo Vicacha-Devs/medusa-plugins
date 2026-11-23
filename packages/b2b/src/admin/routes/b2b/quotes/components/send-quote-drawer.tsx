@@ -9,7 +9,12 @@ type SendQuoteDrawerProps = {
   isPending?: boolean
 }
 
-export function SendQuoteDrawer({ open, onClose, onConfirm, isPending }: SendQuoteDrawerProps) {
+export function SendQuoteDrawer({
+  open,
+  onClose,
+  onConfirm,
+  isPending,
+}: SendQuoteDrawerProps) {
   const { t } = useTranslation()
   const [expiresAt, setExpiresAt] = useState("")
 

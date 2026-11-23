@@ -8,7 +8,7 @@ export const QA_THEME_INIT_JS = `(() => {
   } catch {
     // Ignore restricted storage contexts
   }
-})();`;
+})();`
 
 export const QA_DASHBOARD_CLIENT_JS = `(() => {
   const dataEl = document.getElementById("qa-data");
@@ -244,4 +244,4 @@ export const QA_DASHBOARD_CLIENT_JS = `(() => {
       }
     }
   }
-})();`;
+})();`

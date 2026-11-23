@@ -1,0 +1,562 @@
+openapi: 3.1.0
+info:
+  title: "@vicacha-devs/medusa-plugin-notifications API"
+  version: 0.0.1
+  description: "Unified multi-channel notification studio for Medusa v2: visual
+    and raw template builder, event mappings, consent ledger, abandoned cart
+    recovery, broadcasts, and Email, WhatsApp, Telegram, SMS, Slack and sandbox
+    providers."
+servers:
+  - url: http://127.0.0.1:9000
+    description: Local Medusa v2 Server
+components:
+  securitySchemes:
+    adminBearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Medusa Admin JWT or API token
+    publishableKey:
+      type: apiKey
+      in: header
+      name: x-publishable-api-key
+      description: Medusa Storefront Publishable API Key
+paths:
+  /admin/mpn/broadcasts:
+    get:
+      operationId: getAdminMpnBroadcasts
+      summary: List mpn broadcasts
+      description: GET /admin/mpn/broadcasts endpoint exposed by
+        @vicacha-devs/medusa-plugin-notifications.
+      tags:
+        - "Admin: mpn"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    post:
+      operationId: postAdminMpnBroadcasts
+      summary: Create / Trigger mpn broadcasts
+      description: POST /admin/mpn/broadcasts endpoint exposed by
+        @vicacha-devs/medusa-plugin-notifications.
+      tags:
+        - "Admin: mpn"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/mpn/channels:
+    get:
+      operationId: getAdminMpnChannels
+      summary: List mpn channels
+      description: GET /admin/mpn/channels endpoint exposed by
+        @vicacha-devs/medusa-plugin-notifications.
+      tags:
+        - "Admin: mpn"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    post:
+      operationId: postAdminMpnChannels
+      summary: Create / Trigger mpn channels
+      description: POST /admin/mpn/channels endpoint exposed by
+        @vicacha-devs/medusa-plugin-notifications.
+      tags:
+        - "Admin: mpn"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/mpn/logs:
+    get:
+      operationId: getAdminMpnLogs
+      summary: List mpn logs
+      description: GET /admin/mpn/logs endpoint exposed by
+        @vicacha-devs/medusa-plugin-notifications.
+      tags:
+        - "Admin: mpn"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/mpn/mappings:
+    get:
+      operationId: getAdminMpnMappings
+      summary: List mpn mappings
+      description: GET /admin/mpn/mappings endpoint exposed by
+        @vicacha-devs/medusa-plugin-notifications.
+      tags:
+        - "Admin: mpn"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    post:
+      operationId: postAdminMpnMappings
+      summary: Create / Trigger mpn mappings
+      description: POST /admin/mpn/mappings endpoint exposed by
+        @vicacha-devs/medusa-plugin-notifications.
+      tags:
+        - "Admin: mpn"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/mpn/mappings/{id}:
+    delete:
+      operationId: deleteAdminMpnMappingsById
+      summary: Delete mpn mappings by ID
+      description: DELETE /admin/mpn/mappings/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-notifications.
+      tags:
+        - "Admin: mpn"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    post:
+      operationId: postAdminMpnMappingsById
+      summary: Create / Trigger mpn mappings by ID
+      description: POST /admin/mpn/mappings/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-notifications.
+      tags:
+        - "Admin: mpn"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/mpn/render-template:
+    post:
+      operationId: postAdminMpnRenderTemplate
+      summary: Create / Trigger mpn render template
+      description: POST /admin/mpn/render-template endpoint exposed by
+        @vicacha-devs/medusa-plugin-notifications.
+      tags:
+        - "Admin: mpn"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/mpn/sandbox:
+    delete:
+      operationId: deleteAdminMpnSandbox
+      summary: Delete mpn sandbox
+      description: DELETE /admin/mpn/sandbox endpoint exposed by
+        @vicacha-devs/medusa-plugin-notifications.
+      tags:
+        - "Admin: mpn"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    get:
+      operationId: getAdminMpnSandbox
+      summary: List mpn sandbox
+      description: GET /admin/mpn/sandbox endpoint exposed by
+        @vicacha-devs/medusa-plugin-notifications.
+      tags:
+        - "Admin: mpn"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/mpn/send:
+    post:
+      operationId: postAdminMpnSend
+      summary: Create / Trigger mpn send
+      description: POST /admin/mpn/send endpoint exposed by
+        @vicacha-devs/medusa-plugin-notifications.
+      tags:
+        - "Admin: mpn"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/mpn/templates:
+    get:
+      operationId: getAdminMpnTemplates
+      summary: List mpn templates
+      description: GET /admin/mpn/templates endpoint exposed by
+        @vicacha-devs/medusa-plugin-notifications.
+      tags:
+        - "Admin: mpn"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    post:
+      operationId: postAdminMpnTemplates
+      summary: Create / Trigger mpn templates
+      description: POST /admin/mpn/templates endpoint exposed by
+        @vicacha-devs/medusa-plugin-notifications.
+      tags:
+        - "Admin: mpn"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/mpn/templates/{id}:
+    delete:
+      operationId: deleteAdminMpnTemplatesById
+      summary: Delete mpn templates by ID
+      description: DELETE /admin/mpn/templates/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-notifications.
+      tags:
+        - "Admin: mpn"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    get:
+      operationId: getAdminMpnTemplatesById
+      summary: Get mpn templates by ID
+      description: GET /admin/mpn/templates/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-notifications.
+      tags:
+        - "Admin: mpn"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    post:
+      operationId: postAdminMpnTemplatesById
+      summary: Create / Trigger mpn templates by ID
+      description: POST /admin/mpn/templates/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-notifications.
+      tags:
+        - "Admin: mpn"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/plugin:
+    get:
+      operationId: getAdminPlugin
+      summary: List plugin
+      description: GET /admin/plugin endpoint exposed by
+        @vicacha-devs/medusa-plugin-notifications.
+      tags:
+        - "Admin: plugin"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /store/mpn/consent:
+    post:
+      operationId: postStoreMpnConsent
+      summary: Create / Trigger mpn consent
+      description: POST /store/mpn/consent endpoint exposed by
+        @vicacha-devs/medusa-plugin-notifications.
+      tags:
+        - "Storefront: mpn"
+      security:
+        - publishableKey: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /store/mpn/webhooks/{provider}:
+    post:
+      operationId: postStoreMpnWebhooksByProvider
+      summary: Create / Trigger mpn webhooks by ID
+      description: POST /store/mpn/webhooks/{provider} endpoint exposed by
+        @vicacha-devs/medusa-plugin-notifications.
+      tags:
+        - "Storefront: mpn"
+      parameters:
+        - name: provider
+          in: path
+          required: true
+          description: Resource identifier (provider)
+          schema:
+            type: string
+      security:
+        - publishableKey: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /store/plugin:
+    get:
+      operationId: getStorePlugin
+      summary: List plugin
+      description: GET /store/plugin endpoint exposed by
+        @vicacha-devs/medusa-plugin-notifications.
+      tags:
+        - "Storefront: plugin"
+      security:
+        - publishableKey: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true

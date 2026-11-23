@@ -27,7 +27,8 @@ export const useProductStories = (product?: ProductWidgetEntity) => {
   const handleQuickCreateProductStory = async () => {
     if (!productId || !product?.title) return
     const mediaUrl =
-      product.thumbnail || "https://images.unsplash.com/photo-1523275335684-37898b6baf30"
+      product.thumbnail ||
+      "https://images.unsplash.com/photo-1523275335684-37898b6baf30"
 
     try {
       const res = await createSlideMutation.mutateAsync({

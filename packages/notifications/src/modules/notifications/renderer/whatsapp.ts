@@ -2,10 +2,7 @@ import type {
   TemplateBlockNode,
   WhatsAppInteractiveButton,
 } from "../../../types"
-import {
-  getNestedValue,
-  multiInterpolateString,
-} from "../utils/interpolation"
+import { getNestedValue, multiInterpolateString } from "../utils/interpolation"
 import {
   buildRepeaterItemContext,
   getBlockChildren,
@@ -83,7 +80,9 @@ export function renderWhatsAppNodes(
         break
       }
       case "repeater": {
-        const arrayKey = String(meta.arrayKey || meta.arrayPath || "items").trim()
+        const arrayKey = String(
+          meta.arrayKey || meta.arrayPath || "items"
+        ).trim()
         const list = getNestedValue(data, arrayKey)
         if (Array.isArray(list) && list.length > 0 && children.length > 0) {
           for (const item of list) {
@@ -96,7 +95,10 @@ export function renderWhatsAppNodes(
             )
             lines.push(...child.lines)
           }
-        } else if (Array.isArray(meta.emptyBlocks) && meta.emptyBlocks.length > 0) {
+        } else if (
+          Array.isArray(meta.emptyBlocks) &&
+          meta.emptyBlocks.length > 0
+        ) {
           const empty = renderWhatsAppNodes(
             meta.emptyBlocks,
             data,
@@ -152,4 +154,3 @@ export function renderWhatsAppNodes(
 
   return { lines, buttons }
 }
-

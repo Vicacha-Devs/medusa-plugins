@@ -42,10 +42,16 @@ export const CanvasTimelineSection = ({
       <Table>
         <Table.Header>
           <Table.Row>
-            <Table.HeaderCell>{t("analyticsTab.colSlideTitle")}</Table.HeaderCell>
+            <Table.HeaderCell>
+              {t("analyticsTab.colSlideTitle")}
+            </Table.HeaderCell>
             <Table.HeaderCell>{t("canvasTab.activeBadge")}</Table.HeaderCell>
-            <Table.HeaderCell>{t("analyticsTab.colHotspotClicks")}</Table.HeaderCell>
-            <Table.HeaderCell>{t("analyticsTab.colImpressions")}</Table.HeaderCell>
+            <Table.HeaderCell>
+              {t("analyticsTab.colHotspotClicks")}
+            </Table.HeaderCell>
+            <Table.HeaderCell>
+              {t("analyticsTab.colImpressions")}
+            </Table.HeaderCell>
             <Table.HeaderCell className="text-right" />
           </Table.Row>
         </Table.Header>

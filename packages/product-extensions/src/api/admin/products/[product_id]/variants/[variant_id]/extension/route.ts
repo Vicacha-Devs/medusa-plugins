@@ -12,7 +12,9 @@ export async function GET(req: MedusaRequest, res: MedusaResponse) {
   const ext = await service.getByVariantId(variant_id)
 
   return res.status(200).json({
-    ...(ext ? { id: ext.id, created_at: ext.created_at, updated_at: ext.updated_at } : {}),
+    ...(ext
+      ? { id: ext.id, created_at: ext.created_at, updated_at: ext.updated_at }
+      : {}),
     variant_id,
     product_id: ext?.product_id ?? product_id ?? null,
     thumbnail: ext?.thumbnail ?? null,

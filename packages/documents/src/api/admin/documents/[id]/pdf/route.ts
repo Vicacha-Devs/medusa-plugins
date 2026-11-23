@@ -44,8 +44,7 @@ export async function GET(req: MedusaRequest, res: MedusaResponse) {
       }
     }
 
-    const { buffer, document } =
-      await documentsService.getDocumentPdfBuffer(id)
+    const { buffer, document } = await documentsService.getDocumentPdfBuffer(id)
     const filename = sanitizeFilename(
       `${document.document_type}-${document.document_number}.pdf`
     )

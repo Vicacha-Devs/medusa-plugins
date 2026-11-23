@@ -2,8 +2,24 @@
   "name": "@vicacha-devs/medusa-plugin-social-commerce",
   "version": "0.0.1",
   "description": "Multi-platform Social Commerce, Ephemeral Stories, Live Selling & Catalog Sync plugin for Medusa v2 (TikTok, Instagram, Facebook / Meta Graph API)",
-  "author": "Vicacha Devs",
+  "keywords": [
+    "facebook",
+    "instagram",
+    "live-shopping",
+    "medusa",
+    "medusa-plugin",
+    "medusa-plugin-integration",
+    "medusa-plugin-social-commerce",
+    "medusa-v2",
+    "meta-catalog",
+    "shoppable-video",
+    "social-commerce",
+    "stories",
+    "tiktok",
+    "tiktok-shop"
+  ],
   "license": "MIT",
+  "author": "Vicacha Devs",
   "files": [
     ".medusa/server",
     "src",
@@ -45,22 +61,6 @@
     },
     "./*": "./.medusa/server/src/*.js"
   },
-  "keywords": [
-    "medusa",
-    "medusa-v2",
-    "medusa-plugin",
-    "medusa-plugin-social-commerce",
-    "medusa-plugin-integration",
-    "social-commerce",
-    "tiktok",
-    "tiktok-shop",
-    "instagram",
-    "facebook",
-    "meta-catalog",
-    "stories",
-    "live-shopping",
-    "shoppable-video"
-  ],
   "scripts": {
     "build": "medusa plugin:build && tsc-alias -p tsconfig.json",
     "publish:local": "medusa plugin:publish",

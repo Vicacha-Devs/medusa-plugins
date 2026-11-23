@@ -1,18 +1,8 @@
 import type React from "react"
 import { SectionRow } from "@medusajs/dashboard/components"
-import {
-  Button,
-  Container,
-  Heading,
-  Input,
-  Label,
-  Select,
-} from "@medusajs/ui"
+import { Button, Container, Heading, Input, Label, Select } from "@medusajs/ui"
 import { useTranslation } from "react-i18next"
-import type {
-  StorySlideDTO,
-  StoryStickerType,
-} from "../../modules/story/types"
+import type { StorySlideDTO, StoryStickerType } from "../../modules/story/types"
 import type { NewStickerFormState } from "../hooks/use-stories-studio"
 
 export const STICKER_TYPES: StoryStickerType[] = [

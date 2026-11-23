@@ -4,7 +4,12 @@ import { Link } from "react-router-dom"
 
 defineCellRenderer("b2b-company-address", {
   render: (value, row: any) => {
-    const parts = [row?.address, row?.city, row?.state, row?.country ? COUNTRY_BY_ISO2.get(row.country) : false].filter(Boolean)
+    const parts = [
+      row?.address,
+      row?.city,
+      row?.state,
+      row?.country ? COUNTRY_BY_ISO2.get(row.country) : false,
+    ].filter(Boolean)
     return parts.length ? parts.join(", ") : "—"
   },
 })
@@ -19,7 +24,7 @@ defineCellRenderer("b2b-employees-count", {
 defineCellRenderer("b2b-company-country", {
   render: (value) => {
     const str = value as string | null
-    
+
     return str ? COUNTRY_BY_ISO2.get(str.toLocaleLowerCase()) : "—"
   },
 })

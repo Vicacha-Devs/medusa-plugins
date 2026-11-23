@@ -25,13 +25,11 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
       - uses: pnpm/action-setup@v4
-        with:
-          version: 10.33.3
       - uses: actions/setup-node@v4
         with:
           node-version: "24"
           cache: "pnpm"
-      - run: pnpm install --no-frozen-lockfile
+      - run: pnpm install --frozen-lockfile
       - name: Validate PR title
         env:
           PR_TITLE: ${{ github.event.pull_request.title }}
@@ -41,7 +39,7 @@ jobs:
         run: pnpm changeset status --since=origin/main
 
   qa-verify:
-    name: Offline QA, Judges, Manifests, Build & Plugin Tests
+    name: Format, Lint, Offline QA, Judges, Manifests, Build & Plugin Tests
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -49,13 +47,17 @@ jobs:
         with:
           persist-credentials: false
       - uses: pnpm/action-setup@v4
-        with:
-          version: 10.33.3
       - uses: actions/setup-node@v4
         with:
           node-version: "24"
           cache: "pnpm"
-      - name: Run offline QA doctor, judges, manifests & 11-plugin suites
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Check formatting with Oxfmt
+        run: pnpm format:check
+      - name: Run Oxlint & ESLint
+        run: pnpm lint
+      - name: Run offline QA doctor, judges, manifests & plugin suites
         run: pnpm qa:verify
       - name: Upload Interactive QA Control Center HTML
         if: always()

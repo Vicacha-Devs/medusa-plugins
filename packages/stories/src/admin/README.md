@@ -66,10 +66,10 @@ All route and widget files are kept concise (`< 170` lines per file) and delegat
 
 ## Data fetching & state hooks
 
-| Hook | File | Purpose |
-| --- | --- | --- |
-| `useStoriesStudio` | `hooks/use-stories-studio.ts` | Manages full studio state (`groups`, `slides`, `analytics`, selected slide, 9:16 canvas click coordinates, hotspot form state, sticker form state) and calls `/admin/stories/*` endpoints |
-| `useProductStories` | `hooks/use-product-stories.ts` | Fetches all story slides featuring a specific `product_id` and provides a 1-click `handleQuickCreateProductStory` action using the product's thumbnail, title, handle, and price |
+| Hook                | File                           | Purpose                                                                                                                                                                                   |
+| ------------------- | ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `useStoriesStudio`  | `hooks/use-stories-studio.ts`  | Manages full studio state (`groups`, `slides`, `analytics`, selected slide, 9:16 canvas click coordinates, hotspot form state, sticker form state) and calls `/admin/stories/*` endpoints |
+| `useProductStories` | `hooks/use-product-stories.ts` | Fetches all story slides featuring a specific `product_id` and provides a 1-click `handleQuickCreateProductStory` action using the product's thumbnail, title, handle, and price          |
 
 ---
 
@@ -77,15 +77,15 @@ All route and widget files are kept concise (`< 170` lines per file) and delegat
 
 All components live in `components/` and are internal to the Admin extension:
 
-| Component | File | Purpose |
-| --- | --- | --- |
-| `StatCard`, `NavigationCard` | `overview-cards.tsx` | KPI stat cards and navigation cards on `/stories` |
-| `StudioHeader` | `studio-header.tsx` | Studio title, subtitle, and refresh controls |
-| `StoryRingsTab`, `StoryRingsTable`, `StoryRingForm` | `story-rings-tab.tsx`, `story-rings-table.tsx`, `story-ring-form.tsx` | Circular Highlight Ring preview bar, rings table, and create ring form |
+| Component                                                                                                 | File                                                                                                                                    | Purpose                                                                                             |
+| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `StatCard`, `NavigationCard`                                                                              | `overview-cards.tsx`                                                                                                                    | KPI stat cards and navigation cards on `/stories`                                                   |
+| `StudioHeader`                                                                                            | `studio-header.tsx`                                                                                                                     | Studio title, subtitle, and refresh controls                                                        |
+| `StoryRingsTab`, `StoryRingsTable`, `StoryRingForm`                                                       | `story-rings-tab.tsx`, `story-rings-table.tsx`, `story-ring-form.tsx`                                                                   | Circular Highlight Ring preview bar, rings table, and create ring form                              |
 | `CanvasEditorTab`, `SlidePreviewCanvas`, `SlideFormSection`, `SlideTimelineSection`, `HotspotFormSection` | `canvas-editor-tab.tsx`, `slide-preview-canvas.tsx`, `slide-form-section.tsx`, `slide-timeline-section.tsx`, `hotspot-form-section.tsx` | Interactive 9:16 slide builder with click-to-position `(x_percent, y_percent)` product hotspot pins |
-| `StickersTab`, `StickerFormSection`, `StickerListSection` | `stickers-tab.tsx`, `sticker-form-section.tsx`, `sticker-list-section.tsx` | Interactive Poll, Countdown, Coupon, and Q&A sticker builder |
-| `AnalyticsTab` | `analytics-tab.tsx` | Conversion funnel metrics (`impression` → `complete` → `hotspot_click` → `add_to_cart`) |
-| `ProductStoriesCard` | `product-stories-card.tsx` | Product detail widget card with 1-click story slide generator |
+| `StickersTab`, `StickerFormSection`, `StickerListSection`                                                 | `stickers-tab.tsx`, `sticker-form-section.tsx`, `sticker-list-section.tsx`                                                              | Interactive Poll, Countdown, Coupon, and Q&A sticker builder                                        |
+| `AnalyticsTab`                                                                                            | `analytics-tab.tsx`                                                                                                                     | Conversion funnel metrics (`impression` → `complete` → `hotspot_click` → `add_to_cart`)             |
+| `ProductStoriesCard`                                                                                      | `product-stories-card.tsx`                                                                                                              | Product detail widget card with 1-click story slide generator                                       |
 
 ---
 

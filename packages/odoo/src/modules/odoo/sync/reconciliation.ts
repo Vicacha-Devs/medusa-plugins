@@ -11,14 +11,17 @@ import type {
 import type { OdooModuleService } from "../service"
 import { errorMessage } from "../utils/errors"
 
-export async function resolveConflict(this: OdooModuleService, params: {
-  id: string
-  resolution: "odoo_wins" | "medusa_wins" | "custom"
-  customValue?: unknown
-  resolvedBy?: string
-  scope?: { resolve: (key: string) => unknown }
-  applyStock?: boolean
-}) {
+export async function resolveConflict(
+  this: OdooModuleService,
+  params: {
+    id: string
+    resolution: "odoo_wins" | "medusa_wins" | "custom"
+    customValue?: unknown
+    resolvedBy?: string
+    scope?: { resolve: (key: string) => unknown }
+    applyStock?: boolean
+  }
+) {
   const existing = await this.listErpConflictResolutions(
     { id: params.id },
     { take: 1 }
@@ -52,8 +55,7 @@ export async function resolveConflict(this: OdooModuleService, params: {
 
   if (params.applyStock !== false && winningQty !== null) {
     if (
-      (params.resolution === "medusa_wins" ||
-        params.resolution === "custom") &&
+      (params.resolution === "medusa_wins" || params.resolution === "custom") &&
       row.odoo_id
     ) {
       try {
@@ -73,8 +75,7 @@ export async function resolveConflict(this: OdooModuleService, params: {
     }
 
     if (
-      (params.resolution === "odoo_wins" ||
-        params.resolution === "custom") &&
+      (params.resolution === "odoo_wins" || params.resolution === "custom") &&
       row.medusa_id
     ) {
       try {
@@ -124,30 +125,29 @@ export async function resolveConflict(this: OdooModuleService, params: {
   })
 }
 
-export async function reconcileInventory(this: OdooModuleService, params?: {
-  scope?: { resolve: (key: string) => unknown }
-  variants?: Array<{
-    variantId: string
-    productId?: string
-    sku: string
-    locationId?: string
-    inventoryLevelId?: string
-    inventoryItemId?: string
-    medusaQty: number
-  }>
-  strategyOverride?: "odoo_wins" | "medusa_wins" | "manual_conflict"
-  driftThresholdOverride?: number
-  triggeredBy?: string
-  onUpdateMedusaStock?: (
-    variantId: string,
-    newQty: number
-  ) => Promise<void>
-}): Promise<OdooReconciliationResult> {
+export async function reconcileInventory(
+  this: OdooModuleService,
+  params?: {
+    scope?: { resolve: (key: string) => unknown }
+    variants?: Array<{
+      variantId: string
+      productId?: string
+      sku: string
+      locationId?: string
+      inventoryLevelId?: string
+      inventoryItemId?: string
+      medusaQty: number
+    }>
+    strategyOverride?: "odoo_wins" | "medusa_wins" | "manual_conflict"
+    driftThresholdOverride?: number
+    triggeredBy?: string
+    onUpdateMedusaStock?: (variantId: string, newQty: number) => Promise<void>
+  }
+): Promise<OdooReconciliationResult> {
   const started = Date.now()
   const settings =
     await this.getSectionSettings<OdooReconciliationSettings>("reconciliation")
-  const strategy =
-    params?.strategyOverride ?? settings.strategy ?? "odoo_wins"
+  const strategy = params?.strategyOverride ?? settings.strategy ?? "odoo_wins"
   const driftThreshold =
     params?.driftThresholdOverride ?? settings.driftThreshold ?? 0
   const defaultOdooLocationId = settings.defaultOdooLocationId ?? 8
@@ -178,8 +178,7 @@ export async function reconcileInventory(this: OdooModuleService, params?: {
   try {
     const client = await this.getOdooClient()
     const activeScope =
-      params?.scope ??
-      (this.container_ as { resolve?: (k: string) => unknown })
+      params?.scope ?? (this.container_ as { resolve?: (k: string) => unknown })
 
     let variantsToCheck = params?.variants ?? []
 
@@ -251,9 +250,7 @@ export async function reconcileInventory(this: OdooModuleService, params?: {
                   ? firstLevel.location_id
                   : undefined,
               inventoryLevelId:
-                typeof firstLevel?.id === "string"
-                  ? firstLevel.id
-                  : undefined,
+                typeof firstLevel?.id === "string" ? firstLevel.id : undefined,
               inventoryItemId:
                 typeof firstInv?.id === "string" ? firstInv.id : undefined,
               medusaQty: Number(firstLevel?.stocked_quantity ?? 0),
@@ -278,8 +275,7 @@ export async function reconcileInventory(this: OdooModuleService, params?: {
           return {
             variantId: String(m.medusa_id),
             sku,
-            medusaQty:
-              typeof meta?.medusaQty === "number" ? meta.medusaQty : 0,
+            medusaQty: typeof meta?.medusaQty === "number" ? meta.medusaQty : 0,
           }
         })
         .filter((item) => Boolean(item.sku))
@@ -344,12 +340,13 @@ export async function reconcileInventory(this: OdooModuleService, params?: {
                 inventoryModule.listInventoryLevels &&
                 (item.inventoryItemId || item.variantId)
               ) {
-                const existingLevels = await inventoryModule.listInventoryLevels(
-                  {
+                const existingLevels =
+                  await inventoryModule.listInventoryLevels({
                     inventory_item_id: item.inventoryItemId ?? item.variantId,
-                    ...(item.locationId ? { location_id: item.locationId } : {}),
-                  }
-                )
+                    ...(item.locationId
+                      ? { location_id: item.locationId }
+                      : {}),
+                  })
                 if (existingLevels?.[0]?.id) {
                   await inventoryModule.updateInventoryLevels([
                     { id: existingLevels[0].id, stocked_quantity: odooQty },

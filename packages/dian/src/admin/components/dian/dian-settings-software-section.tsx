@@ -84,8 +84,12 @@ export const DianSettingsSoftwareSection: React.FC<
               <Select.Value />
             </Select.Trigger>
             <Select.Content>
-              <Select.Item value="2">{t("dian.settings.env2Option")}</Select.Item>
-              <Select.Item value="1">{t("dian.settings.env1Option")}</Select.Item>
+              <Select.Item value="2">
+                {t("dian.settings.env2Option")}
+              </Select.Item>
+              <Select.Item value="1">
+                {t("dian.settings.env1Option")}
+              </Select.Item>
             </Select.Content>
           </Select>
         </div>

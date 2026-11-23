@@ -1,12 +1,8 @@
 {
   "name": "@vicacha-devs/medusa-shared-admin",
   "version": "0.0.1",
-  "description": "Shared admin components, hooks, and utilities for Vicacha Devs Medusa plugins",
   "private": true,
-  "scripts": {
-    "build": "vite build && tsc -p tsconfig.dts.json",
-    "dev": "vite build --watch"
-  },
+  "description": "Shared admin components, hooks, and utilities for Vicacha Devs Medusa plugins",
   "exports": {
     "./package.json": "./package.json",
     "./admin": {
@@ -23,27 +19,9 @@
       "default": "./src/admin/*.ts"
     }
   },
-  "peerDependencies": {
-    "@medusajs/framework": "*",
-    "@medusajs/icons": "*",
-    "@medusajs/ui": "*",
-    "@radix-ui/react-label": "*",
-    "@radix-ui/react-popover": "*",
-    "@radix-ui/react-radio-group": "*",
-    "@radix-ui/react-slot": "*",
-    "@tanstack/react-query": "*",
-    "@tanstack/react-table": "*",
-    "@uiw/react-json-view": "*",
-    "cmdk": "*",
-    "copy-to-clipboard": "*",
-    "date-fns": "*",
-    "i18next": "*",
-    "lodash": "*",
-    "react": "*",
-    "react-hook-form": "*",
-    "react-i18next": "*",
-    "react-router-dom": "*",
-    "zod": "4.6.7"
+  "scripts": {
+    "build": "vite build && tsc -p tsconfig.dts.json",
+    "dev": "vite build --watch"
   },
   "devDependencies": {
     "@dnd-kit/core": "6.3.1",
@@ -75,5 +53,27 @@
     "react-router-dom": "7.18.5",
     "vite": "^8.3.8",
     "vite-plugin-dts": "^5.0.3"
+  },
+  "peerDependencies": {
+    "@medusajs/framework": "*",
+    "@medusajs/icons": "*",
+    "@medusajs/ui": "*",
+    "@radix-ui/react-label": "*",
+    "@radix-ui/react-popover": "*",
+    "@radix-ui/react-radio-group": "*",
+    "@radix-ui/react-slot": "*",
+    "@tanstack/react-query": "*",
+    "@tanstack/react-table": "*",
+    "@uiw/react-json-view": "*",
+    "cmdk": "*",
+    "copy-to-clipboard": "*",
+    "date-fns": "*",
+    "i18next": "*",
+    "lodash": "*",
+    "react": "*",
+    "react-hook-form": "*",
+    "react-i18next": "*",
+    "react-router-dom": "*",
+    "zod": "4.6.7"
   }
 }

@@ -24,24 +24,25 @@ i18n/
 
 `src/admin/i18n/index.ts` exports `SUPPORTED_UI_LOCALES` and registers every locale under both the default `translation` namespace and the plugin-scoped `odoo` namespace (`translationNs: "odoo"`):
 
-| Code | Label | Direction | File |
-| :--- | :--- | :---: | :--- |
-| `en` | English | LTR | `json/en.json` |
-| `es` | Español | LTR | `json/es.json` |
-| `fr` | Français | LTR | `json/fr.json` |
-| `de` | Deutsch | LTR | `json/de.json` |
-| `it` | Italiano | LTR | `json/it.json` |
-| `pt` | Português | LTR | `json/pt.json` |
-| `nl` | Nederlands | LTR | `json/nl.json` |
-| `pl` | Polski | LTR | `json/pl.json` |
-| `tr` | Türkçe | LTR | `json/tr.json` |
-| `ar` | العربية | **RTL** | `json/ar.json` |
+| Code | Label      | Direction | File           |
+| :--- | :--------- | :-------: | :------------- |
+| `en` | English    |    LTR    | `json/en.json` |
+| `es` | Español    |    LTR    | `json/es.json` |
+| `fr` | Français   |    LTR    | `json/fr.json` |
+| `de` | Deutsch    |    LTR    | `json/de.json` |
+| `it` | Italiano   |    LTR    | `json/it.json` |
+| `pt` | Português  |    LTR    | `json/pt.json` |
+| `nl` | Nederlands |    LTR    | `json/nl.json` |
+| `pl` | Polski     |    LTR    | `json/pl.json` |
+| `tr` | Türkçe     |    LTR    | `json/tr.json` |
+| `ar` | العربية    |  **RTL**  | `json/ar.json` |
 
 ---
 
 ## RTL Support for Arabic (`ar`)
 
 When the user switches the Admin UI language to Arabic (`ar`) via the locale selector in `OdooHeader` (`src/admin/components/odoo-header.tsx`) or Medusa's Admin profile settings:
+
 - Flex and grid layouts in the Odoo Admin routes and widgets respect document direction (`dir="rtl"` / logical alignment).
 - Interpolated variables (such as `{{protocol}}`, `{{state}}`, `{{count}}`, `{{medusaId}}`, `{{odooId}}`, `{{latencyMs}}`) remain intact across RTL and LTR strings.
 
@@ -112,11 +113,23 @@ All translation files share the same domain-organized structure registered under
     "barcode": "POS & Barcode"
   },
   "overviewTab": { "...": "KPI labels and manual sync button titles" },
-  "connectionTab": { "...": "Odoo URL, DB, credentials, protocol, and SSRF toggle labels" },
-  "settingsTab": { "...": "Product, Inventory, Orders/Invoicing, and Reconciliation settings labels" },
-  "logsTab": { "...": "Dead-letter failures, inventory drift conflicts, and recent sync run table labels" },
-  "barcodeTab": { "...": "POS & Warehouse barcode lookup and offline POS replay labels" },
-  "widget": { "...": "Order Details (order.details.after) and Product Details (product.details.after) widget strings" },
-  "messages": { "...": "Toast notification strings for success and error states" }
+  "connectionTab": {
+    "...": "Odoo URL, DB, credentials, protocol, and SSRF toggle labels"
+  },
+  "settingsTab": {
+    "...": "Product, Inventory, Orders/Invoicing, and Reconciliation settings labels"
+  },
+  "logsTab": {
+    "...": "Dead-letter failures, inventory drift conflicts, and recent sync run table labels"
+  },
+  "barcodeTab": {
+    "...": "POS & Warehouse barcode lookup and offline POS replay labels"
+  },
+  "widget": {
+    "...": "Order Details (order.details.after) and Product Details (product.details.after) widget strings"
+  },
+  "messages": {
+    "...": "Toast notification strings for success and error states"
+  }
 }
 ```

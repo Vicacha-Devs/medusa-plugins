@@ -1,25 +1,27 @@
-import type { JSX } from "react";
-import { Button, DropdownMenu } from "@medusajs/ui";
-import { ReactNode } from "react";
-import { useSearchParams } from "react-router-dom";
+import type { JSX } from "react"
+import { Button, DropdownMenu } from "@medusajs/ui"
+import { ReactNode } from "react"
+import { useSearchParams } from "react-router-dom"
 
 type FilterGroupProps = {
   filters: {
-    [key: string]: ReactNode;
-  };
-};
+    [key: string]: ReactNode
+  }
+}
 
-export const FilterGroup = ({ filters }: FilterGroupProps): JSX.Element | null => {
-  const [searchParams] = useSearchParams();
-  const filterKeys = Object.keys(filters);
+export const FilterGroup = ({
+  filters,
+}: FilterGroupProps): JSX.Element | null => {
+  const [searchParams] = useSearchParams()
+  const filterKeys = Object.keys(filters)
 
   if (filterKeys.length === 0) {
-    return null;
+    return null
   }
 
-  const isClearable = filterKeys.some((key) => searchParams.get(key));
-  const hasMore = !filterKeys.every((key) => searchParams.get(key));
-  const availableKeys = filterKeys.filter((key) => !searchParams.get(key));
+  const isClearable = filterKeys.some((key) => searchParams.get(key))
+  const hasMore = !filterKeys.every((key) => searchParams.get(key))
+  const availableKeys = filterKeys.filter((key) => !searchParams.get(key))
 
   return (
     <div className="flex items-center flex-wrap gap-2">
@@ -30,12 +32,12 @@ export const FilterGroup = ({ filters }: FilterGroupProps): JSX.Element | null =
         </Button>
       )}
     </div>
-  );
-};
+  )
+}
 
 type AddFilterMenuProps = {
-  availableKeys: string[];
-};
+  availableKeys: string[]
+}
 
 const AddFilterMenu = ({ availableKeys }: AddFilterMenuProps): JSX.Element => {
   return (
@@ -51,5 +53,5 @@ const AddFilterMenu = ({ availableKeys }: AddFilterMenuProps): JSX.Element => {
         ))}
       </DropdownMenu.Content>
     </DropdownMenu>
-  );
-};
+  )
+}

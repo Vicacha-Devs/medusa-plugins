@@ -23,9 +23,7 @@ export function resolveSenderProfiles(
     profiles.push({
       index: 1,
       name:
-        process.env.MAILER_FROM_NAME_1 ||
-        options.storeName ||
-        "Medusa Store",
+        process.env.MAILER_FROM_NAME_1 || options.storeName || "Medusa Store",
       from_address:
         process.env.MAILER_FROM_ADDRESS_1 ||
         process.env.SMTP_FROM ||

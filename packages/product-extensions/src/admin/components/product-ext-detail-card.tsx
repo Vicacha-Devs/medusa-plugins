@@ -46,10 +46,7 @@ export const ProductExtDetailCard: React.FC<ProductExtDetailCardProps> = ({
   const isRtl = (i18n.resolvedLanguage || i18n.language || "").startsWith("ar")
 
   return (
-    <Container
-      className="divide-y p-0"
-      dir={isRtl ? "rtl" : "ltr"}
-    >
+    <Container className="divide-y p-0" dir={isRtl ? "rtl" : "ltr"}>
       <div className="flex items-center justify-between px-6 py-4">
         <div>
           <Heading level="h2">

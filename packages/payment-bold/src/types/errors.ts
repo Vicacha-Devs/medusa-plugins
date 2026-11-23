@@ -52,7 +52,8 @@ export const BOLD_ERROR_MAP: Record<string, MappedPaymentError> = {
   NEQUI_TIMEOUT: {
     code: "NEQUI_TIMEOUT",
     userMessage: "bold.errors.nequi_timeout",
-    adminReason: "Push notification was not approved within the timeout window.",
+    adminReason:
+      "Push notification was not approved within the timeout window.",
     retryable: true,
   },
   PSE_BANK_UNAVAILABLE: {
@@ -78,8 +79,10 @@ export function parseBoldError(boldErrorData: any): MappedPaymentError {
 
   const uppercaseCode = rawCode.toUpperCase().replace(/\s+/g, "_")
 
-  return BOLD_ERROR_MAP[uppercaseCode] || {
-    ...BOLD_ERROR_MAP.DEFAULT_ERROR,
-    adminReason: `Unmapped error: ${JSON.stringify(boldErrorData)}`,
-  }
+  return (
+    BOLD_ERROR_MAP[uppercaseCode] || {
+      ...BOLD_ERROR_MAP.DEFAULT_ERROR,
+      adminReason: `Unmapped error: ${JSON.stringify(boldErrorData)}`,
+    }
+  )
 }

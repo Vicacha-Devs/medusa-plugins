@@ -1,10 +1,10 @@
 import {
   createFindParams,
   createOperatorMap,
-} from "@medusajs/medusa/api/utils/validators";
-import { z } from "@medusajs/framework/zod";
+} from "@medusajs/medusa/api/utils/validators"
+import { z } from "@medusajs/framework/zod"
 
-export type AdminGetQuoteParamsType = z.infer<typeof AdminGetQuoteParams>;
+export type AdminGetQuoteParamsType = z.infer<typeof AdminGetQuoteParams>
 export const AdminGetQuoteParams = createFindParams({
   limit: 15,
   offset: 0,
@@ -26,24 +26,24 @@ export const AdminGetQuoteParams = createFindParams({
     created_at: createOperatorMap().optional(),
     updated_at: createOperatorMap().optional(),
   })
-  .strict();
+  .strict()
 
-export type AdminSendQuoteType = z.infer<typeof AdminSendQuote>;
+export type AdminSendQuoteType = z.infer<typeof AdminSendQuote>
 export const AdminSendQuote = z
   .object({
     expires_at: z.iso.datetime().nullish(),
   })
-  .strict();
+  .strict()
 
-export type AdminRejectQuoteType = z.infer<typeof AdminRejectQuote>;
-export const AdminRejectQuote = z.object({}).strict();
+export type AdminRejectQuoteType = z.infer<typeof AdminRejectQuote>
+export const AdminRejectQuote = z.object({}).strict()
 
 export type AdminCreateQuoteMessageType = z.infer<
   typeof AdminCreateQuoteMessage
->;
+>
 export const AdminCreateQuoteMessage = z
   .object({
     text: z.string(),
     item_id: z.string().nullish(),
   })
-  .strict();
+  .strict()

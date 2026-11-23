@@ -5,7 +5,11 @@ import { useTranslation } from "react-i18next"
 import { QueryCompany } from "../../../../../types"
 import { useDeleteCompany } from "../../../../hooks/api"
 
-export const useDeleteCompanyListAction = ({ company }: { company: QueryCompany }) => {
+export const useDeleteCompanyListAction = ({
+  company,
+}: {
+  company: QueryCompany
+}) => {
   const { t } = useTranslation()
   const prompt = usePrompt()
   const navigate = useNavigate()

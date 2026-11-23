@@ -107,13 +107,25 @@ export const AnalyticsRingBreakdownSection = ({
       <Table>
         <Table.Header>
           <Table.Row>
-            <Table.HeaderCell>{t("analyticsTab.colHighlightRing")}</Table.HeaderCell>
+            <Table.HeaderCell>
+              {t("analyticsTab.colHighlightRing")}
+            </Table.HeaderCell>
             <Table.HeaderCell>{t("analyticsTab.colSlides")}</Table.HeaderCell>
-            <Table.HeaderCell>{t("analyticsTab.colImpressions")}</Table.HeaderCell>
-            <Table.HeaderCell>{t("analyticsTab.colCompletionRate")}</Table.HeaderCell>
-            <Table.HeaderCell>{t("analyticsTab.colHotspotClicks")}</Table.HeaderCell>
-            <Table.HeaderCell>{t("analyticsTab.colAddToCartRate")}</Table.HeaderCell>
-            <Table.HeaderCell>{t("analyticsTab.colStickerVotes")}</Table.HeaderCell>
+            <Table.HeaderCell>
+              {t("analyticsTab.colImpressions")}
+            </Table.HeaderCell>
+            <Table.HeaderCell>
+              {t("analyticsTab.colCompletionRate")}
+            </Table.HeaderCell>
+            <Table.HeaderCell>
+              {t("analyticsTab.colHotspotClicks")}
+            </Table.HeaderCell>
+            <Table.HeaderCell>
+              {t("analyticsTab.colAddToCartRate")}
+            </Table.HeaderCell>
+            <Table.HeaderCell>
+              {t("analyticsTab.colStickerVotes")}
+            </Table.HeaderCell>
           </Table.Row>
         </Table.Header>
         <Table.Body>
@@ -123,13 +135,17 @@ export const AnalyticsRingBreakdownSection = ({
               <Table.Cell>{grp.slides_count}</Table.Cell>
               <Table.Cell>{grp.impressions}</Table.Cell>
               <Table.Cell>
-                <StatusBadge color={grp.completion_rate_pct >= 50 ? "green" : "grey"}>
+                <StatusBadge
+                  color={grp.completion_rate_pct >= 50 ? "green" : "grey"}
+                >
                   {grp.completion_rate_pct}% ({grp.completions})
                 </StatusBadge>
               </Table.Cell>
               <Table.Cell>{grp.hotspot_clicks}</Table.Cell>
               <Table.Cell>
-                <StatusBadge color={grp.conversion_rate_pct > 0 ? "green" : "grey"}>
+                <StatusBadge
+                  color={grp.conversion_rate_pct > 0 ? "green" : "grey"}
+                >
                   {grp.conversion_rate_pct}% ({grp.cart_conversions})
                 </StatusBadge>
               </Table.Cell>
@@ -157,12 +173,24 @@ export const AnalyticsTopSlidesSection = ({ analytics }: AnalyticsTabProps) => {
       <Table>
         <Table.Header>
           <Table.Row>
-            <Table.HeaderCell>{t("analyticsTab.colSlideTitle")}</Table.HeaderCell>
-            <Table.HeaderCell>{t("analyticsTab.colHighlightRing")}</Table.HeaderCell>
-            <Table.HeaderCell>{t("analyticsTab.colImpressions")}</Table.HeaderCell>
-            <Table.HeaderCell>{t("analyticsTab.colCompletions")}</Table.HeaderCell>
-            <Table.HeaderCell>{t("analyticsTab.colHotspotClicks")}</Table.HeaderCell>
-            <Table.HeaderCell>{t("analyticsTab.colAddToCarts")}</Table.HeaderCell>
+            <Table.HeaderCell>
+              {t("analyticsTab.colSlideTitle")}
+            </Table.HeaderCell>
+            <Table.HeaderCell>
+              {t("analyticsTab.colHighlightRing")}
+            </Table.HeaderCell>
+            <Table.HeaderCell>
+              {t("analyticsTab.colImpressions")}
+            </Table.HeaderCell>
+            <Table.HeaderCell>
+              {t("analyticsTab.colCompletions")}
+            </Table.HeaderCell>
+            <Table.HeaderCell>
+              {t("analyticsTab.colHotspotClicks")}
+            </Table.HeaderCell>
+            <Table.HeaderCell>
+              {t("analyticsTab.colAddToCarts")}
+            </Table.HeaderCell>
           </Table.Row>
         </Table.Header>
         <Table.Body>

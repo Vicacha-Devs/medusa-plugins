@@ -10,7 +10,7 @@ import {
   GtinLookupLookupSection,
 } from "../../../components"
 import { useBarcodeStudio } from "../../../hooks/use-barcode-studio"
-import { RbacGuard } from "../../../components/rbac-guard";
+import { RbacGuard } from "../../../components/rbac-guard"
 
 const BarcodeLookupPage = () => {
   const studio = useBarcodeStudio()
@@ -70,6 +70,6 @@ const GuardedBarcodeLookupPage = () => (
   <RbacGuard permission="barcodes.read">
     <BarcodeLookupPage />
   </RbacGuard>
-);
+)
 
-export default GuardedBarcodeLookupPage;
+export default GuardedBarcodeLookupPage

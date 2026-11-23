@@ -7,7 +7,9 @@ const PARTIAL_PAYMENT_STATUSES = [
 ]
 
 export interface BoldOrderBalanceInfo {
-  paymentCollection: NonNullable<AdminOrder["payment_collections"]>[number] | undefined
+  paymentCollection:
+    | NonNullable<AdminOrder["payment_collections"]>[number]
+    | undefined
   paymentCollectionId: string | undefined
   isPartiallyPaid: boolean
   payableAmount: number
@@ -15,7 +17,9 @@ export interface BoldOrderBalanceInfo {
   isApproved: boolean
 }
 
-export const getBoldOrderBalanceInfo = (order: AdminOrder): BoldOrderBalanceInfo => {
+export const getBoldOrderBalanceInfo = (
+  order: AdminOrder
+): BoldOrderBalanceInfo => {
   const collections = order.payment_collections || []
   const orderPaymentStatus = (order.payment_status || "").toLowerCase()
   const pendingDifference = Number(
@@ -59,8 +63,8 @@ export const getBoldOrderBalanceInfo = (order: AdminOrder): BoldOrderBalanceInfo
     pendingDifference > 0
       ? pendingDifference
       : collectionRemaining > 0
-      ? collectionRemaining
-      : Math.max(0, Number(order.total || 0) - totalCaptured)
+        ? collectionRemaining
+        : Math.max(0, Number(order.total || 0) - totalCaptured)
 
   const payableAmount =
     isPartiallyPaid && remaining > 0 ? remaining : Number(order.total || 0)
@@ -73,13 +77,17 @@ export const getBoldOrderBalanceInfo = (order: AdminOrder): BoldOrderBalanceInfo
     return hasBoldSession || hasBoldPayment
   })
 
-  const belongsToBold = collections.length > 0 && (hasBoldHistory || isPartiallyPaid)
+  const belongsToBold =
+    collections.length > 0 && (hasBoldHistory || isPartiallyPaid)
 
   const deriveIsApproved = (): boolean => {
     if (!paymentCollection) return false
     if (isPartiallyPaid) return false
 
-    if (["paid", "captured"].includes(orderPaymentStatus) && pendingDifference <= 0) {
+    if (
+      ["paid", "captured"].includes(orderPaymentStatus) &&
+      pendingDifference <= 0
+    ) {
       return true
     }
 

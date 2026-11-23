@@ -8,7 +8,10 @@ import { odooMetrics } from "../utils/metrics"
 import { resolveQueryGraph } from "../utils/scope"
 
 export interface BarcodeCacheEntry {
-  result: Omit<OdooBarcodeResolutionResult, "source" | "latencyMs" | "resolvedAt">
+  result: Omit<
+    OdooBarcodeResolutionResult,
+    "source" | "latencyMs" | "resolvedAt"
+  >
   expiresAt: number
 }
 
@@ -36,23 +39,26 @@ const cacheBarcodeResult = (
   cache.set(key, { result, expiresAt: Date.now() + ttlSec * 1000 })
 }
 
-export async function resolveBarcode(this: OdooModuleService, params: {
-  barcode: string
-  context?: OdooBarcodeContext
-  scope?: unknown
-  deviceId?: string | null
-  sessionId?: string | null
-  operatorId?: string | null
-  medusaCatalogLookup?: (barcode: string) => Promise<{
-    variantId: string
-    productId: string
-    sku: string
-    title: string
-    unitPriceCents: number
-    stockedQty?: number
-    imageUrl?: string
-  } | null>
-}): Promise<OdooBarcodeResolutionResult> {
+export async function resolveBarcode(
+  this: OdooModuleService,
+  params: {
+    barcode: string
+    context?: OdooBarcodeContext
+    scope?: unknown
+    deviceId?: string | null
+    sessionId?: string | null
+    operatorId?: string | null
+    medusaCatalogLookup?: (barcode: string) => Promise<{
+      variantId: string
+      productId: string
+      sku: string
+      title: string
+      unitPriceCents: number
+      stockedQty?: number
+      imageUrl?: string
+    } | null>
+  }
+): Promise<OdooBarcodeResolutionResult> {
   const start = Date.now()
   const barcode = params.barcode.trim()
   const context: OdooBarcodeContext = params.context ?? "pos"
@@ -155,10 +161,7 @@ export async function resolveBarcode(this: OdooModuleService, params: {
     }
 
     if (medusaHit) {
-      const odooProductId = await this.getOdooId(
-        "variant",
-        medusaHit.variantId
-      )
+      const odooProductId = await this.getOdooId("variant", medusaHit.variantId)
       const baseResult = {
         found: true,
         barcode,

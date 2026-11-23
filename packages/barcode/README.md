@@ -34,20 +34,20 @@
 
 ## 1. Ecosystem Comparison & Why `medusa-plugin-barcode`
 
-| Feature / Capability | `@bambiste/medusa-barcode` (`0.0.2`) | `@bambiste/medusa-qr` (`0.0.2`) | `medusa-pos-plugin` (`0.0.36`) | `inventory-count` (`0.0.6`) | `medusa-plugin-barcode` (`1.0.0`) |
-| :--- | :---: | :---: | :---: | :---: | :---: |
-| **Medusa Version** | v2 | v2 | v2 | v2 | **v2 (`>=2.4.0`)** |
-| **GS1 Check Digit Validation** | Buggy left-to-right loop (fails on even-length `UPC-A`, `EAN-8`, `GTIN-14`) | N/A | None | None | **Spec-compliant right-to-left `3,1,3,1` GS1 Modulo-10** across all odd & even lengths |
-| **Supported Symbologies** | `EAN-13`, `UPC-A`, `EAN-8`, `ISBN-13` | `QR` only | `barcode` string | `barcode` string | **`EAN-13`, `EAN-8`, `UPC-A`, `UPC-E`, `GTIN-14`, `ISBN-13`, `Code128`, `GS1-128`, `Code39`, `QR`, `DataMatrix`** |
-| **GS1-128 AI & Digital Link** | No | No | No | No | **Full `(01)` GTIN, `(10)` Batch/Lot, `(11)`/`(15)`/`(17)` Dates, `(21)` Serial, `(30)`/`(37)` Qty, `(310n)` Net Weight + GS1 Digital Link URI** |
-| **External GTIN Providers** | 8 providers (`first-hit` only) | None | None | None | **10 providers** (adds free keyless `OpenLibrary` & `Brocade`) + **`first-hit` & `deep-merge`** strategies + smart ISBN routing |
-| **Batch Import Workflow** | Saves dummy `pending_${barcode}` rows without creating products | N/A | N/A | N/A | **Creates real Medusa Products & Variants** with transaction compensation/rollback |
-| **Auto Variant Barcode Gen** | No | No | No | No | **GS1 In-Store (`200`–`299`) deterministic & sequential EAN-13 generator + `product.created` subscriber** |
-| **1D/2D Barcode & QR Rendering** | None | QR PNG/SVG | None | None | **Zero-dependency crisp SVG renderer** for all 1D & 2D symbologies + optional File Module upload |
-| **Anti-Counterfeit Verification** | None | None | None | None | **Constant-time `HMAC-SHA256` signed tags** + `/store/barcodes/[code]/verify` + `<AuthenticityVerifierBadge />` |
-| **Thermal & Sheet Label Printing** | None | None | None | None | **7 built-in presets** (Thermal `50×25`, `57×32`, `100×50`, `30×15` Jewelry + A4 `24`/`40`/`65`-up), multi-currency MRP/Sale formatting, print-ready **HTML+SVG** & raw **Zebra ZPL II (`^XA...^XZ`)** |
-| **Warehouse Stock-Take** | None | None | Basic POS scan | Separate plugin | **Built-in `BarcodeCountSession` & `BarcodeCountItem`** with live scan variance & 1-click Inventory Module reconciliation |
-| **Admin UI & Scanners** | Empty 431-byte stub | Empty 431-byte stub | External POS | Basic | **5-Tab Admin Studio (`/app/barcodes`)**, Product Detail Widget (`product.details.after`), **USB HID Keyboard-Wedge** & **WebRTC Camera** hooks |
+| Feature / Capability               |                    `@bambiste/medusa-barcode` (`0.0.2`)                     | `@bambiste/medusa-qr` (`0.0.2`) | `medusa-pos-plugin` (`0.0.36`) | `inventory-count` (`0.0.6`) |                                                                                   `medusa-plugin-barcode` (`1.0.0`)                                                                                    |
+| :--------------------------------- | :-------------------------------------------------------------------------: | :-----------------------------: | :----------------------------: | :-------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| **Medusa Version**                 |                                     v2                                      |               v2                |               v2               |             v2              |                                                                                           **v2 (`>=2.4.0`)**                                                                                           |
+| **GS1 Check Digit Validation**     | Buggy left-to-right loop (fails on even-length `UPC-A`, `EAN-8`, `GTIN-14`) |               N/A               |              None              |            None             |                                                         **Spec-compliant right-to-left `3,1,3,1` GS1 Modulo-10** across all odd & even lengths                                                         |
+| **Supported Symbologies**          |                    `EAN-13`, `UPC-A`, `EAN-8`, `ISBN-13`                    |            `QR` only            |        `barcode` string        |      `barcode` string       |                                           **`EAN-13`, `EAN-8`, `UPC-A`, `UPC-E`, `GTIN-14`, `ISBN-13`, `Code128`, `GS1-128`, `Code39`, `QR`, `DataMatrix`**                                            |
+| **GS1-128 AI & Digital Link**      |                                     No                                      |               No                |               No               |             No              |                            **Full `(01)` GTIN, `(10)` Batch/Lot, `(11)`/`(15)`/`(17)` Dates, `(21)` Serial, `(30)`/`(37)` Qty, `(310n)` Net Weight + GS1 Digital Link URI**                            |
+| **External GTIN Providers**        |                       8 providers (`first-hit` only)                        |              None               |              None              |            None             |                                    **10 providers** (adds free keyless `OpenLibrary` & `Brocade`) + **`first-hit` & `deep-merge`** strategies + smart ISBN routing                                     |
+| **Batch Import Workflow**          |       Saves dummy `pending_${barcode}` rows without creating products       |               N/A               |              N/A               |             N/A             |                                                           **Creates real Medusa Products & Variants** with transaction compensation/rollback                                                           |
+| **Auto Variant Barcode Gen**       |                                     No                                      |               No                |               No               |             No              |                                               **GS1 In-Store (`200`–`299`) deterministic & sequential EAN-13 generator + `product.created` subscriber**                                                |
+| **1D/2D Barcode & QR Rendering**   |                                    None                                     |           QR PNG/SVG            |              None              |            None             |                                                    **Zero-dependency crisp SVG renderer** for all 1D & 2D symbologies + optional File Module upload                                                    |
+| **Anti-Counterfeit Verification**  |                                    None                                     |              None               |              None              |            None             |                                            **Constant-time `HMAC-SHA256` signed tags** + `/store/barcodes/[code]/verify` + `<AuthenticityVerifierBadge />`                                             |
+| **Thermal & Sheet Label Printing** |                                    None                                     |              None               |              None              |            None             | **7 built-in presets** (Thermal `50×25`, `57×32`, `100×50`, `30×15` Jewelry + A4 `24`/`40`/`65`-up), multi-currency MRP/Sale formatting, print-ready **HTML+SVG** & raw **Zebra ZPL II (`^XA...^XZ`)** |
+| **Warehouse Stock-Take**           |                                    None                                     |              None               |         Basic POS scan         |       Separate plugin       |                                       **Built-in `BarcodeCountSession` & `BarcodeCountItem`** with live scan variance & 1-click Inventory Module reconciliation                                        |
+| **Admin UI & Scanners**            |                             Empty 431-byte stub                             |       Empty 431-byte stub       |          External POS          |            Basic            |                            **5-Tab Admin Studio (`/app/barcodes`)**, Product Detail Widget (`product.details.after`), **USB HID Keyboard-Wedge** & **WebRTC Camera** hooks                             |
 
 ---
 
@@ -112,6 +112,7 @@ graph TD
 ## 3. Core Capabilities (The 4 Pillars)
 
 ### Pillar 1: Multi-Provider GTIN/ISBN Lookup & Auto-Catalog Creation
+
 - Queries **10 external barcode databases** (`OpenFoodFacts`, `OpenBeautyFacts`, `OpenPetFoodFacts`, `OpenProductsFacts`, `GoogleBooks`, `OpenLibrary`, `Brocade`, `UpcItemDb`, `EanSearch`, `BarcodeLookup`).
 - **Automatic ISBN-13 (`978`/`979`) Priority Routing**: Promotes `GoogleBooks` and `OpenLibrary` to the front of the chain whenever a book barcode is scanned.
 - **Configurable Enrichment Strategy**:
@@ -120,12 +121,14 @@ graph TD
 - **Optional SSRF-Safe Image Downloading**: Downloads external product images (validating `https:` public hosts and 8 MB size cap) and uploads them directly to Medusa's File Module (`Modules.FILE`).
 
 ### Pillar 2: 1D/2D Barcode & Dynamic QR Generation + Anti-Counterfeit Seals
+
 - **Pure SVG Rendering Engine**: Generates crisp, dependency-free vector SVGs for `EAN-13`, `ISBN-13`, `UPC-A`, `UPC-E`, `EAN-8`, `GTIN-14`, `Code128`, `GS1-128`, `Code39`, `QR`, and `DataMatrix`.
 - **GS1 In-Store (`200`–`299`) Auto-Assignment**: Automatically generates valid 13-digit EAN-13 barcodes for new or existing Medusa product variants and syncs `barcode`, `ean`, and `upc` fields.
 - **Dynamic `BarcodeTag` Tokens**: Supports `"view"`, `"add_to_cart"`, `"verify"` (anti-counterfeit), and `"gs1_digital_link"` scan actions with live `scan_count` and `last_scanned_at` analytics.
 - **Constant-Time HMAC-SHA256 Verification**: Protects luxury, pharmaceutical, or limited-edition products against counterfeit tags using `crypto.timingSafeEqual`.
 
 ### Pillar 3: Thermal Roll & A4 Sheet Price/Barcode Label Printing Engine
+
 - **7 Built-In Industry Presets + Custom Templates**:
   - Thermal Rolls: `thermal_50x25` (`50×25mm`), `thermal_57x32` (`57×32mm`), `thermal_100x50` (`100×50mm` Warehouse Carton), `jewelry_30x15` (`30×15mm` Dumbbell Tag).
   - A4 Laser/Inkjet Sheets: `a4_24up_70x37` (`3×8`), `a4_40up_52x30` (`4×10`), `a4_65up_38x21` (`5×13` Mini).
@@ -135,6 +138,7 @@ graph TD
   2. **Raw Zebra ZPL II (`^XA...^XZ`)**: Native `203 DPI` / `300 DPI` commands (`^BEN`, `^B8N`, `^BCN`, `^BQN`, `^FO`, `^FD`, `^PQ`) for direct thermal printer streaming.
 
 ### Pillar 4: Admin Studio, Hardware/Camera Scanners & Warehouse Stock-Take
+
 - **Admin Barcode Studio (`/app/barcodes`)**: 5-tab management center in Medusa Admin.
 - **Product Detail Widget (`product.details.after`)**: Generate variant barcodes and print thermal labels directly on any product page.
 - **Hardware & Camera Scanners**: `useHidBarcodeScanner` (USB/Bluetooth keyboard-wedge) and `useCameraBarcodeScanner` (WebRTC `BarcodeDetector`).
@@ -222,19 +226,19 @@ npx medusa db:migrate
 
 ## 5. Full Configuration Reference
 
-| Option | Type | Default | Description |
-| :--- | :--- | :--- | :--- |
-| `cacheEnabled` | `boolean` | `true` | Caches external provider lookup responses in `barcode_cache`. |
-| `cacheTtlSeconds` | `number` | `86400` (24h) | Time-to-live in seconds for cached lookup rows before expiration. |
-| `enrichmentStrategy` | `"first-hit" \| "deep-merge"` | `"first-hit"` | `"first-hit"` stops at the first matching provider; `"deep-merge"` queries all active providers and merges non-null fields. |
-| `autoGenerateVariantBarcode` | `boolean` | `true` | When `true`, the `product-created` subscriber auto-assigns a valid GS1 in-store EAN-13 barcode to newly created variants missing a barcode. |
-| `internalBarcodePrefix` | `string` | `"200"` | 3-digit GS1 in-store prefix (`"200"`–`"299"`) used when generating internal EAN-13 barcodes. |
-| `defaultProductStatus` | `"draft" \| "published"` | `"draft"` | Default Medusa product status when creating products from barcode lookups. |
-| `downloadProductImages` | `boolean` | `false` | When `true`, downloads external provider images (SSRF-checked) and uploads them to Medusa's File Module (`Modules.FILE`). |
-| `requestTimeoutMs` | `number` | `5000` | Per-provider HTTP timeout in milliseconds. |
-| `storefrontBaseUrl` | `string` | `process.env.STOREFRONT_URL` | Base URL used when building storefront scan URLs and GS1 Digital Link URIs. |
-| `hmacSecret` | `string` | `process.env.MEDUSA_BARCODE_HMAC_SECRET` | Secret key (minimum 16 chars) for signing and verifying anti-counterfeit `BarcodeTag` HMAC-SHA256 seals. |
-| `providers.<name>` | `ProviderConfig` | See below | Per-provider configuration (`enabled`, `priority`, `timeout`, `apiKey`, `baseUrl`). |
+| Option                       | Type                          | Default                                  | Description                                                                                                                                 |
+| :--------------------------- | :---------------------------- | :--------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------ |
+| `cacheEnabled`               | `boolean`                     | `true`                                   | Caches external provider lookup responses in `barcode_cache`.                                                                               |
+| `cacheTtlSeconds`            | `number`                      | `86400` (24h)                            | Time-to-live in seconds for cached lookup rows before expiration.                                                                           |
+| `enrichmentStrategy`         | `"first-hit" \| "deep-merge"` | `"first-hit"`                            | `"first-hit"` stops at the first matching provider; `"deep-merge"` queries all active providers and merges non-null fields.                 |
+| `autoGenerateVariantBarcode` | `boolean`                     | `true`                                   | When `true`, the `product-created` subscriber auto-assigns a valid GS1 in-store EAN-13 barcode to newly created variants missing a barcode. |
+| `internalBarcodePrefix`      | `string`                      | `"200"`                                  | 3-digit GS1 in-store prefix (`"200"`–`"299"`) used when generating internal EAN-13 barcodes.                                                |
+| `defaultProductStatus`       | `"draft" \| "published"`      | `"draft"`                                | Default Medusa product status when creating products from barcode lookups.                                                                  |
+| `downloadProductImages`      | `boolean`                     | `false`                                  | When `true`, downloads external provider images (SSRF-checked) and uploads them to Medusa's File Module (`Modules.FILE`).                   |
+| `requestTimeoutMs`           | `number`                      | `5000`                                   | Per-provider HTTP timeout in milliseconds.                                                                                                  |
+| `storefrontBaseUrl`          | `string`                      | `process.env.STOREFRONT_URL`             | Base URL used when building storefront scan URLs and GS1 Digital Link URIs.                                                                 |
+| `hmacSecret`                 | `string`                      | `process.env.MEDUSA_BARCODE_HMAC_SECRET` | Secret key (minimum 16 chars) for signing and verifying anti-counterfeit `BarcodeTag` HMAC-SHA256 seals.                                    |
+| `providers.<name>`           | `ProviderConfig`              | See below                                | Per-provider configuration (`enabled`, `priority`, `timeout`, `apiKey`, `baseUrl`).                                                         |
 
 ---
 
@@ -242,25 +246,27 @@ npx medusa db:migrate
 
 All 10 built-in providers implement `BaseBarcodeProvider` and normalize external responses into `NormalizedBarcodeProduct`:
 
-| # | Provider Key | Class Name | Default Priority | API Key Required? | Domain / Specialty |
-| :---: | :--- | :--- | :---: | :---: | :--- |
-| 1 | `openfoodfacts` | `OpenFoodFactsProvider` | `10` | No (Free) | Global food, beverages, groceries, nutrition & ingredients |
-| 2 | `googlebooks` | `GoogleBooksProvider` | `15` (Promoted `#1` on ISBN) | Optional | Books, magazines & media (`978`/`979` ISBN-13) |
-| 3 | `openlibrary` | `OpenLibraryProvider` | `18` (Promoted `#2` on ISBN) | No (Free) | Internet Archive OpenLibrary ISBN & book covers |
-| 4 | `openbeautyfacts` | `OpenBeautyFactsProvider` | `20` | No (Free) | Cosmetics, skincare, fragrances & personal care |
-| 5 | `openpetfoodfacts` | `OpenPetFoodFactsProvider` | `25` | No (Free) | Pet food, treats & animal supplies |
-| 6 | `openproductsfacts` | `OpenProductsFactsProvider` | `30` | No (Free) | Consumer electronics, household & general retail |
-| 7 | `brocade` | `BrocadeProvider` | `35` | No (Free) | Open GTIN catalog (`brocade.io`) for general retail items |
-| 8 | `upcitemdb` | `UpcItemDbProvider` | `40` | Optional (Free Trial / Paid Key) | General retail UPC/EAN catalog + lowest recorded price |
-| 9 | `eansearch` | `EanSearchProvider` | `60` | Yes (`apiKey`) | Commercial global EAN/UPC/ISBN lookup (`ean-search.org`) |
-| 10 | `barcodeLookup` | `BarcodeLookupProvider` | `70` | Yes (`apiKey`) | Commercial 700M+ product catalog (`barcodelookup.com`) |
+|  #  | Provider Key        | Class Name                  |       Default Priority       |        API Key Required?         | Domain / Specialty                                         |
+| :-: | :------------------ | :-------------------------- | :--------------------------: | :------------------------------: | :--------------------------------------------------------- |
+|  1  | `openfoodfacts`     | `OpenFoodFactsProvider`     |             `10`             |            No (Free)             | Global food, beverages, groceries, nutrition & ingredients |
+|  2  | `googlebooks`       | `GoogleBooksProvider`       | `15` (Promoted `#1` on ISBN) |             Optional             | Books, magazines & media (`978`/`979` ISBN-13)             |
+|  3  | `openlibrary`       | `OpenLibraryProvider`       | `18` (Promoted `#2` on ISBN) |            No (Free)             | Internet Archive OpenLibrary ISBN & book covers            |
+|  4  | `openbeautyfacts`   | `OpenBeautyFactsProvider`   |             `20`             |            No (Free)             | Cosmetics, skincare, fragrances & personal care            |
+|  5  | `openpetfoodfacts`  | `OpenPetFoodFactsProvider`  |             `25`             |            No (Free)             | Pet food, treats & animal supplies                         |
+|  6  | `openproductsfacts` | `OpenProductsFactsProvider` |             `30`             |            No (Free)             | Consumer electronics, household & general retail           |
+|  7  | `brocade`           | `BrocadeProvider`           |             `35`             |            No (Free)             | Open GTIN catalog (`brocade.io`) for general retail items  |
+|  8  | `upcitemdb`         | `UpcItemDbProvider`         |             `40`             | Optional (Free Trial / Paid Key) | General retail UPC/EAN catalog + lowest recorded price     |
+|  9  | `eansearch`         | `EanSearchProvider`         |             `60`             |          Yes (`apiKey`)          | Commercial global EAN/UPC/ISBN lookup (`ean-search.org`)   |
+| 10  | `barcodeLookup`     | `BarcodeLookupProvider`     |             `70`             |          Yes (`apiKey`)          | Commercial 700M+ product catalog (`barcodelookup.com`)     |
 
 ---
 
 ## 7. GS1 Symbologies, Checksum Math & GS1-128 / Digital Link
 
 ### Right-to-Left GS1 Modulo-10 Check Digit Math
+
 Per official GS1 specifications, the Modulo-10 check digit weights digits **`3, 1, 3, 1...` starting from the rightmost data digit** (immediately to the left of the check digit).
+
 - Unlike `@bambiste/medusa-barcode` (which weighted left-to-right and failed on 8-, 12-, and 14-digit codes), `medusa-plugin-barcode` validates both odd-length (`EAN-13`, `ISBN-13`) and even-length (`UPC-A`, `UPC-E`, `EAN-8`, `GTIN-14`) barcodes accurately:
 
 ```ts
@@ -273,12 +279,14 @@ import {
 } from "medusa-plugin-barcode"
 
 validateGs1Checksum("3017620422003") // true (EAN-13)
-validateGs1Checksum("012345678905")  // true (UPC-A, 12 digits)
-validateGs1Checksum("96385074")      // true (EAN-8, 8 digits)
+validateGs1Checksum("012345678905") // true (UPC-A, 12 digits)
+validateGs1Checksum("96385074") // true (EAN-8, 8 digits)
 validateGs1Checksum("10614141000415") // true (GTIN-14, 14 digits)
 
 // Parse GS1-128 Application Identifiers:
-const gs1 = parseBarcode("(01)09506000134352(10)LOT2026(17)261231(21)SN9988(3102)001250")
+const gs1 = parseBarcode(
+  "(01)09506000134352(10)LOT2026(17)261231(21)SN9988(3102)001250"
+)
 // gs1.gs1 => {
 //   gtin: "09506000134352",
 //   batchLot: "LOT2026",
@@ -352,15 +360,15 @@ const { result: tag } = await generateBarcodeTagWorkflow(req.scope).run({
 
 ### Built-In Label Presets (`BUILTIN_LABEL_TEMPLATES`)
 
-| Preset ID | Layout Type | Dimensions (mm) | Grid (`cols × rows`) | Default Symbology | DPI | Typical Hardware / Use Case |
-| :--- | :--- | :---: | :---: | :---: | :---: | :--- |
-| `thermal_50x25` | `thermal_roll` | `50 × 25 mm` | `1 × 1` | `ean13` | `203` | Zebra ZD410 / ZD421 / Rollo retail price & barcode sticker |
-| `thermal_57x32` | `thermal_roll` | `57 × 32 mm` | `1 × 1` | `ean13` | `203` | Dymo 30334 / Zebra apparel & shelf hang-tag with QR |
-| `thermal_100x50` | `thermal_roll` | `100 × 50 mm` | `1 × 1` | `code128` | `203` | Warehouse master carton / bin label with QR |
-| `jewelry_30x15` | `thermal_roll` | `30 × 15 mm` | `1 × 1` | `code128` | `300` | High-density 300 DPI jewelry / eyewear dumbbell tag |
-| `a4_24up_70x37` | `a4_sheet` | `70 × 37 mm` | `3 × 8` (24/page) | `ean13` | `300` | Avery L7163 / standard A4 24-up laser/inkjet sheet |
-| `a4_40up_52x30` | `a4_sheet` | `52.5 × 29.7 mm` | `4 × 10` (40/page) | `ean13` | `300` | Standard A4 40-up retail barcode sticker sheet |
-| `a4_65up_38x21` | `a4_sheet` | `38.1 × 21.2 mm` | `5 × 13` (65/page) | `ean13` | `300` | Avery L7651 / A4 65-up mini price/EAN sticker sheet |
+| Preset ID        | Layout Type    | Dimensions (mm)  | Grid (`cols × rows`) | Default Symbology |  DPI  | Typical Hardware / Use Case                                |
+| :--------------- | :------------- | :--------------: | :------------------: | :---------------: | :---: | :--------------------------------------------------------- |
+| `thermal_50x25`  | `thermal_roll` |   `50 × 25 mm`   |       `1 × 1`        |      `ean13`      | `203` | Zebra ZD410 / ZD421 / Rollo retail price & barcode sticker |
+| `thermal_57x32`  | `thermal_roll` |   `57 × 32 mm`   |       `1 × 1`        |      `ean13`      | `203` | Dymo 30334 / Zebra apparel & shelf hang-tag with QR        |
+| `thermal_100x50` | `thermal_roll` |  `100 × 50 mm`   |       `1 × 1`        |     `code128`     | `203` | Warehouse master carton / bin label with QR                |
+| `jewelry_30x15`  | `thermal_roll` |   `30 × 15 mm`   |       `1 × 1`        |     `code128`     | `300` | High-density 300 DPI jewelry / eyewear dumbbell tag        |
+| `a4_24up_70x37`  | `a4_sheet`     |   `70 × 37 mm`   |  `3 × 8` (24/page)   |      `ean13`      | `300` | Avery L7163 / standard A4 24-up laser/inkjet sheet         |
+| `a4_40up_52x30`  | `a4_sheet`     | `52.5 × 29.7 mm` |  `4 × 10` (40/page)  |      `ean13`      | `300` | Standard A4 40-up retail barcode sticker sheet             |
+| `a4_65up_38x21`  | `a4_sheet`     | `38.1 × 21.2 mm` |  `5 × 13` (65/page)  |      `ean13`      | `300` | Avery L7651 / A4 65-up mini price/EAN sticker sheet        |
 
 ### Rendering Labels Programmatically
 
@@ -425,14 +433,14 @@ Example generated **Zebra ZPL II** output:
 
 All 6 workflows are exported from `medusa-plugin-barcode` and `medusa-plugin-barcode/workflows`:
 
-| Workflow | Step / Workflow ID | Description & Rollback Behavior |
-| :--- | :--- | :--- |
-| `lookupAndCreateProductWorkflow` | `"lookup-and-create-product"` | Looks up a barcode across the provider chain, optionally uploads external images to `Modules.FILE`, creates a Medusa Product + Variant in `Modules.PRODUCT`, and links `BarcodeProduct`. **Compensates** by deleting both `BarcodeProduct` and the created Medusa Product on failure. |
-| `batchBarcodeImportWorkflow` | `"batch-barcode-import"` | Batch-imports up to 100 barcodes, creating real Medusa Products + Variants and `BarcodeProduct` mappings. **Compensates** by rolling back all created products and mappings. |
-| `bulkGenerateVariantBarcodesWorkflow` | `"bulk-generate-variant-barcodes"` | Generates GS1 in-store (`200`–`299`) EAN-13 barcodes for variants missing barcodes, updates `barcode`/`ean`/`upc` in `Modules.PRODUCT`, and creates `BarcodeTag` rows. **Compensates** by restoring previous variant barcode fields and deleting created tags. |
-| `generateBarcodeTagWorkflow` | `"generate-barcode-tag"` | Creates/updates a dynamic 1D/2D `BarcodeTag` with SVG markup, HMAC-SHA256 signature, and optional `Modules.FILE` SVG upload. **Compensates** by deleting the created tag. |
-| `scanInventoryCountWorkflow` | `"scan-inventory-count"` | Records a barcode scan inside an active `BarcodeCountSession` and updates item and session variance totals. |
-| `applyInventoryCountWorkflow` | `"apply-inventory-count"` | Marks a `BarcodeCountSession` as `"completed"` and applies counted quantities to `Modules.INVENTORY`. **Compensates** by reverting the session status back to `"in_progress"`. |
+| Workflow                              | Step / Workflow ID                 | Description & Rollback Behavior                                                                                                                                                                                                                                                       |
+| :------------------------------------ | :--------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `lookupAndCreateProductWorkflow`      | `"lookup-and-create-product"`      | Looks up a barcode across the provider chain, optionally uploads external images to `Modules.FILE`, creates a Medusa Product + Variant in `Modules.PRODUCT`, and links `BarcodeProduct`. **Compensates** by deleting both `BarcodeProduct` and the created Medusa Product on failure. |
+| `batchBarcodeImportWorkflow`          | `"batch-barcode-import"`           | Batch-imports up to 100 barcodes, creating real Medusa Products + Variants and `BarcodeProduct` mappings. **Compensates** by rolling back all created products and mappings.                                                                                                          |
+| `bulkGenerateVariantBarcodesWorkflow` | `"bulk-generate-variant-barcodes"` | Generates GS1 in-store (`200`–`299`) EAN-13 barcodes for variants missing barcodes, updates `barcode`/`ean`/`upc` in `Modules.PRODUCT`, and creates `BarcodeTag` rows. **Compensates** by restoring previous variant barcode fields and deleting created tags.                        |
+| `generateBarcodeTagWorkflow`          | `"generate-barcode-tag"`           | Creates/updates a dynamic 1D/2D `BarcodeTag` with SVG markup, HMAC-SHA256 signature, and optional `Modules.FILE` SVG upload. **Compensates** by deleting the created tag.                                                                                                             |
+| `scanInventoryCountWorkflow`          | `"scan-inventory-count"`           | Records a barcode scan inside an active `BarcodeCountSession` and updates item and session variance totals.                                                                                                                                                                           |
+| `applyInventoryCountWorkflow`         | `"apply-inventory-count"`          | Marks a `BarcodeCountSession` as `"completed"` and applies counted quantities to `Modules.INVENTORY`. **Compensates** by reverting the session status back to `"in_progress"`.                                                                                                        |
 
 ---
 
@@ -451,10 +459,13 @@ All 6 workflows are exported from `medusa-plugin-barcode` and `medusa-plugin-bar
 ### Admin Endpoints
 
 #### `GET /admin/barcodes`
+
 Lists linked `BarcodeProduct` mappings (filterable by `?product_id=...`) and studio analytics overview.
 
 #### `POST /admin/barcodes/lookup`
+
 Looks up a barcode across the 10-provider chain without creating a product.
+
 ```json
 {
   "barcode": "3017620422003",
@@ -464,7 +475,9 @@ Looks up a barcode across the 10-provider chain without creating a product.
 ```
 
 #### `POST /admin/barcodes/create-from-barcode`
+
 Looks up a barcode and creates a Medusa Product + Variant via `lookupAndCreateProductWorkflow`.
+
 ```json
 {
   "barcode": "3017620422003",
@@ -477,7 +490,9 @@ Looks up a barcode and creates a Medusa Product + Variant via `lookupAndCreatePr
 ```
 
 #### `POST /admin/barcodes/batch`
+
 Batch imports up to 100 barcodes via `batchBarcodeImportWorkflow`.
+
 ```json
 {
   "barcodes": ["3017620422003", "9780140328721"],
@@ -488,7 +503,9 @@ Batch imports up to 100 barcodes via `batchBarcodeImportWorkflow`.
 ```
 
 #### `POST /admin/barcodes/bulk-generate`
+
 Auto-generates GS1 in-store (`200`–`299`) EAN-13 barcodes for variants.
+
 ```json
 {
   "variant_ids": ["variant_01HXYZ"],
@@ -498,7 +515,9 @@ Auto-generates GS1 in-store (`200`–`299`) EAN-13 barcodes for variants.
 ```
 
 #### `POST /admin/barcodes/scan`
+
 Resolves a barcode scan and performs an optional quick inventory action (`lookup`, `increment`, `decrement`, `set`).
+
 ```json
 {
   "barcode": "3017620422003",
@@ -509,22 +528,29 @@ Resolves a barcode scan and performs an optional quick inventory action (`lookup
 ```
 
 #### `GET /admin/barcodes/cache` & `DELETE /admin/barcodes/cache`
+
 Lists cached provider responses or purges expired entries (pass `?all=true` to clear all cache entries).
 
 #### `GET /admin/barcodes/[barcode]` & `DELETE /admin/barcodes/[barcode]`
+
 Retrieves a specific barcode's parsed metadata, `BarcodeProduct` link, `BarcodeTag`, and rendered SVG, or deletes its mapping and cache entry.
 
 #### `GET /admin/barcodes/tags` & `POST /admin/barcodes/tags`
+
 Lists `BarcodeTag` rows (filterable by `?product_id=...` or `?target_id=...`) or creates a signed 1D/2D `BarcodeTag`.
 
 #### `GET /admin/barcodes/tags/[id]`, `PATCH /admin/barcodes/tags/[id]`, `DELETE /admin/barcodes/tags/[id]`
+
 Retrieves, updates, or deletes a `BarcodeTag` by ID.
 
 #### `GET /admin/barcodes/templates` & `POST /admin/barcodes/templates`
+
 Lists all 7 built-in presets + custom database templates, or saves a new custom `BarcodeLabelTemplate`.
 
 #### `POST /admin/barcodes/print`
+
 Renders print-ready HTML+SVG sheets and raw Zebra ZPL II thermal commands.
+
 ```json
 {
   "template_id": "thermal_50x25",
@@ -545,12 +571,15 @@ Renders print-ready HTML+SVG sheets and raw Zebra ZPL II thermal commands.
 ```
 
 #### `GET /admin/barcodes/count-sessions` & `POST /admin/barcodes/count-sessions`
+
 Lists all warehouse stock-take sessions with their line items, or starts a new `BarcodeCountSession`.
 
 #### `POST /admin/barcodes/count-sessions/[id]/scan`
+
 Records a barcode scan (`delta` or `set_quantity`) inside an active count session.
 
 #### `POST /admin/barcodes/count-sessions/[id]/apply`
+
 Completes a stock-take session and pushes variances to Medusa's Inventory Module.
 
 ---
@@ -558,10 +587,12 @@ Completes a stock-take session and pushes variances to Medusa's Inventory Module
 ### Storefront Endpoints
 
 #### `GET /store/barcodes/[code]`
+
 - Default (`?format=json`): Resolves a scanned barcode or QR code, increments `scan_count`, and returns `{ code, parsed, found, action, target_url, product_id, variant_id, tag, barcode_product }`.
 - Image mode (`?format=svg&symbology=ean13`): Returns `Content-Type: image/svg+xml` directly for `<img src="/store/barcodes/3017620422003?format=svg" />`.
 
 #### `GET /store/barcodes/[code]/verify?sig=...` & `POST /store/barcodes/[code]/verify`
+
 Verifies an anti-counterfeit `HMAC-SHA256` signature in constant time and returns `{ valid, code, reason, tag }`.
 
 ---
@@ -572,7 +603,8 @@ Verifies an anti-counterfeit `HMAC-SHA256` signature in constant time and return
 import { createBarcodeSdk } from "medusa-plugin-barcode/sdk"
 
 const barcodeSdk = createBarcodeSdk({
-  baseUrl: process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL || "http://localhost:9000",
+  baseUrl:
+    process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL || "http://localhost:9000",
   publishableApiKey: process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY,
 })
 
@@ -583,12 +615,22 @@ const lookup = await barcodeSdk.admin.lookup({
 })
 const labels = await barcodeSdk.admin.printLabels({
   template_id: "thermal_57x32",
-  items: [{ barcode: "3017620422003", title: "Nutella 400g", price: 5.99, quantity: 2 }],
+  items: [
+    {
+      barcode: "3017620422003",
+      title: "Nutella 400g",
+      price: 5.99,
+      quantity: 2,
+    },
+  ],
 })
 
 // Storefront calls:
 const resolved = await barcodeSdk.store.resolveScan("3017620422003")
-const verified = await barcodeSdk.store.verifyAuthenticity("MPB-001", hmacSignature)
+const verified = await barcodeSdk.store.verifyAuthenticity(
+  "MPB-001",
+  hmacSignature
+)
 const svgUrl = barcodeSdk.store.getSvgUrl("3017620422003", "ean13")
 ```
 
@@ -651,7 +693,13 @@ import {
   StorefrontBarcodeScanner,
 } from "medusa-plugin-barcode/ui"
 
-export function ProductPageBarcodeSection({ code, hmacSignature }: { code: string; hmacSignature: string }) {
+export function ProductPageBarcodeSection({
+  code,
+  hmacSignature,
+}: {
+  code: string
+  hmacSignature: string
+}) {
   return (
     <div style={{ display: "grid", gap: 16 }}>
       {/* Crisp SVG Barcode or QR via safe data-URI / endpoint */}
@@ -721,9 +769,11 @@ export class MyErpBarcodeProvider extends BaseBarcodeProvider {
     barcode: string,
     format: BarcodeSymbology
   ): Promise<NormalizedBarcodeProduct | null> {
-    const data = await this.fetchJson<{ title?: string; brand?: string; price?: number }>(
-      `https://erp.example.com/api/gtin/${encodeURIComponent(barcode)}`
-    )
+    const data = await this.fetchJson<{
+      title?: string
+      brand?: string
+      price?: number
+    }>(`https://erp.example.com/api/gtin/${encodeURIComponent(barcode)}`)
     if (!data?.title) return null
 
     return {
@@ -766,6 +816,7 @@ registry.register(new MyErpBarcodeProvider())
 ## 19. Migration Guide from `@bambiste/medusa-barcode` & `@bambiste/medusa-qr`
 
 `medusa-plugin-barcode` maintains full export compatibility with `@bambiste/medusa-barcode`:
+
 - `BARCODE_MODULE`, `BarcodeService` (alias for `BarcodeModuleService`), `BaseBarcodeProvider`, `ProviderRegistry`, all 8 original provider classes, `parseBarcode`, `computeEan13CheckDigit`, `upcToEan13`, `lookupAndCreateProductWorkflow`, and `batchBarcodeImportWorkflow` are all exported directly from the root package.
 - Simply replace `@bambiste/medusa-barcode` and `@bambiste/medusa-qr` in `medusa-config.ts` with `medusa-plugin-barcode` and run `npx medusa db:migrate`.
 

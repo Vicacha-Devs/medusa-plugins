@@ -3,6 +3,7 @@
 ## 1. Purpose & Architectural Philosophy
 
 `medusa-plugin-documents` is a full-featured commercial document management plugin for **Medusa v2** (`>= 2.13.x`) combining:
+
 - **`@agilo/medusa-invoices-plugin`**: `@react-pdf/renderer` presets (`clean`, `classic`, `compact`), TipTap rich-text notes renderer, immutable File Module PDF storage, `settings_snapshot` per document, and failed generation retry.
 - **`@logicdine/medusa-plugin-invoice`**: `Handlebars + pdfmake` custom HTML template engine (`mpd_document_template`), visual style/section toggles, `80mm`/`58mm` POS thermal receipts with dynamic height calculation, order edit `is_stale` detection, and versioned revisions (`v1`, `v2`, ...).
 - **`@webbers/invoices-medusa`**: Credit notes (`order.refund_created`) with negative totals and `related_document_id` linking, private File Module proxy streaming, and strict customer ownership verification.

@@ -1,56 +1,56 @@
-import { QueryCompany } from "../company/query";
-import { ApprovalStatusType, ApprovalType } from "./module";
+import { QueryCompany } from "../company/query"
+import { ApprovalStatusType, ApprovalType } from "./module"
 import {
   QueryApproval,
   QueryApprovalSettings,
   QueryApprovalStatus,
-} from "./query";
-import { HttpTypes } from "@medusajs/framework/types";
+} from "./query"
+import { HttpTypes } from "@medusajs/framework/types"
 
 /* Admin */
-export type AdminApprovalSettings = QueryApprovalSettings;
+export type AdminApprovalSettings = QueryApprovalSettings
 
 export type AdminUpdateApprovalSettings = {
-  requires_admin_approval: boolean;
-  requires_sales_manager_approval: boolean;
-};
+  requires_admin_approval: boolean
+  requires_sales_manager_approval: boolean
+}
 
-export type AdminApproval = QueryApproval;
+export type AdminApproval = QueryApproval
 
 export type AdminApprovalsResponse = {
-  carts_with_approvals: AdminCartWithApprovals[];
-  count: number;
-};
+  carts_with_approvals: AdminCartWithApprovals[]
+  count: number
+}
 
 export type AdminCartWithApprovals = HttpTypes.StoreCart & {
-  company: QueryCompany;
-  approval_status: QueryApprovalStatus;
-  approvals: QueryApproval[];
-};
+  company: QueryCompany
+  approval_status: QueryApprovalStatus
+  approvals: QueryApproval[]
+}
 
 export type AdminUpdateApproval = {
-  status: ApprovalStatusType;
-  reason?: string | null;
-};
+  status: ApprovalStatusType
+  reason?: string | null
+}
 
-export type AdminApprovalStatus = QueryApprovalStatus;
+export type AdminApprovalStatus = QueryApprovalStatus
 /* Store */
-export type StoreApprovalSettings = QueryApprovalSettings;
+export type StoreApprovalSettings = QueryApprovalSettings
 
 export type StoreUpdateApprovalSettings = {
-  requires_admin_approval: boolean;
-  requires_sales_manager_approval: boolean;
-};
+  requires_admin_approval: boolean
+  requires_sales_manager_approval: boolean
+}
 
-export type StoreApproval = QueryApproval;
+export type StoreApproval = QueryApproval
 
 export type StoreCreateApproval = {
-  cart_id: string;
-  type: ApprovalType;
-  created_by: string;
-};
+  cart_id: string
+  type: ApprovalType
+  created_by: string
+}
 
 export type StoreUpdateApproval = {
-  status: ApprovalStatusType;
-  reason?: string | null;
-};
+  status: ApprovalStatusType
+  reason?: string | null
+}

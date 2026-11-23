@@ -35,10 +35,7 @@ registerHooks({
     try {
       return nextResolve(specifier, context)
     } catch (err) {
-      if (
-        specifier.startsWith("@medusajs/") ||
-        specifier === "react-i18next"
-      ) {
+      if (specifier.startsWith("@medusajs/") || specifier === "react-i18next") {
         return { url: shimUrl, shortCircuit: true }
       }
       throw err
@@ -57,4 +54,3 @@ registerHooks({
     return nextLoad(url, context)
   },
 })
-

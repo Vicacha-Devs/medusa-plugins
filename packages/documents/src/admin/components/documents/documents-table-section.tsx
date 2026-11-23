@@ -1,11 +1,4 @@
-import {
-  Button,
-  Checkbox,
-  Container,
-  Heading,
-  Table,
-  Text,
-} from "@medusajs/ui"
+import { Button, Checkbox, Container, Heading, Table, Text } from "@medusajs/ui"
 import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router-dom"
 

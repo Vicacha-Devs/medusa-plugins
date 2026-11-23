@@ -30,20 +30,20 @@ plugins/
 
 ## Included Medusa v2 Plugins (11 Publishable + 1 Shared Admin)
 
-| Package | Directory | Summary |
-| :--- | :--- | :--- |
-| `@vicacha-devs/medusa-shared-admin` | `packages/shared` | Shared admin UI components, hooks & utilities consumed across plugins |
-| `@vicacha-devs/medusa-plugin-b2b` | `packages/b2b` | B2B companies, employees, quotes, approvals, and spending limits |
-| `@vicacha-devs/medusa-plugin-barcode` | `packages/barcode` | Barcode/GS1/QR generation, GTIN lookup, thermal/ZPL label printing & stock-take |
-| `@vicacha-devs/medusa-plugin-dian` | `packages/dian` | Colombian DIAN UBL 2.1 electronic invoicing, CUFE/CUDE & pluggable fiscal providers |
-| `@vicacha-devs/medusa-plugin-documents` | `packages/documents` | Invoice, packing slip & order PDF generation |
-| `@vicacha-devs/medusa-plugin-notifications` | `packages/notifications` | Multi-channel notification providers & templates |
-| `@vicacha-devs/medusa-plugin-odoo` | `packages/odoo` | Bidirectional Odoo ERP (JSON-RPC 2.0 & JSON-2) sync & POS replay |
-| `@vicacha-devs/medusa-payment-bold` | `packages/payment-bold` | Bold Colombia 4-channel suite (Payment Link, QR/Online, Button, Smart POS) + QA Emulator |
-| `@vicacha-devs/medusa-plugin-product-extensions` | `packages/product-extensions` | Rich video/3D media, variant galleries, custom attributes & swatches |
-| `@vicacha-devs/medusa-plugin-social-commerce` | `packages/social-commerce` | Social commerce feeds & shoppable channel integrations |
-| `@vicacha-devs/medusa-plugin-stories` | `packages/stories` | Shoppable story reels & admin curation |
-| `@vicacha-devs/medusa-plugin-typesense` | `packages/typesense` | Typesense search indexing, filter compiler & storefront SDK |
+| Package                                          | Directory                     | Summary                                                                                  |
+| :----------------------------------------------- | :---------------------------- | :--------------------------------------------------------------------------------------- |
+| `@vicacha-devs/medusa-shared-admin`              | `packages/shared`             | Shared admin UI components, hooks & utilities consumed across plugins                    |
+| `@vicacha-devs/medusa-plugin-b2b`                | `packages/b2b`                | B2B companies, employees, quotes, approvals, and spending limits                         |
+| `@vicacha-devs/medusa-plugin-barcode`            | `packages/barcode`            | Barcode/GS1/QR generation, GTIN lookup, thermal/ZPL label printing & stock-take          |
+| `@vicacha-devs/medusa-plugin-dian`               | `packages/dian`               | Colombian DIAN UBL 2.1 electronic invoicing, CUFE/CUDE & pluggable fiscal providers      |
+| `@vicacha-devs/medusa-plugin-documents`          | `packages/documents`          | Invoice, packing slip & order PDF generation                                             |
+| `@vicacha-devs/medusa-plugin-notifications`      | `packages/notifications`      | Multi-channel notification providers & templates                                         |
+| `@vicacha-devs/medusa-plugin-odoo`               | `packages/odoo`               | Bidirectional Odoo ERP (JSON-RPC 2.0 & JSON-2) sync & POS replay                         |
+| `@vicacha-devs/medusa-payment-bold`              | `packages/payment-bold`       | Bold Colombia 4-channel suite (Payment Link, QR/Online, Button, Smart POS) + QA Emulator |
+| `@vicacha-devs/medusa-plugin-product-extensions` | `packages/product-extensions` | Rich video/3D media, variant galleries, custom attributes & swatches                     |
+| `@vicacha-devs/medusa-plugin-social-commerce`    | `packages/social-commerce`    | Social commerce feeds & shoppable channel integrations                                   |
+| `@vicacha-devs/medusa-plugin-stories`            | `packages/stories`            | Shoppable story reels & admin curation                                                   |
+| `@vicacha-devs/medusa-plugin-typesense`          | `packages/typesense`          | Typesense search indexing, filter compiler & storefront SDK                              |
 
 ---
 
@@ -79,14 +79,14 @@ pnpm qa:docker:down
 
 All services bind strictly to `127.0.0.1` so this monorepo can run concurrently alongside `vicacha-travels`, `central-mosque-bogota`, and `strapi-v5-extensions`:
 
-| Service | Loopback Port |
-| :--- | :--- |
-| PostgreSQL 16 | `127.0.0.1:5436` |
-| Valkey 9 | `127.0.0.1:6383` |
-| Typesense 29 | `127.0.0.1:8112` |
-| MinIO API / Console | `127.0.0.1:9007` / `127.0.0.1:9012` |
-| Mailpit SMTP / UI | `127.0.0.1:1029` / `127.0.0.1:8029` |
-| Medusa Sandbox (`apps/sandbox`) | `127.0.0.1:9001` |
+| Service                         | Loopback Port                       |
+| :------------------------------ | :---------------------------------- |
+| PostgreSQL 16                   | `127.0.0.1:5436`                    |
+| Valkey 9                        | `127.0.0.1:6383`                    |
+| Typesense 29                    | `127.0.0.1:8112`                    |
+| MinIO API / Console             | `127.0.0.1:9007` / `127.0.0.1:9012` |
+| Mailpit SMTP / UI               | `127.0.0.1:1029` / `127.0.0.1:8029` |
+| Medusa Sandbox (`apps/sandbox`) | `127.0.0.1:9001`                    |
 
 ---
 

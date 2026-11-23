@@ -1,18 +1,21 @@
-import { Badge } from "@medusajs/ui";
-import { legacyCreateColumnHelper as createColumnHelper } from "@tanstack/react-table/legacy";
-import {  DateCell, TextCell, TextHeader } from "@vicacha-devs/medusa-shared-admin/admin";
-import { useMemo } from "react";
-import { useTranslation } from "react-i18next";
+import { Badge } from "@medusajs/ui"
+import { legacyCreateColumnHelper as createColumnHelper } from "@tanstack/react-table/legacy"
+import {
+  DateCell,
+  TextCell,
+  TextHeader,
+} from "@vicacha-devs/medusa-shared-admin/admin"
+import { useMemo } from "react"
+import { useTranslation } from "react-i18next"
 
-import { ApprovalActions } from "../approval-actions.tsx";
-import ItemsPopover from "../approvals-items-popover.tsx";
-import ApprovalStatusBadge from "../approval-status-badge.tsx";
+import { ApprovalActions } from "../approval-actions.tsx"
+import ItemsPopover from "../approvals-items-popover.tsx"
+import ApprovalStatusBadge from "../approval-status-badge.tsx"
 
-
-const columnHelper = createColumnHelper<Record<string, any>>();
+const columnHelper = createColumnHelper<Record<string, any>>()
 
 export const useApprovalsTableColumns = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
   return useMemo(
     () => [
@@ -32,8 +35,8 @@ export const useApprovalsTableColumns = () => {
         id: "approvals_type",
         header: t("approvals.table.type"),
         cell: ({ getValue }) => {
-          const approvals = (getValue() as any[]) ?? [];
-          if (!approvals.length) return <TextCell text="—" />;
+          const approvals = (getValue() as any[]) ?? []
+          if (!approvals.length) return <TextCell text="—" />
           return (
             <div className="flex flex-wrap gap-1">
               {approvals.map((a: any) => (
@@ -47,12 +50,12 @@ export const useApprovalsTableColumns = () => {
                 </Badge>
               ))}
             </div>
-          );
+          )
         },
       }),
       columnHelper.accessor("approval_status.status", {
         header: t("fields.status"),
-        cell: ({ getValue }) => <ApprovalStatusBadge status={getValue()}/>,
+        cell: ({ getValue }) => <ApprovalStatusBadge status={getValue()} />,
       }),
       columnHelper.accessor("items", {
         header: t("fields.items"),
@@ -67,31 +70,37 @@ export const useApprovalsTableColumns = () => {
         id: "approvals_handled_by",
         header: t("approvals.table.handledBy"),
         cell: ({ getValue }) => {
-          const approvals = (getValue() as any[]) ?? [];
-          const names = approvals.filter((a: any) => a.handled_by).map((a: any) => a.handled_by);
-          return <TextCell text={names.length ? names.join(", ") : "—"} />;
+          const approvals = (getValue() as any[]) ?? []
+          const names = approvals
+            .filter((a: any) => a.handled_by)
+            .map((a: any) => a.handled_by)
+          return <TextCell text={names.length ? names.join(", ") : "—"} />
         },
       }),
       columnHelper.accessor("approvals", {
         id: "approvals_handled_at",
         header: t("approvals.table.handledAt"),
         cell: ({ getValue }) => {
-          const approvals = (getValue() as any[]) ?? [];
+          const approvals = (getValue() as any[]) ?? []
           const dates = approvals
             .filter((a: any) => a.handled_at)
             .map((a: any) => a.handled_at)
-            .sort()
-            .reverse();
-          return dates.length ? <DateCell date={dates[0]} /> : <TextCell text="—" />;
+            .toSorted()
+            .toReversed()
+          return dates.length ? (
+            <DateCell date={dates[0]} />
+          ) : (
+            <TextCell text="—" />
+          )
         },
       }),
       columnHelper.accessor("approvals", {
         id: "approvals_reason",
         header: t("approvals.table.reason"),
         cell: ({ getValue }) => {
-          const approvals = (getValue() as any[]) ?? [];
-          const reason = approvals.find((a: any) => a.reason)?.reason;
-          return <TextCell text={reason ?? "—"} />;
+          const approvals = (getValue() as any[]) ?? []
+          const reason = approvals.find((a: any) => a.reason)?.reason
+          return <TextCell text={reason ?? "—"} />
         },
       }),
       columnHelper.accessor("actions", {
@@ -100,5 +109,5 @@ export const useApprovalsTableColumns = () => {
       }),
     ],
     [t]
-  );
-};
+  )
+}

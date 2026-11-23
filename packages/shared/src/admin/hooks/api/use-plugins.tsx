@@ -8,12 +8,7 @@ export const pluginsQueryKeys = queryKeysFactory(PLUGINS_QUERY_KEY)
 
 export const usePlugins = (
   options?: Omit<
-    UseQueryOptions<
-      any,
-      FetchError,
-      AdminPluginsListResponse,
-      QueryKey
-    >,
+    UseQueryOptions<any, FetchError, AdminPluginsListResponse, QueryKey>,
     "queryKey" | "queryFn"
   >
 ) => {

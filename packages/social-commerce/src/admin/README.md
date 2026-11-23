@@ -69,10 +69,10 @@ Every route and widget file is kept concise (`< 170` lines per file) and delegat
 
 ## Data fetching & state hooks
 
-| Hook | File | Purpose |
-| --- | --- | --- |
-| `useSocialDashboard` | `hooks/use-social-dashboard.ts` | Manages platform filtering (`all \| tiktok \| instagram \| facebook \| local`), fetches `/admin/social/accounts`, `/admin/social/posts`, `/admin/social/live`, and `/admin/social/catalog`, and provides mutation handlers for OAuth connect, media sync, product tagging, story publishing, live session lifecycle, and catalog sync |
-| `useProductSocialStatus` | `hooks/use-product-social-status.ts` | Fetches all posts/stories where a specific `product_id` is tagged and its `CatalogSyncItem` status across connected accounts |
+| Hook                     | File                                 | Purpose                                                                                                                                                                                                                                                                                                                               |
+| ------------------------ | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `useSocialDashboard`     | `hooks/use-social-dashboard.ts`      | Manages platform filtering (`all \| tiktok \| instagram \| facebook \| local`), fetches `/admin/social/accounts`, `/admin/social/posts`, `/admin/social/live`, and `/admin/social/catalog`, and provides mutation handlers for OAuth connect, media sync, product tagging, story publishing, live session lifecycle, and catalog sync |
+| `useProductSocialStatus` | `hooks/use-product-social-status.ts` | Fetches all posts/stories where a specific `product_id` is tagged and its `CatalogSyncItem` status across connected accounts                                                                                                                                                                                                          |
 
 ---
 
@@ -80,17 +80,17 @@ Every route and widget file is kept concise (`< 170` lines per file) and delegat
 
 All components live in `components/` and are internal to the Admin extension:
 
-| Component | File | Purpose |
-| --- | --- | --- |
-| `StatCard`, `NavigationCard` | `overview-cards.tsx` | KPI stat cards and navigation cards on `/social-commerce` |
-| `DashboardHeader` | `dashboard-header.tsx` | Platform selector and manual media sync trigger |
-| `DashboardTabs` | `dashboard-tabs.tsx` | Sub-navigation tabs across social commerce views |
-| `AccountsTab` | `accounts-tab.tsx` | OAuth account connection buttons (TikTok, Instagram, Facebook), token status, and disconnect action |
-| `FeedTab` | `feed-tab.tsx` | Shoppable posts/reels table and inline X/Y & timestamp product hotspot tagger |
-| `StoriesTab`, `StoriesTable`, `StoryCreateForm` | `stories-tab.tsx`, `stories-table.tsx`, `story-create-form.tsx` | Ephemeral 24h stories table and focus modal form (`createStoryFormSchema`) |
-| `LiveTab`, `LiveTable`, `LiveCreateForm` | `live-tab.tsx`, `live-table.tsx`, `live-create-form.tsx` | Live shopping sessions table, start/end actions, flash-sale product pinning, and focus modal form (`createLiveFormSchema`) |
-| `CatalogTab` | `catalog-tab.tsx` | Outbound catalog sync batch trigger, per-variant sync status table, and public XML/CSV/JSON feed links |
-| `ProductSocialSummary` | `product-social-summary.tsx` | Product detail widget card showing tagged posts and catalog sync badges |
+| Component                                       | File                                                            | Purpose                                                                                                                    |
+| ----------------------------------------------- | --------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `StatCard`, `NavigationCard`                    | `overview-cards.tsx`                                            | KPI stat cards and navigation cards on `/social-commerce`                                                                  |
+| `DashboardHeader`                               | `dashboard-header.tsx`                                          | Platform selector and manual media sync trigger                                                                            |
+| `DashboardTabs`                                 | `dashboard-tabs.tsx`                                            | Sub-navigation tabs across social commerce views                                                                           |
+| `AccountsTab`                                   | `accounts-tab.tsx`                                              | OAuth account connection buttons (TikTok, Instagram, Facebook), token status, and disconnect action                        |
+| `FeedTab`                                       | `feed-tab.tsx`                                                  | Shoppable posts/reels table and inline X/Y & timestamp product hotspot tagger                                              |
+| `StoriesTab`, `StoriesTable`, `StoryCreateForm` | `stories-tab.tsx`, `stories-table.tsx`, `story-create-form.tsx` | Ephemeral 24h stories table and focus modal form (`createStoryFormSchema`)                                                 |
+| `LiveTab`, `LiveTable`, `LiveCreateForm`        | `live-tab.tsx`, `live-table.tsx`, `live-create-form.tsx`        | Live shopping sessions table, start/end actions, flash-sale product pinning, and focus modal form (`createLiveFormSchema`) |
+| `CatalogTab`                                    | `catalog-tab.tsx`                                               | Outbound catalog sync batch trigger, per-variant sync status table, and public XML/CSV/JSON feed links                     |
+| `ProductSocialSummary`                          | `product-social-summary.tsx`                                    | Product detail widget card showing tagged posts and catalog sync badges                                                    |
 
 ---
 

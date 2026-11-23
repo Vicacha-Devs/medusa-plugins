@@ -5,45 +5,45 @@ import {
   BarcodeLabelTemplate,
   BarcodeProduct,
   BarcodeTag,
-} from "./models";
+} from "./models"
 import {
   parseAndValidateBarcode,
   lookupBarcode,
   findBarcodeProduct,
   removeBarcodeProduct,
   upsertBarcodeProductLink,
-} from "./operations/lookup";
+} from "./operations/lookup"
 import {
   generateInternalVariantBarcode,
   renderSvg,
-} from "./operations/generation";
+} from "./operations/generation"
 import {
   createOrUpdateBarcodeTag,
   resolveBarcodeScan,
   verifyAuthenticityToken,
-} from "./operations/tags";
-import { listAllLabelTemplates, renderLabels } from "./operations/labels";
+} from "./operations/tags"
+import { listAllLabelTemplates, renderLabels } from "./operations/labels"
 import {
   createStockCountSession,
   recordCountSessionScan,
   completeCountSession,
-} from "./operations/stock-count";
+} from "./operations/stock-count"
 import {
   purgeExpiredCache,
   getAnalyticsOverview,
-} from "./operations/maintenance";
-import { type BarcodeOpsContext } from "./operations/context";
-import { BarcodeDataService } from "./operations/data-service";
-import { createDefaultProviderRegistry, ProviderRegistry } from "./providers";
-import type { BarcodeModuleOptions } from "./types";
-import { getBarcodeHmacSecret } from "./utils/security";
+} from "./operations/maintenance"
+import { type BarcodeOpsContext } from "./operations/context"
+import { BarcodeDataService } from "./operations/data-service"
+import { createDefaultProviderRegistry, ProviderRegistry } from "./providers"
+import type { BarcodeModuleOptions } from "./types"
+import { getBarcodeHmacSecret } from "./utils/security"
 
-type InjectedDependencies = Record<string, unknown>;
+type InjectedDependencies = Record<string, unknown>
 
 /** Drops the leading `ctx` parameter of an operation. */
 type OpArgs<F> = F extends (ctx: BarcodeOpsContext, ...rest: infer R) => unknown
   ? R
-  : never;
+  : never
 
 /**
  * Public module service. Generated CRUD methods come from `BarcodeDataService`;
@@ -51,15 +51,15 @@ type OpArgs<F> = F extends (ctx: BarcodeOpsContext, ...rest: infer R) => unknown
  * delegating methods.
  */
 export class BarcodeModuleService extends BarcodeDataService {
-  protected readonly options_: BarcodeModuleOptions;
-  protected readonly registry_: ProviderRegistry;
-  protected readonly hmacSecret_: string;
+  protected readonly options_: BarcodeModuleOptions
+  protected readonly registry_: ProviderRegistry
+  protected readonly hmacSecret_: string
 
   constructor(
     container: InjectedDependencies = {},
-    options: BarcodeModuleOptions = {},
+    options: BarcodeModuleOptions = {}
   ) {
-    super(container, options);
+    super(container, options)
     this.options_ = {
       cacheEnabled: true,
       cacheTtlSeconds: 86400,
@@ -74,9 +74,9 @@ export class BarcodeModuleService extends BarcodeDataService {
         process.env.MEDUSA_STOREFRONT_URL ||
         "https://store.example.com",
       ...options,
-    };
-    this.registry_ = createDefaultProviderRegistry(this.options_);
-    this.hmacSecret_ = getBarcodeHmacSecret(this.options_.hmacSecret);
+    }
+    this.registry_ = createDefaultProviderRegistry(this.options_)
+    this.hmacSecret_ = getBarcodeHmacSecret(this.options_.hmacSecret)
   }
 
   protected ctx_(): BarcodeOpsContext {
@@ -85,42 +85,42 @@ export class BarcodeModuleService extends BarcodeDataService {
       options: this.options_,
       registry: this.registry_,
       hmacSecret: this.hmacSecret_,
-    };
+    }
   }
 
   async getModuleOptions(): Promise<BarcodeModuleOptions> {
-    return this.options_;
+    return this.options_
   }
 
   async getProviderRegistry(): Promise<ProviderRegistry> {
-    return this.registry_;
+    return this.registry_
   }
 
   async parseAndValidateBarcode(
     ...args: Parameters<typeof parseAndValidateBarcode>
   ) {
-    return parseAndValidateBarcode(...args);
+    return parseAndValidateBarcode(...args)
   }
 
   /**
    * Looks up a barcode across the configured provider chain with caching.
    */
   async lookupBarcode(...args: OpArgs<typeof lookupBarcode>) {
-    return lookupBarcode(this.ctx_(), ...args);
+    return lookupBarcode(this.ctx_(), ...args)
   }
 
   /**
    * Finds an existing `BarcodeProduct` mapping for a normalized barcode.
    */
   async findBarcodeProduct(...args: OpArgs<typeof findBarcodeProduct>) {
-    return findBarcodeProduct(this.ctx_(), ...args);
+    return findBarcodeProduct(this.ctx_(), ...args)
   }
 
   /**
    * Removes `BarcodeProduct` mapping(s) for a normalized barcode.
    */
   async removeBarcodeProduct(...args: OpArgs<typeof removeBarcodeProduct>) {
-    return removeBarcodeProduct(this.ctx_(), ...args);
+    return removeBarcodeProduct(this.ctx_(), ...args)
   }
 
   /**
@@ -129,7 +129,7 @@ export class BarcodeModuleService extends BarcodeDataService {
   async upsertBarcodeProductLink(
     ...args: OpArgs<typeof upsertBarcodeProductLink>
   ) {
-    return upsertBarcodeProductLink(this.ctx_(), ...args);
+    return upsertBarcodeProductLink(this.ctx_(), ...args)
   }
 
   /**
@@ -138,14 +138,14 @@ export class BarcodeModuleService extends BarcodeDataService {
   async generateInternalVariantBarcode(
     ...args: OpArgs<typeof generateInternalVariantBarcode>
   ) {
-    return generateInternalVariantBarcode(this.ctx_(), ...args);
+    return generateInternalVariantBarcode(this.ctx_(), ...args)
   }
 
   /**
    * Renders any supported 1D/2D barcode symbology into a standalone SVG string.
    */
   async renderSvg(...args: OpArgs<typeof renderSvg>) {
-    return renderSvg(this.ctx_(), ...args);
+    return renderSvg(this.ctx_(), ...args)
   }
 
   /**
@@ -155,7 +155,7 @@ export class BarcodeModuleService extends BarcodeDataService {
   async createOrUpdateBarcodeTag(
     ...args: OpArgs<typeof createOrUpdateBarcodeTag>
   ) {
-    return createOrUpdateBarcodeTag(this.ctx_(), ...args);
+    return createOrUpdateBarcodeTag(this.ctx_(), ...args)
   }
 
   /**
@@ -164,7 +164,7 @@ export class BarcodeModuleService extends BarcodeDataService {
    * incrementing scan analytics when a tag is matched and optionally hydrating the variant and product.
    */
   async resolveBarcodeScan(...args: OpArgs<typeof resolveBarcodeScan>) {
-    return resolveBarcodeScan(this.ctx_(), ...args);
+    return resolveBarcodeScan(this.ctx_(), ...args)
   }
 
   /**
@@ -173,21 +173,21 @@ export class BarcodeModuleService extends BarcodeDataService {
   async verifyAuthenticityToken(
     ...args: OpArgs<typeof verifyAuthenticityToken>
   ) {
-    return verifyAuthenticityToken(this.ctx_(), ...args);
+    return verifyAuthenticityToken(this.ctx_(), ...args)
   }
 
   /**
    * Lists all built-in + custom label templates.
    */
   async listAllLabelTemplates(...args: OpArgs<typeof listAllLabelTemplates>) {
-    return listAllLabelTemplates(this.ctx_(), ...args);
+    return listAllLabelTemplates(this.ctx_(), ...args)
   }
 
   /**
    * Renders printable HTML+SVG and Zebra ZPL II output for a list of label items.
    */
   async renderLabels(...args: OpArgs<typeof renderLabels>) {
-    return renderLabels(this.ctx_(), ...args);
+    return renderLabels(this.ctx_(), ...args)
   }
 
   /**
@@ -196,35 +196,35 @@ export class BarcodeModuleService extends BarcodeDataService {
   async createStockCountSession(
     ...args: OpArgs<typeof createStockCountSession>
   ) {
-    return createStockCountSession(this.ctx_(), ...args);
+    return createStockCountSession(this.ctx_(), ...args)
   }
 
   /**
    * Records a barcode scan inside a `BarcodeCountSession` and recalculates session variance totals.
    */
   async recordCountSessionScan(...args: OpArgs<typeof recordCountSessionScan>) {
-    return recordCountSessionScan(this.ctx_(), ...args);
+    return recordCountSessionScan(this.ctx_(), ...args)
   }
 
   /**
    * Marks a count session as completed.
    */
   async completeCountSession(...args: OpArgs<typeof completeCountSession>) {
-    return completeCountSession(this.ctx_(), ...args);
+    return completeCountSession(this.ctx_(), ...args)
   }
 
   /**
    * Purges expired entries from `BarcodeCache`.
    */
   async purgeExpiredCache(...args: OpArgs<typeof purgeExpiredCache>) {
-    return purgeExpiredCache(this.ctx_(), ...args);
+    return purgeExpiredCache(this.ctx_(), ...args)
   }
 
   /**
    * Returns a dashboard analytics overview across products, tags, cache, and stock-take sessions.
    */
   async getAnalyticsOverview(...args: OpArgs<typeof getAnalyticsOverview>) {
-    return getAnalyticsOverview(this.ctx_(), ...args);
+    return getAnalyticsOverview(this.ctx_(), ...args)
   }
 }
 
@@ -235,9 +235,9 @@ export {
   BarcodeLabelTemplate,
   BarcodeProduct,
   BarcodeTag,
-};
+}
 
 /**
  * Alias for backward compatibility with `@bambiste/medusa-barcode`.
  */
-export const BarcodeService = BarcodeModuleService;
+export const BarcodeService = BarcodeModuleService

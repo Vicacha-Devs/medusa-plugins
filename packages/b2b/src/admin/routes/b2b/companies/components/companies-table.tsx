@@ -1,5 +1,8 @@
 import { Button, Container, Heading, Text } from "@medusajs/ui"
-import { DataTable, useDataTable } from "@vicacha-devs/medusa-shared-admin/admin"
+import {
+  DataTable,
+  useDataTable,
+} from "@vicacha-devs/medusa-shared-admin/admin"
 import { useTranslation } from "react-i18next"
 
 import { useCompanies } from "../../../../hooks/api"
@@ -10,12 +13,22 @@ import { useCompaniesTableQuery } from "./table/query"
 const PAGE_SIZE = 50
 const PREFIX = "comp"
 
-export const CompaniesTable = ({ onCreateClick }: { onCreateClick?: () => void }) => {
+export const CompaniesTable = ({
+  onCreateClick,
+}: {
+  onCreateClick?: () => void
+}) => {
   const { t } = useTranslation()
 
-  const { searchParams, raw } = useCompaniesTableQuery({ pageSize: PAGE_SIZE, prefix: PREFIX })
+  const { searchParams, raw } = useCompaniesTableQuery({
+    pageSize: PAGE_SIZE,
+    prefix: PREFIX,
+  })
 
-  const { data, isPending } = useCompanies({ ...searchParams, order: "-created_at" })
+  const { data, isPending } = useCompanies({
+    ...searchParams,
+    order: "-created_at",
+  })
   const companies = data?.companies ?? []
   const count = data?.count
 

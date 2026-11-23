@@ -1,19 +1,16 @@
-import { createHash } from "node:crypto";
-import { mkdirSync, writeFileSync } from "node:fs";
-import { join } from "node:path";
+import { createHash } from "node:crypto"
+import { mkdirSync, writeFileSync } from "node:fs"
+import { join } from "node:path"
 
-import type { QaRepoReport } from "./types.ts";
+import type { QaRepoReport } from "./types.ts"
 
-import {
-  QA_DASHBOARD_CLIENT_JS,
-  QA_THEME_INIT_JS,
-} from "./dashboard-client.ts";
-import { QA_DASHBOARD_CSS } from "./dashboard-styles.ts";
-import { assertWithinDir } from "./types.ts";
+import { QA_DASHBOARD_CLIENT_JS, QA_THEME_INIT_JS } from "./dashboard-client.ts"
+import { QA_DASHBOARD_CSS } from "./dashboard-styles.ts"
+import { assertWithinDir } from "./types.ts"
 
 function sha256Csp(content: string): string {
-  const hash = createHash("sha256").update(content, "utf8").digest("base64");
-  return `'sha256-${hash}'`;
+  const hash = createHash("sha256").update(content, "utf8").digest("base64")
+  return `'sha256-${hash}'`
 }
 
 function escapeJsonForScript(value: unknown): string {
@@ -22,7 +19,7 @@ function escapeJsonForScript(value: unknown): string {
     .replace(/>/g, "\\u003e")
     .replace(/&/g, "\\u0026")
     .replace(/\u2028/g, "\\u2028")
-    .replace(/\u2029/g, "\\u2029");
+    .replace(/\u2029/g, "\\u2029")
 }
 
 function escapeHtmlText(text: string): string {
@@ -31,18 +28,18 @@ function escapeHtmlText(text: string): string {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
+    .replace(/'/g, "&#39;")
 }
 
 export function renderQaDashboardHtml(
   title: string,
   reports: QaRepoReport[]
 ): string {
-  const generatedAt = new Date().toISOString();
-  const safeTitle = escapeHtmlText(title);
-  const styleHash = sha256Csp(QA_DASHBOARD_CSS);
-  const initHash = sha256Csp(QA_THEME_INIT_JS);
-  const clientHash = sha256Csp(QA_DASHBOARD_CLIENT_JS);
+  const generatedAt = new Date().toISOString()
+  const safeTitle = escapeHtmlText(title)
+  const styleHash = sha256Csp(QA_DASHBOARD_CSS)
+  const initHash = sha256Csp(QA_THEME_INIT_JS)
+  const clientHash = sha256Csp(QA_DASHBOARD_CLIENT_JS)
   const csp = [
     "default-src 'none'",
     `style-src ${styleHash}`,
@@ -50,9 +47,9 @@ export function renderQaDashboardHtml(
     "img-src 'self' data:",
     "base-uri 'none'",
     "form-action 'none'",
-  ].join("; ");
+  ].join("; ")
 
-  const safeData = escapeJsonForScript({ generatedAt, reports });
+  const safeData = escapeJsonForScript({ generatedAt, reports })
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -185,7 +182,7 @@ export function renderQaDashboardHtml(
   <script>${QA_DASHBOARD_CLIENT_JS}</script>
 </body>
 </html>
-`;
+`
 }
 
 export function writeQaDashboard(
@@ -193,9 +190,9 @@ export function writeQaDashboard(
   title: string,
   reports: QaRepoReport[]
 ): string {
-  const qaDir = assertWithinDir(join(repoRoot, ".qa"), repoRoot);
-  mkdirSync(qaDir, { recursive: true });
-  const outPath = assertWithinDir(join(qaDir, "dashboard.html"), repoRoot);
-  writeFileSync(outPath, renderQaDashboardHtml(title, reports), "utf8");
-  return outPath;
+  const qaDir = assertWithinDir(join(repoRoot, ".qa"), repoRoot)
+  mkdirSync(qaDir, { recursive: true })
+  const outPath = assertWithinDir(join(qaDir, "dashboard.html"), repoRoot)
+  writeFileSync(outPath, renderQaDashboardHtml(title, reports), "utf8")
+  return outPath
 }

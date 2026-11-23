@@ -130,7 +130,9 @@ export class SmsNotificationProviderService extends AbstractNotificationProvider
       const authKey =
         this.options_.msg91_auth_key || process.env.MSG91_AUTH_KEY || ""
       const flowId =
-        this.options_.msg91_flow_id || process.env.MSG91_FLOW_ID || "flow_default"
+        this.options_.msg91_flow_id ||
+        process.env.MSG91_FLOW_ID ||
+        "flow_default"
       const senderId =
         this.options_.msg91_sender_id || process.env.MSG91_SENDER_ID || "MEDUSA"
 
@@ -152,8 +154,7 @@ export class SmsNotificationProviderService extends AbstractNotificationProvider
 
     // 3. SMSAPI (@yanchesky/medusa-smsapi)
     if (driver === "smsapi") {
-      const token =
-        this.options_.smsapi_token || process.env.SMSAPI_TOKEN || ""
+      const token = this.options_.smsapi_token || process.env.SMSAPI_TOKEN || ""
       const from =
         this.options_.smsapi_from || process.env.SMSAPI_FROM || "Medusa"
       return {

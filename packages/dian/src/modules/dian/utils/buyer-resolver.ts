@@ -59,17 +59,14 @@ export async function resolveAndValidateDianBuyer(
 
   const wantsElectronicInvoice = Boolean(
     fiscal_profile ||
-      orderMeta.dian_wants_electronic_invoice ||
-      orderMeta.dian_identification_number ||
-      orderMeta.dian_organization_type ||
-      orderMeta.company_id ||
-      order?.company
+    orderMeta.dian_wants_electronic_invoice ||
+    orderMeta.dian_identification_number ||
+    orderMeta.dian_organization_type ||
+    orderMeta.company_id ||
+    order?.company
   )
 
-  if (
-    force_consumidor_final ||
-    (!wantsElectronicInvoice && !customerId)
-  ) {
+  if (force_consumidor_final || (!wantsElectronicInvoice && !customerId)) {
     return {
       is_anonymous_consumidor_final: true,
       is_b2b_legal_client: false,
@@ -80,17 +77,17 @@ export async function resolveAndValidateDianBuyer(
       dv: null,
       organization_type: DIAN_CONSUMIDOR_FINAL.organization_type,
       tax_regime: DIAN_CONSUMIDOR_FINAL.tax_regime,
-      fiscal_responsibilities: [...DIAN_CONSUMIDOR_FINAL.fiscal_responsibilities],
+      fiscal_responsibilities: [
+        ...DIAN_CONSUMIDOR_FINAL.fiscal_responsibilities,
+      ],
       tributo_id: DIAN_CONSUMIDOR_FINAL.tributo_id,
       registration_name: DIAN_CONSUMIDOR_FINAL.name,
       trade_name: DIAN_CONSUMIDOR_FINAL.name,
       first_name: "Consumidor",
       last_name: "Final",
-      email:
-        asNonEmptyString(order?.email) || DIAN_CONSUMIDOR_FINAL.email,
+      email: asNonEmptyString(order?.email) || DIAN_CONSUMIDOR_FINAL.email,
       phone:
-        asNonEmptyString(billingAddress?.phone) ||
-        DIAN_CONSUMIDOR_FINAL.phone,
+        asNonEmptyString(billingAddress?.phone) || DIAN_CONSUMIDOR_FINAL.phone,
       address_line:
         asNonEmptyString(billingAddress?.address_1) ||
         DIAN_CONSUMIDOR_FINAL.address,
@@ -165,7 +162,7 @@ export async function resolveAndValidateDianBuyer(
         b2bCompany = await b2bService.retrieveCompany(companyId)
       } else if (typeof b2bService.listCompanies === "function") {
         const list = await b2bService.listCompanies({ id: companyId })
-        b2bCompany = Array.isArray(list) ? list[0] ?? null : null
+        b2bCompany = Array.isArray(list) ? (list[0] ?? null) : null
       }
     }
 

@@ -8,7 +8,10 @@ import type {
   UnifiedMediaEntry,
   UnitCode,
 } from "../modules/product-ext/types"
-import { convertUnit, formatUnitDisplay } from "../modules/product-ext/utils/unit-converter"
+import {
+  convertUnit,
+  formatUnitDisplay,
+} from "../modules/product-ext/utils/unit-converter"
 
 export interface ProductMediaGalleryProps {
   items: UnifiedMediaEntry[]
@@ -59,10 +62,7 @@ export const ProductMediaGallery: React.FC<ProductMediaGalleryProps> = ({
               poster={active.thumbnail_url || undefined}
               style={{ width: "100%", borderRadius: "8px" }}
             >
-              <source
-                src={active.url}
-                type={active.mime_type || "video/mp4"}
-              />
+              <source src={active.url} type={active.mime_type || "video/mp4"} />
               {active.captions_url && (
                 <track
                   kind="captions"
@@ -86,7 +86,9 @@ export const ProductMediaGallery: React.FC<ProductMediaGalleryProps> = ({
             <p style={{ fontWeight: 600, marginBottom: "8px" }}>
               {active.title || active.alt || "Interactive 3D / AR Model"}
             </p>
-            <div style={{ display: "flex", gap: "12px", justifyContent: "center" }}>
+            <div
+              style={{ display: "flex", gap: "12px", justifyContent: "center" }}
+            >
               <a
                 href={active.url}
                 rel="noopener noreferrer"
@@ -340,10 +342,7 @@ export const ProductSpecsTable: React.FC<ProductSpecsTableProps> = ({
           }
 
           return (
-            <tr
-              key={value.id}
-              style={{ borderBottom: "1px solid #e5e7eb" }}
-            >
+            <tr key={value.id} style={{ borderBottom: "1px solid #e5e7eb" }}>
               <th
                 style={{
                   textAlign: "left",
@@ -493,8 +492,7 @@ export const HierarchicalInfoAccordion: React.FC<
                         )
                       }
                       if (block.type === "list") {
-                        const ListTag =
-                          block.style === "ordered" ? "ol" : "ul"
+                        const ListTag = block.style === "ordered" ? "ol" : "ul"
                         return (
                           <ListTag
                             key={bIdx}
@@ -526,9 +524,7 @@ export const HierarchicalInfoAccordion: React.FC<
                                 padding: "2px 0",
                               }}
                             >
-                              <dt style={{ fontWeight: 600 }}>
-                                {pair.label}:
-                              </dt>
+                              <dt style={{ fontWeight: 600 }}>{pair.label}:</dt>
                               <dd style={{ margin: 0 }}>{pair.value}</dd>
                             </div>
                           ))}

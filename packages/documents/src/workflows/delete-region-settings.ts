@@ -27,7 +27,7 @@ const deleteRegionSettingsStep = createStep(
       container.resolve<DocumentsModuleService>(DOCUMENTS_MODULE)
     await documentsService.createDocumentSettings(
       previous.map((row: any) => {
-        const { created_at, updated_at, deleted_at, ...rest } = row
+        const { updated_at: _updatedAt, ...rest } = row
         return rest
       })
     )

@@ -42,10 +42,7 @@ export function renderNotificationTemplate(
   )
   const translations =
     input.translations ||
-    getNotificationTranslations(
-      locale,
-      input.pluginOptions?.customTranslations
-    )
+    getNotificationTranslations(locale, input.pluginOptions?.customTranslations)
 
   const enrichedData = applyVariableMap(input.data || {}, input.variable_map)
   const primaryColor = String(input.styles?.primary_color || "#111827")
@@ -70,7 +67,10 @@ export function renderNotificationTemplate(
         { escapeHtmlValues: true }
       )
       htmlBody = sanitizeNotificationHtml(interpolatedRaw)
-      plainText = htmlBody.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim()
+      plainText = htmlBody
+        .replace(/<[^>]+>/g, " ")
+        .replace(/\s+/g, " ")
+        .trim()
     } else {
       const { htmlParts, textParts } = renderEmailBlockNodes(
         blocks,
@@ -113,7 +113,9 @@ export function renderNotificationTemplate(
       template_id: input.template_id,
       template_name: input.template_name,
       locale,
-      subject: interpolatedSubject || `${enrichedData.store_name || "Store"} Notification`,
+      subject:
+        interpolatedSubject ||
+        `${enrichedData.store_name || "Store"} Notification`,
       html: htmlBody,
       text: plainText,
       attachments: input.attachments || [],
@@ -148,7 +150,9 @@ export function renderNotificationTemplate(
       }
     }
 
-    const hasAttachments = Boolean(input.attachments && input.attachments.length > 0)
+    const hasAttachments = Boolean(
+      input.attachments && input.attachments.length > 0
+    )
     const messageType = hasAttachments
       ? "document"
       : input.meta_template_name

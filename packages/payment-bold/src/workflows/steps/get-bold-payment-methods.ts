@@ -5,7 +5,6 @@ import { BoldIntegrationAPIPaymentMethod } from "@payment-bold/types"
 import { getProviderOptionsFromContainer } from "@payment-bold/lib/get-provider-options"
 import { BoldHttpClient } from "@payment-bold/services/bold-client"
 
-
 export const getBoldPaymentMethodsStep = createStep(
   "get-bold-payment-methods",
   async (_, { container }) => {
@@ -14,7 +13,8 @@ export const getBoldPaymentMethodsStep = createStep(
     const boldProviderOptions = getProviderOptionsFromContainer(container)
 
     const client = new BoldHttpClient(boldProviderOptions, logger)
-    const paymentMethods: Array<BoldIntegrationAPIPaymentMethod> = await client.getAvailableIntegrationApiPaymentMethods()
+    const paymentMethods: Array<BoldIntegrationAPIPaymentMethod> =
+      await client.getAvailableIntegrationApiPaymentMethods()
 
     return new StepResponse({ paymentMethods })
   }

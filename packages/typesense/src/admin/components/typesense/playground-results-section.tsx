@@ -95,10 +95,7 @@ export const PlaygroundResultsSection: React.FC<
                 </div>
                 <SectionRow title="ID" value={String(doc.id || "—")} />
                 {doc.min_price !== undefined && (
-                  <SectionRow
-                    title="Min Price"
-                    value={String(doc.min_price)}
-                  />
+                  <SectionRow title="Min Price" value={String(doc.min_price)} />
                 )}
                 {firstHl && (
                   <div className="px-6 py-3 text-xs">

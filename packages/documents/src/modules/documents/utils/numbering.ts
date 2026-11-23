@@ -68,10 +68,7 @@ export function formatDocumentNumber(
     .replace(/\{order_display_id\}/gi, orderDisplayIdStr)
 
   // Ensure uniqueness if the user pattern omitted both {number} and {order_display_id}
-  if (
-    !/\{number\}/i.test(pattern) &&
-    !/\{order_display_id\}/i.test(pattern)
-  ) {
+  if (!/\{number\}/i.test(pattern) && !/\{order_display_id\}/i.test(pattern)) {
     formatted = `${formatted}-${paddedNumber}`
   }
 

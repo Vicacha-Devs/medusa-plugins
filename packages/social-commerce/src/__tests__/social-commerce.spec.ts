@@ -564,8 +564,11 @@ describe("medusa-plugin-social-commerce", () => {
       ])
 
       const fulfilled = attempts.filter(
-        (a): a is PromiseFulfilledResult<Awaited<ReturnType<typeof service.reserveLiveProductStock>>> =>
-          a.status === "fulfilled"
+        (
+          a
+        ): a is PromiseFulfilledResult<
+          Awaited<ReturnType<typeof service.reserveLiveProductStock>>
+        > => a.status === "fulfilled"
       )
       const rejected = attempts.filter((a) => a.status === "rejected")
       assert.equal(fulfilled.length, 2)
@@ -742,19 +745,22 @@ describe("medusa-plugin-social-commerce", () => {
         },
       ]
 
-      const mapped = feedService.mapMedusaProductsToFeedItems(rawMedusaProducts, {
-        currencyCode: "EUR",
-        countryCode: "DE",
-        beforeFeedItem: (item) => {
-          if (item.id === "var_hoodie_skip") return null
-          return {
-            ...item,
-            material: "100% Organic Cotton",
-            gender: "unisex",
-            age_group: "adult",
-          }
-        },
-      })
+      const mapped = feedService.mapMedusaProductsToFeedItems(
+        rawMedusaProducts,
+        {
+          currencyCode: "EUR",
+          countryCode: "DE",
+          beforeFeedItem: (item) => {
+            if (item.id === "var_hoodie_skip") return null
+            return {
+              ...item,
+              material: "100% Organic Cotton",
+              gender: "unisex",
+              age_group: "adult",
+            }
+          },
+        }
+      )
 
       assert.equal(mapped.length, 1)
       assert.equal(mapped[0].id, "var_hoodie_m_blk")
@@ -782,7 +788,9 @@ describe("medusa-plugin-social-commerce", () => {
       )
       assert.ok(xml.body.includes("<g:color>Obsidian Black</g:color>"))
       assert.ok(xml.body.includes("<g:size>M</g:size>"))
-      assert.ok(xml.body.includes("<g:material>100% Organic Cotton</g:material>"))
+      assert.ok(
+        xml.body.includes("<g:material>100% Organic Cotton</g:material>")
+      )
       assert.ok(xml.body.includes("<g:fit>Relaxed</g:fit>"))
       assert.ok(xml.body.includes("<g:price>99.00 EUR</g:price>"))
       assert.ok(xml.body.includes("<g:sale_price>79.00 EUR</g:sale_price>"))
@@ -834,7 +842,13 @@ describe("medusa-plugin-social-commerce", () => {
                         id: "var_dk_1",
                         title: "Brass",
                         sku: "LAMP-BRASS-01",
-                        prices: [{ amount: 145, currency_code: "eur", region_id: "reg_eu" }],
+                        prices: [
+                          {
+                            amount: 145,
+                            currency_code: "eur",
+                            region_id: "reg_eu",
+                          },
+                        ],
                       },
                     ],
                   },
@@ -1083,7 +1097,7 @@ describe("medusa-plugin-social-commerce", () => {
 
       const enKeys = flattenKeys(
         bundles.en.translation as unknown as Record<string, unknown>
-      ).sort()
+      ).toSorted()
       assert.ok(enKeys.length >= 60)
 
       for (const localeCode of locales) {
@@ -1095,7 +1109,7 @@ describe("medusa-plugin-social-commerce", () => {
         )
         const localeKeys = flattenKeys(
           entry.translation as unknown as Record<string, unknown>
-        ).sort()
+        ).toSorted()
         assert.deepEqual(
           localeKeys,
           enKeys,
@@ -1109,30 +1123,22 @@ describe("medusa-plugin-social-commerce", () => {
     })
 
     it("exports LayoutComposer multi-route pages, RouteDrawer @create modals, and @medusajs/ui components", async () => {
-      const overviewPage = await import(
-        "../admin/routes/social-commerce/page.js"
-      )
-      const accountsPage = await import(
-        "../admin/routes/social-commerce/accounts/page.js"
-      )
-      const feedPage = await import(
-        "../admin/routes/social-commerce/feed/page.js"
-      )
-      const storiesPage = await import(
-        "../admin/routes/social-commerce/stories/page.js"
-      )
-      const storiesCreatePage = await import(
-        "../admin/routes/social-commerce/stories/@create/page.js"
-      )
-      const livePage = await import(
-        "../admin/routes/social-commerce/live/page.js"
-      )
-      const liveCreatePage = await import(
-        "../admin/routes/social-commerce/live/@create/page.js"
-      )
-      const catalogPage = await import(
-        "../admin/routes/social-commerce/catalog/page.js"
-      )
+      const overviewPage =
+        await import("../admin/routes/social-commerce/page.js")
+      const accountsPage =
+        await import("../admin/routes/social-commerce/accounts/page.js")
+      const feedPage =
+        await import("../admin/routes/social-commerce/feed/page.js")
+      const storiesPage =
+        await import("../admin/routes/social-commerce/stories/page.js")
+      const storiesCreatePage =
+        await import("../admin/routes/social-commerce/stories/@create/page.js")
+      const livePage =
+        await import("../admin/routes/social-commerce/live/page.js")
+      const liveCreatePage =
+        await import("../admin/routes/social-commerce/live/@create/page.js")
+      const catalogPage =
+        await import("../admin/routes/social-commerce/catalog/page.js")
       const components = await import("../admin/components/index.js")
 
       for (const routeMod of [
@@ -1268,7 +1274,10 @@ describe("medusa-plugin-social-commerce", () => {
       let liveInfoAttempts = 0
       let revokedTokens: string[] = []
 
-      const customFetch: typeof fetch = (async (input: RequestInfo | URL, init?: RequestInit) => {
+      const customFetch: typeof fetch = (async (
+        input: RequestInfo | URL,
+        init?: RequestInit
+      ) => {
         const url = typeof input === "string" ? input : input.toString()
 
         if (url.includes("/v2/video/query/")) {
@@ -1288,7 +1297,8 @@ describe("medusa-plugin-social-commerce", () => {
                     title: "Single Queried Video",
                     video_description: "Fetched via /v2/video/query/",
                     cover_image_url: "https://cdn.example.com/v99.jpg",
-                    share_url: "https://www.tiktok.com/@shop/video/tt_single_vid_99",
+                    share_url:
+                      "https://www.tiktok.com/@shop/video/tt_single_vid_99",
                     duration: 19,
                     create_time: 1729000000,
                     view_count: 880,
@@ -1329,10 +1339,13 @@ describe("medusa-plugin-social-commerce", () => {
           const bodyStr = String(init?.body ?? "")
           const params = new URLSearchParams(bodyStr)
           revokedTokens.push(params.get("token") ?? "")
-          return new Response(JSON.stringify({ data: {}, error: { code: "ok" } }), {
-            status: 200,
-            headers: { "Content-Type": "application/json" },
-          })
+          return new Response(
+            JSON.stringify({ data: {}, error: { code: "ok" } }),
+            {
+              status: 200,
+              headers: { "Content-Type": "application/json" },
+            }
+          )
         }
 
         return createMockFetch()(input, init)
@@ -1353,7 +1366,10 @@ describe("medusa-plugin-social-commerce", () => {
       assert.equal(video.view_count, 880)
 
       // 2. Test getLiveSession with 503 retry
-      const liveInfo = await provider.getLiveSession("tok_test_1", "room_live_777")
+      const liveInfo = await provider.getLiveSession(
+        "tok_test_1",
+        "room_live_777"
+      )
       assert.equal(liveInfoAttempts, 2)
       assert.ok(liveInfo)
       assert.equal(liveInfo.platform_live_id, "room_live_777")
@@ -1404,7 +1420,10 @@ describe("medusa-plugin-social-commerce", () => {
       let refreshCount = 0
       let videoListCursors: Array<string | null> = []
 
-      const paginatedFetch: typeof fetch = (async (input: RequestInfo | URL, init?: RequestInit) => {
+      const paginatedFetch: typeof fetch = (async (
+        input: RequestInfo | URL,
+        init?: RequestInit
+      ) => {
         const url = typeof input === "string" ? input : input.toString()
 
         if (url.includes("open.tiktokapis.com/v2/oauth/token")) {
@@ -1521,7 +1540,10 @@ describe("medusa-plugin-social-commerce", () => {
     })
 
     it("ingests real TikTok webhook events (user.video.publish and live.room.status_update) and releases reservations when live ends", async () => {
-      const webhookFetch: typeof fetch = (async (input: RequestInfo | URL, init?: RequestInit) => {
+      const webhookFetch: typeof fetch = (async (
+        input: RequestInfo | URL,
+        init?: RequestInit
+      ) => {
         const url = typeof input === "string" ? input : input.toString()
 
         if (url.includes("/v2/video/query/")) {
@@ -1534,7 +1556,8 @@ describe("medusa-plugin-social-commerce", () => {
                     title: "Webhook Published Video",
                     video_description: "Auto-ingested from TikTok webhook",
                     cover_image_url: "https://cdn.example.com/wh-cover.jpg",
-                    share_url: "https://www.tiktok.com/@shop/video/tt_webhook_vid_01",
+                    share_url:
+                      "https://www.tiktok.com/@shop/video/tt_webhook_vid_01",
                     duration: 15,
                     create_time: 1729100000,
                     view_count: 500,
@@ -1759,7 +1782,11 @@ describe("medusa-plugin-social-commerce", () => {
       assert.equal(htmlStatus, 200)
       assert.ok(htmlHeaders["Content-Type"]?.includes("text/html"))
       assert.ok(htmlBody.includes("tiktok-oauth-success"))
-      assert.ok(htmlBody.includes("window.opener.postMessage(payload, window.location.origin)"))
+      assert.ok(
+        htmlBody.includes(
+          "window.opener.postMessage(payload, window.location.origin)"
+        )
+      )
 
       const accounts = await service.listAccounts({ platform: "tiktok" })
       const connectedAccount = accounts[0]
@@ -1777,13 +1804,18 @@ describe("medusa-plugin-social-commerce", () => {
           }),
         (err: unknown) =>
           err instanceof MedusaError &&
-          err.message.includes("missing required OAuth scopes: live.room.manage")
+          err.message.includes(
+            "missing required OAuth scopes: live.room.manage"
+          )
       )
 
       // Test compensation function restoring previous metadata
       await (
         initialAccountSyncStep as unknown as {
-          compensate?: (data: unknown, ctx: { container: unknown }) => Promise<void>
+          compensate?: (
+            data: unknown,
+            ctx: { container: unknown }
+          ) => Promise<void>
         }
       ).compensate?.(
         {
@@ -1797,7 +1829,3 @@ describe("medusa-plugin-social-commerce", () => {
     })
   })
 })
-
-
-
-

@@ -17,7 +17,7 @@ import {
   makeCompanyCreateFormSchema,
 } from "./validators"
 
-const ALL_CURRENCIES = Object.values(currencies).sort((a, b) =>
+const ALL_CURRENCIES = Object.values(currencies).toSorted((a, b) =>
   a.name.localeCompare(b.name)
 )
 
@@ -33,7 +33,10 @@ interface CompanyCreateFormProps {
   loading: boolean
 }
 
-export function CompanyCreateForm({ onSubmit, loading }: CompanyCreateFormProps) {
+export function CompanyCreateForm({
+  onSubmit,
+  loading,
+}: CompanyCreateFormProps) {
   const { t } = useTranslation()
   const schema = useMemo(() => makeCompanyCreateFormSchema(t), [t])
 
@@ -58,7 +61,10 @@ export function CompanyCreateForm({ onSubmit, loading }: CompanyCreateFormProps)
     [regions]
   )
   const availableCurrencies = useMemo(
-    () => ALL_CURRENCIES.filter((c) => !currencyCodes.size || currencyCodes.has(c.code)),
+    () =>
+      ALL_CURRENCIES.filter(
+        (c) => !currencyCodes.size || currencyCodes.has(c.code)
+      ),
     [currencyCodes]
   )
   const availableCountries = useMemo(() => {
@@ -69,7 +75,9 @@ export function CompanyCreateForm({ onSubmit, loading }: CompanyCreateFormProps)
         seen.add(c.iso_2)
         return true
       })
-      .sort((a: any, b: any) => a.display_name.localeCompare(b.display_name))
+      .toSorted((a: any, b: any) =>
+        a.display_name.localeCompare(b.display_name)
+      )
   }, [regions])
 
   const form = useForm<CompanyCreateFormValues>({
@@ -138,7 +146,10 @@ export function CompanyCreateForm({ onSubmit, loading }: CompanyCreateFormProps)
           </RouteFocusModal.Header>
 
           <RouteFocusModal.Body className="size-full overflow-hidden">
-            <ProgressTabs.Content className="size-full overflow-y-auto" value={Tab.DETAILS}>
+            <ProgressTabs.Content
+              className="size-full overflow-y-auto"
+              value={Tab.DETAILS}
+            >
               <CompanyCreateDetailsTab
                 form={form}
                 availableCountries={availableCountries}
@@ -146,7 +157,10 @@ export function CompanyCreateForm({ onSubmit, loading }: CompanyCreateFormProps)
               />
             </ProgressTabs.Content>
 
-            <ProgressTabs.Content className="size-full overflow-y-auto" value={Tab.ADMIN}>
+            <ProgressTabs.Content
+              className="size-full overflow-y-auto"
+              value={Tab.ADMIN}
+            >
               <CompanyCreateAdminTab
                 form={form}
                 availableCurrencies={availableCurrencies}
@@ -170,7 +184,12 @@ export function CompanyCreateForm({ onSubmit, loading }: CompanyCreateFormProps)
                 {t("actions.continue")}
               </Button>
             ) : (
-              <Button key="submit" type="submit" size="small" isLoading={loading}>
+              <Button
+                key="submit"
+                type="submit"
+                size="small"
+                isLoading={loading}
+              >
                 {t("actions.save")}
               </Button>
             )}

@@ -25,11 +25,7 @@ export default async function productTypesenseSyncSubscriber({
 
   const eventName = String(event?.name || "")
   const data = event?.data || {}
-  const rawIds = Array.isArray(data.ids)
-    ? data.ids
-    : data.id
-      ? [data.id]
-      : []
+  const rawIds = Array.isArray(data.ids) ? data.ids : data.id ? [data.id] : []
 
   if (eventName === "product.deleted") {
     if (rawIds.length > 0) {

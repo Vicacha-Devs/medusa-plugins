@@ -39,10 +39,7 @@ export const StoryGroup = model
     display_order: model.number().default(0),
     metadata: model.json().nullable(),
   })
-  .indexes([
-    { on: ["handle"] },
-    { on: ["placement", "is_active"] },
-  ])
+  .indexes([{ on: ["handle"] }, { on: ["placement", "is_active"] }])
 
 /**
  * Backward-compatible with `@bambiste/medusa-stories` `Story` model (`title`, `media_type`,
@@ -93,10 +90,7 @@ export const StoryHotspot = model
     label: model.text().nullable(),
     badge_style: model.enum(["pill", "card", "dot"]).default("pill"),
   })
-  .indexes([
-    { on: ["story_id"] },
-    { on: ["product_id"] },
-  ])
+  .indexes([{ on: ["story_id"] }, { on: ["product_id"] }])
 
 export const StorySticker = model
   .define("mps_story_sticker", {

@@ -11,6 +11,6 @@ subscribers/
 
 ## Subscriber Index
 
-| File | Subscribed Event | Behavior |
-| --- | --- | --- |
+| File                 | Subscribed Event  | Behavior                                                                                                                                                                                     |
+| -------------------- | ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `product-deleted.ts` | `product.deleted` | Resolves `StoriesModuleService` (`STORIES_MODULE`) and calls `removeHotspotsByProductId(data.id)` so that any `StoryHotspot` pins referencing the deleted product are automatically removed. |

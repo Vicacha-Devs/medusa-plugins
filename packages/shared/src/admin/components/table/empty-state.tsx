@@ -1,17 +1,21 @@
-import { ExclamationCircle, MagnifyingGlass, PlusMini } from "@medusajs/icons";
-import { Button, Text, clx } from "@medusajs/ui";
-import type { JSX } from "react";
-import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import { ExclamationCircle, MagnifyingGlass, PlusMini } from "@medusajs/icons"
+import { Button, Text, clx } from "@medusajs/ui"
+import type { JSX } from "react"
+import { useTranslation } from "react-i18next"
+import { Link } from "react-router-dom"
 
 export type NoResultsProps = {
-  title?: string;
-  message?: string;
-  className?: string;
-};
+  title?: string
+  message?: string
+  className?: string
+}
 
-export const NoResults = ({ title, message, className }: NoResultsProps): JSX.Element => {
-  const { t } = useTranslation();
+export const NoResults = ({
+  title,
+  message,
+  className,
+}: NoResultsProps): JSX.Element => {
+  const { t } = useTranslation()
 
   return (
     <div
@@ -30,22 +34,22 @@ export const NoResults = ({ title, message, className }: NoResultsProps): JSX.El
         </Text>
       </div>
     </div>
-  );
-};
+  )
+}
 
 type ActionProps = {
   action?: {
-    to: string;
-    label: string;
-  };
-};
+    to: string
+    label: string
+  }
+}
 
 type NoRecordsProps = {
-  title?: string;
-  message?: string;
-  className?: string;
-  buttonVariant?: string;
-} & ActionProps;
+  title?: string
+  message?: string
+  className?: string
+  buttonVariant?: string
+} & ActionProps
 
 const DefaultButton = ({ action }: ActionProps): JSX.Element | undefined =>
   action && (
@@ -54,16 +58,18 @@ const DefaultButton = ({ action }: ActionProps): JSX.Element | undefined =>
         {action.label}
       </Button>
     </Link>
-  );
+  )
 
-const TransparentIconLeftButton = ({ action }: ActionProps): JSX.Element | undefined =>
+const TransparentIconLeftButton = ({
+  action,
+}: ActionProps): JSX.Element | undefined =>
   action && (
     <Link to={action.to}>
       <Button variant="transparent" className="text-ui-fg-interactive">
         <PlusMini /> {action.label}
       </Button>
     </Link>
-  );
+  )
 
 export const NoRecords = ({
   title,
@@ -72,7 +78,7 @@ export const NoRecords = ({
   className,
   buttonVariant = "default",
 }: NoRecordsProps): JSX.Element => {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
   return (
     <div
@@ -100,5 +106,5 @@ export const NoRecords = ({
         <TransparentIconLeftButton action={action} />
       )}
     </div>
-  );
-};
+  )
+}

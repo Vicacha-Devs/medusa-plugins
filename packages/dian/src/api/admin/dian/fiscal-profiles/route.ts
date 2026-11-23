@@ -18,9 +18,8 @@ export async function GET(req: MedusaRequest, res: MedusaResponse) {
   if (query.customer_id) {
     filter.customer_id = query.customer_id
   }
-  const fiscal_profiles = await dianService.listDianCustomerFiscalProfiles(
-    filter
-  )
+  const fiscal_profiles =
+    await dianService.listDianCustomerFiscalProfiles(filter)
   return res.status(200).json({ fiscal_profiles })
 }
 

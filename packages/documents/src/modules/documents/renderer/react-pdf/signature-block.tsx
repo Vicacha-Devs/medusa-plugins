@@ -63,7 +63,8 @@ export const SignatureBlock: React.FC<SignatureBlockProps> = ({
   companyName,
   buyerName,
 }) => {
-  const safeRole = (role || "Customer").replace(/[^a-zA-Z0-9_-]/g, "") || "Customer"
+  const safeRole =
+    (role || "Customer").replace(/[^a-zA-Z0-9_-]/g, "") || "Customer"
 
   return (
     <View style={styles.container} wrap={false}>

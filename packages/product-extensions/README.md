@@ -3,6 +3,7 @@
 The all-in-one **Medusa v2 Product Extension, Rich Media, Variant Galleries, Typed Custom Attributes, Hierarchical Content (`tree@1` / `diff@1`), Feature Badges & Multi-Storefront Presentation Overrides** plugin.
 
 100% drop-in backward-compatible with `@bambiste/medusa-product-ext` while superseding 12+ fragmented Medusa v2 product extension packages:
+
 - **`@bambiste/medusa-product-ext`** — Product & Variant `videos[]`, `tagline`, `ProductExt` module (`PRODUCT_EXT_MODULE = "ProductExt"`), `upsertProductExtWorkflow`, `upsertVariantExtWorkflow`
 - **`@developerx12/medusa-plugin-product-video`** — Multi-provider videos: Medusa File Module MP4/WebM/HLS, YouTube, Vimeo, Mux, Cloudflare Stream + posters & WebVTT captions
 - **`medusa-variant-images` & `@alphabite/medusa-variant-images`** — Variant thumbnails, ordered image galleries, and **Base-Option Bulk Assignment** (`Color = Navy`)
@@ -51,11 +52,11 @@ The all-in-one **Medusa v2 Product Extension, Rich Media, Variant Galleries, Typ
 
 ## Requirements
 
-| Dependency | Version |
-|---|---|
-| `@medusajs/medusa` | `2.21.x` |
-| Node.js | `^20.19.0 \|\| >=22.12.0` |
-| Package Manager | `pnpm 11.x` / `npm` / `yarn` |
+| Dependency         | Version                      |
+| ------------------ | ---------------------------- |
+| `@medusajs/medusa` | `2.21.x`                     |
+| Node.js            | `^20.19.0 \|\| >=22.12.0`    |
+| Package Manager    | `pnpm 11.x` / `npm` / `yarn` |
 
 ---
 
@@ -113,22 +114,22 @@ Medusa Core (@medusajs/medusa/product)
 **Module Service Token:** `PRODUCT_EXT_MODULE = "ProductExt"` (`PRODUCT_EXT_MODULE_KEY = "product_ext"`)  
 **Service Class:** `ProductExtModuleService` (also exported as `ProductExtService`)
 
-| Model | Table Name | Key Columns |
-|---|---|---|
-| `ProductExtension` | `product_extension` | `id`, `product_id` (unique), `videos`, `tagline`, `media_items`, `models_3d`, `attachments`, `image_alts`, `content_tree`, `content_diff`, `template_id`, `feature_ids`, `option_metadata`, `storefront_overrides`, `seo_metadata`, `metadata` |
-| `VariantExtension` | `variant_extension` | `id`, `variant_id` (unique), `product_id`, `thumbnail`, `images`, `videos`, `media_items`, `option_signature`, `swatch_color`, `swatch_image_url`, `metadata` |
-| `AttributeDefinition` | `product_ext_attribute` | `id`, `key` (unique), `label`, `description`, `type` (`text \| number \| boolean \| select \| multiselect \| color \| unit \| file \| sortable_list`), `unit_family`, `default_unit`, `allowed_units`, `options`, `validation_rules`, `is_filterable`, `is_required`, `is_global`, `category_ids`, `sort_order`, `metadata` |
-| `AttributeTemplate` | `product_ext_attribute_template` | `id`, `code` (unique), `name`, `description`, `category_ids`, `attribute_keys`, `content_tree` (`tree@1`), `is_active`, `metadata` |
-| `ProductAttributeValue` | `product_ext_attribute_value` | `id`, `product_id`, `attribute_id`, `attribute_key`, `value_text`, `value_number`, `value_boolean`, `value_json`, `unit`, `value_normalized_si`, `sort_order`, `locale` |
-| `ProductFeature` | `product_ext_feature` | `id`, `code` (unique), `title`, `subtitle`, `description`, `icon_url`, `icon_name`, `badge_color`, `sort_order`, `is_active`, `metadata` |
+| Model                   | Table Name                       | Key Columns                                                                                                                                                                                                                                                                                                                 |
+| ----------------------- | -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ProductExtension`      | `product_extension`              | `id`, `product_id` (unique), `videos`, `tagline`, `media_items`, `models_3d`, `attachments`, `image_alts`, `content_tree`, `content_diff`, `template_id`, `feature_ids`, `option_metadata`, `storefront_overrides`, `seo_metadata`, `metadata`                                                                              |
+| `VariantExtension`      | `variant_extension`              | `id`, `variant_id` (unique), `product_id`, `thumbnail`, `images`, `videos`, `media_items`, `option_signature`, `swatch_color`, `swatch_image_url`, `metadata`                                                                                                                                                               |
+| `AttributeDefinition`   | `product_ext_attribute`          | `id`, `key` (unique), `label`, `description`, `type` (`text \| number \| boolean \| select \| multiselect \| color \| unit \| file \| sortable_list`), `unit_family`, `default_unit`, `allowed_units`, `options`, `validation_rules`, `is_filterable`, `is_required`, `is_global`, `category_ids`, `sort_order`, `metadata` |
+| `AttributeTemplate`     | `product_ext_attribute_template` | `id`, `code` (unique), `name`, `description`, `category_ids`, `attribute_keys`, `content_tree` (`tree@1`), `is_active`, `metadata`                                                                                                                                                                                          |
+| `ProductAttributeValue` | `product_ext_attribute_value`    | `id`, `product_id`, `attribute_id`, `attribute_key`, `value_text`, `value_number`, `value_boolean`, `value_json`, `unit`, `value_normalized_si`, `sort_order`, `locale`                                                                                                                                                     |
+| `ProductFeature`        | `product_ext_feature`            | `id`, `code` (unique), `title`, `subtitle`, `description`, `icon_url`, `icon_name`, `badge_color`, `sort_order`, `is_active`, `metadata`                                                                                                                                                                                    |
 
 ---
 
 ## Entity Links
 
-| File | Left Entity | Right Entity | Notes |
-|---|---|---|---|
-| `src/links/product-extension-link.ts` | `ProductModule.linkable.product` | `ProductExtModule.linkable.productExtension` | 1 : 1 link between core `Product` and `ProductExtension` |
+| File                                  | Left Entity                             | Right Entity                                 | Notes                                                           |
+| ------------------------------------- | --------------------------------------- | -------------------------------------------- | --------------------------------------------------------------- |
+| `src/links/product-extension-link.ts` | `ProductModule.linkable.product`        | `ProductExtModule.linkable.productExtension` | 1 : 1 link between core `Product` and `ProductExtension`        |
 | `src/links/variant-extension-link.ts` | `ProductModule.linkable.productVariant` | `ProductExtModule.linkable.variantExtension` | 1 : 1 link between core `ProductVariant` and `VariantExtension` |
 
 ---
@@ -137,25 +138,25 @@ Medusa Core (@medusajs/medusa/product)
 
 All workflows live in `src/workflows/` and implement full rollback compensation (restoring previous state on update or deleting newly created records):
 
-| Workflow ID | Export | Trigger / Usage |
-|---|---|---|
-| `upsert-product-ext` | `upsertProductExtWorkflow` | `POST /admin/products/:product_id/extension` |
-| `upsert-variant-ext` | `upsertVariantExtWorkflow` | `POST /admin/products/:product_id/variants/:variant_id/extension` |
-| `bulk-assign-variant-media-by-option` | `bulkAssignVariantMediaByOptionWorkflow` | `POST /admin/products/:product_id/variants/bulk-media` |
-| `apply-attribute-template` | `applyAttributeTemplateWorkflow` | `POST /admin/products/:product_id/attributes` & `product.created` subscriber |
-| `set-product-attributes` | `setProductAttributesWorkflow` | `POST /admin/products/:product_id/attributes` |
-| `import-image-alts` | `importImageAltsWorkflow` | `POST /admin/product-ext/image-alts` |
-| `create-attribute` / `update-attribute` / `delete-attribute` | `createAttributeWorkflow`, `updateAttributeWorkflow`, `deleteAttributeWorkflow` | `/admin/product-ext/attributes` CRUD |
-| `create-template` / `update-template` / `delete-template` | `createTemplateWorkflow`, `updateTemplateWorkflow`, `deleteTemplateWorkflow` | `/admin/product-ext/templates` CRUD |
-| `create-feature` / `update-feature` / `delete-feature` | `createFeatureWorkflow`, `updateFeatureWorkflow`, `deleteFeatureWorkflow` | `/admin/product-ext/features` CRUD |
+| Workflow ID                                                  | Export                                                                          | Trigger / Usage                                                              |
+| ------------------------------------------------------------ | ------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `upsert-product-ext`                                         | `upsertProductExtWorkflow`                                                      | `POST /admin/products/:product_id/extension`                                 |
+| `upsert-variant-ext`                                         | `upsertVariantExtWorkflow`                                                      | `POST /admin/products/:product_id/variants/:variant_id/extension`            |
+| `bulk-assign-variant-media-by-option`                        | `bulkAssignVariantMediaByOptionWorkflow`                                        | `POST /admin/products/:product_id/variants/bulk-media`                       |
+| `apply-attribute-template`                                   | `applyAttributeTemplateWorkflow`                                                | `POST /admin/products/:product_id/attributes` & `product.created` subscriber |
+| `set-product-attributes`                                     | `setProductAttributesWorkflow`                                                  | `POST /admin/products/:product_id/attributes`                                |
+| `import-image-alts`                                          | `importImageAltsWorkflow`                                                       | `POST /admin/product-ext/image-alts`                                         |
+| `create-attribute` / `update-attribute` / `delete-attribute` | `createAttributeWorkflow`, `updateAttributeWorkflow`, `deleteAttributeWorkflow` | `/admin/product-ext/attributes` CRUD                                         |
+| `create-template` / `update-template` / `delete-template`    | `createTemplateWorkflow`, `updateTemplateWorkflow`, `deleteTemplateWorkflow`    | `/admin/product-ext/templates` CRUD                                          |
+| `create-feature` / `update-feature` / `delete-feature`       | `createFeatureWorkflow`, `updateFeatureWorkflow`, `deleteFeatureWorkflow`       | `/admin/product-ext/features` CRUD                                           |
 
 ---
 
 ## Event Subscribers
 
-| File | Events | Behavior |
-|---|---|---|
-| `src/subscribers/product-created.ts` | `product.created` | Checks if the newly created product belongs to any category linked to an active `AttributeTemplate` and automatically runs `applyAttributeTemplateWorkflow`. |
+| File                                 | Events                                       | Behavior                                                                                                                                                                                |
+| ------------------------------------ | -------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `src/subscribers/product-created.ts` | `product.created`                            | Checks if the newly created product belongs to any category linked to an active `AttributeTemplate` and automatically runs `applyAttributeTemplateWorkflow`.                            |
 | `src/subscribers/product-deleted.ts` | `product.deleted`, `product-variant.deleted` | Purges `ProductExtension`, all `VariantExtension` rows, and `ProductAttributeValue` rows when a product is deleted, or deletes the single `VariantExtension` when a variant is deleted. |
 
 ---
@@ -164,26 +165,26 @@ All workflows live in `src/workflows/` and implement full rollback compensation 
 
 ### Storefront Endpoints
 
-| Method | Path | Description |
-|---|---|---|
-| `GET` | `/store/products/:product_id/extension` | Returns `{ product_id, videos, tagline, variants, media_gallery, models_3d, attachments, image_alts, content_sections, features, attributes, option_metadata, seo_metadata, resolved_override }`. Query params: `variant_ids`, `sales_channel_id`, `locale`. |
-| `POST` | `/store/product-ext/filter` | Filters product IDs by typed attribute criteria (`eq`, `in`, `min`, `max`, `unit`) with automatic SI/Imperial unit normalization. |
+| Method | Path                                    | Description                                                                                                                                                                                                                                                  |
+| ------ | --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `GET`  | `/store/products/:product_id/extension` | Returns `{ product_id, videos, tagline, variants, media_gallery, models_3d, attachments, image_alts, content_sections, features, attributes, option_metadata, seo_metadata, resolved_override }`. Query params: `variant_ids`, `sales_channel_id`, `locale`. |
+| `POST` | `/store/product-ext/filter`             | Filters product IDs by typed attribute criteria (`eq`, `in`, `min`, `max`, `unit`) with automatic SI/Imperial unit normalization.                                                                                                                            |
 
 ### Admin Endpoints
 
-| Method | Path | Description |
-|---|---|---|
-| `GET` / `POST` | `/admin/products/:product_id/extension` | Retrieve or upsert `ProductExtension` for `:product_id`. |
-| `GET` / `POST` | `/admin/products/:product_id/variants/:variant_id/extension` | Retrieve or upsert `VariantExtension` for `:variant_id`. |
-| `POST` | `/admin/products/:product_id/variants/bulk-media` | Bulk-assign thumbnail, gallery images, videos, and swatch color/image to all variants matching `option_title = option_value`. |
-| `GET` / `POST` | `/admin/products/:product_id/attributes` | Retrieve resolved attributes or set typed attribute values and apply a template. |
-| `GET` / `POST` | `/admin/product-ext/attributes` | List (with category inheritance via `category_id` & `ancestor_category_ids`) or create attribute definitions. |
-| `PATCH` / `DELETE` | `/admin/product-ext/attributes/:id` | Update or delete an attribute definition. |
-| `GET` / `POST` | `/admin/product-ext/templates` | List or create `tree@1` content & attribute templates. |
-| `PATCH` / `DELETE` | `/admin/product-ext/templates/:id` | Update or delete a template. |
-| `GET` / `POST` | `/admin/product-ext/features` | List or create reusable product feature badges. |
-| `PATCH` / `DELETE` | `/admin/product-ext/features/:id` | Update or delete a feature badge. |
-| `GET` / `POST` | `/admin/product-ext/image-alts` | Bulk export (`GET ?product_ids=...`) or import (`POST { csv_content }`) image alt-text via CSV. |
+| Method             | Path                                                         | Description                                                                                                                   |
+| ------------------ | ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------- |
+| `GET` / `POST`     | `/admin/products/:product_id/extension`                      | Retrieve or upsert `ProductExtension` for `:product_id`.                                                                      |
+| `GET` / `POST`     | `/admin/products/:product_id/variants/:variant_id/extension` | Retrieve or upsert `VariantExtension` for `:variant_id`.                                                                      |
+| `POST`             | `/admin/products/:product_id/variants/bulk-media`            | Bulk-assign thumbnail, gallery images, videos, and swatch color/image to all variants matching `option_title = option_value`. |
+| `GET` / `POST`     | `/admin/products/:product_id/attributes`                     | Retrieve resolved attributes or set typed attribute values and apply a template.                                              |
+| `GET` / `POST`     | `/admin/product-ext/attributes`                              | List (with category inheritance via `category_id` & `ancestor_category_ids`) or create attribute definitions.                 |
+| `PATCH` / `DELETE` | `/admin/product-ext/attributes/:id`                          | Update or delete an attribute definition.                                                                                     |
+| `GET` / `POST`     | `/admin/product-ext/templates`                               | List or create `tree@1` content & attribute templates.                                                                        |
+| `PATCH` / `DELETE` | `/admin/product-ext/templates/:id`                           | Update or delete a template.                                                                                                  |
+| `GET` / `POST`     | `/admin/product-ext/features`                                | List or create reusable product feature badges.                                                                               |
+| `PATCH` / `DELETE` | `/admin/product-ext/features/:id`                            | Update or delete a feature badge.                                                                                             |
+| `GET` / `POST`     | `/admin/product-ext/image-alts`                              | Bulk export (`GET ?product_ids=...`) or import (`POST { csv_content }`) image alt-text via CSV.                               |
 
 ---
 
@@ -191,19 +192,19 @@ All workflows live in `src/workflows/` and implement full rollback compensation 
 
 All Admin routes, components, and hooks in `src/admin/` are decoupled into focused modules (`< 170` lines per file):
 
-| Route / Zone | File | Description |
-|---|---|---|
-| `/product-ext` | `src/admin/routes/product-ext/page.tsx` | Overview dashboard with KPI `StatCard`s and `NavigationCard`s |
-| `/product-ext/attributes` | `src/admin/routes/product-ext/attributes/page.tsx` | Attribute definitions table & filterable catalog |
-| `/product-ext/attributes/create` | `src/admin/routes/product-ext/attributes/@create/page.tsx` | Focus modal to create a typed attribute definition |
-| `/product-ext/templates` | `src/admin/routes/product-ext/templates/page.tsx` | Hierarchical `tree@1` & attribute templates table |
-| `/product-ext/templates/create` | `src/admin/routes/product-ext/templates/@create/page.tsx` | Focus modal to create a content/attribute template |
-| `/product-ext/features` | `src/admin/routes/product-ext/features/page.tsx` | Reusable product feature badges table |
-| `/product-ext/features/create` | `src/admin/routes/product-ext/features/@create/page.tsx` | Focus modal to create a feature badge |
-| `/product-ext/variant-media` | `src/admin/routes/product-ext/variant-media/page.tsx` | Base-option bulk variant media assignment tool |
-| `/product-ext/image-alts` | `src/admin/routes/product-ext/image-alts/page.tsx` | Bulk CSV image alt-text export & import studio |
-| `product.details.after` | `src/admin/widgets/product-ext-widget.tsx` | Product detail card for tagline, videos, 3D `.glb` URL & resolved attributes |
-| `product_category.details.after` | `src/admin/widgets/category-attributes-widget.tsx` | Category detail card displaying inherited & category-specific attributes |
+| Route / Zone                     | File                                                       | Description                                                                  |
+| -------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `/product-ext`                   | `src/admin/routes/product-ext/page.tsx`                    | Overview dashboard with KPI `StatCard`s and `NavigationCard`s                |
+| `/product-ext/attributes`        | `src/admin/routes/product-ext/attributes/page.tsx`         | Attribute definitions table & filterable catalog                             |
+| `/product-ext/attributes/create` | `src/admin/routes/product-ext/attributes/@create/page.tsx` | Focus modal to create a typed attribute definition                           |
+| `/product-ext/templates`         | `src/admin/routes/product-ext/templates/page.tsx`          | Hierarchical `tree@1` & attribute templates table                            |
+| `/product-ext/templates/create`  | `src/admin/routes/product-ext/templates/@create/page.tsx`  | Focus modal to create a content/attribute template                           |
+| `/product-ext/features`          | `src/admin/routes/product-ext/features/page.tsx`           | Reusable product feature badges table                                        |
+| `/product-ext/features/create`   | `src/admin/routes/product-ext/features/@create/page.tsx`   | Focus modal to create a feature badge                                        |
+| `/product-ext/variant-media`     | `src/admin/routes/product-ext/variant-media/page.tsx`      | Base-option bulk variant media assignment tool                               |
+| `/product-ext/image-alts`        | `src/admin/routes/product-ext/image-alts/page.tsx`         | Bulk CSV image alt-text export & import studio                               |
+| `product.details.after`          | `src/admin/widgets/product-ext-widget.tsx`                 | Product detail card for tagline, videos, 3D `.glb` URL & resolved attributes |
+| `product_category.details.after` | `src/admin/widgets/category-attributes-widget.tsx`         | Category detail card displaying inherited & category-specific attributes     |
 
 ---
 

@@ -11,9 +11,9 @@ links/
 
 ## Link options
 
-| File | Left Entity | Right Entity | `isList` | `deleteCascade` | Notes |
-| --- | --- | --- | --- | --- | --- |
-| `order-documents.ts` | `OrderModule.linkable.order` | `DocumentsModule.linkable.mpdDocument` | ✓ | — | 1:N — an order can have multiple generated documents (invoices, packing slips, credit notes, POS receipts, and revisions) |
+| File                 | Left Entity                  | Right Entity                           | `isList` | `deleteCascade` | Notes                                                                                                                     |
+| -------------------- | ---------------------------- | -------------------------------------- | -------- | --------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `order-documents.ts` | `OrderModule.linkable.order` | `DocumentsModule.linkable.mpdDocument` | ✓        | —               | 1:N — an order can have multiple generated documents (invoices, packing slips, credit notes, POS receipts, and revisions) |
 
 ---
 
@@ -55,11 +55,7 @@ const query = req.scope.resolve(ContainerRegistrationKeys.QUERY)
 
 const { data: orders } = await query.graph({
   entity: "order",
-  fields: [
-    "id",
-    "display_id",
-    "mpd_documents.*",
-  ],
+  fields: ["id", "display_id", "mpd_documents.*"],
   filters: { id: orderId },
 })
 ```

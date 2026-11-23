@@ -21,9 +21,7 @@ export const OdooTriggerSyncSchema = z.object({
   direction: z
     .enum(["odoo_to_medusa", "medusa_to_odoo", "bidirectional"])
     .optional(),
-  strategy: z
-    .enum(["odoo_wins", "medusa_wins", "manual_conflict"])
-    .optional(),
+  strategy: z.enum(["odoo_wins", "medusa_wins", "manual_conflict"]).optional(),
   driftThreshold: z.number().min(0).optional(),
 })
 
@@ -61,9 +59,7 @@ export const OdooResolveConflictSchema = z.object({
 
 export const OdooBarcodeLookupSchema = z.object({
   barcode: z.string().min(1).max(128),
-  context: z
-    .enum(["pos", "warehouse", "receiving", "stocktake"])
-    .optional(),
+  context: z.enum(["pos", "warehouse", "receiving", "stocktake"]).optional(),
   deviceId: z.string().max(128).optional(),
   sessionId: z.string().max(128).optional(),
   operatorId: z.string().max(128).optional(),
@@ -107,7 +103,9 @@ export const OdooWebhookBodySchema = z.object({
 })
 
 export type OdooConfigInput = z.infer<typeof OdooConfigSchema>
-export type OdooVerifyConnectionInput = z.infer<typeof OdooVerifyConnectionSchema>
+export type OdooVerifyConnectionInput = z.infer<
+  typeof OdooVerifyConnectionSchema
+>
 export type OdooTriggerSyncInput = z.infer<typeof OdooTriggerSyncSchema>
 export type OdooUpsertMappingInput = z.infer<typeof OdooUpsertMappingSchema>
 export type OdooResolveFailureInput = z.infer<typeof OdooResolveFailureSchema>

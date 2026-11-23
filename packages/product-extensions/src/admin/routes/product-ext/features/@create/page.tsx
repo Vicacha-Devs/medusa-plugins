@@ -7,7 +7,7 @@ import {
   type FeatureFormState,
   useProductExtStudio,
 } from "../../../../hooks/use-product-ext-studio"
-import { RbacGuard } from "../../../../components/rbac-guard";
+import { RbacGuard } from "../../../../components/rbac-guard"
 
 const CreateFeatureContent = () => {
   const { handleSuccess } = useRouteModal()
@@ -41,6 +41,6 @@ const GuardedFeatureCreateModalPage = () => (
   <RbacGuard permission="product_extensions.write">
     <FeatureCreateModalPage />
   </RbacGuard>
-);
+)
 
-export default GuardedFeatureCreateModalPage;
+export default GuardedFeatureCreateModalPage

@@ -20,15 +20,15 @@ Files are named `<left-entity>-<right-entity>.ts`, matching the order of argumen
 
 ## Link options
 
-| File | `isList` | `deleteCascade` | Notes |
-| --- | --- | --- | --- |
-| `employee-customer.ts` | — | — | 1:1 |
-| `company-customer-group.ts` | ✓ (company) | — | N:1 — many companies per group, one group per company |
-| `company-carts.ts` | ✓ | — | 1:N |
-| `order-company.ts` | — | — | 1:1 |
-| `company-approval-setting.ts` | — | — | 1:1 |
-| `cart-approvals.ts` | ✓ | ✓ | 1:N; cascade-deleted with cart |
-| `cart-approval-status.ts` | — | ✓ | 1:1; cascade-deleted with cart |
+| File                          | `isList`    | `deleteCascade` | Notes                                                 |
+| ----------------------------- | ----------- | --------------- | ----------------------------------------------------- |
+| `employee-customer.ts`        | —           | —               | 1:1                                                   |
+| `company-customer-group.ts`   | ✓ (company) | —               | N:1 — many companies per group, one group per company |
+| `company-carts.ts`            | ✓           | —               | 1:N                                                   |
+| `order-company.ts`            | —           | —               | 1:1                                                   |
+| `company-approval-setting.ts` | —           | —               | 1:1                                                   |
+| `cart-approvals.ts`           | ✓           | ✓               | 1:N; cascade-deleted with cart                        |
+| `cart-approval-status.ts`     | —           | ✓               | 1:1; cascade-deleted with cart                        |
 
 ## Virtual links (`quote-links.ts`)
 

@@ -45,7 +45,10 @@ type MediaItem = {
   isThumbnail: boolean
 }
 
-const buildMedia = (images: MediaImage[] = [], thumbnail?: string | null): MediaItem[] => {
+const buildMedia = (
+  images: MediaImage[] = [],
+  thumbnail?: string | null
+): MediaItem[] => {
   const items: MediaItem[] = images.map((img) => ({
     id: img.id,
     url: img.url,
@@ -88,11 +91,14 @@ export const MediaSection = ({
 
   const handleDelete = async () => {
     const ids = Object.keys(selection)
-    const includingThumbnail = ids.some((id) => media.find((m) => m.id === id)?.isThumbnail)
+    const includingThumbnail = ids.some(
+      (id) => media.find((m) => m.id === id)?.isThumbnail
+    )
 
-    const warningFn = includingThumbnail && deleteWarning.withThumbnail
-      ? deleteWarning.withThumbnail
-      : deleteWarning.default
+    const warningFn =
+      includingThumbnail && deleteWarning.withThumbnail
+        ? deleteWarning.withThumbnail
+        : deleteWarning.default
 
     const confirmed = await prompt({
       title: t("general.areYouSure"),
@@ -168,7 +174,12 @@ export const MediaSection = ({
       ) : (
         <div className="flex flex-col items-center gap-y-4 pb-8 pt-6">
           <div className="flex flex-col items-center">
-            <Text size="small" leading="compact" weight="plus" className="text-ui-fg-subtle">
+            <Text
+              size="small"
+              leading="compact"
+              weight="plus"
+              className="text-ui-fg-subtle"
+            >
               {emptyState.header}
             </Text>
             <Text size="small" className="text-ui-fg-muted">
@@ -184,7 +195,9 @@ export const MediaSection = ({
       <CommandBar open={!!Object.keys(selection).length}>
         <CommandBar.Bar>
           <CommandBar.Value>
-            {t("general.countSelected", { count: Object.keys(selection).length })}
+            {t("general.countSelected", {
+              count: Object.keys(selection).length,
+            })}
           </CommandBar.Value>
           <CommandBar.Seperator />
           <CommandBar.Command

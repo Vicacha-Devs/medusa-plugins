@@ -1,6 +1,8 @@
 export const DOCUMENTS_QUERY_KEY = "documents" as const
 
-type QueryInvalidationListener = (invalidatedKeyPrefix: readonly unknown[]) => void
+type QueryInvalidationListener = (
+  invalidatedKeyPrefix: readonly unknown[]
+) => void
 
 const invalidationListeners = new Set<QueryInvalidationListener>()
 
@@ -13,13 +15,16 @@ export const documentsQueryKeys = {
 
   lists: () => [...documentsQueryKeys.all, "list"] as const,
   list: (params?: Record<string, unknown>) =>
-    params ? ([...documentsQueryKeys.lists(), params] as const) : documentsQueryKeys.lists(),
+    params
+      ? ([...documentsQueryKeys.lists(), params] as const)
+      : documentsQueryKeys.lists(),
 
   details: () => [...documentsQueryKeys.all, "detail"] as const,
   detail: (id: string) => [...documentsQueryKeys.details(), id] as const,
 
   orders: () => [...documentsQueryKeys.all, "order"] as const,
-  order: (orderId: string) => [...documentsQueryKeys.orders(), orderId] as const,
+  order: (orderId: string) =>
+    [...documentsQueryKeys.orders(), orderId] as const,
   orderSigningUrl: (orderId: string) =>
     [...documentsQueryKeys.order(orderId), "signing-url"] as const,
 
@@ -32,7 +37,8 @@ export const documentsQueryKeys = {
     params
       ? ([...documentsQueryKeys.templatesAll(), params] as const)
       : documentsQueryKeys.templatesAll(),
-  template: (id: string) => [...documentsQueryKeys.templatesAll(), "detail", id] as const,
+  template: (id: string) =>
+    [...documentsQueryKeys.templatesAll(), "detail", id] as const,
 
   regions: () => [...documentsQueryKeys.all, "regions"] as const,
 }
@@ -51,7 +57,12 @@ export function matchesQueryKeyPrefix(
     const a = candidateKey[i]
     const b = prefixKey[i]
     if (a === b) continue
-    if (typeof a === "object" && a !== null && typeof b === "object" && b !== null) {
+    if (
+      typeof a === "object" &&
+      a !== null &&
+      typeof b === "object" &&
+      b !== null
+    ) {
       if (JSON.stringify(a) === JSON.stringify(b)) continue
     }
     return false

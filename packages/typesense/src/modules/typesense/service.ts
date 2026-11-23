@@ -120,9 +120,7 @@ export class TypesenseModuleService extends MedusaService({
       nodes,
       apiKey: raw.apiKey || process.env.TYPESENSE_API_KEY || "",
       searchOnlyApiKey:
-        raw.searchOnlyApiKey ||
-        process.env.TYPESENSE_SEARCH_ONLY_API_KEY ||
-        "",
+        raw.searchOnlyApiKey || process.env.TYPESENSE_SEARCH_ONLY_API_KEY || "",
       connectionTimeoutSeconds: raw.connectionTimeoutSeconds ?? 10,
       numRetries: raw.numRetries ?? 3,
       retryIntervalSeconds: raw.retryIntervalSeconds ?? 0.5,
@@ -203,13 +201,12 @@ export class TypesenseModuleService extends MedusaService({
     return this.client_
   }
 
-  public async getPluginOptions(): Promise<Omit<
-    TypesensePluginOptions,
-    "apiKey" | "searchOnlyApiKey"
-  > & {
-    hasApiKey: boolean
-    hasSearchOnlyApiKey: boolean
-  }> {
+  public async getPluginOptions(): Promise<
+    Omit<TypesensePluginOptions, "apiKey" | "searchOnlyApiKey"> & {
+      hasApiKey: boolean
+      hasSearchOnlyApiKey: boolean
+    }
+  > {
     const { apiKey, searchOnlyApiKey, ...rest } = this.options_
     return {
       ...rest,
@@ -363,8 +360,7 @@ export class TypesenseModuleService extends MedusaService({
         stopwords_set_id: merged.stopwordsSetId || null,
         events_config: (merged.events || null) as any,
         schema_fields: (merged.schemaFields || null) as any,
-        storefront_filter_constraint:
-          merged.storefrontFilterConstraint || null,
+        storefront_filter_constraint: merged.storefrontFilterConstraint || null,
       }
 
       if (existingRows.length > 0) {
@@ -499,10 +495,7 @@ export class TypesenseModuleService extends MedusaService({
       for (const syn of synonyms) {
         if (!syn?.id) continue
         const { id, ...body } = syn
-        await client
-          .collections(targetCollection)
-          .synonyms()
-          .upsert(id, body)
+        await client.collections(targetCollection).synonyms().upsert(id, body)
       }
     } catch {
       // Ignore if source collection has no synonyms
@@ -513,16 +506,11 @@ export class TypesenseModuleService extends MedusaService({
         .collections(sourceCollection)
         .overrides()
         .retrieve()
-      const overrides = Array.isArray(ovrRes?.overrides)
-        ? ovrRes.overrides
-        : []
+      const overrides = Array.isArray(ovrRes?.overrides) ? ovrRes.overrides : []
       for (const ovr of overrides) {
         if (!ovr?.id) continue
         const { id, ...body } = ovr
-        await client
-          .collections(targetCollection)
-          .overrides()
-          .upsert(id, body)
+        await client.collections(targetCollection).overrides().upsert(id, body)
       }
     } catch {
       // Ignore if source collection has no overrides
@@ -689,9 +677,12 @@ export class TypesenseModuleService extends MedusaService({
       const prefix = `${aliasName}_v_`
       const versioned = allCollections
         .map((c: any) => String(c?.name || ""))
-        .filter((name: string) => name.startsWith(prefix) && name !== activeCollectionName)
-        .sort()
-        .reverse()
+        .filter(
+          (name: string) =>
+            name.startsWith(prefix) && name !== activeCollectionName
+        )
+        .toSorted()
+        .toReversed()
 
       const toDelete = versioned.slice(keepCount)
       for (const oldName of toDelete) {
@@ -807,10 +798,8 @@ export class TypesenseModuleService extends MedusaService({
 
     const startTime = Date.now()
     const client = this.getClient()
-    const { aliasName, physicalName } = await this.resolvePhysicalCollectionName(
-      entity,
-      locale
-    )
+    const { aliasName, physicalName } =
+      await this.resolvePhysicalCollectionName(entity, locale)
 
     let deletedCount = 0
     for (const id of validIds) {
@@ -870,10 +859,8 @@ export class TypesenseModuleService extends MedusaService({
     const entity = params.entity || "products"
     const definition = await this.getEntityDefinition(entity)
     const locale = params.locale || this.options_.defaultLocale || "en"
-    const { aliasName, physicalName } = await this.resolvePhysicalCollectionName(
-      entity,
-      locale
-    )
+    const { aliasName, physicalName } =
+      await this.resolvePhysicalCollectionName(entity, locale)
     const client = this.getClient()
 
     const mode: SearchMode = params.mode || "keyword"
@@ -972,7 +959,7 @@ export class TypesenseModuleService extends MedusaService({
       ...(params.stopwords || definition.stopwordsSetId
         ? { stopwords: params.stopwords || definition.stopwordsSetId }
         : {}),
-      ...(params.rawParams || {}),
+      ...params.rawParams,
     }
 
     // Vector / Semantic / Hybrid Search configuration
@@ -1034,7 +1021,7 @@ export class TypesenseModuleService extends MedusaService({
       ]
 
       for (const disjunctiveKey of filterKeys) {
-        const siblingFilters = { ...(params.filters || {}) }
+        const siblingFilters = { ...params.filters }
         delete siblingFilters[disjunctiveKey]
         const siblingCompiled = compileFilterObjectToTypesense(siblingFilters)
         const siblingFilterBy = combineTypesenseFilters(
@@ -1141,7 +1128,10 @@ export class TypesenseModuleService extends MedusaService({
       query: q,
       hits,
       documents: hits.map((h) => h.document),
-      found: typeof primaryResult?.found === "number" ? primaryResult.found : hits.length,
+      found:
+        typeof primaryResult?.found === "number"
+          ? primaryResult.found
+          : hits.length,
       out_of:
         typeof primaryResult?.out_of === "number"
           ? primaryResult.out_of
@@ -1232,7 +1222,7 @@ export class TypesenseModuleService extends MedusaService({
   ): Promise<TypesenseSynonymInput> {
     const client = this.getClient()
     const { physicalName } = await this.ensureCollectionReady(entity, locale)
-    const { id, ...body } = input
+    const { id } = input
     const payload: Record<string, any> = {
       synonyms: input.synonyms,
       ...(input.root ? { root: input.root } : {}),
@@ -1254,10 +1244,7 @@ export class TypesenseModuleService extends MedusaService({
       entity,
       locale
     )
-    return await client
-      .collections(physicalName)
-      .synonyms(synonymId)
-      .delete()
+    return await client.collections(physicalName).synonyms(synonymId).delete()
   }
 
   public async listCurations(
@@ -1298,10 +1285,7 @@ export class TypesenseModuleService extends MedusaService({
       entity,
       locale
     )
-    return await client
-      .collections(physicalName)
-      .overrides(curationId)
-      .delete()
+    return await client.collections(physicalName).overrides(curationId).delete()
   }
 
   public async listStopwordSets(): Promise<TypesenseStopwordSetInput[]> {
@@ -1398,7 +1382,8 @@ export class TypesenseModuleService extends MedusaService({
       input.additionalFilterBy
     )
 
-    const ttl = input.expiresInSeconds || this.options_.scopedKeyTtlSeconds || 3600
+    const ttl =
+      input.expiresInSeconds || this.options_.scopedKeyTtlSeconds || 3600
     const expiresAt = Math.floor(Date.now() / 1000) + ttl
 
     const keyParams: Record<string, any> = {
@@ -1411,7 +1396,10 @@ export class TypesenseModuleService extends MedusaService({
 
     let scopedApiKey: string
     const client = this.getClient()
-    if (typeof client?.keys === "function" && typeof client.keys().generateScopedSearchKey === "function") {
+    if (
+      typeof client?.keys === "function" &&
+      typeof client.keys().generateScopedSearchKey === "function"
+    ) {
       scopedApiKey = client.keys().generateScopedSearchKey(parentKey, keyParams)
     } else {
       const paramsJson = JSON.stringify(keyParams)
@@ -1521,7 +1509,7 @@ export class TypesenseModuleService extends MedusaService({
         numDocuments: collMeta?.num_documents ?? 0,
         numFields: Array.isArray(collMeta?.fields)
           ? collMeta.fields.length
-          : def.schemaFields?.length ?? 0,
+          : (def.schemaFields?.length ?? 0),
         hasVectorEmbedder: Boolean(activeEmbedder?.enabled),
         embedderModel: activeEmbedder?.enabled
           ? activeEmbedder.model_name
@@ -1714,7 +1702,7 @@ export class TypesenseModuleService extends MedusaService({
 
       const popularQueries = allAggregated
         .filter((q) => !q.isNoHit)
-        .sort((a, b) => b.count - a.count)
+        .toSorted((a, b) => b.count - a.count)
         .slice(0, limit)
         .map((q) => ({
           query: q.query,
@@ -1726,7 +1714,7 @@ export class TypesenseModuleService extends MedusaService({
 
       const noHitQueries = allAggregated
         .filter((q) => q.isNoHit)
-        .sort((a, b) => b.count - a.count)
+        .toSorted((a, b) => b.count - a.count)
         .slice(0, limit)
         .map((q) => ({
           query: q.query,

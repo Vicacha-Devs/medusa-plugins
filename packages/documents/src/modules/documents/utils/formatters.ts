@@ -95,7 +95,10 @@ export function formatAddressLines(
  * Sanitizes a filename for Content-Disposition headers and File Module storage,
  * stripping control characters, quotes, and path traversal sequences.
  */
-export function sanitizeFilename(name: string, fallback = "document.pdf"): string {
+export function sanitizeFilename(
+  name: string,
+  fallback = "document.pdf"
+): string {
   if (!name || typeof name !== "string") return fallback
   const cleaned = name
     .replace(/\.\.+/g, "-")

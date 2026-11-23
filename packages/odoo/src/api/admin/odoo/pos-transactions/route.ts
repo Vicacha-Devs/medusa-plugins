@@ -53,7 +53,8 @@ export async function POST(req: MedusaRequest, res: MedusaResponse) {
 
   if (!body.externalTransactionId || !Array.isArray(body.items)) {
     res.status(400).json({
-      error: "externalTransactionId and items are required to enqueue POS transaction.",
+      error:
+        "externalTransactionId and items are required to enqueue POS transaction.",
     })
     return
   }

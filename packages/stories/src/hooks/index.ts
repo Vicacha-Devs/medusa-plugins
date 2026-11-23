@@ -363,12 +363,7 @@ export function useStoryPlayer(params: {
   }, [activeSlide, markSlideSeen, onSlideImpression])
 
   useEffect(() => {
-    if (
-      !autoPlay ||
-      !activeSlide ||
-      isPaused ||
-      Boolean(selectedHotspot)
-    ) {
+    if (!autoPlay || !activeSlide || isPaused || Boolean(selectedHotspot)) {
       return
     }
 

@@ -2,8 +2,23 @@
   "name": "@vicacha-devs/medusa-plugin-odoo",
   "version": "0.0.1",
   "description": "Bidirectional Odoo ERP (Odoo 14-19+ JSON-RPC 2.0 & JSON-2 API) integration plugin for Medusa v2 — products & variants, multi-warehouse inventory & drift reconciliation, orders & invoices/payments, customers, POS/warehouse barcode resolver, offline POS replay, webhooks, Prometheus metrics, SDK, React hooks & Admin UI.",
-  "author": "Vicacha Devs",
+  "keywords": [
+    "barcode",
+    "erp",
+    "inventory-reconciliation",
+    "invoicing",
+    "json2",
+    "jsonrpc",
+    "medusa",
+    "medusa-plugin",
+    "medusa-plugin-integration",
+    "medusa-plugin-odoo",
+    "medusa-v2",
+    "odoo",
+    "pos"
+  ],
   "license": "MIT",
+  "author": "Vicacha Devs",
   "files": [
     ".medusa/server",
     "src",
@@ -45,20 +60,6 @@
     },
     "./*": "./.medusa/server/src/*.js"
   },
-  "keywords": [
-    "medusa",
-    "medusa-v2",
-    "medusa-plugin",
-    "medusa-plugin-odoo",
-    "odoo",
-    "erp",
-    "jsonrpc",
-    "json2",
-    "inventory-reconciliation",
-    "barcode",
-    "pos",
-    "invoicing"
-  ],
   "scripts": {
     "build": "medusa plugin:build && tsc-alias -p tsconfig.json",
     "publish:local": "medusa plugin:publish",

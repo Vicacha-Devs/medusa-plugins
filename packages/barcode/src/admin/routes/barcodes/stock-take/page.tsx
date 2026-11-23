@@ -10,7 +10,7 @@ import {
   StockTakeSessionsSection,
 } from "../../../components"
 import { useBarcodeStudio } from "../../../hooks/use-barcode-studio"
-import { RbacGuard } from "../../../components/rbac-guard";
+import { RbacGuard } from "../../../components/rbac-guard"
 
 const BarcodeStockTakePage = () => {
   const studio = useBarcodeStudio()
@@ -40,9 +40,7 @@ const BarcodeStockTakePage = () => {
                 sessions={studio.sessions}
                 selectedSessionId={studio.selectedSessionId}
                 onSelectSession={studio.setSelectedSessionId}
-                onApplySession={(id) =>
-                  void studio.handleApplyCountSession(id)
-                }
+                onApplySession={(id) => void studio.handleApplyCountSession(id)}
               />
             </LayoutComposer.Entry>
           ),
@@ -71,6 +69,6 @@ const GuardedBarcodeStockTakePage = () => (
   <RbacGuard permission="barcodes.read">
     <BarcodeStockTakePage />
   </RbacGuard>
-);
+)
 
-export default GuardedBarcodeStockTakePage;
+export default GuardedBarcodeStockTakePage

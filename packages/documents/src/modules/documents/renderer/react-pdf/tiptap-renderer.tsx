@@ -39,19 +39,23 @@ interface TipTapNode {
   content?: TipTapNode[]
 }
 
-function renderInlineNodes(nodes: TipTapNode[] = [], keyPrefix = "n"): React.ReactNode[] {
+function renderInlineNodes(
+  nodes: TipTapNode[] = [],
+  keyPrefix = "n"
+): React.ReactNode[] {
   return nodes.map((node, index) => {
     const key = `${keyPrefix}-${index}`
     if (node.type === "text" && typeof node.text === "string") {
-      const isBold = node.marks?.some((m) => m.type === "bold" || m.type === "strong")
-      const isItalic = node.marks?.some((m) => m.type === "italic" || m.type === "em")
+      const isBold = node.marks?.some(
+        (m) => m.type === "bold" || m.type === "strong"
+      )
+      const isItalic = node.marks?.some(
+        (m) => m.type === "italic" || m.type === "em"
+      )
       return (
         <Text
           key={key}
-          style={[
-            isBold ? styles.bold : {},
-            isItalic ? styles.italic : {},
-          ]}
+          style={[isBold ? styles.bold : {}, isItalic ? styles.italic : {}]}
         >
           {node.text}
         </Text>
@@ -90,10 +94,12 @@ function renderTipTapAst(doc: TipTapNode): React.ReactNode {
                 {isOrdered ? `${liIdx + 1}.` : "•"}
               </Text>
               <Text style={styles.listItemText}>
-                {li.content
-                  ?.map((child, cIdx) =>
-                    renderInlineNodes(child.content || [child], `${key}-${liIdx}-${cIdx}`)
-                  )}
+                {li.content?.map((child, cIdx) =>
+                  renderInlineNodes(
+                    child.content || [child],
+                    `${key}-${liIdx}-${cIdx}`
+                  )
+                )}
               </Text>
             </View>
           ))}

@@ -15,7 +15,7 @@ export const listQuoteFields = [
   "draft_order_id",
   "expires_at",
   "created_at",
-];
+]
 
 export const quoteFields = [
   ...listQuoteFields,
@@ -32,14 +32,14 @@ export const quoteFields = [
   "*draft_order.items.variant",
   "*draft_order.items.variant.product",
   "*draft_order.items.detail",
-];
+]
 
 export const retrieveQuoteTransformQueryConfig = {
   defaults: quoteFields,
   isList: false,
-};
+}
 
 export const listQuotesTransformQueryConfig = {
   defaults: listQuoteFields,
   isList: true,
-};
+}

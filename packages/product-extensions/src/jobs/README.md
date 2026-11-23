@@ -19,7 +19,10 @@ To add a scheduled job in the future, create a file in `src/jobs/<job-name>.ts` 
 
 ```ts
 import type { MedusaContainer } from "@medusajs/framework/types"
-import { PRODUCT_EXT_MODULE, type ProductExtModuleService } from "../modules/product-ext"
+import {
+  PRODUCT_EXT_MODULE,
+  type ProductExtModuleService,
+} from "../modules/product-ext"
 
 export default async function reconcileProductExtensionsJob(
   container: MedusaContainer

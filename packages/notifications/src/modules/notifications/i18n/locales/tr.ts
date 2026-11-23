@@ -40,7 +40,8 @@ export const tr: NotificationTranslationDictionary = {
     downloadInvoiceButton: "PDF Faturayı İndir",
   },
   shipment: {
-    shippedSubject: "#{{data.order_display_id}} Numaralı Siparişiniz Kargoya Verildi!",
+    shippedSubject:
+      "#{{data.order_display_id}} Numaralı Siparişiniz Kargoya Verildi!",
     shippedTitle: "Paketiniz yola çıktı",
     shippedIntro:
       "#{{data.order_display_id}} numaralı siparişiniz kargo firmasına teslim edildi.",

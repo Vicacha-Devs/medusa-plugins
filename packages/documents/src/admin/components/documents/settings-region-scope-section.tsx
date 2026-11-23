@@ -1,12 +1,5 @@
 import { SectionRow } from "@medusajs/dashboard/components"
-import {
-  Badge,
-  Button,
-  Container,
-  Heading,
-  Select,
-  Text,
-} from "@medusajs/ui"
+import { Badge, Button, Container, Heading, Select, Text } from "@medusajs/ui"
 import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router-dom"
 
@@ -109,12 +102,7 @@ export const SettingsRegionScopeSection: React.FC<
         >
           {t("settings.backToHub")}
         </Button>
-        <Button
-          size="small"
-          type="submit"
-          variant="primary"
-          isLoading={saving}
-        >
+        <Button size="small" type="submit" variant="primary" isLoading={saving}>
           {t("settings.saveButton")}
         </Button>
       </div>

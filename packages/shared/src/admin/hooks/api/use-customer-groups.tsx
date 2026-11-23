@@ -1,4 +1,7 @@
-import { AdminCustomerGroupListResponse, AdminGetCustomerGroupsParams } from "@medusajs/framework/types"
+import {
+  AdminCustomerGroupListResponse,
+  AdminGetCustomerGroupsParams,
+} from "@medusajs/framework/types"
 import { FetchError } from "@medusajs/js-sdk"
 import { QueryKey, useQuery, UseQueryOptions } from "@tanstack/react-query"
 

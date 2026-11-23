@@ -1,7 +1,7 @@
-import { model } from "@medusajs/framework/utils";
-import { EQuoteStatus } from "@b2b/types";
+import { model } from "@medusajs/framework/utils"
+import { EQuoteStatus } from "@b2b/types"
 
-import { Message } from "./message";
+import { Message } from "./message"
 
 export const Quote = model
   .define("quote", {
@@ -55,4 +55,4 @@ export const Quote = model
       on: ["expires_at"],
       where: "deleted_at IS NULL AND expires_at IS NOT NULL",
     },
-  ]);
+  ])

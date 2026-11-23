@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom"
 import { useTranslation } from "react-i18next"
 
 import { useCompany, useUpdateApprovalSettings } from "../../../../../hooks/api"
-import { RbacGuard } from "@vicacha-devs/medusa-shared-admin/admin";
+import { RbacGuard } from "@vicacha-devs/medusa-shared-admin/admin"
 
 const ApprovalSettingsContent = ({ id }: { id: string }) => {
   const { t } = useTranslation()
@@ -16,15 +16,22 @@ const ApprovalSettingsContent = ({ id }: { id: string }) => {
   const company = data?.company as any
   const approvalSettings = company?.approval_settings
 
-  const [requiresAdminApproval, setRequiresAdminApproval] = useState<boolean | null>(null)
-  const [requiresSalesManagerApproval, setRequiresSalesManagerApproval] = useState<boolean | null>(null)
+  const [requiresAdminApproval, setRequiresAdminApproval] = useState<
+    boolean | null
+  >(null)
+  const [requiresSalesManagerApproval, setRequiresSalesManagerApproval] =
+    useState<boolean | null>(null)
 
   const { mutateAsync, isPending } = useUpdateApprovalSettings(id)
 
   if (isLoading || !company) return null
 
-  const adminValue = requiresAdminApproval ?? (approvalSettings?.requires_admin_approval || false)
-  const salesValue = requiresSalesManagerApproval ?? (approvalSettings?.requires_sales_manager_approval || false)
+  const adminValue =
+    requiresAdminApproval ??
+    (approvalSettings?.requires_admin_approval || false)
+  const salesValue =
+    requiresSalesManagerApproval ??
+    (approvalSettings?.requires_sales_manager_approval || false)
 
   const handleSubmit = async () => {
     try {
@@ -55,7 +62,9 @@ const ApprovalSettingsContent = ({ id }: { id: string }) => {
           onChange={() => setRequiresSalesManagerApproval(!salesValue)}
           fieldName="requires_sales_manager_approval"
           label={t("companies.approvalSettings.requiresSalesManager")}
-          description={t("companies.approvalSettings.requiresSalesManagerDescription")}
+          description={t(
+            "companies.approvalSettings.requiresSalesManagerDescription"
+          )}
         />
       </RouteDrawer.Body>
       <RouteDrawer.Footer>
@@ -92,6 +101,6 @@ const GuardedCompanyApprovalSettings = () => (
   <RbacGuard permission="b2b.write">
     <CompanyApprovalSettings />
   </RbacGuard>
-);
+)
 
-export default GuardedCompanyApprovalSettings;
+export default GuardedCompanyApprovalSettings

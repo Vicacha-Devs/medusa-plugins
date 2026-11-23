@@ -41,7 +41,7 @@ export const QuoteMessagesSection = ({
 
   const sorted = useMemo(
     () =>
-      [...messages].sort(
+      [...messages].toSorted(
         (a, b) =>
           new Date((a as any).created_at).getTime() -
           new Date((b as any).created_at).getTime()

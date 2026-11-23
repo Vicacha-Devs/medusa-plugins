@@ -1,6 +1,9 @@
 import type { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
 import DianModuleService from "../../../../modules/dian/service"
-import { DANE_DEPARTMENTS, DANE_MUNICIPALITIES } from "../../../../modules/dian/utils"
+import {
+  DANE_DEPARTMENTS,
+  DANE_MUNICIPALITIES,
+} from "../../../../modules/dian/utils"
 import { DIAN_MODULE } from "../../../../types"
 
 export async function GET(req: MedusaRequest, res: MedusaResponse) {

@@ -1,65 +1,71 @@
-import { ActionMenu } from "@medusajs/dashboard/components";
-import { Check, XMark } from "@medusajs/icons";
-import { Button, Drawer, Label, Textarea, toast, usePrompt } from "@medusajs/ui";
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
+import { ActionMenu } from "@medusajs/dashboard/components"
+import { Check, XMark } from "@medusajs/icons"
+import { Button, Drawer, Label, Textarea, toast, usePrompt } from "@medusajs/ui"
+import { useState } from "react"
+import { useTranslation } from "react-i18next"
 
-import { ApprovalStatusType, ApprovalType } from "../../../../../types/approval";
-import { useUpdateApproval } from "../../../../hooks/api/approvals.tsx";
+import { ApprovalStatusType, ApprovalType } from "../../../../../types/approval"
+import { useUpdateApproval } from "../../../../hooks/api/approvals.tsx"
 
 export const ApprovalActions = ({ cart }: { cart: Record<string, any> }) => {
-  const { t } = useTranslation();
-  const dialog = usePrompt();
+  const { t } = useTranslation()
+  const dialog = usePrompt()
 
-  const [rejectOpen, setRejectOpen] = useState(false);
-  const [reason, setReason] = useState("");
+  const [rejectOpen, setRejectOpen] = useState(false)
+  const [reason, setReason] = useState("")
 
   const pendingApproval =
     cart.approvals?.find(
-      (a: any) => a.type === ApprovalType.ADMIN && a.status === ApprovalStatusType.PENDING
+      (a: any) =>
+        a.type === ApprovalType.ADMIN && a.status === ApprovalStatusType.PENDING
     ) ??
     cart.approvals?.find(
-      (a: any) => a.type === ApprovalType.SALES_MANAGER && a.status === ApprovalStatusType.PENDING
-    );
+      (a: any) =>
+        a.type === ApprovalType.SALES_MANAGER &&
+        a.status === ApprovalStatusType.PENDING
+    )
 
-  const { mutateAsync: updateApproval } = useUpdateApproval(pendingApproval?.id);
+  const { mutateAsync: updateApproval } = useUpdateApproval(pendingApproval?.id)
 
   const approveCart = async () => {
     const confirmed = await dialog({
       title: t("approvals.prompts.approve.title"),
       description: t("approvals.prompts.approve.description"),
-    });
+    })
 
-    if (!confirmed) return;
+    if (!confirmed) return
 
     try {
-      await updateApproval({ status: ApprovalStatusType.APPROVED });
-      toast.success(t("approvals.toasts.approved"));
+      await updateApproval({ status: ApprovalStatusType.APPROVED })
+      toast.success(t("approvals.toasts.approved"))
     } catch {
-      toast.error(t("approvals.toasts.approveError"));
+      toast.error(t("approvals.toasts.approveError"))
     }
-  };
+  }
 
   const openRejectDialog = () => {
-    setReason("");
-    setRejectOpen(true);
-  };
+    setReason("")
+    setRejectOpen(true)
+  }
 
   const confirmReject = async () => {
     try {
       await updateApproval({
         status: ApprovalStatusType.REJECTED,
         reason: reason.trim() || null,
-      });
-      toast.success(t("approvals.toasts.rejected"));
-      setRejectOpen(false);
+      })
+      toast.success(t("approvals.toasts.rejected"))
+      setRejectOpen(false)
     } catch {
-      toast.error(t("approvals.toasts.rejectError"));
+      toast.error(t("approvals.toasts.rejectError"))
     }
-  };
+  }
 
-  if (!pendingApproval || cart.approval_status?.status !== ApprovalStatusType.PENDING) {
-    return null;
+  if (
+    !pendingApproval ||
+    cart.approval_status?.status !== ApprovalStatusType.PENDING
+  ) {
+    return null
   }
 
   return (
@@ -96,9 +102,7 @@ export const ApprovalActions = ({ cart }: { cart: Record<string, any> }) => {
             </Drawer.Description>
           </Drawer.Header>
           <Drawer.Body className="flex flex-col gap-y-3">
-            <Label htmlFor="reject-reason">
-              {t("approvals.table.reason")}
-            </Label>
+            <Label htmlFor="reject-reason">{t("approvals.table.reason")}</Label>
             <Textarea
               id="reject-reason"
               value={reason}
@@ -119,7 +123,7 @@ export const ApprovalActions = ({ cart }: { cart: Record<string, any> }) => {
         </Drawer.Content>
       </Drawer>
     </>
-  );
-};
+  )
+}
 
-export default ApprovalActions;
+export default ApprovalActions

@@ -56,7 +56,8 @@ export async function importInventoryFromOdoo(
 
   try {
     const client = await this.getOdooClient()
-    const activeScope = scope ?? (this.container_ as { resolve?: (k: string) => unknown })
+    const activeScope =
+      scope ?? (this.container_ as { resolve?: (k: string) => unknown })
 
     let items = skusInput ?? []
     const inventoryModule =
@@ -164,7 +165,9 @@ export async function importInventoryFromOdoo(
           updated++
         } catch (err) {
           failed++
-          errors.push(`${lvl.sku}@${map.medusaLocationId}: ${errorMessage(err)}`)
+          errors.push(
+            `${lvl.sku}@${map.medusaLocationId}: ${errorMessage(err)}`
+          )
         }
       }
     }
@@ -286,7 +289,11 @@ export async function exportInventoryToOdoo(
           })
           .catch(() => ({ data: [] }))
 
-        const extracted: Array<{ locationId: string; sku: string; qty: number }> = []
+        const extracted: Array<{
+          locationId: string
+          sku: string
+          qty: number
+        }> = []
         for (const item of data) {
           if (!item.sku) continue
           for (const ll of item.location_levels ?? []) {

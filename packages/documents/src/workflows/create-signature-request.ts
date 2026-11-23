@@ -28,7 +28,7 @@ const createSignatureRequestStep = createStep(
       actor_id: input.actor_id ?? null,
       details: {
         signature_request_id: signatureRequest.id,
-        ...(input.audit_details ?? {}),
+        ...input.audit_details,
       },
     })
     return new StepResponse(signatureRequest, signatureRequest.id)

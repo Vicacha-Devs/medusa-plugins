@@ -312,7 +312,9 @@ export class ProductExtModuleService extends MedusaService({
     return list[0] ? normalizeProductExtensionRecord(list[0]) : null
   }
 
-  async upsertByProductIdWithState(input: UpsertProductExtensionInput): Promise<{
+  async upsertByProductIdWithState(
+    input: UpsertProductExtensionInput
+  ): Promise<{
     record: ProductExtensionDTO
     wasNew: boolean
     previousState: ProductExtensionDTO | null
@@ -339,12 +341,12 @@ export class ProductExtModuleService extends MedusaService({
     const models3d =
       input.models_3d !== undefined
         ? normalizeModel3DList(input.models_3d)
-        : existing?.models_3d ?? []
+        : (existing?.models_3d ?? [])
 
     const attachments =
       input.attachments !== undefined
         ? normalizeAttachmentsList(input.attachments)
-        : existing?.attachments ?? []
+        : (existing?.attachments ?? [])
 
     const imageAlts: ImageAltMetadata[] =
       input.image_alts !== undefined
@@ -360,21 +362,21 @@ export class ProductExtModuleService extends MedusaService({
             focal_point: item.focal_point ?? null,
             locale: item.locale ?? null,
           }))
-        : existing?.image_alts ?? []
+        : (existing?.image_alts ?? [])
 
     const contentTree =
       input.content_tree !== undefined
         ? input.content_tree
           ? validateTreeDocV1(input.content_tree)
           : null
-        : existing?.content_tree ?? null
+        : (existing?.content_tree ?? null)
 
     const contentDiff =
       input.content_diff !== undefined
         ? input.content_diff
           ? validateDiffDocV1(input.content_diff)
           : null
-        : existing?.content_diff ?? null
+        : (existing?.content_diff ?? null)
 
     const payload = {
       product_id: productId,
@@ -382,7 +384,7 @@ export class ProductExtModuleService extends MedusaService({
       tagline:
         input.tagline !== undefined
           ? input.tagline
-          : existing?.tagline ?? null,
+          : (existing?.tagline ?? null),
       media_items: asJsonRecord(normalizedMedia.mediaItems),
       models_3d: asJsonRecord(models3d),
       attachments: asJsonRecord(attachments),
@@ -392,31 +394,31 @@ export class ProductExtModuleService extends MedusaService({
       template_id:
         input.template_id !== undefined
           ? input.template_id
-          : existing?.template_id ?? null,
+          : (existing?.template_id ?? null),
       feature_ids: asJsonRecord(
         input.feature_ids !== undefined
           ? input.feature_ids
-          : existing?.feature_ids ?? []
+          : (existing?.feature_ids ?? [])
       ),
       option_metadata: asJsonRecord(
         input.option_metadata !== undefined
           ? input.option_metadata
-          : existing?.option_metadata ?? []
+          : (existing?.option_metadata ?? [])
       ),
       storefront_overrides: asJsonRecord(
         input.storefront_overrides !== undefined
           ? input.storefront_overrides
-          : existing?.storefront_overrides ?? []
+          : (existing?.storefront_overrides ?? [])
       ),
       seo_metadata: asJsonRecord(
         input.seo_metadata !== undefined
           ? input.seo_metadata
-          : existing?.seo_metadata ?? null
+          : (existing?.seo_metadata ?? null)
       ),
       metadata: asJsonRecord(
         input.metadata !== undefined
           ? input.metadata
-          : existing?.metadata ?? null
+          : (existing?.metadata ?? null)
       ),
     }
 
@@ -504,7 +506,9 @@ export class ProductExtModuleService extends MedusaService({
     return rows.map(normalizeVariantExtensionRecord)
   }
 
-  async upsertByVariantIdWithState(input: UpsertVariantExtensionInput): Promise<{
+  async upsertByVariantIdWithState(
+    input: UpsertVariantExtensionInput
+  ): Promise<{
     record: VariantExtensionDTO
     wasNew: boolean
     previousState: VariantExtensionDTO | null
@@ -531,7 +535,7 @@ export class ProductExtModuleService extends MedusaService({
     const normalizedImages =
       input.images !== undefined
         ? normalizeVariantImages(input.images)
-        : existing?.images ?? []
+        : (existing?.images ?? [])
 
     const validatedThumbnail =
       input.thumbnail !== undefined
@@ -541,14 +545,14 @@ export class ProductExtModuleService extends MedusaService({
               fieldName: "variant.thumbnail",
             })
           : null
-        : existing?.thumbnail ?? null
+        : (existing?.thumbnail ?? null)
 
     const validatedSwatchColor =
       input.swatch_color !== undefined
         ? input.swatch_color
           ? validateHexColor(input.swatch_color, "swatch_color")
           : null
-        : existing?.swatch_color ?? null
+        : (existing?.swatch_color ?? null)
 
     const validatedSwatchImage =
       input.swatch_image_url !== undefined
@@ -558,14 +562,14 @@ export class ProductExtModuleService extends MedusaService({
               fieldName: "variant.swatch_image_url",
             })
           : null
-        : existing?.swatch_image_url ?? null
+        : (existing?.swatch_image_url ?? null)
 
     const payload = {
       variant_id: variantId,
       product_id:
         input.product_id !== undefined
           ? input.product_id
-          : existing?.product_id ?? null,
+          : (existing?.product_id ?? null),
       thumbnail: validatedThumbnail,
       images: asJsonRecord(normalizedImages),
       videos: asJsonRecord(normalizedMedia.videoUrls),
@@ -573,13 +577,13 @@ export class ProductExtModuleService extends MedusaService({
       option_signature:
         input.option_signature !== undefined
           ? input.option_signature
-          : existing?.option_signature ?? null,
+          : (existing?.option_signature ?? null),
       swatch_color: validatedSwatchColor,
       swatch_image_url: validatedSwatchImage,
       metadata: asJsonRecord(
         input.metadata !== undefined
           ? input.metadata
-          : existing?.metadata ?? null
+          : (existing?.metadata ?? null)
       ),
     }
 
@@ -661,10 +665,7 @@ export class ProductExtModuleService extends MedusaService({
       const current = await this.getByVariantId(candidate.variant_id)
       const nextImages =
         mode === "append" && current
-          ? [
-              ...current.images,
-              ...normalizeVariantImages(input.images ?? []),
-            ]
+          ? [...current.images, ...normalizeVariantImages(input.images ?? [])]
           : input.images
 
       const nextVideos =
@@ -678,18 +679,18 @@ export class ProductExtModuleService extends MedusaService({
         thumbnail:
           input.thumbnail !== undefined
             ? input.thumbnail
-            : current?.thumbnail ?? null,
+            : (current?.thumbnail ?? null),
         images: nextImages,
         videos: nextVideos,
         option_signature: signature,
         swatch_color:
           input.swatch_color !== undefined
             ? input.swatch_color
-            : current?.swatch_color ?? null,
+            : (current?.swatch_color ?? null),
         swatch_image_url:
           input.swatch_image_url !== undefined
             ? input.swatch_image_url
-            : current?.swatch_image_url ?? null,
+            : (current?.swatch_image_url ?? null),
       })
 
       updated.push(res.record)
@@ -848,9 +849,7 @@ export class ProductExtModuleService extends MedusaService({
       attribute_id: match.id,
     })) as unknown as Array<Record<string, unknown>>
     if (values.length > 0) {
-      await this.deleteProductAttributeValues(
-        values.map((v) => String(v.id))
-      )
+      await this.deleteProductAttributeValues(values.map((v) => String(v.id)))
     }
     await this.deleteAttributeDefinitions([match.id])
   }
@@ -887,7 +886,7 @@ export class ProductExtModuleService extends MedusaService({
       )
     }
 
-    return items.sort((a, b) => a.sort_order - b.sort_order)
+    return items.toSorted((a, b) => a.sort_order - b.sort_order)
   }
 
   // ---------------------------------------------------------------------------
@@ -1128,7 +1127,7 @@ export class ProductExtModuleService extends MedusaService({
     const values = rawValues
       .map(normalizeProductAttributeValueRecord)
       .filter((v) => !locale || !v.locale || v.locale === locale)
-      .sort((a, b) => a.sort_order - b.sort_order)
+      .toSorted((a, b) => a.sort_order - b.sort_order)
 
     const allDefs = await this.listAttributes()
     const defByKey = new Map(allDefs.map((d) => [d.key, d]))
@@ -1140,9 +1139,11 @@ export class ProductExtModuleService extends MedusaService({
         continue
       }
       const displayValue =
-        def.type === "unit" && val.value_number !== null && val.value_number !== undefined
+        def.type === "unit" &&
+        val.value_number !== null &&
+        val.value_number !== undefined
           ? formatUnitDisplay(val.value_number, val.unit)
-          : val.value_text ?? ""
+          : (val.value_text ?? "")
       resolved.push({
         definition: def,
         value: val,
@@ -1587,9 +1588,7 @@ export class ProductExtModuleService extends MedusaService({
         .map(normalizeProductFeatureRecord)
         .find(
           (f) =>
-            f.id === trimmed ||
-            f.code === trimmed ||
-            f.code === normalizedCode
+            f.id === trimmed || f.code === trimmed || f.code === normalizedCode
         ) ?? null
     )
   }
@@ -1750,14 +1749,14 @@ export class ProductExtModuleService extends MedusaService({
       const orderMap = new Map(filter.ids.map((id, idx) => [id, idx]))
       items = items
         .filter((f) => orderMap.has(f.id) || orderMap.has(f.code))
-        .sort(
+        .toSorted(
           (a, b) =>
             (orderMap.get(a.id) ?? orderMap.get(a.code) ?? 999) -
             (orderMap.get(b.id) ?? orderMap.get(b.code) ?? 999)
         )
       return items
     }
-    return items.sort((a, b) => a.sort_order - b.sort_order)
+    return items.toSorted((a, b) => a.sort_order - b.sort_order)
   }
 
   // ---------------------------------------------------------------------------
@@ -1906,8 +1905,7 @@ export class ProductExtModuleService extends MedusaService({
     const localeOnly = loc
       ? ext.storefront_overrides.find(
           (o) =>
-            !o.sales_channel_id &&
-            o.locale?.toLowerCase() === loc.toLowerCase()
+            !o.sales_channel_id && o.locale?.toLowerCase() === loc.toLowerCase()
         )
       : null
     return localeOnly ?? null

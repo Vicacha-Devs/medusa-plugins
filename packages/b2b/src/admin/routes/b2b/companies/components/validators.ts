@@ -20,7 +20,9 @@ export const makeCompanyFormSchema = (t: (key: string) => string) =>
     spending_limit_reset_at: z.string().optional().or(z.literal("")),
   })
 
-export type CompanyFormValues = z.infer<ReturnType<typeof makeCompanyFormSchema>>
+export type CompanyFormValues = z.infer<
+  ReturnType<typeof makeCompanyFormSchema>
+>
 
 export const makeCompanyCreateFormSchema = (t: (key: string) => string) =>
   z.object({

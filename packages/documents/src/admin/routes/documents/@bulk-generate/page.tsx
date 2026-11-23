@@ -12,7 +12,7 @@ import { z } from "zod"
 
 import { useBulkGenerateDocuments } from "../../../../hooks"
 import type { DocumentType } from "../../../../modules/documents/types"
-import { RbacGuard } from "../../../components/rbac-guard";
+import { RbacGuard } from "../../../components/rbac-guard"
 
 const bulkGenerateSchema = z.object({
   order_ids_input: z.string().min(1),
@@ -167,6 +167,6 @@ const GuardedDocumentsBulkGenerateDrawer = () => (
   <RbacGuard permission="documents.write">
     <DocumentsBulkGenerateDrawer />
   </RbacGuard>
-);
+)
 
-export default GuardedDocumentsBulkGenerateDrawer;
+export default GuardedDocumentsBulkGenerateDrawer

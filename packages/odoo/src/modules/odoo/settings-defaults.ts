@@ -25,7 +25,7 @@ export const buildSectionDefaults = (
     odooCategoryIds: [],
     medusaCollectionIds: [],
     productLimit: null,
-    ...(options.productSettings ?? {}),
+    ...options.productSettings,
   } satisfies OdooProductSyncSettings,
   inventory: {
     enableStock: true,
@@ -33,7 +33,7 @@ export const buildSectionDefaults = (
     qtyType: "on_hand",
     doNotSyncZeroStock: false,
     locationMappings: [],
-    ...(options.inventorySettings ?? {}),
+    ...options.inventorySettings,
   } satisfies OdooInventorySyncSettings,
   orders: {
     orderSync: true,
@@ -44,21 +44,21 @@ export const buildSectionDefaults = (
     markInvoicePaid: false,
     createPayment: false,
     paymentJournalId: null,
-    ...(options.orderSettings ?? {}),
+    ...options.orderSettings,
   } satisfies OdooOrderSyncSettings,
   customers: {
     enableCustomerSync: true,
     direction: "bidirectional",
     syncAddresses: true,
     syncCompanyVat: true,
-    ...(options.customerSettings ?? {}),
+    ...options.customerSettings,
   } satisfies OdooCustomerSyncSettings,
   reconciliation: {
     enableScheduledReconciliation: true,
     strategy: "odoo_wins",
     driftThreshold: 0,
     defaultOdooLocationId: 8,
-    ...(options.reconciliationSettings ?? {}),
+    ...options.reconciliationSettings,
   } satisfies OdooReconciliationSettings,
   webhooks: {
     enableInboundWebhooks: true,
@@ -66,13 +66,13 @@ export const buildSectionDefaults = (
     autoProcessStockEvents: true,
     autoProcessCustomerEvents: true,
     autoProcessOrderEvents: true,
-    ...(options.webhookSettings ?? {}),
+    ...options.webhookSettings,
   } satisfies OdooWebhookSettings,
   pos: {
     enableOfflinePosReplay: true,
     enableBarcodeCache: true,
     posCacheTtlSeconds: 3600,
     warehouseCacheTtlSeconds: 14400,
-    ...(options.posSettings ?? {}),
+    ...options.posSettings,
   } satisfies OdooPosSettings,
 })

@@ -1,0 +1,40 @@
+name: Feature Request
+description: Propose a new capability, workflow, or provider for a @vicacha-devs Medusa v2 plugin
+title: "[Feature]: "
+labels: ["enhancement", "triage"]
+body:
+  - type: dropdown
+    id: package
+    attributes:
+      label: Target Package
+      options:
+        - "@vicacha-devs/medusa-plugin-b2b"
+        - "@vicacha-devs/medusa-plugin-barcode"
+        - "@vicacha-devs/medusa-plugin-dian"
+        - "@vicacha-devs/medusa-plugin-documents"
+        - "@vicacha-devs/medusa-fulfillment-eu"
+        - "@vicacha-devs/medusa-plugin-notifications"
+        - "@vicacha-devs/medusa-plugin-odoo"
+        - "@vicacha-devs/medusa-payment-bold"
+        - "@vicacha-devs/medusa-payment-mollie"
+        - "@vicacha-devs/medusa-plugin-product-extensions"
+        - "@vicacha-devs/medusa-plugin-social-commerce"
+        - "@vicacha-devs/medusa-plugin-stories"
+        - "@vicacha-devs/medusa-plugin-typesense"
+        - "New Plugin Proposal"
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / Use Case
+      description: What commerce or operational problem does this solve?
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: Describe the module, workflow, API endpoint, or Admin UI behavior you envision.
+    validations:
+      required: true

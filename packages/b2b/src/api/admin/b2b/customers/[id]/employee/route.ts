@@ -1,11 +1,19 @@
-import type { AuthenticatedMedusaRequest, MedusaResponse } from "@medusajs/framework"
+import type {
+  AuthenticatedMedusaRequest,
+  MedusaResponse,
+} from "@medusajs/framework"
 import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
 
-export const GET = async (req: AuthenticatedMedusaRequest, res: MedusaResponse) => {
+export const GET = async (
+  req: AuthenticatedMedusaRequest,
+  res: MedusaResponse
+) => {
   const query = req.scope.resolve(ContainerRegistrationKeys.QUERY)
   const { id } = req.params
 
-  const { data: [customer] } = await query.graph({
+  const {
+    data: [customer],
+  } = await query.graph({
     entity: "customer",
     fields: [
       "id",

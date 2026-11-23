@@ -5,10 +5,7 @@ import type {
   NotificationsPluginOptions,
   TemplateMode,
 } from "./core"
-import type {
-  NotificationAttachment,
-  TemplateBlockNode,
-} from "./domain"
+import type { NotificationAttachment, TemplateBlockNode } from "./domain"
 
 export interface B2BNotificationContacts {
   company_name?: string | null

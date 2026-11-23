@@ -1,19 +1,19 @@
-import { ConditionalTooltip } from "@medusajs/dashboard/components";
-import { clx } from "@medusajs/ui";
-import type { JSX } from "react";
+import { ConditionalTooltip } from "@medusajs/dashboard/components"
+import { clx } from "@medusajs/ui"
+import type { JSX } from "react"
 
-import { PlaceholderCell } from "./placeholder-cell";
+import { PlaceholderCell } from "./placeholder-cell"
 
 type CellProps = {
-  text?: string | number;
-  align?: "left" | "center" | "right";
-  maxWidth?: number;
-};
+  text?: string | number
+  align?: "left" | "center" | "right"
+  maxWidth?: number
+}
 
 type HeaderProps = {
-  text: string;
-  align?: "left" | "center" | "right";
-};
+  text: string
+  align?: "left" | "center" | "right"
+}
 
 export const TextCell = ({
   text,
@@ -21,10 +21,10 @@ export const TextCell = ({
   maxWidth = 220,
 }: CellProps): JSX.Element => {
   if (!text) {
-    return <PlaceholderCell />;
+    return <PlaceholderCell />
   }
 
-  const stringLength = text.toString().length;
+  const stringLength = text.toString().length
 
   return (
     <ConditionalTooltip content={text} showTooltip={stringLength > 20}>
@@ -44,10 +44,13 @@ export const TextCell = ({
         <span className="truncate">{text}</span>
       </div>
     </ConditionalTooltip>
-  );
-};
+  )
+}
 
-export const TextHeader = ({ text, align = "left" }: HeaderProps): JSX.Element => {
+export const TextHeader = ({
+  text,
+  align = "left",
+}: HeaderProps): JSX.Element => {
   return (
     <div
       className={clx("flex h-full w-full items-center", {
@@ -58,5 +61,5 @@ export const TextHeader = ({ text, align = "left" }: HeaderProps): JSX.Element =
     >
       <span className="truncate">{text}</span>
     </div>
-  );
-};
+  )
+}

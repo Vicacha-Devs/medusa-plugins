@@ -53,18 +53,18 @@ export const handle = {
 }
 ```
 
-| Route | File | Layout / Container | Purpose |
-| --- | --- | --- | --- |
-| `/documents` | `routes/documents/page.tsx` | `CORE_LAYOUT_IDS.SINGLE_COLUMN` (`widgetsZonePrefix="documents.list"`) | Accounting & Documents Hub: overview stats, filterable table, CSV export, bulk ZIP download, and batch generation trigger |
-| `/documents/bulk-generate` | `routes/documents/@bulk-generate/page.tsx` | `<RouteDrawer>` + `useRouteModal` + `<KeyboundForm>` | Slide-over drawer modal to batch-generate documents across multiple comma/space-separated Order IDs |
-| `/documents/settings` | `routes/documents/settings/page.tsx` | `CORE_LAYOUT_IDS.TWO_COLUMN` (`widgetsZonePrefix="documents.settings"`) | Document Settings & Template Studio: company branding, numbering tokens, live PDF preview (`main`), and region scope + automation toggles (`side`) |
+| Route                      | File                                       | Layout / Container                                                      | Purpose                                                                                                                                            |
+| -------------------------- | ------------------------------------------ | ----------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `/documents`               | `routes/documents/page.tsx`                | `CORE_LAYOUT_IDS.SINGLE_COLUMN` (`widgetsZonePrefix="documents.list"`)  | Accounting & Documents Hub: overview stats, filterable table, CSV export, bulk ZIP download, and batch generation trigger                          |
+| `/documents/bulk-generate` | `routes/documents/@bulk-generate/page.tsx` | `<RouteDrawer>` + `useRouteModal` + `<KeyboundForm>`                    | Slide-over drawer modal to batch-generate documents across multiple comma/space-separated Order IDs                                                |
+| `/documents/settings`      | `routes/documents/settings/page.tsx`       | `CORE_LAYOUT_IDS.TWO_COLUMN` (`widgetsZonePrefix="documents.settings"`) | Document Settings & Template Studio: company branding, numbering tokens, live PDF preview (`main`), and region scope + automation toggles (`side`) |
 
 ---
 
 ## Widgets
 
-| Widget | File | Injection Zone | Purpose |
-| --- | --- | --- | --- |
+| Widget                 | File                                 | Injection Zone             | Purpose                                                                                                                                                                       |
+| ---------------------- | ------------------------------------ | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `OrderDocumentsWidget` | `widgets/order-documents-widget.tsx` | `order.details.side.after` | Displays order documents, stale revision alerts, on-demand generation by type/locale, PDF download, email delivery, Docuseal signature dispatch, and expandable audit history |
 
 ---
@@ -73,22 +73,22 @@ export const handle = {
 
 All view sections and row components are decoupled into `src/admin/components/documents/` and re-exported from `src/admin/components/documents/index.ts`.
 
-| File | Exported Symbols | Purpose |
-| --- | --- | --- |
-| `constants.ts` | `SUPPORTED_UI_LOCALES`, `DEFAULT_SETTINGS_VALUES`, `documentSettingsFormSchema`, `DocumentSettingsFormValues` | Shared UI locale options, default settings values, and Zod schema for the settings form |
-| `documents-overview-section.tsx` | `DocumentsOverviewSection` | Renders summary `StatCard`s (total, generated, stale, failed) and quick `NavigationCard` links |
-| `documents-filters-bar.tsx` | `DocumentsFiltersBar` | Renders search input, document type & status selects, date range filters, CSV export button, and bulk ZIP button |
-| `documents-table-section.tsx` | `DocumentsTableSection` | Composes `DocumentsFiltersBar` and the multi-select table of generated documents |
-| `documents-table-row.tsx` | `DocumentsTableRow` | Renders a single document row with status/stale badges, order link, region badge, and PDF download button |
-| `documents-bulk-generate-section.tsx` | `DocumentsBulkGenerateSection` | Card section with quick inline or drawer-based batch generation trigger |
-| `order-document-row.tsx` | `OrderDocumentRow` | Renders a document entry inside `OrderDocumentsWidget` with action buttons (`View PDF`, `Email`, `New Revision`, `Retry`, `Send for Signature`, `Audit Log`) |
-| `order-document-audit-panel.tsx` | `OrderDocumentAuditPanel` | Expandable panel displaying the immutable `audit_log` timeline, `prior_versions` archive links, and custom recipient override input |
-| `settings-company-section.tsx` | `SettingsCompanySection` | Form fields for company identity, tax ID, logo, primary color, preset templates (`clean`, `classic`, `compact`, `pos_80mm`, `pos_58mm`), notes, and bank details |
-| `settings-numbering-section.tsx` | `SettingsNumberingSection` | Form fields for invoice/packing slip/credit note format strings, live formatted number preview, and forced next invoice number |
-| `settings-preview-section.tsx` | `SettingsPreviewSection` | Live interactive PDF preview section supporting 4-item standard mock, 75-item multi-page stress test, or real Medusa `order_id` |
-| `settings-region-scope-section.tsx` | `SettingsRegionScopeSection` | Side column selector for switching between `Global Default` and per-region overrides (`region_id`), with reset-to-global support |
-| `settings-automation-section.tsx` | `SettingsAutomationSection` | Side column `SectionRow` + `Switch` toggles for `auto_generate_*`, `auto_email_*`, and `require_signature` |
-| `index.ts` | `*` | Barrel file re-exporting all components and constants above |
+| File                                  | Exported Symbols                                                                                              | Purpose                                                                                                                                                          |
+| ------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `constants.ts`                        | `SUPPORTED_UI_LOCALES`, `DEFAULT_SETTINGS_VALUES`, `documentSettingsFormSchema`, `DocumentSettingsFormValues` | Shared UI locale options, default settings values, and Zod schema for the settings form                                                                          |
+| `documents-overview-section.tsx`      | `DocumentsOverviewSection`                                                                                    | Renders summary `StatCard`s (total, generated, stale, failed) and quick `NavigationCard` links                                                                   |
+| `documents-filters-bar.tsx`           | `DocumentsFiltersBar`                                                                                         | Renders search input, document type & status selects, date range filters, CSV export button, and bulk ZIP button                                                 |
+| `documents-table-section.tsx`         | `DocumentsTableSection`                                                                                       | Composes `DocumentsFiltersBar` and the multi-select table of generated documents                                                                                 |
+| `documents-table-row.tsx`             | `DocumentsTableRow`                                                                                           | Renders a single document row with status/stale badges, order link, region badge, and PDF download button                                                        |
+| `documents-bulk-generate-section.tsx` | `DocumentsBulkGenerateSection`                                                                                | Card section with quick inline or drawer-based batch generation trigger                                                                                          |
+| `order-document-row.tsx`              | `OrderDocumentRow`                                                                                            | Renders a document entry inside `OrderDocumentsWidget` with action buttons (`View PDF`, `Email`, `New Revision`, `Retry`, `Send for Signature`, `Audit Log`)     |
+| `order-document-audit-panel.tsx`      | `OrderDocumentAuditPanel`                                                                                     | Expandable panel displaying the immutable `audit_log` timeline, `prior_versions` archive links, and custom recipient override input                              |
+| `settings-company-section.tsx`        | `SettingsCompanySection`                                                                                      | Form fields for company identity, tax ID, logo, primary color, preset templates (`clean`, `classic`, `compact`, `pos_80mm`, `pos_58mm`), notes, and bank details |
+| `settings-numbering-section.tsx`      | `SettingsNumberingSection`                                                                                    | Form fields for invoice/packing slip/credit note format strings, live formatted number preview, and forced next invoice number                                   |
+| `settings-preview-section.tsx`        | `SettingsPreviewSection`                                                                                      | Live interactive PDF preview section supporting 4-item standard mock, 75-item multi-page stress test, or real Medusa `order_id`                                  |
+| `settings-region-scope-section.tsx`   | `SettingsRegionScopeSection`                                                                                  | Side column selector for switching between `Global Default` and per-region overrides (`region_id`), with reset-to-global support                                 |
+| `settings-automation-section.tsx`     | `SettingsAutomationSection`                                                                                   | Side column `SectionRow` + `Switch` toggles for `auto_generate_*`, `auto_email_*`, and `require_signature`                                                       |
+| `index.ts`                            | `*`                                                                                                           | Barrel file re-exporting all components and constants above                                                                                                      |
 
 ---
 

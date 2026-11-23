@@ -92,7 +92,9 @@ export function useMpnSandboxMessages(
   const client = options?.client ?? notificationsAdminSdk
   const queryKey =
     options?.queryKey ??
-    notificationsQueryKeys.sandbox(params as Record<string, unknown> | undefined)
+    notificationsQueryKeys.sandbox(
+      params as Record<string, unknown> | undefined
+    )
 
   return useNotificationsQuery<ListMpnSandboxResponse>(
     queryKey,

@@ -15,9 +15,8 @@ export default async function productCreatedSubscriber({
       return
     }
 
-    const service = container.resolve<ProductExtModuleService>(
-      PRODUCT_EXT_MODULE
-    )
+    const service =
+      container.resolve<ProductExtModuleService>(PRODUCT_EXT_MODULE)
     const existing = await service.getByProductId(productId)
     if (existing?.template_id) {
       return

@@ -10,15 +10,15 @@ It maintains 100% drop-in backward compatibility with `@bambiste/medusa-product-
 
 ## Package Exports (`package.json`)
 
-| Import Path | Target Source | Purpose |
-|---|---|---|
-| `@vicacha-devs/medusa-plugin-product-extensions` | `src/index.ts` | Root barrel export (module, service, models, workflows, SDK, hooks, UI kit, i18n) |
-| `@vicacha-devs/medusa-plugin-product-extensions/modules/product-ext` | `src/modules/product-ext/index.ts` | Medusa Module definition (`ProductExtModule`) |
-| `@vicacha-devs/medusa-plugin-product-extensions/workflows` | `src/workflows/index.ts` | All 15 compensated workflows and steps |
-| `@vicacha-devs/medusa-plugin-product-extensions/sdk` | `src/sdk/index.ts` | `createProductExtSdk` & `productExtQueryKeys` |
-| `@vicacha-devs/medusa-plugin-product-extensions/hooks` | `src/hooks/index.ts` | `useStoreProductExtension`, `useVariantResolvedGallery`, `useProductAttributeFilter` |
-| `@vicacha-devs/medusa-plugin-product-extensions/ui` | `src/ui/index.tsx` | Storefront React UI Kit (`ProductMediaGallery`, `VariantOptionSwatchPicker`, `ProductFeatureBadges`, `ProductSpecsTable`, `HierarchicalInfoAccordion`, `ProductAttachmentsList`) |
-| `@vicacha-devs/medusa-plugin-product-extensions/types` | `src/types/index.ts` | TypeScript DTOs, inputs, and utility types |
+| Import Path                                                          | Target Source                      | Purpose                                                                                                                                                                          |
+| -------------------------------------------------------------------- | ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `@vicacha-devs/medusa-plugin-product-extensions`                     | `src/index.ts`                     | Root barrel export (module, service, models, workflows, SDK, hooks, UI kit, i18n)                                                                                                |
+| `@vicacha-devs/medusa-plugin-product-extensions/modules/product-ext` | `src/modules/product-ext/index.ts` | Medusa Module definition (`ProductExtModule`)                                                                                                                                    |
+| `@vicacha-devs/medusa-plugin-product-extensions/workflows`           | `src/workflows/index.ts`           | All 15 compensated workflows and steps                                                                                                                                           |
+| `@vicacha-devs/medusa-plugin-product-extensions/sdk`                 | `src/sdk/index.ts`                 | `createProductExtSdk` & `productExtQueryKeys`                                                                                                                                    |
+| `@vicacha-devs/medusa-plugin-product-extensions/hooks`               | `src/hooks/index.ts`               | `useStoreProductExtension`, `useVariantResolvedGallery`, `useProductAttributeFilter`                                                                                             |
+| `@vicacha-devs/medusa-plugin-product-extensions/ui`                  | `src/ui/index.tsx`                 | Storefront React UI Kit (`ProductMediaGallery`, `VariantOptionSwatchPicker`, `ProductFeatureBadges`, `ProductSpecsTable`, `HierarchicalInfoAccordion`, `ProductAttachmentsList`) |
+| `@vicacha-devs/medusa-plugin-product-extensions/types`               | `src/types/index.ts`               | TypeScript DTOs, inputs, and utility types                                                                                                                                       |
 
 ---
 

@@ -1,6 +1,6 @@
-import { model } from "@medusajs/framework/utils";
-import { ESpendingLimitResetFrequency } from "@b2b/types";
-import { Employee } from "./employee";
+import { model } from "@medusajs/framework/utils"
+import { ESpendingLimitResetFrequency } from "@b2b/types"
+import { Employee } from "./employee"
 
 export const Company = model
   .define("company", {
@@ -41,4 +41,4 @@ export const Company = model
       on: ["currency_code"],
       where: "deleted_at IS NULL AND currency_code IS NOT NULL",
     },
-  ]);
+  ])

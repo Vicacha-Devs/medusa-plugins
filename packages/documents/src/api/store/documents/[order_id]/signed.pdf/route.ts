@@ -55,8 +55,7 @@ export async function GET(req: MedusaRequest, res: MedusaResponse) {
     return res.status(200).send(buffer)
   } catch (err: any) {
     return res.status(404).json({
-      message:
-        err instanceof Error ? err.message : "Failed to load signed PDF",
+      message: err instanceof Error ? err.message : "Failed to load signed PDF",
     })
   }
 }

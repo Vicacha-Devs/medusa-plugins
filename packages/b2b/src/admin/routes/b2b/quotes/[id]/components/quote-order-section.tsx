@@ -7,7 +7,10 @@ import { useTranslation } from "react-i18next"
 
 import { QueryQuote } from "../../../../../../types"
 
-const ORDER_STATUS_COLOR: Record<string, "green" | "orange" | "red" | "blue" | "grey" | "purple"> = {
+const ORDER_STATUS_COLOR: Record<
+  string,
+  "green" | "orange" | "red" | "blue" | "grey" | "purple"
+> = {
   completed: "green",
   pending: "orange",
   requires_action: "orange",
@@ -27,11 +30,14 @@ export const QuoteOrderSection = ({ quote }: QuoteOrderSectionProps) => {
   const draftOrderId = q.draft_order_id
 
   const OrderStatusBadge = ({ status }: { status?: string }) => {
-    if (!status) return <span className="txt-compact-small text-ui-fg-subtle">—</span>
+    if (!status)
+      return <span className="txt-compact-small text-ui-fg-subtle">—</span>
     const color = ORDER_STATUS_COLOR[status] ?? "grey"
     return (
       <Badge size="2xsmall" color={color}>
-        {t(`quotes.orderStatus.${status}`, { defaultValue: status.replace(/_/g, " ") })}
+        {t(`quotes.orderStatus.${status}`, {
+          defaultValue: status.replace(/_/g, " "),
+        })}
       </Badge>
     )
   }
@@ -63,20 +69,28 @@ export const QuoteOrderSection = ({ quote }: QuoteOrderSectionProps) => {
               </Link>
             }
           />
-          <SectionRow title={t("fields.status")} value={<OrderStatusBadge status={draftOrder.status} />} />
+          <SectionRow
+            title={t("fields.status")}
+            value={<OrderStatusBadge status={draftOrder.status} />}
+          />
           <SectionRow
             title={t("fields.total")}
             value={
               draftOrder.total != null && draftOrder.currency_code
                 ? formatCurrency(
-                  draftOrder.total / 100,
-                  draftOrder.currency_code)
+                    draftOrder.total / 100,
+                    draftOrder.currency_code
+                  )
                 : "—"
             }
           />
           <SectionRow
             title={t("fields.createdAt")}
-            value={draftOrder.created_at ? new Date(draftOrder.created_at).toLocaleDateString() : "—"}
+            value={
+              draftOrder.created_at
+                ? new Date(draftOrder.created_at).toLocaleDateString()
+                : "—"
+            }
           />
         </>
       ) : draftOrderId ? (
@@ -92,7 +106,9 @@ export const QuoteOrderSection = ({ quote }: QuoteOrderSectionProps) => {
           }
         />
       ) : (
-        <div className="px-6 py-4 txt-compact-small text-ui-fg-subtle">{t("quotes.detail.noDraftOrder")}</div>
+        <div className="px-6 py-4 txt-compact-small text-ui-fg-subtle">
+          {t("quotes.detail.noDraftOrder")}
+        </div>
       )}
     </Container>
   )

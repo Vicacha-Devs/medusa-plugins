@@ -4,7 +4,9 @@ import { Badge } from "@medusajs/ui"
 defineCellRenderer("b2b-employee-name", {
   render: (value) => {
     const customer = value as any
-    const name = [customer?.first_name, customer?.last_name].filter(Boolean).join(" ")
+    const name = [customer?.first_name, customer?.last_name]
+      .filter(Boolean)
+      .join(" ")
     return name || "—"
   },
 })
@@ -21,7 +23,7 @@ defineCellRenderer("b2b-employee-spending-limit", {
     if (!value || value === 0) {
       return t("quotes.detail.unlimited")
     }
-    
+
     return currency ? getLocaleAmount(Number(value), currency) : String(value)
   },
 })

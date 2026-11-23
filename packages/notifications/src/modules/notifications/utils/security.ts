@@ -216,7 +216,8 @@ export function validateSafeExternalUrl(
   ) {
     return {
       valid: false,
-      reason: "Private network and cloud metadata hosts are blocked (SSRF guard)",
+      reason:
+        "Private network and cloud metadata hosts are blocked (SSRF guard)",
     }
   }
 

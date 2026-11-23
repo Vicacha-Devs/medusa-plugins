@@ -73,9 +73,7 @@ function deepMergeDict(
 
 export function getNotificationTranslations(
   locale?: string | null,
-  customOverrides?: Partial<
-    Record<SupportedLocale, Record<string, any>>
-  > | null
+  customOverrides?: Partial<Record<SupportedLocale, Record<string, any>>> | null
 ): Record<string, any> {
   const normalized = normalizeLocale(locale)
   const base =

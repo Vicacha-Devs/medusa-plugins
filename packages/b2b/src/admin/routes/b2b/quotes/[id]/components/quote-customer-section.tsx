@@ -39,7 +39,9 @@ export const QuoteCustomerSection = ({ quote }: QuoteCustomerSectionProps) => {
                 to={`/customers/${customer.id}`}
                 className="txt-compact-small text-ui-fg-interactive hover:text-ui-fg-interactive-hover transition-colors"
               >
-                {[customer.first_name, customer.last_name].filter(Boolean).join(" ") ||
+                {[customer.first_name, customer.last_name]
+                  .filter(Boolean)
+                  .join(" ") ||
                   customer.email ||
                   customer.id}
               </Link>
@@ -49,22 +51,24 @@ export const QuoteCustomerSection = ({ quote }: QuoteCustomerSectionProps) => {
           {customer.phone && (
             <SectionRow title={t("fields.phone")} value={customer.phone} />
           )}
-          {(q.customer?.employee?.spending_limit != null) && (
+          {q.customer?.employee?.spending_limit != null && (
             <SectionRow
               title={t("fields.spendingLimit")}
               value={
                 q.customer.employee.spending_limit === 0
                   ? t("quotes.detail.unlimited")
                   : formatCurrency(
-                    q.customer.employee.spending_limit / 100,
-                    q.customer.employee.company?.currency_code ?? "USD"
-                  )
+                      q.customer.employee.spending_limit / 100,
+                      q.customer.employee.company?.currency_code ?? "USD"
+                    )
               }
             />
           )}
         </>
       ) : (
-        <div className="px-6 py-4 txt-compact-small text-ui-fg-subtle">{t("quotes.detail.noCustomer")}</div>
+        <div className="px-6 py-4 txt-compact-small text-ui-fg-subtle">
+          {t("quotes.detail.noCustomer")}
+        </div>
       )}
     </Container>
   )

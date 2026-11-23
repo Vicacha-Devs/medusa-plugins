@@ -35,7 +35,6 @@ export type {
   UpsertVariantExtensionInput,
 }
 
-
 export interface UpsertProductExtCompensateInput {
   product_id: string
   wasNew: boolean
@@ -45,9 +44,8 @@ export interface UpsertProductExtCompensateInput {
 export const upsertProductExtStep = createStep(
   "upsert-product-ext",
   async (input: UpsertProductExtensionInput, { container }) => {
-    const service = container.resolve<ProductExtModuleService>(
-      PRODUCT_EXT_MODULE
-    )
+    const service =
+      container.resolve<ProductExtModuleService>(PRODUCT_EXT_MODULE)
     const { record, wasNew, previousState } =
       await service.upsertByProductIdWithState(input)
 
@@ -64,9 +62,8 @@ export const upsertProductExtStep = createStep(
     if (!compensateData) {
       return
     }
-    const service = container.resolve<ProductExtModuleService>(
-      PRODUCT_EXT_MODULE
-    )
+    const service =
+      container.resolve<ProductExtModuleService>(PRODUCT_EXT_MODULE)
     if (compensateData.wasNew) {
       await service.deleteByProductId(compensateData.product_id)
       return
@@ -85,8 +82,7 @@ export const upsertProductExtStep = createStep(
         template_id: compensateData.previousState.template_id,
         feature_ids: compensateData.previousState.feature_ids,
         option_metadata: compensateData.previousState.option_metadata,
-        storefront_overrides:
-          compensateData.previousState.storefront_overrides,
+        storefront_overrides: compensateData.previousState.storefront_overrides,
         seo_metadata: compensateData.previousState.seo_metadata,
         metadata: compensateData.previousState.metadata,
       })
@@ -111,9 +107,8 @@ export interface UpsertVariantExtCompensateInput {
 export const upsertVariantExtStep = createStep(
   "upsert-variant-ext",
   async (input: UpsertVariantExtensionInput, { container }) => {
-    const service = container.resolve<ProductExtModuleService>(
-      PRODUCT_EXT_MODULE
-    )
+    const service =
+      container.resolve<ProductExtModuleService>(PRODUCT_EXT_MODULE)
     const { record, wasNew, previousState } =
       await service.upsertByVariantIdWithState(input)
 
@@ -130,9 +125,8 @@ export const upsertVariantExtStep = createStep(
     if (!compensateData) {
       return
     }
-    const service = container.resolve<ProductExtModuleService>(
-      PRODUCT_EXT_MODULE
-    )
+    const service =
+      container.resolve<ProductExtModuleService>(PRODUCT_EXT_MODULE)
     if (compensateData.wasNew) {
       await service.deleteByVariantId(compensateData.variant_id)
       return
@@ -173,9 +167,8 @@ export interface BulkAssignVariantMediaCompensateInput {
 export const bulkAssignVariantMediaByOptionStep = createStep(
   "bulk-assign-variant-media-by-option",
   async (input: BulkAssignVariantMediaByOptionInput, { container }) => {
-    const service = container.resolve<ProductExtModuleService>(
-      PRODUCT_EXT_MODULE
-    )
+    const service =
+      container.resolve<ProductExtModuleService>(PRODUCT_EXT_MODULE)
     const { updated, states } =
       await service.bulkAssignVariantMediaByOption(input)
 
@@ -188,9 +181,8 @@ export const bulkAssignVariantMediaByOptionStep = createStep(
     if (!compensateData?.states?.length) {
       return
     }
-    const service = container.resolve<ProductExtModuleService>(
-      PRODUCT_EXT_MODULE
-    )
+    const service =
+      container.resolve<ProductExtModuleService>(PRODUCT_EXT_MODULE)
     for (const item of compensateData.states) {
       if (item.wasNew) {
         await service.deleteByVariantId(item.variant_id)
@@ -228,9 +220,8 @@ export interface ApplyAttributeTemplateInput {
 export const applyAttributeTemplateStep = createStep(
   "apply-attribute-template",
   async (input: ApplyAttributeTemplateInput, { container }) => {
-    const service = container.resolve<ProductExtModuleService>(
-      PRODUCT_EXT_MODULE
-    )
+    const service =
+      container.resolve<ProductExtModuleService>(PRODUCT_EXT_MODULE)
     const { extension, wasNew, previousState } =
       await service.applyTemplateToProductWithState(
         input.product_id,
@@ -250,9 +241,8 @@ export const applyAttributeTemplateStep = createStep(
     if (!compensateData) {
       return
     }
-    const service = container.resolve<ProductExtModuleService>(
-      PRODUCT_EXT_MODULE
-    )
+    const service =
+      container.resolve<ProductExtModuleService>(PRODUCT_EXT_MODULE)
     if (compensateData.wasNew) {
       await service.deleteByProductId(compensateData.product_id)
       return
@@ -289,9 +279,8 @@ export interface SetProductAttributesCompensateInput {
 export const setProductAttributesStep = createStep(
   "set-product-attributes",
   async (input: SetProductAttributesInput, { container }) => {
-    const service = container.resolve<ProductExtModuleService>(
-      PRODUCT_EXT_MODULE
-    )
+    const service =
+      container.resolve<ProductExtModuleService>(PRODUCT_EXT_MODULE)
     const { values, previousValues } =
       await service.setProductAttributesWithState(
         input.product_id,
@@ -310,9 +299,8 @@ export const setProductAttributesStep = createStep(
     if (!compensateData) {
       return
     }
-    const service = container.resolve<ProductExtModuleService>(
-      PRODUCT_EXT_MODULE
-    )
+    const service =
+      container.resolve<ProductExtModuleService>(PRODUCT_EXT_MODULE)
     await service.rollbackProductAttributeValues(
       compensateData.product_id,
       compensateData.previousValues
@@ -343,9 +331,8 @@ export interface ImportImageAltsCompensateInput {
 export const importImageAltsStep = createStep(
   "import-image-alts",
   async (input: ImportImageAltsInput, { container }) => {
-    const service = container.resolve<ProductExtModuleService>(
-      PRODUCT_EXT_MODULE
-    )
+    const service =
+      container.resolve<ProductExtModuleService>(PRODUCT_EXT_MODULE)
     const { updatedProductIds, previousStates } =
       await service.importImageAltsCsvWithState(input.csv_content)
 
@@ -358,9 +345,8 @@ export const importImageAltsStep = createStep(
     if (!compensateData?.previousStates?.length) {
       return
     }
-    const service = container.resolve<ProductExtModuleService>(
-      PRODUCT_EXT_MODULE
-    )
+    const service =
+      container.resolve<ProductExtModuleService>(PRODUCT_EXT_MODULE)
     for (const st of compensateData.previousStates) {
       if (st.wasNew) {
         await service.deleteByProductId(st.product_id)
@@ -389,9 +375,8 @@ export const importImageAltsWorkflow = createWorkflow(
 export const createAttributeStep = createStep(
   "create-attribute",
   async (input: CreateAttributeDefinitionInput, { container }) => {
-    const service = container.resolve<ProductExtModuleService>(
-      PRODUCT_EXT_MODULE
-    )
+    const service =
+      container.resolve<ProductExtModuleService>(PRODUCT_EXT_MODULE)
     const created = await service.createAttribute(input)
     return new StepResponse<AttributeDefinitionDTO, { id: string }>(created, {
       id: created.id,
@@ -401,9 +386,8 @@ export const createAttributeStep = createStep(
     if (!compensateData?.id) {
       return
     }
-    const service = container.resolve<ProductExtModuleService>(
-      PRODUCT_EXT_MODULE
-    )
+    const service =
+      container.resolve<ProductExtModuleService>(PRODUCT_EXT_MODULE)
     await service.deleteAttribute(compensateData.id)
   }
 )
@@ -419,9 +403,8 @@ export const createAttributeWorkflow = createWorkflow(
 export const updateAttributeStep = createStep(
   "update-attribute",
   async (input: UpdateAttributeDefinitionInput, { container }) => {
-    const service = container.resolve<ProductExtModuleService>(
-      PRODUCT_EXT_MODULE
-    )
+    const service =
+      container.resolve<ProductExtModuleService>(PRODUCT_EXT_MODULE)
     const all = await service.listAttributes()
     const previous = all.find((a) => a.id === input.id) ?? null
     const updated = await service.updateAttribute(input)
@@ -434,9 +417,8 @@ export const updateAttributeStep = createStep(
     if (!previous) {
       return
     }
-    const service = container.resolve<ProductExtModuleService>(
-      PRODUCT_EXT_MODULE
-    )
+    const service =
+      container.resolve<ProductExtModuleService>(PRODUCT_EXT_MODULE)
     await service.updateAttribute({
       id: previous.id,
       label: previous.label,
@@ -468,9 +450,8 @@ export const updateAttributeWorkflow = createWorkflow(
 export const deleteAttributeStep = createStep(
   "delete-attribute",
   async (input: { id: string }, { container }) => {
-    const service = container.resolve<ProductExtModuleService>(
-      PRODUCT_EXT_MODULE
-    )
+    const service =
+      container.resolve<ProductExtModuleService>(PRODUCT_EXT_MODULE)
     const all = await service.listAttributes()
     const previous =
       all.find((a) => a.id === input.id || a.key === input.id) ?? null
@@ -484,9 +465,8 @@ export const deleteAttributeStep = createStep(
     if (!previous) {
       return
     }
-    const service = container.resolve<ProductExtModuleService>(
-      PRODUCT_EXT_MODULE
-    )
+    const service =
+      container.resolve<ProductExtModuleService>(PRODUCT_EXT_MODULE)
     await service.createAttribute({
       key: previous.key,
       label: previous.label,
@@ -518,9 +498,8 @@ export const deleteAttributeWorkflow = createWorkflow(
 export const createTemplateStep = createStep(
   "create-template",
   async (input: CreateAttributeTemplateInput, { container }) => {
-    const service = container.resolve<ProductExtModuleService>(
-      PRODUCT_EXT_MODULE
-    )
+    const service =
+      container.resolve<ProductExtModuleService>(PRODUCT_EXT_MODULE)
     const created = await service.createTemplate(input)
     return new StepResponse<AttributeTemplateDTO, { id: string }>(created, {
       id: created.id,
@@ -530,9 +509,8 @@ export const createTemplateStep = createStep(
     if (!compensateData?.id) {
       return
     }
-    const service = container.resolve<ProductExtModuleService>(
-      PRODUCT_EXT_MODULE
-    )
+    const service =
+      container.resolve<ProductExtModuleService>(PRODUCT_EXT_MODULE)
     await service.deleteTemplate(compensateData.id)
   }
 )
@@ -548,23 +526,21 @@ export const createTemplateWorkflow = createWorkflow(
 export const updateTemplateStep = createStep(
   "update-template",
   async (input: UpdateAttributeTemplateInput, { container }) => {
-    const service = container.resolve<ProductExtModuleService>(
-      PRODUCT_EXT_MODULE
-    )
+    const service =
+      container.resolve<ProductExtModuleService>(PRODUCT_EXT_MODULE)
     const previous = await service.getTemplateByIdOrCode(input.id)
     const updated = await service.updateTemplate(input)
-    return new StepResponse<
-      AttributeTemplateDTO,
-      AttributeTemplateDTO | null
-    >(updated, previous)
+    return new StepResponse<AttributeTemplateDTO, AttributeTemplateDTO | null>(
+      updated,
+      previous
+    )
   },
   async (previous, { container }) => {
     if (!previous) {
       return
     }
-    const service = container.resolve<ProductExtModuleService>(
-      PRODUCT_EXT_MODULE
-    )
+    const service =
+      container.resolve<ProductExtModuleService>(PRODUCT_EXT_MODULE)
     await service.updateTemplate({
       id: previous.id,
       code: previous.code,
@@ -590,9 +566,8 @@ export const updateTemplateWorkflow = createWorkflow(
 export const deleteTemplateStep = createStep(
   "delete-template",
   async (input: { id: string }, { container }) => {
-    const service = container.resolve<ProductExtModuleService>(
-      PRODUCT_EXT_MODULE
-    )
+    const service =
+      container.resolve<ProductExtModuleService>(PRODUCT_EXT_MODULE)
     const previous = await service.getTemplateByIdOrCode(input.id)
     await service.deleteTemplate(input.id)
     return new StepResponse<
@@ -604,9 +579,8 @@ export const deleteTemplateStep = createStep(
     if (!previous) {
       return
     }
-    const service = container.resolve<ProductExtModuleService>(
-      PRODUCT_EXT_MODULE
-    )
+    const service =
+      container.resolve<ProductExtModuleService>(PRODUCT_EXT_MODULE)
     await service.createTemplate({
       code: previous.code,
       name: previous.name,
@@ -631,9 +605,8 @@ export const deleteTemplateWorkflow = createWorkflow(
 export const createFeatureStep = createStep(
   "create-feature",
   async (input: CreateProductFeatureInput, { container }) => {
-    const service = container.resolve<ProductExtModuleService>(
-      PRODUCT_EXT_MODULE
-    )
+    const service =
+      container.resolve<ProductExtModuleService>(PRODUCT_EXT_MODULE)
     const created = await service.createFeature(input)
     return new StepResponse<ProductFeatureDTO, { id: string }>(created, {
       id: created.id,
@@ -643,9 +616,8 @@ export const createFeatureStep = createStep(
     if (!compensateData?.id) {
       return
     }
-    const service = container.resolve<ProductExtModuleService>(
-      PRODUCT_EXT_MODULE
-    )
+    const service =
+      container.resolve<ProductExtModuleService>(PRODUCT_EXT_MODULE)
     await service.deleteFeature(compensateData.id)
   }
 )
@@ -661,9 +633,8 @@ export const createFeatureWorkflow = createWorkflow(
 export const updateFeatureStep = createStep(
   "update-feature",
   async (input: UpdateProductFeatureInput, { container }) => {
-    const service = container.resolve<ProductExtModuleService>(
-      PRODUCT_EXT_MODULE
-    )
+    const service =
+      container.resolve<ProductExtModuleService>(PRODUCT_EXT_MODULE)
     const all = await service.listFeatures()
     const previous =
       all.find((f) => f.id === input.id || f.code === input.id) ?? null
@@ -677,9 +648,8 @@ export const updateFeatureStep = createStep(
     if (!previous) {
       return
     }
-    const service = container.resolve<ProductExtModuleService>(
-      PRODUCT_EXT_MODULE
-    )
+    const service =
+      container.resolve<ProductExtModuleService>(PRODUCT_EXT_MODULE)
     await service.updateFeature({
       id: previous.id,
       code: previous.code,
@@ -707,9 +677,8 @@ export const updateFeatureWorkflow = createWorkflow(
 export const deleteFeatureStep = createStep(
   "delete-feature",
   async (input: { id: string }, { container }) => {
-    const service = container.resolve<ProductExtModuleService>(
-      PRODUCT_EXT_MODULE
-    )
+    const service =
+      container.resolve<ProductExtModuleService>(PRODUCT_EXT_MODULE)
     const all = await service.listFeatures()
     const previous =
       all.find((f) => f.id === input.id || f.code === input.id) ?? null
@@ -723,9 +692,8 @@ export const deleteFeatureStep = createStep(
     if (!previous) {
       return
     }
-    const service = container.resolve<ProductExtModuleService>(
-      PRODUCT_EXT_MODULE
-    )
+    const service =
+      container.resolve<ProductExtModuleService>(PRODUCT_EXT_MODULE)
     await service.createFeature({
       code: previous.code,
       title: previous.title,

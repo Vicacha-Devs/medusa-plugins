@@ -50,36 +50,36 @@ Hook files in `hooks/` are side-effecting — they inject behavior into Medusa's
 
 All entry points in `src/workflows/index.ts` export the hook files so they are loaded at startup.
 
-| File | Hooks into | Effect |
-| --- | --- | --- |
-| `cart-created.ts` | `createCartWorkflow.hooks.cartCreated` | Links company → cart when `metadata.company_id` is present |
-| `order-created.ts` | `createOrderWorkflow.hooks.orderCreated` | Links order → company when `metadata.company_id` is present |
-| `validate-add-to-cart.ts` | `addToCartWorkflow.hooks.validate` | Throws if cart has a pending approval |
-| `validate-update-cart.ts` | `updateCartWorkflow.hooks.validate` | Throws if cart has a pending approval |
-| `validate-cart-completion.ts` | `completeCartWorkflow.hooks.validate` | Throws if pending approval, or if cart total would exceed the employee's spending limit |
+| File                          | Hooks into                               | Effect                                                                                  |
+| ----------------------------- | ---------------------------------------- | --------------------------------------------------------------------------------------- |
+| `cart-created.ts`             | `createCartWorkflow.hooks.cartCreated`   | Links company → cart when `metadata.company_id` is present                              |
+| `order-created.ts`            | `createOrderWorkflow.hooks.orderCreated` | Links order → company when `metadata.company_id` is present                             |
+| `validate-add-to-cart.ts`     | `addToCartWorkflow.hooks.validate`       | Throws if cart has a pending approval                                                   |
+| `validate-update-cart.ts`     | `updateCartWorkflow.hooks.validate`      | Throws if cart has a pending approval                                                   |
+| `validate-cart-completion.ts` | `completeCartWorkflow.hooks.validate`    | Throws if pending approval, or if cart total would exceed the employee's spending limit |
 
 ---
 
 ## Workflow index
 
-| ID | File | Trigger |
-| --- | --- | --- |
-| `create-companies` | `company/workflows/create-companies.ts` | `POST /admin/b2b/companies` |
-| `update-companies` | `company/workflows/update-companies.ts` | `POST /admin/b2b/companies/:id` |
-| `delete-companies` | `company/workflows/delete-companies.ts` | `DELETE /admin/b2b/companies/:id` |
-| `add-company-to-customer-group` | `company/workflows/add-company-to-customer-group.ts` | `POST /admin/b2b/companies/:id/customer-group` |
-| `remove-company-from-customer-group` | `company/workflows/remove-company-from-customer-group.ts` | `DELETE /admin/b2b/companies/:id/customer-group/:id` |
-| `create-employees` | `employee/workflows/create-employees.ts` | `POST /admin\|store/b2b/companies/:id/employees` |
-| `update-employees` | `employee/workflows/update-employees.ts` | `POST /admin\|store/b2b/companies/:id/employees/:id` |
-| `delete-employees` | `employee/workflows/delete-employees.ts` | `DELETE /admin/b2b/companies/:id/employees/:id` |
-| `create-request-for-quote` | `quote/workflows/create-request-for-quote.ts` | `POST /store/b2b/quotes` |
-| `merchant-send-quote` | `quote/workflows/merchant-send-quote.ts` | `POST /admin/b2b/quotes/:id/send` |
-| `merchant-reject-quote` | `quote/workflows/merchant-reject-quote.ts` | `POST /admin/b2b/quotes/:id/reject` |
-| `customer-accept-quote` | `quote/workflows/customer-accept-quote.ts` | `POST /store/b2b/quotes/:id/accept` |
-| `customer-reject-quote` | `quote/workflows/customer-reject-quote.ts` | `POST /store/b2b/quotes/:id/reject` |
-| `update-quote` | `quote/workflows/update-quote.ts` | internal |
-| `create-quote-message` | `quote/workflows/create-quote-message.ts` | `POST /admin\|store/b2b/quotes/:id/messages` |
-| `create-approvals` | `approval/workflows/create-approvals.ts` | `POST /store/b2b/carts/:id/approvals` |
-| `update-approvals` | `approval/workflows/update-approvals.ts` | `POST /admin\|store/b2b/approvals/:id` |
-| `create-approval-settings` | `approval/workflows/create-approval-settings.ts` | internal (called from create-companies) |
-| `update-approval-settings` | `approval/workflows/update-approval-settings.ts` | `POST /admin\|store/b2b/companies/:id/approval-settings` |
+| ID                                   | File                                                      | Trigger                                                  |
+| ------------------------------------ | --------------------------------------------------------- | -------------------------------------------------------- |
+| `create-companies`                   | `company/workflows/create-companies.ts`                   | `POST /admin/b2b/companies`                              |
+| `update-companies`                   | `company/workflows/update-companies.ts`                   | `POST /admin/b2b/companies/:id`                          |
+| `delete-companies`                   | `company/workflows/delete-companies.ts`                   | `DELETE /admin/b2b/companies/:id`                        |
+| `add-company-to-customer-group`      | `company/workflows/add-company-to-customer-group.ts`      | `POST /admin/b2b/companies/:id/customer-group`           |
+| `remove-company-from-customer-group` | `company/workflows/remove-company-from-customer-group.ts` | `DELETE /admin/b2b/companies/:id/customer-group/:id`     |
+| `create-employees`                   | `employee/workflows/create-employees.ts`                  | `POST /admin\|store/b2b/companies/:id/employees`         |
+| `update-employees`                   | `employee/workflows/update-employees.ts`                  | `POST /admin\|store/b2b/companies/:id/employees/:id`     |
+| `delete-employees`                   | `employee/workflows/delete-employees.ts`                  | `DELETE /admin/b2b/companies/:id/employees/:id`          |
+| `create-request-for-quote`           | `quote/workflows/create-request-for-quote.ts`             | `POST /store/b2b/quotes`                                 |
+| `merchant-send-quote`                | `quote/workflows/merchant-send-quote.ts`                  | `POST /admin/b2b/quotes/:id/send`                        |
+| `merchant-reject-quote`              | `quote/workflows/merchant-reject-quote.ts`                | `POST /admin/b2b/quotes/:id/reject`                      |
+| `customer-accept-quote`              | `quote/workflows/customer-accept-quote.ts`                | `POST /store/b2b/quotes/:id/accept`                      |
+| `customer-reject-quote`              | `quote/workflows/customer-reject-quote.ts`                | `POST /store/b2b/quotes/:id/reject`                      |
+| `update-quote`                       | `quote/workflows/update-quote.ts`                         | internal                                                 |
+| `create-quote-message`               | `quote/workflows/create-quote-message.ts`                 | `POST /admin\|store/b2b/quotes/:id/messages`             |
+| `create-approvals`                   | `approval/workflows/create-approvals.ts`                  | `POST /store/b2b/carts/:id/approvals`                    |
+| `update-approvals`                   | `approval/workflows/update-approvals.ts`                  | `POST /admin\|store/b2b/approvals/:id`                   |
+| `create-approval-settings`           | `approval/workflows/create-approval-settings.ts`          | internal (called from create-companies)                  |
+| `update-approval-settings`           | `approval/workflows/update-approval-settings.ts`          | `POST /admin\|store/b2b/companies/:id/approval-settings` |

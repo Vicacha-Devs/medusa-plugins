@@ -1,7 +1,7 @@
 import { AuthenticatedMedusaRequest, MedusaResponse } from "@medusajs/framework"
 import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
 import { z } from "@medusajs/framework/zod"
-import { refundBoldPaymentWorkflow } from "@payment-bold/workflows/create-bold-refund";
+import { refundBoldPaymentWorkflow } from "@payment-bold/workflows/create-bold-refund"
 
 const RefundBoldPaymentSchema = z.object({
   payment_id: z.string().min(1),
@@ -10,7 +10,11 @@ const RefundBoldPaymentSchema = z.object({
 })
 
 export const POST = async (
-  req: AuthenticatedMedusaRequest<{ payment_id: string; amount: number; note?: string }>,
+  req: AuthenticatedMedusaRequest<{
+    payment_id: string
+    amount: number
+    note?: string
+  }>,
   res: MedusaResponse
 ) => {
   const logger = req.scope.resolve(ContainerRegistrationKeys.LOGGER)
@@ -37,7 +41,9 @@ export const POST = async (
     return res.json(result)
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : String(err)
-    logger.error(`[Bold Refund Route] Error executing refund workflow: ${message}`)
+    logger.error(
+      `[Bold Refund Route] Error executing refund workflow: ${message}`
+    )
     return res.status(500).json({
       message: "Failed to process refund",
     })

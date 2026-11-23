@@ -20,10 +20,7 @@ export const FeedTab = ({ posts }: FeedTabProps) => {
         {posts.map((post) => (
           <Container key={post.id} className="flex flex-col gap-y-3 p-4">
             <div className="flex items-center justify-between">
-              <Badge
-                size="2xsmall"
-                color={platformBadgeUiColor(post.platform)}
-              >
+              <Badge size="2xsmall" color={platformBadgeUiColor(post.platform)}>
                 {post.platform} • {post.media_type}
               </Badge>
               <Text size="xsmall" className="text-ui-fg-subtle">
@@ -53,4 +50,3 @@ export const FeedTab = ({ posts }: FeedTabProps) => {
     </Container>
   )
 }
-

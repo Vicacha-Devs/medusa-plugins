@@ -125,7 +125,11 @@ export const PosReceiptTemplate: React.FC<
                 )}
               </Text>
               <Text>
-                {formatCurrency(item.total, order.currency_code, context.locale)}
+                {formatCurrency(
+                  item.total,
+                  order.currency_code,
+                  context.locale
+                )}
               </Text>
             </View>
           </View>
@@ -136,7 +140,11 @@ export const PosReceiptTemplate: React.FC<
         <View style={styles.row}>
           <Text>{t.subtotal}</Text>
           <Text>
-            {formatCurrency(order.subtotal, order.currency_code, context.locale)}
+            {formatCurrency(
+              order.subtotal,
+              order.currency_code,
+              context.locale
+            )}
           </Text>
         </View>
         {order.shipping_total ? (
@@ -154,7 +162,11 @@ export const PosReceiptTemplate: React.FC<
         <View style={styles.row}>
           <Text>{t.tax_total}</Text>
           <Text>
-            {formatCurrency(order.tax_total, order.currency_code, context.locale)}
+            {formatCurrency(
+              order.tax_total,
+              order.currency_code,
+              context.locale
+            )}
           </Text>
         </View>
 

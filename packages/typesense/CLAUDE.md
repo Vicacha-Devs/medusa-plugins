@@ -5,6 +5,7 @@
 `medusa-plugin-typesense` is a full-featured **Typesense Search, Vector/Hybrid AI Search, Merchandising, and Custom Entity Indexing Plugin for Medusa v2 (`^2.21.0`)**.
 
 It implements a **dual architecture**:
+
 1. **Standalone Typesense Module (`src/modules/typesense`)** with Medusa DML persistence (`mpt_sync_job`, `mpt_entity_config`, `mpt_search_analytics`), workflows (`src/workflows/`), event subscribers (`src/subscribers/`), scheduled jobs (`src/jobs/`), Store & Admin REST routes (`src/api/`), and Admin UI extensions (`src/admin/`).
 2. **Native Medusa 2.21 Search Module Provider (`src/providers/typesense`) & Index Factories (`src/indexes/`)** implementing `AbstractSearchProviderService` and `defineSearchIndex` from `@medusajs/framework/utils`.
 
@@ -12,13 +13,13 @@ It implements a **dual architecture**:
 
 ## Package Exports (`package.json`)
 
-| Import Path | Target Source | Purpose |
-| :--- | :--- | :--- |
-| `medusa-plugin-typesense` | `src/index.ts` | Root export (`TYPESENSE_MODULE`, `TypesenseModuleService`, `TypesenseSearchProviderService`, workflows, index factories, types) |
-| `medusa-plugin-typesense/modules/typesense` | `src/modules/typesense/index.ts` | Standalone Medusa module (`Module("typesense", { service: TypesenseModuleService })`) |
-| `medusa-plugin-typesense/providers/typesense` | `src/providers/typesense/index.ts` | Medusa 2.21 `@medusajs/medusa/search` provider (`ModuleProvider(Modules.SEARCH, ...)`) |
-| `medusa-plugin-typesense/indexes` | `src/indexes/index.ts` | `defineProductSearchIndex`, `defineCategorySearchIndex`, `defineCollectionSearchIndex`, `defineCustomSearchIndex` |
-| `medusa-plugin-typesense/workflows` | `src/workflows/index.ts` | `syncEntitiesToTypesenseWorkflow`, `upsertTypesenseDocumentsWorkflow`, `deleteTypesenseDocumentsWorkflow` |
+| Import Path                                   | Target Source                      | Purpose                                                                                                                         |
+| :-------------------------------------------- | :--------------------------------- | :------------------------------------------------------------------------------------------------------------------------------ |
+| `medusa-plugin-typesense`                     | `src/index.ts`                     | Root export (`TYPESENSE_MODULE`, `TypesenseModuleService`, `TypesenseSearchProviderService`, workflows, index factories, types) |
+| `medusa-plugin-typesense/modules/typesense`   | `src/modules/typesense/index.ts`   | Standalone Medusa module (`Module("typesense", { service: TypesenseModuleService })`)                                           |
+| `medusa-plugin-typesense/providers/typesense` | `src/providers/typesense/index.ts` | Medusa 2.21 `@medusajs/medusa/search` provider (`ModuleProvider(Modules.SEARCH, ...)`)                                          |
+| `medusa-plugin-typesense/indexes`             | `src/indexes/index.ts`             | `defineProductSearchIndex`, `defineCategorySearchIndex`, `defineCollectionSearchIndex`, `defineCustomSearchIndex`               |
+| `medusa-plugin-typesense/workflows`           | `src/workflows/index.ts`           | `syncEntitiesToTypesenseWorkflow`, `upsertTypesenseDocumentsWorkflow`, `deleteTypesenseDocumentsWorkflow`                       |
 
 ---
 

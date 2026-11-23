@@ -17,10 +17,10 @@ export async function POST(req: MedusaRequest, res: MedusaResponse) {
   const action = body.action || "lookup"
   const quantityDelta =
     action === "increment"
-      ? body.quantity ?? 1
+      ? (body.quantity ?? 1)
       : action === "decrement"
-      ? -(body.quantity ?? 1)
-      : body.quantity ?? 0
+        ? -(body.quantity ?? 1)
+        : (body.quantity ?? 0)
 
   res.json({
     ...resolved,

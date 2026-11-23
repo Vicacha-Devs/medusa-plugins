@@ -7,14 +7,18 @@ type Input = { customerId: string; companyName: string | null }
 export const syncCustomerCompanyNameStep = createStep(
   "sync-customer-company-name",
   async ({ customerId, companyName }: Input, { container }) => {
-    const customerModule = container.resolve<ICustomerModuleService>(Modules.CUSTOMER)
+    const customerModule = container.resolve<ICustomerModuleService>(
+      Modules.CUSTOMER
+    )
 
     const [previous] = await customerModule.listCustomers(
       { id: customerId },
       { select: ["id", "company_name"] }
     )
 
-    await customerModule.updateCustomers(customerId, { company_name: companyName ?? "" })
+    await customerModule.updateCustomers(customerId, {
+      company_name: companyName ?? "",
+    })
 
     return new StepResponse(
       { customerId, companyName },
@@ -23,8 +27,12 @@ export const syncCustomerCompanyNameStep = createStep(
   },
   async (previous: Input | undefined, { container }) => {
     if (!previous) return
-    const customerModule = container.resolve<ICustomerModuleService>(Modules.CUSTOMER)
-    await customerModule.updateCustomers(previous.customerId, { company_name: previous.companyName ?? "" })
+    const customerModule = container.resolve<ICustomerModuleService>(
+      Modules.CUSTOMER
+    )
+    await customerModule.updateCustomers(previous.customerId, {
+      company_name: previous.companyName ?? "",
+    })
   }
 )
 
@@ -34,9 +42,13 @@ export const clearCustomerCompanyNameStep = createStep(
   "clear-customer-company-name",
   async ({ employeeId }: ClearInput, { container }) => {
     const query = container.resolve(ContainerRegistrationKeys.QUERY)
-    const customerModule = container.resolve<ICustomerModuleService>(Modules.CUSTOMER)
+    const customerModule = container.resolve<ICustomerModuleService>(
+      Modules.CUSTOMER
+    )
 
-    const { data: [employee] } = await query.graph({
+    const {
+      data: [employee],
+    } = await query.graph({
       entity: "employee",
       fields: ["id", "customer.id", "customer.company_name"],
       filters: { id: employeeId },
@@ -53,9 +65,19 @@ export const clearCustomerCompanyNameStep = createStep(
 
     return new StepResponse({ customerId }, { customerId, previousName })
   },
-  async (previous: { customerId: string; previousName: string | null } | null | undefined, { container }) => {
+  async (
+    previous:
+      | { customerId: string; previousName: string | null }
+      | null
+      | undefined,
+    { container }
+  ) => {
     if (!previous?.customerId) return
-    const customerModule = container.resolve<ICustomerModuleService>(Modules.CUSTOMER)
-    await customerModule.updateCustomers(previous.customerId, { company_name: previous.previousName ?? "" })
+    const customerModule = container.resolve<ICustomerModuleService>(
+      Modules.CUSTOMER
+    )
+    await customerModule.updateCustomers(previous.customerId, {
+      company_name: previous.previousName ?? "",
+    })
   }
 )

@@ -8,7 +8,7 @@ export const getTerminalsStep = createStep(
   "get-terminals",
   async (_, { container }) => {
     const logger = container.resolve<Logger>(ContainerRegistrationKeys.LOGGER)
-    
+
     // Resolve options from container or fallback
     const boldProviderOptions = getProviderOptionsFromContainer(container)
 

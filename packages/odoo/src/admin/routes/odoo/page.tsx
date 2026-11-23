@@ -18,19 +18,15 @@ import {
   StatCard,
 } from "../../components"
 import { useOdooDashboard } from "../../hooks/use-odoo-dashboard"
-import { RbacGuard } from "../../components/rbac-guard";
+import { RbacGuard } from "../../components/rbac-guard"
 
 const OdooAdminPage = () => {
   const { t, i18n } = useTranslation()
   const navigate = useNavigate()
   const isRtl = (i18n.resolvedLanguage || i18n.language || "").startsWith("ar")
 
-  const {
-    statusQuery,
-    connectionForm,
-    triggerSyncMutation,
-    handleSync,
-  } = useOdooDashboard()
+  const { statusQuery, connectionForm, triggerSyncMutation, handleSync } =
+    useOdooDashboard()
 
   const overview = statusQuery.data
   const isLoading = statusQuery.isPending
@@ -175,6 +171,6 @@ const GuardedOdooAdminPage = () => (
   <RbacGuard permission="odoo.read">
     <OdooAdminPage />
   </RbacGuard>
-);
+)
 
-export default GuardedOdooAdminPage;
+export default GuardedOdooAdminPage

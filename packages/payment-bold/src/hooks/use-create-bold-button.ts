@@ -1,8 +1,16 @@
-import { useMutation, useQueryClient, UseMutationOptions } from "@tanstack/react-query"
+import {
+  useMutation,
+  useQueryClient,
+  UseMutationOptions,
+} from "@tanstack/react-query"
 
 import { boldAdminSdk } from "../sdk/client"
 import { boldQueryKeys } from "../sdk/query-keys"
-import { BoldButtonPayload, BoldButtonResponse, BoldMutationHookOptions } from "../types"
+import {
+  BoldButtonPayload,
+  BoldButtonResponse,
+  BoldMutationHookOptions,
+} from "../types"
 
 export const useCreateBoldButton = (
   options?: UseMutationOptions<BoldButtonResponse, Error, BoldButtonPayload> &
@@ -13,7 +21,8 @@ export const useCreateBoldButton = (
   const targetKey = options?.queryKey || boldQueryKeys.button()
 
   return useMutation({
-    mutationFn: (payload: BoldButtonPayload) => sdk.createPaymentButton(payload),
+    mutationFn: (payload: BoldButtonPayload) =>
+      sdk.createPaymentButton(payload),
     onSuccess: (data, variables, onMutateResult, context) => {
       if (targetKey && targetKey.length > 0) {
         queryClient.invalidateQueries({ queryKey: targetKey as any })

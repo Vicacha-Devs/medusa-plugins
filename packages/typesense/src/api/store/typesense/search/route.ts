@@ -49,7 +49,7 @@ export async function GET(req: MedusaRequest, res: MedusaResponse) {
     })
 
     return res.status(200).json(result)
-  } catch (_error: unknown) {
+  } catch {
     return res.status(500).json({
       message: "Failed to execute search",
     })
@@ -136,7 +136,7 @@ export async function POST(req: MedusaRequest, res: MedusaResponse) {
       conversationId: input.conversation_id,
     })
     return res.status(200).json(result)
-  } catch (_error: unknown) {
+  } catch {
     return res.status(500).json({
       message: "Failed to execute search",
     })

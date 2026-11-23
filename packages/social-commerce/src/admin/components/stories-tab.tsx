@@ -4,10 +4,7 @@ import { useTranslation } from "react-i18next"
 import type { SocialMediaPostRecord } from "../../modules/social-commerce/types/index.js"
 import type { CreateStoryFormState } from "../hooks/use-social-dashboard.js"
 import { StoriesTable } from "./stories-table.js"
-import {
-  StoryCreateForm,
-  createStoryFormSchema,
-} from "./story-create-form.js"
+import { StoryCreateForm, createStoryFormSchema } from "./story-create-form.js"
 
 export { createStoryFormSchema }
 
@@ -68,4 +65,3 @@ export const StoriesTab = ({
     </Container>
   )
 }
-

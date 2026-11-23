@@ -75,7 +75,8 @@ export function sendErrorResponse(res: HttpResponse, err: unknown): void {
 
   res.status(500).json({
     type: MedusaError.Types.UNEXPECTED_STATE,
-    message: err instanceof Error ? err.message : "Unexpected internal server error",
+    message:
+      err instanceof Error ? err.message : "Unexpected internal server error",
   })
 }
 
@@ -153,5 +154,3 @@ export default defineMiddlewares({
     },
   ],
 })
-
-

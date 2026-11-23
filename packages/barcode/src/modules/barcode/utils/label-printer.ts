@@ -351,12 +351,18 @@ export function generateZplLabels(
         )}^FS`
       )
     } else if (symbology === "ean13" || symbology === "isbn13") {
-      const digits12 = item.barcode.replace(/\D/g, "").slice(0, 12).padStart(12, "0")
+      const digits12 = item.barcode
+        .replace(/\D/g, "")
+        .slice(0, 12)
+        .padStart(12, "0")
       lines.push(
         `^FO${padX},${cursorY}^BY2^BEN,${barHeight},Y,N^FD${digits12}^FS`
       )
     } else if (symbology === "ean8") {
-      const digits7 = item.barcode.replace(/\D/g, "").slice(0, 7).padStart(7, "0")
+      const digits7 = item.barcode
+        .replace(/\D/g, "")
+        .slice(0, 7)
+        .padStart(7, "0")
       lines.push(
         `^FO${padX},${cursorY}^BY2^B8N,${barHeight},Y,N^FD${digits7}^FS`
       )
@@ -368,7 +374,11 @@ export function generateZplLabels(
       )
     }
 
-    if (template.show_qr && symbology !== "qr" && (item.qr_url || item.barcode)) {
+    if (
+      template.show_qr &&
+      symbology !== "qr" &&
+      (item.qr_url || item.barcode)
+    ) {
       const qrX = Math.max(padX + 180, widthDots - 95)
       lines.push(
         `^FO${qrX},${padY}^BQN,2,3^FDQA,${sanitizeZplField(

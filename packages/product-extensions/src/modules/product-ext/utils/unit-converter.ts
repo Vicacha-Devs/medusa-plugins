@@ -259,7 +259,10 @@ export function convertUnit(
   return Number(toDesc.fromSI(si).toFixed(6))
 }
 
-export function formatUnitDisplay(value: number, unit?: UnitCode | null): string {
+export function formatUnitDisplay(
+  value: number,
+  unit?: UnitCode | null
+): string {
   if (!unit) {
     return String(value)
   }

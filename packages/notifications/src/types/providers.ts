@@ -1,7 +1,4 @@
-import type {
-  SmsDriver,
-  WhatsAppDriver,
-} from "./core"
+import type { SmsDriver, WhatsAppDriver } from "./core"
 
 export interface SmtpEmailProviderOptions {
   channels?: string[]
@@ -15,6 +12,8 @@ export interface SmtpEmailProviderOptions {
   webhook_url?: string
   api_key?: string
   allow_localhost?: boolean
+  local_preview?: boolean
+  local_preview_dir?: string
 }
 
 export interface WhatsAppProviderOptions {

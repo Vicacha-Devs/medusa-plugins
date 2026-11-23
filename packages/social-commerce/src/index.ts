@@ -7,4 +7,3 @@ export {
   default as adminI18n,
   SUPPORTED_UI_LOCALES,
 } from "./admin/i18n/index.js"
-

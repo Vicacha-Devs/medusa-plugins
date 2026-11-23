@@ -52,7 +52,7 @@ export function createBarcodeSdk(options?: BarcodeSdkOptions) {
       ...(options?.publishableApiKey
         ? { "x-publishable-api-key": options.publishableApiKey }
         : {}),
-      ...((init?.headers as Record<string, string>) ?? {}),
+      ...(init?.headers as Record<string, string>),
     }
 
     const res = await fetchImpl(`${baseUrl}${path}`, {
@@ -230,7 +230,9 @@ export function createBarcodeSdk(options?: BarcodeSdkOptions) {
         )
       },
       getSvgUrl(code: string, symbology?: BarcodeSymbology) {
-        const sym = symbology ? `&symbology=${encodeURIComponent(symbology)}` : ""
+        const sym = symbology
+          ? `&symbology=${encodeURIComponent(symbology)}`
+          : ""
         return `${baseUrl}/store/barcodes/${encodeURIComponent(
           code
         )}?format=svg${sym}`

@@ -85,7 +85,7 @@ export class TypesenseApiClient {
   ): Record<string, string> {
     const headers: Record<string, string> = {
       ...(hasJsonBody ? { "Content-Type": "application/json" } : {}),
-      ...(this.options.headers || {}),
+      ...this.options.headers,
     }
 
     if (this.options.publishableApiKey) {
@@ -195,7 +195,9 @@ export class TypesenseApiClient {
     })
   }
 
-  async deleteCustomEntity(entity: string): Promise<DeleteCustomEntityResponse> {
+  async deleteCustomEntity(
+    entity: string
+  ): Promise<DeleteCustomEntityResponse> {
     return this.fetch<DeleteCustomEntityResponse>(
       `/typesense/entities/${encodeURIComponent(entity)}`,
       { method: "DELETE" }

@@ -13,7 +13,10 @@ import type {
   ReservationStoreBackend,
 } from "./reservation/reservation-store.interface"
 
-export type { RedisLikeClient, ReservationStoreBackend } from "./reservation/reservation-store.interface"
+export type {
+  RedisLikeClient,
+  ReservationStoreBackend,
+} from "./reservation/reservation-store.interface"
 export { RedisReservationStore } from "./reservation/redis-reservation.store"
 export { InMemoryReservationStore } from "./reservation/in-memory-reservation.store"
 
@@ -120,7 +123,9 @@ export class InventoryReservationService {
     }
 
     const ttl =
-      ttl_seconds && ttl_seconds > 0 ? Math.floor(ttl_seconds) : this.defaultTtlSeconds
+      ttl_seconds && ttl_seconds > 0
+        ? Math.floor(ttl_seconds)
+        : this.defaultTtlSeconds
     const reservationId = `res_${randomUUID().replace(/-/g, "").slice(0, 20)}`
 
     const reservation: ReservationRecord = {
@@ -165,7 +170,11 @@ export class InventoryReservationService {
     reservationId: string,
     sessionId?: string,
     variantId?: string
-  ): Promise<{ confirmed: boolean; quantity: number; reservation: ReservationRecord | null }> {
+  ): Promise<{
+    confirmed: boolean
+    quantity: number
+    reservation: ReservationRecord | null
+  }> {
     if (!reservationId?.trim()) {
       throw new MedusaError(
         MedusaError.Types.INVALID_DATA,
@@ -230,7 +239,9 @@ export class InventoryReservationService {
    * Sweeps expired reservations across all sessions and returns the number of
    * expired reservations reclaimed.
    */
-  async cleanupExpiredReservations(nowMs: number = Date.now()): Promise<number> {
+  async cleanupExpiredReservations(
+    nowMs: number = Date.now()
+  ): Promise<number> {
     return this.store.cleanupExpiredReservations(nowMs)
   }
 }

@@ -1,15 +1,10 @@
-import type { JSX } from "react";
+import type { JSX } from "react"
 import { EllipseMiniSolid } from "@medusajs/icons"
 import { Input, Label, clx } from "@medusajs/ui"
 import * as Popover from "@radix-ui/react-popover"
 import * as RadioGroup from "@radix-ui/react-radio-group"
 import { debounce } from "lodash"
-import {
-  ChangeEvent,
-  useCallback,
-  useEffect,
-  useState,
-} from "react"
+import { ChangeEvent, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 
 import { useSelectedParams } from "../hooks"
@@ -252,7 +247,10 @@ export const NumberFilter = ({
   )
 }
 
-const parseDisplayValue = (value: string[] | null | undefined, t: TFunction) => {
+const parseDisplayValue = (
+  value: string[] | null | undefined,
+  t: TFunction
+) => {
   const parsed = JSON.parse(value?.join(",") || "{}")
   let displayValue = ""
 

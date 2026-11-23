@@ -6,7 +6,11 @@ interface BoldLogoProps {
   className?: string
 }
 
-export function BoldLogo({ width = 79, height = 28, className }: BoldLogoProps) {
+export function BoldLogo({
+  width = 79,
+  height = 28,
+  className,
+}: BoldLogoProps) {
   const isDark = useDarkMode()
   const gradientEnd = isDark ? "#FFFFFF" : "#121E6C"
 

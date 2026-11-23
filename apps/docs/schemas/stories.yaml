@@ -1,0 +1,583 @@
+openapi: 3.1.0
+info:
+  title: "@vicacha-devs/medusa-plugin-stories API"
+  version: 0.0.1
+  description:
+    Shoppable Stories, Highlights Rings & Interactive 9:16 Video/Image
+    Player plugin for Medusa v2 — Story Groups, Multi-Slide Timelines, X/Y
+    Product Hotspots, Interactive Stickers (Polls, Countdowns, Coupons),
+    Conversion Funnel Analytics, Storefront React UI Kit, Typed SDK & 9:16 Admin
+    Studio.
+servers:
+  - url: http://127.0.0.1:9000
+    description: Local Medusa v2 Server
+components:
+  securitySchemes:
+    adminBearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Medusa Admin JWT or API token
+    publishableKey:
+      type: apiKey
+      in: header
+      name: x-publishable-api-key
+      description: Medusa Storefront Publishable API Key
+paths:
+  /admin/plugin:
+    get:
+      operationId: getAdminPlugin
+      summary: List plugin
+      description: GET /admin/plugin endpoint exposed by
+        @vicacha-devs/medusa-plugin-stories.
+      tags:
+        - "Admin: plugin"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/stories:
+    get:
+      operationId: getAdminStories
+      summary: List stories
+      description: GET /admin/stories endpoint exposed by
+        @vicacha-devs/medusa-plugin-stories.
+      tags:
+        - "Admin: stories"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    post:
+      operationId: postAdminStories
+      summary: Create / Trigger stories
+      description: POST /admin/stories endpoint exposed by
+        @vicacha-devs/medusa-plugin-stories.
+      tags:
+        - "Admin: stories"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/stories/{id}:
+    delete:
+      operationId: deleteAdminStoriesById
+      summary: Delete stories by ID
+      description: DELETE /admin/stories/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-stories.
+      tags:
+        - "Admin: stories"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    get:
+      operationId: getAdminStoriesById
+      summary: Get stories by ID
+      description: GET /admin/stories/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-stories.
+      tags:
+        - "Admin: stories"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    patch:
+      operationId: patchAdminStoriesById
+      summary: Update stories by ID
+      description: PATCH /admin/stories/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-stories.
+      tags:
+        - "Admin: stories"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    put:
+      operationId: putAdminStoriesById
+      summary: Update stories by ID
+      description: PUT /admin/stories/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-stories.
+      tags:
+        - "Admin: stories"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/stories/{id}/hotspots:
+    delete:
+      operationId: deleteAdminStoriesByIdHotspots
+      summary: Delete stories by ID hotspots
+      description: DELETE /admin/stories/{id}/hotspots endpoint exposed by
+        @vicacha-devs/medusa-plugin-stories.
+      tags:
+        - "Admin: stories"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    post:
+      operationId: postAdminStoriesByIdHotspots
+      summary: Create / Trigger stories by ID hotspots
+      description: POST /admin/stories/{id}/hotspots endpoint exposed by
+        @vicacha-devs/medusa-plugin-stories.
+      tags:
+        - "Admin: stories"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/stories/{id}/stickers:
+    delete:
+      operationId: deleteAdminStoriesByIdStickers
+      summary: Delete stories by ID stickers
+      description: DELETE /admin/stories/{id}/stickers endpoint exposed by
+        @vicacha-devs/medusa-plugin-stories.
+      tags:
+        - "Admin: stories"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    post:
+      operationId: postAdminStoriesByIdStickers
+      summary: Create / Trigger stories by ID stickers
+      description: POST /admin/stories/{id}/stickers endpoint exposed by
+        @vicacha-devs/medusa-plugin-stories.
+      tags:
+        - "Admin: stories"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/stories/analytics:
+    get:
+      operationId: getAdminStoriesAnalytics
+      summary: List stories analytics
+      description: GET /admin/stories/analytics endpoint exposed by
+        @vicacha-devs/medusa-plugin-stories.
+      tags:
+        - "Admin: stories"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/stories/groups:
+    get:
+      operationId: getAdminStoriesGroups
+      summary: List stories groups
+      description: GET /admin/stories/groups endpoint exposed by
+        @vicacha-devs/medusa-plugin-stories.
+      tags:
+        - "Admin: stories"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    post:
+      operationId: postAdminStoriesGroups
+      summary: Create / Trigger stories groups
+      description: POST /admin/stories/groups endpoint exposed by
+        @vicacha-devs/medusa-plugin-stories.
+      tags:
+        - "Admin: stories"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/stories/groups/{id}:
+    delete:
+      operationId: deleteAdminStoriesGroupsById
+      summary: Delete stories groups by ID
+      description: DELETE /admin/stories/groups/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-stories.
+      tags:
+        - "Admin: stories"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    get:
+      operationId: getAdminStoriesGroupsById
+      summary: Get stories groups by ID
+      description: GET /admin/stories/groups/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-stories.
+      tags:
+        - "Admin: stories"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    patch:
+      operationId: patchAdminStoriesGroupsById
+      summary: Update stories groups by ID
+      description: PATCH /admin/stories/groups/{id} endpoint exposed by
+        @vicacha-devs/medusa-plugin-stories.
+      tags:
+        - "Admin: stories"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /store/plugin:
+    get:
+      operationId: getStorePlugin
+      summary: List plugin
+      description: GET /store/plugin endpoint exposed by
+        @vicacha-devs/medusa-plugin-stories.
+      tags:
+        - "Storefront: plugin"
+      security:
+        - publishableKey: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /store/stories:
+    get:
+      operationId: getStoreStories
+      summary: List stories
+      description: GET /store/stories endpoint exposed by
+        @vicacha-devs/medusa-plugin-stories.
+      tags:
+        - "Storefront: stories"
+      security:
+        - publishableKey: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /store/stories/{id}/events:
+    post:
+      operationId: postStoreStoriesByIdEvents
+      summary: Create / Trigger stories by ID events
+      description: POST /store/stories/{id}/events endpoint exposed by
+        @vicacha-devs/medusa-plugin-stories.
+      tags:
+        - "Storefront: stories"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - publishableKey: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /store/stories/{id}/interact:
+    post:
+      operationId: postStoreStoriesByIdInteract
+      summary: Create / Trigger stories by ID interact
+      description: POST /store/stories/{id}/interact endpoint exposed by
+        @vicacha-devs/medusa-plugin-stories.
+      tags:
+        - "Storefront: stories"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Resource identifier (id)
+          schema:
+            type: string
+      security:
+        - publishableKey: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true

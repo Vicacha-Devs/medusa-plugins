@@ -54,9 +54,7 @@ const dropAnimationConfig: DropAnimation = {
   }),
 }
 
-export const CreateMediaSection = ({
-  form,
-}: CreateMediaSectionProps) => {
+export const CreateMediaSection = ({ form }: CreateMediaSectionProps) => {
   const { fields, append, remove } = useFieldArray({
     name: "media",
     control: form.control,
@@ -136,7 +134,9 @@ export const CreateMediaSection = ({
         <DragOverlay dropAnimation={dropAnimationConfig}>
           {activeId ? (
             <MediaGridItemOverlay
-              field={(fields as unknown as MediaField[]).find((m) => m.field_id === activeId)!}
+              field={(fields as unknown as MediaField[]).find(
+                (m) => m.field_id === activeId
+              )!}
             />
           ) : null}
         </DragOverlay>

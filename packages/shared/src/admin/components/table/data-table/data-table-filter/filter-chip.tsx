@@ -1,4 +1,4 @@
-import type { JSX } from "react";
+import type { JSX } from "react"
 import { XMarkMini } from "@medusajs/icons"
 import { Text, clx } from "@medusajs/ui"
 import { useTranslation } from "react-i18next"
@@ -30,12 +30,8 @@ const FilterChip = ({
   }
 
   return (
-    <div
-      className="bg-ui-bg-field transition-fg shadow-borders-base text-ui-fg-subtle flex cursor-default select-none items-stretch overflow-hidden rounded-md"
-    >
-      {!hadPreviousValue && (
-        <Popover.Anchor />
-      )}
+    <div className="bg-ui-bg-field transition-fg shadow-borders-base text-ui-fg-subtle flex cursor-default select-none items-stretch overflow-hidden rounded-md">
+      {!hadPreviousValue && <Popover.Anchor />}
       <div
         className={clx(
           "flex items-center justify-center whitespace-nowrap px-2 py-1",
@@ -62,12 +58,16 @@ const FilterChip = ({
           </div>
         )}
         {!!(value || hadPreviousValue) && (
-          <Popover.Trigger asChild className={clx("flex-1 cursor-pointer overflow-hidden border-r p-1 px-2",
-            {
-              "hover:bg-ui-bg-field-hover": !readonly,
-              "data-[state=open]:bg-ui-bg-field-hover": !readonly,
-            }
-          )}>
+          <Popover.Trigger
+            asChild
+            className={clx(
+              "flex-1 cursor-pointer overflow-hidden border-r p-1 px-2",
+              {
+                "hover:bg-ui-bg-field-hover": !readonly,
+                "data-[state=open]:bg-ui-bg-field-hover": !readonly,
+              }
+            )}
+          >
             <Text
               size="small"
               leading="compact"

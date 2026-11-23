@@ -7,7 +7,7 @@ import {
   type TemplateFormState,
   useProductExtStudio,
 } from "../../../../hooks/use-product-ext-studio"
-import { RbacGuard } from "../../../../components/rbac-guard";
+import { RbacGuard } from "../../../../components/rbac-guard"
 
 const CreateTemplateContent = () => {
   const { handleSuccess } = useRouteModal()
@@ -41,6 +41,6 @@ const GuardedTemplateCreateModalPage = () => (
   <RbacGuard permission="product_extensions.write">
     <TemplateCreateModalPage />
   </RbacGuard>
-);
+)
 
-export default GuardedTemplateCreateModalPage;
+export default GuardedTemplateCreateModalPage
