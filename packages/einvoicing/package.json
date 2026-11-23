@@ -1,0 +1,92 @@
+{
+  "name": "@vicacha-devs/medusa-plugin-einvoicing",
+  "version": "0.1.0",
+  "description": "E-Invoicing plugin for Medusa v2 by Vicacha Devs.",
+  "keywords": [
+    "cfdi",
+    "dian",
+    "einvoicing",
+    "fiscal",
+    "medusa",
+    "medusa-plugin",
+    "medusa-plugin-einvoicing",
+    "medusa-plugin-integration",
+    "medusa-v2",
+    "peppol",
+    "ubl-2.1"
+  ],
+  "license": "MIT",
+  "author": "Vicacha Devs",
+  "files": [
+    ".medusa/server",
+    "src",
+    "README.md",
+    "LICENSE",
+    "tsconfig.json"
+  ],
+  "type": "module",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "import": "./.medusa/server/src/index.js",
+      "default": "./.medusa/server/src/index.js"
+    },
+    "./admin": {
+      "import": "./.medusa/server/src/admin/index.js",
+      "default": "./.medusa/server/src/admin/index.js"
+    },
+    "./sdk": {
+      "import": "./src/sdk/index.ts",
+      "default": "./.medusa/server/src/sdk/index.js"
+    },
+    "./types": {
+      "import": "./src/types/index.ts",
+      "default": "./.medusa/server/src/types/index.js"
+    },
+    "./workflows": "./.medusa/server/src/workflows/index.js",
+    "./modules/*": "./.medusa/server/src/modules/*/index.js"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "scripts": {
+    "build": "medusa plugin:build && tsc-alias -p tsconfig.json --resolve-full-paths",
+    "clean": "rm -rf .medusa dist",
+    "dev": "medusa plugin:develop",
+    "lint": "medusa lint",
+    "prepublishOnly": "medusa plugin:build",
+    "test": "node --import ../plugin-testing/register-ts-resolver.mjs --import ../plugin-testing/register-js-extension.mjs --test src/__tests__/*.spec.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@medusajs/admin-sdk": "2.23.0",
+    "@medusajs/admin-shared": "2.23.0",
+    "@medusajs/cli": "2.23.0",
+    "@medusajs/framework": "2.23.0",
+    "@medusajs/medusa": "2.23.0",
+    "@medusajs/types": "2.23.0",
+    "@medusajs/ui": "4.3.0",
+    "@vicacha-devs/medusa-eslint-config": "workspace:*",
+    "@vicacha-devs/medusa-plugin-testing": "workspace:*",
+    "@vicacha-devs/medusa-typescript-config": "workspace:*",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "tsc-alias": "^1.9.2",
+    "typescript": "5.6.2",
+    "vite": "^8.3.8"
+  },
+  "peerDependencies": {
+    "@medusajs/admin-sdk": "2.23.0",
+    "@medusajs/admin-shared": "2.23.0",
+    "@medusajs/framework": "2.23.0",
+    "@medusajs/medusa": "2.23.0",
+    "@medusajs/ui": "4.3.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "zod": "4.6.7"
+  },
+  "engines": {
+    "node": ">=22.22.0"
+  }
+}
