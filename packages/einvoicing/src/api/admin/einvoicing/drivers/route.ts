@@ -12,5 +12,5 @@ export async function GET(
   const service = req.scope.resolve(
     EINVOICING_MODULE
   ) as EinvoicingModuleService
-  res.json({ drivers: await service.listDrivers() })
+  res.json({ drivers: service.listDrivers() })
 }

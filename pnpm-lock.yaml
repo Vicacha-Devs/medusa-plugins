@@ -705,6 +705,9 @@ importers:
       '@vicacha-devs/medusa-plugin-b2b':
         specifier: workspace:*
         version: link:../b2b
+      '@vicacha-devs/medusa-plugin-einvoicing':
+        specifier: workspace:*
+        version: link:../einvoicing
       '@vicacha-devs/medusa-plugin-documents':
         specifier: workspace:*
         version: link:../documents

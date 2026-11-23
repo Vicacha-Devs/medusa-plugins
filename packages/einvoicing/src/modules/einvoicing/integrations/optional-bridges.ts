@@ -63,3 +63,21 @@ export async function resolveOptionalDocumentsPdfId(
     return null
   }
 }
+
+/**
+ * Optional zero-hard-dependency lookup for `@vicacha-devs/medusa-plugin-dian`.
+ * Resolves the `"dian"` module when installed for Colombia (CO) e-invoicing.
+ */
+export function resolveOptionalDianService(
+  container: { resolve?: (key: string) => any } | null | undefined,
+  dianModuleKey = "dian"
+): Record<string, any> | null {
+  if (!container?.resolve) {
+    return null
+  }
+  try {
+    return container.resolve(dianModuleKey) || null
+  } catch {
+    return null
+  }
+}

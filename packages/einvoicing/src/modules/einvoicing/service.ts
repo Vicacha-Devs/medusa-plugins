@@ -7,6 +7,7 @@ import type {
 import { createBuiltInFiscalDrivers } from "./drivers/country-drivers"
 import {
   resolveOptionalB2BCompany,
+  resolveOptionalDianService,
   resolveOptionalDocumentsPdfId,
 } from "./integrations/optional-bridges"
 import { FiscalConfigModel } from "./models/fiscal-config"
@@ -111,7 +112,12 @@ export class EinvoicingModuleService extends MedusaService({
       settings: (cfg?.settings as Record<string, unknown> | null) ?? null,
     }
 
-    const result = await driver.submitDocument(ctx)
+    const dianService =
+      driver.id === "co-dian" ? resolveOptionalDianService(container) : null
+    const result =
+      dianService && typeof dianService.submitFromEinvoicing === "function"
+        ? await dianService.submitFromEinvoicing(ctx)
+        : await driver.submitDocument(ctx)
     const pdfDocumentId = await resolveOptionalDocumentsPdfId(
       container,
       input.order_id
