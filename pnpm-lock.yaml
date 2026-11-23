@@ -378,6 +378,9 @@ importers:
       '@medusajs/admin-sdk':
         specifier: 2.23.0
         version: 2.23.0
+      '@medusajs/admin-shared':
+        specifier: 2.23.0
+        version: 2.23.0
       '@medusajs/cli':
         specifier: 2.23.0
         version: 2.23.0(@types/node@22.20.1)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
