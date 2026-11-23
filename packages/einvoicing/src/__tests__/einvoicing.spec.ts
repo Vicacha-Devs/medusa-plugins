@@ -8,6 +8,7 @@ import {
 } from "../modules/einvoicing/drivers/country-drivers.js"
 import {
   resolveOptionalB2BCompany,
+  resolveOptionalDianService,
   resolveOptionalDocumentsPdfId,
 } from "../modules/einvoicing/integrations/optional-bridges.js"
 
@@ -78,6 +79,15 @@ describe("@vicacha-devs/medusa-plugin-einvoicing", () => {
 
     const pdfId = await resolveOptionalDocumentsPdfId(mockContainer, "ord_1")
     assert.equal(pdfId, "doc_pdf_1")
+
+    assert.equal(resolveOptionalDianService(null), null)
+    const mockDian = { submitFromEinvoicing: async () => ({ success: true }) }
+    assert.equal(
+      resolveOptionalDianService({
+        resolve: (k: string) => (k === "dian" ? mockDian : null),
+      }),
+      mockDian
+    )
   })
 
   it("rejects unsafe non-HTTPS fiscal webhook URLs in production", async () => {

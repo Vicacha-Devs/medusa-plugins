@@ -6,11 +6,12 @@ import {
   WorkflowResponse,
 } from "@medusajs/framework/workflows-sdk"
 import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
+import { assertEinvoicingInstalled } from "../modules/dian/integrations/einvoicing-guard"
 import DianModuleService from "../modules/dian/service"
 import { DIAN_MODULE, type EmitDianDocumentInput } from "../types"
 
 export const fetchOrderForDianStep = createStep(
-  "fetch-order-for-dian-step",
+  "fetch-order-for-dian",
   async (input: { order_id: string }, { container }) => {
     let order: Record<string, any> | null = null
     try {
@@ -77,11 +78,12 @@ export const fetchOrderForDianStep = createStep(
 )
 
 export const emitDianElectronicDocumentStep = createStep(
-  "emit-dian-electronic-document-step",
+  "emit-dian-electronic-document",
   async (
     input: EmitDianDocumentInput & { order: Record<string, any> },
     { container }
   ) => {
+    assertEinvoicingInstalled(container)
     const dianService = container.resolve<DianModuleService>(DIAN_MODULE)
     const doc = await dianService.emitElectronicDocumentForOrder(
       input,
@@ -92,7 +94,7 @@ export const emitDianElectronicDocumentStep = createStep(
 )
 
 export const emitDianDocumentWorkflow = createWorkflow(
-  "emit-dian-document-workflow",
+  "emit-dian-document",
   (input: EmitDianDocumentInput) => {
     const order = fetchOrderForDianStep({ order_id: input.order_id })
     const document = emitDianElectronicDocumentStep(

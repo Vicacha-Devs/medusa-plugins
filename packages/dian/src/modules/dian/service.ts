@@ -53,7 +53,7 @@ class DianModuleService extends MedusaService({
   public readonly soapProvider: NativeDianSoapProvider
 
   constructor(container: InjectedDependencies, options?: DianPluginOptions) {
-    // eslint-disable-next-line prefer-rest-params
+     
     super(...arguments)
     this.container_ = container ?? {}
     this.options_ = options ?? {}
@@ -1033,6 +1033,63 @@ class DianModuleService extends MedusaService({
       buffer: Buffer.from(String(doc.zip_base64), "base64"),
       filename: String(doc.zip_filename || `ad_${doc.document_number}.zip`),
       document: doc,
+    }
+  }
+
+  /**
+   * Entrypoint invoked by `@vicacha-devs/medusa-plugin-einvoicing` when
+   * `country_code === "CO"` or `driver_id === "co-dian"`.
+   */
+  async submitFromEinvoicing(ctx: {
+    order_id: string
+    document_type: string
+    document_number: string
+    currency_code: string
+    subtotal: number
+    tax_total: number
+    total: number
+    issuer_tax_id: string
+    buyer_tax_id?: string | null
+    buyer_name?: string | null
+    buyer_email?: string | null
+  }): Promise<{
+    success: boolean
+    status: "accepted" | "rejected"
+    external_id?: string
+    payload_xml?: string
+    response_payload?: Record<string, unknown>
+    error_message?: string
+  }> {
+    const typeMap: Record<string, DianDocumentType> = {
+      invoice: "01",
+      credit_note: "91",
+      debit_note: "92",
+      pos_receipt: "20",
+    }
+    const emitted = await this.emitDocumentForOrder({
+      order: {
+        id: ctx.order_id,
+        currency_code: ctx.currency_code,
+        subtotal: ctx.subtotal,
+        tax_total: ctx.tax_total,
+        total: ctx.total,
+        email: ctx.buyer_email ?? undefined,
+      },
+      document_type: typeMap[ctx.document_type] || "01",
+      force_reemit: true,
+    } as any)
+
+    return {
+      success: emitted.dian_status !== "rejected",
+      status: emitted.dian_status === "rejected" ? "rejected" : "accepted",
+      external_id: emitted.cufe || undefined,
+      payload_xml: emitted.ubl_xml || undefined,
+      response_payload: {
+        dian_document_id: emitted.id,
+        dian_status: emitted.dian_status,
+        document_number: emitted.document_number,
+      },
+      error_message: emitted.error_message || undefined,
     }
   }
 }
