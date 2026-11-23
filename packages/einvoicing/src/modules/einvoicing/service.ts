@@ -1,4 +1,4 @@
-import { MedusaService } from "@medusajs/framework/utils"
+import { MedusaError, MedusaService } from "@medusajs/framework/utils"
 import type {
   FiscalCountryDriver,
   FiscalDriverContext,
@@ -32,13 +32,15 @@ export class EinvoicingModuleService extends MedusaService({
     }
   }
 
-  async registerDriver(driver: FiscalCountryDriver): Promise<void> {
+  async registerDriver(driver: FiscalCountryDriver): void {
     this.drivers_.set(driver.id, driver)
   }
 
-  async listDrivers(): Promise<
-    Array<{ id: string; label: string; countryCodes: string[] }>
-  > {
+  async listDrivers(): Array<{
+    id: string
+    label: string
+    countryCodes: string[]
+  }> {
     return [...this.drivers_.values()].map((d) => ({
       id: d.id,
       label: d.label,
@@ -49,7 +51,7 @@ export class EinvoicingModuleService extends MedusaService({
   async resolveDriverForCountry(
     countryCode: string,
     preferredDriverId?: string
-  ): Promise<FiscalCountryDriver> {
+  ): FiscalCountryDriver {
     if (preferredDriverId && this.drivers_.has(preferredDriverId)) {
       return this.drivers_.get(preferredDriverId)!
     }
@@ -72,7 +74,7 @@ export class EinvoicingModuleService extends MedusaService({
       is_active: true,
     })
     const cfg = configs?.[0]
-    const driver = await this.resolveDriverForCountry(
+    const driver = this.resolveDriverForCountry(
       countryCode,
       input.driver_id || cfg?.driver_id
     )
@@ -82,7 +84,8 @@ export class EinvoicingModuleService extends MedusaService({
     if (buyerTaxId) {
       const check = driver.validateTaxId(buyerTaxId)
       if (!check.valid) {
-        throw new Error(
+        throw new MedusaError(
+          MedusaError.Types.INVALID_DATA,
           `Invalid buyer tax ID for ${countryCode} (${driver.id}): ${check.reason}`
         )
       }
