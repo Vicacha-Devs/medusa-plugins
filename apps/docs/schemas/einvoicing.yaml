@@ -1,0 +1,133 @@
+openapi: 3.1.0
+info:
+  title: "@vicacha-devs/medusa-plugin-einvoicing API"
+  version: 0.1.0
+  description: E-Invoicing plugin for Medusa v2 by Vicacha Devs.
+servers:
+  - url: http://127.0.0.1:9000
+    description: Local Medusa v2 Server
+components:
+  securitySchemes:
+    adminBearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Medusa Admin JWT or API token
+    publishableKey:
+      type: apiKey
+      in: header
+      name: x-publishable-api-key
+      description: Medusa Storefront Publishable API Key
+paths:
+  /admin/einvoicing:
+    get:
+      operationId: getAdminEinvoicing
+      summary: List einvoicing
+      description: GET /admin/einvoicing endpoint exposed by
+        @vicacha-devs/medusa-plugin-einvoicing.
+      tags:
+        - "Admin: einvoicing"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    post:
+      operationId: postAdminEinvoicing
+      summary: Create / Trigger einvoicing
+      description: POST /admin/einvoicing endpoint exposed by
+        @vicacha-devs/medusa-plugin-einvoicing.
+      tags:
+        - "Admin: einvoicing"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/einvoicing/configs:
+    get:
+      operationId: getAdminEinvoicingConfigs
+      summary: List einvoicing configs
+      description: GET /admin/einvoicing/configs endpoint exposed by
+        @vicacha-devs/medusa-plugin-einvoicing.
+      tags:
+        - "Admin: einvoicing"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+    post:
+      operationId: postAdminEinvoicingConfigs
+      summary: Create / Trigger einvoicing configs
+      description: POST /admin/einvoicing/configs endpoint exposed by
+        @vicacha-devs/medusa-plugin-einvoicing.
+      tags:
+        - "Admin: einvoicing"
+      security:
+        - adminBearer: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required
+  /admin/einvoicing/drivers:
+    get:
+      operationId: getAdminEinvoicingDrivers
+      summary: List einvoicing drivers
+      description: GET /admin/einvoicing/drivers endpoint exposed by
+        @vicacha-devs/medusa-plugin-einvoicing.
+      tags:
+        - "Admin: einvoicing"
+      security:
+        - adminBearer: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        "401":
+          description: Unauthorized — Admin authentication required

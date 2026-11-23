@@ -27,6 +27,26 @@ export const SUPPORTED_LOCALES: SupportedLocale[] = ["en", "es", "ar", "tr"]
 
 export const plugins: PluginPackageMeta[] = [
   {
+    slug: "medusa-plugin-automations",
+    npmName: "@vicacha-devs/medusa-plugin-automations",
+    pluginId: "automations",
+    category: "Engagement & Growth",
+    label: "Automations & Rule Engine",
+    translations: {
+      es: "Automatizaciones y Reglas",
+      ar: "الأتمتة ومحرك القواعد",
+      tr: "Otomasyonlar ve Kural Motoru",
+    },
+    summary: {
+      en: "Rule-based trigger → condition → action automation engine for Medusa v2 with event/manual triggers, nested condition evaluation, and Notification & Webhook handlers.",
+      es: "Motor de automatización basado en reglas (disparador → condición → acción) para Medusa v2 con evaluación anidada y acciones de Notificación y Webhook.",
+      ar: "محرك أتمتة قائم على القواعد (مشغل ← شرط ← إجراء) لنظام Medusa v2 مع تقييم شروط متداخلة وإجراءات الإشعارات وWebhook.",
+      tr: "Medusa v2 için kural tabanlı tetikleyici → koşul → eylem otomasyon motoru, iç içe koşul değerlendirme ve Bildirim/Webhook işleyicileri.",
+    },
+    schemaFile: "automations",
+    dir: "automations",
+  },
+  {
     slug: "medusa-plugin-b2b",
     npmName: "@vicacha-devs/medusa-plugin-b2b",
     pluginId: "b2b",
@@ -105,6 +125,26 @@ export const plugins: PluginPackageMeta[] = [
     },
     schemaFile: "documents",
     dir: "documents",
+  },
+  {
+    slug: "medusa-plugin-einvoicing",
+    npmName: "@vicacha-devs/medusa-plugin-einvoicing",
+    pluginId: "einvoicing",
+    category: "Compliance & Invoicing",
+    label: "Global E-Invoicing (Peppol / DIAN / CFDI)",
+    translations: {
+      es: "Facturación Electrónica Global",
+      ar: "الفوترة الإلكترونية العالمية",
+      tr: "Küresel Elektronik Faturalama",
+    },
+    summary: {
+      en: "Country-agnostic electronic invoicing plugin for Medusa v2 with pluggable drivers (EU Peppol EN 16931, Colombia DIAN, Mexico CFDI 4.0, Generic UBL 2.1) and optional B2B & Documents bridges.",
+      es: "Plugin de facturación electrónica agnóstico al país para Medusa v2 con drivers conectables (EU Peppol EN 16931, Colombia DIAN, México CFDI 4.0, UBL 2.1) y puentes B2B/Documents.",
+      ar: "إضافة فوترة إلكترونية متعددة الدول لنظام Medusa v2 مع محركات قابلة للتوصيل (Peppol الأوروبي وDIAN كولومبيا وCFDI المكسيك) وتكامل اختياري مع B2B والمستندات.",
+      tr: "EU Peppol EN 16931, Kolombiya DIAN, Meksika CFDI 4.0 ve Genel UBL 2.1 sürücüleri ile ülkeye bağlı olmayan Medusa v2 e-fatura eklentisi.",
+    },
+    schemaFile: "einvoicing",
+    dir: "einvoicing",
   },
   {
     slug: "medusa-fulfillment-eu",
