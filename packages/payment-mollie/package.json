@@ -22,22 +22,23 @@
     "src",
     "tsconfig.json"
   ],
+  "type": "module",
   "exports": {
     "./package.json": "./package.json",
     "./providers/*": {
       "import": "./dist/providers/*/index.js",
-      "require": "./dist/providers/*/index.js",
       "types": "./dist/providers/*/index.d.ts"
     }
   },
   "scripts": {
-    "build": "tsc -p tsconfig.json",
+    "build": "tsc -p tsconfig.json && tsc-alias -p tsconfig.json --resolve-full-paths",
     "typecheck": "tsc --noEmit",
-    "test": "node --experimental-strip-types --test src/__tests__/*.spec.ts"
+    "test": "node --import ./src/__tests__/register-ts-resolver.mjs --import ../plugin-testing/register-js-extension.mjs --test src/__tests__/*.spec.ts"
   },
   "devDependencies": {
     "@medusajs/framework": "2.23.0",
     "@types/node": "^22.13.0",
+    "tsc-alias": "^1.9.2",
     "typescript": "^5.7.3"
   },
   "peerDependencies": {

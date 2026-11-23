@@ -1,3 +1,4 @@
+import { createRequire } from "node:module"
 import Handlebars from "handlebars"
 import htmlToPdfmake from "html-to-pdfmake"
 import { JSDOM } from "jsdom"
@@ -22,7 +23,8 @@ import {
 
 export type { CustomHtmlRenderOptions } from "../../types"
 
-// Load pdfmake with virtual font file system
+// Load pdfmake (CommonJS) with virtual font file system
+const require = createRequire(import.meta.url)
 const pdfMake = require("pdfmake/build/pdfmake")
 const pdfFonts = require("pdfmake/build/vfs_fonts")
 

@@ -29,18 +29,17 @@
     "LICENSE",
     "tsconfig.json"
   ],
+  "type": "module",
   "types": "./src/index.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
       "types": "./src/index.ts",
       "import": "./.medusa/server/src/index.js",
-      "require": "./.medusa/server/src/index.js",
       "default": "./.medusa/server/src/index.js"
     },
     "./admin": {
-      "import": "./.medusa/server/src/admin/index.mjs",
-      "require": "./.medusa/server/src/admin/index.js",
+      "import": "./.medusa/server/src/admin/index.js",
       "default": "./.medusa/server/src/admin/index.js"
     },
     "./hooks": {
@@ -77,13 +76,13 @@
     }
   },
   "scripts": {
-    "build": "medusa plugin:build",
+    "build": "medusa plugin:build && tsc-alias -p tsconfig.json --resolve-full-paths",
     "publish:local": "medusa plugin:publish",
     "dev": "medusa plugin:develop",
     "lint": "medusa lint",
     "prepublishOnly": "medusa plugin:build",
     "typecheck": "tsc --noEmit",
-    "test": "node --import ./src/__tests__/register-ts-resolver.mjs --test src/__tests__/*.spec.ts"
+    "test": "node --import ./src/__tests__/register-ts-resolver.mjs --import ../plugin-testing/register-js-extension.mjs --test src/__tests__/*.spec.ts"
   },
   "dependencies": {
     "typesense": "^3.1.1",
@@ -103,6 +102,7 @@
     "@medusajs/test-utils": "2.23.0",
     "@medusajs/types": "2.23.0",
     "@medusajs/ui": "4.3.0",
+    "@mikro-orm/migrations": "6.4.3",
     "@swc/core": "1.7.28",
     "@types/node": "20.0.0",
     "@types/react": "^19.3.0",
@@ -114,6 +114,7 @@
     "react-hook-form": "7.92.0",
     "react-i18next": "18.0.1",
     "react-router-dom": "7.18.5",
+    "tsc-alias": "^1.9.2",
     "typescript": "5.6.2",
     "vite": "^8.3.8"
   },

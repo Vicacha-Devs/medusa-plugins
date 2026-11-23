@@ -32,12 +32,12 @@
     "LICENSE",
     "tsconfig.json"
   ],
+  "type": "module",
   "types": "./src/index.ts",
   "exports": {
     "./package.json": "./package.json",
     "./admin": {
-      "import": "./.medusa/server/src/admin/index.mjs",
-      "require": "./.medusa/server/src/admin/index.js",
+      "import": "./.medusa/server/src/admin/index.js",
       "default": "./.medusa/server/src/admin/index.js"
     },
     "./hooks": {
@@ -71,7 +71,6 @@
     ".": {
       "types": "./src/index.ts",
       "import": "./.medusa/server/src/index.js",
-      "require": "./.medusa/server/src/index.js",
       "default": "./.medusa/server/src/index.js"
     }
   },
@@ -79,12 +78,12 @@
     "access": "public"
   },
   "scripts": {
-    "build": "medusa plugin:build && tsc-alias -p tsconfig.json",
+    "build": "medusa plugin:build && tsc-alias -p tsconfig.json --resolve-full-paths",
     "dev": "medusa plugin:develop",
     "lint": "medusa lint",
     "prepublishOnly": "medusa plugin:build",
     "typecheck": "tsc --noEmit",
-    "test": "node --import ./src/__tests__/register-ts-resolver.mjs --test src/__tests__/documents.spec.ts",
+    "test": "node --import ./src/__tests__/register-ts-resolver.mjs --import ../plugin-testing/register-js-extension.mjs --test src/__tests__/documents.spec.ts",
     "publish:local": "medusa plugin:publish",
     "clean": "rm -rf .medusa node_modules"
   },

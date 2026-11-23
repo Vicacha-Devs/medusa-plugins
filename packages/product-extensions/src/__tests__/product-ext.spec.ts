@@ -1,7 +1,6 @@
 import assert from "node:assert/strict"
 import { describe, it } from "node:test"
 import {
-  adminI18n,
   applyAttributeTemplateWorkflow,
   bulkAssignVariantMediaByOptionWorkflow,
   buildUnifiedProductMedia,
@@ -21,7 +20,6 @@ import {
   resolveTree,
   setProductAttributesWorkflow,
   slugifyAttributeKey,
-  SUPPORTED_UI_LOCALES,
   upsertProductExtWorkflow,
   validateExternalMediaUrl,
   validateTreeDocV1,
@@ -31,6 +29,7 @@ import {
   type UpsertVariantExtInput,
   type VideoItem,
 } from "../index"
+import adminI18n, { SUPPORTED_UI_LOCALES } from "../admin/i18n"
 import * as ModulesBarrel from "../modules"
 import * as AdminProductExtRoute from "../api/admin/products/[product_id]/extension/route"
 import * as AdminVariantExtRoute from "../api/admin/products/[product_id]/variants/[variant_id]/extension/route"
