@@ -12,5 +12,5 @@ export async function GET(
   const service = req.scope.resolve(
     AUTOMATIONS_MODULE
   ) as AutomationsModuleService
-  res.json({ actions: service.listActionHandlers() })
+  res.json({ actions: await service.listActionHandlers() })
 }

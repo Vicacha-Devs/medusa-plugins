@@ -38,17 +38,19 @@ export class AutomationsModuleService extends MedusaService({
     }
   }
 
-  async registerActionHandler(handler: AutomationActionHandler): void {
+  async registerActionHandler(handler: AutomationActionHandler): Promise<void> {
     this.handlers_.set(handler.id, handler)
   }
 
-  async listActionHandlers(): Array<{
-    id: string
-    label: string
-    description?: string
-    enabled: boolean
-    fields: AutomationActionHandler["fields"]
-  }> {
+  async listActionHandlers(): Promise<
+    Array<{
+      id: string
+      label: string
+      description?: string
+      enabled: boolean
+      fields: AutomationActionHandler["fields"]
+    }>
+  > {
     return [...this.handlers_.values()].map((h) => ({
       id: h.id,
       label: h.label,
