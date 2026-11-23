@@ -21,7 +21,7 @@ import {
 } from "./utils/numbering"
 import { normalizeLocale } from "./i18n"
 import { renderDocumentPdf, TemplateRenderTarget } from "./renderer"
-import { DocusealService } from "./services/docuseal"
+import { DocusealService, validateSafeExternalUrl } from "./services/docuseal"
 import { resolveB2BBuyerContext } from "./integrations/b2b-resolver"
 
 type InjectedDependencies = Record<string, unknown>
@@ -39,7 +39,6 @@ class DocumentsModuleService extends MedusaService({
     container: InjectedDependencies,
     options?: DocumentsPluginOptions
   ) {
-    // eslint-disable-next-line prefer-rest-params
     super(...arguments)
     this.options_ = options ?? {}
     this.docuseal = new DocusealService(this.options_.docuseal)
@@ -432,8 +431,6 @@ class DocumentsModuleService extends MedusaService({
         doc.file_url.startsWith("http://")
       ) {
         try {
-          const { validateSafeExternalUrl } =
-            await import("./services/docuseal")
           const safeUrl = validateSafeExternalUrl(doc.file_url)
           const response = await fetch(safeUrl.toString(), {
             signal: AbortSignal.timeout(15_000),

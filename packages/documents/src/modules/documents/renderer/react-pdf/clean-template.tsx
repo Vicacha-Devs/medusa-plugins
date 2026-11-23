@@ -6,6 +6,7 @@ import {
   View,
   Image,
   StyleSheet,
+  // @ts-expect-error TS1479: ESM-only package; loaded via require(esm) on Node >=22.12
 } from "@react-pdf/renderer"
 import { DocumentRenderContext } from "../../types"
 import { DocumentTranslations } from "../../i18n"

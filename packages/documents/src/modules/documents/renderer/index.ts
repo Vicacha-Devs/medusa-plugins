@@ -1,5 +1,6 @@
 import React from "react"
 import type { DocumentRenderContext, TemplateRenderTarget } from "../types"
+import type { PageSize } from "../../../types"
 import { getTranslations } from "../i18n"
 import { CleanTemplate } from "./react-pdf/clean-template"
 import { ClassicTemplate } from "./react-pdf/classic-template"
@@ -88,7 +89,9 @@ export async function renderDocumentPdf(
         element = React.createElement(CleanTemplate, { context, t })
       }
 
-      const buffer = await renderToBuffer(element)
+      const buffer = await renderToBuffer(
+        element as Parameters<typeof renderToBuffer>[0]
+      )
       return Buffer.isBuffer(buffer) ? buffer : Buffer.from(buffer)
     }
   } catch {
