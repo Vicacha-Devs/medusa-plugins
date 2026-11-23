@@ -18,6 +18,11 @@
   ],
   "license": "MIT",
   "author": "Vicacha Devs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vicacha-Devs/medusa-plugins.git",
+    "directory": "packages/payment-bold"
+  },
   "files": [
     ".medusa/server",
     "src",
