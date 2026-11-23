@@ -19,7 +19,10 @@ export function assertEinvoicingInstalled(
   try {
     const service = container.resolve(EINVOICING_MODULE)
     if (!service) {
-      throw new Error("Empty einvoicing service")
+      throw new MedusaError(
+        MedusaError.Types.NOT_FOUND,
+        "Empty einvoicing service"
+      )
     }
     return service
   } catch {
