@@ -1,5 +1,5 @@
 import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
-import { Modules } from "@medusajs/framework/utils"
+import { Modules, ContainerRegistrationKeys } from "@medusajs/framework/utils"
 import { IPaymentModuleService, Logger } from "@medusajs/framework/types"
 import { BoldIntegrityService } from "../../../../services/integrity"
 import { BOLD_PAYMENT_PROVIDERS } from "@payment-bold/types/constants"
@@ -8,7 +8,7 @@ export async function POST(
   req: MedusaRequest,
   res: MedusaResponse
 ): Promise<void> {
-  const logger: Logger = req.scope.resolve("logger")
+  const logger: Logger = req.scope.resolve(ContainerRegistrationKeys.LOGGER)
 
   try {
     const signatureHeader = (req.headers["x-bold-signature"] ||

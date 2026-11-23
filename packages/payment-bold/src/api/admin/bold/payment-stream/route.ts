@@ -1,5 +1,9 @@
 import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
-import { Modules, PaymentSessionStatus } from "@medusajs/framework/utils"
+import {
+  Modules,
+  PaymentSessionStatus,
+  ContainerRegistrationKeys,
+} from "@medusajs/framework/utils"
 import { IPaymentModuleService, Logger } from "@medusajs/framework/types"
 import { capturePaymentWorkflow } from "@medusajs/medusa/core-flows"
 
@@ -7,11 +11,11 @@ export async function GET(
   req: MedusaRequest,
   res: MedusaResponse
 ): Promise<void> {
-  const logger: Logger = req.scope.resolve("logger")
+  const logger: Logger = req.scope.resolve(ContainerRegistrationKeys.LOGGER)
   const paymentModule: IPaymentModuleService = req.scope.resolve(
     Modules.PAYMENT
   )
-  const remoteQuery = req.scope.resolve("remoteQuery")
+  const remoteQuery = req.scope.resolve(ContainerRegistrationKeys.REMOTE_QUERY)
 
   const paymentSessionId = (req.query.paymentSessionId ||
     req.query.payment_session_id) as string

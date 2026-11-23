@@ -6,7 +6,7 @@ export const dismissCompanyCustomerGroupLinkStep = createStep(
   "dismiss-company-customer-group-link",
   async (input: { company_id: string }, { container }) => {
     const query = container.resolve(ContainerRegistrationKeys.QUERY)
-    const remoteLink = container.resolve(ContainerRegistrationKeys.REMOTE_LINK)
+    const remoteLink = container.resolve(ContainerRegistrationKeys.LINK)
 
     const {
       data: [company],
@@ -42,7 +42,7 @@ export const dismissCompanyCustomerGroupLinkStep = createStep(
     { container }
   ) => {
     if (!previous?.group_id) return
-    const remoteLink = container.resolve(ContainerRegistrationKeys.REMOTE_LINK)
+    const remoteLink = container.resolve(ContainerRegistrationKeys.LINK)
     await remoteLink.create([
       {
         [COMPANY_MODULE]: { company_id: previous.company_id },

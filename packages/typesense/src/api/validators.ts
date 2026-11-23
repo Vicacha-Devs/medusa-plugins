@@ -1,4 +1,4 @@
-import { z } from "zod"
+import { z } from "@medusajs/framework/zod"
 import { SEARCH_MODES } from "../modules/typesense/types"
 
 export const RangeFacetSpecSchema = z.object({

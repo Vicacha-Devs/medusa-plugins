@@ -96,7 +96,6 @@ export class NotificationsModuleService extends MedusaService({
     container: InjectedDependencies,
     options?: NotificationsPluginOptions
   ) {
-    // eslint-disable-next-line prefer-rest-params
     super(...arguments)
     this.options_ = options ?? {}
     this.logger_ = container?.logger
