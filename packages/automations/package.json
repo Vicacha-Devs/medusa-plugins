@@ -58,6 +58,7 @@
   },
   "devDependencies": {
     "@medusajs/admin-sdk": "2.23.0",
+    "@medusajs/admin-shared": "2.23.0",
     "@medusajs/cli": "2.23.0",
     "@medusajs/framework": "2.23.0",
     "@medusajs/medusa": "2.23.0",
@@ -74,6 +75,7 @@
   },
   "peerDependencies": {
     "@medusajs/admin-sdk": "2.23.0",
+    "@medusajs/admin-shared": "2.23.0",
     "@medusajs/framework": "2.23.0",
     "@medusajs/medusa": "2.23.0",
     "@medusajs/ui": "4.3.0",
