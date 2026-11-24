@@ -9,7 +9,7 @@ import QuoteStatusBadge from "../quote-status-badge"
 const columnHelper = createColumnHelper<QueryQuote>()
 
 export const useQuotesTableColumns = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
 
   return useMemo(
     () => [

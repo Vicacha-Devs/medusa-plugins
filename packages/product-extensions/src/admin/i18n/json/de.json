@@ -1,6 +1,11 @@
 {
   "nav": {
-    "label": "Produkt-Erweiterungs-Studio"
+    "label": "Produkterweiterungen",
+    "attributes": "Attribute",
+    "templates": "Vorlagen",
+    "features": "Funktions-Badges",
+    "variantMedia": "Varianten-Medien",
+    "imageAlts": "Bild-Alt-Texte"
   },
   "header": {
     "title": "Produkt-Erweiterungen, Rich Media & Attribute Studio",
@@ -13,11 +18,11 @@
     "dismiss": "Schließen"
   },
   "tabs": {
-    "attributes": "1. Benutzerdefinierte Attribute ({{count}})",
-    "templates": "2. Inhalts- & Attributvorlagen ({{count}})",
-    "features": "3. Feature-Badges ({{count}})",
-    "variantMedia": "4. Varianten-Medien nach Option",
-    "imageAlts": "5. Bild-Alt-Text CSV Import/Export"
+    "attributes": "Benutzerdefinierte Attribute ({{count}})",
+    "templates": "Inhalts- & Attributvorlagen ({{count}})",
+    "features": "Feature-Badges ({{count}})",
+    "variantMedia": "Varianten-Medien nach Option",
+    "imageAlts": "Bild-Alt-Text CSV Import/Export"
   },
   "attributesTab": {
     "createTitle": "Typisierte Attributdefinition erstellen",

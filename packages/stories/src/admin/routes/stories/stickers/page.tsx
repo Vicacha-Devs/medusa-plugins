@@ -51,12 +51,12 @@ const StoriesStickersPage = () => {
 }
 
 const Breadcrumb = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("stories")
   return t("tabs.stickers")
 }
 
 export const config = defineRouteConfig({
-  label: "tabs.stickers",
+  label: "nav.stickers",
   translationNs: "stories",
   icon: Tag,
 })

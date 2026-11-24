@@ -7,7 +7,7 @@ import { QuoteActionsMenu } from "./quote-actions-menu"
 import "./quotes-table-renderers"
 
 export function useQuotesTableAdapter(): TableAdapter<QueryQuote> {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
 
   return useMemo(
     () =>

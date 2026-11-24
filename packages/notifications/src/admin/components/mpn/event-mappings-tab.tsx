@@ -30,7 +30,7 @@ export const EventMappingsTab: React.FC<EventMappingsTabProps> = ({
   onRefresh,
   onStatus,
 }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("mpn")
   const [newMappingEvent, setNewMappingEvent] = useState<string>("order.placed")
   const [newMappingChannel, setNewMappingChannel] = useState<string>("email")
   const [newMappingTemplateId, setNewMappingTemplateId] = useState<string>(
@@ -86,13 +86,19 @@ export const EventMappingsTab: React.FC<EventMappingsTabProps> = ({
       <Toaster />
       <div className="flex items-center justify-between px-6 py-4">
         <Heading level="h2">{t("mappings.title")}</Heading>
-        <StatusBadge color="green">{mappings.length}</StatusBadge>
+        <StatusBadge color="green" className="whitespace-nowrap shrink-0">
+          {mappings.length}
+        </StatusBadge>
       </div>
 
       <SectionRow
         title={t("mappings.eventLabel")}
         value={
-          <Badge size="2xsmall" color="grey">
+          <Badge
+            size="2xsmall"
+            color="grey"
+            className="whitespace-nowrap shrink-0"
+          >
             {supportedEvents.length}
           </Badge>
         }
@@ -135,7 +141,11 @@ export const EventMappingsTab: React.FC<EventMappingsTabProps> = ({
             <Table.Row key={m.id}>
               <Table.Cell>{m.event_name}</Table.Cell>
               <Table.Cell>
-                <Badge size="2xsmall" color="blue">
+                <Badge
+                  size="2xsmall"
+                  color="blue"
+                  className="whitespace-nowrap shrink-0"
+                >
                   {m.channel}
                 </Badge>
               </Table.Cell>
@@ -152,6 +162,7 @@ export const EventMappingsTab: React.FC<EventMappingsTabProps> = ({
                   variant="secondary"
                   isLoading={deleteMappingMutation.isPending}
                   onClick={() => void handleDeleteMapping(m.id)}
+                  className="whitespace-nowrap shrink-0"
                 >
                   {t("mappings.deleteButton")}
                 </Button>

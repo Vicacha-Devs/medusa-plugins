@@ -1,6 +1,10 @@
 {
   "nav": {
-    "label": "Studio Stories"
+    "label": "Studio Stories",
+    "rings": "Anneaux à la une",
+    "canvas": "Canevas Hotspot",
+    "stickers": "Autocollants",
+    "analytics": "Analytique"
   },
   "header": {
     "title": "Studio de Stories Shoppable",
@@ -70,7 +74,7 @@
     "emptyCanvasPrompt": "Cliquez n'importe où sur cet écran 9:16 pour positionner votre épingle produit",
     "pinCrosshair": "+ Épingle ({{x}}%, {{y}}%)",
     "shopNowFallback": "Acheter",
-    "publishSlideTitle": "1. Publier une Diapositive Story 9:16",
+    "publishSlideTitle": "Publier une Diapositive Story 9:16",
     "slideTitleField": "Titre de la Diapositive",
     "slideTitlePlaceholder": "Nouveau Hoodie",
     "mediaUrlField": "URL Image ou Vidéo 9:16 (https://)",
@@ -85,7 +89,7 @@
     "ringButton": "Anneau : {{title}}",
     "autoExpireLabel": "Expiration auto 24h",
     "publishButton": "Publier la Diapositive",
-    "pinHotspotTitle": "2. Épingler un Point Produit sur {{slide}}",
+    "pinHotspotTitle": "Épingler un Point Produit sur {{slide}}",
     "selectedSlideFallback": "la Diapositive Sélectionnée",
     "productIdField": "ID Produit Medusa",
     "productIdPlaceholder": "prod_01H...",
@@ -96,7 +100,7 @@
     "coordinatesHelp": "Coordonnées : X={{x}}%, Y={{y}}% (cliquez sur le canevas à gauche pour repositionner)",
     "pinButton": "Épingler le Point Produit",
     "removeHotspotButton": "Retirer",
-    "timelineTitle": "3. Chronologie des Diapositives ({{count}})",
+    "timelineTitle": "Chronologie des Diapositives ({{count}})",
     "activeBadge": "Actif",
     "pausedBadge": "En pause",
     "hotspotsCountBadge": "{{count}} points",
@@ -135,10 +139,10 @@
   "analyticsTab": {
     "funnelTitle": "Entonnoir de Conversion des Stories Shoppable",
     "funnelSubtitle": "Pipeline d'engagement complet sur toutes les diapositives 9:16 actives et archivées.",
-    "stepImpressions": "1. Impressions de Stories",
-    "stepCompletions": "2. Lectures Complètes",
-    "stepHotspotClicks": "3. Clics sur Points Produits",
-    "stepAddToCarts": "4. Ajouts au Panier",
+    "stepImpressions": "Impressions de Stories",
+    "stepCompletions": "Lectures Complètes",
+    "stepHotspotClicks": "Clics sur Points Produits",
+    "stepAddToCarts": "Ajouts au Panier",
     "percentOfImpressions": "{{percent}}% des impressions",
     "ringBreakdownTitle": "Performance par Anneau à la Une",
     "colHighlightRing": "Anneau à la Une",

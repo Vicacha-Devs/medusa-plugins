@@ -1,6 +1,11 @@
 {
   "nav": {
-    "label": "Studio Extensions Produit"
+    "label": "Extensions Produit",
+    "attributes": "Attributs",
+    "templates": "Modèles",
+    "features": "Badges",
+    "variantMedia": "Médias Variantes",
+    "imageAlts": "Texte Alt Images"
   },
   "header": {
     "title": "Studio Extensions Produit, Médias Enrichis & Attributs",
@@ -13,11 +18,11 @@
     "dismiss": "Fermer"
   },
   "tabs": {
-    "attributes": "1. Attributs Personnalisés ({{count}})",
-    "templates": "2. Modèles de Contenu & Attributs ({{count}})",
-    "features": "3. Badges Fonctionnalités ({{count}})",
-    "variantMedia": "4. Attribution Médias par Option",
-    "imageAlts": "5. Import/Export CSV Alt-Text"
+    "attributes": "Attributs Personnalisés ({{count}})",
+    "templates": "Modèles de Contenu & Attributs ({{count}})",
+    "features": "Badges Fonctionnalités ({{count}})",
+    "variantMedia": "Attribution Médias par Option",
+    "imageAlts": "Import/Export CSV Alt-Text"
   },
   "attributesTab": {
     "createTitle": "Créer une Définition d'Attribut Typé",

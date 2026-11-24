@@ -1,6 +1,10 @@
 {
   "nav": {
-    "label": "Stories Studio"
+    "label": "Stories Studio",
+    "rings": "Highlight Rings",
+    "canvas": "Hotspot Canvas",
+    "stickers": "Stickers",
+    "analytics": "Analytics"
   },
   "header": {
     "title": "Shoppable Stories Studio",
@@ -70,7 +74,7 @@
     "emptyCanvasPrompt": "Click anywhere on this 9:16 screen to position your Product Hotspot pin",
     "pinCrosshair": "+ Pin ({{x}}%, {{y}}%)",
     "shopNowFallback": "Shop Now",
-    "publishSlideTitle": "1. Publish 9:16 Story Slide",
+    "publishSlideTitle": "Publish 9:16 Story Slide",
     "slideTitleField": "Slide Title",
     "slideTitlePlaceholder": "New Hoodie Drop",
     "mediaUrlField": "9:16 Image or Video URL (https://)",
@@ -85,7 +89,7 @@
     "ringButton": "Ring: {{title}}",
     "autoExpireLabel": "Auto-Expire in 24h",
     "publishButton": "Publish Slide",
-    "pinHotspotTitle": "2. Pin Shoppable Product Hotspot to {{slide}}",
+    "pinHotspotTitle": "Pin Shoppable Product Hotspot to {{slide}}",
     "selectedSlideFallback": "Selected Slide",
     "productIdField": "Medusa Product ID",
     "productIdPlaceholder": "prod_01H...",
@@ -96,7 +100,7 @@
     "coordinatesHelp": "Coordinates: X={{x}}%, Y={{y}}% (click phone canvas on the left to reposition)",
     "pinButton": "Pin Product Hotspot",
     "removeHotspotButton": "Remove",
-    "timelineTitle": "3. Story Slides Timeline ({{count}})",
+    "timelineTitle": "Story Slides Timeline ({{count}})",
     "activeBadge": "Active",
     "pausedBadge": "Paused",
     "hotspotsCountBadge": "{{count}} hotspots",
@@ -135,10 +139,10 @@
   "analyticsTab": {
     "funnelTitle": "Shoppable Story Conversion Funnel",
     "funnelSubtitle": "End-to-end engagement pipeline across all active and archived 9:16 story slides.",
-    "stepImpressions": "1. Story Impressions",
-    "stepCompletions": "2. Full Slide Completions",
-    "stepHotspotClicks": "3. Product Hotspot Clicks",
-    "stepAddToCarts": "4. Story Add-to-Carts",
+    "stepImpressions": "Story Impressions",
+    "stepCompletions": "Full Slide Completions",
+    "stepHotspotClicks": "Product Hotspot Clicks",
+    "stepAddToCarts": "Story Add-to-Carts",
     "percentOfImpressions": "{{percent}}% of impressions",
     "ringBreakdownTitle": "Highlight Ring Performance Breakdown",
     "colHighlightRing": "Highlight Ring",

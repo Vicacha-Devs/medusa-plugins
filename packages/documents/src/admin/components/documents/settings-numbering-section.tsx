@@ -13,7 +13,7 @@ interface SettingsNumberingSectionProps {
 export const SettingsNumberingSection: React.FC<
   SettingsNumberingSectionProps
 > = ({ form }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("documents")
   const settings = form.watch()
 
   const sampleInvoiceNumber = formatDocumentNumber(
@@ -37,7 +37,7 @@ export const SettingsNumberingSection: React.FC<
             {t("settings.numberingTokensHint")}
           </Text>
         </div>
-        <Badge color="green">
+        <Badge color="green" className="whitespace-nowrap shrink-0">
           {t("settings.nextInvoicePreview", { sample: sampleInvoiceNumber })}
         </Badge>
       </div>

@@ -1,6 +1,10 @@
 {
   "nav": {
-    "label": "Stories Studio"
+    "label": "Stories Studio",
+    "rings": "Highlight-ringen",
+    "canvas": "Hotspot-canvas",
+    "stickers": "Stickers",
+    "analytics": "Statistieken"
   },
   "header": {
     "title": "Shoppable Stories Studio",
@@ -70,7 +74,7 @@
     "emptyCanvasPrompt": "Klik ergens op dit 9:16-scherm om je Product Hotspot-pin te plaatsen",
     "pinCrosshair": "+ Pin ({{x}}%, {{y}}%)",
     "shopNowFallback": "Shop Nu",
-    "publishSlideTitle": "1. 9:16 Story-slide publiceren",
+    "publishSlideTitle": "9:16 Story-slide publiceren",
     "slideTitleField": "Slidetitel",
     "slideTitlePlaceholder": "Nieuwe Hoodie Drop",
     "mediaUrlField": "9:16 Afbeelding- of Video-URL (https://)",
@@ -85,7 +89,7 @@
     "ringButton": "Ring: {{title}}",
     "autoExpireLabel": "Automatisch verlopen na 24u",
     "publishButton": "Slide publiceren",
-    "pinHotspotTitle": "2. Shoppable Producthotspot vastpinnen op {{slide}}",
+    "pinHotspotTitle": "Shoppable Producthotspot vastpinnen op {{slide}}",
     "selectedSlideFallback": "Geselecteerde Slide",
     "productIdField": "Medusa Product-ID",
     "productIdPlaceholder": "prod_01H...",
@@ -96,7 +100,7 @@
     "coordinatesHelp": "Coördinaten: X={{x}}%, Y={{y}}% (klik links op het telefooncanvas om te verplaatsen)",
     "pinButton": "Producthotspot vastpinnen",
     "removeHotspotButton": "Verwijderen",
-    "timelineTitle": "3. Story-slides Tijdlijn ({{count}})",
+    "timelineTitle": "Story-slides Tijdlijn ({{count}})",
     "activeBadge": "Actief",
     "pausedBadge": "Gepauzeerd",
     "hotspotsCountBadge": "{{count}} hotspots",
@@ -135,10 +139,10 @@
   "analyticsTab": {
     "funnelTitle": "Shoppable Story Conversietrechter",
     "funnelSubtitle": "Volledige betrokkenheidspijplijn over alle actieve en gearchiveerde 9:16-storyslides.",
-    "stepImpressions": "1. Story-impressies",
-    "stepCompletions": "2. Volledige Slideweergaven",
-    "stepHotspotClicks": "3. Producthotspot-kliks",
-    "stepAddToCarts": "4. Toevoegingen aan Winkelwagen",
+    "stepImpressions": "Story-impressies",
+    "stepCompletions": "Volledige Slideweergaven",
+    "stepHotspotClicks": "Producthotspot-kliks",
+    "stepAddToCarts": "Toevoegingen aan Winkelwagen",
     "percentOfImpressions": "{{percent}}% van impressies",
     "ringBreakdownTitle": "Prestatie-overzicht per Highlight-ring",
     "colHighlightRing": "Highlight-ring",

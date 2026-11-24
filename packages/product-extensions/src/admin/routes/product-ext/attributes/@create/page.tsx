@@ -24,7 +24,7 @@ const CreateAttributeContent = () => {
 }
 
 const AttributeCreateModalPage = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("product-ext")
 
   return (
     <RouteDrawer>

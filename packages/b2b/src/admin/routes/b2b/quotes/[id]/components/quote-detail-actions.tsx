@@ -24,7 +24,7 @@ export const QuoteDetailActions = ({
   onReject,
   onOpenSendDrawer,
 }: QuoteDetailActionsProps) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
 
   if (!canSend && !canReject && !isAccepted) {
     return null
@@ -33,7 +33,12 @@ export const QuoteDetailActions = ({
   return (
     <div className="flex items-center justify-end gap-2">
       {isAccepted && draftOrderId && (
-        <Button size="small" variant="secondary" onClick={onViewOrder}>
+        <Button
+          size="small"
+          variant="secondary"
+          onClick={onViewOrder}
+          className="whitespace-nowrap shrink-0"
+        >
           {t("quotes.detail.viewOrder")}
         </Button>
       )}
@@ -43,12 +48,18 @@ export const QuoteDetailActions = ({
           variant="secondary"
           isLoading={isRejecting}
           onClick={onReject}
+          className="whitespace-nowrap shrink-0"
         >
           {t("quotes.detail.rejectQuote")}
         </Button>
       )}
       {canSend && (
-        <Button size="small" isLoading={isSending} onClick={onOpenSendDrawer}>
+        <Button
+          size="small"
+          isLoading={isSending}
+          onClick={onOpenSendDrawer}
+          className="whitespace-nowrap shrink-0"
+        >
           {t("quotes.detail.sendQuote")}
         </Button>
       )}

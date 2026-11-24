@@ -31,7 +31,7 @@ import {
 import { RbacGuard } from "../../../components/rbac-guard"
 
 const DocumentsSettingsPage: React.FC = () => {
-  const { t, i18n } = useTranslation()
+  const { t, i18n } = useTranslation("documents")
   const [selectedRegionId, setSelectedRegionId] = useState<string>("global")
   const [isRegionalOverride, setIsRegionalOverride] = useState<boolean>(false)
 
@@ -151,12 +151,13 @@ const DocumentsSettingsPage: React.FC = () => {
 }
 
 const Breadcrumb = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("documents")
   return t("settings.title")
 }
 
 export const config = defineRouteConfig({
   label: "settings.title",
+  translationNs: "documents",
   icon: CogSixTooth,
 })
 

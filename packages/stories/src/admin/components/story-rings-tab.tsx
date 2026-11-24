@@ -49,7 +49,7 @@ export const StoryRingsInlineCreateSection = ({
   isSaving,
   onCreateGroup,
 }: StoryRingsInlineCreateSectionProps) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("stories")
 
   return (
     <Container className="divide-y p-0">
@@ -60,6 +60,7 @@ export const StoryRingsInlineCreateSection = ({
           variant="primary"
           isLoading={isSaving}
           onClick={onCreateGroup}
+          className="whitespace-nowrap shrink-0"
         >
           {t("ringsTab.createButton")}
         </Button>
@@ -110,7 +111,7 @@ export const StoryRingsInlineCreateSection = ({
               }))
             }
           >
-            <Select.Trigger>
+            <Select.Trigger className="min-w-0 [&>span]:truncate">
               <Select.Value />
             </Select.Trigger>
             <Select.Content>
@@ -133,7 +134,7 @@ export const StoryRingsInlineCreateSection = ({
               }))
             }
           >
-            <Select.Trigger>
+            <Select.Trigger className="min-w-0 [&>span]:truncate">
               <Select.Value />
             </Select.Trigger>
             <Select.Content>

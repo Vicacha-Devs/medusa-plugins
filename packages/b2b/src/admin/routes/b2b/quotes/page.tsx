@@ -13,7 +13,7 @@ import { QuotesTable, useQuotesTableAdapter } from "./components"
 import { RbacGuard } from "@vicacha-devs/medusa-shared-admin/admin"
 
 const Quotes = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
   const isViewConfigEnabled = useFeatureFlag("view_configurations")
   const adapter = useQuotesTableAdapter()
 
@@ -42,7 +42,7 @@ const Quotes = () => {
 }
 
 const Breadcrumb = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
   return t("quotes.title")
 }
 

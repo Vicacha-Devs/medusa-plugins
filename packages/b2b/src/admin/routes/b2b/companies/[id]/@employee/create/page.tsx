@@ -9,7 +9,7 @@ import { EmployeesCreateForm } from "../components/employees-create-form"
 import { RbacGuard } from "@vicacha-devs/medusa-shared-admin/admin"
 
 const CreateContent = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
   const { id } = useParams()
   const { handleSuccess } = useRouteModal()
 
@@ -71,7 +71,7 @@ const CreateContent = () => {
 }
 
 const EmployeeCreate = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
   return (
     <RouteDrawer>
       <RouteDrawer.Header>

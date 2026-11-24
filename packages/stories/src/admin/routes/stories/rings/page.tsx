@@ -7,7 +7,6 @@ import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router-dom"
 
 import {
-  StoryRingsInlineCreateSection,
   StoryRingsPreviewSection,
   StoryRingsTableSection,
 } from "../../../components/story-rings-tab"
@@ -23,7 +22,7 @@ const StoriesRingsPage = () => {
       <Toaster />
       <LayoutComposer
         widgetsZonePrefix="stories.rings"
-        preferredLayoutId={CORE_LAYOUT_IDS.TWO_COLUMN}
+        preferredLayoutId={CORE_LAYOUT_IDS.SINGLE_COLUMN}
         sections={{
           main: (
             <>
@@ -48,16 +47,6 @@ const StoriesRingsPage = () => {
               </LayoutComposer.Entry>
             </>
           ),
-          side: (
-            <LayoutComposer.Entry id="StoryRingsInlineCreateSection">
-              <StoryRingsInlineCreateSection
-                form={studio.groupForm}
-                onFormChange={studio.setGroupForm}
-                isSaving={studio.isSavingGroup}
-                onCreateGroup={() => void studio.handleCreateGroup()}
-              />
-            </LayoutComposer.Entry>
-          ),
         }}
       />
     </>
@@ -65,12 +54,12 @@ const StoriesRingsPage = () => {
 }
 
 const Breadcrumb = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("stories")
   return t("ringsTab.previewTitle")
 }
 
 export const config = defineRouteConfig({
-  label: "ringsTab.previewTitle",
+  label: "nav.rings",
   translationNs: "stories",
   icon: BuildingStorefront,
 })

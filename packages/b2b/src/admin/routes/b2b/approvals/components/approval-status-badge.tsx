@@ -8,7 +8,7 @@ const StatusColors: Record<string, "red" | "purple" | "green"> = {
 }
 
 export default function ApprovalStatusBadge({ status }: { status: string }) {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
 
   const titles: Record<string, string> = {
     approved: t("approvals.filters.approved"),

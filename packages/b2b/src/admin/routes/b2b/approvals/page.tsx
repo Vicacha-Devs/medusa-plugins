@@ -14,7 +14,7 @@ import { useApprovalsTableAdapter } from "./components/approvals-table-adapter.t
 import { RbacGuard } from "@vicacha-devs/medusa-shared-admin/admin"
 
 const Approvals = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
   const isViewConfigEnabled = useFeatureFlag("view_configurations")
   const adapter = useApprovalsTableAdapter()
 
@@ -43,13 +43,14 @@ const Approvals = () => {
 }
 
 const Breadcrumb = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
 
   return t("approvals.title")
 }
 
 export const config = defineRouteConfig({
-  label: "Approvals",
+  label: "approvals.title",
+  translationNs: "b2b",
   icon: CheckCircle,
 })
 

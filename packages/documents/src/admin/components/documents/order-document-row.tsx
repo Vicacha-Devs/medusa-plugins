@@ -39,7 +39,7 @@ export const OrderDocumentRow: React.FC<OrderDocumentRowProps> = ({
   onRegenerate,
   onSendForSignature,
 }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("documents")
   const sig = doc.signature_request
   const auditEntries: any[] = Array.isArray(doc.audit_log) ? doc.audit_log : []
   const priorVersions: any[] = Array.isArray(doc.prior_versions)
@@ -52,11 +52,19 @@ export const OrderDocumentRow: React.FC<OrderDocumentRowProps> = ({
         title={doc.document_number}
         value={
           <div className="flex items-center justify-end gap-2">
-            <Badge size="2xsmall" color="grey">
+            <Badge
+              size="2xsmall"
+              color="grey"
+              className="whitespace-nowrap shrink-0"
+            >
               {getDocTypeLabel(doc.document_type)}
             </Badge>
             {doc.version > 1 && (
-              <Badge size="2xsmall" color="blue">
+              <Badge
+                size="2xsmall"
+                color="blue"
+                className="whitespace-nowrap shrink-0"
+              >
                 v{doc.version}
               </Badge>
             )}
@@ -71,6 +79,7 @@ export const OrderDocumentRow: React.FC<OrderDocumentRowProps> = ({
                     ? "red"
                     : "grey"
               }
+              className="whitespace-nowrap shrink-0"
             >
               {doc.is_stale
                 ? t("statuses.stale")
@@ -157,7 +166,11 @@ export const OrderDocumentRow: React.FC<OrderDocumentRowProps> = ({
           })}
           value={
             <div className="flex items-center gap-2">
-              <Badge size="2xsmall" color="blue">
+              <Badge
+                size="2xsmall"
+                color="blue"
+                className="whitespace-nowrap shrink-0"
+              >
                 {sig.status.toUpperCase()}
               </Badge>
               {sig.status === "completed" && (

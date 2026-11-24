@@ -17,17 +17,17 @@ const BoolBadge = ({
   t: (k: string) => string
 }) =>
   value ? (
-    <Badge size="xsmall" color="green">
+    <Badge size="xsmall" color="green" className="whitespace-nowrap shrink-0">
       {t("general.yes")}
     </Badge>
   ) : (
-    <Badge size="xsmall" color="grey">
+    <Badge size="xsmall" color="grey" className="whitespace-nowrap shrink-0">
       {t("general.no")}
     </Badge>
   )
 
 export const CompanyApprovalSettingsSection = ({ company }: Props) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
   const c = company as any
   const settings = c.approval_settings
 

@@ -78,12 +78,12 @@ const StoriesCanvasPage = () => {
 }
 
 const Breadcrumb = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("stories")
   return t("canvasTab.canvasTitle")
 }
 
 export const config = defineRouteConfig({
-  label: "canvasTab.canvasTitle",
+  label: "nav.canvas",
   translationNs: "stories",
   icon: DocumentText,
 })

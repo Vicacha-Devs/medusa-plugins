@@ -4,7 +4,7 @@ import { Form, KeyboundForm, RouteDrawer } from "@medusajs/dashboard/components"
 import { Button, Input, Select } from "@medusajs/ui"
 import { useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
-import { z } from "zod"
+import { z } from "@medusajs/framework/zod"
 import {
   type FeatureFormState,
   INITIAL_FEATURE_FORM,
@@ -36,7 +36,7 @@ export const FeatureCreateForm: React.FC<FeatureCreateFormProps> = ({
   onSubmit,
   loading,
 }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("product-ext")
   const form = useForm<FeatureFormState>({
     resolver: zodResolver(featureFormSchema),
     defaultValues: INITIAL_FEATURE_FORM,
@@ -109,7 +109,7 @@ export const FeatureCreateForm: React.FC<FeatureCreateFormProps> = ({
                 <Form.Label>{t("featuresTab.badgeColorField")}</Form.Label>
                 <Form.Control>
                   <Select value={field.value} onValueChange={field.onChange}>
-                    <Select.Trigger>
+                    <Select.Trigger className="min-w-0 [&>span]:truncate">
                       <Select.Value
                         placeholder={t("featuresTab.badgeColorPlaceholder")}
                       />
@@ -131,11 +131,20 @@ export const FeatureCreateForm: React.FC<FeatureCreateFormProps> = ({
         <RouteDrawer.Footer>
           <div className="flex items-center justify-end gap-x-2">
             <RouteDrawer.Close asChild>
-              <Button size="small" variant="secondary">
+              <Button
+                size="small"
+                variant="secondary"
+                className="whitespace-nowrap shrink-0"
+              >
                 {t("header.dismiss")}
               </Button>
             </RouteDrawer.Close>
-            <Button size="small" type="submit" isLoading={loading}>
+            <Button
+              size="small"
+              type="submit"
+              isLoading={loading}
+              className="whitespace-nowrap shrink-0"
+            >
               {t("featuresTab.createButton")}
             </Button>
           </div>

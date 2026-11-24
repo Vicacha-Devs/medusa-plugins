@@ -11,7 +11,7 @@ interface ProductWidgetProps {
 }
 
 const ProductStoriesWidget = ({ data }: ProductWidgetProps) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("stories")
   const { taggedSlides, isCreating, handleQuickCreateProductStory } =
     useProductStories(data)
 

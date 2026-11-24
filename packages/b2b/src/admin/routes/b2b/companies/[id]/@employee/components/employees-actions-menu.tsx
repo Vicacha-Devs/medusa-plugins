@@ -11,7 +11,7 @@ export const EmployeesActionsMenu = ({
 }: {
   employee: QueryEmployee
 }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
   const prompt = usePrompt()
 
   const { mutateAsync: deleteEmployee, isPending: isDeleting } =

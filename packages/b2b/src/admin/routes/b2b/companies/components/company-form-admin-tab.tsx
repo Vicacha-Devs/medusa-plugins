@@ -17,7 +17,7 @@ export const CompanyFormAdminTab = ({
   availableCurrencies,
   regionsLoading,
 }: CompanyFormAdminTabProps) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
 
   return (
     <div className="flex flex-col gap-y-4">
@@ -33,7 +33,7 @@ export const CompanyFormAdminTab = ({
                 onValueChange={(v) => field.onChange(v.toLowerCase())}
                 disabled={regionsLoading}
               >
-                <Select.Trigger>
+                <Select.Trigger className="min-w-0 [&>span]:truncate">
                   <Select.Value
                     placeholder={t("companies.form.selectCurrency")}
                   />
@@ -61,7 +61,7 @@ export const CompanyFormAdminTab = ({
             </Form.Label>
             <Form.Control>
               <Select value={field.value ?? ""} onValueChange={field.onChange}>
-                <Select.Trigger>
+                <Select.Trigger className="min-w-0 [&>span]:truncate">
                   <Select.Value
                     placeholder={t("companies.form.selectFrequency")}
                   />

@@ -11,7 +11,7 @@ import "./company-employees-table-renderers"
 function useCompanyEmployeesAdapter(
   companyId: string
 ): TableAdapter<QueryEmployee> {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
 
   return useMemo(
     () =>
@@ -52,7 +52,7 @@ export const CompanyEmployeesSection = ({
 }: {
   companyId: string
 }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
   const adapter = useCompanyEmployeesAdapter(companyId)
 
   return (

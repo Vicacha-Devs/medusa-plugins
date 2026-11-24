@@ -24,7 +24,7 @@ const CreateFeatureContent = () => {
 }
 
 const FeatureCreateModalPage = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("product-ext")
 
   return (
     <RouteDrawer>

@@ -18,7 +18,7 @@ import { useStoriesStudio } from "../../hooks/use-stories-studio"
 import { RbacGuard } from "../../components/rbac-guard"
 
 const StoriesOverviewPage = () => {
-  const { t, i18n } = useTranslation()
+  const { t, i18n } = useTranslation("stories")
   const navigate = useNavigate()
   const studio = useStoriesStudio()
 
@@ -50,6 +50,7 @@ const StoriesOverviewPage = () => {
                   variant="secondary"
                   size="small"
                   onClick={studio.onRefresh}
+                  className="whitespace-nowrap shrink-0"
                 >
                   <ArrowPath />
                   {t("header.refresh")}
@@ -141,7 +142,7 @@ const StoriesOverviewPage = () => {
 }
 
 const Breadcrumb = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("stories")
   return t("nav.label")
 }
 

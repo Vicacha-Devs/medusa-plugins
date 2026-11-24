@@ -34,6 +34,7 @@ defineCellRenderer("b2b-approval-type", {
             size="2xsmall"
             rounded="full"
             color={a.type === "admin" ? "blue" : "purple"}
+            className="whitespace-nowrap shrink-0"
           >
             {a.type === "admin"
               ? t("approvals.types.admin")

@@ -52,12 +52,12 @@ const MpnBroadcastsPage: React.FC = () => {
 }
 
 const Breadcrumb = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("mpn")
   return t("tabs.broadcasts")
 }
 
 export const config = defineRouteConfig({
-  label: "Broadcasts",
+  label: "nav.broadcasts",
   translationNs: "mpn",
   icon: Megaphone,
 })

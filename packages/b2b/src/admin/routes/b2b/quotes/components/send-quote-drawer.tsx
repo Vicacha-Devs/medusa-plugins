@@ -15,7 +15,7 @@ export function SendQuoteDrawer({
   onConfirm,
   isPending,
 }: SendQuoteDrawerProps) {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
   const [expiresAt, setExpiresAt] = useState("")
 
   const handleConfirm = () => {
@@ -56,10 +56,19 @@ export function SendQuoteDrawer({
         </Drawer.Body>
 
         <Drawer.Footer>
-          <Button variant="secondary" onClick={onClose} disabled={isPending}>
+          <Button
+            variant="secondary"
+            onClick={onClose}
+            disabled={isPending}
+            className="whitespace-nowrap shrink-0"
+          >
             {t("actions.cancel")}
           </Button>
-          <Button onClick={handleConfirm} isLoading={isPending}>
+          <Button
+            onClick={handleConfirm}
+            isLoading={isPending}
+            className="whitespace-nowrap shrink-0"
+          >
             {t("actions.send")}
           </Button>
         </Drawer.Footer>

@@ -1,6 +1,10 @@
 {
   "nav": {
-    "label": "Estúdio de Stories"
+    "label": "Estúdio de Stories",
+    "rings": "Anéis de Destaque",
+    "canvas": "Tela de Hotspots",
+    "stickers": "Adesivos",
+    "analytics": "Análises"
   },
   "header": {
     "title": "Estúdio de Stories Compráveis",
@@ -70,7 +74,7 @@
     "emptyCanvasPrompt": "Clique em qualquer lugar desta tela 9:16 para posicionar o pin do seu Produto",
     "pinCrosshair": "+ Pin ({{x}}%, {{y}}%)",
     "shopNowFallback": "Comprar Agora",
-    "publishSlideTitle": "1. Publicar Slide de Story 9:16",
+    "publishSlideTitle": "Publicar Slide de Story 9:16",
     "slideTitleField": "Título do Slide",
     "slideTitlePlaceholder": "Novo Moletom Drop",
     "mediaUrlField": "URL de Imagem ou Vídeo 9:16 (https://)",
@@ -85,7 +89,7 @@
     "ringButton": "Anel: {{title}}",
     "autoExpireLabel": "Expirar em 24h",
     "publishButton": "Publicar Slide",
-    "pinHotspotTitle": "2. Fixar Hotspot de Produto Comprável em {{slide}}",
+    "pinHotspotTitle": "Fixar Hotspot de Produto Comprável em {{slide}}",
     "selectedSlideFallback": "Slide Selecionado",
     "productIdField": "ID do Produto Medusa",
     "productIdPlaceholder": "prod_01H...",
@@ -96,7 +100,7 @@
     "coordinatesHelp": "Coordenadas: X={{x}}%, Y={{y}}% (clique no canvas à esquerda para reposicionar)",
     "pinButton": "Fixar Hotspot de Produto",
     "removeHotspotButton": "Remover",
-    "timelineTitle": "3. Linha do Tempo de Slides ({{count}})",
+    "timelineTitle": "Linha do Tempo de Slides ({{count}})",
     "activeBadge": "Ativo",
     "pausedBadge": "Pausado",
     "hotspotsCountBadge": "{{count}} hotspots",
@@ -135,10 +139,10 @@
   "analyticsTab": {
     "funnelTitle": "Funil de Conversão de Stories Compráveis",
     "funnelSubtitle": "Pipeline completo de engajamento em todos os slides 9:16 ativos e arquivados.",
-    "stepImpressions": "1. Impressões de Stories",
-    "stepCompletions": "2. Conclusões de Slides",
-    "stepHotspotClicks": "3. Cliques em Hotspots",
-    "stepAddToCarts": "4. Adições ao Carrinho",
+    "stepImpressions": "Impressões de Stories",
+    "stepCompletions": "Conclusões de Slides",
+    "stepHotspotClicks": "Cliques em Hotspots",
+    "stepAddToCarts": "Adições ao Carrinho",
     "percentOfImpressions": "{{percent}}% das impressões",
     "ringBreakdownTitle": "Desempenho por Anel de Destaque",
     "colHighlightRing": "Anel de Destaque",

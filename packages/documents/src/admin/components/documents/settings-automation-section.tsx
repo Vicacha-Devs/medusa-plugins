@@ -12,7 +12,7 @@ interface SettingsAutomationSectionProps {
 export const SettingsAutomationSection: React.FC<
   SettingsAutomationSectionProps
 > = ({ form }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("documents")
 
   const toggleFields: Array<{
     name: keyof DocumentSettingsFormValues

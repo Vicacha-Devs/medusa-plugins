@@ -18,7 +18,7 @@ export const ImageAltsCsvSection: React.FC<ImageAltsCsvTabProps> = ({
   onExport,
   onImport,
 }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("product-ext")
 
   return (
     <Container className="divide-y p-0">
@@ -35,6 +35,7 @@ export const ImageAltsCsvSection: React.FC<ImageAltsCsvTabProps> = ({
             size="small"
             isLoading={isBusy}
             onClick={onExport}
+            className="whitespace-nowrap shrink-0"
           >
             {t("imageAltsTab.exportButton")}
           </Button>
@@ -43,6 +44,7 @@ export const ImageAltsCsvSection: React.FC<ImageAltsCsvTabProps> = ({
             size="small"
             isLoading={isBusy}
             onClick={onImport}
+            className="whitespace-nowrap shrink-0"
           >
             {t("imageAltsTab.importButton")}
           </Button>

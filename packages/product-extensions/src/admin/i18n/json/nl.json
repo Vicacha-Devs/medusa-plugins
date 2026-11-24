@@ -1,6 +1,11 @@
 {
   "nav": {
-    "label": "Productextensies Studio"
+    "label": "Productextensies",
+    "attributes": "Attributen",
+    "templates": "Sjablonen",
+    "features": "Kenmerkbadges",
+    "variantMedia": "Variantmedia",
+    "imageAlts": "Alt-tekst Afbeeldingen"
   },
   "header": {
     "title": "Productextensies, Rich Media & Attributen Studio",
@@ -13,11 +18,11 @@
     "dismiss": "Sluiten"
   },
   "tabs": {
-    "attributes": "1. Aangepaste Attributen ({{count}})",
-    "templates": "2. Inhouds- & Attribuutsjablonen ({{count}})",
-    "features": "3. Kenmerkbadges ({{count}})",
-    "variantMedia": "4. Optie-variant Mediatoewijzer",
-    "imageAlts": "5. Afbeelding Alt-tekst CSV Import/Export"
+    "attributes": "Aangepaste Attributen ({{count}})",
+    "templates": "Inhouds- & Attribuutsjablonen ({{count}})",
+    "features": "Kenmerkbadges ({{count}})",
+    "variantMedia": "Optie-variant Mediatoewijzer",
+    "imageAlts": "Afbeelding Alt-tekst CSV Import/Export"
   },
   "attributesTab": {
     "createTitle": "Getypeerde Attribuutdefinitie Aanmaken",

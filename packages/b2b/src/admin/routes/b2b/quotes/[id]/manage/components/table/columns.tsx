@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next"
 const columnHelper = createDataTableColumnHelper<any>()
 
 export const useManageItemsTableColumns = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
 
   return useMemo(
     () => [

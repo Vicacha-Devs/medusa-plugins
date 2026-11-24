@@ -18,7 +18,7 @@ export const DocumentsTableRow: React.FC<DocumentsTableRowProps> = ({
   isSelected,
   onToggleSelect,
 }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("documents")
 
   return (
     <Table.Row>
@@ -33,13 +33,21 @@ export const DocumentsTableRow: React.FC<DocumentsTableRowProps> = ({
           {doc.document_number}
         </Text>
         {doc.version > 1 && (
-          <Badge size="2xsmall" color="blue" className="ml-1">
+          <Badge
+            size="2xsmall"
+            color="blue"
+            className="ml-1 whitespace-nowrap shrink-0"
+          >
             v{doc.version}
           </Badge>
         )}
       </Table.Cell>
       <Table.Cell>
-        <Badge size="2xsmall" color="grey">
+        <Badge
+          size="2xsmall"
+          color="grey"
+          className="whitespace-nowrap shrink-0"
+        >
           {t(`types.${doc.document_type}`, {
             defaultValue: doc.document_type,
           })}
@@ -67,6 +75,7 @@ export const DocumentsTableRow: React.FC<DocumentsTableRowProps> = ({
                 ? "red"
                 : "grey"
           }
+          className="whitespace-nowrap shrink-0"
         >
           {doc.is_stale
             ? t("statuses.stale")

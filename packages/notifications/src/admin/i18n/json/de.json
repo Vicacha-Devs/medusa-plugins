@@ -1,6 +1,12 @@
 {
   "nav": {
-    "label": "Benachrichtigungen"
+    "label": "Benachrichtigungen",
+    "templates": "Vorlagen",
+    "mappings": "Ereigniszuordnungen",
+    "channels": "Kanäle",
+    "logs": "Zustellprotokolle",
+    "broadcasts": "Broadcasts",
+    "sandbox": "OTP-Sandbox"
   },
   "header": {
     "title": "Multi-Channel-Benachrichtigungsstudio (E-Mail, WhatsApp/OpenWA, Telegram, SMS, Slack)",

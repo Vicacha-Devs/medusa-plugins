@@ -1,4 +1,4 @@
-import { Button, clx, Heading, Text } from "@medusajs/ui"
+import { clx, Heading, Text } from "@medusajs/ui"
 import React from "react"
 
 export type NavigationCardPosition =
@@ -26,10 +26,10 @@ export const NavigationCard = ({
   const isLeft = position === "top-left" || position === "bottom-left"
 
   return (
-    <Button
+    <button
       type="button"
       className={clx(
-        "text-left p-6 hover:bg-ui-bg-subtle-hover transition-colors",
+        "w-full h-full text-left p-6 bg-transparent hover:bg-ui-bg-subtle-hover transition-colors focus-visible:outline-none focus-visible:bg-ui-bg-subtle-hover",
         !isBottom ? "border-b border-ui-border-base" : "",
         isLeft ? "md:border-r md:border-ui-border-base" : ""
       )}
@@ -46,6 +46,6 @@ export const NavigationCard = ({
           <Text className="text-ui-fg-subtle mt-1">{description}</Text>
         </div>
       </div>
-    </Button>
+    </button>
   )
 }

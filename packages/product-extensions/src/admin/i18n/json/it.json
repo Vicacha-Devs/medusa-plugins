@@ -1,6 +1,11 @@
 {
   "nav": {
-    "label": "Studio Estensioni Prodotto"
+    "label": "Estensioni Prodotto",
+    "attributes": "Attributi",
+    "templates": "Modelli",
+    "features": "Badge Funzionalità",
+    "variantMedia": "Media Varianti",
+    "imageAlts": "Testo Alt Immagini"
   },
   "header": {
     "title": "Studio Estensioni Prodotto, Rich Media e Attributi",
@@ -13,11 +18,11 @@
     "dismiss": "Chiudi"
   },
   "tabs": {
-    "attributes": "1. Attributi Personalizzati ({{count}})",
-    "templates": "2. Modelli Contenuto e Attributi ({{count}})",
-    "features": "3. Badge Funzionalità ({{count}})",
-    "variantMedia": "4. Assegnazione Media Varianti",
-    "imageAlts": "5. Import/Export CSV Alt-Text"
+    "attributes": "Attributi Personalizzati ({{count}})",
+    "templates": "Modelli Contenuto e Attributi ({{count}})",
+    "features": "Badge Funzionalità ({{count}})",
+    "variantMedia": "Assegnazione Media Varianti",
+    "imageAlts": "Import/Export CSV Alt-Text"
   },
   "attributesTab": {
     "createTitle": "Crea Definizione Attributo Tipizzato",

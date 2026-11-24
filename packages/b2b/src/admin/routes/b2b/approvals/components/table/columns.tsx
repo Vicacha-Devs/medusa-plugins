@@ -15,7 +15,7 @@ import ApprovalStatusBadge from "../approval-status-badge.tsx"
 const columnHelper = createColumnHelper<Record<string, any>>()
 
 export const useApprovalsTableColumns = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
 
   return useMemo(
     () => [
@@ -45,6 +45,7 @@ export const useApprovalsTableColumns = () => {
                   size="2xsmall"
                   rounded="full"
                   color={a.type === "admin" ? "blue" : "purple"}
+                  className="whitespace-nowrap shrink-0"
                 >
                   {a.type === "admin" ? "Admin" : "Sales Mgr"}
                 </Badge>

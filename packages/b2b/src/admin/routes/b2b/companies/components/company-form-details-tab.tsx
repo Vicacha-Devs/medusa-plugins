@@ -16,7 +16,7 @@ export const CompanyFormDetailsTab = ({
   availableCountries,
   regionsLoading,
 }: CompanyFormDetailsTabProps) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
 
   return (
     <div className="flex flex-col gap-y-4">
@@ -123,7 +123,7 @@ export const CompanyFormDetailsTab = ({
                 onValueChange={(v) => field.onChange(v)}
                 disabled={regionsLoading}
               >
-                <Select.Trigger>
+                <Select.Trigger className="min-w-0 [&>span]:truncate">
                   <Select.Value
                     placeholder={t("companies.form.selectCountry")}
                   />

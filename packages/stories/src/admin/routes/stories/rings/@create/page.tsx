@@ -10,7 +10,7 @@ import {
 import { RbacGuard } from "../../../../components/rbac-guard"
 
 const CreateRingContent = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("stories")
   const { handleSuccess } = useRouteModal()
   const { mutateAsync: createGroup, isPending } = useCreateStoryGroup()
 
@@ -40,7 +40,7 @@ const CreateRingContent = () => {
 }
 
 const StoryRingCreateDrawer = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("stories")
 
   return (
     <RouteDrawer>

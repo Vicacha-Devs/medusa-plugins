@@ -9,7 +9,7 @@ import { CompanyForm } from "../../components/company-form"
 import { RbacGuard } from "@vicacha-devs/medusa-shared-admin/admin"
 
 const EditContent = ({ id }: { id: string }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
   const { handleSuccess } = useRouteModal()
   const { data, isLoading } = useCompany(id)
   const { mutateAsync, isPending } = useUpdateCompany(id)
@@ -69,7 +69,7 @@ const EditContent = ({ id }: { id: string }) => {
 }
 
 const CompanyEdit = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
   const { id } = useParams()
 
   if (!id) return null

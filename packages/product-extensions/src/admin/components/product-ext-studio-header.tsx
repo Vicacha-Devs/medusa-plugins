@@ -17,7 +17,7 @@ export const ProductExtStudioHeader: React.FC<ProductExtStudioHeaderProps> = ({
   onRefresh,
   isLoading = false,
 }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("product-ext")
 
   return (
     <Container className="divide-y p-0">
@@ -31,13 +31,25 @@ export const ProductExtStudioHeader: React.FC<ProductExtStudioHeaderProps> = ({
           </Text>
         </div>
         <div className="flex items-center gap-x-2">
-          <Badge size="small" color="blue">
+          <Badge
+            size="small"
+            color="blue"
+            className="whitespace-nowrap shrink-0"
+          >
             {t("header.attributesBadge", { count: attributesCount })}
           </Badge>
-          <Badge size="small" color="purple">
+          <Badge
+            size="small"
+            color="purple"
+            className="whitespace-nowrap shrink-0"
+          >
             {t("header.templatesBadge", { count: templatesCount })}
           </Badge>
-          <Badge size="small" color="green">
+          <Badge
+            size="small"
+            color="green"
+            className="whitespace-nowrap shrink-0"
+          >
             {t("header.featuresBadge", { count: featuresCount })}
           </Badge>
           <Button
@@ -45,6 +57,7 @@ export const ProductExtStudioHeader: React.FC<ProductExtStudioHeaderProps> = ({
             size="small"
             isLoading={isLoading}
             onClick={onRefresh}
+            className="whitespace-nowrap shrink-0"
           >
             {t("header.refresh")}
           </Button>

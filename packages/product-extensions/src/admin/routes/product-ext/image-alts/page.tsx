@@ -35,12 +35,12 @@ const ImageAltsRoutePage = () => {
 }
 
 const Breadcrumb = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("product-ext")
   return t("tabs.imageAlts")
 }
 
 export const config = defineRouteConfig({
-  label: "tabs.imageAlts",
+  label: "nav.imageAlts",
   translationNs: "product-ext",
   icon: Photo,
 })

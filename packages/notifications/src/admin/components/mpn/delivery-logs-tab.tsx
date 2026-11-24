@@ -15,14 +15,16 @@ interface DeliveryLogsTabProps {
 }
 
 export const DeliveryLogsTab: React.FC<DeliveryLogsTabProps> = ({ logs }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("mpn")
 
   return (
     <Container className="divide-y p-0">
       <Toaster />
       <div className="flex items-center justify-between px-6 py-4">
         <Heading level="h2">{t("logs.title")}</Heading>
-        <StatusBadge color="green">{logs.length}</StatusBadge>
+        <StatusBadge color="green" className="whitespace-nowrap shrink-0">
+          {logs.length}
+        </StatusBadge>
       </div>
 
       <SectionRow title={t("logs.colStatus")} value={logs.length} />
@@ -42,7 +44,11 @@ export const DeliveryLogsTab: React.FC<DeliveryLogsTabProps> = ({ logs }) => {
             <Table.Row key={row.id}>
               <Table.Cell>{row.event_name}</Table.Cell>
               <Table.Cell>
-                <Badge size="2xsmall" color="blue">
+                <Badge
+                  size="2xsmall"
+                  color="blue"
+                  className="whitespace-nowrap shrink-0"
+                >
                   {row.channel}
                 </Badge>
               </Table.Cell>
@@ -56,6 +62,7 @@ export const DeliveryLogsTab: React.FC<DeliveryLogsTabProps> = ({ logs }) => {
                         ? "red"
                         : "orange"
                   }
+                  className="whitespace-nowrap shrink-0"
                 >
                   {row.status}
                 </StatusBadge>

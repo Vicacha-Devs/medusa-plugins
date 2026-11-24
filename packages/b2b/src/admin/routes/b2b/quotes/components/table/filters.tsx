@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next"
 import { EQuoteStatus } from "../../../../../../types"
 
 export const useQuotesTableFilters = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
 
   return [
     {

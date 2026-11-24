@@ -7,7 +7,7 @@ import { CompanyActionsMenu } from "./company-actions-menu"
 import "./companies-table-renderers"
 
 export function useCompaniesTableAdapter(): TableAdapter<QueryCompany> {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
 
   return useMemo(
     () =>

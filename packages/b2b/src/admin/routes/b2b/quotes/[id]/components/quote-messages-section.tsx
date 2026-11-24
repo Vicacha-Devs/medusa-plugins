@@ -18,7 +18,7 @@ export const QuoteMessagesSection = ({
   preview,
 }: QuoteMessagesSectionProps) => {
   const { id } = useParams()
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
   const q = quote as any
   const scrollRef = useRef<HTMLDivElement>(null)
 
@@ -64,7 +64,11 @@ export const QuoteMessagesSection = ({
     <Container className="divide-y p-0 overflow-hidden">
       <div className="flex items-center justify-between px-6 py-4">
         <Heading level="h2">{t("quotes.messages.title", "Messages")}</Heading>
-        <Badge size="xsmall" color="grey">
+        <Badge
+          size="xsmall"
+          color="grey"
+          className="whitespace-nowrap shrink-0"
+        >
           {messages.length}
         </Badge>
       </div>

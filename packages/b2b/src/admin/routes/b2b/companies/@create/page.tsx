@@ -11,7 +11,7 @@ import { ESpendingLimitResetFrequency } from "../../../../../types"
 import { RbacGuard } from "@vicacha-devs/medusa-shared-admin/admin"
 
 const CreateContent = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
   const { handleSuccess } = useRouteModal()
   const { mutateAsync: createCompany, isPending } = useCreateCompany()
 

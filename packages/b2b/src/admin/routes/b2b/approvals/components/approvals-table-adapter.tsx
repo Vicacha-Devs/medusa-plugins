@@ -7,7 +7,7 @@ import { ApprovalActions } from "./approval-actions.tsx"
 import "./approvals-table-renderers.tsx"
 
 export function useApprovalsTableAdapter(): TableAdapter<AdminCartWithApprovals> {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
 
   return useMemo(
     () =>

@@ -1,6 +1,12 @@
 {
   "nav": {
-    "label": "Notifications"
+    "label": "Notifications",
+    "templates": "Modèles",
+    "mappings": "Mappages d'événements",
+    "channels": "Canaux",
+    "logs": "Journaux d'envoi",
+    "broadcasts": "Diffusions",
+    "sandbox": "Bac à sable OTP"
   },
   "header": {
     "title": "Studio de Notifications Multicanal (E-mail, WhatsApp/OpenWA, Telegram, SMS, Slack)",

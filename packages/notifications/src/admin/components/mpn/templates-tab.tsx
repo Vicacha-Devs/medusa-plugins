@@ -13,16 +13,18 @@ import { TemplatesListSection } from "./templates-list-section"
 
 export interface TemplatesBuilderTabProps {
   templates: Array<Record<string, any>>
+  isLoading?: boolean
   onRefresh: () => Promise<void>
   onStatus?: (status: StatusBannerState) => void
 }
 
 export const TemplatesBuilderTab: React.FC<TemplatesBuilderTabProps> = ({
   templates,
+  isLoading = false,
   onRefresh,
   onStatus,
 }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("mpn")
   const [channelFilter, setChannelFilter] = useState<string>("all")
   const [selectedTemplate, setSelectedTemplate] = useState<Record<
     string,
@@ -142,10 +144,12 @@ export const TemplatesBuilderTab: React.FC<TemplatesBuilderTabProps> = ({
   }
 
   return (
-    <div className="grid grid-cols-1 gap-4 lg:grid-cols-12">
+    <div className="flex flex-col gap-y-4">
       <Toaster />
       <TemplatesListSection
         templates={templates}
+        isLoading={isLoading}
+        selectedTemplateId={selectedTemplate?.id}
         channelFilter={channelFilter}
         onChannelFilterChange={setChannelFilter}
         onSelectTemplate={(id) => void handleSelectTemplate(id)}
@@ -153,36 +157,42 @@ export const TemplatesBuilderTab: React.FC<TemplatesBuilderTabProps> = ({
         isCloning={cloneTemplateMutation.isPending}
       />
 
-      <TemplateEditorSection
-        selectedTemplate={selectedTemplate}
-        selectedBlocks={selectedBlocks}
-        previewContextType={previewContextType}
-        previewLocale={previewLocale}
-        previewResult={previewResult}
-        isSaving={updateTemplateMutation.isPending}
-        onTemplateChange={setSelectedTemplate}
-        onAddBlock={handleAddBlock}
-        onRemoveBlock={(idx) =>
-          setSelectedBlocks(selectedBlocks.filter((_, i) => i !== idx))
-        }
-        onSaveTemplate={() => void handleSaveDbTemplate()}
-        onContextChange={(val) => {
-          setPreviewContextType(val)
-          if (selectedTemplate?.id) {
-            void handlePreviewTemplate(selectedTemplate.id, val, previewLocale)
+      {selectedTemplate && (
+        <TemplateEditorSection
+          selectedTemplate={selectedTemplate}
+          selectedBlocks={selectedBlocks}
+          previewContextType={previewContextType}
+          previewLocale={previewLocale}
+          previewResult={previewResult}
+          isSaving={updateTemplateMutation.isPending}
+          onTemplateChange={setSelectedTemplate}
+          onAddBlock={handleAddBlock}
+          onRemoveBlock={(idx) =>
+            setSelectedBlocks(selectedBlocks.filter((_, i) => i !== idx))
           }
-        }}
-        onLocaleChange={(loc) => {
-          setPreviewLocale(loc)
-          if (selectedTemplate?.id) {
-            void handlePreviewTemplate(
-              selectedTemplate.id,
-              previewContextType,
-              loc
-            )
-          }
-        }}
-      />
+          onSaveTemplate={() => void handleSaveDbTemplate()}
+          onContextChange={(val) => {
+            setPreviewContextType(val)
+            if (selectedTemplate?.id) {
+              void handlePreviewTemplate(
+                selectedTemplate.id,
+                val,
+                previewLocale
+              )
+            }
+          }}
+          onLocaleChange={(loc) => {
+            setPreviewLocale(loc)
+            if (selectedTemplate?.id) {
+              void handlePreviewTemplate(
+                selectedTemplate.id,
+                previewContextType,
+                loc
+              )
+            }
+          }}
+        />
+      )}
     </div>
   )
 }

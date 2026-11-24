@@ -24,7 +24,7 @@ interface OrderWidgetProps {
 }
 
 const OrderDocumentsWidget: React.FC<OrderWidgetProps> = ({ data: order }) => {
-  const { t, i18n } = useTranslation()
+  const { t, i18n } = useTranslation("documents")
   const {
     documents,
     loading,
@@ -65,7 +65,11 @@ const OrderDocumentsWidget: React.FC<OrderWidgetProps> = ({ data: order }) => {
           </Text>
         </div>
         <div className="flex items-center gap-2">
-          <Badge size="xsmall" color="grey">
+          <Badge
+            size="xsmall"
+            color="grey"
+            className="whitespace-nowrap shrink-0"
+          >
             {documents.length}
           </Badge>
           <Link
@@ -91,6 +95,7 @@ const OrderDocumentsWidget: React.FC<OrderWidgetProps> = ({ data: order }) => {
                 variant="secondary"
                 disabled={actionDocId === staleDocs[0].id}
                 onClick={() => void handleRegenerate(staleDocs[0].id, false)}
+                className="whitespace-nowrap shrink-0"
               >
                 {t("widget.issueRevisionButton", {
                   version: Number(staleDocs[0].version || 1) + 1,
@@ -110,7 +115,7 @@ const OrderDocumentsWidget: React.FC<OrderWidgetProps> = ({ data: order }) => {
               value={selectedType}
               onValueChange={(v) => setSelectedType(v as DocumentType)}
             >
-              <Select.Trigger>
+              <Select.Trigger className="min-w-0 [&>span]:truncate">
                 <Select.Value placeholder={t("widget.typePlaceholder")} />
               </Select.Trigger>
               <Select.Content>
@@ -130,7 +135,7 @@ const OrderDocumentsWidget: React.FC<OrderWidgetProps> = ({ data: order }) => {
               value={selectedLocale}
               onValueChange={setSelectedLocale}
             >
-              <Select.Trigger>
+              <Select.Trigger className="min-w-0 [&>span]:truncate">
                 <Select.Value placeholder={t("widget.localePlaceholder")} />
               </Select.Trigger>
               <Select.Content>
@@ -151,6 +156,7 @@ const OrderDocumentsWidget: React.FC<OrderWidgetProps> = ({ data: order }) => {
           variant="primary"
           isLoading={generating}
           onClick={() => void handleGenerate()}
+          className="whitespace-nowrap shrink-0"
         >
           {t("widget.generateButton", {
             type: getDocTypeLabel(selectedType),

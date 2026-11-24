@@ -27,7 +27,7 @@ export const SettingsRegionScopeSection: React.FC<
   saving,
   onResetRegionalOverride,
 }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("documents")
   const navigate = useNavigate()
 
   return (
@@ -49,7 +49,7 @@ export const SettingsRegionScopeSection: React.FC<
             value={selectedRegionId}
             onValueChange={setSelectedRegionId}
           >
-            <Select.Trigger>
+            <Select.Trigger className="min-w-0 [&>span]:truncate">
               <Select.Value
                 placeholder={t("settings.regionScopePlaceholder")}
               />
@@ -73,7 +73,11 @@ export const SettingsRegionScopeSection: React.FC<
           title={t("hub.colStatus")}
           value={
             <div className="flex items-center gap-2">
-              <Badge size="xsmall" color={isRegionalOverride ? "blue" : "grey"}>
+              <Badge
+                size="xsmall"
+                color={isRegionalOverride ? "blue" : "grey"}
+                className="whitespace-nowrap shrink-0"
+              >
                 {isRegionalOverride
                   ? t("settings.regionalOverrideBadge")
                   : t("settings.inheritsGlobalBadge")}
@@ -84,6 +88,7 @@ export const SettingsRegionScopeSection: React.FC<
                   type="button"
                   variant="secondary"
                   onClick={onResetRegionalOverride}
+                  className="whitespace-nowrap shrink-0"
                 >
                   {t("settings.resetToGlobal")}
                 </Button>
@@ -99,10 +104,17 @@ export const SettingsRegionScopeSection: React.FC<
           type="button"
           variant="secondary"
           onClick={() => navigate("/documents")}
+          className="whitespace-nowrap shrink-0"
         >
           {t("settings.backToHub")}
         </Button>
-        <Button size="small" type="submit" variant="primary" isLoading={saving}>
+        <Button
+          size="small"
+          type="submit"
+          variant="primary"
+          isLoading={saving}
+          className="whitespace-nowrap shrink-0"
+        >
           {t("settings.saveButton")}
         </Button>
       </div>

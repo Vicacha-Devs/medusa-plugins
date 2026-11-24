@@ -9,7 +9,7 @@ import { useCustomerEmployee } from "../hooks/api"
 
 const CustomerEmployeeWidget = () => {
   const { id } = useParams()
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
   const { employee, isPending } = useCustomerEmployee(id!)
 
   if (isPending || !employee) {
@@ -28,7 +28,12 @@ const CustomerEmployeeWidget = () => {
       <div className="flex items-center justify-between px-6 py-4">
         <Heading level="h2">{t("employees.label")}</Heading>
         {employee.is_admin && (
-          <Badge size="2xsmall" rounded="full" color="purple">
+          <Badge
+            size="2xsmall"
+            rounded="full"
+            color="purple"
+            className="whitespace-nowrap shrink-0"
+          >
             {t("employees.admin")}
           </Badge>
         )}

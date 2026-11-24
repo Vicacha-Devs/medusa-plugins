@@ -8,7 +8,7 @@ import { QueryCompany } from "../../../../../../types"
 const columnHelper = createColumnHelper<QueryCompany>()
 
 export const useCompaniesTableColumns = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
 
   return useMemo(
     () => [

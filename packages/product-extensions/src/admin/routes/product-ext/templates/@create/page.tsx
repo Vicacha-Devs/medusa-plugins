@@ -24,7 +24,7 @@ const CreateTemplateContent = () => {
 }
 
 const TemplateCreateModalPage = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("product-ext")
 
   return (
     <RouteDrawer>

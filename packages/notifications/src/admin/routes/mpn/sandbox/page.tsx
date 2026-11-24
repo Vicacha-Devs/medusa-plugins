@@ -30,12 +30,12 @@ const MpnSandboxPage: React.FC = () => {
 }
 
 const Breadcrumb = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("mpn")
   return t("sandbox.title")
 }
 
 export const config = defineRouteConfig({
-  label: "OTP Sandbox",
+  label: "nav.sandbox",
   translationNs: "mpn",
   icon: EnvelopeSolid,
 })

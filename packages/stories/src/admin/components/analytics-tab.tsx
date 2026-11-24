@@ -15,7 +15,7 @@ export interface AnalyticsTabProps {
 }
 
 export const AnalyticsFunnelSection = ({ analytics }: AnalyticsTabProps) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("stories")
 
   const totalImpressions = analytics?.total_impressions ?? 0
   const hotspotCtrPct =
@@ -61,6 +61,7 @@ export const AnalyticsFunnelSection = ({ analytics }: AnalyticsTabProps) => {
           color={
             (analytics?.overall_conversion_rate_pct ?? 0) > 0 ? "green" : "grey"
           }
+          className="whitespace-nowrap shrink-0"
         >
           {t("header.conversionBadge", {
             rate: analytics?.overall_conversion_rate_pct ?? 0,
@@ -77,7 +78,11 @@ export const AnalyticsFunnelSection = ({ analytics }: AnalyticsTabProps) => {
               <Text size="small" weight="plus">
                 {step.value}
               </Text>
-              <Badge size="xsmall" color="grey">
+              <Badge
+                size="xsmall"
+                color="grey"
+                className="whitespace-nowrap shrink-0"
+              >
                 {t("analyticsTab.percentOfImpressions", {
                   percent: step.percent,
                 })}
@@ -93,13 +98,17 @@ export const AnalyticsFunnelSection = ({ analytics }: AnalyticsTabProps) => {
 export const AnalyticsRingBreakdownSection = ({
   analytics,
 }: AnalyticsTabProps) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("stories")
 
   return (
     <Container className="divide-y p-0">
       <div className="flex items-center justify-between px-6 py-4">
         <Heading level="h2">{t("analyticsTab.ringBreakdownTitle")}</Heading>
-        <Badge size="xsmall" color="purple">
+        <Badge
+          size="xsmall"
+          color="purple"
+          className="whitespace-nowrap shrink-0"
+        >
           {(analytics?.by_group ?? []).length}
         </Badge>
       </div>
@@ -137,6 +146,7 @@ export const AnalyticsRingBreakdownSection = ({
               <Table.Cell>
                 <StatusBadge
                   color={grp.completion_rate_pct >= 50 ? "green" : "grey"}
+                  className="whitespace-nowrap shrink-0"
                 >
                   {grp.completion_rate_pct}% ({grp.completions})
                 </StatusBadge>
@@ -145,6 +155,7 @@ export const AnalyticsRingBreakdownSection = ({
               <Table.Cell>
                 <StatusBadge
                   color={grp.conversion_rate_pct > 0 ? "green" : "grey"}
+                  className="whitespace-nowrap shrink-0"
                 >
                   {grp.conversion_rate_pct}% ({grp.cart_conversions})
                 </StatusBadge>
@@ -159,13 +170,17 @@ export const AnalyticsRingBreakdownSection = ({
 }
 
 export const AnalyticsTopSlidesSection = ({ analytics }: AnalyticsTabProps) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("stories")
 
   return (
     <Container className="divide-y p-0">
       <div className="flex items-center justify-between px-6 py-4">
         <Heading level="h2">{t("analyticsTab.topSlidesTitle")}</Heading>
-        <Badge size="xsmall" color="blue">
+        <Badge
+          size="xsmall"
+          color="blue"
+          className="whitespace-nowrap shrink-0"
+        >
           {(analytics?.top_slides ?? []).length}
         </Badge>
       </div>
@@ -198,7 +213,11 @@ export const AnalyticsTopSlidesSection = ({ analytics }: AnalyticsTabProps) => {
             <Table.Row key={slide.id}>
               <Table.Cell className="font-medium">{slide.title}</Table.Cell>
               <Table.Cell>
-                <Badge size="xsmall" color="grey">
+                <Badge
+                  size="xsmall"
+                  color="grey"
+                  className="whitespace-nowrap shrink-0"
+                >
                   {slide.group_title ?? t("analyticsTab.unassigned")}
                 </Badge>
               </Table.Cell>

@@ -18,7 +18,7 @@ export const QuoteMessageComposer = ({
   quoteId,
   selectItems,
 }: QuoteMessageComposerProps) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
 
   const form = useForm<MessageFormData>({
     defaultValues: { text: "", item_id: null },
@@ -67,7 +67,7 @@ export const QuoteMessageComposer = ({
                       value={field.value ?? undefined}
                     >
                       <Select.Trigger
-                        className="bg-ui-bg-base h-8 text-xs"
+                        className="bg-ui-bg-base h-8 text-xs min-w-0 [&>span]:truncate"
                         ref={ref}
                       >
                         <Select.Value

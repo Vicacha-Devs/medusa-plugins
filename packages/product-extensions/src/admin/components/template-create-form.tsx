@@ -4,7 +4,7 @@ import { Form, KeyboundForm, RouteDrawer } from "@medusajs/dashboard/components"
 import { Button, Input, Textarea } from "@medusajs/ui"
 import { useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
-import { z } from "zod"
+import { z } from "@medusajs/framework/zod"
 import {
   INITIAL_TEMPLATE_FORM,
   type TemplateFormState,
@@ -30,7 +30,7 @@ export const TemplateCreateForm: React.FC<TemplateCreateFormProps> = ({
   onSubmit,
   loading,
 }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("product-ext")
   const form = useForm<TemplateFormState>({
     resolver: zodResolver(templateFormSchema),
     defaultValues: INITIAL_TEMPLATE_FORM,
@@ -140,11 +140,20 @@ export const TemplateCreateForm: React.FC<TemplateCreateFormProps> = ({
         <RouteDrawer.Footer>
           <div className="flex items-center justify-end gap-x-2">
             <RouteDrawer.Close asChild>
-              <Button size="small" variant="secondary">
+              <Button
+                size="small"
+                variant="secondary"
+                className="whitespace-nowrap shrink-0"
+              >
                 {t("header.dismiss")}
               </Button>
             </RouteDrawer.Close>
-            <Button size="small" type="submit" isLoading={loading}>
+            <Button
+              size="small"
+              type="submit"
+              isLoading={loading}
+              className="whitespace-nowrap shrink-0"
+            >
               {t("templatesTab.createButton")}
             </Button>
           </div>

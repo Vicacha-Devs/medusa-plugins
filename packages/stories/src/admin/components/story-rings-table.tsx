@@ -29,14 +29,19 @@ export const StoryRingsPreviewSection = ({
   onSelectGroup,
   onOpenCreateDrawer,
 }: StoryRingsPreviewSectionProps) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("stories")
 
   return (
     <Container className="divide-y p-0">
       <div className="flex items-center justify-between px-6 py-4">
         <Heading level="h2">{t("ringsTab.previewTitle")}</Heading>
         {onOpenCreateDrawer && (
-          <Button size="small" variant="primary" onClick={onOpenCreateDrawer}>
+          <Button
+            size="small"
+            variant="primary"
+            onClick={onOpenCreateDrawer}
+            className="whitespace-nowrap shrink-0"
+          >
             {t("ringsTab.createButton")}
           </Button>
         )}
@@ -45,7 +50,11 @@ export const StoryRingsPreviewSection = ({
       <SectionRow
         title={t("analyticsTab.colHighlightRing")}
         value={
-          <Badge size="xsmall" color="purple">
+          <Badge
+            size="xsmall"
+            color="purple"
+            className="whitespace-nowrap shrink-0"
+          >
             {groups.length}
           </Badge>
         }
@@ -124,13 +133,17 @@ export const StoryRingsTableSection = ({
   onToggleGroupActive,
   onDeleteGroup,
 }: StoryRingsTableSectionProps) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("stories")
 
   return (
     <Container className="divide-y p-0">
       <div className="flex items-center justify-between px-6 py-4">
         <Heading level="h2">{t("analyticsTab.ringBreakdownTitle")}</Heading>
-        <Badge size="xsmall" color="purple">
+        <Badge
+          size="xsmall"
+          color="purple"
+          className="whitespace-nowrap shrink-0"
+        >
           {groups.length}
         </Badge>
       </div>
@@ -164,24 +177,39 @@ export const StoryRingsTableSection = ({
                 </div>
               </Table.Cell>
               <Table.Cell>
-                <Badge size="xsmall" color="purple">
+                <Badge
+                  size="xsmall"
+                  color="purple"
+                  className="whitespace-nowrap shrink-0"
+                >
                   {g.ring_theme}
                 </Badge>
               </Table.Cell>
               <Table.Cell>
-                <Badge size="xsmall" color="blue">
+                <Badge
+                  size="xsmall"
+                  color="blue"
+                  className="whitespace-nowrap shrink-0"
+                >
                   {t("ringsTab.zoneBadge", { placement: g.placement })}
                 </Badge>
               </Table.Cell>
               <Table.Cell>
-                <Badge size="xsmall" color="grey">
+                <Badge
+                  size="xsmall"
+                  color="grey"
+                  className="whitespace-nowrap shrink-0"
+                >
                   {t("ringsTab.slidesCountBadge", {
                     count: g.slides?.length ?? 0,
                   })}
                 </Badge>
               </Table.Cell>
               <Table.Cell>
-                <StatusBadge color={g.is_active ? "green" : "grey"}>
+                <StatusBadge
+                  color={g.is_active ? "green" : "grey"}
+                  className="whitespace-nowrap shrink-0"
+                >
                   {g.is_active
                     ? t("ringsTab.activeBadge")
                     : t("ringsTab.pausedBadge")}
@@ -208,6 +236,7 @@ export const StoryRingsTableSection = ({
                     size="small"
                     variant="secondary"
                     onClick={() => onDeleteGroup(g.id)}
+                    className="whitespace-nowrap shrink-0"
                   >
                     {t("ringsTab.deleteButton")}
                   </Button>

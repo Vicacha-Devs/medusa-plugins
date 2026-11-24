@@ -27,7 +27,7 @@ export const StickerBuilderSection = ({
   isSaving,
   onAddSticker,
 }: StickerBuilderSectionProps) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("stories")
 
   return (
     <Container className="divide-y p-0">
@@ -44,6 +44,7 @@ export const StickerBuilderSection = ({
           variant="primary"
           isLoading={isSaving}
           onClick={onAddSticker}
+          className="whitespace-nowrap shrink-0"
         >
           {t("stickersTab.addButton")}
         </Button>
@@ -66,7 +67,7 @@ export const StickerBuilderSection = ({
               }))
             }
           >
-            <Select.Trigger>
+            <Select.Trigger className="min-w-0 [&>span]:truncate">
               <Select.Value />
             </Select.Trigger>
             <Select.Content>

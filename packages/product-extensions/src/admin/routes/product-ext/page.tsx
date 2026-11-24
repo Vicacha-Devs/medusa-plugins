@@ -17,7 +17,7 @@ import { useProductExtStudio } from "../../hooks/use-product-ext-studio"
 import { RbacGuard } from "../../components/rbac-guard"
 
 const ProductExtOverviewPage = () => {
-  const { t, i18n } = useTranslation()
+  const { t, i18n } = useTranslation("product-ext")
   const navigate = useNavigate()
   const studio = useProductExtStudio()
 
@@ -45,6 +45,7 @@ const ProductExtOverviewPage = () => {
                   size="small"
                   isLoading={studio.isBusy}
                   onClick={studio.onRefresh}
+                  className="whitespace-nowrap shrink-0"
                 >
                   {t("header.refresh")}
                 </Button>
@@ -143,7 +144,7 @@ const ProductExtOverviewPage = () => {
 }
 
 const Breadcrumb = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("product-ext")
   return t("nav.label")
 }
 

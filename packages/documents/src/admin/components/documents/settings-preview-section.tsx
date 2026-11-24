@@ -1,3 +1,4 @@
+import React, { useState } from "react"
 import { Button, Container, Heading, Input, Select, Text } from "@medusajs/ui"
 import { useTranslation } from "react-i18next"
 
@@ -13,7 +14,7 @@ export const SettingsPreviewSection: React.FC<SettingsPreviewSectionProps> = ({
   defaultLocale,
   selectedRegionId,
 }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("documents")
   const [previewDocType, setPreviewDocType] = useState<DocumentType>("invoice")
   const [previewOrderId, setPreviewOrderId] = useState<string>("")
   const [previewStressTest, setPreviewStressTest] = useState<boolean>(false)
@@ -41,7 +42,7 @@ export const SettingsPreviewSection: React.FC<SettingsPreviewSectionProps> = ({
             value={previewDocType}
             onValueChange={(v) => setPreviewDocType(v as DocumentType)}
           >
-            <Select.Trigger>
+            <Select.Trigger className="min-w-0 [&>span]:truncate">
               <Select.Value />
             </Select.Trigger>
             <Select.Content>
@@ -80,6 +81,7 @@ export const SettingsPreviewSection: React.FC<SettingsPreviewSectionProps> = ({
             type="button"
             variant="secondary"
             onClick={() => setPreviewStressTest((v) => !v)}
+            className="whitespace-nowrap shrink-0"
           >
             {previewStressTest
               ? t("settings.standardItemsButton")
@@ -91,6 +93,7 @@ export const SettingsPreviewSection: React.FC<SettingsPreviewSectionProps> = ({
             type="button"
             variant="secondary"
             onClick={() => window.open(previewUrl, "_blank")}
+            className="whitespace-nowrap shrink-0"
           >
             {t("settings.openFullPdf")}
           </Button>

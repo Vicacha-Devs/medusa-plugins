@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next"
 import { ApprovalStatusType } from "../../../../../../types/approval"
 
 export const useApprovalsTableFilters = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
 
   const filters: unknown[] = [
     {

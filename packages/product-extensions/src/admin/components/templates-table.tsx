@@ -27,7 +27,7 @@ export const TemplatesTable: React.FC<TemplatesTableProps> = ({
   onDelete,
   onCreateClick,
 }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("product-ext")
 
   return (
     <Container className="divide-y p-0">
@@ -41,7 +41,12 @@ export const TemplatesTable: React.FC<TemplatesTableProps> = ({
           </Text>
         </div>
         {onCreateClick && (
-          <Button size="small" variant="secondary" onClick={onCreateClick}>
+          <Button
+            size="small"
+            variant="secondary"
+            onClick={onCreateClick}
+            className="whitespace-nowrap shrink-0"
+          >
             {t("templatesTab.createButton")}
           </Button>
         )}
@@ -62,7 +67,11 @@ export const TemplatesTable: React.FC<TemplatesTableProps> = ({
             <Table.Row key={tpl.id}>
               <Table.Cell className="font-medium">{tpl.name}</Table.Cell>
               <Table.Cell>
-                <Badge size="small" color="purple">
+                <Badge
+                  size="small"
+                  color="purple"
+                  className="whitespace-nowrap shrink-0"
+                >
                   {tpl.code}
                 </Badge>
               </Table.Cell>
@@ -78,6 +87,7 @@ export const TemplatesTable: React.FC<TemplatesTableProps> = ({
                   size="small"
                   disabled={isBusy}
                   onClick={() => onDelete(tpl.id)}
+                  className="whitespace-nowrap shrink-0"
                 >
                   {t("templatesTab.deleteButton")}
                 </Button>
@@ -109,7 +119,7 @@ export const TemplatesBuilderTab: React.FC<TemplatesBuilderTabProps> = ({
   onDelete,
   onOpenCreateDrawer,
 }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("product-ext")
 
   return (
     <div className="flex flex-col gap-y-4">
@@ -121,6 +131,7 @@ export const TemplatesBuilderTab: React.FC<TemplatesBuilderTabProps> = ({
             size="small"
             isLoading={isBusy}
             onClick={onCreate}
+            className="whitespace-nowrap shrink-0"
           >
             {t("templatesTab.createButton")}
           </Button>

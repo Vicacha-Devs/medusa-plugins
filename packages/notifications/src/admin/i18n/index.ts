@@ -10,14 +10,14 @@ import pt from "./json/pt.json"
 import tr from "./json/tr.json"
 
 export default {
-  ar: { translation: ar },
-  de: { translation: de },
-  en: { translation: en },
-  es: { translation: es },
-  fr: { translation: fr },
-  it: { translation: it },
-  nl: { translation: nl },
-  pl: { translation: pl },
-  pt: { translation: pt },
-  tr: { translation: tr },
+  ar: { translation: ar, mpn: ar },
+  de: { translation: de, mpn: de },
+  en: { translation: en, mpn: en },
+  es: { translation: es, mpn: es },
+  fr: { translation: fr, mpn: fr },
+  it: { translation: it, mpn: it },
+  nl: { translation: nl, mpn: nl },
+  pl: { translation: pl, mpn: pl },
+  pt: { translation: pt, mpn: pt },
+  tr: { translation: tr, mpn: tr },
 }

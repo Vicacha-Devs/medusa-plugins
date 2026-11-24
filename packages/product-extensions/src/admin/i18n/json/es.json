@@ -1,6 +1,11 @@
 {
   "nav": {
-    "label": "Estudio de Extensiones de Producto"
+    "label": "Extensiones de Producto",
+    "attributes": "Atributos",
+    "templates": "Plantillas",
+    "features": "Insignias",
+    "variantMedia": "Media de Variantes",
+    "imageAlts": "Texto Alt Imágenes"
   },
   "header": {
     "title": "Estudio de Extensiones de Producto, Multimedia y Atributos",
@@ -13,11 +18,11 @@
     "dismiss": "Cerrar"
   },
   "tabs": {
-    "attributes": "1. Atributos Personalizados ({{count}})",
-    "templates": "2. Plantillas de Contenido y Atributos ({{count}})",
-    "features": "3. Insignias de Características ({{count}})",
-    "variantMedia": "4. Asignador Multimedia por Opción",
-    "imageAlts": "5. Importar/Exportar Alt-Text CSV"
+    "attributes": "Atributos Personalizados ({{count}})",
+    "templates": "Plantillas de Contenido y Atributos ({{count}})",
+    "features": "Insignias de Características ({{count}})",
+    "variantMedia": "Asignador Multimedia por Opción",
+    "imageAlts": "Importar/Exportar Alt-Text CSV"
   },
   "attributesTab": {
     "createTitle": "Crear Definición de Atributo Tipado",

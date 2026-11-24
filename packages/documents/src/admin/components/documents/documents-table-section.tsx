@@ -47,7 +47,7 @@ export const DocumentsTableSection: React.FC<DocumentsTableSectionProps> = ({
   onExportCsv,
   onBulkDownloadZip,
 }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("documents")
   const navigate = useNavigate()
 
   return (
@@ -60,7 +60,12 @@ export const DocumentsTableSection: React.FC<DocumentsTableSectionProps> = ({
           </Text>
         </div>
         <div className="flex flex-wrap items-center gap-2">
-          <Button size="small" variant="secondary" onClick={onExportCsv}>
+          <Button
+            size="small"
+            variant="secondary"
+            onClick={onExportCsv}
+            className="whitespace-nowrap shrink-0"
+          >
             {t("hub.exportCsv")}
           </Button>
           <Button
@@ -68,6 +73,7 @@ export const DocumentsTableSection: React.FC<DocumentsTableSectionProps> = ({
             variant="secondary"
             disabled={selectedIds.size === 0}
             onClick={onBulkDownloadZip}
+            className="whitespace-nowrap shrink-0"
           >
             {t("hub.downloadZip", { count: selectedIds.size })}
           </Button>
@@ -75,6 +81,7 @@ export const DocumentsTableSection: React.FC<DocumentsTableSectionProps> = ({
             size="small"
             variant="secondary"
             onClick={() => navigate("/documents/bulk-generate")}
+            className="whitespace-nowrap shrink-0"
           >
             {t("hub.bulkRunButton")}
           </Button>
@@ -82,6 +89,7 @@ export const DocumentsTableSection: React.FC<DocumentsTableSectionProps> = ({
             size="small"
             variant="primary"
             onClick={() => navigate("/documents/settings")}
+            className="whitespace-nowrap shrink-0"
           >
             {t("hub.settingsButton")}
           </Button>

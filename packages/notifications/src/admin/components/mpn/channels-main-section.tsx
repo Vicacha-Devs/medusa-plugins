@@ -44,7 +44,7 @@ export const ChannelsMainSection: React.FC<ChannelsMainSectionProps> = ({
   onTelegramChannelChange,
   onSaveOrVerify,
 }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("mpn")
   const form = useForm({
     defaultValues: {
       whatsapp_driver: whatsappDriverInput,
@@ -63,7 +63,11 @@ export const ChannelsMainSection: React.FC<ChannelsMainSectionProps> = ({
               {t("channels.whatsappSubtitle")}
             </Text>
           </div>
-          <Badge size="2xsmall" color="blue">
+          <Badge
+            size="2xsmall"
+            color="blue"
+            className="whitespace-nowrap shrink-0"
+          >
             {whatsappDriverInput}
           </Badge>
         </div>
@@ -93,7 +97,7 @@ export const ChannelsMainSection: React.FC<ChannelsMainSectionProps> = ({
                 value={whatsappDriverInput}
                 onValueChange={onWhatsappDriverChange}
               >
-                <Select.Trigger>
+                <Select.Trigger className="min-w-0 [&>span]:truncate">
                   <Select.Value />
                 </Select.Trigger>
                 <Select.Content>
@@ -127,6 +131,7 @@ export const ChannelsMainSection: React.FC<ChannelsMainSectionProps> = ({
                 variant="primary"
                 type="submit"
                 isLoading={isPending}
+                className="whitespace-nowrap shrink-0"
               >
                 {t("channels.saveWhatsappButton")}
               </Button>
@@ -143,7 +148,10 @@ export const ChannelsMainSection: React.FC<ChannelsMainSectionProps> = ({
               {t("channels.telegramSubtitle")}
             </Text>
           </div>
-          <StatusBadge color={tgVerified ? "green" : "orange"}>
+          <StatusBadge
+            color={tgVerified ? "green" : "orange"}
+            className="whitespace-nowrap shrink-0"
+          >
             {tgVerified
               ? t("channels.verifiedBadge")
               : t("channels.unverifiedBadge")}
@@ -178,6 +186,7 @@ export const ChannelsMainSection: React.FC<ChannelsMainSectionProps> = ({
                   "save"
                 )
               }
+              className="whitespace-nowrap shrink-0"
             >
               {t("channels.saveChannelIdButton")}
             </Button>
@@ -194,6 +203,7 @@ export const ChannelsMainSection: React.FC<ChannelsMainSectionProps> = ({
                   "verify"
                 )
               }
+              className="whitespace-nowrap shrink-0"
             >
               {t("channels.sendTestButton")}
             </Button>

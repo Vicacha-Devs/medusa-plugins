@@ -9,7 +9,7 @@ import { useCompany, useUpdateApprovalSettings } from "../../../../../hooks/api"
 import { RbacGuard } from "@vicacha-devs/medusa-shared-admin/admin"
 
 const ApprovalSettingsContent = ({ id }: { id: string }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
   const { handleSuccess } = useRouteModal()
 
   const { data, isLoading } = useCompany(id)
@@ -68,10 +68,18 @@ const ApprovalSettingsContent = ({ id }: { id: string }) => {
         />
       </RouteDrawer.Body>
       <RouteDrawer.Footer>
-        <Button variant="secondary" onClick={() => handleSuccess()}>
+        <Button
+          variant="secondary"
+          onClick={() => handleSuccess()}
+          className="whitespace-nowrap shrink-0"
+        >
           {t("actions.cancel")}
         </Button>
-        <Button onClick={handleSubmit} isLoading={isPending}>
+        <Button
+          onClick={handleSubmit}
+          isLoading={isPending}
+          className="whitespace-nowrap shrink-0"
+        >
           {t("actions.save")}
         </Button>
       </RouteDrawer.Footer>
@@ -80,7 +88,7 @@ const ApprovalSettingsContent = ({ id }: { id: string }) => {
 }
 
 const CompanyApprovalSettings = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
   const { id } = useParams()
 
   if (!id) return null

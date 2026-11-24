@@ -29,7 +29,7 @@ export function EmployeesUpdateForm({
   loading: boolean
   error: Error | null
 }) {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
 
   const form = useForm<UpdateEmployeeFormValues>({
     resolver: zodResolver(makeEmployeeUpdateFormSchema()),
@@ -147,9 +147,15 @@ export function EmployeesUpdateForm({
         </RouteDrawer.Body>
         <RouteDrawer.Footer>
           <RouteDrawer.Close asChild>
-            <Button variant="secondary">{t("actions.cancel")}</Button>
+            <Button variant="secondary" className="whitespace-nowrap shrink-0">
+              {t("actions.cancel")}
+            </Button>
           </RouteDrawer.Close>
-          <Button type="submit" isLoading={loading}>
+          <Button
+            type="submit"
+            isLoading={loading}
+            className="whitespace-nowrap shrink-0"
+          >
             {t("actions.save")}
           </Button>
           {error && <Text className="text-ui-fg-error">{error.message}</Text>}

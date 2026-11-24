@@ -31,7 +31,11 @@ defineCellRenderer("b2b-employee-spending-limit", {
 defineCellRenderer("b2b-employee-is-admin", {
   render: (value, _row, _column, t) => {
     return value ? (
-      <Badge size="2xsmall" color="green">
+      <Badge
+        size="2xsmall"
+        color="green"
+        className="whitespace-nowrap shrink-0"
+      >
         {t("employees.admin")}
       </Badge>
     ) : null
@@ -41,11 +45,15 @@ defineCellRenderer("b2b-employee-is-admin", {
 defineCellRenderer("b2b-employee-is-active", {
   render: (value, _row, _column, t) => {
     return value ? (
-      <Badge size="2xsmall" color="green">
+      <Badge
+        size="2xsmall"
+        color="green"
+        className="whitespace-nowrap shrink-0"
+      >
         {t("employees.active")}
       </Badge>
     ) : (
-      <Badge size="2xsmall" color="grey">
+      <Badge size="2xsmall" color="grey" className="whitespace-nowrap shrink-0">
         {t("employees.inactive")}
       </Badge>
     )

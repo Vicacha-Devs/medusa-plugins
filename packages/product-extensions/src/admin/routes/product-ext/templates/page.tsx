@@ -39,12 +39,12 @@ const TemplatesRoutePage = () => {
 }
 
 const Breadcrumb = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("product-ext")
   return t("templatesTab.createTitle")
 }
 
 export const config = defineRouteConfig({
-  label: "templatesTab.createTitle",
+  label: "nav.templates",
   translationNs: "product-ext",
   icon: DocumentText,
 })

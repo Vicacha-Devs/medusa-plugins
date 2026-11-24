@@ -64,7 +64,7 @@ export const StoryRingCreateForm = ({
   onSubmit,
   loading,
 }: StoryRingCreateDrawerFormProps) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("stories")
   const schema = useMemo(() => makeStoryRingCreateFormSchema(), [])
 
   const form = useForm<StoryRingCreateFormValues>({
@@ -147,7 +147,7 @@ export const StoryRingCreateForm = ({
                 <Form.Label>{t("ringsTab.themeField")}</Form.Label>
                 <Form.Control>
                   <Select value={field.value} onValueChange={field.onChange}>
-                    <Select.Trigger>
+                    <Select.Trigger className="min-w-0 [&>span]:truncate">
                       <Select.Value />
                     </Select.Trigger>
                     <Select.Content>
@@ -189,7 +189,7 @@ export const StoryRingCreateForm = ({
                 <Form.Label>{t("ringsTab.placementField")}</Form.Label>
                 <Form.Control>
                   <Select value={field.value} onValueChange={field.onChange}>
-                    <Select.Trigger>
+                    <Select.Trigger className="min-w-0 [&>span]:truncate">
                       <Select.Value />
                     </Select.Trigger>
                     <Select.Content>
@@ -226,11 +226,20 @@ export const StoryRingCreateForm = ({
         <RouteDrawer.Footer>
           <div className="flex items-center justify-end gap-x-2">
             <RouteDrawer.Close asChild>
-              <Button size="small" variant="secondary">
+              <Button
+                size="small"
+                variant="secondary"
+                className="whitespace-nowrap shrink-0"
+              >
                 {t("header.dismiss")}
               </Button>
             </RouteDrawer.Close>
-            <Button size="small" type="submit" isLoading={loading}>
+            <Button
+              size="small"
+              type="submit"
+              isLoading={loading}
+              className="whitespace-nowrap shrink-0"
+            >
               {t("ringsTab.createButton")}
             </Button>
           </div>

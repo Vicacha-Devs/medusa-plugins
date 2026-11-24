@@ -13,14 +13,13 @@ import type {
   DocumentType,
 } from "../../../modules/documents/types"
 import {
-  DocumentsBulkGenerateSection,
   DocumentsOverviewSection,
   DocumentsTableSection,
 } from "../../components/documents"
 import { RbacGuard } from "../../components/rbac-guard"
 
 const DocumentsHubPage: React.FC = () => {
-  const { t, i18n } = useTranslation()
+  const { t, i18n } = useTranslation("documents")
   const [typeFilter, setTypeFilter] = useState<string>("all")
   const [statusFilter, setStatusFilter] = useState<string>("all")
   const [searchQuery, setSearchQuery] = useState<string>("")
@@ -140,9 +139,6 @@ const DocumentsHubPage: React.FC = () => {
                   onBulkDownloadZip={() => void handleBulkDownloadZip()}
                 />
               </LayoutComposer.Entry>
-              <LayoutComposer.Entry id="DocumentsBulkGenerateSection">
-                <DocumentsBulkGenerateSection />
-              </LayoutComposer.Entry>
             </>
           ),
         }}
@@ -152,12 +148,13 @@ const DocumentsHubPage: React.FC = () => {
 }
 
 const Breadcrumb = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("documents")
   return t("nav.label")
 }
 
 export const config = defineRouteConfig({
   label: "nav.label",
+  translationNs: "documents",
   icon: DocumentText,
 })
 

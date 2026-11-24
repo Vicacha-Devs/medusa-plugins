@@ -11,7 +11,7 @@ import { useCustomerEmployee } from "../hooks/api"
 
 const CustomerCompanyWidget = () => {
   const { id } = useParams()
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
   const { employee, isPending } = useCustomerEmployee(id!)
 
   if (isPending || !employee?.company) {

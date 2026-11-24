@@ -11,7 +11,7 @@ interface QuoteCompanySectionProps {
 }
 
 export const QuoteCompanySection = ({ quote }: QuoteCompanySectionProps) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
   const q = quote as any
   const company = q.customer?.employee?.company
 

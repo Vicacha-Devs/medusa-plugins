@@ -13,7 +13,7 @@ import { useApprovalsTableQuery } from "./table/query.tsx"
 const PAGE_SIZE = 50
 
 export const ApprovalsTable = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
 
   const { searchParams, raw } = useApprovalsTableQuery({
     pageSize: PAGE_SIZE,

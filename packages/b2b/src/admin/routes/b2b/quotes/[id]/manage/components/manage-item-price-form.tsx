@@ -18,7 +18,7 @@ export const ManageItemPriceForm = ({
   onPriceChange,
   onClose,
 }: ManageItemPriceFormProps) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
 
   return (
     <div className="grid grid-cols-1 gap-2 p-3 md:grid-cols-2">
