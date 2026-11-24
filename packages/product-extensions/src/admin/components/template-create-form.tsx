@@ -4,7 +4,7 @@ import { Form, KeyboundForm, RouteDrawer } from "@medusajs/dashboard/components"
 import { Button, Input, Textarea } from "@medusajs/ui"
 import { useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
-import { z } from "@medusajs/framework/zod"
+import { z } from "zod"
 import {
   INITIAL_TEMPLATE_FORM,
   type TemplateFormState,

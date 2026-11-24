@@ -30,7 +30,7 @@ import {
   type VideoItem,
 } from "../index"
 import adminI18n, { SUPPORTED_UI_LOCALES } from "../admin/i18n"
-import * as ModulesBarrel from "../modules"
+import * as ModulesBarrel from "../modules/product-ext"
 import * as AdminProductExtRoute from "../api/admin/products/[product_id]/extension/route"
 import * as AdminVariantExtRoute from "../api/admin/products/[product_id]/variants/[variant_id]/extension/route"
 import * as StoreProductExtRoute from "../api/store/products/[product_id]/extension/route"

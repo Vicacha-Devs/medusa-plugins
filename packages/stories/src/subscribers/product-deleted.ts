@@ -1,7 +1,7 @@
 import type { SubscriberArgs, SubscriberConfig } from "@medusajs/framework"
 import { resolveStoriesService } from "../modules/story"
 
-export default async function productDeletedSubscriber({
+export default async function storiesProductDeletedSubscriber({
   event: { data },
   container,
 }: SubscriberArgs<{ id: string }>) {
