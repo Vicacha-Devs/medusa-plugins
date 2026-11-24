@@ -35,8 +35,8 @@ export type ETemplateEngine =
 export const EPageSize = {
   A4: "A4",
   LETTER: "LETTER",
-  POS_80MM: "80MM",
-  POS_58MM: "58MM",
+  POS_80MM: "POS_80MM",
+  POS_58MM: "POS_58MM",
 } as const
 export type EPageSize = (typeof EPageSize)[keyof typeof EPageSize]
 

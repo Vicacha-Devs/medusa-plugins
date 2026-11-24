@@ -79,7 +79,7 @@ export async function GET(req: MedusaRequest, res: MedusaResponse) {
       name: "POS Thermal Receipt (80mm Dynamic Height)",
       document_type: "receipt",
       engine: "react-pdf",
-      page_size: "80MM",
+      page_size: "POS_80MM",
       is_system: true,
     },
     {
@@ -87,7 +87,7 @@ export async function GET(req: MedusaRequest, res: MedusaResponse) {
       name: "POS Thermal Receipt (58mm Dynamic Height)",
       document_type: "receipt",
       engine: "react-pdf",
-      page_size: "58MM",
+      page_size: "POS_58MM",
       is_system: true,
     },
   ]
@@ -120,7 +120,8 @@ export async function POST(req: MedusaRequest, res: MedusaResponse) {
     document_type: docType,
     engine: parsed.data.engine || "handlebars",
     preset_key: parsed.data.preset_key ?? null,
-    page_size: parsed.data.page_size || (docType === "receipt" ? "80MM" : "A4"),
+    page_size:
+      parsed.data.page_size || (docType === "receipt" ? "POS_80MM" : "A4"),
     orientation: parsed.data.orientation || "portrait",
     html_content:
       parsed.data.html_content || DEFAULT_HANDLEBARS_TEMPLATES[docType],
