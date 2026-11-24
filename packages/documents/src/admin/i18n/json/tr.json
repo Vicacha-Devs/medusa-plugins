@@ -1,6 +1,7 @@
 {
   "nav": {
-    "label": "Belgeler"
+    "label": "Belgeler",
+    "settings": "Ayarlar"
   },
   "types": {
     "invoice": "Fatura",

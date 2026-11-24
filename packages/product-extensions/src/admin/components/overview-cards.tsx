@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Button, clx, Container, Heading, Skeleton, Text } from "@medusajs/ui"
+import { clx, Container, Heading, Skeleton, Text } from "@medusajs/ui"
 
 export interface StatCardProps {
   title: string
@@ -75,12 +75,10 @@ export const NavigationCard: React.FC<NavigationCardProps> = ({
     position === "bottom-left"
 
   return (
-    <Button
+    <button
       type="button"
-      variant="transparent"
       className={clx(
-        "whitespace-nowrap shrink-0",
-        "h-auto w-full justify-start rounded-none text-left p-6 hover:bg-ui-bg-subtle-hover transition-colors",
+        "w-full h-full text-left p-6 bg-transparent hover:bg-ui-bg-subtle-hover transition-colors focus-visible:outline-none focus-visible:bg-ui-bg-subtle-hover",
         !isBottom ? "border-b border-ui-border-base" : "",
         isLeft ? "md:border-r md:border-ui-border-base" : ""
       )}
@@ -90,11 +88,11 @@ export const NavigationCard: React.FC<NavigationCardProps> = ({
         <div className="flex items-center justify-center w-8 h-8 rounded-md bg-ui-bg-subtle shrink-0">
           {icon}
         </div>
-        <div>
+        <div className="min-w-0">
           <Heading level="h3">{title}</Heading>
           <Text className="text-ui-fg-subtle mt-1">{description}</Text>
         </div>
       </div>
-    </Button>
+    </button>
   )
 }

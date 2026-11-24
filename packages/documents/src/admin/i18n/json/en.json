@@ -1,6 +1,7 @@
 {
   "nav": {
-    "label": "Documents"
+    "label": "Documents",
+    "settings": "Settings"
   },
   "types": {
     "invoice": "Invoice",

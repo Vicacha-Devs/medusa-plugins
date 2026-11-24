@@ -1,6 +1,7 @@
 {
   "nav": {
-    "label": "Documenti"
+    "label": "Documenti",
+    "settings": "Impostazioni"
   },
   "types": {
     "invoice": "Fattura",

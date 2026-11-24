@@ -156,7 +156,7 @@ const Breadcrumb = () => {
 }
 
 export const config = defineRouteConfig({
-  label: "settings.title",
+  label: "nav.settings",
   translationNs: "documents",
   icon: CogSixTooth,
 })
