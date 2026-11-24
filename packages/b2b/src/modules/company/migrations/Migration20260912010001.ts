@@ -1,6 +1,6 @@
 import { Migration } from "@medusajs/framework/mikro-orm/migrations"
 
-export class Migration20260912010000 extends Migration {
+export class Migration20260912010001 extends Migration {
   async up(): Promise<void> {
     // company
     this.addSql(
