@@ -1,5 +1,11 @@
 # @vicacha-devs/medusa-plugin-b2b
 
+## 0.1.1
+
+### Patch Changes
+
+- 5e32c5a: Add `repository` metadata (required for npm provenance) and ship the first release published with git tags and GitHub Releases.
+
 ## 0.1.0
 
 ### Minor Changes

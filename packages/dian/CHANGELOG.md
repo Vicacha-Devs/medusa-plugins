@@ -1,5 +1,15 @@
 # @vicacha-devs/medusa-plugin-dian
 
+## 0.1.1
+
+### Patch Changes
+
+- 5e32c5a: Add `repository` metadata (required for npm provenance) and ship the first release published with git tags and GitHub Releases.
+- Updated dependencies [5e32c5a]
+  - @vicacha-devs/medusa-plugin-b2b@0.1.1
+  - @vicacha-devs/medusa-plugin-documents@0.1.1
+  - @vicacha-devs/medusa-plugin-einvoicing@0.2.1
+
 ## 0.1.0
 
 ### Minor Changes
