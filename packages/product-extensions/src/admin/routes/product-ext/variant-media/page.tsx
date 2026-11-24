@@ -34,12 +34,12 @@ const VariantMediaRoutePage = () => {
 }
 
 const Breadcrumb = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("product-ext")
   return t("tabs.variantMedia")
 }
 
 export const config = defineRouteConfig({
-  label: "tabs.variantMedia",
+  label: "nav.variantMedia",
   translationNs: "product-ext",
   icon: MediaPlay,
 })

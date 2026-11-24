@@ -6,7 +6,7 @@ import { QueryCompany } from "../../../../../types"
 import { useDeleteCompanyListAction } from "./use-delete-company-list-action"
 
 export const CompanyActionsMenu = ({ company }: { company: QueryCompany }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
   const handleDelete = useDeleteCompanyListAction({ company })
 
   return (

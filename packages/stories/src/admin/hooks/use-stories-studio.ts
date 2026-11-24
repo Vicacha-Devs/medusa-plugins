@@ -68,7 +68,7 @@ export interface NewStickerFormState {
 }
 
 export const useStoriesStudio = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("stories")
   const studioQuery = useAdminStoriesState()
   const analyticsQuery = useStoriesAnalytics()
 

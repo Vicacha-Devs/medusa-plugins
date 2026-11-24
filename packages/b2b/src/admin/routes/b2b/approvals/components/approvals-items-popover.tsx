@@ -10,7 +10,7 @@ const ItemsPopover = ({
   items: Record<string, any>[]
   currencyCode: any
 }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
 
   return (
     <Popover>

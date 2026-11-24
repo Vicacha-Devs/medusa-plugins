@@ -20,7 +20,7 @@ export const SIGNATURE_STATUSES = [
 
 export const TEMPLATE_ENGINES = ["react-pdf", "handlebars"] as const
 
-export const PAGE_SIZES = ["A4", "LETTER", "80MM", "58MM"] as const
+export const PAGE_SIZES = ["A4", "LETTER", "POS_80MM", "POS_58MM"] as const
 
 export const PAGE_ORIENTATIONS = ["portrait", "landscape"] as const
 

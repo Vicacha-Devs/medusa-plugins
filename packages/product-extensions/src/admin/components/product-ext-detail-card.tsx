@@ -42,13 +42,13 @@ export const ProductExtDetailCard: React.FC<ProductExtDetailCardProps> = ({
   isBusy,
   onSave,
 }) => {
-  const { t, i18n } = useTranslation()
+  const { t, i18n } = useTranslation("product-ext")
   const isRtl = (i18n.resolvedLanguage || i18n.language || "").startsWith("ar")
 
   return (
     <Container className="divide-y p-0" dir={isRtl ? "rtl" : "ltr"}>
-      <div className="flex items-center justify-between px-6 py-4">
-        <div>
+      <div className="flex flex-wrap items-start justify-between gap-4 px-6 py-4">
+        <div className="min-w-0 flex-1">
           <Heading level="h2">
             {t("widget.productTitle")}
             {productTitle ? ` — ${productTitle}` : ""}
@@ -57,18 +57,27 @@ export const ProductExtDetailCard: React.FC<ProductExtDetailCardProps> = ({
             {t("widget.productSubtitle")}
           </Text>
         </div>
-        <div className="flex items-center gap-x-2">
-          <Badge size="small" color="blue">
+        <div className="flex shrink-0 flex-wrap items-center gap-2">
+          <Badge
+            size="small"
+            color="blue"
+            className="whitespace-nowrap shrink-0"
+          >
             {t("widget.videosBadge", {
               count: extension?.videos?.length ?? 0,
             })}
           </Badge>
-          <Badge size="small" color="purple">
+          <Badge
+            size="small"
+            color="purple"
+            className="whitespace-nowrap shrink-0"
+          >
             {t("widget.attributesBadge", { count: attributes.length })}
           </Badge>
           <Button
             variant="primary"
             size="small"
+            className="whitespace-nowrap shrink-0"
             isLoading={isBusy}
             onClick={onSave}
           >
@@ -77,26 +86,35 @@ export const ProductExtDetailCard: React.FC<ProductExtDetailCardProps> = ({
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 px-6 py-4 md:grid-cols-3">
-        <div>
-          <Label size="small">{t("widget.taglineField")}</Label>
+      <div className="grid grid-cols-1 items-end gap-4 px-6 py-4 md:grid-cols-3">
+        <div className="flex flex-col gap-1.5">
+          <Label size="small" htmlFor="product-ext-tagline">
+            {t("widget.taglineField")}
+          </Label>
           <Input
+            id="product-ext-tagline"
             placeholder={t("widget.taglinePlaceholder")}
             value={taglineInput}
             onChange={(e) => onTaglineChange(e.target.value)}
           />
         </div>
-        <div>
-          <Label size="small">{t("widget.videosCsvField")}</Label>
+        <div className="flex flex-col gap-1.5">
+          <Label size="small" htmlFor="product-ext-videos-csv">
+            {t("widget.videosCsvField")}
+          </Label>
           <Input
+            id="product-ext-videos-csv"
             placeholder={t("widget.videosCsvPlaceholder")}
             value={videosCsvInput}
             onChange={(e) => onVideosCsvChange(e.target.value)}
           />
         </div>
-        <div>
-          <Label size="small">{t("widget.glbUrlField")}</Label>
+        <div className="flex flex-col gap-1.5">
+          <Label size="small" htmlFor="product-ext-glb-url">
+            {t("widget.glbUrlField")}
+          </Label>
           <Input
+            id="product-ext-glb-url"
             placeholder={t("widget.glbUrlPlaceholder")}
             value={glbUrlInput}
             onChange={(e) => onGlbUrlChange(e.target.value)}
@@ -110,7 +128,11 @@ export const ProductExtDetailCard: React.FC<ProductExtDetailCardProps> = ({
             key={attr.definition.id}
             title={attr.definition.label}
             value={
-              <Badge size="small" color="grey">
+              <Badge
+                size="small"
+                color="grey"
+                className="whitespace-nowrap shrink-0"
+              >
                 {attr.display_value}
               </Badge>
             }

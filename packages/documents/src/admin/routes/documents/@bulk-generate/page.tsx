@@ -22,7 +22,7 @@ const bulkGenerateSchema = z.object({
 type BulkGenerateFormValues = z.infer<typeof bulkGenerateSchema>
 
 const BulkGenerateContent: React.FC = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("documents")
   const { handleSuccess } = useRouteModal()
   const bulkGenerateMutation = useBulkGenerateDocuments()
 
@@ -104,7 +104,7 @@ const BulkGenerateContent: React.FC = () => {
                     value={field.value}
                     onValueChange={field.onChange}
                   >
-                    <Select.Trigger>
+                    <Select.Trigger className="min-w-0 [&>span]:truncate">
                       <Select.Value placeholder={t("hub.typePlaceholder")} />
                     </Select.Trigger>
                     <Select.Content>
@@ -132,7 +132,11 @@ const BulkGenerateContent: React.FC = () => {
         <RouteDrawer.Footer>
           <div className="flex items-center justify-end gap-x-2">
             <RouteDrawer.Close asChild>
-              <Button size="small" variant="secondary">
+              <Button
+                size="small"
+                variant="secondary"
+                className="whitespace-nowrap shrink-0"
+              >
                 {t("settings.backToHub")}
               </Button>
             </RouteDrawer.Close>
@@ -140,6 +144,7 @@ const BulkGenerateContent: React.FC = () => {
               size="small"
               type="submit"
               isLoading={bulkGenerateMutation.isPending}
+              className="whitespace-nowrap shrink-0"
             >
               {t("hub.bulkRunButton")}
             </Button>
@@ -151,7 +156,7 @@ const BulkGenerateContent: React.FC = () => {
 }
 
 const DocumentsBulkGenerateDrawer: React.FC = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("documents")
 
   return (
     <RouteDrawer>

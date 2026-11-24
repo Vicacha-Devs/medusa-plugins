@@ -1,6 +1,11 @@
 {
   "nav": {
-    "label": "Product Extensions Studio"
+    "label": "Product Extensions",
+    "attributes": "Attributes",
+    "templates": "Templates",
+    "features": "Feature Badges",
+    "variantMedia": "Variant Media",
+    "imageAlts": "Image Alt-Text"
   },
   "header": {
     "title": "Product Extensions, Rich Media & Attributes Studio",
@@ -13,11 +18,11 @@
     "dismiss": "Dismiss"
   },
   "tabs": {
-    "attributes": "1. Custom Attributes ({{count}})",
-    "templates": "2. Content & Attribute Templates ({{count}})",
-    "features": "3. Feature Badges ({{count}})",
-    "variantMedia": "4. Option Variant Media Assigner",
-    "imageAlts": "5. Image Alt-Text CSV Import/Export"
+    "attributes": "Custom Attributes ({{count}})",
+    "templates": "Content & Attribute Templates ({{count}})",
+    "features": "Feature Badges ({{count}})",
+    "variantMedia": "Option Variant Media Assigner",
+    "imageAlts": "Image Alt-Text CSV Import/Export"
   },
   "attributesTab": {
     "createTitle": "Create Typed Attribute Definition",

@@ -379,10 +379,10 @@ describe("Admin UI Localization (10 Locales Key Parity)", () => {
 })
 
 describe("@bambiste/medusa-stories Compatibility — Migrations, PUT Route, Exports & Fallback", () => {
-  it("runs Migration20260514000000 up() and down() for all 5 tables and @bambiste column upgrades", async () => {
-    const { Migration20260514000000 } =
-      await import("../modules/story/migrations/Migration20260514000000.js")
-    const migration = new Migration20260514000000() as unknown as {
+  it("runs Migration20260514000001 up() and down() for all 5 tables and @bambiste column upgrades", async () => {
+    const { Migration20260514000001 } =
+      await import("../modules/story/migrations/Migration20260514000001.js")
+    const migration = new Migration20260514000001() as unknown as {
       up: () => Promise<void>
       down: () => Promise<void>
       queries: string[]
@@ -455,7 +455,7 @@ describe("@bambiste/medusa-stories Compatibility — Migrations, PUT Route, Expo
 
   it("exports StoriesService, IStoryService, StoryServiceType, src/modules barrel, and supports PUT /admin/stories/:id with 'Story' fallback", async () => {
     const rootIndex = await import("../index.js")
-    const modulesBarrel = await import("../modules/index.js")
+    const modulesBarrel = await import("../modules/story/index.js")
     const storyModule = await import("../modules/story/index.js")
     const adminStoryByIdRoute =
       await import("../api/admin/stories/[id]/route.js")

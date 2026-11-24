@@ -39,12 +39,12 @@ const MpnMappingsPage: React.FC = () => {
 }
 
 const Breadcrumb = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("mpn")
   return t("mappings.title")
 }
 
 export const config = defineRouteConfig({
-  label: "Event Mappings",
+  label: "nav.mappings",
   translationNs: "mpn",
   icon: Tag,
 })

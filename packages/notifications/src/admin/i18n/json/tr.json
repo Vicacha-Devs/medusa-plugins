@@ -1,6 +1,12 @@
 {
   "nav": {
-    "label": "Bildirimler"
+    "label": "Bildirimler",
+    "templates": "Şablonlar",
+    "mappings": "Olay Eşlemeleri",
+    "channels": "Kanallar",
+    "logs": "Teslimat Günlükleri",
+    "broadcasts": "Yayınlar",
+    "sandbox": "OTP Sandbox"
   },
   "header": {
     "title": "Çok Kanallı Bildirim Stüdyosu (E-posta, WhatsApp/OpenWA, Telegram, SMS, Slack)",

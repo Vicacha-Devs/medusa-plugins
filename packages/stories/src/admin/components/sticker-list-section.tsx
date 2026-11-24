@@ -12,14 +12,18 @@ export const StickerActiveListSection = ({
   selectedSlide,
   onRemoveSticker,
 }: StickerActiveListSectionProps) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("stories")
   const stickers = selectedSlide?.stickers ?? []
 
   return (
     <Container className="divide-y p-0">
       <div className="flex items-center justify-between px-6 py-4">
         <Heading level="h2">{t("stickersTab.activeTitle")}</Heading>
-        <Badge size="xsmall" color="purple">
+        <Badge
+          size="xsmall"
+          color="purple"
+          className="whitespace-nowrap shrink-0"
+        >
           {stickers.length}
         </Badge>
       </div>
@@ -59,7 +63,12 @@ export const StickerActiveListSection = ({
                     {stk.options && (
                       <div className="flex flex-wrap gap-1.5">
                         {stk.options.map((opt) => (
-                          <Badge key={opt.id} size="xsmall" color="blue">
+                          <Badge
+                            key={opt.id}
+                            size="xsmall"
+                            color="blue"
+                            className="whitespace-nowrap shrink-0"
+                          >
                             {t("stickersTab.optionVotesBadge", {
                               label: opt.label,
                               votes: opt.votes,
@@ -85,7 +94,11 @@ export const StickerActiveListSection = ({
                   </div>
                 </Table.Cell>
                 <Table.Cell>
-                  <Badge size="xsmall" color="purple">
+                  <Badge
+                    size="xsmall"
+                    color="purple"
+                    className="whitespace-nowrap shrink-0"
+                  >
                     {t("stickersTab.interactionsBadge", {
                       type: stk.type,
                       count: stk.total_interactions,
@@ -98,6 +111,7 @@ export const StickerActiveListSection = ({
                       size="small"
                       variant="secondary"
                       onClick={() => onRemoveSticker(stk.id)}
+                      className="whitespace-nowrap shrink-0"
                     >
                       {t("stickersTab.removeButton")}
                     </Button>

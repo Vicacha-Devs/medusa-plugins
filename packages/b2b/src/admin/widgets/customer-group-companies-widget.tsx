@@ -13,7 +13,7 @@ import "../routes/b2b/companies/components/companies-table-renderers"
 function useCustomerGroupCompaniesAdapter(
   customerGroupId: string
 ): TableAdapter<QueryCompany> {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
 
   return useMemo(
     () =>
@@ -53,7 +53,7 @@ function useCustomerGroupCompaniesAdapter(
 
 const CustomerGroupCompaniesWidget = () => {
   const { id } = useParams()
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
   const adapter = useCustomerGroupCompaniesAdapter(id!)
 
   return (

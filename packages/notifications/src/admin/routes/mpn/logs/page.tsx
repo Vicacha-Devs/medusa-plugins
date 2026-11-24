@@ -27,12 +27,12 @@ const MpnLogsPage: React.FC = () => {
 }
 
 const Breadcrumb = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("mpn")
   return t("logs.title")
 }
 
 export const config = defineRouteConfig({
-  label: "Delivery Logs",
+  label: "nav.logs",
   translationNs: "mpn",
   icon: CheckCircle,
 })

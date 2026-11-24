@@ -26,7 +26,7 @@ export const DocumentsFiltersBar: React.FC<DocumentsFiltersBarProps> = ({
   dateTo,
   setDateTo,
 }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("documents")
 
   return (
     <div className="grid grid-cols-1 gap-3 px-6 py-4 md:grid-cols-5">
@@ -37,7 +37,7 @@ export const DocumentsFiltersBar: React.FC<DocumentsFiltersBarProps> = ({
         onChange={(e) => setSearchQuery(e.target.value)}
       />
       <Select size="small" value={typeFilter} onValueChange={setTypeFilter}>
-        <Select.Trigger>
+        <Select.Trigger className="min-w-0 [&>span]:truncate">
           <Select.Value placeholder={t("hub.typePlaceholder")} />
         </Select.Trigger>
         <Select.Content>
@@ -54,7 +54,7 @@ export const DocumentsFiltersBar: React.FC<DocumentsFiltersBarProps> = ({
       </Select>
 
       <Select size="small" value={statusFilter} onValueChange={setStatusFilter}>
-        <Select.Trigger>
+        <Select.Trigger className="min-w-0 [&>span]:truncate">
           <Select.Value placeholder={t("hub.statusPlaceholder")} />
         </Select.Trigger>
         <Select.Content>

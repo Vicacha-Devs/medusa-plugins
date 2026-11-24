@@ -1,6 +1,12 @@
 {
   "nav": {
-    "label": "Powiadomienia"
+    "label": "Powiadomienia",
+    "templates": "Szablony",
+    "mappings": "Mapowania Zdarzeń",
+    "channels": "Kanały",
+    "logs": "Dzienniki Dostaw",
+    "broadcasts": "Rozgłoszenia",
+    "sandbox": "Piaskownica OTP"
   },
   "header": {
     "title": "Wielokanałowe Studio Powiadomień (E-mail, WhatsApp/OpenWA, Telegram, SMS, Slack)",

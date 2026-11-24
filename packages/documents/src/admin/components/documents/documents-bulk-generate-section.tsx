@@ -20,7 +20,7 @@ interface DocumentsBulkGenerateSectionProps {
 export const DocumentsBulkGenerateSection: React.FC<
   DocumentsBulkGenerateSectionProps
 > = ({ onSuccess }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("documents")
   const [bulkOrderIdsInput, setBulkOrderIdsInput] = useState<string>("")
   const [bulkType, setBulkType] = useState<DocumentType>("invoice")
 
@@ -79,7 +79,7 @@ export const DocumentsBulkGenerateSection: React.FC<
           value={bulkType}
           onValueChange={(v) => setBulkType(v as DocumentType)}
         >
-          <Select.Trigger>
+          <Select.Trigger className="min-w-0 [&>span]:truncate">
             <Select.Value placeholder={t("hub.typePlaceholder")} />
           </Select.Trigger>
           <Select.Content>
@@ -98,6 +98,7 @@ export const DocumentsBulkGenerateSection: React.FC<
           variant="primary"
           isLoading={bulkRunning}
           onClick={() => void handleBulkGenerate()}
+          className="whitespace-nowrap shrink-0"
         >
           {t("hub.bulkRunButton")}
         </Button>

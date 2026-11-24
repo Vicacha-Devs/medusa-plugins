@@ -1,6 +1,10 @@
 {
   "nav": {
-    "label": "Hikaye Stüdyosu"
+    "label": "Hikaye Stüdyosu",
+    "rings": "Öne Çıkan Halkalar",
+    "canvas": "Hotspot Tuvali",
+    "stickers": "Çıkartmalar",
+    "analytics": "Analitik"
   },
   "header": {
     "title": "Alışveriş Yapılabilir Hikaye Stüdyosu",
@@ -70,7 +74,7 @@
     "emptyCanvasPrompt": "Ürün Noktası pimini konumlandırmak için bu 9:16 ekranda herhangi bir yere tıklayın",
     "pinCrosshair": "+ Pim (%{{x}}, %{{y}})",
     "shopNowFallback": "Şimdi Alışveriş Yap",
-    "publishSlideTitle": "1. 9:16 Hikaye Slaytı Yayınla",
+    "publishSlideTitle": "9:16 Hikaye Slaytı Yayınla",
     "slideTitleField": "Slayt Başlığı",
     "slideTitlePlaceholder": "Yeni Kapüşonlu Lansmanı",
     "mediaUrlField": "9:16 Görsel veya Video URL'si (https://)",
@@ -85,7 +89,7 @@
     "ringButton": "Halka: {{title}}",
     "autoExpireLabel": "24 Saatte Otomatik Sona Erdir",
     "publishButton": "Slaytı Yayınla",
-    "pinHotspotTitle": "2. {{slide}} Üzerine Alışveriş Noktası Sabitle",
+    "pinHotspotTitle": "{{slide}} Üzerine Alışveriş Noktası Sabitle",
     "selectedSlideFallback": "Seçili Slayt",
     "productIdField": "Medusa Ürün Kimliği",
     "productIdPlaceholder": "prod_01H...",
@@ -96,7 +100,7 @@
     "coordinatesHelp": "Koordinatlar: X=%{{x}}, Y=%{{y}} (yeniden konumlandırmak için soldaki telefon tuvaline tıklayın)",
     "pinButton": "Ürün Noktasını Sabitle",
     "removeHotspotButton": "Kaldır",
-    "timelineTitle": "3. Hikaye Slaytları Zaman Çizelgesi ({{count}})",
+    "timelineTitle": "Hikaye Slaytları Zaman Çizelgesi ({{count}})",
     "activeBadge": "Aktif",
     "pausedBadge": "Duraklatıldı",
     "hotspotsCountBadge": "{{count}} nokta",
@@ -135,10 +139,10 @@
   "analyticsTab": {
     "funnelTitle": "Alışveriş Yapılabilir Hikaye Dönüşüm Hunisi",
     "funnelSubtitle": "Tüm aktif ve arşivlenmiş 9:16 hikaye slaytlarındaki uçtan uca etkileşim hattı.",
-    "stepImpressions": "1. Hikaye Gösterimleri",
-    "stepCompletions": "2. Tam Slayt Tamamlamaları",
-    "stepHotspotClicks": "3. Ürün Noktası Tıklamaları",
-    "stepAddToCarts": "4. Hikayeden Sepete Eklemeler",
+    "stepImpressions": "Hikaye Gösterimleri",
+    "stepCompletions": "Tam Slayt Tamamlamaları",
+    "stepHotspotClicks": "Ürün Noktası Tıklamaları",
+    "stepAddToCarts": "Hikayeden Sepete Eklemeler",
     "percentOfImpressions": "Gösterimlerin %{{percent}} kadarı",
     "ringBreakdownTitle": "Öne Çıkan Halka Performans Dağılımı",
     "colHighlightRing": "Öne Çıkan Halka",

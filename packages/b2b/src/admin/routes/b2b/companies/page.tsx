@@ -13,7 +13,7 @@ import { CompaniesTable, useCompaniesTableAdapter } from "./components"
 import { RbacGuard } from "@vicacha-devs/medusa-shared-admin/admin"
 
 const Companies = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
   const navigate = useNavigate()
   const isViewConfigEnabled = useFeatureFlag("view_configurations")
   const adapter = useCompaniesTableAdapter()
@@ -43,7 +43,7 @@ const Companies = () => {
 }
 
 const Breadcrumb = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
   return t("companies.title")
 }
 

@@ -1,6 +1,12 @@
 {
   "nav": {
-    "label": "Notificações"
+    "label": "Notificações",
+    "templates": "Modelos",
+    "mappings": "Mapeamentos de Eventos",
+    "channels": "Canais",
+    "logs": "Registos de Entrega",
+    "broadcasts": "Transmissões",
+    "sandbox": "Sandbox OTP"
   },
   "header": {
     "title": "Estúdio de Notificações Multicanal (E-mail, WhatsApp/OpenWA, Telegram, SMS, Slack)",

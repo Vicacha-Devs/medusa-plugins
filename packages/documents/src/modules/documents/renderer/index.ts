@@ -101,9 +101,9 @@ export async function renderDocumentPdf(
   // Fallback / Engine B: Handlebars + pdfmake
   const pageSize: PageSize =
     requestedPreset === "pos_58mm"
-      ? "58MM"
+      ? "POS_58MM"
       : requestedPreset === "pos_80mm" || context.document_type === "receipt"
-        ? "80MM"
+        ? "POS_80MM"
         : customTemplate?.page_size || "A4"
 
   return renderHandlebarsPdf(context, t, {

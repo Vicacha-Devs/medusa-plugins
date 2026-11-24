@@ -8,7 +8,7 @@ import { ApprovalStatusType, ApprovalType } from "../../../../../types/approval"
 import { useUpdateApproval } from "../../../../hooks/api/approvals.tsx"
 
 export const ApprovalActions = ({ cart }: { cart: Record<string, any> }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
   const dialog = usePrompt()
 
   const [rejectOpen, setRejectOpen] = useState(false)
@@ -112,11 +112,20 @@ export const ApprovalActions = ({ cart }: { cart: Record<string, any> }) => {
           </Drawer.Body>
           <Drawer.Footer>
             <Drawer.Close asChild>
-              <Button variant="secondary" size="small">
+              <Button
+                variant="secondary"
+                size="small"
+                className="whitespace-nowrap shrink-0"
+              >
                 {t("actions.cancel")}
               </Button>
             </Drawer.Close>
-            <Button variant="danger" size="small" onClick={confirmReject}>
+            <Button
+              variant="danger"
+              size="small"
+              onClick={confirmReject}
+              className="whitespace-nowrap shrink-0"
+            >
               {t("actions.reject")}
             </Button>
           </Drawer.Footer>

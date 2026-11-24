@@ -16,7 +16,7 @@ export const ManageItemInfo = ({
   isItemUpdated,
   isItemRemoved,
 }: ManageItemInfoProps) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
 
   return (
     <div className="flex flex-1 items-center justify-between">
@@ -42,17 +42,32 @@ export const ManageItemInfo = ({
 
       <div className="flex items-center gap-1">
         {isAddedItem && (
-          <Badge size="2xsmall" rounded="full" color="blue">
+          <Badge
+            size="2xsmall"
+            rounded="full"
+            color="blue"
+            className="whitespace-nowrap shrink-0"
+          >
             {t("general.new")}
           </Badge>
         )}
         {isItemRemoved ? (
-          <Badge size="2xsmall" rounded="full" color="red">
+          <Badge
+            size="2xsmall"
+            rounded="full"
+            color="red"
+            className="whitespace-nowrap shrink-0"
+          >
             {t("general.removed")}
           </Badge>
         ) : (
           isItemUpdated && (
-            <Badge size="2xsmall" rounded="full" color="orange">
+            <Badge
+              size="2xsmall"
+              rounded="full"
+              color="orange"
+              className="whitespace-nowrap shrink-0"
+            >
               {t("general.modified")}
             </Badge>
           )

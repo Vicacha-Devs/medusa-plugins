@@ -10,7 +10,7 @@ export interface BroadcastConsentSectionProps {
 export const BroadcastConsentSection: React.FC<
   BroadcastConsentSectionProps
 > = ({ consentSummary }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("mpn")
 
   return (
     <Container className="divide-y p-0">
@@ -20,7 +20,7 @@ export const BroadcastConsentSection: React.FC<
       <SectionRow
         title="SMS"
         value={
-          <StatusBadge color="green">
+          <StatusBadge color="green" className="whitespace-nowrap shrink-0">
             {t("broadcasts.smsOptedIn", {
               count: consentSummary?.opted_in_sms ?? 0,
             })}
@@ -30,7 +30,7 @@ export const BroadcastConsentSection: React.FC<
       <SectionRow
         title="WhatsApp"
         value={
-          <StatusBadge color="green">
+          <StatusBadge color="green" className="whitespace-nowrap shrink-0">
             {t("broadcasts.whatsappOptedIn", {
               count: consentSummary?.opted_in_whatsapp ?? 0,
             })}
@@ -40,7 +40,11 @@ export const BroadcastConsentSection: React.FC<
       <SectionRow
         title="Telegram"
         value={
-          <Badge size="2xsmall" color="blue">
+          <Badge
+            size="2xsmall"
+            color="blue"
+            className="whitespace-nowrap shrink-0"
+          >
             {t("broadcasts.telegramLinked", {
               count: consentSummary?.opted_in_telegram ?? 0,
             })}
@@ -50,7 +54,7 @@ export const BroadcastConsentSection: React.FC<
       <SectionRow
         title="STOP"
         value={
-          <StatusBadge color="red">
+          <StatusBadge color="red" className="whitespace-nowrap shrink-0">
             {t("broadcasts.optedOut", {
               count: consentSummary?.opted_out_total ?? 0,
             })}

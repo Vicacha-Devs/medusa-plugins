@@ -1,4 +1,10 @@
-import { MedusaError } from "@medusajs/framework/utils"
+/** Browser-safe error (this SDK is bundled into the admin; never import server-only @medusajs/framework/utils). */
+class DocumentsApiError extends Error {
+  constructor(message: string) {
+    super(message)
+    this.name = "DocumentsApiError"
+  }
+}
 import type {
   BulkDownloadPayload,
   BulkGenerateDocumentsPayload,
@@ -127,8 +133,7 @@ export class DocumentsApiClient {
     const data = await response.json().catch(() => ({}))
 
     if (!response.ok) {
-      throw new MedusaError(
-        MedusaError.Types.UNEXPECTED_STATE,
+      throw new DocumentsApiError(
         (data as { message?: string; detail?: string }).message ||
           (data as { detail?: string }).detail ||
           `Request failed with status ${response.status}`
@@ -156,8 +161,7 @@ export class DocumentsApiClient {
 
     if (!response.ok) {
       const errData = await response.json().catch(() => ({}))
-      throw new MedusaError(
-        MedusaError.Types.UNEXPECTED_STATE,
+      throw new DocumentsApiError(
         (errData as { message?: string }).message ||
           `Download failed with status ${response.status}`
       )

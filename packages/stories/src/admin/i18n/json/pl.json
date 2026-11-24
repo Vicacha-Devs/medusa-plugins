@@ -1,6 +1,10 @@
 {
   "nav": {
-    "label": "Studio Stories"
+    "label": "Studio Stories",
+    "rings": "Wyróżnione Kręgi",
+    "canvas": "Płótno Hotspot",
+    "stickers": "Naklejki",
+    "analytics": "Analityka"
   },
   "header": {
     "title": "Studio Zakupowych Stories",
@@ -70,7 +74,7 @@
     "emptyCanvasPrompt": "Kliknij w dowolnym miejscu ekranu 9:16, aby umieścić pinezkę produktu",
     "pinCrosshair": "+ Pinezka ({{x}}%, {{y}}%)",
     "shopNowFallback": "Kup Teraz",
-    "publishSlideTitle": "1. Opublikuj Slajd Story 9:16",
+    "publishSlideTitle": "Opublikuj Slajd Story 9:16",
     "slideTitleField": "Tytuł Slajdu",
     "slideTitlePlaceholder": "Nowa Bluza Drop",
     "mediaUrlField": "URL Obrazu lub Wideo 9:16 (https://)",
@@ -85,7 +89,7 @@
     "ringButton": "Pierścień: {{title}}",
     "autoExpireLabel": "Wygasa po 24h",
     "publishButton": "Opublikuj Slajd",
-    "pinHotspotTitle": "2. Przypnij Punkt Produktu do {{slide}}",
+    "pinHotspotTitle": "Przypnij Punkt Produktu do {{slide}}",
     "selectedSlideFallback": "Wybranego Slajdu",
     "productIdField": "ID Produktu Medusa",
     "productIdPlaceholder": "prod_01H...",
@@ -96,7 +100,7 @@
     "coordinatesHelp": "Współrzędne: X={{x}}%, Y={{y}}% (kliknij płótno po lewej, aby zmienić pozycję)",
     "pinButton": "Przypnij Punkt Produktu",
     "removeHotspotButton": "Usuń",
-    "timelineTitle": "3. Oś Czasu Slajdów ({{count}})",
+    "timelineTitle": "Oś Czasu Slajdów ({{count}})",
     "activeBadge": "Aktywny",
     "pausedBadge": "Wstrzymany",
     "hotspotsCountBadge": "{{count}} punktów",
@@ -135,10 +139,10 @@
   "analyticsTab": {
     "funnelTitle": "Lejek Konwersji Zakupowych Stories",
     "funnelSubtitle": "Pełny proces zaangażowania we wszystkich aktywnych i zarchiwizowanych slajdach 9:16.",
-    "stepImpressions": "1. Wyświetlenia Stories",
-    "stepCompletions": "2. Pełne Obejrzenia Slajdów",
-    "stepHotspotClicks": "3. Kliknięcia Punktów Produktów",
-    "stepAddToCarts": "4. Dodania do Koszyka",
+    "stepImpressions": "Wyświetlenia Stories",
+    "stepCompletions": "Pełne Obejrzenia Slajdów",
+    "stepHotspotClicks": "Kliknięcia Punktów Produktów",
+    "stepAddToCarts": "Dodania do Koszyka",
     "percentOfImpressions": "{{percent}}% wyświetleń",
     "ringBreakdownTitle": "Wydajność według Pierścienia Wyróżnień",
     "colHighlightRing": "Pierścień Wyróżnień",

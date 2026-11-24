@@ -1,6 +1,12 @@
 {
   "nav": {
-    "label": "Notifications"
+    "label": "Notifications",
+    "templates": "Templates",
+    "mappings": "Event Mappings",
+    "channels": "Channels",
+    "logs": "Delivery Logs",
+    "broadcasts": "Broadcasts",
+    "sandbox": "OTP Sandbox"
   },
   "header": {
     "title": "Multi-Channel Notification Studio (Email, WhatsApp/OpenWA, Telegram, SMS, Slack)",

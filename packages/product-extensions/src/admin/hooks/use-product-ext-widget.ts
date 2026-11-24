@@ -21,7 +21,7 @@ export interface CategoryWidgetEntity {
 }
 
 export function useProductExtWidget(product?: ProductWidgetEntity) {
-  const { t } = useTranslation()
+  const { t } = useTranslation("product-ext")
   const productId = product?.id ?? ""
   const [extension, setExtension] = useState<ProductExtensionDTO | null>(null)
   const [attributes, setAttributes] = useState<ResolvedProductAttributeEntry[]>(
@@ -112,7 +112,7 @@ export function useProductExtWidget(product?: ProductWidgetEntity) {
 }
 
 export function useCategoryAttributesWidget(category?: CategoryWidgetEntity) {
-  const { t } = useTranslation()
+  const { t } = useTranslation("product-ext")
   const categoryId = category?.id ?? ""
   const [attributes, setAttributes] = useState<AttributeDefinitionDTO[]>([])
   const [isLoading, setIsLoading] = useState<boolean>(false)

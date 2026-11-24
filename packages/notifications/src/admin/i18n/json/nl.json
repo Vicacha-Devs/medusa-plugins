@@ -1,6 +1,12 @@
 {
   "nav": {
-    "label": "Meldingen"
+    "label": "Meldingen",
+    "templates": "Sjablonen",
+    "mappings": "Gebeurteniskoppelingen",
+    "channels": "Kanalen",
+    "logs": "Afleverlogboek",
+    "broadcasts": "Uitzendingen",
+    "sandbox": "OTP-sandbox"
   },
   "header": {
     "title": "Multi-Channel Notificatiestudio (E-mail, WhatsApp/OpenWA, Telegram, SMS, Slack)",

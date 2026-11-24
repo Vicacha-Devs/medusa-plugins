@@ -11,7 +11,7 @@ const statusColors: Record<string, "red" | "purple" | "green" | "grey"> = {
 }
 
 export default function QuoteStatusBadge({ status }: { status: string }) {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
 
   const labels: Record<string, string> = {
     pending_merchant: t("quotes.status.pending_merchant"),

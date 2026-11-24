@@ -36,7 +36,7 @@ export const BroadcastsConsentTab: React.FC<BroadcastsConsentTabProps> = ({
   onStatus,
   section = "all",
 }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("mpn")
   const [broadcastName, setBroadcastName] = useState<string>("")
   const [broadcastChannel, setBroadcastChannel] = useState<string>("sms")
   const [broadcastTemplateId, setBroadcastTemplateId] = useState<string>(
@@ -79,7 +79,9 @@ export const BroadcastsConsentTab: React.FC<BroadcastsConsentTabProps> = ({
     <Container className="divide-y p-0">
       <div className="flex items-center justify-between px-6 py-4">
         <Heading level="h2">{t("broadcasts.title")}</Heading>
-        <StatusBadge color="green">{broadcasts.length}</StatusBadge>
+        <StatusBadge color="green" className="whitespace-nowrap shrink-0">
+          {broadcasts.length}
+        </StatusBadge>
       </div>
 
       <Form {...form}>
@@ -90,7 +92,7 @@ export const BroadcastsConsentTab: React.FC<BroadcastsConsentTabProps> = ({
           }}
           className="px-6 py-4"
         >
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 items-end">
             <div className="flex flex-col gap-y-2">
               <Label size="small">{t("broadcasts.campaignNameLabel")}</Label>
               <Input
@@ -107,25 +109,26 @@ export const BroadcastsConsentTab: React.FC<BroadcastsConsentTabProps> = ({
                 value={broadcastChannel}
                 onValueChange={setBroadcastChannel}
               >
-                <Select.Trigger>
+                <Select.Trigger className="w-full min-w-0 [&>span]:truncate">
                   <Select.Value />
                 </Select.Trigger>
                 <Select.Content>
+                  <Select.Item value="email">Email</Select.Item>
                   <Select.Item value="sms">SMS</Select.Item>
                   <Select.Item value="whatsapp">WhatsApp</Select.Item>
                   <Select.Item value="telegram">Telegram</Select.Item>
                 </Select.Content>
               </Select>
             </div>
-            <div className="flex flex-col gap-y-2">
+            <div className="flex flex-col gap-y-2 min-w-0">
               <Label size="small">{t("broadcasts.templateLabel")}</Label>
               <Select
                 size="small"
                 value={broadcastTemplateId}
                 onValueChange={setBroadcastTemplateId}
               >
-                <Select.Trigger>
-                  <Select.Value />
+                <Select.Trigger className="w-full overflow-hidden min-w-0 [&>span]:truncate">
+                  <Select.Value className="truncate" />
                 </Select.Trigger>
                 <Select.Content>
                   {templates.map((tpl) => (
@@ -141,6 +144,7 @@ export const BroadcastsConsentTab: React.FC<BroadcastsConsentTabProps> = ({
                 size="small"
                 variant="primary"
                 type="submit"
+                className="w-full lg:w-auto whitespace-nowrap shrink-0"
                 isLoading={createBroadcastMutation.isPending}
               >
                 {t("broadcasts.sendNowButton")}
@@ -164,12 +168,21 @@ export const BroadcastsConsentTab: React.FC<BroadcastsConsentTabProps> = ({
             <Table.Row key={b.id}>
               <Table.Cell>{b.name}</Table.Cell>
               <Table.Cell>
-                <Badge size="2xsmall" color="blue">
+                <Badge
+                  size="2xsmall"
+                  color="blue"
+                  className="whitespace-nowrap shrink-0"
+                >
                   {b.channel}
                 </Badge>
               </Table.Cell>
               <Table.Cell>
-                <StatusBadge color="green">{b.status}</StatusBadge>
+                <StatusBadge
+                  color="green"
+                  className="whitespace-nowrap shrink-0"
+                >
+                  {b.status}
+                </StatusBadge>
               </Table.Cell>
               <Table.Cell>
                 {b.sent_count} / {b.total_recipients}

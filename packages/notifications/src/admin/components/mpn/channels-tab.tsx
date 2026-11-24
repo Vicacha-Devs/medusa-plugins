@@ -19,7 +19,7 @@ export const ChannelsConfigTab: React.FC<ChannelsConfigTabProps> = ({
   onStatus,
   section = "all",
 }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("mpn")
   const [telegramChannelInput, setTelegramChannelInput] = useState<string>("")
   const [openWaUrlInput, setOpenWaUrlInput] = useState<string>("")
   const [whatsappDriverInput, setWhatsappDriverInput] =
@@ -96,9 +96,15 @@ export const ChannelsConfigTab: React.FC<ChannelsConfigTabProps> = ({
     />
   )
 
+  const emailConfigured = Boolean(
+    channelsConfig.find((c) => c.channel === "email")?.env_status
+      ?.smtp_configured
+  )
+
   const sideCard = (
     <ChannelsSideSection
       smsDriverInput={smsDriverInput}
+      emailConfigured={emailConfigured}
       isPending={saveOrVerifyMutation.isPending}
       onSmsDriverChange={setSmsDriverInput}
       onSaveSms={() =>

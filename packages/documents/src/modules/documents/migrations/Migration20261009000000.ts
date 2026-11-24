@@ -1,4 +1,4 @@
-import { Migration } from "@mikro-orm/migrations"
+import { Migration } from "@medusajs/framework/mikro-orm/migrations"
 
 export class Migration20261009000000 extends Migration {
   async up(): Promise<void> {
@@ -132,7 +132,7 @@ export class Migration20261009000000 extends Migration {
         "document_type" text CHECK ("document_type" IN ('invoice', 'packing_slip', 'credit_note', 'receipt')) NOT NULL DEFAULT 'invoice',
         "engine" text CHECK ("engine" IN ('react-pdf', 'handlebars')) NOT NULL DEFAULT 'handlebars',
         "preset_key" text NULL,
-        "page_size" text CHECK ("page_size" IN ('A4', 'LETTER', '80MM', '58MM')) NOT NULL DEFAULT 'A4',
+        "page_size" text CHECK ("page_size" IN ('A4', 'LETTER', 'POS_80MM', 'POS_58MM')) NOT NULL DEFAULT 'A4',
         "orientation" text CHECK ("orientation" IN ('portrait', 'landscape')) NOT NULL DEFAULT 'portrait',
         "html_content" text NULL,
         "styles" jsonb NULL,

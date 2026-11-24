@@ -17,7 +17,7 @@ export const VariantBulkMediaSection: React.FC<VariantBulkMediaTabProps> = ({
   isBusy,
   onBulkAssign,
 }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("product-ext")
 
   return (
     <Container className="divide-y p-0">
@@ -33,6 +33,7 @@ export const VariantBulkMediaSection: React.FC<VariantBulkMediaTabProps> = ({
           size="small"
           isLoading={isBusy}
           onClick={onBulkAssign}
+          className="whitespace-nowrap shrink-0"
         >
           {t("variantMediaTab.applyButton")}
         </Button>

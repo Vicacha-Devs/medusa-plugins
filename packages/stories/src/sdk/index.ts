@@ -1,4 +1,10 @@
-import { MedusaError } from "@medusajs/framework/utils"
+/** Browser-safe error (SDK is bundled into the admin; no server-only imports). */
+class StoriesApiError extends Error {
+  constructor(message: string) {
+    super(message)
+    this.name = "StoriesApiError"
+  }
+}
 import type {
   CreateStoryGroupInput,
   CreateStoryHotspotInput,
@@ -76,8 +82,7 @@ export function createStoriesSdk(options?: StoriesSdkOptions) {
 
     const json = (await res.json().catch(() => ({}))) as Record<string, unknown>
     if (!res.ok) {
-      throw new MedusaError(
-        MedusaError.Types.UNEXPECTED_STATE,
+      throw new StoriesApiError(
         String(json.message || json.error || `HTTP ${res.status}`)
       )
     }

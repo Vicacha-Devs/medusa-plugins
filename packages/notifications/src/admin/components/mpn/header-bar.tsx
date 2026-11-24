@@ -11,7 +11,7 @@ export interface NotificationHeaderBarProps {
 export const NotificationHeaderBar: React.FC<NotificationHeaderBarProps> = ({
   onRefresh,
 }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("mpn")
 
   return (
     <Container className="divide-y p-0">
@@ -25,7 +25,12 @@ export const NotificationHeaderBar: React.FC<NotificationHeaderBarProps> = ({
         </div>
 
         <div className="flex items-center gap-x-2">
-          <Button size="small" variant="secondary" onClick={onRefresh}>
+          <Button
+            size="small"
+            variant="secondary"
+            onClick={onRefresh}
+            className="whitespace-nowrap shrink-0"
+          >
             {t("header.refresh")}
           </Button>
         </div>

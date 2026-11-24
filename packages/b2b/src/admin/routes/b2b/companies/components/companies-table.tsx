@@ -18,7 +18,7 @@ export const CompaniesTable = ({
 }: {
   onCreateClick?: () => void
 }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
 
   const { searchParams, raw } = useCompaniesTableQuery({
     pageSize: PAGE_SIZE,
@@ -55,7 +55,12 @@ export const CompaniesTable = ({
           </Text>
         </div>
         {onCreateClick && (
-          <Button size="small" variant="secondary" onClick={onCreateClick}>
+          <Button
+            size="small"
+            variant="secondary"
+            onClick={onCreateClick}
+            className="whitespace-nowrap shrink-0"
+          >
             {t("actions.create")}
           </Button>
         )}

@@ -23,7 +23,7 @@ import {
 import { RbacGuard } from "../../components/rbac-guard"
 
 const NotificationStudioOverviewPage: React.FC = () => {
-  const { t, i18n } = useTranslation()
+  const { t, i18n } = useTranslation("mpn")
   const navigate = useNavigate()
   const {
     isLoading,
@@ -69,6 +69,7 @@ const NotificationStudioOverviewPage: React.FC = () => {
                   size="small"
                   variant="secondary"
                   onClick={() => void handleRefresh()}
+                  className="whitespace-nowrap shrink-0"
                 >
                   <ArrowPath />
                   {t("header.refresh")}
@@ -177,12 +178,12 @@ const NotificationStudioOverviewPage: React.FC = () => {
 }
 
 const Breadcrumb = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("mpn")
   return t("nav.label")
 }
 
 export const config = defineRouteConfig({
-  label: "Notifications",
+  label: "nav.label",
   translationNs: "mpn",
   icon: ChatBubbleLeftRight,
 })

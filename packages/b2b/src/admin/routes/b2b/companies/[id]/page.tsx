@@ -67,7 +67,7 @@ const CompanyDetail = () => {
 }
 
 const Breadcrumb = ({ id }: { id?: string }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
   const { data } = useCompany(id ?? "", undefined, { enabled: !!id })
   return data?.company?.name ?? id ?? t("companies.label")
 }

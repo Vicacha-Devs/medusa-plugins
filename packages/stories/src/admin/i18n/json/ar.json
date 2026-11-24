@@ -1,6 +1,10 @@
 {
   "nav": {
-    "label": "استوديو القصص"
+    "label": "استوديو القصص",
+    "rings": "حلقات التمييز",
+    "canvas": "لوحة النقاط التفاعلية",
+    "stickers": "الملصقات",
+    "analytics": "التحليلات"
   },
   "header": {
     "title": "استوديو القصص القابلة للتسوق",
@@ -70,7 +74,7 @@
     "emptyCanvasPrompt": "انقر في أي مكان على شاشة 9:16 لتحديد موقع دبوس المنتج",
     "pinCrosshair": "+ دبوس ({{x}}%، {{y}}%)",
     "shopNowFallback": "تسوق الآن",
-    "publishSlideTitle": "1. نشر شريحة قصة 9:16",
+    "publishSlideTitle": "نشر شريحة قصة 9:16",
     "slideTitleField": "عنوان الشريحة",
     "slideTitlePlaceholder": "إطلاق هودي جديد",
     "mediaUrlField": "رابط صورة أو فيديو 9:16 (https://)",
@@ -85,7 +89,7 @@
     "ringButton": "حلقة: {{title}}",
     "autoExpireLabel": "انتهاء تلقائي خلال 24 ساعة",
     "publishButton": "نشر الشريحة",
-    "pinHotspotTitle": "2. تثبيت نقطة منتج قابلة للتسوق على {{slide}}",
+    "pinHotspotTitle": "تثبيت نقطة منتج قابلة للتسوق على {{slide}}",
     "selectedSlideFallback": "الشريحة المحددة",
     "productIdField": "معرف منتج Medusa",
     "productIdPlaceholder": "prod_01H...",
@@ -96,7 +100,7 @@
     "coordinatesHelp": "الإحداثيات: X={{x}}%، Y={{y}}% (انقر على لوحة الهاتف لإعادة التموضع)",
     "pinButton": "تثبيت نقطة المنتج",
     "removeHotspotButton": "إزالة",
-    "timelineTitle": "3. الجدول الزمني لشرائح القصص ({{count}})",
+    "timelineTitle": "الجدول الزمني لشرائح القصص ({{count}})",
     "activeBadge": "نشط",
     "pausedBadge": "متوقف مؤقتاً",
     "hotspotsCountBadge": "{{count}} نقاط",
@@ -135,10 +139,10 @@
   "analyticsTab": {
     "funnelTitle": "قمع تحويل القصص القابلة للتسوق",
     "funnelSubtitle": "مسار التفاعل الكامل عبر جميع شرائح القصص النشطة والمؤرشفة بنسبة 9:16.",
-    "stepImpressions": "1. مرات ظهور القصص",
-    "stepCompletions": "2. إكمال مشاهدة الشرائح",
-    "stepHotspotClicks": "3. نقرات نقاط المنتجات",
-    "stepAddToCarts": "4. الإضافات إلى السلة من القصص",
+    "stepImpressions": "مرات ظهور القصص",
+    "stepCompletions": "إكمال مشاهدة الشرائح",
+    "stepHotspotClicks": "نقرات نقاط المنتجات",
+    "stepAddToCarts": "الإضافات إلى السلة من القصص",
     "percentOfImpressions": "{{percent}}% من مرات الظهور",
     "ringBreakdownTitle": "تحليل أداء الحلقات المميزة",
     "colHighlightRing": "الحلقة المميزة",

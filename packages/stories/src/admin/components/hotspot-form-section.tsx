@@ -30,7 +30,7 @@ export const CanvasHotspotPinnerSection = ({
   onAddHotspot,
   onRemoveHotspot,
 }: CanvasHotspotPinnerSectionProps) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("stories")
 
   return (
     <Container className="divide-y p-0">
@@ -45,6 +45,7 @@ export const CanvasHotspotPinnerSection = ({
         <Button
           size="small"
           variant="primary"
+          className="shrink-0 whitespace-nowrap"
           isLoading={isSavingHotspot}
           onClick={onAddHotspot}
         >
@@ -132,7 +133,11 @@ export const CanvasHotspotPinnerSection = ({
                 </Table.Cell>
                 <Table.Cell>{hs.price_formatted || "—"}</Table.Cell>
                 <Table.Cell>
-                  <Badge size="xsmall" color="blue">
+                  <Badge
+                    size="xsmall"
+                    color="blue"
+                    className="whitespace-nowrap shrink-0"
+                  >
                     {hs.x_percent}%, {hs.y_percent}%
                   </Badge>
                 </Table.Cell>
@@ -140,6 +145,7 @@ export const CanvasHotspotPinnerSection = ({
                   <Button
                     size="small"
                     variant="secondary"
+                    className="whitespace-nowrap shrink-0"
                     onClick={() => onRemoveHotspot(hs.id)}
                   >
                     {t("canvasTab.removeHotspotButton")}

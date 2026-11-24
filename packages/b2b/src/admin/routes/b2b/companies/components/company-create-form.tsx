@@ -37,7 +37,7 @@ export function CompanyCreateForm({
   onSubmit,
   loading,
 }: CompanyCreateFormProps) {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
   const schema = useMemo(() => makeCompanyCreateFormSchema(t), [t])
 
   const [tab, setTab] = useState<Tab>(Tab.DETAILS)
@@ -175,12 +175,22 @@ export function CompanyCreateForm({
         <RouteFocusModal.Footer>
           <div className="flex items-center justify-end gap-x-2">
             <RouteFocusModal.Close asChild>
-              <Button variant="secondary" size="small">
+              <Button
+                variant="secondary"
+                size="small"
+                className="whitespace-nowrap shrink-0"
+              >
                 {t("actions.cancel")}
               </Button>
             </RouteFocusModal.Close>
             {tab === Tab.DETAILS ? (
-              <Button key="next" type="button" size="small" onClick={goToAdmin}>
+              <Button
+                key="next"
+                type="button"
+                size="small"
+                onClick={goToAdmin}
+                className="whitespace-nowrap shrink-0"
+              >
                 {t("actions.continue")}
               </Button>
             ) : (
@@ -189,6 +199,7 @@ export function CompanyCreateForm({
                 type="submit"
                 size="small"
                 isLoading={loading}
+                className="whitespace-nowrap shrink-0"
               >
                 {t("actions.save")}
               </Button>

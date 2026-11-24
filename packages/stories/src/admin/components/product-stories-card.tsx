@@ -25,7 +25,7 @@ export const ProductStoriesCard = ({
   isCreating,
   onQuickCreateProductStory,
 }: ProductStoriesCardProps) => {
-  const { t, i18n } = useTranslation()
+  const { t, i18n } = useTranslation("stories")
   const isRtl = (i18n.resolvedLanguage || i18n.language || "").startsWith("ar")
 
   return (
@@ -45,6 +45,7 @@ export const ProductStoriesCard = ({
           size="small"
           isLoading={isCreating}
           onClick={() => void onQuickCreateProductStory()}
+          className="whitespace-nowrap shrink-0"
         >
           {t("widget.createButton")}
         </Button>
@@ -53,7 +54,11 @@ export const ProductStoriesCard = ({
       <SectionRow
         title={t("analyticsTab.colSlides")}
         value={
-          <Badge size="xsmall" color="blue">
+          <Badge
+            size="xsmall"
+            color="blue"
+            className="whitespace-nowrap shrink-0"
+          >
             {taggedSlides.length}
           </Badge>
         }
@@ -107,7 +112,10 @@ export const ProductStoriesCard = ({
                 <Table.Cell>{slide.clicks_count}</Table.Cell>
                 <Table.Cell>{slide.cart_conversions_count}</Table.Cell>
                 <Table.Cell className="text-right">
-                  <StatusBadge color={slide.is_active ? "green" : "grey"}>
+                  <StatusBadge
+                    color={slide.is_active ? "green" : "grey"}
+                    className="whitespace-nowrap shrink-0"
+                  >
                     {slide.is_active
                       ? t("widget.activeBadge")
                       : t("widget.pausedBadge")}

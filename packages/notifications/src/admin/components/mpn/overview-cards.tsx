@@ -81,6 +81,7 @@ export const NavigationCard: React.FC<NavigationCardProps> = ({
       type="button"
       variant="transparent"
       className={clx(
+        "whitespace-nowrap shrink-0",
         "h-auto w-full justify-start text-left p-6 hover:bg-ui-bg-subtle-hover transition-colors rounded-none",
         !isBottom ? "border-b border-ui-border-base" : "",
         isLeft ? "md:border-r md:border-ui-border-base" : ""

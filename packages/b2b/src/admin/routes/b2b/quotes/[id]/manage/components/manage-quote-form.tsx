@@ -29,7 +29,7 @@ type ItemChange = {
 }
 
 export const ManageQuoteForm = ({ order }: ReturnCreateFormProps) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
   const { handleSuccess } = useRouteModal()
   const { order: preview } = useOrderPreview(order.id, {
     fields: "currency_code,total,items,summary",
@@ -175,6 +175,7 @@ export const ManageQuoteForm = ({ order }: ReturnCreateFormProps) => {
                 type="submit"
                 variant="primary"
                 size="small"
+                className="whitespace-nowrap shrink-0"
               >
                 {t("actions.continue")}
               </Button>

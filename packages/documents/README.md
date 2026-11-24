@@ -152,7 +152,7 @@ Fast, serverless-friendly React PDF components with TipTap rich-text notes suppo
 
 Merchants can create custom HTML/Handlebars templates via `/admin/documents/templates` with:
 
-- **Page Sizes**: `A4`, `LETTER`, `80MM`, `58MM`
+- **Page Sizes**: `A4`, `LETTER`, `POS_80MM`, `POS_58MM`
 - **Orientations**: `portrait`, `landscape`
 - **Handlebars Variables**:
   - `{{document_number}}`, `{{document_type}}`, `{{version}}`, `{{formatted_issue_date}}`, `{{formatted_order_date}}`

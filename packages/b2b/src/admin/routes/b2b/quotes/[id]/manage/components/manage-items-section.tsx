@@ -24,7 +24,7 @@ export const ManageItemsSection = ({
   preview,
   onItemChange,
 }: ManageItemsSectionProps) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
   const { setIsOpen } = useStackedModal()
   const [filterTerm, setFilterTerm] = useState("")
   const addedVariantsRef = useRef<string[]>([])
@@ -76,7 +76,11 @@ export const ManageItemsSection = ({
 
           <StackedFocusModal id="inbound-items">
             <StackedFocusModal.Trigger asChild>
-              <Button variant="secondary" size="small">
+              <Button
+                variant="secondary"
+                size="small"
+                className="whitespace-nowrap shrink-0"
+              >
                 {t("actions.addItems")}
               </Button>
             </StackedFocusModal.Trigger>
@@ -94,7 +98,12 @@ export const ManageItemsSection = ({
                 <div className="flex w-full items-center justify-end gap-x-4">
                   <div className="flex items-center justify-end gap-x-2">
                     <StackedFocusModal.Close asChild>
-                      <Button type="button" variant="secondary" size="small">
+                      <Button
+                        type="button"
+                        variant="secondary"
+                        size="small"
+                        className="whitespace-nowrap shrink-0"
+                      >
                         {t("actions.cancel")}
                       </Button>
                     </StackedFocusModal.Close>
@@ -106,6 +115,7 @@ export const ManageItemsSection = ({
                       role="button"
                       disabled={isPending}
                       onClick={async () => await onItemsSelected()}
+                      className="whitespace-nowrap shrink-0"
                     >
                       {t("actions.save")}
                     </Button>

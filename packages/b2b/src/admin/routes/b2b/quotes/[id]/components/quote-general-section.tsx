@@ -11,7 +11,7 @@ interface QuoteGeneralSectionProps {
 }
 
 export const QuoteGeneralSection = ({ quote }: QuoteGeneralSectionProps) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
   const q = quote as any
 
   const orderLinkId = q.draft_order?.id ?? q.draft_order_id

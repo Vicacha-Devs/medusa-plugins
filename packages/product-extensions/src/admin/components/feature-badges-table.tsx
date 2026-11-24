@@ -1,19 +1,8 @@
 import * as React from "react"
-import {
-  Badge,
-  Button,
-  Container,
-  Heading,
-  Input,
-  Label,
-  Select,
-  Table,
-  Text,
-} from "@medusajs/ui"
+import { Badge, Button, Container, Heading, Table, Text } from "@medusajs/ui"
 import { useTranslation } from "react-i18next"
 import type { ProductFeatureDTO } from "../../modules/product-ext/types"
 import type { FeatureFormState } from "../hooks/use-product-ext-studio"
-import { FEATURE_BADGE_COLORS } from "./feature-create-form"
 
 export interface FeatureBadgesTableProps {
   features: ProductFeatureDTO[]
@@ -28,7 +17,7 @@ export const FeatureBadgesTable: React.FC<FeatureBadgesTableProps> = ({
   onDelete,
   onCreateClick,
 }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("product-ext")
 
   return (
     <Container className="divide-y p-0">
@@ -42,7 +31,12 @@ export const FeatureBadgesTable: React.FC<FeatureBadgesTableProps> = ({
           </Text>
         </div>
         {onCreateClick && (
-          <Button size="small" variant="secondary" onClick={onCreateClick}>
+          <Button
+            size="small"
+            variant="secondary"
+            onClick={onCreateClick}
+            className="whitespace-nowrap shrink-0"
+          >
             {t("featuresTab.createButton")}
           </Button>
         )}
@@ -63,7 +57,11 @@ export const FeatureBadgesTable: React.FC<FeatureBadgesTableProps> = ({
             <Table.Row key={feat.id}>
               <Table.Cell className="font-medium">{feat.title}</Table.Cell>
               <Table.Cell>
-                <Badge size="small" color="green">
+                <Badge
+                  size="small"
+                  color="green"
+                  className="whitespace-nowrap shrink-0"
+                >
                   {feat.code}
                 </Badge>
               </Table.Cell>
@@ -76,6 +74,7 @@ export const FeatureBadgesTable: React.FC<FeatureBadgesTableProps> = ({
                   size="small"
                   disabled={isBusy}
                   onClick={() => onDelete(feat.id)}
+                  className="whitespace-nowrap shrink-0"
                 >
                   {t("featuresTab.deleteButton")}
                 </Button>
@@ -99,95 +98,17 @@ export interface FeatureBadgesTabProps {
 }
 
 export const FeatureBadgesTab: React.FC<FeatureBadgesTabProps> = ({
-  form,
-  onFormChange,
   features,
   isBusy,
-  onCreate,
   onDelete,
   onOpenCreateDrawer,
 }) => {
-  const { t } = useTranslation()
-
   return (
-    <div className="flex flex-col gap-y-4">
-      <Container className="divide-y p-0">
-        <div className="flex items-center justify-between px-6 py-4">
-          <Heading level="h2">{t("featuresTab.createTitle")}</Heading>
-          <Button
-            variant="primary"
-            size="small"
-            isLoading={isBusy}
-            onClick={onCreate}
-          >
-            {t("featuresTab.createButton")}
-          </Button>
-        </div>
-        <div className="grid grid-cols-1 gap-4 px-6 py-4 md:grid-cols-4">
-          <div>
-            <Label size="small">{t("featuresTab.titleField")}</Label>
-            <Input
-              placeholder={t("featuresTab.titlePlaceholder")}
-              value={form.title}
-              onChange={(e) =>
-                onFormChange((prev) => ({ ...prev, title: e.target.value }))
-              }
-            />
-          </div>
-          <div>
-            <Label size="small">{t("featuresTab.subtitleField")}</Label>
-            <Input
-              placeholder={t("featuresTab.subtitlePlaceholder")}
-              value={form.subtitle}
-              onChange={(e) =>
-                onFormChange((prev) => ({ ...prev, subtitle: e.target.value }))
-              }
-            />
-          </div>
-          <div>
-            <Label size="small">{t("featuresTab.iconUrlField")}</Label>
-            <Input
-              placeholder={t("featuresTab.iconUrlPlaceholder")}
-              value={form.icon_url}
-              onChange={(e) =>
-                onFormChange((prev) => ({ ...prev, icon_url: e.target.value }))
-              }
-            />
-          </div>
-          <div>
-            <Label size="small">{t("featuresTab.badgeColorField")}</Label>
-            <Select
-              value={form.badge_color || "blue"}
-              onValueChange={(val) =>
-                onFormChange((prev) => ({
-                  ...prev,
-                  badge_color: val,
-                }))
-              }
-            >
-              <Select.Trigger>
-                <Select.Value
-                  placeholder={t("featuresTab.badgeColorPlaceholder")}
-                />
-              </Select.Trigger>
-              <Select.Content>
-                {FEATURE_BADGE_COLORS.map((color) => (
-                  <Select.Item key={color} value={color}>
-                    {color}
-                  </Select.Item>
-                ))}
-              </Select.Content>
-            </Select>
-          </div>
-        </div>
-      </Container>
-
-      <FeatureBadgesTable
-        features={features}
-        isBusy={isBusy}
-        onDelete={onDelete}
-        onCreateClick={onOpenCreateDrawer}
-      />
-    </div>
+    <FeatureBadgesTable
+      features={features}
+      isBusy={isBusy}
+      onDelete={onDelete}
+      onCreateClick={onOpenCreateDrawer}
+    />
   )
 }

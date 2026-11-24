@@ -47,7 +47,7 @@ interface UpdateFormProps {
 type CompanyFormProps = CreateFormProps | UpdateFormProps
 
 export function CompanyForm({ company, onSubmit, loading }: CompanyFormProps) {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
   const schema = useMemo(() => makeCompanyFormSchema(t), [t])
 
   const { regions, isPending: regionsLoading } = useRegions({})
@@ -144,11 +144,20 @@ export function CompanyForm({ company, onSubmit, loading }: CompanyFormProps) {
         <RouteDrawer.Footer>
           <div className="flex items-center justify-end gap-x-2">
             <RouteDrawer.Close asChild>
-              <Button size="small" variant="secondary">
+              <Button
+                size="small"
+                variant="secondary"
+                className="whitespace-nowrap shrink-0"
+              >
                 {t("actions.cancel")}
               </Button>
             </RouteDrawer.Close>
-            <Button size="small" type="submit" isLoading={loading}>
+            <Button
+              size="small"
+              type="submit"
+              isLoading={loading}
+              className="whitespace-nowrap shrink-0"
+            >
               {t("actions.save")}
             </Button>
           </div>

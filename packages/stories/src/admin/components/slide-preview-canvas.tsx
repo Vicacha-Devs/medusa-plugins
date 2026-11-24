@@ -22,7 +22,7 @@ export const CanvasPreviewSection = ({
   hotspotForm,
   onCanvasCoordinateClick,
 }: CanvasPreviewSectionProps) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("stories")
   const safePreviewUrl = sanitizeAdminMediaUrl(
     selectedSlide?.media_url || slideForm.media_url
   )
@@ -40,9 +40,13 @@ export const CanvasPreviewSection = ({
 
   return (
     <Container className="divide-y p-0">
-      <div className="flex items-center justify-between px-6 py-4">
+      <div className="flex flex-wrap items-center justify-between gap-2 px-6 py-4">
         <Heading level="h2">{t("canvasTab.canvasTitle")}</Heading>
-        <Badge size="xsmall" color="blue">
+        <Badge
+          size="xsmall"
+          color="blue"
+          className="shrink-0 whitespace-nowrap"
+        >
           {t("canvasTab.clickHintBadge", {
             x: hotspotForm.x_percent,
             y: hotspotForm.y_percent,

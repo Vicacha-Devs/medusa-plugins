@@ -2,15 +2,22 @@ import { defineRouteConfig } from "@medusajs/admin-sdk"
 import { CORE_LAYOUT_IDS } from "@medusajs/admin-shared"
 import { LayoutComposer } from "@medusajs/dashboard/components"
 import { DocumentText } from "@medusajs/icons"
-import React from "react"
+import { toast } from "@medusajs/ui"
+import React, { useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { TemplatesBuilderTab } from "../../../components/mpn/templates-tab"
-import { useNotificationStudio } from "../../../components/mpn/use-notification-studio"
 import { RbacGuard } from "../../../components/rbac-guard"
+import { useMpnTemplates } from "../../../../hooks"
 
 const MpnTemplatesPage: React.FC = () => {
-  const { templates, loadAllStudioData, setStatusBanner } =
-    useNotificationStudio()
+  const { t } = useTranslation("mpn")
+  const handleError = useCallback(() => {
+    toast.error(t("messages.loadStudioError"))
+  }, [t])
+
+  const { data, isLoading, refetch } = useMpnTemplates(undefined, {
+    onError: handleError,
+  })
 
   return (
     <LayoutComposer
@@ -20,9 +27,11 @@ const MpnTemplatesPage: React.FC = () => {
         main: (
           <LayoutComposer.Entry id="MpnTemplatesSection">
             <TemplatesBuilderTab
-              templates={templates}
-              onRefresh={loadAllStudioData}
-              onStatus={setStatusBanner}
+              templates={data?.templates || []}
+              isLoading={isLoading}
+              onRefresh={async () => {
+                await refetch()
+              }}
             />
           </LayoutComposer.Entry>
         ),
@@ -32,12 +41,12 @@ const MpnTemplatesPage: React.FC = () => {
 }
 
 const Breadcrumb = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("mpn")
   return t("templates.title")
 }
 
 export const config = defineRouteConfig({
-  label: "Templates",
+  label: "nav.templates",
   translationNs: "mpn",
   icon: DocumentText,
 })

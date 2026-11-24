@@ -19,7 +19,7 @@ import { useTranslation } from "react-i18next"
 import { useOrderNotificationsWidgetState } from "../../hooks"
 
 const OrderNotificationsActivityWidget = ({ data }: { data?: any }) => {
-  const { t, i18n } = useTranslation()
+  const { t, i18n } = useTranslation("mpn")
   const {
     orderId,
     logs,
@@ -68,7 +68,9 @@ const OrderNotificationsActivityWidget = ({ data }: { data?: any }) => {
             {t("widget.subtitle")}
           </Text>
         </div>
-        <StatusBadge color="green">{logs.length}</StatusBadge>
+        <StatusBadge color="green" className="whitespace-nowrap shrink-0">
+          {logs.length}
+        </StatusBadge>
       </div>
 
       <SectionRow title={t("widget.colChannel")} value={selectedChannel} />
@@ -80,7 +82,7 @@ const OrderNotificationsActivityWidget = ({ data }: { data?: any }) => {
             value={selectedChannel}
             onValueChange={setSelectedChannel}
           >
-            <Select.Trigger>
+            <Select.Trigger className="min-w-0 [&>span]:truncate">
               <Select.Value placeholder={t("widget.channelPlaceholder")} />
             </Select.Trigger>
             <Select.Content>
@@ -99,7 +101,7 @@ const OrderNotificationsActivityWidget = ({ data }: { data?: any }) => {
             value={selectedTemplateId}
             onValueChange={setSelectedTemplateId}
           >
-            <Select.Trigger>
+            <Select.Trigger className="min-w-0 [&>span]:truncate">
               <Select.Value placeholder={t("widget.templatePlaceholder")} />
             </Select.Trigger>
             <Select.Content>
@@ -126,6 +128,7 @@ const OrderNotificationsActivityWidget = ({ data }: { data?: any }) => {
           disabled={sending}
           isLoading={sending}
           onClick={() => void handleSendOrderNotification()}
+          className="whitespace-nowrap shrink-0"
         >
           {sending ? t("widget.sending") : t("widget.sendResendButton")}
         </Button>
@@ -144,7 +147,11 @@ const OrderNotificationsActivityWidget = ({ data }: { data?: any }) => {
           {logs.map((row) => (
             <Table.Row key={row.id}>
               <Table.Cell>
-                <Badge size="2xsmall" color="blue">
+                <Badge
+                  size="2xsmall"
+                  color="blue"
+                  className="whitespace-nowrap shrink-0"
+                >
                   {row.channel}
                 </Badge>
               </Table.Cell>
@@ -159,6 +166,7 @@ const OrderNotificationsActivityWidget = ({ data }: { data?: any }) => {
                       ? "green"
                       : "orange"
                   }
+                  className="whitespace-nowrap shrink-0"
                 >
                   {row.status}
                 </StatusBadge>

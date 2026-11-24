@@ -13,7 +13,7 @@ export interface ProductWidgetEntity {
  * Decoupled hook for the Product Details Shoppable Stories widget (`product.details.after`).
  */
 export const useProductStories = (product?: ProductWidgetEntity) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("stories")
   const productId = product?.id ?? ""
   const stateQuery = useAdminStoriesState(
     productId ? { product_id: productId } : undefined,

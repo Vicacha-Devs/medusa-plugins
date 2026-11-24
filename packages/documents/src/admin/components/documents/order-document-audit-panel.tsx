@@ -11,7 +11,7 @@ interface OrderDocumentAuditPanelProps {
 export const OrderDocumentAuditPanel: React.FC<
   OrderDocumentAuditPanelProps
 > = ({ customEmail, setCustomEmail, auditEntries, priorVersions }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("documents")
 
   return (
     <div className="flex flex-col gap-2 bg-ui-bg-subtle px-6 py-4">

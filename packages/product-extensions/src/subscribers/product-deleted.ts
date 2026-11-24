@@ -4,7 +4,7 @@ import {
   type ProductExtModuleService,
 } from "../modules/product-ext"
 
-export default async function productDeletedSubscriber({
+export default async function productExtDeletedSubscriber({
   event,
   container,
 }: SubscriberArgs<{ id?: string; product_id?: string; variant_id?: string }>) {

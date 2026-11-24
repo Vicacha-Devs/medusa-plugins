@@ -43,10 +43,10 @@ export const TemplateEditorSection: React.FC<TemplateEditorSectionProps> = ({
   onContextChange,
   onLocaleChange,
 }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("mpn")
 
   return (
-    <Container className="divide-y p-0 lg:col-span-7">
+    <Container className="divide-y p-0">
       {selectedTemplate ? (
         <>
           <div className="flex items-center justify-between px-6 py-4">
@@ -63,6 +63,7 @@ export const TemplateEditorSection: React.FC<TemplateEditorSectionProps> = ({
                 variant="primary"
                 isLoading={isSaving}
                 onClick={onSaveTemplate}
+                className="whitespace-nowrap shrink-0"
               >
                 {t("templates.saveButton")}
               </Button>
@@ -72,7 +73,11 @@ export const TemplateEditorSection: React.FC<TemplateEditorSectionProps> = ({
           <SectionRow
             title={t("mappings.channelLabel")}
             value={
-              <Badge size="2xsmall" color="blue">
+              <Badge
+                size="2xsmall"
+                color="blue"
+                className="whitespace-nowrap shrink-0"
+              >
                 {selectedTemplate.channel}
               </Badge>
             }
@@ -141,6 +146,7 @@ export const TemplateEditorSection: React.FC<TemplateEditorSectionProps> = ({
                           size="small"
                           variant="secondary"
                           onClick={() => onAddBlock(bType)}
+                          className="whitespace-nowrap shrink-0"
                         >
                           + {bType}
                         </Button>
@@ -155,7 +161,11 @@ export const TemplateEditorSection: React.FC<TemplateEditorSectionProps> = ({
                       className="flex items-center justify-between rounded border border-ui-border-base p-2.5"
                     >
                       <div className="flex items-center gap-x-2">
-                        <Badge size="2xsmall" color="purple">
+                        <Badge
+                          size="2xsmall"
+                          color="purple"
+                          className="whitespace-nowrap shrink-0"
+                        >
                           {blk.type}
                         </Badge>
                         <Text className="text-xs">
@@ -171,6 +181,7 @@ export const TemplateEditorSection: React.FC<TemplateEditorSectionProps> = ({
                           size="small"
                           variant="transparent"
                           onClick={() => onRemoveBlock(idx)}
+                          className="whitespace-nowrap shrink-0"
                         >
                           {t("templates.removeBlock")}
                         </Button>

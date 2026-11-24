@@ -13,7 +13,7 @@ interface SettingsCompanySectionProps {
 export const SettingsCompanySection: React.FC<SettingsCompanySectionProps> = ({
   form,
 }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("documents")
 
   const textInputs: Array<{
     name: keyof DocumentSettingsFormValues
@@ -86,7 +86,7 @@ export const SettingsCompanySection: React.FC<SettingsCompanySectionProps> = ({
                     value={field.value || "en"}
                     onValueChange={field.onChange}
                   >
-                    <Select.Trigger>
+                    <Select.Trigger className="min-w-0 [&>span]:truncate">
                       <Select.Value />
                     </Select.Trigger>
                     <Select.Content>
@@ -115,7 +115,7 @@ export const SettingsCompanySection: React.FC<SettingsCompanySectionProps> = ({
                     value={field.value || "clean"}
                     onValueChange={field.onChange}
                   >
-                    <Select.Trigger>
+                    <Select.Trigger className="min-w-0 [&>span]:truncate">
                       <Select.Value />
                     </Select.Trigger>
                     <Select.Content>
@@ -148,7 +148,7 @@ export const SettingsCompanySection: React.FC<SettingsCompanySectionProps> = ({
                     value={field.value || "pos_80mm"}
                     onValueChange={field.onChange}
                   >
-                    <Select.Trigger>
+                    <Select.Trigger className="min-w-0 [&>span]:truncate">
                       <Select.Value />
                     </Select.Trigger>
                     <Select.Content>

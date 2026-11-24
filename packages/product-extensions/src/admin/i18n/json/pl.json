@@ -1,6 +1,11 @@
 {
   "nav": {
-    "label": "Studio Rozszerzeń Produktów"
+    "label": "Rozszerzenia Produktów",
+    "attributes": "Atrybuty",
+    "templates": "Szablony",
+    "features": "Odznaki",
+    "variantMedia": "Media Wariantów",
+    "imageAlts": "Tekst Alt Zdjęć"
   },
   "header": {
     "title": "Studio Rozszerzeń Produktów, Multimediów i Atrybutów",
@@ -13,11 +18,11 @@
     "dismiss": "Zamknij"
   },
   "tabs": {
-    "attributes": "1. Atrybuty Niestandardowe ({{count}})",
-    "templates": "2. Szablony Treści i Atrybutów ({{count}})",
-    "features": "3. Odznaki Funkcji ({{count}})",
-    "variantMedia": "4. Przypisywanie Multimediów Wariantów Opcji",
-    "imageAlts": "5. Import/Eksport CSV Tekstów Alt Obrazów"
+    "attributes": "Atrybuty Niestandardowe ({{count}})",
+    "templates": "Szablony Treści i Atrybutów ({{count}})",
+    "features": "Odznaki Funkcji ({{count}})",
+    "variantMedia": "Przypisywanie Multimediów Wariantów Opcji",
+    "imageAlts": "Import/Eksport CSV Tekstów Alt Obrazów"
   },
   "attributesTab": {
     "createTitle": "Utwórz Definicję Typowanego Atrybutu",

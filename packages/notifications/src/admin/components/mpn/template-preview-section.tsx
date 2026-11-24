@@ -19,7 +19,7 @@ export const TemplatePreviewSection: React.FC<TemplatePreviewSectionProps> = ({
   onContextChange,
   onLocaleChange,
 }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("mpn")
 
   return (
     <div className="px-6 py-4">
@@ -35,7 +35,7 @@ export const TemplatePreviewSection: React.FC<TemplatePreviewSectionProps> = ({
             value={previewContextType}
             onValueChange={onContextChange}
           >
-            <Select.Trigger>
+            <Select.Trigger className="min-w-0 [&>span]:truncate">
               <Select.Value placeholder={t("templates.contextPlaceholder")} />
             </Select.Trigger>
             <Select.Content>
@@ -52,7 +52,7 @@ export const TemplatePreviewSection: React.FC<TemplatePreviewSectionProps> = ({
             value={previewLocale}
             onValueChange={onLocaleChange}
           >
-            <Select.Trigger>
+            <Select.Trigger className="min-w-0 [&>span]:truncate">
               <Select.Value placeholder={t("templates.localePlaceholder")} />
             </Select.Trigger>
             <Select.Content>
@@ -77,12 +77,20 @@ export const TemplatePreviewSection: React.FC<TemplatePreviewSectionProps> = ({
           )}
           {previewResult.sms_options && (
             <div className="mb-2 flex items-center gap-x-2">
-              <Badge size="2xsmall" color="green">
+              <Badge
+                size="2xsmall"
+                color="green"
+                className="whitespace-nowrap shrink-0"
+              >
                 {t("templates.encodingBadge", {
                   encoding: previewResult.sms_options.encoding,
                 })}
               </Badge>
-              <Badge size="2xsmall" color="blue">
+              <Badge
+                size="2xsmall"
+                color="blue"
+                className="whitespace-nowrap shrink-0"
+              >
                 {t("templates.segmentsBadge", {
                   segments: previewResult.sms_options.segments,
                   chars: previewResult.sms_options.character_count,
@@ -96,7 +104,12 @@ export const TemplatePreviewSection: React.FC<TemplatePreviewSectionProps> = ({
           {previewResult.whatsapp_options?.buttons?.length > 0 && (
             <div className="mt-3 flex gap-x-2">
               {previewResult.whatsapp_options.buttons.map((btn: any) => (
-                <Badge key={btn.id} size="2xsmall" color="green">
+                <Badge
+                  key={btn.id}
+                  size="2xsmall"
+                  color="green"
+                  className="whitespace-nowrap shrink-0"
+                >
                   {t("templates.waButtonPrefix", {
                     title: btn.title,
                   })}
@@ -109,7 +122,12 @@ export const TemplatePreviewSection: React.FC<TemplatePreviewSectionProps> = ({
               {previewResult.telegram_options.inline_keyboard
                 .flat()
                 .map((btn: any, i: number) => (
-                  <Badge key={i} size="2xsmall" color="blue">
+                  <Badge
+                    key={i}
+                    size="2xsmall"
+                    color="blue"
+                    className="whitespace-nowrap shrink-0"
+                  >
                     {t("templates.tgInlinePrefix", { text: btn.text })}
                   </Badge>
                 ))}

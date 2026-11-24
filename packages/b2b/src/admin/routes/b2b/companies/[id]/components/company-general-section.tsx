@@ -12,7 +12,7 @@ interface CompanyGeneralSectionProps {
 export const CompanyGeneralSection = ({
   company,
 }: CompanyGeneralSectionProps) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
   const c = company as any
 
   return (
@@ -36,7 +36,11 @@ export const CompanyGeneralSection = ({
         <SectionRow
           title={t("companies.detail.currency")}
           value={
-            <Badge size="xsmall" color="grey">
+            <Badge
+              size="xsmall"
+              color="grey"
+              className="whitespace-nowrap shrink-0"
+            >
               {c.currency_code.toUpperCase()}
             </Badge>
           }

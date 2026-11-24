@@ -29,7 +29,7 @@ const CUSTOMER_FIELDS =
 
 const QuoteDetail = () => {
   const { id } = useParams()
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
   const navigate = useNavigate()
   const prompt = usePrompt()
   const [sendDrawerOpen, setSendDrawerOpen] = useState(false)
@@ -193,7 +193,7 @@ const QuoteDetail = () => {
 }
 
 const Breadcrumb = ({ id }: { id?: string }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
   const { quote } = useQuote(id ?? "", undefined, { enabled: !!id })
   const displayId = (quote as any)?.draft_order?.display_id
 

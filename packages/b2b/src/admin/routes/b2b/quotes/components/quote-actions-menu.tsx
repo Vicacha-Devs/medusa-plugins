@@ -17,7 +17,7 @@ const MANAGEABLE_STATUSES = [
 ]
 
 export const QuoteActionsMenu = ({ quote }: { quote: QueryQuote }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
   const prompt = usePrompt()
   const navigate = useNavigate()
   const [sendDrawerOpen, setSendDrawerOpen] = useState(false)

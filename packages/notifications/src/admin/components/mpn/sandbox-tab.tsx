@@ -23,7 +23,7 @@ export const DummySandboxTab: React.FC<DummySandboxTabProps> = ({
   sandboxMessages,
   onRefresh,
 }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("mpn")
   const clearSandboxMutation = useClearMpnSandbox()
 
   const handleClearSandbox = async () => {
@@ -51,6 +51,7 @@ export const DummySandboxTab: React.FC<DummySandboxTabProps> = ({
           variant="secondary"
           isLoading={clearSandboxMutation.isPending}
           onClick={() => void handleClearSandbox()}
+          className="whitespace-nowrap shrink-0"
         >
           {t("sandbox.clearButton")}
         </Button>
@@ -71,14 +72,23 @@ export const DummySandboxTab: React.FC<DummySandboxTabProps> = ({
           {sandboxMessages.map((msg) => (
             <Table.Row key={msg.id}>
               <Table.Cell>
-                <Badge size="2xsmall" color="blue">
+                <Badge
+                  size="2xsmall"
+                  color="blue"
+                  className="whitespace-nowrap shrink-0"
+                >
                   {msg.channel}
                 </Badge>
               </Table.Cell>
               <Table.Cell>{msg.recipient}</Table.Cell>
               <Table.Cell>
                 {msg.otp_code ? (
-                  <StatusBadge color="green">{msg.otp_code}</StatusBadge>
+                  <StatusBadge
+                    color="green"
+                    className="whitespace-nowrap shrink-0"
+                  >
+                    {msg.otp_code}
+                  </StatusBadge>
                 ) : (
                   "—"
                 )}

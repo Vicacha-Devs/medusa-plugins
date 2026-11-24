@@ -13,7 +13,7 @@ const PAGE_SIZE = 50
 const PREFIX = "quot"
 
 export const QuotesTable = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
 
   const { searchParams, raw } = useQuotesTableQuery({
     pageSize: PAGE_SIZE,

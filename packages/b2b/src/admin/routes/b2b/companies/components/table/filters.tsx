@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next"
 
 export const useCompaniesTableFilters = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
 
   return [
     {

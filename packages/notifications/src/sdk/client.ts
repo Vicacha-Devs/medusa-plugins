@@ -1,4 +1,10 @@
-import { MedusaError } from "@medusajs/framework/utils"
+/** Browser-safe error (SDK is bundled into the admin; no server-only imports). */
+class NotificationsApiError extends Error {
+  constructor(message: string) {
+    super(message)
+    this.name = "NotificationsApiError"
+  }
+}
 import type {
   ClearMpnSandboxResponse,
   CreateMpnBroadcastPayload,
@@ -125,8 +131,7 @@ export class NotificationsApiClient {
     const data = await response.json().catch(() => ({}))
 
     if (!response.ok) {
-      throw new MedusaError(
-        MedusaError.Types.UNEXPECTED_STATE,
+      throw new NotificationsApiError(
         (data as { message?: string; detail?: string }).message ||
           (data as { detail?: string }).detail ||
           `Request failed with status ${response.status}`

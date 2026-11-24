@@ -103,7 +103,7 @@ export const INITIAL_BULK_MEDIA_FORM: BulkMediaFormState = {
 }
 
 export function useProductExtStudio() {
-  const { t } = useTranslation()
+  const { t } = useTranslation("product-ext")
   const [attributes, setAttributes] = useState<AttributeDefinitionDTO[]>([])
   const [templates, setTemplates] = useState<AttributeTemplateDTO[]>([])
   const [features, setFeatures] = useState<ProductFeatureDTO[]>([])

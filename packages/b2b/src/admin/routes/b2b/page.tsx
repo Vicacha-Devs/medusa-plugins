@@ -18,7 +18,7 @@ import { NavigationCard, StatCard } from "./components"
 import { RbacGuard } from "@vicacha-devs/medusa-shared-admin/admin"
 
 const B2BOverview = () => {
-  const { t, i18n } = useTranslation()
+  const { t, i18n } = useTranslation("b2b")
   const navigate = useNavigate()
 
   const isRtl = (i18n.resolvedLanguage || i18n.language || "").startsWith("ar")
@@ -150,7 +150,7 @@ const B2BOverview = () => {
 }
 
 const Breadcrumb = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
   return t("overview.title")
 }
 

@@ -43,12 +43,12 @@ const StoriesAnalyticsPage = () => {
 }
 
 const Breadcrumb = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("stories")
   return t("tabs.analytics")
 }
 
 export const config = defineRouteConfig({
-  label: "tabs.analytics",
+  label: "nav.analytics",
   translationNs: "stories",
   icon: CheckCircle,
 })

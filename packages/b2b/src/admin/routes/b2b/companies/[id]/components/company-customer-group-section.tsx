@@ -11,7 +11,7 @@ interface Props {
 }
 
 export const CompanyCustomerGroupSection = ({ company }: Props) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
   const c = company as any
   const group = Array.isArray(c.customer_group)
     ? c.customer_group[0]

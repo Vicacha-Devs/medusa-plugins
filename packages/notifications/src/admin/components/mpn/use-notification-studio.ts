@@ -16,7 +16,7 @@ import {
 import type { StatusBannerState } from "./constants"
 
 export function useNotificationStudio() {
-  const { t } = useTranslation()
+  const { t } = useTranslation("mpn")
 
   const handleLoadError = useCallback(() => {
     toast.error(t("messages.loadStudioError"))

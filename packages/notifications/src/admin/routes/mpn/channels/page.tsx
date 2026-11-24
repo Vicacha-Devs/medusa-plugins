@@ -43,12 +43,12 @@ const MpnChannelsPage: React.FC = () => {
 }
 
 const Breadcrumb = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("mpn")
   return t("tabs.channels")
 }
 
 export const config = defineRouteConfig({
-  label: "Channels",
+  label: "nav.channels",
   translationNs: "mpn",
   icon: CogSixTooth,
 })

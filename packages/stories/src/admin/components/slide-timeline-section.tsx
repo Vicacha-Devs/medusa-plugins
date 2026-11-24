@@ -26,7 +26,7 @@ export const CanvasTimelineSection = ({
   onToggleSlideActive,
   onDeleteSlide,
 }: CanvasTimelineSectionProps) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("stories")
 
   return (
     <Container className="divide-y p-0">
@@ -34,7 +34,11 @@ export const CanvasTimelineSection = ({
         <Heading level="h2">
           {t("canvasTab.timelineTitle", { count: slides.length })}
         </Heading>
-        <Badge size="xsmall" color="blue">
+        <Badge
+          size="xsmall"
+          color="blue"
+          className="whitespace-nowrap shrink-0"
+        >
           {slides.length}
         </Badge>
       </div>
@@ -65,14 +69,22 @@ export const CanvasTimelineSection = ({
                 onClick={() => onSelectSlide(s.id)}
               >
                 <Table.Cell>
-                  <div className="flex items-center gap-2">
+                  <div className="flex flex-wrap items-center gap-2 py-2">
                     <Text weight="plus">{s.title}</Text>
-                    <Badge size="xsmall" color="blue">
+                    <Badge
+                      size="xsmall"
+                      color="blue"
+                      className="whitespace-nowrap shrink-0"
+                    >
                       {t("canvasTab.hotspotsCountBadge", {
                         count: s.hotspots?.length ?? 0,
                       })}
                     </Badge>
-                    <Badge size="xsmall" color="purple">
+                    <Badge
+                      size="xsmall"
+                      color="purple"
+                      className="whitespace-nowrap shrink-0"
+                    >
                       {t("canvasTab.stickersCountBadge", {
                         count: s.stickers?.length ?? 0,
                       })}
@@ -80,7 +92,10 @@ export const CanvasTimelineSection = ({
                   </div>
                 </Table.Cell>
                 <Table.Cell>
-                  <StatusBadge color={s.is_active ? "green" : "grey"}>
+                  <StatusBadge
+                    color={s.is_active ? "green" : "grey"}
+                    className="whitespace-nowrap shrink-0"
+                  >
                     {s.is_active
                       ? t("canvasTab.activeBadge")
                       : t("canvasTab.pausedBadge")}
@@ -111,6 +126,7 @@ export const CanvasTimelineSection = ({
                       size="small"
                       variant="secondary"
                       onClick={() => onDeleteSlide(s.id)}
+                      className="whitespace-nowrap shrink-0"
                     >
                       {t("canvasTab.deleteButton")}
                     </Button>

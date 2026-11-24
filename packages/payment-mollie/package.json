@@ -32,6 +32,7 @@
     "./package.json": "./package.json",
     "./providers/*": {
       "import": "./dist/providers/*/index.js",
+      "default": "./dist/providers/*/index.js",
       "types": "./dist/providers/*/index.d.ts"
     }
   },

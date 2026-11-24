@@ -42,7 +42,7 @@ export const EventMappingForm: React.FC<EventMappingFormProps> = ({
   onThreadIdChange,
   onSubmit,
 }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("mpn")
   const form = useForm({
     defaultValues: {
       event_name: newMappingEvent,
@@ -71,7 +71,7 @@ export const EventMappingForm: React.FC<EventMappingFormProps> = ({
               value={newMappingEvent}
               onValueChange={onEventChange}
             >
-              <Select.Trigger>
+              <Select.Trigger className="min-w-0 [&>span]:truncate">
                 <Select.Value />
               </Select.Trigger>
               <Select.Content>
@@ -91,7 +91,7 @@ export const EventMappingForm: React.FC<EventMappingFormProps> = ({
               value={newMappingChannel}
               onValueChange={onChannelChange}
             >
-              <Select.Trigger>
+              <Select.Trigger className="min-w-0 [&>span]:truncate">
                 <Select.Value />
               </Select.Trigger>
               <Select.Content>
@@ -111,7 +111,7 @@ export const EventMappingForm: React.FC<EventMappingFormProps> = ({
               value={newMappingTemplateId}
               onValueChange={onTemplateChange}
             >
-              <Select.Trigger>
+              <Select.Trigger className="min-w-0 [&>span]:truncate">
                 <Select.Value />
               </Select.Trigger>
               <Select.Content>
@@ -131,7 +131,7 @@ export const EventMappingForm: React.FC<EventMappingFormProps> = ({
               value={newMappingRecipientRule}
               onValueChange={onRecipientRuleChange}
             >
-              <Select.Trigger>
+              <Select.Trigger className="min-w-0 [&>span]:truncate">
                 <Select.Value />
               </Select.Trigger>
               <Select.Content>
@@ -181,6 +181,7 @@ export const EventMappingForm: React.FC<EventMappingFormProps> = ({
             variant="primary"
             type="submit"
             isLoading={isSubmitting}
+            className="whitespace-nowrap shrink-0"
           >
             {t("mappings.addMappingButton")}
           </Button>

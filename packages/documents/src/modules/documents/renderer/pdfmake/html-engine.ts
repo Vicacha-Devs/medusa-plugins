@@ -54,13 +54,13 @@ function resolvePageSizeSpec(
   pageSize: PageSize = "A4",
   itemCount = 4
 ): string | { width: number; height: number } {
-  if (pageSize === "80MM") {
+  if (pageSize === "POS_80MM") {
     return {
       width: 226.77,
       height: Math.max(360, 240 + itemCount * 24),
     }
   }
-  if (pageSize === "58MM") {
+  if (pageSize === "POS_58MM") {
     return {
       width: 164.41,
       height: Math.max(360, 240 + itemCount * 30),
@@ -188,8 +188,9 @@ export async function renderHandlebarsPdf(
   })
 
   const pageSize =
-    options.page_size || (context.document_type === "receipt" ? "80MM" : "A4")
-  const isThermal = pageSize === "80MM" || pageSize === "58MM"
+    options.page_size ||
+    (context.document_type === "receipt" ? "POS_80MM" : "A4")
+  const isThermal = pageSize === "POS_80MM" || pageSize === "POS_58MM"
 
   const docDefinition: Record<string, unknown> = {
     pageSize: resolvePageSizeSpec(pageSize, context.order.items.length),

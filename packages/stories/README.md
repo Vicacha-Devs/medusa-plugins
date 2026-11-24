@@ -42,6 +42,22 @@ Full-featured **9:16 Shoppable Stories, Highlight Rings, Interactive Stickers, C
 
 ---
 
+## How Shoppable 9:16 Stories Works
+
+1. **Quick-Create from a Product (`product.details.after` widget):**
+   - Clicking **+ Create Story From Product** on any product detail page calls `POST /admin/stories` via `useProductStories`.
+   - **Image (`media_url` & `thumbnail_url`):** Uses `product.thumbnail` from Medusa's **Product Media** (falling back to a default placeholder image if the product has no thumbnail yet).
+   - **Text:** Uses `product.title` for the slide `title` and hotspot `label`, the localized `widget.featuredCaption` string for `caption`, and `widget.shopProductLink` pointing to `/products/${product.handle}` for the swipe-up CTA.
+   - **Placement & Hotspot:** Attaches the slide to the first existing Highlight Ring (`groups[0]?.id ?? null`) and pins an interactive product hotspot at `(50%, 65%)`.
+2. **Highlight Rings (`/app/stories/rings`):**
+   - Group slides into circular rings with gradient themes and placement zones (`home`, `collection`, `category`, `product`, `floating_bubble`, `global`). Create new rings via the **Create Highlight Ring** drawer.
+3. **Hotspot Canvas (`/app/stories/canvas`):**
+   - Publish custom 9:16 image/video slides, click anywhere on the 9:16 phone preview to set `(x_percent, y_percent)` coordinates, and pin Medusa products.
+4. **Stickers & Conversion Analytics (`/app/stories/stickers`, `/app/stories/analytics`):**
+   - Add interactive Poll, Countdown, Coupon, or Q&A stickers and track `impression` → `complete` → `hotspot_click` → `add_to_cart` funnel metrics.
+
+---
+
 ## Requirements
 
 | Dependency         | Version                      |

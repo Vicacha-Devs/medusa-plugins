@@ -24,7 +24,7 @@ interface QuoteOrderSectionProps {
 }
 
 export const QuoteOrderSection = ({ quote }: QuoteOrderSectionProps) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
   const q = quote as any
   const draftOrder = q.draft_order
   const draftOrderId = q.draft_order_id
@@ -34,7 +34,11 @@ export const QuoteOrderSection = ({ quote }: QuoteOrderSectionProps) => {
       return <span className="txt-compact-small text-ui-fg-subtle">—</span>
     const color = ORDER_STATUS_COLOR[status] ?? "grey"
     return (
-      <Badge size="2xsmall" color={color}>
+      <Badge
+        size="2xsmall"
+        color={color}
+        className="whitespace-nowrap shrink-0"
+      >
         {t(`quotes.orderStatus.${status}`, {
           defaultValue: status.replace(/_/g, " "),
         })}

@@ -1,6 +1,11 @@
 {
   "nav": {
-    "label": "Ürün Uzantıları Stüdyosu"
+    "label": "Ürün Uzantıları",
+    "attributes": "Özellikler",
+    "templates": "Şablonlar",
+    "features": "Rozetler",
+    "variantMedia": "Varyant Medyası",
+    "imageAlts": "Görsel Alt Metni"
   },
   "header": {
     "title": "Ürün Uzantıları, Zengin Medya ve Nitelikler Stüdyosu",
@@ -13,11 +18,11 @@
     "dismiss": "Kapat"
   },
   "tabs": {
-    "attributes": "1. Özel Nitelikler ({{count}})",
-    "templates": "2. İçerik ve Nitelik Şablonları ({{count}})",
-    "features": "3. Özellik Rozetleri ({{count}})",
-    "variantMedia": "4. Seçenek Varyant Medya Atayıcı",
-    "imageAlts": "5. Görsel Alt Metni CSV İçe/Dışa Aktar"
+    "attributes": "Özel Nitelikler ({{count}})",
+    "templates": "İçerik ve Nitelik Şablonları ({{count}})",
+    "features": "Özellik Rozetleri ({{count}})",
+    "variantMedia": "Seçenek Varyant Medya Atayıcı",
+    "imageAlts": "Görsel Alt Metni CSV İçe/Dışa Aktar"
   },
   "attributesTab": {
     "createTitle": "Tipli Nitelik Tanımı Oluştur",

@@ -13,7 +13,7 @@ import {
 import { RbacGuard } from "@vicacha-devs/medusa-shared-admin/admin"
 
 const CustomerGroupContent = ({ id }: { id: string }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
   const { handleSuccess } = useRouteModal()
 
   const { data: companyData, isLoading: companyLoading } = useCompany(id)
@@ -93,6 +93,7 @@ const CustomerGroupContent = ({ id }: { id: string }) => {
                           variant="danger"
                           isLoading={removeLoading}
                           onClick={() => handleRemove(group.id)}
+                          className="whitespace-nowrap shrink-0"
                         >
                           {t("companies.customerGroup.remove")}
                         </Button>
@@ -102,6 +103,7 @@ const CustomerGroupContent = ({ id }: { id: string }) => {
                           disabled={isOtherLinked || addLoading}
                           isLoading={addLoading}
                           onClick={() => handleAdd(group.id)}
+                          className="whitespace-nowrap shrink-0"
                         >
                           {t("companies.customerGroup.add")}
                         </Button>
@@ -123,7 +125,7 @@ const CustomerGroupContent = ({ id }: { id: string }) => {
 }
 
 const CompanyCustomerGroup = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
   const { id } = useParams()
   const { data } = useCompany(id ?? "", undefined, { enabled: !!id })
 

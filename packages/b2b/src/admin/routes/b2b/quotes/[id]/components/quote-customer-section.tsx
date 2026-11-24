@@ -12,7 +12,7 @@ interface QuoteCustomerSectionProps {
 }
 
 export const QuoteCustomerSection = ({ quote }: QuoteCustomerSectionProps) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
   const q = quote as any
   const customer = q.customer
 

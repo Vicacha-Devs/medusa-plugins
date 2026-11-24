@@ -30,7 +30,7 @@ export const CompanyCreateAdminTab = ({
   regionsLoading,
   groupsLoading,
 }: CompanyCreateAdminTabProps) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
 
   return (
     <div className="mx-auto flex w-full max-w-[720px] flex-col gap-y-8 p-8">
@@ -46,7 +46,7 @@ export const CompanyCreateAdminTab = ({
                 onValueChange={(v) => field.onChange(v.toLowerCase())}
                 disabled={regionsLoading}
               >
-                <Select.Trigger>
+                <Select.Trigger className="min-w-0 [&>span]:truncate">
                   <Select.Value
                     placeholder={t("companies.form.selectCurrency")}
                   />
@@ -80,7 +80,7 @@ export const CompanyCreateAdminTab = ({
                   value={field.value ?? ESpendingLimitResetFrequency.NEVER}
                   onValueChange={field.onChange}
                 >
-                  <Select.Trigger>
+                  <Select.Trigger className="min-w-0 [&>span]:truncate">
                     <Select.Value />
                   </Select.Trigger>
                   <Select.Content>
@@ -116,7 +116,7 @@ export const CompanyCreateAdminTab = ({
                     value={field.value ?? ""}
                     onValueChange={field.onChange}
                   >
-                    <Select.Trigger>
+                    <Select.Trigger className="min-w-0 [&>span]:truncate">
                       <Select.Value
                         placeholder={t(
                           "companies.customerGroup.selectPlaceholder"

@@ -39,12 +39,12 @@ const FeaturesRoutePage = () => {
 }
 
 const Breadcrumb = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("product-ext")
   return t("featuresTab.createTitle")
 }
 
 export const config = defineRouteConfig({
-  label: "featuresTab.createTitle",
+  label: "nav.features",
   translationNs: "product-ext",
   icon: CheckCircle,
 })

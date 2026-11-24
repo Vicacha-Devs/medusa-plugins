@@ -1,6 +1,11 @@
 {
   "nav": {
-    "label": "Estúdio de Extensões de Produto"
+    "label": "Extensões de Produto",
+    "attributes": "Atributos",
+    "templates": "Modelos",
+    "features": "Selos",
+    "variantMedia": "Mídia de Variantes",
+    "imageAlts": "Texto Alt Imagens"
   },
   "header": {
     "title": "Estúdio de Extensões de Produto, Mídia Rica e Atributos",
@@ -13,11 +18,11 @@
     "dismiss": "Dispensar"
   },
   "tabs": {
-    "attributes": "1. Atributos Personalizados ({{count}})",
-    "templates": "2. Modelos de Conteúdo e Atributos ({{count}})",
-    "features": "3. Selos de Recursos ({{count}})",
-    "variantMedia": "4. Atribuidor de Mídia por Opção de Variante",
-    "imageAlts": "5. Importação/Exportação CSV de Texto Alt"
+    "attributes": "Atributos Personalizados ({{count}})",
+    "templates": "Modelos de Conteúdo e Atributos ({{count}})",
+    "features": "Selos de Recursos ({{count}})",
+    "variantMedia": "Atribuidor de Mídia por Opção de Variante",
+    "imageAlts": "Importação/Exportação CSV de Texto Alt"
   },
   "attributesTab": {
     "createTitle": "Criar Definição de Atributo Tipado",

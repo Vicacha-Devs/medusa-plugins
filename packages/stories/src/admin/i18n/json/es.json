@@ -1,6 +1,10 @@
 {
   "nav": {
-    "label": "Estudio de Stories"
+    "label": "Estudio de Stories",
+    "rings": "Anillos Destacados",
+    "canvas": "Lienzo de Hotspots",
+    "stickers": "Stickers",
+    "analytics": "Analítica"
   },
   "header": {
     "title": "Estudio de Stories Comprables",
@@ -70,7 +74,7 @@
     "emptyCanvasPrompt": "Haz clic en cualquier lugar de esta pantalla 9:16 para posicionar tu pin de Producto",
     "pinCrosshair": "+ Pin ({{x}}%, {{y}}%)",
     "shopNowFallback": "Comprar Ahora",
-    "publishSlideTitle": "1. Publicar Diapositiva de Story 9:16",
+    "publishSlideTitle": "Publicar Diapositiva de Story 9:16",
     "slideTitleField": "Título de la Diapositiva",
     "slideTitlePlaceholder": "Nuevo Lanzamiento de Sudadera",
     "mediaUrlField": "URL de Imagen o Video 9:16 (https://)",
@@ -85,7 +89,7 @@
     "ringButton": "Anillo: {{title}}",
     "autoExpireLabel": "Expirar en 24h",
     "publishButton": "Publicar Diapositiva",
-    "pinHotspotTitle": "2. Fijar Punto de Producto Comprable en {{slide}}",
+    "pinHotspotTitle": "Fijar Punto de Producto Comprable en {{slide}}",
     "selectedSlideFallback": "Diapositiva Seleccionada",
     "productIdField": "ID de Producto Medusa",
     "productIdPlaceholder": "prod_01H...",
@@ -96,7 +100,7 @@
     "coordinatesHelp": "Coordenadas: X={{x}}%, Y={{y}}% (haz clic en el lienzo izquierdo para reposicionar)",
     "pinButton": "Fijar Punto de Producto",
     "removeHotspotButton": "Quitar",
-    "timelineTitle": "3. Línea de Tiempo de Diapositivas ({{count}})",
+    "timelineTitle": "Línea de Tiempo de Diapositivas ({{count}})",
     "activeBadge": "Activo",
     "pausedBadge": "Pausado",
     "hotspotsCountBadge": "{{count}} puntos",
@@ -135,10 +139,10 @@
   "analyticsTab": {
     "funnelTitle": "Embudo de Conversión de Stories Comprables",
     "funnelSubtitle": "Flujo completo de interacción en todas las diapositivas de stories 9:16 activas y archivadas.",
-    "stepImpressions": "1. Impresiones de Stories",
-    "stepCompletions": "2. Diapositivas Completadas",
-    "stepHotspotClicks": "3. Clics en Puntos de Producto",
-    "stepAddToCarts": "4. Añadidos al Carrito desde Stories",
+    "stepImpressions": "Impresiones de Stories",
+    "stepCompletions": "Diapositivas Completadas",
+    "stepHotspotClicks": "Clics en Puntos de Producto",
+    "stepAddToCarts": "Añadidos al Carrito desde Stories",
     "percentOfImpressions": "{{percent}}% de impresiones",
     "ringBreakdownTitle": "Desglose de Rendimiento por Anillo Destacado",
     "colHighlightRing": "Anillo Destacado",

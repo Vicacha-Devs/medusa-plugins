@@ -35,7 +35,7 @@ export const ManageItem = ({
   orderId,
   onItemChange,
 }: ManageItemProps) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
   const [showPriceForm, setShowPriceForm] = useState(false)
   const [localQty, setLocalQty] = useState(item.quantity)
   const [localPrice, setLocalPrice] = useState(item.unit_price)

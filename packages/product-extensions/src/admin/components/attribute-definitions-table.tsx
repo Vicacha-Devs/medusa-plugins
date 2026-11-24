@@ -35,7 +35,7 @@ export interface AttributeDefinitionsTableProps {
 export const AttributeDefinitionsTable: React.FC<
   AttributeDefinitionsTableProps
 > = ({ attributes, isBusy, onDelete, onCreateClick }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("product-ext")
 
   return (
     <Container className="divide-y p-0">
@@ -49,7 +49,12 @@ export const AttributeDefinitionsTable: React.FC<
           </Text>
         </div>
         {onCreateClick && (
-          <Button size="small" variant="secondary" onClick={onCreateClick}>
+          <Button
+            size="small"
+            variant="secondary"
+            onClick={onCreateClick}
+            className="whitespace-nowrap shrink-0"
+          >
             {t("attributesTab.createButton")}
           </Button>
         )}
@@ -87,13 +92,21 @@ export const AttributeDefinitionsTable: React.FC<
                   {attr.key}
                 </Table.Cell>
                 <Table.Cell>
-                  <Badge size="small" color="blue">
+                  <Badge
+                    size="small"
+                    color="blue"
+                    className="whitespace-nowrap shrink-0"
+                  >
                     {attr.type}
                   </Badge>
                 </Table.Cell>
                 <Table.Cell>
                   {attr.unit_family ? (
-                    <Badge size="small" color="purple">
+                    <Badge
+                      size="small"
+                      color="purple"
+                      className="whitespace-nowrap shrink-0"
+                    >
                       {attr.unit_family} ({attr.default_unit ?? "SI"})
                     </Badge>
                   ) : (
@@ -108,6 +121,7 @@ export const AttributeDefinitionsTable: React.FC<
                     size="small"
                     disabled={isBusy}
                     onClick={() => onDelete(attr.id)}
+                    className="whitespace-nowrap shrink-0"
                   >
                     {t("attributesTab.deleteButton")}
                   </Button>
@@ -142,7 +156,7 @@ export const AttributeDefinitionsTab: React.FC<
   onDelete,
   onOpenCreateDrawer,
 }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("product-ext")
 
   return (
     <div className="flex flex-col gap-y-4">
@@ -154,6 +168,7 @@ export const AttributeDefinitionsTab: React.FC<
             size="small"
             isLoading={isBusy}
             onClick={onCreate}
+            className="whitespace-nowrap shrink-0"
           >
             {t("attributesTab.createButton")}
           </Button>
@@ -195,7 +210,10 @@ export const AttributeDefinitionsTab: React.FC<
                 onFormChange((p) => ({ ...p, type: v as AttributeValueType }))
               }
             >
-              <Select.Trigger id="attr-type-select">
+              <Select.Trigger
+                id="attr-type-select"
+                className="min-w-0 [&>span]:truncate"
+              >
                 <Select.Value />
               </Select.Trigger>
               <Select.Content>
@@ -220,7 +238,10 @@ export const AttributeDefinitionsTab: React.FC<
                 }))
               }
             >
-              <Select.Trigger id="attr-unit-family-select">
+              <Select.Trigger
+                id="attr-unit-family-select"
+                className="min-w-0 [&>span]:truncate"
+              >
                 <Select.Value />
               </Select.Trigger>
               <Select.Content>
@@ -246,7 +267,10 @@ export const AttributeDefinitionsTab: React.FC<
                 }))
               }
             >
-              <Select.Trigger id="attr-default-unit-select">
+              <Select.Trigger
+                id="attr-default-unit-select"
+                className="min-w-0 [&>span]:truncate"
+              >
                 <Select.Value />
               </Select.Trigger>
               <Select.Content>

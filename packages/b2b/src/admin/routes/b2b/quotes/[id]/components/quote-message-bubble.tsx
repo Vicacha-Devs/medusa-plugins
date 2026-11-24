@@ -52,7 +52,7 @@ export const MessageBubble = ({
   draftOrderId,
   customerFallback,
 }: MessageBubbleProps) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
   const isAdmin = !!message.admin_id
   const m = message as any
 

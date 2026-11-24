@@ -24,7 +24,7 @@ export const StudioHeader = ({
   analytics,
   onRefresh,
 }: StudioHeaderProps) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("stories")
   const conversionRate = analytics?.overall_conversion_rate_pct ?? 0
 
   return (
@@ -33,13 +33,24 @@ export const StudioHeader = ({
         <div>
           <div className="flex flex-wrap items-center gap-3">
             <Heading level="h1">{t("header.title")}</Heading>
-            <Badge size="xsmall" color="purple">
+            <Badge
+              size="xsmall"
+              color="purple"
+              className="whitespace-nowrap shrink-0"
+            >
               {t("header.ringsBadge", { count: groupsCount })}
             </Badge>
-            <Badge size="xsmall" color="blue">
+            <Badge
+              size="xsmall"
+              color="blue"
+              className="whitespace-nowrap shrink-0"
+            >
               {t("header.slidesBadge", { count: slidesCount })}
             </Badge>
-            <StatusBadge color={conversionRate > 0 ? "green" : "grey"}>
+            <StatusBadge
+              color={conversionRate > 0 ? "green" : "grey"}
+              className="whitespace-nowrap shrink-0"
+            >
               {t("header.conversionBadge", { rate: conversionRate })}
             </StatusBadge>
           </div>
@@ -48,7 +59,12 @@ export const StudioHeader = ({
           </Text>
         </div>
         <div className="flex items-center gap-x-2">
-          <Button variant="secondary" size="small" onClick={onRefresh}>
+          <Button
+            variant="secondary"
+            size="small"
+            onClick={onRefresh}
+            className="whitespace-nowrap shrink-0"
+          >
             <ArrowPath />
             {t("header.refresh")}
           </Button>

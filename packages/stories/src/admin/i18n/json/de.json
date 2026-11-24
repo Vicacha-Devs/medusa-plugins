@@ -1,6 +1,10 @@
 {
   "nav": {
-    "label": "Stories-Studio"
+    "label": "Stories-Studio",
+    "rings": "Highlight-Ringe",
+    "canvas": "Hotspot-Canvas",
+    "stickers": "Sticker",
+    "analytics": "Analysen"
   },
   "header": {
     "title": "Shoppable Stories Studio",
@@ -70,7 +74,7 @@
     "emptyCanvasPrompt": "Klicken Sie auf eine beliebige Stelle dieses 9:16-Bildschirms, um Ihren Produkt-Hotspot-Pin zu positionieren",
     "pinCrosshair": "+ Pin ({{x}}%, {{y}}%)",
     "shopNowFallback": "Jetzt shoppen",
-    "publishSlideTitle": "1. 9:16-Story-Slide veröffentlichen",
+    "publishSlideTitle": "9:16-Story-Slide veröffentlichen",
     "slideTitleField": "Slide-Titel",
     "slideTitlePlaceholder": "Neuer Hoodie-Drop",
     "mediaUrlField": "9:16 Bild- oder Video-URL (https://)",
@@ -85,7 +89,7 @@
     "ringButton": "Ring: {{title}}",
     "autoExpireLabel": "Nach 24h automatisch ablaufen",
     "publishButton": "Slide veröffentlichen",
-    "pinHotspotTitle": "2. Shoppable Produkt-Hotspot anheften an {{slide}}",
+    "pinHotspotTitle": "Shoppable Produkt-Hotspot anheften an {{slide}}",
     "selectedSlideFallback": "Ausgewähltes Slide",
     "productIdField": "Medusa Produkt-ID",
     "productIdPlaceholder": "prod_01H...",
@@ -96,7 +100,7 @@
     "coordinatesHelp": "Koordinaten: X={{x}}%, Y={{y}}% (links auf das Telefon-Canvas klicken, um neu zu positionieren)",
     "pinButton": "Produkt-Hotspot anheften",
     "removeHotspotButton": "Entfernen",
-    "timelineTitle": "3. Story-Slides-Zeitachse ({{count}})",
+    "timelineTitle": "Story-Slides-Zeitachse ({{count}})",
     "activeBadge": "Aktiv",
     "pausedBadge": "Pausiert",
     "hotspotsCountBadge": "{{count}} Hotspots",
@@ -135,10 +139,10 @@
   "analyticsTab": {
     "funnelTitle": "Shoppable Story Conversion-Funnel",
     "funnelSubtitle": "End-to-End-Engagement-Pipeline über alle aktiven und archivierten 9:16-Story-Slides.",
-    "stepImpressions": "1. Story-Impressionen",
-    "stepCompletions": "2. Vollständige Slide-Ansichten",
-    "stepHotspotClicks": "3. Produkt-Hotspot-Klicks",
-    "stepAddToCarts": "4. Story-Warenkorb-Käufe",
+    "stepImpressions": "Story-Impressionen",
+    "stepCompletions": "Vollständige Slide-Ansichten",
+    "stepHotspotClicks": "Produkt-Hotspot-Klicks",
+    "stepAddToCarts": "Story-Warenkorb-Käufe",
     "percentOfImpressions": "{{percent}}% der Impressionen",
     "ringBreakdownTitle": "Leistungsübersicht nach Highlight-Ring",
     "colHighlightRing": "Highlight-Ring",

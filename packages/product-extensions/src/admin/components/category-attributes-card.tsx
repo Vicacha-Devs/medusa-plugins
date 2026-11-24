@@ -17,7 +17,7 @@ export const CategoryAttributesCard: React.FC<CategoryAttributesCardProps> = ({
   isLoading,
   onRefresh,
 }) => {
-  const { t, i18n } = useTranslation()
+  const { t, i18n } = useTranslation("product-ext")
   const isRtl = (i18n.resolvedLanguage || i18n.language || "").startsWith("ar")
 
   return (
@@ -37,6 +37,7 @@ export const CategoryAttributesCard: React.FC<CategoryAttributesCardProps> = ({
           size="small"
           isLoading={isLoading}
           onClick={onRefresh}
+          className="whitespace-nowrap shrink-0"
         >
           {t("widget.refreshButton")}
         </Button>
@@ -48,7 +49,11 @@ export const CategoryAttributesCard: React.FC<CategoryAttributesCardProps> = ({
             key={attr.id}
             title={attr.label}
             value={
-              <Badge size="small" color={attr.is_global ? "purple" : "blue"}>
+              <Badge
+                size="small"
+                color={attr.is_global ? "purple" : "blue"}
+                className="whitespace-nowrap shrink-0"
+              >
                 {attr.key} · {attr.type}
               </Badge>
             }

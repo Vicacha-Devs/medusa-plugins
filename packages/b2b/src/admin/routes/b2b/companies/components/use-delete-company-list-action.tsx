@@ -10,7 +10,7 @@ export const useDeleteCompanyListAction = ({
 }: {
   company: QueryCompany
 }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
   const prompt = usePrompt()
   const navigate = useNavigate()
   const { mutateAsync } = useDeleteCompany(company.id)

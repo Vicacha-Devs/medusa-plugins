@@ -30,7 +30,7 @@ export const CanvasSlideBuilderSection = ({
   isSavingSlide,
   onCreateSlide,
 }: CanvasSlideBuilderSectionProps) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("stories")
 
   return (
     <Container className="divide-y p-0">
@@ -39,6 +39,7 @@ export const CanvasSlideBuilderSection = ({
         <Button
           size="small"
           variant="primary"
+          className="shrink-0 whitespace-nowrap"
           isLoading={isSavingSlide}
           onClick={onCreateSlide}
         >
@@ -119,7 +120,7 @@ export const CanvasSlideBuilderSection = ({
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 px-6 py-4 items-center">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 px-6 py-4 items-end">
         <div className="flex flex-col gap-y-1.5">
           <Label>
             {t("canvasTab.imageButton")} / {t("canvasTab.videoButton")}
@@ -133,7 +134,7 @@ export const CanvasSlideBuilderSection = ({
               }))
             }
           >
-            <Select.Trigger>
+            <Select.Trigger className="min-w-0 [&>span]:truncate">
               <Select.Value />
             </Select.Trigger>
             <Select.Content>
@@ -155,7 +156,7 @@ export const CanvasSlideBuilderSection = ({
               onSlideFormChange((prev) => ({ ...prev, group_id: val }))
             }
           >
-            <Select.Trigger>
+            <Select.Trigger className="min-w-0 [&>span]:truncate">
               <Select.Value placeholder={t("analyticsTab.colHighlightRing")} />
             </Select.Trigger>
             <Select.Content>
@@ -168,7 +169,7 @@ export const CanvasSlideBuilderSection = ({
           </Select>
         </div>
 
-        <div className="flex items-center justify-between pt-4">
+        <div className="flex items-center justify-between h-8">
           <Label htmlFor="slide-24h">{t("canvasTab.autoExpireLabel")}</Label>
           <Switch
             id="slide-24h"

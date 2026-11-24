@@ -26,7 +26,7 @@ export const ManageItemsTable = ({
   onSelectionChange,
   prefix,
 }: ManageItemsTableProps) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation("b2b")
   const [rowSelection, setRowSelection] = useState<DataTableRowSelectionState>(
     {}
   )

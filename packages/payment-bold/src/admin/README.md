@@ -11,19 +11,19 @@ admin/
 │       └── bold-payment-link-section.tsx # On-demand Payment Link generator & copy action
 ├── hooks/
 │   ├── use-bold-widget-state.tsx         # Aggregates balance state, terminal list, and action hooks
-│   ├── bold-order-balance.ts             # getBoldOrderBalanceInfo() for full & partial payment balances
 │   ├── use-bold-pos-push.ts              # Mutation hook for POST /admin/bold/pos-push
 │   └── use-bold-payment-link.ts          # Mutation hook for POST /admin/bold/payment-link
 ├── i18n/                                 # English (en) & Spanish (es) translations
 └── lib/
-    └── sdk.ts                            # Medusa Admin SDK client instance
+    ├── bold-order-balance.ts         # getBoldOrderBalanceInfo() (kept outside widgets/: the admin vite plugin only enables the TS parser for .tsx there)
+    └── sdk.ts                        # Medusa Admin SDK client instance
 ```
 
 ---
 
 ## Features
 
-1. **Partial Payment & Remaining Balance Support (`bold-order-balance.ts`)**:
+1. **Partial Payment & Remaining Balance Support (`lib/bold-order-balance.ts`)**:
    - Remains active for both unpaid and **partially paid** orders (`partially_paid`, `partially_captured`, `partially_authorized`, or `summary.pending_difference > 0`).
    - Displays a **Partial Payment Balance** banner showing how much has already been paid (`paidAmount`) and the exact remaining balance (`payableAmount`) that will be charged.
    - Automatically disables actions only when the order is `canceled` or `isFullyPaid` (`payableAmount === 0`).
