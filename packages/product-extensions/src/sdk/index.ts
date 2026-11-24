@@ -1,4 +1,10 @@
-import { MedusaError } from "@medusajs/framework/utils"
+/** Browser-safe error (SDK is bundled into the admin; no server-only imports). */
+class ProductExtApiError extends Error {
+  constructor(message: string) {
+    super(message)
+    this.name = "ProductExtApiError"
+  }
+}
 import type {
   AttributeDefinitionDTO,
   AttributeFilterCriterion,
@@ -86,7 +92,7 @@ export function createProductExtSdk(config: ProductExtSdkConfig = {}) {
       } catch {
         // Fallback to status message
       }
-      throw new MedusaError(MedusaError.Types.UNEXPECTED_STATE, message)
+      throw new ProductExtApiError(message)
     }
 
     return (await res.json()) as T
