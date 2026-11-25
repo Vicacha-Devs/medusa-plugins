@@ -11,6 +11,7 @@ import {
 import { useTranslation } from "react-i18next"
 import type { StoryGroupDTO, StoryMediaType } from "../../modules/story/types"
 import type { NewSlideFormState } from "../hooks/use-stories-studio"
+import { MediaPickerButton } from "./media-picker-button"
 import { CanvasTimelineSection } from "./slide-timeline-section"
 
 export { CanvasTimelineSection }
@@ -66,17 +67,30 @@ export const CanvasSlideBuilderSection = ({
           <Label htmlFor="slide-media-url">
             {t("canvasTab.mediaUrlField")}
           </Label>
-          <Input
-            id="slide-media-url"
-            placeholder={t("canvasTab.mediaUrlPlaceholder")}
-            value={slideForm.media_url}
-            onChange={(e) =>
-              onSlideFormChange((prev) => ({
-                ...prev,
-                media_url: e.target.value,
-              }))
-            }
-          />
+          <div className="flex gap-2">
+            <Input
+              id="slide-media-url"
+              placeholder={t("canvasTab.mediaUrlPlaceholder")}
+              value={slideForm.media_url}
+              onChange={(e) =>
+                onSlideFormChange((prev) => ({
+                  ...prev,
+                  media_url: e.target.value,
+                }))
+              }
+            />
+            <MediaPickerButton
+              accept="image/*,video/mp4,video/webm,video/quicktime,video/*"
+              folder="stories"
+              role="story_slide"
+              onSelect={(url) =>
+                onSlideFormChange((prev) => ({
+                  ...prev,
+                  media_url: url,
+                }))
+              }
+            />
+          </div>
         </div>
         <div className="flex flex-col gap-y-1.5">
           <Label htmlFor="slide-caption">{t("canvasTab.captionField")}</Label>

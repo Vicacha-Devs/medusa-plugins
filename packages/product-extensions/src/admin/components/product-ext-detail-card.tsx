@@ -10,6 +10,7 @@ import {
   Text,
 } from "@medusajs/ui"
 import { useTranslation } from "react-i18next"
+import { MediaPickerButton } from "./media-picker-field"
 import type {
   ProductExtensionDTO,
   ResolvedProductAttributeEntry,
@@ -102,23 +103,44 @@ export const ProductExtDetailCard: React.FC<ProductExtDetailCardProps> = ({
           <Label size="small" htmlFor="product-ext-videos-csv">
             {t("widget.videosCsvField")}
           </Label>
-          <Input
-            id="product-ext-videos-csv"
-            placeholder={t("widget.videosCsvPlaceholder")}
-            value={videosCsvInput}
-            onChange={(e) => onVideosCsvChange(e.target.value)}
-          />
+          <div className="flex gap-2">
+            <Input
+              id="product-ext-videos-csv"
+              placeholder={t("widget.videosCsvPlaceholder")}
+              value={videosCsvInput}
+              onChange={(e) => onVideosCsvChange(e.target.value)}
+            />
+            <MediaPickerButton
+              accept="video/mp4,video/webm,video/quicktime,video/*"
+              folder="products/videos"
+              role="product_video"
+              onSelect={(url) => {
+                const next = videosCsvInput.trim()
+                  ? `${videosCsvInput.trim()}, ${url}`
+                  : url
+                onVideosCsvChange(next)
+              }}
+            />
+          </div>
         </div>
         <div className="flex flex-col gap-1.5">
           <Label size="small" htmlFor="product-ext-glb-url">
             {t("widget.glbUrlField")}
           </Label>
-          <Input
-            id="product-ext-glb-url"
-            placeholder={t("widget.glbUrlPlaceholder")}
-            value={glbUrlInput}
-            onChange={(e) => onGlbUrlChange(e.target.value)}
-          />
+          <div className="flex gap-2">
+            <Input
+              id="product-ext-glb-url"
+              placeholder={t("widget.glbUrlPlaceholder")}
+              value={glbUrlInput}
+              onChange={(e) => onGlbUrlChange(e.target.value)}
+            />
+            <MediaPickerButton
+              accept=".glb,.gltf,model/gltf-binary,model/gltf+json"
+              folder="products/models-3d"
+              role="product_3d_model"
+              onSelect={(url) => onGlbUrlChange(url)}
+            />
+          </div>
         </div>
       </div>
 
