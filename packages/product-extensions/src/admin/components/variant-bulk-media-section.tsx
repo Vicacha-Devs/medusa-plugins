@@ -3,6 +3,7 @@ import { SectionRow } from "@medusajs/dashboard/components"
 import { Button, Container, Heading, Input, Label, Text } from "@medusajs/ui"
 import { useTranslation } from "react-i18next"
 import type { BulkMediaFormState } from "../hooks/use-product-ext-studio"
+import { MediaPickerButton } from "./media-picker-field"
 
 export interface VariantBulkMediaTabProps {
   form: BulkMediaFormState
@@ -97,16 +98,26 @@ export const VariantBulkMediaSection: React.FC<VariantBulkMediaTabProps> = ({
         </div>
         <div>
           <Label size="small">{t("variantMediaTab.thumbnailField")}</Label>
-          <Input
-            placeholder={t("variantMediaTab.thumbnailPlaceholder")}
-            value={form.thumbnail}
-            onChange={(e) =>
-              onFormChange((prev) => ({
-                ...prev,
-                thumbnail: e.target.value,
-              }))
-            }
-          />
+          <div className="flex gap-2">
+            <Input
+              placeholder={t("variantMediaTab.thumbnailPlaceholder")}
+              value={form.thumbnail}
+              onChange={(e) =>
+                onFormChange((prev) => ({
+                  ...prev,
+                  thumbnail: e.target.value,
+                }))
+              }
+            />
+            <MediaPickerButton
+              accept="image/*"
+              folder="variants/thumbnails"
+              role="variant_thumbnail"
+              onSelect={(url) =>
+                onFormChange((prev) => ({ ...prev, thumbnail: url }))
+              }
+            />
+          </div>
         </div>
         <div>
           <Label size="small">{t("variantMediaTab.swatchColorField")}</Label>
@@ -123,29 +134,59 @@ export const VariantBulkMediaSection: React.FC<VariantBulkMediaTabProps> = ({
         </div>
         <div className="md:col-span-2">
           <Label size="small">{t("variantMediaTab.imagesCsvField")}</Label>
-          <Input
-            placeholder={t("variantMediaTab.imagesCsvPlaceholder")}
-            value={form.images_csv}
-            onChange={(e) =>
-              onFormChange((prev) => ({
-                ...prev,
-                images_csv: e.target.value,
-              }))
-            }
-          />
+          <div className="flex gap-2">
+            <Input
+              placeholder={t("variantMediaTab.imagesCsvPlaceholder")}
+              value={form.images_csv}
+              onChange={(e) =>
+                onFormChange((prev) => ({
+                  ...prev,
+                  images_csv: e.target.value,
+                }))
+              }
+            />
+            <MediaPickerButton
+              accept="image/*"
+              folder="variants/gallery"
+              role="variant_image"
+              onSelect={(url) =>
+                onFormChange((prev) => ({
+                  ...prev,
+                  images_csv: prev.images_csv.trim()
+                    ? `${prev.images_csv.trim()}, ${url}`
+                    : url,
+                }))
+              }
+            />
+          </div>
         </div>
         <div>
           <Label size="small">{t("variantMediaTab.videosCsvField")}</Label>
-          <Input
-            placeholder={t("variantMediaTab.videosCsvPlaceholder")}
-            value={form.videos_csv}
-            onChange={(e) =>
-              onFormChange((prev) => ({
-                ...prev,
-                videos_csv: e.target.value,
-              }))
-            }
-          />
+          <div className="flex gap-2">
+            <Input
+              placeholder={t("variantMediaTab.videosCsvPlaceholder")}
+              value={form.videos_csv}
+              onChange={(e) =>
+                onFormChange((prev) => ({
+                  ...prev,
+                  videos_csv: e.target.value,
+                }))
+              }
+            />
+            <MediaPickerButton
+              accept="video/mp4,video/webm,video/quicktime,video/*"
+              folder="variants/videos"
+              role="variant_video"
+              onSelect={(url) =>
+                onFormChange((prev) => ({
+                  ...prev,
+                  videos_csv: prev.videos_csv.trim()
+                    ? `${prev.videos_csv.trim()}, ${url}`
+                    : url,
+                }))
+              }
+            />
+          </div>
         </div>
       </div>
     </Container>
