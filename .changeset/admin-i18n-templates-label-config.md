@@ -8,7 +8,6 @@
 "@vicacha-devs/medusa-payment-bold": patch
 "@vicacha-devs/medusa-plugin-product-extensions": patch
 "@vicacha-devs/medusa-plugin-stories": patch
-"@vicacha-devs/medusa-shared-admin": patch
 ---
 
 Admin i18n coverage across plugins, config-defined barcode label templates (with custom HTML/ZPL renderers), config-defined product attribute templates, a notifications create-template modal and template detail route, media picker i18n, and filter-group fixes.
