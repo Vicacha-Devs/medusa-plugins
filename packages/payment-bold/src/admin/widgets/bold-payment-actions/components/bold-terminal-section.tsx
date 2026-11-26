@@ -37,11 +37,15 @@ export const BoldTerminalSection = ({
           disabled={isApproved || isPushingToPos}
         >
           <Select.Trigger>
-            <Select.Value placeholder="Select Model" />
+            <Select.Value placeholder={t("bold.admin.widget.select_model")} />
           </Select.Trigger>
           <Select.Content>
-            <Select.Item value="SMART_POS">Smart POS</Select.Item>
-            <Select.Item value="NEO">Bold Neo</Select.Item>
+            <Select.Item value="SMART_POS">
+              {t("bold.admin.widget.model_smart_pos")}
+            </Select.Item>
+            <Select.Item value="NEO">
+              {t("bold.admin.widget.model_neo")}
+            </Select.Item>
           </Select.Content>
         </Select>
 

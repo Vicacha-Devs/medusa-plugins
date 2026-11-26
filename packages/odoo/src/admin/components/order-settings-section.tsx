@@ -32,7 +32,9 @@ export const OrderSyncSettingsSection = ({
         <StatusBadge
           color={orderSettings?.orderSync !== false ? "green" : "grey"}
         >
-          {orderSettings?.orderSync !== false ? "ON" : "OFF"}
+          {orderSettings?.orderSync !== false
+            ? t("settingsTab.statusOn")
+            : t("settingsTab.statusOff")}
         </StatusBadge>
       </div>
       <SectionRow

@@ -68,7 +68,9 @@
     "registerPayment": "Registra pagamento sulla fattura",
     "reconciliationTitle": "Riconciliazione scostamenti",
     "enableScheduledReconciliation": "Abilita riconciliazione programmata degli scostamenti",
-    "activeStrategy": "Strategia attiva: {{strategy}}"
+    "activeStrategy": "Strategia attiva: {{strategy}}",
+    "statusOn": "ATTIVO",
+    "statusOff": "DISATTIVO"
   },
   "logsTab": {
     "failuresTitle": "Errori di sincronizzazione non risolti ({{count}})",
@@ -83,13 +85,18 @@
     "noConflicts": "Nessun conflitto di inventario aperto.",
     "recentRunsTitle": "Esecuzioni recenti ({{logsCount}}) e mappature ({{mappingsCount}})",
     "durationLabel": "Durata: {{durationMs}}ms",
-    "notAvailable": "N/D"
+    "notAvailable": "N/D",
+    "colStatus": "Stato"
   },
   "barcodeTab": {
     "title": "Ricerca codice a barre POS e magazzino",
     "barcodeLabel": "Codice a barre / EAN13 / SKU",
     "barcodePlaceholder": "Scansiona o inserisci codice a barre / SKU...",
     "contextButton": "Contesto: {{context}}",
+    "contextPos": "POS",
+    "contextWarehouse": "MAGAZZINO",
+    "contextReceiving": "RICEVIMENTO",
+    "contextStocktake": "INVENTARIO",
     "resolveButton": "Risolvi",
     "resultHeader": "Risultato: {{status}} ({{latencyMs}}ms tramite {{source}})",
     "found": "Trovato",
@@ -99,7 +106,10 @@
     "posTransactionsTitle": "Transazioni POS offline ({{count}})",
     "posHeader": "POS #{{externalId}} ({{currency}} {{total}})",
     "posOrders": "Ordine Medusa: {{medusaOrder}} | Ordine Odoo: {{odooOrder}}",
-    "pending": "In attesa"
+    "pending": "In attesa",
+    "colPos": "POS",
+    "colOrders": "Ordini",
+    "colStatus": "Stato"
   },
   "widget": {
     "orderTitle": "Stato ordine Odoo ERP",
@@ -121,5 +131,9 @@
     "syncError": "Sincronizzazione non riuscita",
     "syncOrderError": "Impossibile sincronizzare l'ordine su Odoo",
     "syncProductError": "Impossibile sincronizzare il prodotto con Odoo"
+  },
+  "rbac": {
+    "accessDeniedTitle": "Accesso negato",
+    "accessDeniedDescription": "Non disponi dell'autorizzazione per visualizzare questa sezione. ({{permission}})"
   }
 }

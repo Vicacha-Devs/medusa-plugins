@@ -45,7 +45,28 @@
     "segmentsBadge": "Segmenty: {{segments}} ({{chars}} znaków)",
     "waButtonPrefix": "[Przycisk WA] {{title}}",
     "tgInlinePrefix": "[Przycisk TG] {{text}}",
-    "emptySelection": "Wybierz szablon po lewej stronie, aby sprawdzić drzewo bloków, sklonować szablon systemowy lub wyświetlić podgląd."
+    "emptySelection": "Wybierz szablon po lewej stronie, aby sprawdzić drzewo bloków, sklonować szablon systemowy lub wyświetlić podgląd.",
+    "createButton": "Utwórz szablon",
+    "createTitle": "Utwórz szablon powiadomienia",
+    "createSubtitle": "Utwórz edytowalny szablon w bazie danych dla dowolnego kanału.",
+    "labelField": "Etykieta",
+    "nameField": "Klucz szablonu (Slug)",
+    "localeLabel": "Język",
+    "modeField": "Tryb",
+    "descriptionField": "Opis",
+    "cancelButton": "Anuluj",
+    "backToList": "Powrót do szablonów",
+    "detailsTitle": "Szczegóły szablonu",
+    "sourceLabel": "Źródło",
+    "deleteButton": "Usuń szablon",
+    "deleteConfirmTitle": "Usunąć szablon?",
+    "deleteConfirmDescription": "Spowoduje to trwałe usunięcie '{{label}}' oraz jego bloków.",
+    "notFound": "Nie znaleziono szablonu.",
+    "labelPlaceholder": "Kontynuacja zamówienia",
+    "namePlaceholder": "order-follow-up",
+    "subjectPlaceholder": "Aktualizacja zamówienia #{{data.display_id}}",
+    "descriptionPlaceholder": "Opcjonalny opis do użytku wewnętrznego",
+    "rawContentPlaceholder": "Witaj {{data.first_name}}, ..."
   },
   "mappings": {
     "title": "Utwórz Mapowanie Zdarzenie → Kanał → Szablon",
@@ -97,7 +118,12 @@
     "driverMsg91": "MSG91 Flow API",
     "driverSmsApi": "SMSAPI",
     "driverDummy": "Piaskownica OTP (Testy)",
-    "saveSmsButton": "Zapisz Sterownik SMS"
+    "saveSmsButton": "Zapisz Sterownik SMS",
+    "emailSmtpTitle": "E-mail (SMTP)",
+    "emailSmtpSubtitle": "Skonfigurowano za pomocą zmiennych środowiskowych MAILER_SMTP_HOST / MAILER_SMTP_USER.",
+    "emailConfiguredBadge": "Skonfigurowano",
+    "emailEnvNotSetBadge": "Brak zmiennych",
+    "driverLabel": "Sterownik"
   },
   "logs": {
     "title": "Zanonimizowany Rejestr Dostarczeń (Ukryte PII i Idempotentność)",
@@ -158,6 +184,15 @@
     "verifiedChannelSuccess": "Zweryfikowano kanał '{{channel}}' i wysłano wiadomość testową.",
     "savedChannelSuccess": "Zapisano konfigurację kanału '{{channel}}'.",
     "channelActionError": "Błąd akcji {{action}} dla kanału {{channel}}",
-    "broadcastSentSuccess": "Kampania masowa została wysłana do subskrybentów."
+    "broadcastSentSuccess": "Kampania masowa została wysłana do subskrybentów.",
+    "createdTemplateSuccess": "Utworzono szablon '{{label}}'.",
+    "createTemplateError": "Nie udało się utworzyć szablonu.",
+    "deletedTemplateSuccess": "Usunięto szablon.",
+    "deleteTemplateError": "Nie udało się usunąć szablonu."
+  },
+  "channelOptions": {
+    "email": "E-mail",
+    "emailUpper": "E-MAIL",
+    "dummySandboxUpper": "PIASKOWNICA TESTOWA"
   }
 }

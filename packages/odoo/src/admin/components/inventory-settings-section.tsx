@@ -43,7 +43,9 @@ export const InventorySyncSettingsSection = ({
         <StatusBadge
           color={inventorySettings?.enableStock !== false ? "green" : "grey"}
         >
-          {inventorySettings?.enableStock !== false ? "ON" : "OFF"}
+          {inventorySettings?.enableStock !== false
+            ? t("settingsTab.statusOn")
+            : t("settingsTab.statusOff")}
         </StatusBadge>
       </div>
       <SectionRow

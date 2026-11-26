@@ -3,6 +3,7 @@ import { MedusaError } from "@medusajs/framework/utils"
 import type { BarcodeOpsContext } from "./context"
 import type {
   BarcodeSymbology,
+  CustomLabelTemplateConfig,
   LabelPresetId,
   LabelPrintItem,
   LabelPrintOutput,
@@ -13,19 +14,56 @@ import {
   renderPrintableLabels,
 } from "../utils/label-printer"
 
+function normalizeConfigLabelTemplate(
+  cfg: CustomLabelTemplateConfig
+): LabelTemplateSpec {
+  const base = BUILTIN_LABEL_TEMPLATES.thermal_50x25
+  return {
+    id: cfg.id,
+    name: cfg.name,
+    preset_id: cfg.preset_id || "custom",
+    layout_type: cfg.layout_type || base.layout_type,
+    width_mm: cfg.width_mm ?? base.width_mm,
+    height_mm: cfg.height_mm ?? base.height_mm,
+    columns: cfg.columns ?? base.columns,
+    rows: cfg.rows ?? base.rows,
+    margin_top_mm: cfg.margin_top_mm ?? base.margin_top_mm,
+    margin_left_mm: cfg.margin_left_mm ?? base.margin_left_mm,
+    gap_x_mm: cfg.gap_x_mm ?? base.gap_x_mm,
+    gap_y_mm: cfg.gap_y_mm ?? base.gap_y_mm,
+    symbology: cfg.symbology || base.symbology,
+    show_title: cfg.show_title ?? base.show_title,
+    show_variant_title: cfg.show_variant_title ?? base.show_variant_title,
+    show_sku: cfg.show_sku ?? base.show_sku,
+    show_price: cfg.show_price ?? base.show_price,
+    show_compare_at_price:
+      cfg.show_compare_at_price ?? base.show_compare_at_price,
+    show_brand: cfg.show_brand ?? base.show_brand,
+    show_qr: cfg.show_qr ?? base.show_qr,
+    custom_header: cfg.custom_header !== undefined ? cfg.custom_header : null,
+    custom_footer: cfg.custom_footer !== undefined ? cfg.custom_footer : null,
+    dpi: cfg.dpi || base.dpi,
+    is_default: Boolean(cfg.is_default),
+  }
+}
+
 /**
- * Lists all built-in + custom label templates.
+ * Lists all built-in + config + DB custom label templates.
  */
 export async function listAllLabelTemplates(
   ctx: BarcodeOpsContext
 ): Promise<LabelTemplateSpec[]> {
   const builtinList = Object.values(BUILTIN_LABEL_TEMPLATES)
+  const configList = (ctx.options.customLabelTemplates || []).map(
+    normalizeConfigLabelTemplate
+  )
+  let dbList: LabelTemplateSpec[] = []
   try {
     const customRows = await ctx.svc.listBarcodeLabelTemplates(
       {},
       { take: 100 }
     )
-    const customMapped: LabelTemplateSpec[] = customRows.map((row) => ({
+    dbList = customRows.map((row) => ({
       id: row.id,
       name: row.name,
       preset_id: (row.preset_id as LabelPresetId) || "custom",
@@ -51,10 +89,15 @@ export async function listAllLabelTemplates(
       dpi: (Number(row.dpi) === 300 ? 300 : 203) as 203 | 300,
       is_default: Boolean(row.is_default),
     }))
-    return [...builtinList, ...customMapped]
   } catch {
-    return builtinList
+    dbList = []
   }
+
+  const byId = new Map<string, LabelTemplateSpec>()
+  for (const tpl of builtinList) byId.set(tpl.id, tpl)
+  for (const tpl of configList) byId.set(tpl.id, tpl)
+  for (const tpl of dbList) byId.set(tpl.id, tpl)
+  return Array.from(byId.values())
 }
 
 /**
@@ -86,5 +129,15 @@ export async function renderLabels(
     ...input.template_override,
   }
 
-  return renderPrintableLabels(input.items, mergedTemplate)
+  const output = renderPrintableLabels(input.items, mergedTemplate)
+  const configMatch = (ctx.options.customLabelTemplates || []).find(
+    (c) => c.id === baseTemplate.id
+  )
+  if (configMatch?.renderHtml) {
+    output.html = configMatch.renderHtml(input.items, mergedTemplate)
+  }
+  if (configMatch?.renderZpl) {
+    output.zpl = configMatch.renderZpl(input.items, mergedTemplate)
+  }
+  return output
 }

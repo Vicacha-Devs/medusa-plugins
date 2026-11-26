@@ -45,7 +45,28 @@
     "segmentsBadge": "Segments: {{segments}} ({{chars}} chars)",
     "waButtonPrefix": "[WA Button] {{title}}",
     "tgInlinePrefix": "[TG Inline] {{text}}",
-    "emptySelection": "Select a template on the left to inspect its block tree, clone a system preset, or preview its rendered output across locales."
+    "emptySelection": "Select a template on the left to inspect its block tree, clone a system preset, or preview its rendered output across locales.",
+    "createButton": "Create Template",
+    "createTitle": "Create Notification Template",
+    "createSubtitle": "Create an editable database template for any notification channel.",
+    "labelField": "Display Label",
+    "nameField": "Template Key (Slug)",
+    "localeLabel": "Locale",
+    "modeField": "Mode",
+    "descriptionField": "Description",
+    "cancelButton": "Cancel",
+    "backToList": "Back to Templates",
+    "detailsTitle": "Template Details",
+    "sourceLabel": "Source",
+    "deleteButton": "Delete Template",
+    "deleteConfirmTitle": "Delete template?",
+    "deleteConfirmDescription": "This will permanently remove '{{label}}' and its blocks.",
+    "notFound": "Template not found.",
+    "labelPlaceholder": "Order Follow-up",
+    "namePlaceholder": "order-follow-up",
+    "subjectPlaceholder": "Your order #{{data.display_id}} update",
+    "descriptionPlaceholder": "Optional description for internal reference",
+    "rawContentPlaceholder": "Hello {{data.first_name}}, ..."
   },
   "mappings": {
     "title": "Create Event → Channel → Template Mapping",
@@ -97,7 +118,12 @@
     "driverMsg91": "MSG91 Flow API",
     "driverSmsApi": "SMSAPI",
     "driverDummy": "Dummy OTP Sandbox (Testing)",
-    "saveSmsButton": "Save SMS Driver"
+    "saveSmsButton": "Save SMS Driver",
+    "emailSmtpTitle": "Email (SMTP)",
+    "emailSmtpSubtitle": "Configured via MAILER_SMTP_HOST / MAILER_SMTP_USER environment variables.",
+    "emailConfiguredBadge": "Configured",
+    "emailEnvNotSetBadge": "Env Not Set",
+    "driverLabel": "Driver"
   },
   "logs": {
     "title": "Redacted Delivery Ledger (PII Masked & Idempotent)",
@@ -158,6 +184,15 @@
     "verifiedChannelSuccess": "Verified '{{channel}}' channel and sent test message.",
     "savedChannelSuccess": "Saved '{{channel}}' configuration.",
     "channelActionError": "Failed to {{action}} {{channel}}",
-    "broadcastSentSuccess": "Broadcast campaign dispatched to opted-in recipients."
+    "broadcastSentSuccess": "Broadcast campaign dispatched to opted-in recipients.",
+    "createdTemplateSuccess": "Created template '{{label}}'.",
+    "createTemplateError": "Failed to create template.",
+    "deletedTemplateSuccess": "Deleted template.",
+    "deleteTemplateError": "Failed to delete template."
+  },
+  "channelOptions": {
+    "email": "Email",
+    "emailUpper": "EMAIL",
+    "dummySandboxUpper": "DUMMY SANDBOX"
   }
 }

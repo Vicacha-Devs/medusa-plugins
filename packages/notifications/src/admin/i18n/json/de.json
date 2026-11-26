@@ -45,7 +45,28 @@
     "segmentsBadge": "Segmente: {{segments}} ({{chars}} Zeichen)",
     "waButtonPrefix": "[WA-Button] {{title}}",
     "tgInlinePrefix": "[TG-Inline] {{text}}",
-    "emptySelection": "Wählen Sie links eine Vorlage aus, um den Blockbaum zu prüfen, eine Systemvorlage zu klonen oder die Vorschau anzuzeigen."
+    "emptySelection": "Wählen Sie links eine Vorlage aus, um den Blockbaum zu prüfen, eine Systemvorlage zu klonen oder die Vorschau anzuzeigen.",
+    "createButton": "Vorlage erstellen",
+    "createTitle": "Benachrichtigungsvorlage erstellen",
+    "createSubtitle": "Erstellen Sie eine bearbeitbare Datenbankvorlage für jeden Kanal.",
+    "labelField": "Anzeigename",
+    "nameField": "Vorlagenschlüssel (Slug)",
+    "localeLabel": "Sprache",
+    "modeField": "Modus",
+    "descriptionField": "Beschreibung",
+    "cancelButton": "Abbrechen",
+    "backToList": "Zurück zu Vorlagen",
+    "detailsTitle": "Vorlagendetails",
+    "sourceLabel": "Quelle",
+    "deleteButton": "Vorlage löschen",
+    "deleteConfirmTitle": "Vorlage löschen?",
+    "deleteConfirmDescription": "Dadurch werden '{{label}}' und die zugehörigen Blöcke dauerhaft entfernt.",
+    "notFound": "Vorlage nicht gefunden.",
+    "labelPlaceholder": "Bestellungs-Nachverfolgung",
+    "namePlaceholder": "order-follow-up",
+    "subjectPlaceholder": "Update zu Ihrer Bestellung #{{data.display_id}}",
+    "descriptionPlaceholder": "Optionale Beschreibung zur internen Referenz",
+    "rawContentPlaceholder": "Hallo {{data.first_name}}, ..."
   },
   "mappings": {
     "title": "Ereignis → Kanal → Vorlagen-Zuordnung erstellen",
@@ -97,7 +118,12 @@
     "driverMsg91": "MSG91 Flow API",
     "driverSmsApi": "SMSAPI",
     "driverDummy": "Dummy-OTP-Sandbox (Test)",
-    "saveSmsButton": "SMS-Treiber speichern"
+    "saveSmsButton": "SMS-Treiber speichern",
+    "emailSmtpTitle": "E-Mail (SMTP)",
+    "emailSmtpSubtitle": "Konfiguriert über die Umgebungsvariablen MAILER_SMTP_HOST / MAILER_SMTP_USER.",
+    "emailConfiguredBadge": "Konfiguriert",
+    "emailEnvNotSetBadge": "Nicht gesetzt",
+    "driverLabel": "Treiber"
   },
   "logs": {
     "title": "Geschwärztes Zustellprotokoll (PII-maskiert & Idempotent)",
@@ -158,6 +184,15 @@
     "verifiedChannelSuccess": "Kanal '{{channel}}' verifiziert und Testnachricht gesendet.",
     "savedChannelSuccess": "Konfiguration für '{{channel}}' gespeichert.",
     "channelActionError": "Aktion {{action}} für {{channel}} fehlgeschlagen",
-    "broadcastSentSuccess": "Broadcast-Kampagne an Opt-In-Empfänger gesendet."
+    "broadcastSentSuccess": "Broadcast-Kampagne an Opt-In-Empfänger gesendet.",
+    "createdTemplateSuccess": "Vorlage '{{label}}' erstellt.",
+    "createTemplateError": "Vorlage konnte nicht erstellt werden.",
+    "deletedTemplateSuccess": "Vorlage gelöscht.",
+    "deleteTemplateError": "Vorlage konnte nicht gelöscht werden."
+  },
+  "channelOptions": {
+    "email": "E-Mail",
+    "emailUpper": "E-MAIL",
+    "dummySandboxUpper": "TEST-SANDBOX"
   }
 }

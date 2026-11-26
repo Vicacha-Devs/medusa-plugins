@@ -42,7 +42,10 @@
         "copied": "تم النسخ",
         "copied_desc": "تم نسخ رابط الدفع إلى الحافظة!",
         "already_captured": "تمت تفويض وتحصيل هذا الطلب بنجاح عبر Bold.",
-        "paid_and_captured": "مدفوع ومحصل"
+        "paid_and_captured": "مدفوع ومحصل",
+        "select_model": "اختر الطراز",
+        "model_smart_pos": "Smart POS",
+        "model_neo": "Bold Neo"
       },
       "terminal_status": {
         "title": "حالة أجهزة POS Bold",

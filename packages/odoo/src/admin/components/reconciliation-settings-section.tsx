@@ -44,8 +44,8 @@ export const ReconciliationSettingsSection = ({
           }
         >
           {reconciliationSettings?.enableScheduledReconciliation !== false
-            ? "ON"
-            : "OFF"}
+            ? t("settingsTab.statusOn")
+            : t("settingsTab.statusOff")}
         </StatusBadge>
       </div>
       <SectionRow

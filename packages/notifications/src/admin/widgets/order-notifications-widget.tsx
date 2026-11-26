@@ -86,11 +86,15 @@ const OrderNotificationsActivityWidget = ({ data }: { data?: any }) => {
               <Select.Value placeholder={t("widget.channelPlaceholder")} />
             </Select.Trigger>
             <Select.Content>
-              <Select.Item value="email">EMAIL</Select.Item>
+              <Select.Item value="email">
+                {t("channelOptions.emailUpper")}
+              </Select.Item>
               <Select.Item value="whatsapp">WHATSAPP / OPENWA</Select.Item>
               <Select.Item value="telegram">TELEGRAM</Select.Item>
               <Select.Item value="sms">SMS</Select.Item>
-              <Select.Item value="dummy">DUMMY SANDBOX</Select.Item>
+              <Select.Item value="dummy">
+                {t("channelOptions.dummySandboxUpper")}
+              </Select.Item>
             </Select.Content>
           </Select>
         </div>

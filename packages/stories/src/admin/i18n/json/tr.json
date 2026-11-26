@@ -196,5 +196,23 @@
     "stickerRemoved": "Etkileşimli çıkartma kaldırıldı.",
     "stickerRemoveError": "Çıkartma kaldırılamadı",
     "productStoryCreated": "Alışveriş yapılabilir hikaye slaytı \"{{title}}\" oluşturuldu."
+  },
+  "mediaPicker": {
+    "defaultButtonLabel": "Yükle / Seç",
+    "modalTitle": "Medya Seç veya Yükle",
+    "closeButton": "Kapat",
+    "uploadTab": "Yeni Yükle",
+    "libraryTab": "Medya Kütüphanesi",
+    "chooseFileLabel": "Dosya seçin ({{accept}})",
+    "uploadAttachButton": "Yükle ve Ekle",
+    "libraryUnavailable": "Medya Kütüphanesi eklentisi (/admin/media) etkin değil. Medusa Dosya Modülü ile yüklemek için Yeni Yükle'yi kullanın.",
+    "libraryLoading": "Medya Kütüphanesi yükleniyor...",
+    "searchPlaceholder": "Dosya adı, klasör veya role göre filtrele...",
+    "noMatchingAssets": "Eşleşen medya varlığı bulunamadı.",
+    "useButton": "Kullan",
+    "uploadFailedStatus": "Yükleme başarısız ({{status}})",
+    "uploadNoUrl": "Yükleme URL olmadan tamamlandı",
+    "uploadFailed": "Yükleme başarısız",
+    "attachedSuccess": "{{filename}} eklendi"
   }
 }

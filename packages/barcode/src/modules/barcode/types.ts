@@ -134,6 +134,37 @@ export interface ProviderConfig {
 
 export type BarcodeProviderConfig = ProviderConfig
 
+export interface CustomLabelTemplateConfig {
+  id: string
+  name: string
+  preset_id?: LabelPresetId
+  layout_type?: "thermal_roll" | "a4_sheet"
+  width_mm?: number
+  height_mm?: number
+  columns?: number
+  rows?: number
+  margin_top_mm?: number
+  margin_left_mm?: number
+  gap_x_mm?: number
+  gap_y_mm?: number
+  symbology?: BarcodeSymbology
+  show_title?: boolean
+  show_variant_title?: boolean
+  show_sku?: boolean
+  show_price?: boolean
+  show_compare_at_price?: boolean
+  show_brand?: boolean
+  show_qr?: boolean
+  custom_header?: string | null
+  custom_footer?: string | null
+  dpi?: 203 | 300
+  is_default?: boolean
+  /** Optional custom HTML document renderer override for this template */
+  renderHtml?: (items: LabelPrintItem[], template: LabelTemplateSpec) => string
+  /** Optional custom Zebra ZPL II renderer override for this template */
+  renderZpl?: (items: LabelPrintItem[], template: LabelTemplateSpec) => string
+}
+
 export interface BarcodeModuleOptions {
   cacheEnabled?: boolean
   cacheTtlSeconds?: number
@@ -145,6 +176,7 @@ export interface BarcodeModuleOptions {
   requestTimeoutMs?: number
   storefrontBaseUrl?: string
   hmacSecret?: string
+  customLabelTemplates?: CustomLabelTemplateConfig[]
   providers?: {
     openFoodFacts?: ProviderConfig
     openBeautyFacts?: ProviderConfig

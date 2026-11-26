@@ -43,7 +43,10 @@
     "batchSubtitle": "Wklej do 100 kodów kreskowych (po jednym w wierszu lub oddzielone przecinkami), aby automatycznie wyszukać i utworzyć produkty + warianty Medusa w jednej transakcji.",
     "batchRunButton": "Uruchom Import Wsadowy",
     "recentlyLinkedTitle": "Ostatnio Powiązane Produkty z Kodem Kreskowym ({{count}})",
-    "noLinkedProducts": "Brak powiązanych produktów z kodem kreskowym."
+    "noLinkedProducts": "Brak powiązanych produktów z kodem kreskowym.",
+    "colGtinBarcode": "GTIN / Kod kreskowy",
+    "colProductId": "ID produktu",
+    "colProvider": "Dostawca"
   },
   "tagsTab": {
     "createTitle": "Utwórz Kod 1D / Dynamiczny QR 2D / Tag Antypodróbkowy",
@@ -108,7 +111,10 @@
     "cacheTitle": "Pamięć Podręczna Zapytań o Kody Kreskowe ({{count}})",
     "purgeExpiredButton": "Wyczyść Wygasłe",
     "clearAllButton": "Wyczyść Cały Cache",
-    "hitsBadge": "Trafienia: {{count}}"
+    "hitsBadge": "Trafienia: {{count}}",
+    "colBarcode": "Kod kreskowy",
+    "colProvider": "Dostawca",
+    "colHits": "Trafienia"
   },
   "widget": {
     "title": "Kody Kreskowe, Dynamiczny QR i Etykiety Termiczne",

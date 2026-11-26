@@ -33,9 +33,11 @@ export const PosTransactionsSection = ({
       <Table>
         <Table.Header>
           <Table.Row>
-            <Table.HeaderCell>POS</Table.HeaderCell>
-            <Table.HeaderCell>Orders</Table.HeaderCell>
-            <Table.HeaderCell className="text-right">Status</Table.HeaderCell>
+            <Table.HeaderCell>{t("barcodeTab.colPos")}</Table.HeaderCell>
+            <Table.HeaderCell>{t("barcodeTab.colOrders")}</Table.HeaderCell>
+            <Table.HeaderCell className="text-right">
+              {t("barcodeTab.colStatus")}
+            </Table.HeaderCell>
           </Table.Row>
         </Table.Header>
         <Table.Body>

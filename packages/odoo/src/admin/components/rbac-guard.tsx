@@ -1,5 +1,6 @@
 import { Container, Heading, Text } from "@medusajs/ui"
 import { useEffect, useState, type JSX, type ReactNode } from "react"
+import { useTranslation } from "react-i18next"
 
 interface CachedRbacResult {
   rbacActive: boolean
@@ -136,15 +137,16 @@ export const RbacGuard = ({
   children: ReactNode
   hideOnDenied?: boolean
 }): JSX.Element | null => {
+  const { t } = useTranslation()
   const { isLoading, hasPermission } = useRbacAccess()
   if (isLoading) return null
   if (!hasPermission(permission)) {
     if (hideOnDenied) return null
     return (
       <Container className="flex flex-col gap-y-2 p-6">
-        <Heading level="h2">Access denied</Heading>
+        <Heading level="h2">{t("rbac.accessDeniedTitle")}</Heading>
         <Text size="small" className="text-ui-fg-subtle">
-          You do not have permission to view this section. ({permission})
+          {t("rbac.accessDeniedDescription", { permission })}
         </Text>
       </Container>
     )

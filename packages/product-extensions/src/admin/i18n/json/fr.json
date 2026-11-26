@@ -146,5 +146,23 @@
     "loadProductExtError": "Échec du chargement de l'extension produit",
     "saveProductExtSuccess": "Médias et slogan de l'extension produit enregistrés",
     "saveProductExtError": "Échec de l'enregistrement de l'extension produit"
+  },
+  "mediaPicker": {
+    "defaultButtonLabel": "Téléverser / Choisir",
+    "modalTitle": "Sélectionner ou téléverser un média",
+    "closeButton": "Fermer",
+    "uploadTab": "Nouveau téléversement",
+    "libraryTab": "Médiathèque",
+    "chooseFileLabel": "Choisir un fichier ({{accept}})",
+    "uploadAttachButton": "Téléverser et joindre",
+    "libraryUnavailable": "Le plugin Médiathèque (/admin/media) n'est pas actif. Utilisez Nouveau téléversement via le module de fichiers Medusa.",
+    "libraryLoading": "Chargement de la médiathèque...",
+    "searchPlaceholder": "Filtrer par nom de fichier, dossier ou rôle...",
+    "noMatchingAssets": "Aucun média correspondant trouvé.",
+    "useButton": "Utiliser",
+    "uploadFailedStatus": "Échec du téléversement ({{status}})",
+    "uploadNoUrl": "Téléversement réussi sans URL",
+    "uploadFailed": "Échec du téléversement",
+    "attachedSuccess": "{{filename}} joint"
   }
 }

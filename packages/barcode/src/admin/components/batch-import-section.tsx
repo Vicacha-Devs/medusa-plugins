@@ -71,9 +71,15 @@ export const GtinLookupBatchSection = ({
           <Table>
             <Table.Header>
               <Table.Row>
-                <Table.HeaderCell>GTIN / Barcode</Table.HeaderCell>
-                <Table.HeaderCell>Product ID</Table.HeaderCell>
-                <Table.HeaderCell>Provider</Table.HeaderCell>
+                <Table.HeaderCell>
+                  {t("lookupTab.colGtinBarcode")}
+                </Table.HeaderCell>
+                <Table.HeaderCell>
+                  {t("lookupTab.colProductId")}
+                </Table.HeaderCell>
+                <Table.HeaderCell>
+                  {t("lookupTab.colProvider")}
+                </Table.HeaderCell>
               </Table.Row>
             </Table.Header>
             <Table.Body>

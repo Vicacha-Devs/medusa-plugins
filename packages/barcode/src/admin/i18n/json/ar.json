@@ -43,7 +43,10 @@
     "batchSubtitle": "الصق ما يصل إلى 100 باركود (واحد في كل سطر أو مفصولة بفواصل) للبحث التلقائي وإنشاء منتجات ومتغيرات Medusa في معاملة واحدة.",
     "batchRunButton": "تشغيل سير عمل الاستيراد الجماعي",
     "recentlyLinkedTitle": "منتجات الباركود المرتبطة مؤخراً ({{count}})",
-    "noLinkedProducts": "لا توجد منتجات باركود مرتبطة بعد."
+    "noLinkedProducts": "لا توجد منتجات باركود مرتبطة بعد.",
+    "colGtinBarcode": "GTIN / الباركود",
+    "colProductId": "معرف المنتج",
+    "colProvider": "المزود"
   },
   "tagsTab": {
     "createTitle": "إنشاء باركود 1D / رمز QR ديناميكي 2D / علامة مكافحة التزييف",
@@ -108,7 +111,10 @@
     "cacheTitle": "ذاكرة التخزين المؤقت لعمليات بحث الباركود ({{count}})",
     "purgeExpiredButton": "تطهير المنتهي الصلاحية",
     "clearAllButton": "مسح كل ذاكرة التخزين المؤقت",
-    "hitsBadge": "الإصابات: {{count}}"
+    "hitsBadge": "الإصابات: {{count}}",
+    "colBarcode": "الباركود",
+    "colProvider": "المزود",
+    "colHits": "الإصابات"
   },
   "widget": {
     "title": "الباركود ورموز QR الديناميكية والملصقات الحرارية",

@@ -146,5 +146,23 @@
     "loadProductExtError": "Error al cargar la extensión del producto",
     "saveProductExtSuccess": "Multimedia y eslogan del producto guardados",
     "saveProductExtError": "Error al guardar la extensión del producto"
+  },
+  "mediaPicker": {
+    "defaultButtonLabel": "Subir / Elegir",
+    "modalTitle": "Seleccionar o subir multimedia",
+    "closeButton": "Cerrar",
+    "uploadTab": "Subir nuevo",
+    "libraryTab": "Biblioteca multimedia",
+    "chooseFileLabel": "Elegir archivo ({{accept}})",
+    "uploadAttachButton": "Subir y adjuntar",
+    "libraryUnavailable": "El plugin de Biblioteca Multimedia (/admin/media) no está activo. Usa Subir nuevo para subir mediante el módulo de archivos de Medusa.",
+    "libraryLoading": "Cargando biblioteca multimedia...",
+    "searchPlaceholder": "Filtrar por nombre de archivo, carpeta o rol...",
+    "noMatchingAssets": "No se encontraron recursos multimedia coincidentes.",
+    "useButton": "Usar",
+    "uploadFailedStatus": "Error al subir ({{status}})",
+    "uploadNoUrl": "La subida finalizó sin una URL",
+    "uploadFailed": "Error al subir",
+    "attachedSuccess": "Adjuntado {{filename}}"
   }
 }

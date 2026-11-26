@@ -33,9 +33,9 @@ export const ProvidersCacheSection = ({
       <Table>
         <Table.Header>
           <Table.Row>
-            <Table.HeaderCell>Barcode</Table.HeaderCell>
-            <Table.HeaderCell>Provider</Table.HeaderCell>
-            <Table.HeaderCell>Hits</Table.HeaderCell>
+            <Table.HeaderCell>{t("providersTab.colBarcode")}</Table.HeaderCell>
+            <Table.HeaderCell>{t("providersTab.colProvider")}</Table.HeaderCell>
+            <Table.HeaderCell>{t("providersTab.colHits")}</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
         <Table.Body>

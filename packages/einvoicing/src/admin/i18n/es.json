@@ -1,4 +1,13 @@
 {
-  "title": "E-Invoicing",
-  "empty": "Sin registros de e-invoicing aún."
+  "title": "Facturación Electrónica",
+  "heading": "Facturación Electrónica y Cumplimiento Fiscal",
+  "subtitle": "Facturación electrónica multipaís (EU Peppol, Colombia DIAN, México CFDI, UBL 2.1 genérico).",
+  "loading": "Cargando documentos fiscales...",
+  "empty": "Sin registros de facturación electrónica aún.",
+  "emptyDocuments": "Aún no se han emitido documentos fiscales.",
+  "colNumber": "Número",
+  "colOrder": "Pedido",
+  "colCountryDriver": "País / Controlador",
+  "colType": "Tipo",
+  "colStatus": "Estado"
 }

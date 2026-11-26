@@ -43,7 +43,10 @@
     "batchSubtitle": "Fügen Sie bis zu 100 Barcodes ein (einen pro Zeile oder kommagetrennt), um Medusa-Produkte und -Varianten automatisch in einer Transaktion abzufragen und zu erstellen.",
     "batchRunButton": "Stapelimport-Workflow Ausführen",
     "recentlyLinkedTitle": "Kürzlich Verknüpfte Barcode-Produkte ({{count}})",
-    "noLinkedProducts": "Noch keine Barcode-Produkte verknüpft."
+    "noLinkedProducts": "Noch keine Barcode-Produkte verknüpft.",
+    "colGtinBarcode": "GTIN / Barcode",
+    "colProductId": "Produkt-ID",
+    "colProvider": "Anbieter"
   },
   "tagsTab": {
     "createTitle": "1D-Barcode / 2D-Dynamischen QR / Fälschungsschutz-Tag Erstellen",
@@ -108,7 +111,10 @@
     "cacheTitle": "Barcode-Such-Cache ({{count}})",
     "purgeExpiredButton": "Abgelaufene Bereinigen",
     "clearAllButton": "Gesamten Cache Leeren",
-    "hitsBadge": "Treffer: {{count}}"
+    "hitsBadge": "Treffer: {{count}}",
+    "colBarcode": "Barcode",
+    "colProvider": "Anbieter",
+    "colHits": "Treffer"
   },
   "widget": {
     "title": "Barcodes, Dynamischer QR & Thermoetiketten",

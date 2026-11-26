@@ -68,7 +68,9 @@
     "registerPayment": "Betaling op factuur registreren",
     "reconciliationTitle": "Verschillenreconciliatie",
     "enableScheduledReconciliation": "Geplande verschillenreconciliatie inschakelen",
-    "activeStrategy": "Actieve strategie: {{strategy}}"
+    "activeStrategy": "Actieve strategie: {{strategy}}",
+    "statusOn": "AAN",
+    "statusOff": "UIT"
   },
   "logsTab": {
     "failuresTitle": "Onopgeloste synchronisatiefouten ({{count}})",
@@ -83,13 +85,18 @@
     "noConflicts": "Geen open voorraadconflicten.",
     "recentRunsTitle": "Recente synchronisatieruns ({{logsCount}}) & koppelingen ({{mappingsCount}})",
     "durationLabel": "Duur: {{durationMs}}ms",
-    "notAvailable": "N.v.t."
+    "notAvailable": "N.v.t.",
+    "colStatus": "Status"
   },
   "barcodeTab": {
     "title": "POS- & magazijnbarcode opzoeken",
     "barcodeLabel": "Barcode / EAN13 / SKU",
     "barcodePlaceholder": "Scan of voer barcode / SKU in...",
     "contextButton": "Context: {{context}}",
+    "contextPos": "POS",
+    "contextWarehouse": "MAGAZIJN",
+    "contextReceiving": "ONTVANGST",
+    "contextStocktake": "VOORRAADOPNAME",
     "resolveButton": "Opzoeken",
     "resultHeader": "Resultaat: {{status}} ({{latencyMs}}ms via {{source}})",
     "found": "Gevonden",
@@ -99,7 +106,10 @@
     "posTransactionsTitle": "Offline POS-transacties ({{count}})",
     "posHeader": "POS #{{externalId}} ({{currency}} {{total}})",
     "posOrders": "Medusa-bestelling: {{medusaOrder}} | Odoo-bestelling: {{odooOrder}}",
-    "pending": "In behandeling"
+    "pending": "In behandeling",
+    "colPos": "POS",
+    "colOrders": "Bestellingen",
+    "colStatus": "Status"
   },
   "widget": {
     "orderTitle": "Odoo ERP-bestelstatus",
@@ -121,5 +131,9 @@
     "syncError": "Synchronisatie mislukt",
     "syncOrderError": "Synchroniseren van bestelling met Odoo mislukt",
     "syncProductError": "Synchroniseren van product met Odoo mislukt"
+  },
+  "rbac": {
+    "accessDeniedTitle": "Toegang geweigerd",
+    "accessDeniedDescription": "U heeft geen toestemming om deze sectie te bekijken. ({{permission}})"
   }
 }

@@ -68,7 +68,9 @@
     "registerPayment": "Zahlung auf Rechnung registrieren",
     "reconciliationTitle": "Bestandsabgleich (Drift)",
     "enableScheduledReconciliation": "Geplanten Bestandsabgleich aktivieren",
-    "activeStrategy": "Aktive Strategie: {{strategy}}"
+    "activeStrategy": "Aktive Strategie: {{strategy}}",
+    "statusOn": "EIN",
+    "statusOff": "AUS"
   },
   "logsTab": {
     "failuresTitle": "Ungelöste Synchronisierungsfehler ({{count}})",
@@ -83,13 +85,18 @@
     "noConflicts": "Keine offenen Bestandskonflikte.",
     "recentRunsTitle": "Letzte Synchronisierungsläufe ({{logsCount}}) & Zuordnungen ({{mappingsCount}})",
     "durationLabel": "Dauer: {{durationMs}}ms",
-    "notAvailable": "N/V"
+    "notAvailable": "N/V",
+    "colStatus": "Status"
   },
   "barcodeTab": {
     "title": "POS- & Lager-Barcode-Suche",
     "barcodeLabel": "Barcode / EAN13 / SKU",
     "barcodePlaceholder": "Barcode / SKU scannen oder eingeben...",
     "contextButton": "Kontext: {{context}}",
+    "contextPos": "POS",
+    "contextWarehouse": "LAGER",
+    "contextReceiving": "WARENEINGANG",
+    "contextStocktake": "INVENTUR",
     "resolveButton": "Auflösen",
     "resultHeader": "Ergebnis: {{status}} ({{latencyMs}}ms über {{source}})",
     "found": "Gefunden",
@@ -99,7 +106,10 @@
     "posTransactionsTitle": "Offline-POS-Transaktionen ({{count}})",
     "posHeader": "POS #{{externalId}} ({{currency}} {{total}})",
     "posOrders": "Medusa-Bestellung: {{medusaOrder}} | Odoo-Bestellung: {{odooOrder}}",
-    "pending": "Ausstehend"
+    "pending": "Ausstehend",
+    "colPos": "POS",
+    "colOrders": "Bestellungen",
+    "colStatus": "Status"
   },
   "widget": {
     "orderTitle": "Odoo ERP-Bestellstatus",
@@ -121,5 +131,9 @@
     "syncError": "Synchronisierung fehlgeschlagen",
     "syncOrderError": "Fehler beim Synchronisieren der Bestellung mit Odoo",
     "syncProductError": "Fehler beim Synchronisieren des Produkts mit Odoo"
+  },
+  "rbac": {
+    "accessDeniedTitle": "Zugriff verweigert",
+    "accessDeniedDescription": "Sie haben keine Berechtigung, diesen Bereich anzuzeigen. ({{permission}})"
   }
 }

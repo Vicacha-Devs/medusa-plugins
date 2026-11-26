@@ -196,5 +196,23 @@
     "stickerRemoved": "Usunięto interaktywną naklejkę.",
     "stickerRemoveError": "Nie udało się usunąć naklejki",
     "productStoryCreated": "Utworzono zakupowy slajd story „{{title}}”."
+  },
+  "mediaPicker": {
+    "defaultButtonLabel": "Prześlij / Wybierz",
+    "modalTitle": "Wybierz lub prześlij multimedia",
+    "closeButton": "Zamknij",
+    "uploadTab": "Prześlij nowy",
+    "libraryTab": "Biblioteka multimediów",
+    "chooseFileLabel": "Wybierz plik ({{accept}})",
+    "uploadAttachButton": "Prześlij i dołącz",
+    "libraryUnavailable": "Wtyczka Biblioteka multimediów (/admin/media) nie jest aktywna. Użyj Prześlij nowy, aby przesłać przez moduł plików Medusa.",
+    "libraryLoading": "Ładowanie biblioteki multimediów...",
+    "searchPlaceholder": "Filtruj według nazwy pliku, folderu lub roli...",
+    "noMatchingAssets": "Nie znaleziono pasujących zasobów multimedialnych.",
+    "useButton": "Użyj",
+    "uploadFailedStatus": "Przesyłanie nie powiodło się ({{status}})",
+    "uploadNoUrl": "Przesyłanie zakończyło się bez adresu URL",
+    "uploadFailed": "Przesyłanie nie powiodło się",
+    "attachedSuccess": "Dołączono {{filename}}"
   }
 }

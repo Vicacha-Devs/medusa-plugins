@@ -352,7 +352,25 @@ All plugin tables use the `mpd_` prefix (`src/modules/documents/migrations/Migra
 
 ---
 
-## 15. Development & Testing
+## 15. Adding Custom Templates (PDF & Email)
+
+1. **Custom PDF Templates (Engine B: Handlebars + pdfmake)**:
+   - Create custom HTML/Handlebars templates via `POST /admin/documents/templates` (`mpd_document_template`) with `{{order.*}}`, `{{settings.*}}`, `{{items}}`, and style/section toggles.
+   - Select your custom template in **Documents → Settings** (`/app/documents/settings`) per document type or region.
+2. **Custom Document Email Designs (`Modules.NOTIFICATION`)**:
+   - When `documents` emails an invoice, packing slip, credit note, or receipt, it dispatches via `Modules.NOTIFICATION` (`channel: "email"`) using these exact template keys:
+     - `document-invoice`
+     - `document-packing-slip`
+     - `document-credit-note`
+     - `document-receipt`
+   - Create those templates in **Notifications → Templates → Create Template** (`/app/mpn/templates`) with `channel: "email"` and the matching slug (`name`) to customize the email body around the attached PDF (`{{data.document_number}}`, `{{data.order_display_id}}`, `{{data.company_name}}`).
+3. **Custom DocuSeal Signing Templates & Invite Emails**:
+   - Set `docuseal_template_id` in Document Settings to target a specific DocuSeal template instead of direct PDF placement.
+   - For self-hosted DocuSeal (`DOCUSEAL_BASE_URL`), `DOCUSEAL_EMAIL_DELIVERY` defaults to `"medusa"` (`send_email: false` to DocuSeal) and sends the branded HTML invite from `src/modules/documents/services/signature-email.ts`. Set `DOCUSEAL_EMAIL_DELIVERY=medusa` to enforce this on DocuSeal Cloud as well.
+
+---
+
+## 16. Development & Testing
 
 ```bash
 # Run the unit & security test suite (17 tests across Phases 0-8)

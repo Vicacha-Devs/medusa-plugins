@@ -68,7 +68,9 @@
     "registerPayment": "Zarejestruj płatność na fakturze",
     "reconciliationTitle": "Uzgadnianie rozbieżności",
     "enableScheduledReconciliation": "Włącz zaplanowane uzgadnianie rozbieżności",
-    "activeStrategy": "Aktywna strategia: {{strategy}}"
+    "activeStrategy": "Aktywna strategia: {{strategy}}",
+    "statusOn": "WŁ.",
+    "statusOff": "WYŁ."
   },
   "logsTab": {
     "failuresTitle": "Nierozwiązane błędy synchronizacji ({{count}})",
@@ -83,13 +85,18 @@
     "noConflicts": "Brak otwartych konfliktów magazynowych.",
     "recentRunsTitle": "Ostatnie przebiegi synchronizacji ({{logsCount}}) i mapowania ({{mappingsCount}})",
     "durationLabel": "Czas trwania: {{durationMs}}ms",
-    "notAvailable": "Brak"
+    "notAvailable": "Brak",
+    "colStatus": "Status"
   },
   "barcodeTab": {
     "title": "Wyszukiwanie kodów kreskowych POS i magazynu",
     "barcodeLabel": "Kod kreskowy / EAN13 / SKU",
     "barcodePlaceholder": "Zeskanuj lub wpisz kod kreskowy / SKU...",
     "contextButton": "Kontekst: {{context}}",
+    "contextPos": "POS",
+    "contextWarehouse": "MAGAZYN",
+    "contextReceiving": "PRZYJĘCIE",
+    "contextStocktake": "INWENTARYZACJA",
     "resolveButton": "Wyszukaj",
     "resultHeader": "Wynik: {{status}} ({{latencyMs}}ms przez {{source}})",
     "found": "Znaleziono",
@@ -99,7 +106,10 @@
     "posTransactionsTitle": "Transakcje POS offline ({{count}})",
     "posHeader": "POS #{{externalId}} ({{currency}} {{total}})",
     "posOrders": "Zamówienie Medusa: {{medusaOrder}} | Zamówienie Odoo: {{odooOrder}}",
-    "pending": "Oczekujące"
+    "pending": "Oczekujące",
+    "colPos": "POS",
+    "colOrders": "Zamówienia",
+    "colStatus": "Status"
   },
   "widget": {
     "orderTitle": "Status zamówienia w Odoo ERP",
@@ -121,5 +131,9 @@
     "syncError": "Synchronizacja nie powiodła się",
     "syncOrderError": "Nie udało się zsynchronizować zamówienia z Odoo",
     "syncProductError": "Nie udało się zsynchronizować produktu z Odoo"
+  },
+  "rbac": {
+    "accessDeniedTitle": "Odmowa dostępu",
+    "accessDeniedDescription": "Nie masz uprawnień do przeglądania tej sekcji. ({{permission}})"
   }
 }

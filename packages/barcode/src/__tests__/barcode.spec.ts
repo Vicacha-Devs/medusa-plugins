@@ -833,4 +833,47 @@ describe("medusa-plugin-barcode — Admin UI Localization (10 Locales Key Parity
     await migration.down()
     assert.equal(migration.queries.length >= 24, true)
   })
+
+  it("supports customLabelTemplates in module options with custom HTML/ZPL renderers", async () => {
+    const svc = new BarcodeModuleService(
+      {},
+      {
+        customLabelTemplates: [
+          {
+            id: "coffee_bag_80x50",
+            name: "Coffee Bag 80x50",
+            width_mm: 80,
+            height_mm: 50,
+            custom_header: "ROASTED IN ROTTERDAM",
+            renderHtml: (items, tpl) =>
+              `<div data-tpl="${tpl.id}">${items.map((i) => i.title).join(",")}</div>`,
+            renderZpl: (items, tpl) =>
+              `^XA^FX ${tpl.name}^FD${items[0]?.sku || ""}^XZ`,
+          },
+        ],
+      }
+    )
+
+    const templates = await svc.listAllLabelTemplates()
+    const custom = templates.find((t) => t.id === "coffee_bag_80x50")
+    assert.ok(custom)
+    assert.equal(custom?.width_mm, 80)
+    assert.equal(custom?.custom_header, "ROASTED IN ROTTERDAM")
+
+    const rendered = await svc.renderLabels({
+      template_id: "coffee_bag_80x50",
+      items: [
+        {
+          barcode: "8712345678906",
+          title: "Huila Pink Bourbon",
+          sku: "VIC-HUI-250",
+        },
+      ],
+    })
+    assert.equal(
+      rendered.html,
+      '<div data-tpl="coffee_bag_80x50">Huila Pink Bourbon</div>'
+    )
+    assert.equal(rendered.zpl, "^XA^FX Coffee Bag 80x50^FDVIC-HUI-250^XZ")
+  })
 })

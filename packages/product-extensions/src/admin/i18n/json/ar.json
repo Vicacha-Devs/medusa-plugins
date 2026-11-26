@@ -146,5 +146,23 @@
     "loadProductExtError": "فشل تحميل إضافة المنتج",
     "saveProductExtSuccess": "تم حفظ وسائط وشعار إضافة المنتج",
     "saveProductExtError": "فشل حفظ إضافة المنتج"
+  },
+  "mediaPicker": {
+    "defaultButtonLabel": "رفع / اختيار",
+    "modalTitle": "اختيار أو رفع وسائط",
+    "closeButton": "إغلاق",
+    "uploadTab": "رفع جديد",
+    "libraryTab": "مكتبة الوسائط",
+    "chooseFileLabel": "اختر ملفًا ({{accept}})",
+    "uploadAttachButton": "رفع وإرفاق",
+    "libraryUnavailable": "إضافة مكتبة الوسائط (/admin/media) غير مفعلة. استخدم رفع جديد للرفع عبر وحدة ملفات Medusa.",
+    "libraryLoading": "جارٍ تحميل مكتبة الوسائط...",
+    "searchPlaceholder": "تصفية حسب اسم الملف أو المجلد أو الدور...",
+    "noMatchingAssets": "لم يتم العثور على أصول وسائط مطابقة.",
+    "useButton": "استخدام",
+    "uploadFailedStatus": "فشل الرفع ({{status}})",
+    "uploadNoUrl": "نجح الرفع بدون عنوان URL",
+    "uploadFailed": "فشل الرفع",
+    "attachedSuccess": "تم إرفاق {{filename}}"
   }
 }

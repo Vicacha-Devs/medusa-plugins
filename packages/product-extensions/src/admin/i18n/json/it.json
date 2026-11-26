@@ -146,5 +146,23 @@
     "loadProductExtError": "Impossibile caricare l'estensione prodotto",
     "saveProductExtSuccess": "Media e tagline dell'estensione prodotto salvati",
     "saveProductExtError": "Impossibile salvare l'estensione prodotto"
+  },
+  "mediaPicker": {
+    "defaultButtonLabel": "Carica / Scegli",
+    "modalTitle": "Seleziona o carica media",
+    "closeButton": "Chiudi",
+    "uploadTab": "Carica nuovo",
+    "libraryTab": "Libreria media",
+    "chooseFileLabel": "Scegli file ({{accept}})",
+    "uploadAttachButton": "Carica e allega",
+    "libraryUnavailable": "Il plugin Libreria Media (/admin/media) non è attivo. Usa Carica nuovo per caricare tramite il modulo File di Medusa.",
+    "libraryLoading": "Caricamento libreria media...",
+    "searchPlaceholder": "Filtra per nome file, cartella o ruolo...",
+    "noMatchingAssets": "Nessuna risorsa media corrispondente trovata.",
+    "useButton": "Usa",
+    "uploadFailedStatus": "Caricamento fallito ({{status}})",
+    "uploadNoUrl": "Caricamento riuscito senza URL",
+    "uploadFailed": "Caricamento fallito",
+    "attachedSuccess": "Allegato {{filename}}"
   }
 }

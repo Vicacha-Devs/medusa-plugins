@@ -951,5 +951,31 @@ describe("medusa-plugin-product-ext", () => {
         /DROP TABLE IF EXISTS "product_extension" CASCADE/
       )
     })
+
+    it("merges declarative attribute_templates from module options with DB override precedence", async () => {
+      const svc = new ProductExtModuleService(
+        {},
+        {
+          attribute_templates: [
+            {
+              code: "specialty_coffee",
+              name: "Specialty Coffee",
+              attribute_keys: ["sca_score", "varietal"],
+              category_ids: ["cat_coffee"],
+            },
+          ],
+        }
+      )
+
+      const list = await svc.listTemplates({ category_id: "cat_coffee" })
+      assert.equal(list.length, 1)
+      assert.equal(list[0].id, "config_specialty_coffee")
+      assert.equal(list[0].code, "specialty_coffee")
+      assert.deepEqual(list[0].attribute_keys, ["sca_score", "varietal"])
+
+      const byCode = await svc.getTemplateByIdOrCode("specialty_coffee")
+      assert.ok(byCode)
+      assert.equal(byCode?.name, "Specialty Coffee")
+    })
   })
 })

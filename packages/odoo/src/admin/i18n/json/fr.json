@@ -68,7 +68,9 @@
     "registerPayment": "Enregistrer le paiement sur la facture",
     "reconciliationTitle": "Réconciliation des écarts",
     "enableScheduledReconciliation": "Activer la réconciliation planifiée des écarts",
-    "activeStrategy": "Stratégie active : {{strategy}}"
+    "activeStrategy": "Stratégie active : {{strategy}}",
+    "statusOn": "ACTIVÉ",
+    "statusOff": "DÉSACTIVÉ"
   },
   "logsTab": {
     "failuresTitle": "Échecs de synchronisation non résolus ({{count}})",
@@ -83,13 +85,18 @@
     "noConflicts": "Aucun conflit de stock ouvert.",
     "recentRunsTitle": "Exécutions récentes ({{logsCount}}) et mappages ({{mappingsCount}})",
     "durationLabel": "Durée : {{durationMs}}ms",
-    "notAvailable": "N/D"
+    "notAvailable": "N/D",
+    "colStatus": "Statut"
   },
   "barcodeTab": {
     "title": "Recherche de codes-barres PDV et entrepôt",
     "barcodeLabel": "Code-barres / EAN13 / SKU",
     "barcodePlaceholder": "Scanner ou saisir un code-barres / SKU...",
     "contextButton": "Contexte : {{context}}",
+    "contextPos": "PDV",
+    "contextWarehouse": "ENTREPÔT",
+    "contextReceiving": "RÉCEPTION",
+    "contextStocktake": "INVENTAIRE",
     "resolveButton": "Résoudre",
     "resultHeader": "Résultat : {{status}} ({{latencyMs}}ms via {{source}})",
     "found": "Trouvé",
@@ -99,7 +106,10 @@
     "posTransactionsTitle": "Transactions PDV hors ligne ({{count}})",
     "posHeader": "PDV #{{externalId}} ({{currency}} {{total}})",
     "posOrders": "Commande Medusa : {{medusaOrder}} | Commande Odoo : {{odooOrder}}",
-    "pending": "En attente"
+    "pending": "En attente",
+    "colPos": "PDV",
+    "colOrders": "Commandes",
+    "colStatus": "Statut"
   },
   "widget": {
     "orderTitle": "Statut de la commande Odoo ERP",
@@ -121,5 +131,9 @@
     "syncError": "Échec de la synchronisation",
     "syncOrderError": "Échec de la synchronisation de la commande vers Odoo",
     "syncProductError": "Échec de la synchronisation du produit avec Odoo"
+  },
+  "rbac": {
+    "accessDeniedTitle": "Accès refusé",
+    "accessDeniedDescription": "Vous n'avez pas l'autorisation de consulter cette section. ({{permission}})"
   }
 }
