@@ -1,5 +1,14 @@
 # @vicacha-devs/medusa-plugin-product-extensions
 
+## 0.1.2
+
+### Patch Changes
+
+- e70532c: Admin i18n coverage across plugins, config-defined barcode label templates (with custom HTML/ZPL renderers), config-defined product attribute templates, a notifications create-template modal and template detail route, media picker i18n, and filter-group fixes.
+- 41fe683: Add an upload / Media Library picker button to the admin media URL fields (product videos, GLB, variant bulk media, and story slide media).
+- da6924f: Fix admin overview navigation card layout (plain button instead of nowrap `Button`) and add the `nav.settings` label for the documents settings route across all locales.
+- 2ef0d63: Add `repository` metadata (required for npm provenance) and ship the first release published with git tags and GitHub Releases.
+
 ## 0.1.1
 
 ### Patch Changes

@@ -1,5 +1,12 @@
 # @vicacha-devs/medusa-plugin-barcode
 
+## 0.1.2
+
+### Patch Changes
+
+- e70532c: Admin i18n coverage across plugins, config-defined barcode label templates (with custom HTML/ZPL renderers), config-defined product attribute templates, a notifications create-template modal and template detail route, media picker i18n, and filter-group fixes.
+- 2ef0d63: Add `repository` metadata (required for npm provenance) and ship the first release published with git tags and GitHub Releases.
+
 ## 0.1.1
 
 ### Patch Changes
