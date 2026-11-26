@@ -1,6 +1,6 @@
 {
   "name": "@vicacha-devs/medusa-fulfillment-eu",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "EU & Benelux fulfillment provider plugin for Medusa v2 (PostNL letterbox, Sendcloud EU parcel, and Rotterdam LCL pallet freight).",
   "keywords": [
     "eu",

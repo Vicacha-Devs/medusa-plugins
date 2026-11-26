@@ -1,6 +1,6 @@
 {
   "name": "@vicacha-devs/medusa-plugin-einvoicing",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "E-Invoicing plugin for Medusa v2 by Vicacha Devs.",
   "keywords": [
     "cfdi",
