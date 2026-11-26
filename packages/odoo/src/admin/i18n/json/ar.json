@@ -68,7 +68,9 @@
     "registerPayment": "تسجيل الدفعة على الفاتورة",
     "reconciliationTitle": "تسوية فروقات المخزون",
     "enableScheduledReconciliation": "تمكين تسوية الفروقات المجدولة",
-    "activeStrategy": "الاستراتيجية النشطة: {{strategy}}"
+    "activeStrategy": "الاستراتيجية النشطة: {{strategy}}",
+    "statusOn": "مفعل",
+    "statusOff": "معطل"
   },
   "logsTab": {
     "failuresTitle": "أخطاء المزامنة غير المحلولة ({{count}})",
@@ -83,13 +85,18 @@
     "noConflicts": "لا توجد تعارضات مخزون مفتوحة.",
     "recentRunsTitle": "عمليات المزامنة الأخيرة ({{logsCount}}) والروابط ({{mappingsCount}})",
     "durationLabel": "المدة: {{durationMs}} مللي ثانية",
-    "notAvailable": "غير متاح"
+    "notAvailable": "غير متاح",
+    "colStatus": "الحالة"
   },
   "barcodeTab": {
     "title": "البحث عن باركود نقاط البيع والمستودع",
     "barcodeLabel": "الباركود / EAN13 / SKU",
     "barcodePlaceholder": "امسح أو أدخل الباركود / SKU...",
     "contextButton": "السياق: {{context}}",
+    "contextPos": "نقطة البيع",
+    "contextWarehouse": "المستودع",
+    "contextReceiving": "الاستلام",
+    "contextStocktake": "جرد المخزون",
     "resolveButton": "بحث",
     "resultHeader": "النتيجة: {{status}} ({{latencyMs}} مللي ثانية عبر {{source}})",
     "found": "تم العثور",
@@ -99,7 +106,10 @@
     "posTransactionsTitle": "معاملات نقاط البيع غير المتصلة ({{count}})",
     "posHeader": "نقطة بيع #{{externalId}} ({{currency}} {{total}})",
     "posOrders": "طلب Medusa: {{medusaOrder}} | طلب Odoo: {{odooOrder}}",
-    "pending": "قيد الانتظار"
+    "pending": "قيد الانتظار",
+    "colPos": "نقطة البيع",
+    "colOrders": "الطلبات",
+    "colStatus": "الحالة"
   },
   "widget": {
     "orderTitle": "حالة الطلب في Odoo ERP",
@@ -121,5 +131,9 @@
     "syncError": "فشلت المزامنة",
     "syncOrderError": "فشلت مزامنة الطلب إلى Odoo",
     "syncProductError": "فشلت مزامنة المنتج مع Odoo"
+  },
+  "rbac": {
+    "accessDeniedTitle": "تم رفض الوصول",
+    "accessDeniedDescription": "ليس لديك إذن لعرض هذا القسم. ({{permission}})"
   }
 }

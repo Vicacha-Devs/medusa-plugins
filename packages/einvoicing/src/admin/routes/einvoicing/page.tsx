@@ -1,6 +1,7 @@
 import { defineRouteConfig } from "@medusajs/admin-sdk"
 import { Badge, Container, Heading, Table, Text } from "@medusajs/ui"
 import { useEffect, useState } from "react"
+import { useTranslation } from "react-i18next"
 
 interface FiscalDocRow {
   id: string
@@ -13,6 +14,7 @@ interface FiscalDocRow {
 }
 
 const EinvoicingPage = () => {
+  const { t } = useTranslation()
   const [documents, setDocuments] = useState<FiscalDocRow[]>([])
   const [loading, setLoading] = useState(true)
 
@@ -28,30 +30,29 @@ const EinvoicingPage = () => {
   return (
     <Container className="divide-y p-0">
       <div className="px-6 py-4">
-        <Heading level="h1">E-Invoicing &amp; Fiscal Compliance</Heading>
+        <Heading level="h1">{t("heading")}</Heading>
         <Text size="small" className="text-ui-fg-subtle">
-          Multi-country electronic invoicing (EU Peppol, Colombia DIAN, Mexico
-          CFDI, Generic UBL 2.1).
+          {t("subtitle")}
         </Text>
       </div>
       <div className="px-6 py-4">
         {loading ? (
           <Text size="small" className="text-ui-fg-subtle">
-            Loading fiscal documents...
+            {t("loading")}
           </Text>
         ) : documents.length === 0 ? (
           <Text size="small" className="text-ui-fg-subtle">
-            No fiscal documents issued yet.
+            {t("emptyDocuments")}
           </Text>
         ) : (
           <Table>
             <Table.Header>
               <Table.Row>
-                <Table.HeaderCell>Number</Table.HeaderCell>
-                <Table.HeaderCell>Order</Table.HeaderCell>
-                <Table.HeaderCell>Country / Driver</Table.HeaderCell>
-                <Table.HeaderCell>Type</Table.HeaderCell>
-                <Table.HeaderCell>Status</Table.HeaderCell>
+                <Table.HeaderCell>{t("colNumber")}</Table.HeaderCell>
+                <Table.HeaderCell>{t("colOrder")}</Table.HeaderCell>
+                <Table.HeaderCell>{t("colCountryDriver")}</Table.HeaderCell>
+                <Table.HeaderCell>{t("colType")}</Table.HeaderCell>
+                <Table.HeaderCell>{t("colStatus")}</Table.HeaderCell>
               </Table.Row>
             </Table.Header>
             <Table.Body>

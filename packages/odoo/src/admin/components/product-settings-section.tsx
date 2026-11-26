@@ -34,7 +34,9 @@ export const ProductSyncSettingsSection = ({
             productSettings?.enableProductSync !== false ? "green" : "grey"
           }
         >
-          {productSettings?.enableProductSync !== false ? "ON" : "OFF"}
+          {productSettings?.enableProductSync !== false
+            ? t("settingsTab.statusOn")
+            : t("settingsTab.statusOff")}
         </StatusBadge>
       </div>
       <SectionRow

@@ -45,7 +45,28 @@
     "segmentsBadge": "Segmentos: {{segments}} ({{chars}} caracteres)",
     "waButtonPrefix": "[Botão WA] {{title}}",
     "tgInlinePrefix": "[Botão TG] {{text}}",
-    "emptySelection": "Selecione um modelo à esquerda para inspecionar os blocos, clonar uma predefinição ou pré-visualizar."
+    "emptySelection": "Selecione um modelo à esquerda para inspecionar os blocos, clonar uma predefinição ou pré-visualizar.",
+    "createButton": "Criar modelo",
+    "createTitle": "Criar modelo de notificação",
+    "createSubtitle": "Crie um modelo editável no banco de dados para qualquer canal.",
+    "labelField": "Nome de exibição",
+    "nameField": "Chave do modelo (Slug)",
+    "localeLabel": "Idioma",
+    "modeField": "Modo",
+    "descriptionField": "Descrição",
+    "cancelButton": "Cancelar",
+    "backToList": "Voltar aos modelos",
+    "detailsTitle": "Detalhes do modelo",
+    "sourceLabel": "Origem",
+    "deleteButton": "Excluir modelo",
+    "deleteConfirmTitle": "Excluir modelo?",
+    "deleteConfirmDescription": "Isso removerá permanentemente '{{label}}' e seus blocos.",
+    "notFound": "Modelo não encontrado.",
+    "labelPlaceholder": "Acompanhamento de pedido",
+    "namePlaceholder": "order-follow-up",
+    "subjectPlaceholder": "Atualização do seu pedido #{{data.display_id}}",
+    "descriptionPlaceholder": "Descrição opcional para referência interna",
+    "rawContentPlaceholder": "Olá {{data.first_name}}, ..."
   },
   "mappings": {
     "title": "Criar Mapeamento Evento → Canal → Modelo",
@@ -97,7 +118,12 @@
     "driverMsg91": "MSG91 Flow API",
     "driverSmsApi": "SMSAPI",
     "driverDummy": "Sandbox OTP (Teste)",
-    "saveSmsButton": "Guardar Driver SMS"
+    "saveSmsButton": "Guardar Driver SMS",
+    "emailSmtpTitle": "E-mail (SMTP)",
+    "emailSmtpSubtitle": "Configurado através das variáveis de ambiente MAILER_SMTP_HOST / MAILER_SMTP_USER.",
+    "emailConfiguredBadge": "Configurado",
+    "emailEnvNotSetBadge": "Env não definido",
+    "driverLabel": "Driver"
   },
   "logs": {
     "title": "Registo de Entregas Protegido (PII Mascarado e Idempotente)",
@@ -158,6 +184,15 @@
     "verifiedChannelSuccess": "Canal '{{channel}}' verificado e mensagem de teste enviada.",
     "savedChannelSuccess": "Configuração '{{channel}}' guardada.",
     "channelActionError": "Falha ao executar {{action}} em {{channel}}",
-    "broadcastSentSuccess": "Campanha enviada para os destinatários subscritos."
+    "broadcastSentSuccess": "Campanha enviada para os destinatários subscritos.",
+    "createdTemplateSuccess": "Modelo '{{label}}' criado.",
+    "createTemplateError": "Falha ao criar modelo.",
+    "deletedTemplateSuccess": "Modelo excluído.",
+    "deleteTemplateError": "Falha ao excluir modelo."
+  },
+  "channelOptions": {
+    "email": "E-mail",
+    "emailUpper": "E-MAIL",
+    "dummySandboxUpper": "SANDBOX DE TESTE"
   }
 }

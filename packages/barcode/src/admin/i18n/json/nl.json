@@ -43,7 +43,10 @@
     "batchSubtitle": "Plak tot 100 barcodes (één per regel of kommagescheiden) om automatisch Medusa-producten + varianten op te zoeken en aan te maken in één transactie.",
     "batchRunButton": "Batch-importworkflow Uitvoeren",
     "recentlyLinkedTitle": "Recent Gekoppelde Barcodeproducten ({{count}})",
-    "noLinkedProducts": "Nog geen barcodeproducten gekoppeld."
+    "noLinkedProducts": "Nog geen barcodeproducten gekoppeld.",
+    "colGtinBarcode": "GTIN / Barcode",
+    "colProductId": "Product-ID",
+    "colProvider": "Provider"
   },
   "tagsTab": {
     "createTitle": "1D-barcode / 2D Dynamische QR / Namaakbestendige Tag Aanmaken",
@@ -108,7 +111,10 @@
     "cacheTitle": "Barcodezoekcache ({{count}})",
     "purgeExpiredButton": "Verlopen Wissen",
     "clearAllButton": "Volledige Cache Leegmaken",
-    "hitsBadge": "Hits: {{count}}"
+    "hitsBadge": "Hits: {{count}}",
+    "colBarcode": "Barcode",
+    "colProvider": "Provider",
+    "colHits": "Hits"
   },
   "widget": {
     "title": "Barcodes, Dynamische QR & Thermische Labels",

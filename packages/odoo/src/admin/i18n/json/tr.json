@@ -68,7 +68,9 @@
     "registerPayment": "Faturaya Ödeme Kaydet",
     "reconciliationTitle": "Stok Farkı Mutabakatı",
     "enableScheduledReconciliation": "Zamanlanmış Stok Farkı Mutabakatını Etkinleştir",
-    "activeStrategy": "Aktif Strateji: {{strategy}}"
+    "activeStrategy": "Aktif Strateji: {{strategy}}",
+    "statusOn": "AÇIK",
+    "statusOff": "KAPALI"
   },
   "logsTab": {
     "failuresTitle": "Çözülmemiş Senkronizasyon Hataları ({{count}})",
@@ -83,13 +85,18 @@
     "noConflicts": "Açık envanter çakışması yok.",
     "recentRunsTitle": "Son Senkronizasyon Çalıştırmaları ({{logsCount}}) ve Eşlemeler ({{mappingsCount}})",
     "durationLabel": "Süre: {{durationMs}}ms",
-    "notAvailable": "Yok"
+    "notAvailable": "Yok",
+    "colStatus": "Durum"
   },
   "barcodeTab": {
     "title": "POS ve Depo Barkod Sorgulama",
     "barcodeLabel": "Barkod / EAN13 / SKU",
     "barcodePlaceholder": "Barkod / SKU tarayın veya girin...",
     "contextButton": "Bağlam: {{context}}",
+    "contextPos": "POS",
+    "contextWarehouse": "DEPO",
+    "contextReceiving": "MAL KABUL",
+    "contextStocktake": "STOK SAYIMI",
     "resolveButton": "Çözümle",
     "resultHeader": "Sonuç: {{status}} ({{source}} üzerinden {{latencyMs}}ms)",
     "found": "Bulundu",
@@ -99,7 +106,10 @@
     "posTransactionsTitle": "Çevrimdışı POS İşlemleri ({{count}})",
     "posHeader": "POS #{{externalId}} ({{currency}} {{total}})",
     "posOrders": "Medusa Siparişi: {{medusaOrder}} | Odoo Siparişi: {{odooOrder}}",
-    "pending": "Beklemede"
+    "pending": "Beklemede",
+    "colPos": "POS",
+    "colOrders": "Siparişler",
+    "colStatus": "Durum"
   },
   "widget": {
     "orderTitle": "Odoo ERP Sipariş Durumu",
@@ -121,5 +131,9 @@
     "syncError": "Senkronizasyon başarısız oldu",
     "syncOrderError": "Sipariş Odoo ile senkronize edilemedi",
     "syncProductError": "Ürün Odoo ile senkronize edilemedi"
+  },
+  "rbac": {
+    "accessDeniedTitle": "Erişim reddedildi",
+    "accessDeniedDescription": "Bu bölümü görüntüleme izniniz yok. ({{permission}})"
   }
 }

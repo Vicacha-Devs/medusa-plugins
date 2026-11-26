@@ -45,7 +45,28 @@
     "segmentsBadge": "Segment: {{segments}} ({{chars}} karakter)",
     "waButtonPrefix": "[WA Butonu] {{title}}",
     "tgInlinePrefix": "[TG Butonu] {{text}}",
-    "emptySelection": "Blok ağacını incelemek, sistem şablonunu kopyalamak veya farklı dillerde önizlemek için soldan bir şablon seçin."
+    "emptySelection": "Blok ağacını incelemek, sistem şablonunu kopyalamak veya farklı dillerde önizlemek için soldan bir şablon seçin.",
+    "createButton": "Şablon Oluştur",
+    "createTitle": "Bildirim Şablonu Oluştur",
+    "createSubtitle": "Herhangi bir kanal için düzenlenebilir veritabanı şablonu oluşturun.",
+    "labelField": "Görünen Ad",
+    "nameField": "Şablon Anahtarı (Slug)",
+    "localeLabel": "Dil",
+    "modeField": "Mod",
+    "descriptionField": "Açıklama",
+    "cancelButton": "İptal",
+    "backToList": "Şablonlara Dön",
+    "detailsTitle": "Şablon Detayları",
+    "sourceLabel": "Kaynak",
+    "deleteButton": "Şablonu Sil",
+    "deleteConfirmTitle": "Şablon silinsin mi?",
+    "deleteConfirmDescription": "Bu işlem '{{label}}' ve bloklarını kalıcı olarak silecektir.",
+    "notFound": "Şablon bulunamadı.",
+    "labelPlaceholder": "Sipariş Takibi",
+    "namePlaceholder": "order-follow-up",
+    "subjectPlaceholder": "Sipariş #{{data.display_id}} güncellemeniz",
+    "descriptionPlaceholder": "Dahili referans için isteğe bağlı açıklama",
+    "rawContentPlaceholder": "Merhaba {{data.first_name}}, ..."
   },
   "mappings": {
     "title": "Olay → Kanal → Şablon Eşlemesi Oluştur",
@@ -97,7 +118,12 @@
     "driverMsg91": "MSG91 Flow API",
     "driverSmsApi": "SMSAPI",
     "driverDummy": "Dummy OTP Sandbox (Test)",
-    "saveSmsButton": "SMS Sürücüsünü Kaydet"
+    "saveSmsButton": "SMS Sürücüsünü Kaydet",
+    "emailSmtpTitle": "E-posta (SMTP)",
+    "emailSmtpSubtitle": "MAILER_SMTP_HOST / MAILER_SMTP_USER ortam değişkenleri üzerinden yapılandırıldı.",
+    "emailConfiguredBadge": "Yapılandırıldı",
+    "emailEnvNotSetBadge": "Env Ayarlı Değil",
+    "driverLabel": "Sürücü"
   },
   "logs": {
     "title": "Maskelenmiş Teslimat Kayıtları (KVKK/PII Korumalı ve İdempotent)",
@@ -158,6 +184,15 @@
     "verifiedChannelSuccess": "'{{channel}}' kanalı doğrulandı ve test mesajı gönderildi.",
     "savedChannelSuccess": "'{{channel}}' yapılandırması kaydedildi.",
     "channelActionError": "{{channel}} için {{action}} işlemi başarısız oldu",
-    "broadcastSentSuccess": "Toplu bildirim kampanyası onaylı alıcılara gönderildi."
+    "broadcastSentSuccess": "Toplu bildirim kampanyası onaylı alıcılara gönderildi.",
+    "createdTemplateSuccess": "'{{label}}' şablonu oluşturuldu.",
+    "createTemplateError": "Şablon oluşturulamadı.",
+    "deletedTemplateSuccess": "Şablon silindi.",
+    "deleteTemplateError": "Şablon silinemedi."
+  },
+  "channelOptions": {
+    "email": "E-posta",
+    "emailUpper": "E-POSTA",
+    "dummySandboxUpper": "TEST SANDBOX"
   }
 }

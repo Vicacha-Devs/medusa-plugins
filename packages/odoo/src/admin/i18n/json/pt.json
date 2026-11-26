@@ -68,7 +68,9 @@
     "registerPayment": "Registrar pagamento na fatura",
     "reconciliationTitle": "Reconciliação de desvios",
     "enableScheduledReconciliation": "Ativar reconciliação de desvios agendada",
-    "activeStrategy": "Estratégia ativa: {{strategy}}"
+    "activeStrategy": "Estratégia ativa: {{strategy}}",
+    "statusOn": "ATIVO",
+    "statusOff": "INATIVO"
   },
   "logsTab": {
     "failuresTitle": "Falhas de sincronização não resolvidas ({{count}})",
@@ -83,13 +85,18 @@
     "noConflicts": "Nenhum conflito de estoque aberto.",
     "recentRunsTitle": "Execuções recentes ({{logsCount}}) e mapeamentos ({{mappingsCount}})",
     "durationLabel": "Duração: {{durationMs}}ms",
-    "notAvailable": "N/D"
+    "notAvailable": "N/D",
+    "colStatus": "Status"
   },
   "barcodeTab": {
     "title": "Consulta de código de barras PDV e armazém",
     "barcodeLabel": "Código de barras / EAN13 / SKU",
     "barcodePlaceholder": "Escaneie ou digite o código de barras / SKU...",
     "contextButton": "Contexto: {{context}}",
+    "contextPos": "PDV",
+    "contextWarehouse": "ARMAZÉM",
+    "contextReceiving": "RECEBIMENTO",
+    "contextStocktake": "INVENTÁRIO",
     "resolveButton": "Resolver",
     "resultHeader": "Resultado: {{status}} ({{latencyMs}}ms via {{source}})",
     "found": "Encontrado",
@@ -99,7 +106,10 @@
     "posTransactionsTitle": "Transações PDV offline ({{count}})",
     "posHeader": "PDV #{{externalId}} ({{currency}} {{total}})",
     "posOrders": "Pedido Medusa: {{medusaOrder}} | Pedido Odoo: {{odooOrder}}",
-    "pending": "Pendente"
+    "pending": "Pendente",
+    "colPos": "PDV",
+    "colOrders": "Pedidos",
+    "colStatus": "Status"
   },
   "widget": {
     "orderTitle": "Status do pedido no Odoo ERP",
@@ -121,5 +131,9 @@
     "syncError": "Falha na sincronização",
     "syncOrderError": "Falha ao sincronizar pedido com o Odoo",
     "syncProductError": "Falha ao sincronizar produto com o Odoo"
+  },
+  "rbac": {
+    "accessDeniedTitle": "Acesso negado",
+    "accessDeniedDescription": "Você não tem permissão para visualizar esta seção. ({{permission}})"
   }
 }

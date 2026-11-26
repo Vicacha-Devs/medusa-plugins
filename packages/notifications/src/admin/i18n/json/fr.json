@@ -45,7 +45,28 @@
     "segmentsBadge": "Segments : {{segments}} ({{chars}} caractères)",
     "waButtonPrefix": "[Bouton WA] {{title}}",
     "tgInlinePrefix": "[Bouton TG] {{text}}",
-    "emptySelection": "Sélectionnez un modèle à gauche pour inspecter ses blocs, cloner un préréglage système ou prévisualiser le rendu."
+    "emptySelection": "Sélectionnez un modèle à gauche pour inspecter ses blocs, cloner un préréglage système ou prévisualiser le rendu.",
+    "createButton": "Créer un modèle",
+    "createTitle": "Créer un modèle de notification",
+    "createSubtitle": "Créez un modèle modifiable en base de données pour n’importe quel canal.",
+    "labelField": "Libellé",
+    "nameField": "Clé du modèle (Slug)",
+    "localeLabel": "Langue",
+    "modeField": "Mode",
+    "descriptionField": "Description",
+    "cancelButton": "Annuler",
+    "backToList": "Retour aux modèles",
+    "detailsTitle": "Détails du modèle",
+    "sourceLabel": "Source",
+    "deleteButton": "Supprimer le modèle",
+    "deleteConfirmTitle": "Supprimer le modèle ?",
+    "deleteConfirmDescription": "Cela supprimera définitivement '{{label}}' et ses blocs.",
+    "notFound": "Modèle introuvable.",
+    "labelPlaceholder": "Suivi de commande",
+    "namePlaceholder": "order-follow-up",
+    "subjectPlaceholder": "Mise à jour de votre commande #{{data.display_id}}",
+    "descriptionPlaceholder": "Description facultative pour référence interne",
+    "rawContentPlaceholder": "Bonjour {{data.first_name}}, ..."
   },
   "mappings": {
     "title": "Créer une Règle Événement → Canal → Modèle",
@@ -97,7 +118,12 @@
     "driverMsg91": "MSG91 Flow API",
     "driverSmsApi": "SMSAPI",
     "driverDummy": "Sandbox OTP (Test)",
-    "saveSmsButton": "Enregistrer le Pilote SMS"
+    "saveSmsButton": "Enregistrer le Pilote SMS",
+    "emailSmtpTitle": "E-mail (SMTP)",
+    "emailSmtpSubtitle": "Configuré via les variables d'environnement MAILER_SMTP_HOST / MAILER_SMTP_USER.",
+    "emailConfiguredBadge": "Configuré",
+    "emailEnvNotSetBadge": "Env non défini",
+    "driverLabel": "Pilote"
   },
   "logs": {
     "title": "Journal des Envois Anonymisé (PII Masqué & Idempotent)",
@@ -158,6 +184,15 @@
     "verifiedChannelSuccess": "Canal '{{channel}}' vérifié et message test envoyé.",
     "savedChannelSuccess": "Configuration '{{channel}}' enregistrée.",
     "channelActionError": "Échec de l'action {{action}} sur {{channel}}",
-    "broadcastSentSuccess": "Campagne de diffusion envoyée aux destinataires inscrits."
+    "broadcastSentSuccess": "Campagne de diffusion envoyée aux destinataires inscrits.",
+    "createdTemplateSuccess": "Modèle '{{label}}' créé.",
+    "createTemplateError": "Échec de la création du modèle.",
+    "deletedTemplateSuccess": "Modèle supprimé.",
+    "deleteTemplateError": "Échec de la suppression du modèle."
+  },
+  "channelOptions": {
+    "email": "E-mail",
+    "emailUpper": "E-MAIL",
+    "dummySandboxUpper": "BAC À SABLE FICTIF"
   }
 }

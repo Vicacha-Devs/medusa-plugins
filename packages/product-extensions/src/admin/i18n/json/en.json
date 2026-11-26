@@ -146,5 +146,23 @@
     "loadProductExtError": "Failed to load product extension",
     "saveProductExtSuccess": "Saved product extension media & tagline",
     "saveProductExtError": "Failed to save product extension"
+  },
+  "mediaPicker": {
+    "defaultButtonLabel": "Upload / Pick",
+    "modalTitle": "Select or Upload Media",
+    "closeButton": "Close",
+    "uploadTab": "Upload New",
+    "libraryTab": "Media Library",
+    "chooseFileLabel": "Choose file ({{accept}})",
+    "uploadAttachButton": "Upload & Attach",
+    "libraryUnavailable": "Media Library plugin (/admin/media) is not active. Use Upload New to upload via Medusa File Module.",
+    "libraryLoading": "Loading Media Library...",
+    "searchPlaceholder": "Filter by filename, folder, or role...",
+    "noMatchingAssets": "No matching media assets found.",
+    "useButton": "Use",
+    "uploadFailedStatus": "Upload failed ({{status}})",
+    "uploadNoUrl": "Upload succeeded without a URL",
+    "uploadFailed": "Upload failed",
+    "attachedSuccess": "Attached {{filename}}"
   }
 }

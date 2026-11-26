@@ -42,7 +42,10 @@
         "copied": "Copied",
         "copied_desc": "Payment link copied to clipboard!",
         "already_captured": "This order has already been successfully authorized and captured via Bold.",
-        "paid_and_captured": "Paid & Captured"
+        "paid_and_captured": "Paid & Captured",
+        "select_model": "Select Model",
+        "model_smart_pos": "Smart POS",
+        "model_neo": "Bold Neo"
       },
       "terminal_status": {
         "title": "Bold POS Terminal Fleet Health",

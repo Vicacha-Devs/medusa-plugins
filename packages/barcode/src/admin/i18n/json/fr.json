@@ -43,7 +43,10 @@
     "batchSubtitle": "Collez jusqu'à 100 codes-barres (un par ligne ou séparés par des virgules) pour rechercher et créer automatiquement des produits + variantes Medusa en une transaction.",
     "batchRunButton": "Lancer l'Import par Lots",
     "recentlyLinkedTitle": "Produits Récemment Liés par Code-Barres ({{count}})",
-    "noLinkedProducts": "Aucun produit lié par code-barres pour le moment."
+    "noLinkedProducts": "Aucun produit lié par code-barres pour le moment.",
+    "colGtinBarcode": "GTIN / Code-barres",
+    "colProductId": "ID produit",
+    "colProvider": "Fournisseur"
   },
   "tagsTab": {
     "createTitle": "Créer un Code 1D / QR Dynamique 2D / Tag Anti-Contrefaçon",
@@ -108,7 +111,10 @@
     "cacheTitle": "Cache de Recherche de Codes-Barres ({{count}})",
     "purgeExpiredButton": "Purger les Expirés",
     "clearAllButton": "Vider Tout le Cache",
-    "hitsBadge": "Succès : {{count}}"
+    "hitsBadge": "Succès : {{count}}",
+    "colBarcode": "Code-barres",
+    "colProvider": "Fournisseur",
+    "colHits": "Succès"
   },
   "widget": {
     "title": "Codes-Barres, QR Dynamique & Étiquettes Thermiques",

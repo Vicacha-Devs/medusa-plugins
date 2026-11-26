@@ -1,14 +1,11 @@
 import { Toaster, toast } from "@medusajs/ui"
 import React, { useState } from "react"
 import { useTranslation } from "react-i18next"
-import {
-  useCreateOrCloneMpnTemplate,
-  useRenderMpnTemplatePreview,
-  useUpdateMpnTemplate,
-} from "../../../hooks"
-import { notificationsAdminSdk } from "../../../sdk"
+import { useNavigate } from "react-router-dom"
+import { useCreateOrCloneMpnTemplate } from "../../../hooks"
+import type { CreateOrCloneMpnTemplatePayload } from "../../../types"
 import type { StatusBannerState } from "./constants"
-import { TemplateEditorSection } from "./template-editor-section"
+import { CreateTemplateModal } from "./create-template-modal"
 import { TemplatesListSection } from "./templates-list-section"
 
 export interface TemplatesBuilderTabProps {
@@ -25,57 +22,19 @@ export const TemplatesBuilderTab: React.FC<TemplatesBuilderTabProps> = ({
   onStatus,
 }) => {
   const { t } = useTranslation("mpn")
+  const navigate = useNavigate()
   const [channelFilter, setChannelFilter] = useState<string>("all")
-  const [selectedTemplate, setSelectedTemplate] = useState<Record<
-    string,
-    any
-  > | null>(null)
-  const [selectedBlocks, setSelectedBlocks] = useState<
-    Array<Record<string, any>>
-  >([])
-  const [previewContextType, setPreviewContextType] = useState<string>("order")
-  const [previewLocale, setPreviewLocale] = useState<string>("en")
-  const [previewResult, setPreviewResult] = useState<Record<
-    string,
-    any
-  > | null>(null)
+  const [createOpen, setCreateOpen] = useState(false)
 
-  const renderPreviewMutation = useRenderMpnTemplatePreview()
-  const cloneTemplateMutation = useCreateOrCloneMpnTemplate()
-  const updateTemplateMutation = useUpdateMpnTemplate()
+  const createOrCloneMutation = useCreateOrCloneMpnTemplate()
 
-  const handlePreviewTemplate = async (
-    templateId: string,
-    contextType: string,
-    locale: string
-  ) => {
-    try {
-      const data = await renderPreviewMutation.mutateAsync({
-        template_id: templateId,
-        context_type: contextType,
-        locale,
-        append_sms_consent_footer: true,
-      })
-      setPreviewResult(data.rendered || null)
-    } catch {
-      // Ignore preview errors
-    }
-  }
-
-  const handleSelectTemplate = async (templateId: string) => {
-    try {
-      const data = await notificationsAdminSdk.getTemplate(templateId)
-      setSelectedTemplate(data.template || null)
-      setSelectedBlocks(data.flat_blocks || [])
-      await handlePreviewTemplate(templateId, previewContextType, previewLocale)
-    } catch {
-      // Ignore selection error
-    }
+  const navigateToTemplate = (templateId: string) => {
+    navigate(`/mpn/templates/${encodeURIComponent(templateId)}`)
   }
 
   const handleClonePresetToDb = async (presetId: string) => {
     try {
-      const data = await cloneTemplateMutation.mutateAsync({
+      const data = await createOrCloneMutation.mutateAsync({
         clone_from_preset_id: presetId,
       })
       const msg = t("messages.clonedPresetSuccess", {
@@ -85,7 +44,7 @@ export const TemplatesBuilderTab: React.FC<TemplatesBuilderTabProps> = ({
       onStatus?.({ type: "success", text: msg })
       await onRefresh()
       if (data.template?.id) {
-        await handleSelectTemplate(data.template.id)
+        navigateToTemplate(data.template.id)
       }
     } catch {
       const msg = t("messages.clonePresetError")
@@ -94,53 +53,26 @@ export const TemplatesBuilderTab: React.FC<TemplatesBuilderTabProps> = ({
     }
   }
 
-  const handleSaveDbTemplate = async () => {
-    if (!selectedTemplate || selectedTemplate.source === "system") return
+  const handleCreateTemplate = async (
+    payload: CreateOrCloneMpnTemplatePayload
+  ) => {
     try {
-      await updateTemplateMutation.mutateAsync({
-        id: selectedTemplate.id,
-        payload: {
-          label: selectedTemplate.label,
-          subject: selectedTemplate.subject,
-          mode: selectedTemplate.mode,
-          raw_content: selectedTemplate.raw_content,
-          meta_template_name: selectedTemplate.meta_template_name,
-          blocks: selectedBlocks,
-        },
+      const data = await createOrCloneMutation.mutateAsync(payload)
+      const msg = t("messages.createdTemplateSuccess", {
+        label: data.template?.label || payload.label || payload.name,
       })
-      const msg = t("messages.savedTemplateSuccess")
       toast.success(msg)
       onStatus?.({ type: "success", text: msg })
-      await handlePreviewTemplate(
-        selectedTemplate.id,
-        previewContextType,
-        previewLocale
-      )
+      setCreateOpen(false)
       await onRefresh()
+      if (data.template?.id) {
+        navigateToTemplate(data.template.id)
+      }
     } catch {
-      const msg = t("messages.saveTemplateError")
+      const msg = t("messages.createTemplateError")
       toast.error(msg)
       onStatus?.({ type: "error", text: msg })
     }
-  }
-
-  const handleAddBlock = (type: string) => {
-    const nextPos = selectedBlocks.length
-    setSelectedBlocks([
-      ...selectedBlocks,
-      {
-        id: `blk_${Date.now()}`,
-        type,
-        position: nextPos,
-        parent_id: null,
-        metadata:
-          type === "row"
-            ? { label: "Field", value: "{{data.total_formatted}}" }
-            : type === "button" || type === "actions"
-              ? { text: "View Order", url: "{{data.order_url}}" }
-              : { text: "New content block ({{data.first_name}})" },
-      },
-    ])
   }
 
   return (
@@ -149,50 +81,20 @@ export const TemplatesBuilderTab: React.FC<TemplatesBuilderTabProps> = ({
       <TemplatesListSection
         templates={templates}
         isLoading={isLoading}
-        selectedTemplateId={selectedTemplate?.id}
         channelFilter={channelFilter}
         onChannelFilterChange={setChannelFilter}
-        onSelectTemplate={(id) => void handleSelectTemplate(id)}
+        onSelectTemplate={navigateToTemplate}
         onClonePreset={(id) => void handleClonePresetToDb(id)}
-        isCloning={cloneTemplateMutation.isPending}
+        onCreateTemplate={() => setCreateOpen(true)}
+        isCloning={createOrCloneMutation.isPending}
       />
 
-      {selectedTemplate && (
-        <TemplateEditorSection
-          selectedTemplate={selectedTemplate}
-          selectedBlocks={selectedBlocks}
-          previewContextType={previewContextType}
-          previewLocale={previewLocale}
-          previewResult={previewResult}
-          isSaving={updateTemplateMutation.isPending}
-          onTemplateChange={setSelectedTemplate}
-          onAddBlock={handleAddBlock}
-          onRemoveBlock={(idx) =>
-            setSelectedBlocks(selectedBlocks.filter((_, i) => i !== idx))
-          }
-          onSaveTemplate={() => void handleSaveDbTemplate()}
-          onContextChange={(val) => {
-            setPreviewContextType(val)
-            if (selectedTemplate?.id) {
-              void handlePreviewTemplate(
-                selectedTemplate.id,
-                val,
-                previewLocale
-              )
-            }
-          }}
-          onLocaleChange={(loc) => {
-            setPreviewLocale(loc)
-            if (selectedTemplate?.id) {
-              void handlePreviewTemplate(
-                selectedTemplate.id,
-                previewContextType,
-                loc
-              )
-            }
-          }}
-        />
-      )}
+      <CreateTemplateModal
+        open={createOpen}
+        onOpenChange={setCreateOpen}
+        onSubmit={handleCreateTemplate}
+        isSubmitting={createOrCloneMutation.isPending}
+      />
     </div>
   )
 }

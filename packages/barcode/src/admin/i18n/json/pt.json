@@ -43,7 +43,10 @@
     "batchSubtitle": "Cole até 100 códigos de barras (um por linha ou separados por vírgula) para consultar e criar automaticamente produtos + variantes Medusa em uma transação.",
     "batchRunButton": "Executar Importação em Lote",
     "recentlyLinkedTitle": "Produtos Vinculados Recentemente por Código de Barras ({{count}})",
-    "noLinkedProducts": "Nenhum produto vinculado por código de barras ainda."
+    "noLinkedProducts": "Nenhum produto vinculado por código de barras ainda.",
+    "colGtinBarcode": "GTIN / Código de barras",
+    "colProductId": "ID do produto",
+    "colProvider": "Provedor"
   },
   "tagsTab": {
     "createTitle": "Criar Código 1D / QR Dinâmico 2D / Tag Antifalsificação",
@@ -108,7 +111,10 @@
     "cacheTitle": "Cache de Consultas de Códigos de Barras ({{count}})",
     "purgeExpiredButton": "Limpar Expirados",
     "clearAllButton": "Limpar Todo o Cache",
-    "hitsBadge": "Hits: {{count}}"
+    "hitsBadge": "Hits: {{count}}",
+    "colBarcode": "Código de barras",
+    "colProvider": "Provedor",
+    "colHits": "Hits"
   },
   "widget": {
     "title": "Códigos de Barras, QR Dinâmico e Etiquetas Térmicas",

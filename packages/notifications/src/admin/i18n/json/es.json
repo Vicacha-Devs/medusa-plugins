@@ -45,7 +45,28 @@
     "segmentsBadge": "Segmentos: {{segments}} ({{chars}} caracteres)",
     "waButtonPrefix": "[Botón WA] {{title}}",
     "tgInlinePrefix": "[Botón TG] {{text}}",
-    "emptySelection": "Selecciona una plantilla a la izquierda para inspeccionar sus bloques, clonar un preset del sistema o previsualizarla."
+    "emptySelection": "Selecciona una plantilla a la izquierda para inspeccionar sus bloques, clonar un preset del sistema o previsualizarla.",
+    "createButton": "Crear plantilla",
+    "createTitle": "Crear plantilla de notificación",
+    "createSubtitle": "Crea una plantilla editable en base de datos para cualquier canal.",
+    "labelField": "Nombre visible",
+    "nameField": "Clave de plantilla (Slug)",
+    "localeLabel": "Idioma",
+    "modeField": "Modo",
+    "descriptionField": "Descripción",
+    "cancelButton": "Cancelar",
+    "backToList": "Volver a plantillas",
+    "detailsTitle": "Detalles de la plantilla",
+    "sourceLabel": "Origen",
+    "deleteButton": "Eliminar plantilla",
+    "deleteConfirmTitle": "¿Eliminar plantilla?",
+    "deleteConfirmDescription": "Esto eliminará permanentemente '{{label}}' y sus bloques.",
+    "notFound": "Plantilla no encontrada.",
+    "labelPlaceholder": "Seguimiento de pedido",
+    "namePlaceholder": "seguimiento-de-pedido",
+    "subjectPlaceholder": "Actualización de tu pedido #{{data.display_id}}",
+    "descriptionPlaceholder": "Descripción opcional para referencia interna",
+    "rawContentPlaceholder": "Hola {{data.first_name}}, ..."
   },
   "mappings": {
     "title": "Crear Mapeo Evento → Canal → Plantilla",
@@ -97,7 +118,12 @@
     "driverMsg91": "MSG91 Flow API",
     "driverSmsApi": "SMSAPI",
     "driverDummy": "Sandbox OTP Dummy (Pruebas)",
-    "saveSmsButton": "Guardar Driver SMS"
+    "saveSmsButton": "Guardar Driver SMS",
+    "emailSmtpTitle": "Correo electrónico (SMTP)",
+    "emailSmtpSubtitle": "Configurado mediante las variables de entorno MAILER_SMTP_HOST / MAILER_SMTP_USER.",
+    "emailConfiguredBadge": "Configurado",
+    "emailEnvNotSetBadge": "Variables no definidas",
+    "driverLabel": "Controlador"
   },
   "logs": {
     "title": "Registro de Entregas Redactado (PII Enmascarado e Idempotente)",
@@ -158,6 +184,15 @@
     "verifiedChannelSuccess": "Canal '{{channel}}' verificado y mensaje de prueba enviado.",
     "savedChannelSuccess": "Configuración de '{{channel}}' guardada.",
     "channelActionError": "Error al ejecutar {{action}} en {{channel}}",
-    "broadcastSentSuccess": "Campaña de difusión enviada a los destinatarios suscritos."
+    "broadcastSentSuccess": "Campaña de difusión enviada a los destinatarios suscritos.",
+    "createdTemplateSuccess": "Plantilla '{{label}}' creada.",
+    "createTemplateError": "No se pudo crear la plantilla.",
+    "deletedTemplateSuccess": "Plantilla eliminada.",
+    "deleteTemplateError": "No se pudo eliminar la plantilla."
+  },
+  "channelOptions": {
+    "email": "Correo electrónico",
+    "emailUpper": "CORREO ELECTRÓNICO",
+    "dummySandboxUpper": "SANDBOX DE PRUEBA"
   }
 }

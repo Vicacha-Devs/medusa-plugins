@@ -21,6 +21,7 @@ import type {
   ImageAltMetadata,
   ProductAttributeValueDTO,
   ProductExtensionDTO,
+  ProductExtModuleOptions,
   ProductFeatureDTO,
   ProductOptionMetadata,
   ProductSeoMetadata,
@@ -294,6 +295,41 @@ export class ProductExtModuleService extends MedusaService({
   ProductAttributeValue,
   ProductFeature,
 }) {
+  protected readonly options_: ProductExtModuleOptions
+
+  constructor(
+    container: Record<string, unknown> = {},
+    options: ProductExtModuleOptions = {}
+  ) {
+    super(container, options)
+    this.options_ = options || {}
+  }
+
+  private getConfigTemplates_(): AttributeTemplateDTO[] {
+    const raw = this.options_.attribute_templates
+    if (!Array.isArray(raw) || raw.length === 0) return []
+    const results: AttributeTemplateDTO[] = []
+    for (const tpl of raw) {
+      const name = String(tpl?.name ?? "").trim()
+      if (!name) continue
+      const code = slugifyAttributeKey(tpl.code || name)
+      if (!code) continue
+      results.push({
+        id: `config_${code}`,
+        code,
+        name,
+        description: tpl.description ?? null,
+        category_ids: Array.isArray(tpl.category_ids) ? tpl.category_ids : [],
+        attribute_keys: Array.isArray(tpl.attribute_keys)
+          ? tpl.attribute_keys
+          : [],
+        content_tree: tpl.content_tree ?? createEmptyTree(),
+        is_active: tpl.is_active ?? true,
+        metadata: { ...tpl.metadata, source: "config" },
+      })
+    }
+    return results
+  }
   // ---------------------------------------------------------------------------
   // 1. ProductExtension CRUD (100% compatible with @bambiste/medusa-product-ext)
   // ---------------------------------------------------------------------------
@@ -1400,7 +1436,11 @@ export class ProductExtModuleService extends MedusaService({
     const match = all
       .map(normalizeAttributeTemplateRecord)
       .find((t) => t.id === trimmed || t.code === trimmed)
-    return match ?? null
+    if (match) return match
+    const cfgMatch = this.getConfigTemplates_().find(
+      (t) => t.id === trimmed || t.code === trimmed
+    )
+    return cfgMatch ?? null
   }
 
   async createTemplate(
@@ -1512,7 +1552,12 @@ export class ProductExtModuleService extends MedusaService({
     const rawList = (await this.listAttributeTemplates({})) as unknown as Array<
       Record<string, unknown>
     >
-    let items = rawList.map(normalizeAttributeTemplateRecord)
+    const dbItems = rawList.map(normalizeAttributeTemplateRecord)
+    const dbCodes = new Set(dbItems.map((t) => t.code))
+    const configItems = this.getConfigTemplates_().filter(
+      (t) => !dbCodes.has(t.code)
+    )
+    let items = [...dbItems, ...configItems]
 
     if (filter?.is_active !== undefined) {
       items = items.filter((t) => t.is_active === filter.is_active)

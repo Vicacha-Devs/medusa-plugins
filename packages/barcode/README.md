@@ -831,7 +831,43 @@ registry.register(new MyErpBarcodeProvider())
 
 ---
 
-## 21. Testing, Linting & Typechecking
+## 21. Adding Custom Label Templates
+
+You can define custom label layouts in two ways:
+
+1. **Database / Admin UI (`BarcodeLabelTemplate`)**:
+   - Create custom rows via `POST /admin/barcode/templates` with `preset_id: "custom"`, `layout_type` (`"thermal_roll"` | `"a4_sheet"`), physical dimensions (`width_mm`, `height_mm`, `columns`, `rows`, margins/gaps), `symbology`, visibility toggles (`show_title`, `show_sku`, `show_price`, `show_qr`, etc.), `custom_header`, `custom_footer`, and `dpi` (`203` | `300`).
+2. **Code-defined templates via `medusa-config.ts` (`customLabelTemplates`)**:
+   - Register reusable label presets directly in plugin options, optionally overriding `renderHtml` and/or `renderZpl` for full layout control:
+
+   ```ts
+   {
+     resolve: "@vicacha-devs/medusa-plugin-barcode",
+     options: {
+       customLabelTemplates: [
+         {
+           id: "coffee_bag_80x50",
+           name: "Coffee Bag 80x50",
+           width_mm: 80,
+           height_mm: 50,
+           custom_header: "ROASTED IN ROTTERDAM",
+           show_qr: true,
+           // Optional custom HTML or Zebra ZPL II renderers:
+           renderHtml: (items, template) =>
+             `<div class="label">${items.map((i) => i.title).join("")}</div>`,
+           renderZpl: (items, template) =>
+             `^XA^FD${items[0]?.sku || ""}^XZ`,
+         },
+       ],
+     },
+   }
+   ```
+
+   Config templates appear in `listAllLabelTemplates()` and can be passed as `template_id` to `printLabels()`. Database templates with the same `id` take precedence.
+
+---
+
+## 22. Testing, Linting & Typechecking
 
 ```bash
 # Run TypeScript compiler typecheck (0 errors)

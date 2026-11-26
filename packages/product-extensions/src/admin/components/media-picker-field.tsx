@@ -9,6 +9,7 @@ import {
   toast,
 } from "@medusajs/ui"
 import React, { useCallback, useEffect, useMemo, useState } from "react"
+import { useTranslation } from "react-i18next"
 
 interface MediaLibraryAsset {
   id: string
@@ -31,9 +32,10 @@ export const MediaPickerButton: React.FC<MediaPickerButtonProps> = ({
   accept,
   folder,
   role,
-  buttonLabel = "Upload / Pick",
+  buttonLabel,
   onSelect,
 }) => {
+  const { t } = useTranslation("product-ext")
   const [open, setOpen] = useState(false)
   const [tab, setTab] = useState<"upload" | "library">("upload")
   const [file, setFile] = useState<File | null>(null)
@@ -96,14 +98,16 @@ export const MediaPickerButton: React.FC<MediaPickerButtonProps> = ({
         body: formData,
       })
       if (!uploadRes.ok) {
-        throw new Error(`Upload failed (${uploadRes.status})`)
+        throw new Error(
+          t("mediaPicker.uploadFailedStatus", { status: uploadRes.status })
+        )
       }
       const uploadJson = (await uploadRes.json()) as {
         files?: Array<{ url: string }>
       }
       const uploadedUrl = uploadJson.files?.[0]?.url
       if (!uploadedUrl) {
-        throw new Error("Upload succeeded without a URL")
+        throw new Error(t("mediaPicker.uploadNoUrl"))
       }
 
       try {
@@ -129,11 +133,11 @@ export const MediaPickerButton: React.FC<MediaPickerButtonProps> = ({
       }
 
       onSelect(uploadedUrl)
-      toast.success(`Attached ${file.name}`)
+      toast.success(t("mediaPicker.attachedSuccess", { filename: file.name }))
       setFile(null)
       setOpen(false)
     } catch (err: any) {
-      toast.error(err?.message || "Upload failed")
+      toast.error(err?.message || t("mediaPicker.uploadFailed"))
     } finally {
       setUploading(false)
     }
@@ -148,7 +152,7 @@ export const MediaPickerButton: React.FC<MediaPickerButtonProps> = ({
         className="whitespace-nowrap shrink-0"
         onClick={() => setOpen(true)}
       >
-        {buttonLabel}
+        {buttonLabel ?? t("mediaPicker.defaultButtonLabel")}
       </Button>
 
       {open && (
@@ -161,7 +165,7 @@ export const MediaPickerButton: React.FC<MediaPickerButtonProps> = ({
             onClick={(e: React.MouseEvent) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between px-6 py-4">
-              <Heading level="h2">Select or Upload Media</Heading>
+              <Heading level="h2">{t("mediaPicker.modalTitle")}</Heading>
               <Button
                 type="button"
                 size="small"
@@ -169,7 +173,7 @@ export const MediaPickerButton: React.FC<MediaPickerButtonProps> = ({
                 className="whitespace-nowrap shrink-0"
                 onClick={() => setOpen(false)}
               >
-                Close
+                {t("mediaPicker.closeButton")}
               </Button>
             </div>
 
@@ -181,7 +185,7 @@ export const MediaPickerButton: React.FC<MediaPickerButtonProps> = ({
                 className="whitespace-nowrap shrink-0"
                 onClick={() => setTab("upload")}
               >
-                Upload New
+                {t("mediaPicker.uploadTab")}
               </Button>
               <Button
                 type="button"
@@ -190,7 +194,7 @@ export const MediaPickerButton: React.FC<MediaPickerButtonProps> = ({
                 className="whitespace-nowrap shrink-0"
                 onClick={() => setTab("library")}
               >
-                Media Library
+                {t("mediaPicker.libraryTab")}
               </Button>
             </div>
 
@@ -198,7 +202,9 @@ export const MediaPickerButton: React.FC<MediaPickerButtonProps> = ({
               {tab === "upload" ? (
                 <div className="flex flex-col gap-4">
                   <div className="flex flex-col gap-2">
-                    <Label size="small">Choose file ({accept})</Label>
+                    <Label size="small">
+                      {t("mediaPicker.chooseFileLabel", { accept })}
+                    </Label>
                     <input
                       type="file"
                       accept={accept}
@@ -216,31 +222,30 @@ export const MediaPickerButton: React.FC<MediaPickerButtonProps> = ({
                       isLoading={uploading}
                       onClick={() => void handleUpload()}
                     >
-                      Upload &amp; Attach
+                      {t("mediaPicker.uploadAttachButton")}
                     </Button>
                   </div>
                 </div>
               ) : !libraryAvailable ? (
                 <Text size="small" className="text-ui-fg-subtle">
-                  Media Library plugin (`/admin/media`) is not active. Use
-                  Upload New to upload via Medusa File Module.
+                  {t("mediaPicker.libraryUnavailable")}
                 </Text>
               ) : libraryLoading ? (
                 <Text size="small" className="text-ui-fg-subtle">
-                  Loading Media Library...
+                  {t("mediaPicker.libraryLoading")}
                 </Text>
               ) : (
                 <div className="flex flex-col gap-3">
                   <Input
                     size="small"
                     type="search"
-                    placeholder="Filter by filename, folder, or role..."
+                    placeholder={t("mediaPicker.searchPlaceholder")}
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                   />
                   {filteredAssets.length === 0 ? (
                     <Text size="small" className="text-ui-fg-subtle">
-                      No matching media assets found.
+                      {t("mediaPicker.noMatchingAssets")}
                     </Text>
                   ) : (
                     <div className="flex flex-col gap-2">
@@ -285,11 +290,15 @@ export const MediaPickerButton: React.FC<MediaPickerButtonProps> = ({
                             className="whitespace-nowrap shrink-0"
                             onClick={() => {
                               onSelect(asset.url)
-                              toast.success(`Attached ${asset.filename}`)
+                              toast.success(
+                                t("mediaPicker.attachedSuccess", {
+                                  filename: asset.filename,
+                                })
+                              )
                               setOpen(false)
                             }}
                           >
-                            Use
+                            {t("mediaPicker.useButton")}
                           </Button>
                         </div>
                       ))}

@@ -376,7 +376,44 @@ The Medusa Admin extension uses `LayoutComposer` and modular components (`src/ad
 
 ---
 
-## 12. Development & Testing
+## 12. Adding Custom Templates
+
+You can add custom templates in two ways:
+
+1. **Medusa Admin UI (`/app/mpn/templates`)**:
+   - Click **Create Template** to create a DB-backed template (`blocks` or `raw` mode) for any channel (`email`, `whatsapp`, `telegram`, `sms`, `slack`).
+   - Click any row to open the dedicated template editor & live multi-channel preview (`/app/mpn/templates/:id`).
+   - To customize a built-in preset, click **Clone to DB** from the list or detail page.
+2. **Code-defined external templates (`medusa-config.ts`)**:
+   Register declarative templates under `options.extend.services[].templates` using `{ module }` or `{ path }`, or expose them via a custom service's `getSystemTemplates()` / `render()` callback:
+
+   ```ts
+   {
+     resolve: "@vicacha-devs/medusa-plugin-notifications",
+     options: {
+       extend: {
+         services: [
+           {
+             id: "email",
+             channel: "email",
+             templates: [
+               {
+                 name: "custom-order-welcome",
+                 path: "./src/notification-templates/order-welcome",
+               },
+             ],
+           },
+         ],
+       },
+     },
+   }
+   ```
+
+   External templates are prefixed with `external_` (e.g. `external_custom-order-welcome`) and appear alongside system and DB templates in Admin and event mappings.
+
+---
+
+## 13. Development & Testing
 
 ```bash
 # Run the unit, multi-channel rendering, provider, SDK & security test suite

@@ -45,7 +45,28 @@
     "segmentsBadge": "المقاطع: {{segments}} ({{chars}} حرف)",
     "waButtonPrefix": "[زر واتساب] {{title}}",
     "tgInlinePrefix": "[زر تيليجرام] {{text}}",
-    "emptySelection": "اختر قالباً من القائمة لاستعراض شجرة الكتل أو نسخ قالب نظام أو معاينة المخرجات بجميع اللغات."
+    "emptySelection": "اختر قالباً من القائمة لاستعراض شجرة الكتل أو نسخ قالب نظام أو معاينة المخرجات بجميع اللغات.",
+    "createButton": "إنشاء قالب",
+    "createTitle": "إنشاء قالب إشعار",
+    "createSubtitle": "أنشئ قالباً قابلاً للتعديل في قاعدة البيانات لأي قناة.",
+    "labelField": "اسم العرض",
+    "nameField": "مفتاح القالب (Slug)",
+    "localeLabel": "اللغة",
+    "modeField": "الوضع",
+    "descriptionField": "الوصف",
+    "cancelButton": "إلغاء",
+    "backToList": "العودة إلى القوالب",
+    "detailsTitle": "تفاصيل القالب",
+    "sourceLabel": "المصدر",
+    "deleteButton": "حذف القالب",
+    "deleteConfirmTitle": "حذف القالب؟",
+    "deleteConfirmDescription": "سيؤدي هذا إلى إزالة '{{label}}' وكتله نهائياً.",
+    "notFound": "القالب غير موجود.",
+    "labelPlaceholder": "متابعة الطلب",
+    "namePlaceholder": "order-follow-up",
+    "subjectPlaceholder": "تحديث طلبك #{{data.display_id}}",
+    "descriptionPlaceholder": "وصف اختياري للمرجع الداخلي",
+    "rawContentPlaceholder": "مرحبًا {{data.first_name}}، ..."
   },
   "mappings": {
     "title": "إنشاء ربط: حدث ← قناة ← قالب",
@@ -97,7 +118,12 @@
     "driverMsg91": "MSG91 Flow API",
     "driverSmsApi": "SMSAPI",
     "driverDummy": "بيئة اختبار OTP محلية",
-    "saveSmsButton": "حفظ مشغّل SMS"
+    "saveSmsButton": "حفظ مشغّل SMS",
+    "emailSmtpTitle": "البريد الإلكتروني (SMTP)",
+    "emailSmtpSubtitle": "يتم الإعداد عبر متغيرات البيئة MAILER_SMTP_HOST / MAILER_SMTP_USER.",
+    "emailConfiguredBadge": "مُعد",
+    "emailEnvNotSetBadge": "غير مضبوط",
+    "driverLabel": "المشغّل"
   },
   "logs": {
     "title": "سجل التسليم المحمي (إخفاء البيانات الشخصية ومنع التكرار)",
@@ -158,6 +184,15 @@
     "verifiedChannelSuccess": "تم توثيق قناة '{{channel}}' وإرسال رسالة تجريبية.",
     "savedChannelSuccess": "تم حفظ إعدادات قناة '{{channel}}'.",
     "channelActionError": "فشل إجراء {{action}} لقناة {{channel}}",
-    "broadcastSentSuccess": "تم إطلاق حملة البث للمستلمين المشتركين."
+    "broadcastSentSuccess": "تم إطلاق حملة البث للمستلمين المشتركين.",
+    "createdTemplateSuccess": "تم إنشاء القالب '{{label}}'.",
+    "createTemplateError": "فشل إنشاء القالب.",
+    "deletedTemplateSuccess": "تم حذف القالب.",
+    "deleteTemplateError": "فشل حذف القالب."
+  },
+  "channelOptions": {
+    "email": "البريد الإلكتروني",
+    "emailUpper": "البريد الإلكتروني",
+    "dummySandboxUpper": "بيئة الاختبار الوهمية"
   }
 }

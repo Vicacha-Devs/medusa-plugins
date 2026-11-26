@@ -260,6 +260,35 @@ pnpm build
 
 ---
 
+## Custom Attribute Templates (`medusa-config.ts` & Admin)
+
+You can define reusable `AttributeTemplate` schemas (bundling `attribute_keys`, `category_ids`, and a base `content_tree`) in two ways:
+
+1. **Admin UI / API**: Create `AttributeTemplate` records in **Product Extensions** (`/app/product-ext`) or via the Admin API.
+2. **Declarative templates in `medusa-config.ts` (`attribute_templates`)**:
+   Register version-controlled templates directly in plugin options so they are immediately available across environments without manual Admin setup:
+
+   ```ts
+   {
+     resolve: "@vicacha-devs/medusa-plugin-product-extensions",
+     options: {
+       attribute_templates: [
+         {
+           code: "specialty_coffee",
+           name: "Specialty Coffee",
+           description: "Standard origin & cupping attributes",
+           category_ids: ["cat_coffee"],
+           attribute_keys: ["sca_score", "varietal", "process", "altitude_masl"],
+         },
+       ],
+     },
+   }
+   ```
+
+   Config templates are merged into `listTemplates()` and `getTemplateByIdOrCode()` (and work with `applyTemplateToProductWithState()`). If a database template exists with the same `code`, the database template takes precedence.
+
+---
+
 ## License
 
 MIT — see [LICENSE](./LICENSE).

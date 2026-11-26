@@ -1,0 +1,26 @@
+{
+  "i18n-ally.localesPaths": [
+    "packages/automations/src/admin/i18n",
+    "packages/b2b/src/admin/i18n/json",
+    "packages/barcode/src/admin/i18n/json",
+    "packages/dian/src/admin/i18n/json",
+    "packages/documents/src/admin/i18n/json",
+    "packages/einvoicing/src/admin/i18n",
+    "packages/notifications/src/admin/i18n/json",
+    "packages/odoo/src/admin/i18n/json",
+    "packages/payment-bold/src/admin/i18n/json",
+    "packages/product-extensions/src/admin/i18n/json",
+    "packages/social-commerce/src/admin/i18n/json",
+    "packages/stories/src/admin/i18n/json",
+    "packages/typesense/src/admin/i18n/json"
+  ],
+  "i18n-ally.pathMatcher": "{locale}.json",
+  "i18n-ally.enabledFrameworks": ["react-i18next", "react"],
+  "i18n-ally.sourceLanguage": "en",
+  "i18n-ally.displayLanguage": "en",
+  "i18n-ally.keystyle": "nested",
+  "i18n-ally.namespace": false,
+  "i18n-ally.sortKeys": false,
+  "i18n-ally.keepFulfilled": true,
+  "i18n-ally.dirStructure": "file"
+}

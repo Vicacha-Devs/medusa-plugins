@@ -196,5 +196,23 @@
     "stickerRemoved": "Interactieve sticker verwijderd.",
     "stickerRemoveError": "Verwijderen van sticker mislukt",
     "productStoryCreated": "Shoppable storyslide \"{{title}}\" aangemaakt."
+  },
+  "mediaPicker": {
+    "defaultButtonLabel": "Uploaden / Kiezen",
+    "modalTitle": "Media selecteren of uploaden",
+    "closeButton": "Sluiten",
+    "uploadTab": "Nieuw uploaden",
+    "libraryTab": "Mediabibliotheek",
+    "chooseFileLabel": "Bestand kiezen ({{accept}})",
+    "uploadAttachButton": "Uploaden en bijvoegen",
+    "libraryUnavailable": "Mediabibliotheek-plugin (/admin/media) is niet actief. Gebruik Nieuw uploaden om via de Medusa-bestandsmodule te uploaden.",
+    "libraryLoading": "Mediabibliotheek laden...",
+    "searchPlaceholder": "Filteren op bestandsnaam, map of rol...",
+    "noMatchingAssets": "Geen overeenkomende media-assets gevonden.",
+    "useButton": "Gebruiken",
+    "uploadFailedStatus": "Uploaden mislukt ({{status}})",
+    "uploadNoUrl": "Uploaden geslaagd zonder URL",
+    "uploadFailed": "Uploaden mislukt",
+    "attachedSuccess": "{{filename}} bijgevoegd"
   }
 }

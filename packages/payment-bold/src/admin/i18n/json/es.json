@@ -42,7 +42,10 @@
         "copied": "Copiado",
         "copied_desc": "¡Enlace de pago copiado al portapapeles!",
         "already_captured": "Esta orden ya ha sido autorizada y capturada exitosamente con Bold.",
-        "paid_and_captured": "Pagado y Capturado"
+        "paid_and_captured": "Pagado y Capturado",
+        "select_model": "Seleccionar modelo",
+        "model_smart_pos": "Smart POS",
+        "model_neo": "Bold Neo"
       },
       "terminal_status": {
         "title": "Estado de Flota de Datáfonos POS Bold",

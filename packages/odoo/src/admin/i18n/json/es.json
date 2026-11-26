@@ -68,7 +68,9 @@
     "registerPayment": "Registrar pago en la factura",
     "reconciliationTitle": "Conciliación de desfase",
     "enableScheduledReconciliation": "Habilitar conciliación de desfase programada",
-    "activeStrategy": "Estrategia activa: {{strategy}}"
+    "activeStrategy": "Estrategia activa: {{strategy}}",
+    "statusOn": "ACTIVO",
+    "statusOff": "INACTIVO"
   },
   "logsTab": {
     "failuresTitle": "Fallos de sincronización sin resolver ({{count}})",
@@ -83,13 +85,18 @@
     "noConflicts": "No hay conflictos de inventario abiertos.",
     "recentRunsTitle": "Ejecuciones de sincronización recientes ({{logsCount}}) y mapeos ({{mappingsCount}})",
     "durationLabel": "Duración: {{durationMs}}ms",
-    "notAvailable": "N/D"
+    "notAvailable": "N/D",
+    "colStatus": "Estado"
   },
   "barcodeTab": {
     "title": "Búsqueda de códigos de barras POS y almacén",
     "barcodeLabel": "Código de barras / EAN13 / SKU",
     "barcodePlaceholder": "Escanear o introducir código de barras / SKU...",
     "contextButton": "Contexto: {{context}}",
+    "contextPos": "POS",
+    "contextWarehouse": "ALMACÉN",
+    "contextReceiving": "RECEPCIÓN",
+    "contextStocktake": "INVENTARIO",
     "resolveButton": "Resolver",
     "resultHeader": "Resultado: {{status}} ({{latencyMs}}ms vía {{source}})",
     "found": "Encontrado",
@@ -99,7 +106,10 @@
     "posTransactionsTitle": "Transacciones POS sin conexión ({{count}})",
     "posHeader": "POS #{{externalId}} ({{currency}} {{total}})",
     "posOrders": "Pedido Medusa: {{medusaOrder}} | Pedido Odoo: {{odooOrder}}",
-    "pending": "Pendiente"
+    "pending": "Pendiente",
+    "colPos": "POS",
+    "colOrders": "Pedidos",
+    "colStatus": "Estado"
   },
   "widget": {
     "orderTitle": "Estado del pedido en Odoo ERP",
@@ -121,5 +131,9 @@
     "syncError": "Falló la sincronización",
     "syncOrderError": "Error al sincronizar el pedido con Odoo",
     "syncProductError": "Error al sincronizar el producto con Odoo"
+  },
+  "rbac": {
+    "accessDeniedTitle": "Acceso denegado",
+    "accessDeniedDescription": "No tienes permiso para ver esta sección. ({{permission}})"
   }
 }

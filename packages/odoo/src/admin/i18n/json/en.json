@@ -68,7 +68,9 @@
     "registerPayment": "Register Payment on Invoice",
     "reconciliationTitle": "Drift Reconciliation",
     "enableScheduledReconciliation": "Enable Scheduled Drift Reconciliation",
-    "activeStrategy": "Active Strategy: {{strategy}}"
+    "activeStrategy": "Active Strategy: {{strategy}}",
+    "statusOn": "ON",
+    "statusOff": "OFF"
   },
   "logsTab": {
     "failuresTitle": "Unresolved Sync Failures ({{count}})",
@@ -83,13 +85,18 @@
     "noConflicts": "No open inventory conflicts.",
     "recentRunsTitle": "Recent Sync Runs ({{logsCount}}) & Mappings ({{mappingsCount}})",
     "durationLabel": "Duration: {{durationMs}}ms",
-    "notAvailable": "N/A"
+    "notAvailable": "N/A",
+    "colStatus": "Status"
   },
   "barcodeTab": {
     "title": "POS & Warehouse Barcode Lookup",
     "barcodeLabel": "Barcode / EAN13 / SKU",
     "barcodePlaceholder": "Scan or enter barcode / SKU...",
     "contextButton": "Context: {{context}}",
+    "contextPos": "POS",
+    "contextWarehouse": "WAREHOUSE",
+    "contextReceiving": "RECEIVING",
+    "contextStocktake": "STOCKTAKE",
     "resolveButton": "Resolve",
     "resultHeader": "Result: {{status}} ({{latencyMs}}ms via {{source}})",
     "found": "Found",
@@ -99,7 +106,10 @@
     "posTransactionsTitle": "Offline POS Transactions ({{count}})",
     "posHeader": "POS #{{externalId}} ({{currency}} {{total}})",
     "posOrders": "Medusa Order: {{medusaOrder}} | Odoo Order: {{odooOrder}}",
-    "pending": "Pending"
+    "pending": "Pending",
+    "colPos": "POS",
+    "colOrders": "Orders",
+    "colStatus": "Status"
   },
   "widget": {
     "orderTitle": "Odoo ERP Order Status",
@@ -121,5 +131,9 @@
     "syncError": "Sync failed",
     "syncOrderError": "Failed to sync order to Odoo",
     "syncProductError": "Failed to sync product with Odoo"
+  },
+  "rbac": {
+    "accessDeniedTitle": "Access denied",
+    "accessDeniedDescription": "You do not have permission to view this section. ({{permission}})"
   }
 }

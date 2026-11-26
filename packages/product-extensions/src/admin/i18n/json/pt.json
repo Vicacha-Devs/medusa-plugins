@@ -146,5 +146,23 @@
     "loadProductExtError": "Falha ao carregar extensão do produto",
     "saveProductExtSuccess": "Mídia e slogan da extensão do produto salvos",
     "saveProductExtError": "Falha ao salvar extensão do produto"
+  },
+  "mediaPicker": {
+    "defaultButtonLabel": "Enviar / Escolher",
+    "modalTitle": "Selecionar ou enviar mídia",
+    "closeButton": "Fechar",
+    "uploadTab": "Enviar novo",
+    "libraryTab": "Biblioteca de mídia",
+    "chooseFileLabel": "Escolher arquivo ({{accept}})",
+    "uploadAttachButton": "Enviar e anexar",
+    "libraryUnavailable": "O plugin Biblioteca de Mídia (/admin/media) não está ativo. Use Enviar novo para enviar pelo módulo de arquivos do Medusa.",
+    "libraryLoading": "Carregando biblioteca de mídia...",
+    "searchPlaceholder": "Filtrar por nome do arquivo, pasta ou função...",
+    "noMatchingAssets": "Nenhum recurso de mídia correspondente encontrado.",
+    "useButton": "Usar",
+    "uploadFailedStatus": "Falha no envio ({{status}})",
+    "uploadNoUrl": "Envio concluído sem uma URL",
+    "uploadFailed": "Falha no envio",
+    "attachedSuccess": "Anexado {{filename}}"
   }
 }

@@ -43,7 +43,10 @@
     "batchSubtitle": "Medusa ürünlerini ve varyantlarını tek bir işlemde otomatik sorgulayıp oluşturmak için en fazla 100 barkod (her satıra bir tane veya virgülle ayrılmış) yapıştırın.",
     "batchRunButton": "Toplu İçe Aktarma İş Akışını Çalıştır",
     "recentlyLinkedTitle": "Son Bağlanan Barkodlu Ürünler ({{count}})",
-    "noLinkedProducts": "Henüz barkodlu ürün bağlanmadı."
+    "noLinkedProducts": "Henüz barkodlu ürün bağlanmadı.",
+    "colGtinBarcode": "GTIN / Barkod",
+    "colProductId": "Ürün ID",
+    "colProvider": "Sağlayıcı"
   },
   "tagsTab": {
     "createTitle": "1D Barkod / 2D Dinamik QR / Sahtecilik Önleyici Etiket Oluştur",
@@ -108,7 +111,10 @@
     "cacheTitle": "Barkod Sorgulama Önbelleği ({{count}})",
     "purgeExpiredButton": "Süresi Dolanları Temizle",
     "clearAllButton": "Tüm Önbelleği Temizle",
-    "hitsBadge": "İsabet: {{count}}"
+    "hitsBadge": "İsabet: {{count}}",
+    "colBarcode": "Barkod",
+    "colProvider": "Sağlayıcı",
+    "colHits": "İsabet"
   },
   "widget": {
     "title": "Barkodlar, Dinamik QR ve Termal Etiketler",

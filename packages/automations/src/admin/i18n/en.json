@@ -1,4 +1,18 @@
 {
   "title": "Automations",
-  "empty": "No automations records yet."
+  "subtitle": "Rule-based triggers, conditions, and notification/webhook actions.",
+  "refresh": "Refresh",
+  "loading": "Loading automation rules...",
+  "empty": "No automations records yet.",
+  "emptyRules": "No automation rules configured yet. Create rules via POST /admin/automations.",
+  "colRule": "Rule",
+  "colTrigger": "Trigger",
+  "colStatus": "Status",
+  "colRuns": "Runs",
+  "colActions": "Actions",
+  "statusActive": "Active",
+  "statusPaused": "Paused",
+  "actionPause": "Pause",
+  "actionEnable": "Enable",
+  "actionRun": "Run"
 }

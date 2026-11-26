@@ -113,7 +113,9 @@ export const BroadcastsConsentTab: React.FC<BroadcastsConsentTabProps> = ({
                   <Select.Value />
                 </Select.Trigger>
                 <Select.Content>
-                  <Select.Item value="email">Email</Select.Item>
+                  <Select.Item value="email">
+                    {t("channelOptions.email")}
+                  </Select.Item>
                   <Select.Item value="sms">SMS</Select.Item>
                   <Select.Item value="whatsapp">WhatsApp</Select.Item>
                   <Select.Item value="telegram">Telegram</Select.Item>

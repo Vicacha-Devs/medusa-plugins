@@ -43,7 +43,10 @@
     "batchSubtitle": "Incolla fino a 100 codici a barre (uno per riga o separati da virgola) per cercare e creare automaticamente prodotti + varianti Medusa in una transazione.",
     "batchRunButton": "Avvia Workflow di Importazione Batch",
     "recentlyLinkedTitle": "Prodotti con Codice a Barre Collegati di Recente ({{count}})",
-    "noLinkedProducts": "Nessun prodotto con codice a barre ancora collegato."
+    "noLinkedProducts": "Nessun prodotto con codice a barre ancora collegato.",
+    "colGtinBarcode": "GTIN / Codice a barre",
+    "colProductId": "ID prodotto",
+    "colProvider": "Provider"
   },
   "tagsTab": {
     "createTitle": "Crea Codice a Barre 1D / QR Dinamico 2D / Tag Anticontraffazione",
@@ -108,7 +111,10 @@
     "cacheTitle": "Cache Ricerche Codici a Barre ({{count}})",
     "purgeExpiredButton": "Elimina Scaduti",
     "clearAllButton": "Svuota Tutta la Cache",
-    "hitsBadge": "Hit: {{count}}"
+    "hitsBadge": "Hit: {{count}}",
+    "colBarcode": "Codice a barre",
+    "colProvider": "Provider",
+    "colHits": "Hit"
   },
   "widget": {
     "title": "Codici a Barre, QR Dinamico ed Etichette Termiche",

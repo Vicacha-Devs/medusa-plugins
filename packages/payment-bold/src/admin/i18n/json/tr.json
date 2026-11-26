@@ -42,7 +42,10 @@
         "copied": "Kopyalandı",
         "copied_desc": "Ödeme bağlantısı panoya kopyalandı!",
         "already_captured": "Bu sipariş Bold aracılığıyla başarıyla yetkilendirildi ve tahsil edildi.",
-        "paid_and_captured": "Ödendi ve Tahsil Edildi"
+        "paid_and_captured": "Ödendi ve Tahsil Edildi",
+        "select_model": "Model Seçin",
+        "model_smart_pos": "Smart POS",
+        "model_neo": "Bold Neo"
       },
       "terminal_status": {
         "title": "Bold POS Terminal Filosu Durumu",

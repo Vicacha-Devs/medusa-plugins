@@ -146,5 +146,23 @@
     "loadProductExtError": "Fehler beim Laden der Produkterweiterung",
     "saveProductExtSuccess": "Medien & Slogan der Produkterweiterung gespeichert",
     "saveProductExtError": "Fehler beim Speichern der Produkterweiterung"
+  },
+  "mediaPicker": {
+    "defaultButtonLabel": "Hochladen / Auswählen",
+    "modalTitle": "Medien auswählen oder hochladen",
+    "closeButton": "Schließen",
+    "uploadTab": "Neu hochladen",
+    "libraryTab": "Mediathek",
+    "chooseFileLabel": "Datei auswählen ({{accept}})",
+    "uploadAttachButton": "Hochladen & anhängen",
+    "libraryUnavailable": "Das Mediathek-Plugin (/admin/media) ist nicht aktiv. Verwenden Sie „Neu hochladen“, um über das Medusa-Dateimodul hochzuladen.",
+    "libraryLoading": "Mediathek wird geladen...",
+    "searchPlaceholder": "Nach Dateiname, Ordner oder Rolle filtern...",
+    "noMatchingAssets": "Keine passenden Medien-Assets gefunden.",
+    "useButton": "Verwenden",
+    "uploadFailedStatus": "Upload fehlgeschlagen ({{status}})",
+    "uploadNoUrl": "Upload ohne URL abgeschlossen",
+    "uploadFailed": "Upload fehlgeschlagen",
+    "attachedSuccess": "{{filename}} angehängt"
   }
 }

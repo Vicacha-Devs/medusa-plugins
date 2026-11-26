@@ -105,10 +105,18 @@ export const BarcodeLookupSection = ({
                         <Select.Value />
                       </Select.Trigger>
                       <Select.Content>
-                        <Select.Item value="pos">POS</Select.Item>
-                        <Select.Item value="warehouse">WAREHOUSE</Select.Item>
-                        <Select.Item value="receiving">RECEIVING</Select.Item>
-                        <Select.Item value="stocktake">STOCKTAKE</Select.Item>
+                        <Select.Item value="pos">
+                          {t("barcodeTab.contextPos")}
+                        </Select.Item>
+                        <Select.Item value="warehouse">
+                          {t("barcodeTab.contextWarehouse")}
+                        </Select.Item>
+                        <Select.Item value="receiving">
+                          {t("barcodeTab.contextReceiving")}
+                        </Select.Item>
+                        <Select.Item value="stocktake">
+                          {t("barcodeTab.contextStocktake")}
+                        </Select.Item>
                       </Select.Content>
                     </Select>
                   </Form.Control>

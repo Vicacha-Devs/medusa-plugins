@@ -1,17 +1,23 @@
 import type { JSX } from "react"
 import { Button, DropdownMenu } from "@medusajs/ui"
 import { ReactNode } from "react"
+import { useTranslation } from "react-i18next"
 import { useSearchParams } from "react-router-dom"
 
 type FilterGroupProps = {
   filters: {
     [key: string]: ReactNode
   }
+  clearAllLabel?: string
+  addFilterLabel?: string
 }
 
 export const FilterGroup = ({
   filters,
+  clearAllLabel,
+  addFilterLabel,
 }: FilterGroupProps): JSX.Element | null => {
+  const { t } = useTranslation()
   const [searchParams] = useSearchParams()
   const filterKeys = Object.keys(filters)
 
@@ -25,10 +31,19 @@ export const FilterGroup = ({
 
   return (
     <div className="flex items-center flex-wrap gap-2">
-      {hasMore && <AddFilterMenu availableKeys={availableKeys} />}
+      {hasMore && (
+        <AddFilterMenu
+          availableKeys={availableKeys}
+          label={
+            addFilterLabel ??
+            t("filters.addFilter", { defaultValue: "Add filter" })
+          }
+        />
+      )}
       {isClearable && (
         <Button variant="transparent" size="small">
-          Clear all
+          {clearAllLabel ??
+            t("filters.clearAll", { defaultValue: "Clear all" })}
         </Button>
       )}
     </div>
@@ -37,14 +52,18 @@ export const FilterGroup = ({
 
 type AddFilterMenuProps = {
   availableKeys: string[]
+  label: string
 }
 
-const AddFilterMenu = ({ availableKeys }: AddFilterMenuProps): JSX.Element => {
+const AddFilterMenu = ({
+  availableKeys,
+  label,
+}: AddFilterMenuProps): JSX.Element => {
   return (
     <DropdownMenu>
       <DropdownMenu.Trigger asChild>
         <Button variant="secondary" size="small">
-          Add filter
+          {label}
         </Button>
       </DropdownMenu.Trigger>
       <DropdownMenu.Content>

@@ -2,6 +2,7 @@ import { ActionMenu } from "@medusajs/dashboard/components"
 import { DocumentText, Eye, PlusMini } from "@medusajs/icons"
 import {
   Badge,
+  Button,
   Container,
   Heading,
   Input,
@@ -23,6 +24,7 @@ export interface TemplatesListSectionProps {
   onChannelFilterChange: (channel: string) => void
   onSelectTemplate: (templateId: string) => void
   onClonePreset: (presetId: string) => void
+  onCreateTemplate?: () => void
   isCloning?: boolean
 }
 
@@ -34,6 +36,7 @@ export const TemplatesListSection: React.FC<TemplatesListSectionProps> = ({
   onChannelFilterChange,
   onSelectTemplate,
   onClonePreset,
+  onCreateTemplate,
   isCloning = false,
 }) => {
   const { t } = useTranslation("mpn")
@@ -104,6 +107,17 @@ export const TemplatesListSection: React.FC<TemplatesListSectionProps> = ({
               </Select.Content>
             </Select>
           </div>
+          {onCreateTemplate && (
+            <Button
+              size="small"
+              variant="primary"
+              onClick={onCreateTemplate}
+              className="whitespace-nowrap shrink-0"
+            >
+              <PlusMini />
+              {t("templates.createButton")}
+            </Button>
+          )}
         </div>
       </div>
 
@@ -112,8 +126,8 @@ export const TemplatesListSection: React.FC<TemplatesListSectionProps> = ({
           <Table.Row>
             <Table.HeaderCell>{t("templates.title")}</Table.HeaderCell>
             <Table.HeaderCell>{t("templates.filterChannel")}</Table.HeaderCell>
-            <Table.HeaderCell>Source</Table.HeaderCell>
-            <Table.HeaderCell>Mode</Table.HeaderCell>
+            <Table.HeaderCell>{t("templates.sourceLabel")}</Table.HeaderCell>
+            <Table.HeaderCell>{t("templates.modeField")}</Table.HeaderCell>
             <Table.HeaderCell className="text-right" />
           </Table.Row>
         </Table.Header>

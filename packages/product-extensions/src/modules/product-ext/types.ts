@@ -399,6 +399,15 @@ export interface CreateAttributeTemplateInput {
   metadata?: Record<string, unknown> | null
 }
 
+export interface ProductExtModuleOptions {
+  /**
+   * Declarative attribute templates registered via `medusa-config.ts`.
+   * Merged into `listTemplates()` and `getTemplateByIdOrCode()`, with DB
+   * templates of the same `code` taking precedence.
+   */
+  attribute_templates?: CreateAttributeTemplateInput[]
+}
+
 export interface UpdateAttributeTemplateInput {
   id: string
   code?: string

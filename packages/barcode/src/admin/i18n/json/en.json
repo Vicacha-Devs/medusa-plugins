@@ -43,7 +43,10 @@
     "batchSubtitle": "Paste up to 100 barcodes (one per line or comma-separated) to auto-lookup and create Medusa products + variants in a transaction.",
     "batchRunButton": "Run Batch Import Workflow",
     "recentlyLinkedTitle": "Recently Linked Barcode Products ({{count}})",
-    "noLinkedProducts": "No barcode products linked yet."
+    "noLinkedProducts": "No barcode products linked yet.",
+    "colGtinBarcode": "GTIN / Barcode",
+    "colProductId": "Product ID",
+    "colProvider": "Provider"
   },
   "tagsTab": {
     "createTitle": "Create 1D Barcode / 2D Dynamic QR / Anti-Counterfeit Tag",
@@ -108,7 +111,10 @@
     "cacheTitle": "Barcode Lookup Cache ({{count}})",
     "purgeExpiredButton": "Purge Expired",
     "clearAllButton": "Clear All Cache",
-    "hitsBadge": "Hits: {{count}}"
+    "hitsBadge": "Hits: {{count}}",
+    "colBarcode": "Barcode",
+    "colProvider": "Provider",
+    "colHits": "Hits"
   },
   "widget": {
     "title": "Barcodes, Dynamic QR & Thermal Labels",

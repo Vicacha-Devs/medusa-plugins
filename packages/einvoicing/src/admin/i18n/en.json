@@ -1,4 +1,13 @@
 {
   "title": "E-Invoicing",
-  "empty": "No e-invoicing records yet."
+  "heading": "E-Invoicing & Fiscal Compliance",
+  "subtitle": "Multi-country electronic invoicing (EU Peppol, Colombia DIAN, Mexico CFDI, Generic UBL 2.1).",
+  "loading": "Loading fiscal documents...",
+  "empty": "No e-invoicing records yet.",
+  "emptyDocuments": "No fiscal documents issued yet.",
+  "colNumber": "Number",
+  "colOrder": "Order",
+  "colCountryDriver": "Country / Driver",
+  "colType": "Type",
+  "colStatus": "Status"
 }

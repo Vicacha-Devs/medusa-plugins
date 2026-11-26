@@ -45,7 +45,28 @@
     "segmentsBadge": "Segmenti: {{segments}} ({{chars}} caratteri)",
     "waButtonPrefix": "[Pulsante WA] {{title}}",
     "tgInlinePrefix": "[Pulsante TG] {{text}}",
-    "emptySelection": "Seleziona un modello a sinistra per ispezionare i blocchi, clonare un preset di sistema o visualizzare l'anteprima."
+    "emptySelection": "Seleziona un modello a sinistra per ispezionare i blocchi, clonare un preset di sistema o visualizzare l'anteprima.",
+    "createButton": "Crea modello",
+    "createTitle": "Crea modello di notifica",
+    "createSubtitle": "Crea un modello modificabile nel database per qualsiasi canale.",
+    "labelField": "Etichetta visualizzata",
+    "nameField": "Chiave modello (Slug)",
+    "localeLabel": "Lingua",
+    "modeField": "Modalità",
+    "descriptionField": "Descrizione",
+    "cancelButton": "Annulla",
+    "backToList": "Torna ai modelli",
+    "detailsTitle": "Dettagli modello",
+    "sourceLabel": "Origine",
+    "deleteButton": "Elimina modello",
+    "deleteConfirmTitle": "Eliminare il modello?",
+    "deleteConfirmDescription": "Questa azione rimuoverà definitivamente '{{label}}' e i suoi blocchi.",
+    "notFound": "Modello non trovato.",
+    "labelPlaceholder": "Follow-up ordine",
+    "namePlaceholder": "order-follow-up",
+    "subjectPlaceholder": "Aggiornamento ordine #{{data.display_id}}",
+    "descriptionPlaceholder": "Descrizione facoltativa per riferimento interno",
+    "rawContentPlaceholder": "Ciao {{data.first_name}}, ..."
   },
   "mappings": {
     "title": "Crea Mappatura Evento → Canale → Modello",
@@ -97,7 +118,12 @@
     "driverMsg91": "MSG91 Flow API",
     "driverSmsApi": "SMSAPI",
     "driverDummy": "Sandbox OTP (Test)",
-    "saveSmsButton": "Salva Driver SMS"
+    "saveSmsButton": "Salva Driver SMS",
+    "emailSmtpTitle": "Email (SMTP)",
+    "emailSmtpSubtitle": "Configurato tramite le variabili d'ambiente MAILER_SMTP_HOST / MAILER_SMTP_USER.",
+    "emailConfiguredBadge": "Configurato",
+    "emailEnvNotSetBadge": "Env non impostato",
+    "driverLabel": "Driver"
   },
   "logs": {
     "title": "Registro Consegne Oscurato (PII Mascherato e Idempotente)",
@@ -158,6 +184,15 @@
     "verifiedChannelSuccess": "Canale '{{channel}}' verificato e messaggio di test inviato.",
     "savedChannelSuccess": "Configurazione '{{channel}}' salvata.",
     "channelActionError": "Azione {{action}} fallita su {{channel}}",
-    "broadcastSentSuccess": "Campagna broadcast inviata ai destinatari iscritti."
+    "broadcastSentSuccess": "Campagna broadcast inviata ai destinatari iscritti.",
+    "createdTemplateSuccess": "Modello '{{label}}' creato.",
+    "createTemplateError": "Impossibile creare il modello.",
+    "deletedTemplateSuccess": "Modello eliminato.",
+    "deleteTemplateError": "Impossibile eliminare il modello."
+  },
+  "channelOptions": {
+    "email": "Email",
+    "emailUpper": "EMAIL",
+    "dummySandboxUpper": "SANDBOX SIMULATA"
   }
 }

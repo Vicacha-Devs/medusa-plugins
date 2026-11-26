@@ -1,4 +1,18 @@
 {
-  "title": "Automations",
-  "empty": "Sin registros de automations aún."
+  "title": "Automatizaciones",
+  "subtitle": "Disparadores basados en reglas, condiciones y acciones de notificación/webhook.",
+  "refresh": "Actualizar",
+  "loading": "Cargando reglas de automatización...",
+  "empty": "Sin registros de automatizaciones aún.",
+  "emptyRules": "Aún no hay reglas de automatización configuradas. Crea reglas mediante POST /admin/automations.",
+  "colRule": "Regla",
+  "colTrigger": "Disparador",
+  "colStatus": "Estado",
+  "colRuns": "Ejecuciones",
+  "colActions": "Acciones",
+  "statusActive": "Activa",
+  "statusPaused": "Pausada",
+  "actionPause": "Pausar",
+  "actionEnable": "Activar",
+  "actionRun": "Ejecutar"
 }

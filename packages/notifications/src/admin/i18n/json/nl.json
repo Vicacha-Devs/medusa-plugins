@@ -45,7 +45,28 @@
     "segmentsBadge": "Segmenten: {{segments}} ({{chars}} tekens)",
     "waButtonPrefix": "[WA-knop] {{title}}",
     "tgInlinePrefix": "[TG-knop] {{text}}",
-    "emptySelection": "Selecteer links een sjabloon om de blokstructuur te bekijken, een systeempreset te klonen of een voorbeeld weer te geven."
+    "emptySelection": "Selecteer links een sjabloon om de blokstructuur te bekijken, een systeempreset te klonen of een voorbeeld weer te geven.",
+    "createButton": "Sjabloon aanmaken",
+    "createTitle": "Meldingssjabloon aanmaken",
+    "createSubtitle": "Maak een bewerkbaar databasesjabloon aan voor elk kanaal.",
+    "labelField": "Weergavenaam",
+    "nameField": "Sjabloonsleutel (Slug)",
+    "localeLabel": "Taal",
+    "modeField": "Modus",
+    "descriptionField": "Beschrijving",
+    "cancelButton": "Annuleren",
+    "backToList": "Terug naar sjablonen",
+    "detailsTitle": "Sjabloondetails",
+    "sourceLabel": "Bron",
+    "deleteButton": "Sjabloon verwijderen",
+    "deleteConfirmTitle": "Sjabloon verwijderen?",
+    "deleteConfirmDescription": "Hiermee worden '{{label}}' en de blokken permanent verwijderd.",
+    "notFound": "Sjabloon niet gevonden.",
+    "labelPlaceholder": "Bestellingsopvolging",
+    "namePlaceholder": "order-follow-up",
+    "subjectPlaceholder": "Update voor je bestelling #{{data.display_id}}",
+    "descriptionPlaceholder": "Optionele beschrijving voor interne referentie",
+    "rawContentPlaceholder": "Hallo {{data.first_name}}, ..."
   },
   "mappings": {
     "title": "Koppeling Gebeurtenis → Kanaal → Sjabloon Maken",
@@ -97,7 +118,12 @@
     "driverMsg91": "MSG91 Flow API",
     "driverSmsApi": "SMSAPI",
     "driverDummy": "Dummy OTP Sandbox (Test)",
-    "saveSmsButton": "SMS-driver Opslaan"
+    "saveSmsButton": "SMS-driver Opslaan",
+    "emailSmtpTitle": "E-mail (SMTP)",
+    "emailSmtpSubtitle": "Geconfigureerd via omgevingsvariabelen MAILER_SMTP_HOST / MAILER_SMTP_USER.",
+    "emailConfiguredBadge": "Geconfigureerd",
+    "emailEnvNotSetBadge": "Env niet ingesteld",
+    "driverLabel": "Driver"
   },
   "logs": {
     "title": "Geanonimiseerd Verzendlogboek (PII Gemaskeerd & Idempotent)",
@@ -158,6 +184,15 @@
     "verifiedChannelSuccess": "Kanaal '{{channel}}' geverifieerd en testbericht verzonden.",
     "savedChannelSuccess": "Configuratie '{{channel}}' opgeslagen.",
     "channelActionError": "Actie {{action}} voor {{channel}} mislukt",
-    "broadcastSentSuccess": "Broadcastcampagne verzonden naar opt-in ontvangers."
+    "broadcastSentSuccess": "Broadcastcampagne verzonden naar opt-in ontvangers.",
+    "createdTemplateSuccess": "Sjabloon '{{label}}' aangemaakt.",
+    "createTemplateError": "Aanmaken van sjabloon mislukt.",
+    "deletedTemplateSuccess": "Sjabloon verwijderd.",
+    "deleteTemplateError": "Verwijderen van sjabloon mislukt."
+  },
+  "channelOptions": {
+    "email": "E-mail",
+    "emailUpper": "E-MAIL",
+    "dummySandboxUpper": "TESTSANDOBOX"
   }
 }
